@@ -1,19 +1,16 @@
 \contentsline {section}{\tocsection {}{1}{Introduction}}{1}{section.1}%
-\contentsline {section}{\tocsection {}{2}{The Adams spectral sequence}}{2}{section.2}%
-\contentsline {subsection}{\tocsubsection {}{2.1}{Setup}}{2}{subsection.2.1}%
-\contentsline {subsection}{\tocsubsection {}{2.2}{Construction of the Adams spectral sequence}}{8}{subsection.2.2}%
-\contentsline {subsection}{\tocsubsection {}{2.3}{The E1 page}}{9}{subsection.2.3}%
-\contentsline {subsection}{\tocsubsection {}{2.4}{The E2 page}}{9}{subsection.2.4}%
-\contentsline {subsection}{\tocsubsection {}{2.5}{Convergence}}{9}{subsection.2.5}%
-\contentsline {section}{\tocsection {}{3}{The classical Adams spectral sequence}}{9}{section.3}%
-\contentsline {section}{\tocsection {}{4}{The motivic Adams spectral sequence}}{9}{section.4}%
-\contentsline {subsection}{\tocsubsection {}{4.1}{Motivic spaces}}{9}{subsection.4.1}%
-\contentsline {subsection}{\tocsubsection {}{4.2}{The unstable motivic homotopy category}}{12}{subsection.4.2}%
-\contentsline {subsection}{\tocsubsection {}{4.3}{The stable motivic homotopy category}}{12}{subsection.4.3}%
-\contentsline {subsection}{\tocsubsection {}{4.4}{Grading}}{14}{subsection.4.4}%
-\contentsline {section}{\tocsection {Appendix}{A}{Triangulated categories}}{19}{appendix.A}%
-\contentsline {section}{\tocsection {Appendix}{B}{(Co)algebra}}{21}{appendix.B}%
-\contentsline {subsection}{\tocsubsection {}{B.1}{Grading}}{21}{subsection.B.1}%
-\contentsline {section}{\tocsection {Appendix}{C}{Monoid objects}}{29}{appendix.C}%
-\contentsline {section}{\tocsection {Appendix}{D}{Spectral sequences}}{29}{appendix.D}%
-\contentsline {section}{\tocsection {Appendix}{}{References}}{29}{section*.9}%
+\contentsline {section}{\tocsection {}{2}{The Adams spectral sequence}}{1}{section.2}%
+\contentsline {subsection}{\tocsubsection {}{2.1}{Setup}}{1}{subsection.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.2}{Abstract stable homotopy theory}}{4}{subsection.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.3}{Construction of the Adams spectral sequence}}{5}{subsection.2.3}%
+\contentsline {subsection}{\tocsubsection {}{2.4}{The $E_1$ page}}{6}{subsection.2.4}%
+\contentsline {subsection}{\tocsubsection {}{2.5}{The $E_2$ page}}{6}{subsection.2.5}%
+\contentsline {subsection}{\tocsubsection {}{2.6}{Convergence}}{6}{subsection.2.6}%
+\contentsline {section}{\tocsection {}{3}{The classical Adams spectral sequence}}{7}{section.3}%
+\contentsline {section}{\tocsection {}{4}{The motivic Adams spectral sequence}}{7}{section.4}%
+\contentsline {section}{\tocsection {Appendix}{A}{Triangulated categories}}{7}{appendix.A}%
+\contentsline {section}{\tocsection {Appendix}{B}{Spectral sequences}}{9}{appendix.B}%
+\contentsline {section}{\tocsection {Appendix}{C}{(Co)algebra}}{9}{appendix.C}%
+\contentsline {subsection}{\tocsubsection {}{C.1}{Grading}}{9}{subsection.C.1}%
+\contentsline {section}{\tocsection {Appendix}{D}{Monoid objects}}{16}{appendix.D}%
+\contentsline {section}{\tocsection {Appendix}{}{References}}{23}{section*.8}%

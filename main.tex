@@ -15,6 +15,8 @@
 %%hyperref for clickable links
 \usepackage{hyperref}
 
+\usepackage[nameinlink]{cleveref}
+
 %%%thmtools to correct autoref
 \usepackage{thmtools}
 
@@ -74,9 +76,11 @@
 \newtheorem{example}[theorem]{Example}
 
 \DeclareMathOperator{\Ch}{Ch}
+\DeclareMathOperator{\Pic}{Pic}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\imm}{im}
 \newcommand{\Mod}{\mbf{Mod}}
+\newcommand{\cSH}{\mathcal{SH}}
 \newcommand{\CoMod}{\mbf{CoMod}}
 \newcommand{\Top}{\mbf{Top}}
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -248,32 +252,31 @@
 
 \subfile{subfiles/2adams.tex}
 
-\section{The classical Adams spectral sequence}
+\section{The classical Adams spectral sequence}\label{classical}
 
 \subfile{subfiles/3classical.tex}
 
-\section{The motivic Adams spectral sequence}
+\section{The motivic Adams spectral sequence}\label{motivic}
 
 \subfile{subfiles/4motivic.tex}
 
 \appendix
 
-
 \section{Triangulated categories}\label{triangulated}
 
 \subfile{subfiles/5triangulated.tex}
 
+\section{Spectral sequences}\label{spectral_sequences}
+
+\subfile{subfiles/6spectralseqs.tex}
+
 \section{(Co)algebra}\label{(co)algebra}
 
-\subfile{subfiles/6coalgebra.tex}
+\subfile{subfiles/7coalgebra.tex}
 
 \section{Monoid objects}\label{monoid_objects}
 
-\subfile{subfiles/7monoid.tex}
-
-\section{Spectral sequences}\label{spectral_sequences}
-
-\subfile{subfiles/8spectralseqs.tex}
+\subfile{subfiles/8monoid.tex}
 
 \printbibliography
 
