@@ -1,0 +1,435 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\begin{definition}\label{monoid_object}
+    Let $(\cC,\otimes,S)$ be a symmetric monoidal category with left unitor, right unitor, and associator, and symmetry isomorphism $\lambda$, $\rho$, $\alpha$, and $\tau$, respectively. Then a \emph{monoid object} $(E,\mu,e)$ is an object $E$ in $\cC$ along with a multiplication map $\mu:E\otimes E\to E$ and a unit map $e:S\to E$ such that the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsOSxbMSwwLCJFXFxvdGltZXMgRSJdLFsxLDEsIkUiXSxbMiwwLCJTXFxvdGltZXMgRSJdLFswLDAsIkVcXG90aW1lcyBTIl0sWzMsMCwiKEVcXG90aW1lcyBFKVxcb3RpbWVzIEUiXSxbMywxLCJFXFxvdGltZXMoRVxcb3RpbWVzIEUpIl0sWzQsMSwiRVxcb3RpbWVzIEUiXSxbNSwxLCJFIl0sWzUsMCwiRVxcb3RpbWVzIEUiXSxbMCwxLCJcXG11Il0sWzIsMCwiZVxcb3RpbWVzIEUiLDJdLFszLDAsIkVcXG90aW1lcyBlIl0sWzIsMSwiXFxsYW1iZGEiXSxbMywxLCJcXHJobyIsMl0sWzQsNSwiXFxhbHBoYSIsMl0sWzUsNiwiRVxcb3RpbWVzXFxtdSJdLFs2LDcsIlxcbXUiXSxbNCw4LCJcXG11XFxvdGltZXMgRSJdLFs4LDcsIlxcbXUiXV0=
+    \[\begin{tikzcd}
+        {E\otimes S} & {E\otimes E} & {S\otimes E} & {(E\otimes E)\otimes E} && {E\otimes E} \\
+        & E && {E\otimes(E\otimes E)} & {E\otimes E} & E
+        \arrow["\mu", from=1-2, to=2-2]
+        \arrow["{e\otimes E}"', from=1-3, to=1-2]
+        \arrow["{E\otimes e}", from=1-1, to=1-2]
+        \arrow["\lambda", from=1-3, to=2-2]
+        \arrow["\rho"', from=1-1, to=2-2]
+        \arrow["\alpha"', from=1-4, to=2-4]
+        \arrow["E\otimes\mu", from=2-4, to=2-5]
+        \arrow["\mu", from=2-5, to=2-6]
+        \arrow["{\mu\otimes E}", from=1-4, to=1-6]
+        \arrow["\mu", from=1-6, to=2-6]
+    \end{tikzcd}\]
+    The first diagram expresses unitality, while the second expressed associativity. If in addition the following diagram commutes, 
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXFxvdGltZXMgRSJdLFsyLDAsIkVcXG90aW1lcyBFIl0sWzEsMSwiRSJdLFswLDEsIlxcdGF1Il0sWzEsMiwiXFxtdSJdLFswLDIsIlxcbXUiLDJdXQ==
+    \[\begin{tikzcd}
+        {E\otimes E} && {E\otimes E} \\
+        & E
+        \arrow["\tau", from=1-1, to=1-3]
+        \arrow["\mu", from=1-3, to=2-2]
+        \arrow["\mu"', from=1-1, to=2-2]
+    \end{tikzcd}\]
+    then we say $(E,\mu,e)$ is a \emph{commutative} monoid object.
+\end{definition}
+
+\begin{proposition}\label{product_of_monoids_is_a_monoid}
+	Let $(E_1,\mu_1,e_1)$ and $(E_2,\mu_2,e_2)$ be monoid objects in a symmetric monoidal category $(\cC,\otimes,S)$. Then $E_1\otimes E_2$ is canonically a ring spectrum via the maps
+	\[\mu:E_1\otimes E_2\otimes E_1\otimes E_2\xrightarrow{E_1\otimes\tau\otimes E_2}E_1\otimes E_1\otimes E_2\otimes E_2\xrightarrow{\mu_1\otimes\mu_2}E_1\otimes E_2\]
+	and
+	\[e:S\cong S\otimes S\xrightarrow{e_1\otimes e_2}E_1\otimes E_2.\]
+\end{proposition}
+\begin{proof}
+	\todo{todo}
+\end{proof}
+
+In what follows, fix a stable homotopy category $\cSH$ (\autoref{stable_homotopy_cat}) along with the additional data therewithin, and adopt the conventions outlined in \Cref{setup}. Further suppose we have fixed a coherent family of isomorphisms
+\[\phi_{a,b}:S^{a+b}\xrightarrow\cong S^a\otimes S^b,\]
+in the sense of \autoref{coherent_isos} (the existence of such a coherent family is guaranteed by \autoref{coherent_existence}).
+
+\begin{proposition}\label{pi_*E_is_ring_for_E_monoid_appendix}
+	Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$, and consider the multiplication map $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
+	\[S^{a+b}\xrightarrow{\phi_{a,b}}S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes E\xrightarrow\mu E.\]
+	Then this endows $\pi_*(E)$ with the structure of an $A$-graded ring with unit $e\in\pi_0(E)=[S,E]$.
+\end{proposition}
+\begin{proof}
+	First we show this map is associative: Given classes $x$, $y$, and $z$ in $\pi_a(E)$, $\pi_b(E)$, and $\pi_c(E)$, respectively, consider the following diagram:
+	\[\begin{tikzcd}
+		{S^{a+b+c}} & {S^{a+b}\otimes S^c} & {(S^a\otimes S^b)\otimes S^c} & {(E\otimes E)\otimes E} & {E\otimes E} \\
+		{S^a\otimes S^{b+c}} & {S^a\otimes(S^b\otimes S^c)} & {E\otimes(E\otimes E)} & {E\otimes E} & E \\
+		\\
+		&& {}
+		\arrow["{\phi_{a+b,c}}", from=1-1, to=1-2]
+		\arrow["{\phi_{a,b+c}}"', from=1-1, to=2-1]
+		\arrow["{\phi_{a,b}\otimes S^c}", from=1-2, to=1-3]
+		\arrow["{S^a\otimes\phi_{b,c}}"', from=2-1, to=2-2]
+		\arrow["{x\otimes(y\otimes z)}"', from=2-2, to=2-3]
+		\arrow["{(x\otimes y)\otimes z}", from=1-3, to=1-4]
+		\arrow["\cong", from=1-3, to=2-2]
+		\arrow["\cong", from=1-4, to=2-3]
+		\arrow["{\mu\otimes E}", from=1-4, to=1-5]
+		\arrow["E\otimes\mu"', from=2-3, to=2-4]
+		\arrow["\mu"', from=2-4, to=2-5]
+		\arrow["\mu", from=1-5, to=2-5]
+	\end{tikzcd}\]
+	Commutativity of the left pentagon is the coherence condition for the $\phi_{a,b}$'s. Commutativity of the middle parallelogram is naturality of the associator isomorphisms. Commutativity of the right pentagon is associativity of $\mu$. The fact that the two outside compositions equal $(x\cdot y)\cdot z$ and $x\cdot(y\cdot z)$, respectively, follows by functoriality of $-\otimes-$. 
+
+	Next we claim the map $e:S\to E$ is a unit for this multiplication. Given $x\in\pi_a(E)$, consider the following diagram:
+	\[\begin{tikzcd}
+		{S\otimes S^a} && {S^a} && {S^a\otimes S} \\
+		& {S\otimes E} && {E\otimes S} \\
+		{E\otimes E} && E && {E\otimes E}
+		\arrow["x", from=1-3, to=3-3]
+		\arrow["{\phi_{a,0}=\rho_{S^a}^{-1}}", from=1-3, to=1-5]
+		\arrow["{x\otimes e}", from=1-5, to=3-5]
+		\arrow["\mu", from=3-5, to=3-3]
+		\arrow["{\phi_{0,a}=\lambda_{S^a}^{-1}}"', from=1-3, to=1-1]
+		\arrow["{e\otimes x}"', from=1-1, to=3-1]
+		\arrow["\mu"', from=3-1, to=3-3]
+		\arrow["{S\otimes x}", from=1-1, to=2-2]
+		\arrow["{\lambda_E}", from=2-2, to=3-3]
+		\arrow["{x\otimes S}"', from=1-5, to=2-4]
+		\arrow["{\rho_E}"', from=2-4, to=3-3]
+		\arrow["{e\otimes E}"', from=2-2, to=3-1]
+		\arrow["{E\otimes e}", from=2-4, to=3-5]
+	\end{tikzcd}\]
+	Commutativity of the top two large triangles is naturality of the unitor isomorphisms. Commutativity of the right and leftmost triangles is functoriality of $-\otimes-$. Commutativity of the bottom triangles is unitality of $\mu$. Hence, we have that $e\cdot x= x = x \cdot e$. 
+
+	This product is also bilinear (distributive). Given $x,x'\in\pi_a(E)$ and $y,y'\in\pi_b(E)$, consider the following diagrams:
+	% https://q.uiver.app/#q=WzAsMTgsWzAsMCwiU157YStifSJdLFsxLDAsIlNeYVxcb3RpbWVzIFNeYiJdLFswLDEsIlNee2ErYn1cXG9wbHVzIFNee2ErYn0iXSxbMSwxLCIoU15hXFxvdGltZXMgU15iKVxcb3BsdXMoU15hXFxvdGltZXMgU15iKSJdLFsyLDAsIihTXmFcXG9wbHVzIFNeYSlcXG90aW1lcyBTXmIiXSxbMiwxLCIoRVxcb3RpbWVzIEUpXFxvcGx1cyhFXFxvdGltZXMgRSkiXSxbMywwLCIoRVxcb3BsdXMgRSlcXG90aW1lcyBFIl0sWzMsMSwiRVxcb3RpbWVzIEUiXSxbMCwyLCJTXnthK2J9Il0sWzEsMiwiU15hXFxvdGltZXMgU15iIl0sWzIsMiwiU15iXFxvdGltZXMoU15iXFxvcGx1cyBTXmIpIl0sWzMsMiwiRVxcb3RpbWVzKEVcXG9wbHVzIEUpIl0sWzMsMywiRVxcb3RpbWVzIEUiXSxbMiwzLCIoRVxcb3RpbWVzIEUpXFxvcGx1cyhFXFxvdGltZXMgRSkiXSxbMSwzLCIoU15hXFxvdGltZXMgU15iKVxcb3BsdXMoU15hXFxvdGltZXMgU15iKSJdLFswLDMsIlNee2ErYn1cXG9wbHVzIFNee2ErYn0iXSxbNCwxLCJFIl0sWzQsMywiRSJdLFswLDEsIlxccGhpX3thLGJ9Il0sWzAsMiwiXFxEZWx0YSIsMl0sWzIsMywiXFxwaGlfe2EsYn1cXG9wbHVzXFxwaGlfe2EsYn0iLDJdLFsxLDMsIlxcRGVsdGEiXSxbMSw0LCJcXERlbHRhXFxvdGltZXMgU15iIl0sWzQsMywiXFxjb25nIiwyXSxbMyw1LCIoeFxcb3RpbWVzIHkpXFxvcGx1cyh4J1xcb3RpbWVzIHkpIiwyXSxbNCw2LCIoeFxcb3BsdXMgeCcpXFxvdGltZXMgeSJdLFs2LDUsIlxcY29uZyIsMl0sWzUsNywiXFxuYWJsYSIsMl0sWzYsNywiXFxuYWJsYVxcb3RpbWVzIEUiXSxbOCw5LCJcXHBoaV97YSxifSJdLFs5LDEwLCJTXmFcXG90aW1lc1xcRGVsdGEiXSxbMTAsMTEsInhcXG90aW1lcyh5XFxvcGx1cyB5JykiXSxbMTEsMTIsIkVcXG90aW1lc1xcbmFibGEiXSxbMTEsMTMsIlxcY29uZyIsMl0sWzEzLDEyLCJcXG5hYmxhIiwyXSxbMTAsMTQsIlxcY29uZyIsMl0sWzE0LDEzLCIoeFxcb3RpbWVzIHkpXFxvcGx1cyh4XFxvdGltZXMgeScpIiwyXSxbOSwxNCwiXFxEZWx0YSJdLFs4LDE1LCJcXERlbHRhIiwyXSxbMTUsMTQsIlxccGhpX3thLGJ9XFxvcGx1c1xccGhpX3thLGJ9IiwyXSxbNywxNiwiXFxtdSJdLFsxMiwxNywiXFxtdSJdXQ==
+	\[\begin{tikzcd}
+		{S^{a+b}} & {S^a\otimes S^b} & {(S^a\oplus S^a)\otimes S^b} & {(E\oplus E)\otimes E} \\
+		{S^{a+b}\oplus S^{a+b}} & {(S^a\otimes S^b)\oplus(S^a\otimes S^b)} & {(E\otimes E)\oplus(E\otimes E)} & {E\otimes E} & E \\
+		{S^{a+b}} & {S^a\otimes S^b} & {S^b\otimes(S^b\oplus S^b)} & {E\otimes(E\oplus E)} \\
+		{S^{a+b}\oplus S^{a+b}} & {(S^a\otimes S^b)\oplus(S^a\otimes S^b)} & {(E\otimes E)\oplus(E\otimes E)} & {E\otimes E} & E
+		\arrow["{\phi_{a,b}}", from=1-1, to=1-2]
+		\arrow["\Delta"', from=1-1, to=2-1]
+		\arrow["{\phi_{a,b}\oplus\phi_{a,b}}"', from=2-1, to=2-2]
+		\arrow["\Delta", from=1-2, to=2-2]
+		\arrow["{\Delta\otimes S^b}", from=1-2, to=1-3]
+		\arrow["\cong"', from=1-3, to=2-2]
+		\arrow["{(x\otimes y)\oplus(x'\otimes y)}"', from=2-2, to=2-3]
+		\arrow["{(x\oplus x')\otimes y}", from=1-3, to=1-4]
+		\arrow["\cong"', from=1-4, to=2-3]
+		\arrow["\nabla"', from=2-3, to=2-4]
+		\arrow["{\nabla\otimes E}", from=1-4, to=2-4]
+		\arrow["{\phi_{a,b}}", from=3-1, to=3-2]
+		\arrow["{S^a\otimes\Delta}", from=3-2, to=3-3]
+		\arrow["{x\otimes(y\oplus y')}", from=3-3, to=3-4]
+		\arrow["E\otimes\nabla", from=3-4, to=4-4]
+		\arrow["\cong"', from=3-4, to=4-3]
+		\arrow["\nabla"', from=4-3, to=4-4]
+		\arrow["\cong"', from=3-3, to=4-2]
+		\arrow["{(x\otimes y)\oplus(x\otimes y')}"', from=4-2, to=4-3]
+		\arrow["\Delta", from=3-2, to=4-2]
+		\arrow["\Delta"', from=3-1, to=4-1]
+		\arrow["{\phi_{a,b}\oplus\phi_{a,b}}"', from=4-1, to=4-2]
+		\arrow["\mu", from=2-4, to=2-5]
+		\arrow["\mu", from=4-4, to=4-5]
+	\end{tikzcd}\]
+	The unlabeled isomorphisms are those given by the fact that $-\otimes-$ is additive in each variable (since $\cSH$ is tensor triangulated). Commutativity of the left squares is naturality of $\Delta:X\to X\oplus X$ in an additive category. Commutativity of the rest of the diagram follows again from the fact that $-\otimes-$ is an additive functor in each variable. Hence, by functoriality of $-\otimes-$, these diagrams tell us that $(x+x')\cdot y=x\cdot y+x'\cdot y$ and $x\cdot(y+y')=x\cdot y+x\cdot y'$, respectively.
+\end{proof}
+
+\begin{proposition}\label{pi_*(E)_is_A-graded_commutative_if_E_is_commutative}
+	For all $a,b\in A$ there exists an element $\theta_{a,b}\in\pi_0(S)=[S,S]$ (determined by choice of coherent family $\{\phi_{a,b}\}$) such that given any commutative monoid object $(E,\mu,e)$ in $\cSH$, the $A$-graded ring structure on $\pi_\ast(E)$ (\autoref{pi_*E_is_ring_for_E_monoid}) has a commutativity formula given by
+	\[x\cdot y=y\cdot x\cdot (e\circ\theta_{a,b})\]
+	for all $x\in\pi_a(E)$ and $y\in\pi_b(E)$. In particular, $\theta_{a,b}\in\mathrm{Aut}(S)$ is the composition
+	\[S\xrightarrow\cong S^{-a-b}\otimes S^a\otimes S^b\xrightarrow{S^{-a-b}\otimes\tau}S^{-a-b}\otimes S^b\otimes S^a\xrightarrow\cong S,\]
+	where the outermost maps are the unique maps specified by \autoref{unique_comp_Sas}.
+\end{proposition}
+\begin{proof}
+	Let $\phi_{a,b}$, $E$, $x$, and $y$ as in the statement of the proposition. Now consider the following diagram
+	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXnthK2J9Il0sWzAsMiwiU157YStifSJdLFsyLDIsIlNeYlxcb3RpbWVzIFNeYSJdLFsyLDAsIlNeYVxcb3RpbWVzIFNeYiJdLFs0LDAsIkVcXG90aW1lcyBFIl0sWzQsMiwiRVxcb3RpbWVzIEUiXSxbNiwxLCJFIl0sWzAsMSwiXFxwaGlfe2IsYX1eey0xfVxcY2lyY1xcdGF1XFxjaXJjXFxwaGlfe2EsYn0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwyLCJcXHBoaV97YixhfSJdLFswLDMsIlxccGhpX3thLGJ9Il0sWzMsMiwiXFx0YXUiLDJdLFs0LDUsIlxcdGF1IiwyXSxbNCw2LCJcXG11Il0sWzIsNSwieVxcb3RpbWVzIHgiXSxbNSw2LCJcXG11IiwyXSxbMyw0LCJ4XFxvdGltZXMgeSJdXQ==
+	\[\begin{tikzcd}[sep=small]
+		{S^{a+b}} && {S^a\otimes S^b} && {E\otimes E} \\
+		&&&&&& E \\
+		{S^{a+b}} && {S^b\otimes S^a} && {E\otimes E}
+		\arrow["{\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b}}"', dashed, from=1-1, to=3-1]
+		\arrow["{\phi_{b,a}}", from=3-1, to=3-3]
+		\arrow["{\phi_{a,b}}", from=1-1, to=1-3]
+		\arrow["\tau"', from=1-3, to=3-3]
+		\arrow["\tau"', from=1-5, to=3-5]
+		\arrow["\mu", from=1-5, to=2-7]
+		\arrow["{y\otimes x}", from=3-3, to=3-5]
+		\arrow["\mu"', from=3-5, to=2-7]
+		\arrow["{x\otimes y}", from=1-3, to=1-5]
+	\end{tikzcd}\]
+	The left square commutes by definition. The middle square commutes by naturality of the symmetry isomorphism. Finally, the right square commutes by commutativity of $E$. Unravelling definitions, we have shown that under the product on $\pi_\ast(E)$ induced by the $\phi_{a,b}$'s,
+	\[x\cdot y=(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b}).\]
+	Thus, in order to show the desired result it further suffices to show that
+	\[(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b})=y\cdot x\cdot(e\circ\theta_{a,b}).\]
+	Consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTMsWzAsMCwiU157YStifSJdLFswLDEsIlNeYlxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hLWJ9XFxvdGltZXMgU15hXFxvdGltZXMgU15iIl0sWzAsMiwiU15iXFxvdGltZXMgU15hXFxvdGltZXMgU157LWEtYn1cXG90aW1lcyBTXmJcXG90aW1lcyBTXmEiXSxbMCwzLCJTXmJcXG90aW1lcyBTXmFcXG90aW1lcyBTIl0sWzAsNSwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzIsNSwiRVxcb3RpbWVzIEUiXSxbMiwzLCJTXmJcXG90aW1lcyBTXmEiXSxbMiwwLCJTXmFcXG90aW1lcyBTXmIiXSxbMiwxLCJTXmJcXG90aW1lcyBTXmEiXSxbMiwyLCJTXnthK2J9Il0sWzEsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBTIl0sWzAsNiwiRVxcb3RpbWVzIEUiXSxbMiw2LCJFIl0sWzAsMSwiXFxjb25nIiwyXSxbMiwzLCJcXGNvbmciLDJdLFszLDQsInhcXG90aW1lcyB5XFxvdGltZXMgZSIsMl0sWzMsNiwiXFxjb25nIl0sWzYsNSwieVxcb3RpbWVzIHgiXSxbMCw3LCJcXHBoaV97YSxifSJdLFs3LDgsIlxcdGF1Il0sWzgsOSwiXFxwaGlfe2IsYX1eey0xfSJdLFs5LDYsIlxccGhpX3tiLGF9Il0sWzIsOCwiXFxjb25nIl0sWzEsNywiXFxjb25nIiwyXSxbMywxMCwieVxcb3RpbWVzIHhcXG90aW1lcyBTIl0sWzEwLDUsIlxccmhvIl0sWzQsMTAsIkVcXG90aW1lcyBFXFxvdGltZXMgZSJdLFsxLDIsIlNeYlxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hLWJ9XFxvdGltZXNcXHRhdSIsMl0sWzQsMTEsIlxcbXVcXG90aW1lcyBFIiwyXSxbNCw1LCJFXFxvdGltZXMgXFxtdSJdLFs1LDEyLCJcXG11Il0sWzExLDEyLCJcXG11IiwyXV0=
+	\[\begin{tikzcd}
+		{S^{a+b}} && {S^a\otimes S^b} \\
+		{S^b\otimes S^a\otimes S^{-a-b}\otimes S^a\otimes S^b} && {S^b\otimes S^a} \\
+		{S^b\otimes S^a\otimes S^{-a-b}\otimes S^b\otimes S^a} && {S^{a+b}} \\
+		{S^b\otimes S^a\otimes S} && {S^b\otimes S^a} \\
+		& {E\otimes E\otimes S} \\
+		{E\otimes E\otimes E} && {E\otimes E} \\
+		{E\otimes E} && E
+		\arrow["\cong"', from=1-1, to=2-1]
+		\arrow["\cong"', from=3-1, to=4-1]
+		\arrow["{x\otimes y\otimes e}"', from=4-1, to=6-1]
+		\arrow["\cong", from=4-1, to=4-3]
+		\arrow["{y\otimes x}", from=4-3, to=6-3]
+		\arrow["{\phi_{a,b}}", from=1-1, to=1-3]
+		\arrow["\tau", from=1-3, to=2-3]
+		\arrow["{\phi_{b,a}^{-1}}", from=2-3, to=3-3]
+		\arrow["{\phi_{b,a}}", from=3-3, to=4-3]
+		\arrow["\cong", from=3-1, to=2-3]
+		\arrow["\cong"', from=2-1, to=1-3]
+		\arrow["{y\otimes x\otimes S}", from=4-1, to=5-2]
+		\arrow["\rho", from=5-2, to=6-3]
+		\arrow["{E\otimes E\otimes e}", from=6-1, to=5-2]
+		\arrow["{S^b\otimes S^a\otimes S^{-a-b}\otimes\tau}"', from=2-1, to=3-1]
+		\arrow["{\mu\otimes E}"', from=6-1, to=7-1]
+		\arrow["{E\otimes \mu}", from=6-1, to=6-3]
+		\arrow["\mu", from=6-3, to=7-3]
+		\arrow["\mu"', from=7-1, to=7-3]
+	\end{tikzcd}\]
+	Here we are suppressing associators from the notation, and any map simply labelled $\cong$ is an appropriate composition of copies of $\phi_{a,b}$'s, associators, and their inverses, so that each of these maps are necessarily unique by \autoref{unique_comp_Sas}. The top triangle commutes by coherence for the $\phi_{a,b}$'s. The parallelogram commutes by naturality of $\tau$ and coherence of the of $\phi_{a,b}$'s. The trapezoid commutes again by coherence for the $\phi_{a,b}$'s. The middle right large triangle commutes by naturality of the unitors (and the fact that $S^b\otimes \phi_{a,0}$ coincides with the unitor $S^b\otimes S^a\otimes S\to S^b\otimes S^a$). The middle left triangle commutes by functoriality of $-\otimes-$. The middle triangle commutes by unitality of $\mu$. Finally, the bottom rectangle commmutes by associativity of $\mu$. Hence, by unravelling definitions and applying functoriality of $-\otimes-$, we get that the top composition is $(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b})$, while the bottom composition is $y\cdot x\cdot(e\circ\theta_{a,b})$, so they are equal as desired.
+\end{proof}
+
+\begin{proposition}\label{theta_a,0=theta_0,a=id_S}
+	Given $a\in A$, we have $\theta_{0,a}=\theta_{a,0}=\id_S$.
+\end{proposition}
+\begin{proof}
+	Recall $\theta_{a,0}$ is the composition
+	\[S\xrightarrow{\phi_{-a,a}} S^{-a}\otimes S^a\xrightarrow{S^{-a}\otimes\phi_{a,0}} S^{-a}\otimes(S^a\otimes S)\xrightarrow{S^{-a}\otimes\tau}S^{-a}\otimes(S\otimes S^a)\xrightarrow{S^{-a}\otimes\phi_{0,a}^{-1}} S^{-a}\otimes S^a\xrightarrow{\phi_{-a,a}^{-1}}S\]
+	By the coherence theorem for symmetric monoidal categories and the fact that $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, we have that the composition
+	\[S^a\xrightarrow{\phi_{a,0}=\rho_{S^a}^{-1}} S^a\otimes S\xrightarrow\tau S\otimes S^a\xrightarrow{\phi_{0,a}^{-1}=\lambda_{S^a}}S^a\]
+	is precisely the identity map, so by functoriality of $-\otimes-$, we have that $\theta_{a,0}$ is the composition
+	\[S\xrightarrow{\phi_{-a,a}}S^{-a}\otimes S^a\xrightarrow=S^{-a}\otimes S^{a}\xrightarrow{\phi_{-a,a}^{-1}}S,\]
+	so $\theta_{a,0}=\id_S$, meaning
+	\[x\cdot y=y\cdot x\cdot(e\circ\theta_{a,0})=y\cdot x\cdot e=y\cdot x,\]
+	where the last equality follows by the fact that $e$ is the unit for the multiplication on $\pi_\ast(E)$. An entirely analagous argument yields that $\theta_{0,a}=\id_S$.
+\end{proof}
+
+\begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
+	Given some $a\in A$, the functors $\Sigma^a$ and $\Sigma^{-a}$ canonically form an adjoint equivalence of $\cSH$.
+\end{proposition}
+\begin{proof}
+	Let $X,Y\in\cSH$. By \cite[Lemma 3.2]{nlab:adjoint_equivalence}, in order to show $\Sigma^a$ and $\Sigma^{-a}$ are adjoint equivalences, it suffices to construct natural isomorphisms $\eta:\mathrm{Id}_\cSH\Rightarrow \Sigma^{-a}\circ\Sigma^a$ and $\vare:\Sigma^a\circ\Sigma^{-a}\Rightarrow\mathrm{Id}_\cSH$ such that for all $X$ in $\cSH$, the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFNpZ21hXmEgWCJdLFsyLDIsIlxcU2lnbWFeYVgiXSxbMiwwLCJcXFNpZ21hXmFcXFNpZ21hXnstYX1cXFNpZ21hXmEgWCJdLFswLDFdLFswLDIsIihcXFNpZ21hXmFcXGV0YSlfWCJdLFsyLDEsIihcXHZhcmVcXFNpZ21hXmEpX1giXV0=
+	\begin{equation}\label{diag1}\begin{tikzcd}
+		{\Sigma^a X} && {\Sigma^a\Sigma^{-a}\Sigma^a X} \\
+		\\
+		&& {\Sigma^aX}
+		\arrow[from=1-1, to=3-3]
+		\arrow["{(\Sigma^a\eta)_X}", from=1-1, to=1-3]
+		\arrow["{(\vare\Sigma^a)_X}", from=1-3, to=3-3]
+	\end{tikzcd}\end{equation}
+	Given an object $X$ in $\cSH$, define $\eta_X:X\to \Sigma^{-a}\Sigma^a X=S^{-a}\otimes S^a\otimes X$ to be the composition
+	\[X\xrightarrow{\lambda_X^{-1}}S\otimes X\xrightarrow{\phi_{-a,a}\otimes X}S^{-a}\otimes S^a\otimes X.\]
+	Clearly this is an isomorphism. To see this is natural, let $f:X\to Y$ in $\cSH$. Then consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDAsIlNcXG90aW1lcyBYIl0sWzEsMSwiU1xcb3RpbWVzIFkiXSxbMiwwLCJTXnstYX1cXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzIsMSwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgWSJdLFswLDEsImYiLDJdLFswLDIsIlxcbGFtYmRhX1heey0xfSJdLFsxLDMsIlxcbGFtYmRhX1leey0xfSIsMl0sWzIsMywiU1xcb3RpbWVzIGYiXSxbMiw0LCJcXHBoaV97LWEsYX1cXG90aW1lcyBYIl0sWzQsNSwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgZiJdLFszLDUsIlxccGhpX3stYSxhfVxcb3RpbWVzIFkiLDJdXQ==
+	\[\begin{tikzcd}
+		X & {S\otimes X} & {S^{-a}\otimes S^a\otimes X} \\
+		Y & {S\otimes Y} & {S^{-a}\otimes S^a\otimes Y}
+		\arrow["f"', from=1-1, to=2-1]
+		\arrow["{\lambda_X^{-1}}", from=1-1, to=1-2]
+		\arrow["{\lambda_Y^{-1}}"', from=2-1, to=2-2]
+		\arrow["{S\otimes f}", from=1-2, to=2-2]
+		\arrow["{\phi_{-a,a}\otimes X}", from=1-2, to=1-3]
+		\arrow["{S^{-a}\otimes S^a\otimes f}", from=1-3, to=2-3]
+		\arrow["{\phi_{-a,a}\otimes Y}"', from=2-2, to=2-3]
+	\end{tikzcd}\]
+	The left square commutes by naturality of $\lambda$. The right square commutes by functoriality of $-\otimes-$. Hence $\eta$ is indeed a natural isomorhpism.
+
+	On the other hand, given an object $X$ in $\cSH$, define $\vare_X:\Sigma^a\Sigma^{-a}X=S^a\otimes S^{-a}\otimes X\to X$ to be  the composition
+	\[S^a\otimes S^{-a}\otimes X\xrightarrow{\phi_{a,-a}^{-1}}S\otimes X\xrightarrow{\lambda_X}X.\]
+	Clearly this is an isomorphism. To see it is natural, let $f:X\to Y$ in $\cSH$. Then consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXmFcXG90aW1lcyBTXnstYX1cXG90aW1lcyBYIl0sWzAsMSwiU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgWSJdLFsxLDEsIlNcXG90aW1lcyBZIl0sWzEsMCwiU1xcb3RpbWVzIFgiXSxbMiwxLCJZIl0sWzIsMCwiWCJdLFswLDEsIlNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIGYiLDJdLFsxLDIsIlxccGhpX3thLC1hfV57LTF9XFxvdGltZXMgWSIsMl0sWzAsMywiXFxwaGlfe2EsLWF9XnstMX1cXG90aW1lcyBYIl0sWzMsMiwiU1xcb3RpbWVzIGYiLDJdLFsyLDQsIlxccmhvX1kiLDJdLFszLDUsIlxccmhvX1giXSxbNSw0LCJmIl1d
+	\[\begin{tikzcd}
+		{S^a\otimes S^{-a}\otimes X} & {S\otimes X} & X \\
+		{S^a\otimes S^{-a}\otimes Y} & {S\otimes Y} & Y
+		\arrow["{S^a\otimes S^{-a}\otimes f}"', from=1-1, to=2-1]
+		\arrow["{\phi_{a,-a}^{-1}\otimes Y}"', from=2-1, to=2-2]
+		\arrow["{\phi_{a,-a}^{-1}\otimes X}", from=1-1, to=1-2]
+		\arrow["{S\otimes f}"', from=1-2, to=2-2]
+		\arrow["{\lambda_Y}"', from=2-2, to=2-3]
+		\arrow["{\lambda_X}", from=1-2, to=1-3]
+		\arrow["f", from=1-3, to=2-3]
+	\end{tikzcd}\]
+	The left square commutes by functoriality of $-\otimes-$. The right square commutes by naturality of $\lambda$. Hence, $\vare$ is natural.
+
+	Finally, let $X$ be an object in $\cSH$. Unravelling definitions, by functoriality of $-\otimes-$, in order to show that diagram (\ref{diag1}) commutes, it suffices to show the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJTXmFcXG90aW1lcyBYIl0sWzQsMCwiU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgWCJdLFs0LDQsIlNeYVxcb3RpbWVzIFgiXSxbMiwwLCJTXmFcXG90aW1lcyBTXFxvdGltZXMgWCJdLFs0LDIsIlNcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzAsMywiU15hXFxvdGltZXNcXGxhbWJkYV9YXnstMX0iXSxbMywxLCJTXmFcXG90aW1lc1xccGhpX3stYSxhfVxcb3RpbWVzIFgiXSxbMSw0LCJcXHBoaV97YSwtYX1eey0xfVxcb3RpbWVzIFNeYVxcb3RpbWVzIFgiXSxbNCwyLCJcXHJob197U15hXFxvdGltZXMgWH0iXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDMsIlxccGhpX3thLDB9XFxvdGltZXMgWCIsMl1d
+	\[\begin{tikzcd}
+		{S^a\otimes X} && {S^a\otimes S\otimes X} && {S^a\otimes S^{-a}\otimes S^a\otimes X} \\
+		\\
+		&&&& {S\otimes S^a\otimes X} \\
+		\\
+		&&&& {S^a\otimes X}
+		\arrow["{S^a\otimes\lambda_X^{-1}}", from=1-1, to=1-3]
+		\arrow["{S^a\otimes\phi_{-a,a}\otimes X}", from=1-3, to=1-5]
+		\arrow["{\phi_{a,-a}^{-1}\otimes S^a\otimes X}", from=1-5, to=3-5]
+		\arrow["{\lambda_{S^a\otimes X}}", from=3-5, to=5-5]
+		\arrow[Rightarrow, no head, from=1-1, to=5-5]
+		\arrow["{\phi_{a,0}\otimes X}"', from=5-5, to=1-3]
+	\end{tikzcd}\]
+	First, note that by the coherence theorem for monoidal categories, $\lambda_{S^a\otimes X}=\lambda_{S^a}\otimes X$\footnote{Technically, this equality only holds up to composition with an associator, but we are ignoring such issues.}. And furthermore, recall $\lambda_{S^a}=\phi_{0,a}^{-1}$. Hence, the right triangle is precisely the diagram obtained by applying $-\otimes X$ to the coherence diagram for the $\phi_{a,b}$'s, so it commutes. Commutativity of the left triangle follows by the coherence theorem for monoidal categories and the fact that $\phi_{a,0}=\lambda_{S^a}^{-1}$. Hence, the diagram commutes, so $(\Sigma^a,\Sigma^{-a})$ forms an adjoint equivalence of $\cSH$.
+\end{proof}
+
+\begin{proposition}\label{bilinear}
+	Let $X$ and $Y$ be objects in $\cSH$. Then the pairing
+	\[\pi_*(X)\times\pi_*(Y)\to\pi_*(X\otimes Y)\]
+	sending $x:S^a\to X$ and $ y:S^b\to Y$ to the composition
+	\[S^{a+b}\xrightarrow{\phi_{a,b}} S^a\otimes S^b\xrightarrow{x\otimes y}X\otimes Y\]
+	is bilinear.
+\end{proposition}
+\begin{proof}
+	Let $a,b\in A$, and let $x_1,x_2:S^a\to X$ and $ y:S^b\to Y$. Then consider the following diagram
+	\[\begin{tikzcd}
+		{S^{a+b}} & {S^a\otimes S^b} & {(S^a\oplus S^a)\otimes S^b} \\
+		& {(S^a\otimes S^b)\oplus(S^a\otimes S^b)} & {(X\oplus X)\otimes Y} \\
+		& {(X\otimes Y)\oplus(X\otimes Y)} & {X\otimes Y}
+		\arrow["{\Delta\otimes S^b}", from=1-2, to=1-3]
+		\arrow["\Delta"', from=1-2, to=2-2]
+		\arrow["{( x_1\oplus x_2)\otimes y}", from=1-3, to=2-3]
+		\arrow["{\nabla\otimes Y}", from=2-3, to=3-3]
+		\arrow["{( x_1\otimes y)\oplus( x_2\otimes y)}"', from=2-2, to=3-2]
+		\arrow["\nabla", from=3-2, to=3-3]
+		\arrow["\cong"', from=1-3, to=2-2]
+		\arrow["\cong"', from=2-3, to=3-2]
+		\arrow["\cong", from=1-1, to=1-2]
+	\end{tikzcd}\]
+	The isomorphisms are given by the fact that $-\otimes-$ is additive in each variable. Both triangles and the parallelogram commute since $-\otimes-$ is additive. By functoriality of $-\otimes-$, the top composition is $( x_1+ x_2)\cdot y$ and the bottom composition is $ x_1\cdot y+ x_2\cdot y$, so they are equal, as desired. An entirely analagous argument yields that $ x\cdot( y_1+ y_2)= x\cdot y_1+ x\cdot y_2$ for $ x\in\pi_*(X)$ and $ y_1, y_2\in\pi_*(Y)$.
+\end{proof}
+
+\begin{proposition}[{\cite[Proposition 5.11]{nlab:introduction_to_stable_homotopy_theory_--_1-2}}]\label{module}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then for any object $X$ in $\cSH$, $E_*(X)$ canonically inherits the structure of a left $A$-graded $\pi_*(E)$-module via the map 
+	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
+	which given $a,b\in A$, sends $ x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xrightarrow{\mu\otimes X}E\otimes X.\]
+	Similarly $X_*(E)$ canonically inherits the structure of a right $A$-graded $\pi_*(E)$-module via the map
+	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
+	which given $a,b\in A$, sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xrightarrow{X\otimes\mu}X\otimes E.\]
+	In particular, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
+\end{proposition}
+\begin{proof}
+	First we show that the map $\pi_*(E)\times E_*(X)\to E_*(X)$ endows $E_*(X)$ with the structure of a left $\pi_*(E)$-module. Let $a,b,c\in A$ and $x,x':S^a\to E\otimes X$, $y:S^b\to E$, and $z, z'\in S^c\to E$. Then we wish to show that:
+	\begin{enumerate}
+		\item $ y\cdot( x+ x')= y\cdot x+ y\cdot x'$, 
+		\item $( z+ z')\cdot x= z\cdot x+ z'\cdot x$,
+		\item $(zy)\cdot  x= z\cdot( y\cdot x)$,
+		\item $e\cdot x= x$.
+	\end{enumerate}
+	Axioms $(1)$ and $(2)$ follow by the fact that $E_*(X)=\pi_*(E\otimes X)$ and \autoref{bilinear}. To see $(3)$, consider the diagram:
+	\[\begin{tikzcd}
+		{S^{a+b+c}} & {S^{c+b}\otimes S^a} \\
+		{S^c\otimes S^{b+a}} \\
+		{S^c\otimes(S^b\otimes S^a)} & {(S^c\otimes S^b)\otimes S^a} \\
+		{E\otimes(E\otimes (E\otimes X))} & {(E\otimes E)\otimes (E\otimes X)} & {E\otimes(E\otimes X)} \\
+		& {((E\otimes E)\otimes E)\otimes X} & {(E\otimes E)\otimes X} \\
+		{E\otimes((E\otimes E)\otimes X)} & {(E\otimes(E\otimes E))\otimes X} \\
+		{E\otimes(E\otimes X)} & {(E\otimes E)\otimes X} & {E\otimes X}
+		\arrow["\cong", from=1-1, to=1-2]
+		\arrow["\cong", from=1-2, to=3-2]
+		\arrow["\cong"', from=1-1, to=2-1]
+		\arrow["\cong"', from=2-1, to=3-1]
+		\arrow["{ z\otimes( y\otimes x)}"', from=3-1, to=4-1]
+		\arrow["{( z\otimes y)\otimes x}", from=3-2, to=4-2]
+		\arrow["\cong"', from=4-1, to=6-1]
+		\arrow["\cong"', from=3-2, to=3-1]
+		\arrow["\cong"', from=4-2, to=4-1]
+		\arrow["{\mu\otimes(E\otimes X)}", from=4-2, to=4-3]
+		\arrow["{E\otimes(\mu\otimes X)}"', from=6-1, to=7-1]
+		\arrow["\cong", from=4-3, to=5-3]
+		\arrow["{\mu\otimes X}"', from=7-2, to=7-3]
+		\arrow["{\mu\otimes X}", from=5-3, to=7-3]
+		\arrow["\cong", from=5-2, to=6-2]
+		\arrow["\cong", from=6-1, to=6-2]
+		\arrow["\cong"', from=5-2, to=4-2]
+		\arrow["{(E\otimes\mu)\otimes X}", from=6-2, to=7-2]
+		\arrow["\cong"', from=7-1, to=7-2]
+		\arrow["{(\mu\otimes E)\otimes X}", from=5-2, to=5-3]
+	\end{tikzcd}\]
+	The top square commutes by coherence of the isomorphisms $S^{a+b}\cong S^a\otimes S^b$ (\autoref{coherent_isos}). The second square from the top on the left commutes by naturality of the associators. The square below that commutes by the coherence axiom for the associators in a monoidal category. The bottom left square commutes again by naturality of the associator isomorphisms. The bottom right square commutes by associativity for $\mu$ and functorialiy of $-\otimes X$. Finally, the square above that commutes again by naturality of the associator isomorphism. By functoriality of $-\otimes-$, the two outside compositions equal $(z\cdot y)\cdot x$ on the top and $z\cdot( y\cdot x)$ on the bottom. Hence, they are equal, as desired.
+
+	Next, to see $(4)$, consider the following diagram:
+	\[\begin{tikzcd}
+		{S^a} &&& {E\otimes X} \\
+		{S\otimes S^a} & {S\otimes(E\otimes X)} \\
+		&& {(S\otimes E)\otimes X} \\
+		{E\otimes(E\otimes X)} &&& {(E\otimes E)\otimes X}
+		\arrow["\cong", from=4-1, to=4-4]
+		\arrow["e\otimes x"', from=2-1, to=4-1]
+		\arrow[" x", from=1-1, to=1-4]
+		\arrow["{\mu\otimes X}"', from=4-4, to=1-4]
+		\arrow["{S\otimes  x}", from=2-1, to=2-2]
+		\arrow["{e\otimes(E\otimes X)}", from=2-2, to=4-1]
+		\arrow["\cong", from=2-2, to=3-3]
+		\arrow["{\lambda_E\otimes X}"', from=3-3, to=1-4]
+		\arrow["{\phi_{0,a}=\lambda_{S^a}^{-1}}"', from=1-1, to=2-1]
+		\arrow["{\lambda_{E\otimes X}}"', from=2-2, to=1-4]
+		\arrow["{(e\otimes E)\otimes X}", from=3-3, to=4-4]
+	\end{tikzcd}\]
+	Commutativity of the top trapezoid is naturality of the unitor. Commutativity of the left triangle is functoriality of $-\otimes-$. Commutativity of the bottom triangle is naturality of the associator isomorphisms. Commutativity of the right triangle is unitality of $\mu$ and functoriality of $-\otimes X$. Finally, commutativity of the remaining crooked triangle follows by coherence for monoidal categories. The two outer compositions $S^a\to E\otimes X$ are $ x$ and $e\cdot x$, and by commutativity they are necessarily equal.
+
+	Thus, we have shown that the indicated map does indeed endow $E_*(X)$ with the structure of a left $\pi_*(E)$-module. Showing that $X_*(E)$ has the structure of a right $\pi_*(E)$-module is entirely analagous.
+
+    It remains to show that $E_*(E)$ is a bimodule. Let $x:S^a\to E$, $y:S^b\to E\otimes E$, and $z:S^c\to E$, and consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmFcXG90aW1lcyBTXmJcXG90aW1lcyBTXmMiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzMsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzMsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzMsMSwiRVxcb3RpbWVzIEUiXSxbMCwxLCJcXGNvbmciXSxbMSwyLCJ4XFxvdGltZXMgeVxcb3RpbWVzIHoiXSxbMiwzLCJcXG11XFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMiw0LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbXUiLDJdLFsyLDUsIlxcbXVcXG90aW1lc1xcbXUiXSxbMyw1LCJFXFxvdGltZXNcXG11Il0sWzQsNSwiXFxtdVxcb3RpbWVzIEUiLDJdXQ==
+	\[\begin{tikzcd}
+		&&& {E\otimes E\otimes E} \\
+		{S^{a+b+c}} & {S^a\otimes S^b\otimes S^c} & {E\otimes E\otimes E\otimes E} & {E\otimes E} \\
+		&&& {E\otimes E\otimes E}
+		\arrow["\cong", from=2-1, to=2-2]
+		\arrow["{x\otimes y\otimes z}", from=2-2, to=2-3]
+		\arrow["{\mu\otimes E\otimes E}", from=2-3, to=1-4]
+		\arrow["{E\otimes E\otimes \mu}"', from=2-3, to=3-4]
+		\arrow["\mu\otimes\mu", from=2-3, to=2-4]
+		\arrow["E\otimes\mu", from=1-4, to=2-4]
+		\arrow["{\mu\otimes E}"', from=3-4, to=2-4]
+	\end{tikzcd}\]
+	We are suppressing the associators here. Commutativity follows by functoriality of $-\otimes-$, which also tells us that the two outside compositions are $(x\cdot y)\cdot z$ (on top) and $x\cdot(y\cdot z)$ (on bottom). Hence they are equal, as desired.
+\end{proof}
+
+\begin{proposition}[{\cite[Proposition 2.2]{nlab:introduction_to_the_adams_spectral_sequence}}]\label{2.2}
+	Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$ and let $X$ be any spectrum. Then the assignment
+	\[E_*(E)\times E_*(X)\to E_*(E\otimes X)\]
+	which sends $x:S^{a}\to E\otimes E$ and $ y:S^{c,d}\to E\otimes X$ to the composition
+	\[x\cdot y:S^{a+c,b+d}\cong S^{a,b}\otimes S^{c,d}\xrightarrow{x\otimes y}E\otimes E\otimes E\otimes X\xrightarrow{E\otimes\mu\otimes X}E\otimes E\otimes X\]
+	induces a homomorphism of bigraded abelian groups
+	\[E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
+	(where here $E_*(E)$ has a right $\pi_*(E)$-module structure and $E_*(X)$ has a left $\pi_*(E)$-module structure as specified by \autoref{module}). Furthermore, if $X$ is cellular and $E$ is a cellular flat commutative ring spectrum (\autoref{cellular}, \autoref{flat}), then this map is an isomorphism.
+\end{proposition}
+\begin{proof}
+	First we show that this map is $\pi_*(E)$-bilinear. By the identifications $E_*(E)=\pi_*(E\otimes E)$ $E_*(X)=\pi_*(E\otimes X)$, and $E_*(E\otimes X)=\pi_*(E\otimes E\otimes X)$, we know this map commutes with addition of maps in each argument by \autoref{bilinear}. Now, let $a,b,c\in\bZ^2$, $x:S^a\to E\otimes E$, $ y:S^b\to E\otimes X$, and $ z:S^c\to E$. Then we wish to show $x z\cdot y=x\cdot z y$. Consider the following diagram
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmFcXG90aW1lcyBTXmJcXG90aW1lcyBTXmMiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsyLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywxLCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMiwwLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwieFxcb3RpbWVzIHlcXG90aW1lcyB6Il0sWzIsMywiRVxcb3RpbWVzXFxtdVxcb3RpbWVzIEVcXG90aW1lcyBYIiwyXSxbMyw0LCJFXFxvdGltZXNcXG11XFxvdGltZXMgWCIsMl0sWzIsNSwiRVxcb3RpbWVzIEVcXG90aW1lc1xcbXVcXG90aW1lcyBYIl0sWzUsNCwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIl1d
+	\[\begin{tikzcd}
+		&& {E\otimes E\otimes E\otimes X} \\
+		{S^{a+b+c}} & {S^a\otimes S^b\otimes S^c} & {E\otimes E\otimes E\otimes E\otimes X} & {E\otimes E\otimes X} \\
+		&& {E\otimes E\otimes E\otimes X}
+		\arrow["\cong", from=2-1, to=2-2]
+		\arrow["{x\otimes y\otimes z}", from=2-2, to=2-3]
+		\arrow["{E\otimes\mu\otimes E\otimes X}"', from=2-3, to=3-3]
+		\arrow["{E\otimes\mu\otimes X}"', from=3-3, to=2-4]
+		\arrow["{E\otimes E\otimes\mu\otimes X}", from=2-3, to=1-3]
+		\arrow["{E\otimes \mu\otimes X}", from=1-3, to=2-4]
+	\end{tikzcd}\]
+	(we have suppressed the associators from the notation). The top left triangle commutes by coherence for the isomorphisms $S^{a+b}\cong S^a\otimes S^b$. The middle parallelogram commutes by naturality of the associators. Finally, the bottom right triangle is obtained by applying $E\otimes-\otimes X$ to the associativity diagram for $\mu$, so by functoriality it commutes. Again by functoriality of $-\otimes-$, the bottom composition is given by $(x\cdot z)\cdot y$ and the  top composition is $x\cdot( z y)$, so we have the desired equality.
+
+	It remains to show that if $X$ is cellular and $E$ is cellular flat commutative, then this map is an isomorphism.\todo{finish or cite}
+\end{proof}
+
+In the following definition, let $\vare:E_*(E)\to \pi_*(E)$ be the map which sends some $\alpha:S^a\to E\otimes E$ to the composition
+\[S^a\xrightarrow\alpha E\otimes E\xrightarrow\mu E.\]
+Also define $\Psi:E_*(E)\to E_*(E)\otimes_{\pi_*(E)}E_*(E)$ to be the map which factors as
+\[E_*(E)\to E_*(E\otimes E)\xrightarrow\cong E_*(E)\otimes_{\pi_*(E)}E_*(E)\]
+where the second arrow is the isomorphism prescribed by \autoref{2.2}, and the first arrow sends a class $\alpha:S^a\to E\otimes E$ to the composition
+\[S^a\xrightarrow\alpha E\otimes E\cong E\otimes S\otimes E\xrightarrow{E\otimes e\otimes E}E\otimes E\otimes E.\]
+
+\begin{lemma}[{\cite[Proposition 2.30, 2.33]{nlab:introduction_to_the_adams_spectral_sequence}}]\label{2.30_2.33}
+	Let $E$ be a flat commutative ring spectrum, and let $X$ and $Y$ be spectra such that $E_\aast(X)$ is a projective module over $\pi_\aast(E)$. Then for all $s\geq0$ and $t,w\in\bZ$, there is an isomorphism
+	\[\Phi:[X,E\wedge Y]_{t,w}\to\Hom_{E_\aast(E)}^{t,w}(E_\aast(X),E_\aast(E\wedge Y)),\]
+	obtained by sending a class $f:S^{t,w}\wedge X\to E\wedge Y$ in $[X,E\wedge Y]_{t,w}$ to the map
+	\[\Phi_f:E_\acast(X)\to E_{\ast+t,\ast+w}(X\wedge Y)\]
+	sending
+	\[[S^{a,b}\xrightarrow gE\wedge X]\mapsto[S^{a+t,b+w}\cong S^{a,b}\wedge S^{t,w}\xrightarrow{g\wedge S^{t,w}}E\wedge X\wedge S^{t,w}\cong E\wedge S^{t,w}\wedge X\xrightarrow{E\wedge f}E\wedge E\wedge Y].\]
+\end{lemma}
+\begin{proof}
+	Let $f:S^{t,w}\wedge X\to E\wedge Y$. First we want to show that $\Phi_f$ is actually an $E_\aast(E)$-comodule homomorphism.\todo{finish}
+\end{proof}
+
+\end{document}
