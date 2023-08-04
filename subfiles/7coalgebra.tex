@@ -404,13 +404,21 @@ When working with $A$-graded abelian groups, we will freely use the above propos
 %\end{proof}
 
 \begin{lemma}\label{tensor_shift_A_graded}
-	Let $R$ be an $A$-graded ring, and suppose we have an $A$-graded $R$-bimodule $M$. Then for all $a\in A$, we have an $A$-graded isomorphism of left $A$-graded $R$-modules:
+	Let $R$ be an $A$-graded ring, and suppose we have an $A$-graded $R$-bimodule $M$. Then for all $a\in A$, we have an $A$-graded isomorphism of left $A$-graded $R$-modules
 	\[M\otimes_R R_{*+a}\cong M_{*+a}\]
-	sending $m\in M_b$ and $r\in R_{c+a}$ to $r\cdot m\in M_{b+c+a}$ (where here $M\otimes_RR$ has the structure of a left $A$-graded $R$-module by \autoref{tensor_of_A_graded_is_A_graded}, and $r\cdot m$ denotes the left action of $r$ on $m$).
+	induced by the assignment
+	\[M\times R_{*+a}\to M_{*+a}\]
+	sending $m\in M_b$ and $r\in R_{c+a}$ to $m\cdot r\in M_{b+c+a}$ (where here $M\otimes_RR$ has the structure of a left $A$-graded $R$-module by \autoref{tensor_of_A_graded_is_A_graded}, and $m\cdot r$ denotes the right action of $r$ on $m$).
 \end{lemma}
 \begin{proof}
-	First of all, this map is clearly a homomorphism of left $A$-graded modules, as given homogeneous elements $m,m'\in M$ and $r,r'\in R$, we have
-	\[\]
+	First of all, note that if you ignore the grading then the map $M\times R_{*+a}\to M_{*+a}$ is simply the structure map for the right action of $R$ on $M$. In particular, by the module axioms this map is $R$-balanced, so it does indeed induce an $A$-graded homomorphism of $A$-graded abelian groups $\varphi:M\otimes_RR_{*+a}\to M_{*+a}$. Furthermore, note this map is actually a homomorphism of left $A$-graded $R$-modules, as given $m\in M$ and $r,r'\in R$, we have $r\cdot(m\cdot r')=(r\cdot m)\cdot r'$, since $M$ is a bimodule. Now, to see this map is an isomorphism, it suffices to construct an inverse. Indeed, define the map
+	\[\psi:M_{*+a}\to M\otimes_RR_{*+a}\]
+	to send $m\mapsto m\otimes 1$. First of all note this map is $A$-graded, as given $m\in M_{b+a}$, we have $\psi(m)=m\otimes 1$ has degree $|m|+|1|=|m|=b+a$, by definition of the graded structure on $M\otimes_RR_{*+a}$. Note that it is a homomorphism of left $R$-modules, as given $m,m'\in M$ and $r,r'\in R$ we have
+	\[\psi(rm+r'm')=(rm+r'm')\otimes 1=r(m\otimes1)+r'(m'\otimes1)=r\psi(m)+r'\psi(m').\]
+	Now, to see $\psi$ and $\varphi$ are inverses, note first that given $m\in M_{*+a}$ that
+	\[\varphi(\psi(m))=\varphi(m\otimes 1)=m\cdot1=m,\]
+	and given $m\otimes r\in M\otimes_RR_{*+a}$, 
+	\[\psi(\varphi(m\otimes r))=\psi(m\cdot r)=(m\cdot r)\otimes 1=m\otimes(r\cdot 1)=m\otimes r.\]
 \end{proof}
 
 \end{document}
