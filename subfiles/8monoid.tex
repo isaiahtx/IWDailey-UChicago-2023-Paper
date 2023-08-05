@@ -433,25 +433,25 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow[from=1-1, to=2-1]
 		\arrow["{(1)}", from=1-1, to=1-2]
 		\arrow["{(2)}", from=1-2, to=2-2]
-		\arrow["{(3)}", from=2-2, to=2-1]
+		\arrow["{(3)}", from=2-1, to=2-2]
 	\end{tikzcd}\end{equation}
 	where the vertical left arrow is the map we want to show is an isomorphism, and:
 	\begin{enumerate}
 		\item The top arrow is induced by the isomorphism
 		\[E_*(S^a)=[S^*,E\otimes S^a]\xrightarrow{\tau_*}[S^*,S^a\otimes E]\xrightarrow\cong[S^{-a}\otimes S^*,E]\xrightarrow{(\phi_{-a,*})*}[S^{*-a},E]=\pi_{*-a}(E),\]
 		where the middle arrow is the adjunction given by \autoref{Sigma^a,Sigma^-a_adjoint_equiv};
-		\item The right arrow is that given by \autoref{tensor_shift_A_graded},
+		\item The right arrow is the isomorphism given by \autoref{tensor_shift_A_graded},
 		\item The bottom arrow is the isomorphism
-		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJFX3sqLWF9KEUpPVtTXnsqLWF9LEVcXG90aW1lcyBFXSJdLFsxLDAsIltTXnstYX1cXG90aW1lcyBTXiosRVxcb3RpbWVzIEVdIl0sWzIsMCwiW1NeKixTXmFcXG90aW1lcyBFXFxvdGltZXMgRV0iXSxbMSwxLCJbU14qLEVcXG90aW1lcyBTXmFcXG90aW1lcyBFXSJdLFsyLDEsIltTXiosRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFdPUVfKihFXFxvdGltZXMgU15hKSJdLFswLDEsIihcXHBoaV97LWEsKn1eey0xfSleKiJdLFsxLDIsIlxcY29uZyJdLFsyLDMsIihcXHRhdVxcb3RpbWVzIEUpXyoiLDJdLFszLDQsIihFXFxvdGltZXNcXHRhdSlfKiJdXQ==
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJFXyooRVxcb3RpbWVzIFNeYSk9W1NeKixFXFxvdGltZXMgRVxcb3RpbWVzIFNeYV0iXSxbMSwwLCJbU14qLEVcXG90aW1lcyBTXmFcXG90aW1lcyBFXSJdLFswLDEsIltTXiosU15hXFxvdGltZXMgRVxcb3RpbWVzIEVdIl0sWzEsMSwiW1Neey1hfVxcb3RpbWVzIFNeKixFXFxvdGltZXMgRV0iXSxbMiwxLCJbU157Ki1hfSxFXFxvdGltZXMgRV09RV97Ki1hfShFKSJdLFswLDEsIihFXFxvdGltZXNcXHRhdSlfKiJdLFsxLDIsIihcXHRhdVxcb3RpbWVzIEUpXyoiLDJdLFsyLDMsIlxcY29uZyIsMl0sWzMsNCwiKFxccGhpX3stYSwqfSleKiJdXQ==
 		\[\begin{tikzcd}
-			{E_{*-a}(E)=[S^{*-a},E\otimes E]} & {[S^{-a}\otimes S^*,E\otimes E]} & {[S^*,S^a\otimes E\otimes E]} \\
-			& {[S^*,E\otimes S^a\otimes E]} & {[S^*,E\otimes E\otimes S^a]=E_*(E\otimes S^a)}
-			\arrow["{(\phi_{-a,*}^{-1})^*}", from=1-1, to=1-2]
-			\arrow["\cong", from=1-2, to=1-3]
-			\arrow["{(\tau\otimes E)_*}"', from=1-3, to=2-2]
-			\arrow["{(E\otimes\tau)_*}", from=2-2, to=2-3]
+			{E_*(E\otimes S^a)=[S^*,E\otimes E\otimes S^a]} & {[S^*,E\otimes S^a\otimes E]} \\
+			{[S^*,S^a\otimes E\otimes E]} & {[S^{-a}\otimes S^*,E\otimes E]} & {[S^{*-a},E\otimes E]=E_{*-a}(E)}
+			\arrow["{(E\otimes\tau)_*}", from=1-1, to=1-2]
+			\arrow["{(\tau\otimes E)_*}"', from=1-2, to=2-1]
+			\arrow["\cong"', from=2-1, to=2-2]
+			\arrow["{(\phi_{-a,*})^*}", from=2-2, to=2-3]
 		\end{tikzcd}\]
-		where again the middle arrow is the adjunction given by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. Now, we wish to show diagram (\ref{deq2}) commutes.\todo{finish}
+		where here we are suppressing the associators from the notation, and again the middle arrow is the adjunction given by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. Now, we wish to show diagram (\ref{deq2}) commutes.\todo{finish}
 	\end{enumerate} 
 \end{proof}
 
