@@ -426,7 +426,52 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 	\[E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
 	is indeed an $A$-graded homomorphism of left $A$-graded $\pi_*(E)$-modules.
 
-	It remains to show that if $X$ is cellular and $E$ is cellular flat commutative, then this map is an isomorphism. To do so, let $\cE$ be the collection of objects $X$ in $\cSH$ for which this map is an isomorphism. Then it suffices to show that $\cE$ satisfies the three conditions given for the class of cellular objects in \autoref{cellular}. First, we show that the map is an isomorphism when $X=S^a$ for some $a\in A$. Indeed, consider the following diagram:
+	It remains to show that if $X$ is cellular and $E$ is cellular flat commutative, then this map is an isomorphism. To do so, let $\cE$ be the collection of objects $X$ in $\cSH$ for which this map is an isomorphism. Then it suffices to show that $\cE$ satisfies the three conditions given for the class of cellular objects in \autoref{cellular}. First, we show that the map is an isomorphism when $X=S^a$ for some $a\in A$. Indeed, consider the map
+	\begin{align*}
+		\Phi:E_*(E\otimes S^a)&\to E_*(E)\otimes_{\pi_*(E)}E_*(S^a)
+	\end{align*}
+	which sends a class $x:S^b\to E\otimes E\otimes S^a$ in $E_b(E\otimes S^a)$ to the pure tensor $\wt x\otimes\wt e$, where $\wt x\in E_{b-a}(E)$ is the composition
+	\[S^{b-a}\cong S^b\otimes S^{-a}\xrightarrow{x\otimes S^{-a}}E\otimes E\otimes S^a\otimes S^{-a}\xrightarrow{E\otimes E\otimes\phi_{a,-a}^{-1}}E\otimes E\otimes S\xrightarrow{E\otimes\rho_E}E\otimes E\]
+	and $\wt e\in E_a(S^a)$ is the composition
+	\[S^a\cong S\otimes S^a\xrightarrow{e\otimes S^a}E\otimes S^a.\]
+	Now, we claim that $\Phi$ is an inverse to the map $\Psi:E_*(E)\otimes_{\pi_*(E)}E_*(S^a)\to E_*(E\otimes S^a)$ constructed above. First, let $x:S^b\to E\otimes E\otimes S^a$ in $E_b(E\otimes S^a)$. We would like to show that $\Psi(\Phi(x))=x$. Consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTUsWzEsMCwiU15iIl0sWzMsMSwiU15iXFxvdGltZXMgU157LWF9XFxvdGltZXMgU1xcb3RpbWVzIFNeYSJdLFszLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIFNeYSJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgU1xcb3RpbWVzIEVcXG90aW1lcyBTXmEiXSxbMCw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmEiXSxbMCwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYSJdLFsyLDAsIlNee2ItYX1cXG90aW1lcyBTXmEiXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNcXG90aW1lcyBTXmEiXSxbMSwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYSJdLFsxLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgUyJdLFsxLDEsIlNeYlxcb3RpbWVzIFMiXSxbMiwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYSJdLFsyLDEsIlNeYlxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYSJdLFsxLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgU1xcb3RpbWVzIFNeYSJdLFsyLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgU1xcb3RpbWVzIFNcXG90aW1lcyBTXmEiXSxbMSwyLCJ4XFxvdGltZXMgU157LWF9XFxvdGltZXMgZVxcb3RpbWVzIFNeYSJdLFszLDQsIkVcXG90aW1lcyBcXHJob19FXFxvdGltZXMgRVxcb3RpbWVzIFNeYSJdLFs0LDUsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgU15hIl0sWzAsNSwieCIsMl0sWzAsNiwiXFxwaGlfe2ItYSxhfSJdLFs2LDEsIlxccGhpX3tiLC1hfVxcb3RpbWVzXFxwaGlfezAsYX0iXSxbMSw3LCJ4XFxvdGltZXMgU157LWF9XFxvdGltZXMgU1xcb3RpbWVzIFNeYSJdLFs4LDcsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgXFxwaGlfey1hLDB9XFxvdGltZXMgU15hIl0sWzksOCwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBcXHBoaV97LWEsYX0iXSxbNSw5LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxccGhpX3thLDB9IiwxXSxbMCwxMCwiXFxwaGlfe2IsMH0iXSxbMTAsOSwieFxcb3RpbWVzIFMiXSxbMTEsNywiRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBTXnstYX1cXG90aW1lcyBcXHBoaV97MCxhfSIsMV0sWzksMTEsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgXFxwaGlfey1hLGF9Il0sWzYsMTIsIlxccGhpX3tiLC1hfVxcb3RpbWVzIFNeYSIsMl0sWzEyLDEsIlNeYlxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFxccGhpX3swLGF9IiwyXSxbMTIsMTEsInhcXG90aW1lcyBTXnstYX1cXG90aW1lcyBTXmEiLDJdLFsxMCwxMiwiU15iXFxvdGltZXNcXHBoaV97LWEsYX0iXSxbNywyLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIGVcXG90aW1lcyBTXmEiXSxbMTMsOCwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97YSwtYX1cXG90aW1lcyBTXmEiLDJdLFs1LDEzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFxccGhpX3swLGF9IiwyXSxbMTMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBlXFxvdGltZXMgU15hIiwyXSxbMTQsMTMsIkVcXG90aW1lcyBcXHJob197RX1cXG90aW1lcyBTXFxvdGltZXMgU15hIl0sWzE0LDMsIkVcXG90aW1lcyBFXFxvdGltZXMgU1xcb3RpbWVzIGVcXG90aW1lcyBTXmEiXSxbMTQsNywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97YSwtYX1cXG90aW1lcyBTXFxvdGltZXMgU15hIl0sWzIsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97YSwtYX1eey0xfVxcb3RpbWVzIEVcXG90aW1lcyBTXmEiXV0=
+	\[\begin{tikzcd}
+		& {S^b} & {S^{b-a}\otimes S^a} \\
+		& {S^b\otimes S} & {S^b\otimes S^{-a}\otimes S^a} & {S^b\otimes S^{-a}\otimes S\otimes S^a} \\
+		{E\otimes E\otimes S^a} & {E\otimes E\otimes S^a\otimes S} & {E\otimes E\otimes S^a\otimes S^{-a}\otimes S^a} \\
+		& {E\otimes E\otimes S^a\otimes S^{-a}\otimes S^a} & {E\otimes E\otimes S^a\otimes S^{-a}\otimes S\otimes S^a} \\
+		& {E\otimes E\otimes S\otimes S^a} & {E\otimes E\otimes S\otimes S\otimes S^a} \\
+		{E\otimes E\otimes E\otimes S^a} && {E\otimes E\otimes S\otimes E\otimes S^a} & {E\otimes E\otimes S^a\otimes S^{-a}\otimes E\otimes S^a}
+		\arrow["{x\otimes S^{-a}\otimes e\otimes S^a}", from=2-4, to=6-4]
+		\arrow["{E\otimes \rho_E\otimes E\otimes S^a}", from=6-3, to=6-1]
+		\arrow["{E\otimes \mu\otimes S^a}", from=6-1, to=3-1]
+		\arrow["x"', from=1-2, to=3-1]
+		\arrow["{\phi_{b-a,a}}", from=1-2, to=1-3]
+		\arrow["{\phi_{b,-a}\otimes\phi_{0,a}}", from=1-3, to=2-4]
+		\arrow["{x\otimes S^{-a}\otimes S\otimes S^a}", from=2-4, to=4-3]
+		\arrow["{E\otimes E\otimes S^a\otimes \phi_{-a,0}\otimes S^a}", from=4-2, to=4-3]
+		\arrow["{E\otimes E\otimes S^a\otimes \phi_{-a,a}}", from=3-2, to=4-2]
+		\arrow["{E\otimes E\otimes \phi_{a,0}}"{description}, from=3-1, to=3-2]
+		\arrow["{\phi_{b,0}}", from=1-2, to=2-2]
+		\arrow["{x\otimes S}", from=2-2, to=3-2]
+		\arrow["{E\otimes E\otimes S^a\otimes S^{-a}\otimes \phi_{0,a}}"{description}, from=3-3, to=4-3]
+		\arrow["{E\otimes E\otimes S^a\otimes \phi_{-a,a}}", from=3-2, to=3-3]
+		\arrow["{\phi_{b,-a}\otimes S^a}"', from=1-3, to=2-3]
+		\arrow["{S^b\otimes S^{-a}\otimes \phi_{0,a}}"', from=2-3, to=2-4]
+		\arrow["{x\otimes S^{-a}\otimes S^a}"', from=2-3, to=3-3]
+	\arrow["{S^b\otimes\phi_{-a,a}}", from=2-2, to=2-3]
+	\arrow["{E\otimes E\otimes S^a\otimes S^{-a}\otimes e\otimes S^a}", from=4-3, to=6-4]
+	\arrow["{E\otimes E\otimes \phi_{a,-a}\otimes S^a}"', from=5-2, to=4-2]
+	\arrow["{E\otimes E\otimes \phi_{0,a}}"', from=3-1, to=5-2]
+	\arrow["{E\otimes E\otimes e\otimes S^a}"', from=5-2, to=6-1]
+	\arrow["{E\otimes \rho_{E}\otimes S\otimes S^a}", from=5-3, to=5-2]
+	\arrow["{E\otimes E\otimes S\otimes e\otimes S^a}", from=5-3, to=6-3]
+	\arrow["{E\otimes E\otimes \phi_{a,-a}\otimes S\otimes S^a}", from=5-3, to=4-3]
+	\arrow["{E\otimes E\otimes \phi_{a,-a}^{-1}\otimes E\otimes S^a}", from=6-4, to=6-3]
+\end{tikzcd}\]
+	
+	following diagram:
 	\begin{equation}\label{deq2}\begin{tikzcd}
 		{E_*(E)\otimes_{\pi_*(E)}E_*(S^a)} & {E_*(E)\otimes_{\pi_*(E)}\pi_{*-a}(E)} \\
 		{E_*(E\otimes S^a)} & {E_{*-a}(E)}
