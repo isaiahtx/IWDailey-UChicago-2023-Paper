@@ -3,10 +3,10 @@
 
 We assume the reader is familiar with additive categories and (closed, symmetric) monoidal categories.
 
-\begin{definition}
+\begin{definition}\label{triangulated_defn}
     A \emph{triangulated category} is a tuple $(\cC,\Sigma,\Omega,\cD)$ such that\begin{enumerate}
         \item $\cC$ is an additive category.
-        \item $\Sigma,\Omega:\cC\to\cC$ form an adjoint equivalence of $\cC$ with itself. ($\Sigma$ is calld the \emph{shift functor}.)
+        \item $\Sigma,\Omega:\cC\to\cC$ are additive functors which form an adjoint equivalence of $\cC$ with itself. ($\Sigma$ is calld the \emph{shift functor}.)
         \item $\cD$ is a collection of \emph{distinguished triangles}, where a \emph{triangle} is a diagram of the form
         \[X\to Y\to Z\to\Sigma X.\]
         These are also sometimes called \emph{cofiber sequences} or \emph{fiber sequences}.
@@ -92,7 +92,7 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
 
 We now recall several important propositions for triangulated categories:
 
-\begin{proposition}
+\begin{proposition}\label{cofiber_unique_up_to_isomorphism}
     Given a map $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, the cofiber sequence of $f$ is unique up to isomorphism, in the sense that given any two distinguished triangles
     \[X\xrightarrow fY\to Z\to\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\to Z'\to\Sigma X,\]
     there exists an isomorphism $Z\to Z'$ which makes the following diagram commute:
@@ -125,6 +125,43 @@ We now recall several important propositions for triangulated categories:
     \[\cdots\to[\Sigma^{n+1}A,Z]\xrightarrow{h_*}[\Sigma^nX,X]\xrightarrow{f_*}[\Sigma^nA,Y]\xrightarrow{g_*}[\Sigma^nA,Z]\xrightarrow{h_*}[\Sigma^{n-1}A,X]\to\cdots\]
     extending infinitely in either direction, where for $n<0$ we define $\Sigma^{-n}:=\Omega^n$.
 \end{proposition}
+
+%\begin{lemma}\label{2-of-3_suffices_to_show_cofiber}
+	%Let $\cE$ be a class of objects in a triangulated category $(\cC,\Sigma,\Omega)$ such that given any distinguished triangle
+    %\[X\to Y\to Z\to\Sigma X,\]
+    %if $X$ and $Y$ are in $\cE$ then so is $Z$. Then given any distinguished triangle like above, if \emph{any} two of three of $X$, $Y$, and $Z$ belong to $\cE$, than so does the third.
+%\end{lemma}
+%\begin{proof}
+	%First, we claim that given some object $X$ in $\cC$, then $\Sigma X$ and $\Omega X$ belong to $\cE$. Recall by axiom TR1 that we have a distinguished triangle
+    %\[X\xrightarrow{\id_X}X\to 0\to\Sigma X,\]
+    %so that per our assumption $0$ belongs to $\cE$. Now, we can shift this triangle (TR4) to get a distinguished triangle of the form
+    %\[X\to0\to\Sigma X\to\Sigma X.\]
+    %Hence, $\Sigma X$ also belongs to $\cE$, as desired. Conversely, supppose $\Sigma X$ belongs to $\cE$. Then we may shift the above triangle once again to obtain a distinguished triangle of the form
+    %\[0\to\Sigma X\to\Sigma X\to\Sigma 0.\]
+    %Now, consider the distinguished triangle
+    %\[\Omega X\xrightarrow{\id_{\Omega X}}\Omega X\to0\to\Sigma\Omega X.\]
+    %We may shift it twice, and we have the following isomorphism of triangles:
+    %% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiXFxTaWdtYVxcT21lZ2EgWCJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhIFgiXSxbMywwLCJcXFNpZ21hIDAiXSxbMCwxLCIwIl0sWzEsMSwiWCJdLFszLDEsIlxcU2lnbWEgMCJdLFsyLDEsIlxcU2lnbWFcXE9tZWdhIFgiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDUsIlxcY29uZyIsMl0sWzMsNiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1XSxbNSw3LCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNyw2XSxbMiw3LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    %\[\begin{tikzcd}
+        %0 & {\Sigma\Omega X} & {\Sigma\Omega X} & {\Sigma 0} \\
+        %0 & X & {\Sigma\Omega X} & {\Sigma 0}
+        %\arrow[from=1-1, to=1-2]
+        %\arrow[from=1-2, to=1-3]
+        %\arrow[from=1-3, to=1-4]
+        %\arrow[Rightarrow, no head, from=1-1, to=2-1]
+        %\arrow["\cong"', from=1-2, to=2-2]
+        %\arrow[Rightarrow, no head, from=1-4, to=2-4]
+        %\arrow[from=2-1, to=2-2]
+        %\arrow[dashed, from=2-2, to=2-3]
+        %\arrow[from=2-3, to=2-4]
+        %\arrow[Rightarrow, no head, from=1-3, to=2-3]
+    %\end{tikzcd}\]
+    %where the dashed line is the unique arrow which makes the diagram commute. Thus, we get that
+%    
+    %Now, suppose we are given a distinguished triangle
+    %\[X\to Y\to Z\to\Sigma X.\]
+    %We would like to show that if any two of $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. By definition this holds if $X$, $Y$ belong to $\cE$. First suppose $Y$, $Z$ belong to $\cE$. Then consider the triangle 
+%\end{proof}
 
 Also important for our work is the concept of a \emph{tensor triangulated category}, that is, a triangulated symmetric monoidal category in which the triangulated structures are compatible, in the following sense:
 
