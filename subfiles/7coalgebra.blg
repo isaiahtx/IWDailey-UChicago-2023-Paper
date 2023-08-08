@@ -1,9 +1,0 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'subfiles/7coalgebra.blg'
-[92] biber:340> INFO - === Sat Aug  5, 2023, 20:47:44
-[109] Biber.pm:419> INFO - Reading 'subfiles/7coalgebra.bcf'
-[192] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
-[212] bbl.pm:660> INFO - Writing 'subfiles/7coalgebra.bbl' with encoding 'UTF-8'
-[212] bbl.pm:763> INFO - Output to subfiles/7coalgebra.bbl
-[212] Biber.pm:131> WARN - The file 'subfiles/7coalgebra.bcf' does not contain any citations!
-[212] Biber.pm:133> INFO - WARNINGS: 1
