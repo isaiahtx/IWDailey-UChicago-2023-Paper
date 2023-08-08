@@ -1,0 +1,200 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+We assume the reader is familiar with additive categories and (closed, symmetric) monoidal categories.
+
+\begin{definition}\label{triangulated_defn}
+    A \emph{triangulated category} is a tuple $(\cC,\Sigma,\Omega,\cD)$ such that\begin{enumerate}
+        \item $\cC$ is an additive category.
+        \item $\Sigma,\Omega:\cC\to\cC$ are additive functors which form an adjoint equivalence of $\cC$ with itself. ($\Sigma$ is calld the \emph{shift functor}.)
+        \item $\cD$ is a collection of \emph{distinguished triangles}, where a \emph{triangle} is a diagram of the form
+        \[X\to Y\to Z\to\Sigma X.\]
+        These are also sometimes called \emph{cofiber sequences} or \emph{fiber sequences}.
+    \end{enumerate}
+    These data must satisfy the following axioms:
+    \begin{enumerate}[label={\textbf{TR\arabic*}}]
+        \setcounter{enumi}{-1}
+        \item Given a commutative diagram
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYJyJdLFsxLDEsIlknIl0sWzIsMSwiWiciXSxbMywxLCJcXFNpZ21hIFgnIl0sWzAsMV0sWzEsMl0sWzIsM10sWzAsNCwiXFxjb25nIiwyXSxbNCw1XSxbNSw2XSxbNiw3XSxbMSw1LCJcXGNvbmciLDJdLFsyLDYsIlxcY29uZyIsMl0sWzMsNywiXFxjb25nIiwyXV0=
+        \[\begin{tikzcd}
+            X & Y & Z & {\Sigma X} \\
+            {X'} & {Y'} & {Z'} & {\Sigma X'}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow["\cong"', from=1-1, to=2-1]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow["\cong"', from=1-2, to=2-2]
+            \arrow["\cong"', from=1-3, to=2-3]
+            \arrow["\cong"', from=1-4, to=2-4]
+        \end{tikzcd}\]
+        where the vertical arrows are isomorphisms, if the top row is distinguished then so is the bottom.
+        \item For any object $X$ in $\cC$, the diagram
+        \[X\xrightarrow{\id_X}X\to0\to\Sigma X\]
+        is a distinguished triangle.
+        \item For all $f:X\to Y$ there exists an object $C_f$ (also sometimes denoted $Y/X$) called the \emph{cofiber of $f$} and a distinguished triangle
+        \[X\xrightarrow fY\to C_f\to\Sigma X.\]
+        \item Given a solid diagram with both rows commutative
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYJyJdLFsxLDEsIlknIl0sWzIsMSwiWiciXSxbMywxLCJcXFNpZ21hIFgnIl0sWzAsMV0sWzEsMl0sWzIsM10sWzAsNCwiZiIsMl0sWzQsNV0sWzUsNl0sWzYsN10sWzEsNV0sWzIsNiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNywiXFxTaWdtYSBmIl1d
+        \[\begin{tikzcd}
+            X & Y & Z & {\Sigma X} \\
+            {X'} & {Y'} & {Z'} & {\Sigma X'}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow["f"', from=1-1, to=2-1]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=1-2, to=2-2]
+            \arrow[dashed, from=1-3, to=2-3]
+            \arrow["{\Sigma f}", from=1-4, to=2-4]
+        \end{tikzcd}\]
+        such that the leftmost square commmutes and both rows are distinguished, there exists a dashed arrow $Z\to Z'$ which makes the remaining two squares commute.
+        \item A triangle
+        \[X\xrightarrow fY\xrightarrow gZ\xrightarrow\Sigma X\]
+        is distinguished if and only if
+        \[Y\xrightarrow gZ\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y\]
+        is distinguished.
+        \item (Octahedral axiom) Given three distinguished triangles
+        \[X\xrightarrow fY\xrightarrow h Y/X\to\Sigma X\]
+        \[Y\xrightarrow g\xrightarrow k Z/Y\to\Sigma Y\]
+        \[X\xrightarrow{g\circ f}Z\xrightarrow lZ/X\to\Sigma X\]
+        there exists a distinguished triangle
+        \[Y/X\xrightarrow uZ/X\xrightarrow vZ/Y\xrightarrow w\Sigma(Y/X)\]
+        such that the following diagram commutes
+        % https://q.uiver.app/#q=WzAsOSxbMCwwLCJYIl0sWzIsMCwiWiJdLFs0LDAsIlovWSJdLFs2LDAsIlxcU2lnbWEoWS9YKSJdLFsxLDEsIlkiXSxbMywxLCJaL1giXSxbNSwxLCJcXFNpZ21hIFkiXSxbMiwyLCJZL1giXSxbNCwyLCJcXFNpZ21hIFgiXSxbMCwxLCJnXFxjaXJjIGYiXSxbMSwyLCJrIl0sWzIsMywidyJdLFswLDQsImYiLDJdLFs0LDcsImgiLDJdLFs3LDhdLFs4LDYsIlxcU2lnbWEgZiIsMl0sWzYsMywiXFxTaWdtYSBoIiwyXSxbMSw1LCJsIiwyXSxbNSwyLCJ2IiwyXSxbNyw1LCJ1IiwyXSxbNSw4XSxbNCwxLCJnIiwyXSxbMiw2XV0=
+        \[\begin{tikzcd}
+            X && Z && {Z/Y} && {\Sigma(Y/X)} \\
+            & Y && {Z/X} && {\Sigma Y} \\
+            && {Y/X} && {\Sigma X}
+            \arrow["{g\circ f}", from=1-1, to=1-3]
+            \arrow["k", from=1-3, to=1-5]
+            \arrow["w", from=1-5, to=1-7]
+            \arrow["f"', from=1-1, to=2-2]
+            \arrow["h"', from=2-2, to=3-3]
+            \arrow[from=3-3, to=3-5]
+            \arrow["{\Sigma f}"', from=3-5, to=2-6]
+            \arrow["{\Sigma h}"', from=2-6, to=1-7]
+            \arrow["l"', from=1-3, to=2-4]
+            \arrow["v"', from=2-4, to=1-5]
+            \arrow["u"', from=3-3, to=2-4]
+            \arrow[from=2-4, to=3-5]
+            \arrow["g"', from=2-2, to=1-3]
+            \arrow[from=1-5, to=2-6]
+        \end{tikzcd}\]
+    \end{enumerate}
+\end{definition}
+
+It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}).
+
+We now recall several important propositions for triangulated categories:
+
+\begin{proposition}\label{cofiber_unique_up_to_isomorphism}
+    Given a map $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, the cofiber sequence of $f$ is unique up to isomorphism, in the sense that given any two distinguished triangles
+    \[X\xrightarrow fY\to Z\to\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\to Z'\to\Sigma X,\]
+    there exists an isomorphism $Z\to Z'$ which makes the following diagram commute:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzAsMSwiZiJdLFsxLDJdLFsyLDNdLFszLDQsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw2LCJmIl0sWzYsN10sWzEsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw3LCJrIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsNF1d
+    \[\begin{tikzcd}
+        X & Y & Z & {\Sigma X} \\
+        X & Y & {Z'} & {\Sigma X}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow["f", from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+        \arrow["k", dashed, from=1-3, to=2-3]
+        \arrow[from=2-3, to=2-4]
+    \end{tikzcd}\]
+\end{proposition}
+
+\begin{proposition}\label{fiber}
+    Given an arrow $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, there exists an object $F_f$ called the \emph{fiber} of $f$, and a distinguished triangle
+    \[F_f\to X\xrightarrow fY\to\Sigma F_f(\cong C_f).\]
+\end{proposition}
+
+\begin{proposition}\label{dist_tri_LES}
+    Let $(\cC,\Sigma,\Omega,\cD)$ be a triangulated category. Given a distinguished triangle
+    \[X\xrightarrow fY\xrightarrow g\xrightarrow h\Sigma X\]
+    and any object $A$ in $\cC$, there is a long exact sequence of abelian groups
+    \[\cdots\to[\Sigma^{n+1}A,Z]\xrightarrow{h_*}[\Sigma^nX,X]\xrightarrow{f_*}[\Sigma^nA,Y]\xrightarrow{g_*}[\Sigma^nA,Z]\xrightarrow{h_*}[\Sigma^{n-1}A,X]\to\cdots\]
+    extending infinitely in either direction, where for $n<0$ we define $\Sigma^{-n}:=\Omega^n$.
+\end{proposition}
+
+%\begin{lemma}\label{2-of-3_suffices_to_show_cofiber}
+	%Let $\cE$ be a class of objects in a triangulated category $(\cC,\Sigma,\Omega)$ such that given any distinguished triangle
+    %\[X\to Y\to Z\to\Sigma X,\]
+    %if $X$ and $Y$ are in $\cE$ then so is $Z$. Then given any distinguished triangle like above, if \emph{any} two of three of $X$, $Y$, and $Z$ belong to $\cE$, than so does the third.
+%\end{lemma}
+%\begin{proof}
+	%First, we claim that given some object $X$ in $\cC$, then $\Sigma X$ and $\Omega X$ belong to $\cE$. Recall by axiom TR1 that we have a distinguished triangle
+    %\[X\xrightarrow{\id_X}X\to 0\to\Sigma X,\]
+    %so that per our assumption $0$ belongs to $\cE$. Now, we can shift this triangle (TR4) to get a distinguished triangle of the form
+    %\[X\to0\to\Sigma X\to\Sigma X.\]
+    %Hence, $\Sigma X$ also belongs to $\cE$, as desired. Conversely, supppose $\Sigma X$ belongs to $\cE$. Then we may shift the above triangle once again to obtain a distinguished triangle of the form
+    %\[0\to\Sigma X\to\Sigma X\to\Sigma 0.\]
+    %Now, consider the distinguished triangle
+    %\[\Omega X\xrightarrow{\id_{\Omega X}}\Omega X\to0\to\Sigma\Omega X.\]
+    %We may shift it twice, and we have the following isomorphism of triangles:
+    %% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiXFxTaWdtYVxcT21lZ2EgWCJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhIFgiXSxbMywwLCJcXFNpZ21hIDAiXSxbMCwxLCIwIl0sWzEsMSwiWCJdLFszLDEsIlxcU2lnbWEgMCJdLFsyLDEsIlxcU2lnbWFcXE9tZWdhIFgiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDUsIlxcY29uZyIsMl0sWzMsNiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1XSxbNSw3LCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNyw2XSxbMiw3LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    %\[\begin{tikzcd}
+        %0 & {\Sigma\Omega X} & {\Sigma\Omega X} & {\Sigma 0} \\
+        %0 & X & {\Sigma\Omega X} & {\Sigma 0}
+        %\arrow[from=1-1, to=1-2]
+        %\arrow[from=1-2, to=1-3]
+        %\arrow[from=1-3, to=1-4]
+        %\arrow[Rightarrow, no head, from=1-1, to=2-1]
+        %\arrow["\cong"', from=1-2, to=2-2]
+        %\arrow[Rightarrow, no head, from=1-4, to=2-4]
+        %\arrow[from=2-1, to=2-2]
+        %\arrow[dashed, from=2-2, to=2-3]
+        %\arrow[from=2-3, to=2-4]
+        %\arrow[Rightarrow, no head, from=1-3, to=2-3]
+    %\end{tikzcd}\]
+    %where the dashed line is the unique arrow which makes the diagram commute. Thus, we get that
+%    
+    %Now, suppose we are given a distinguished triangle
+    %\[X\to Y\to Z\to\Sigma X.\]
+    %We would like to show that if any two of $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. By definition this holds if $X$, $Y$ belong to $\cE$. First suppose $Y$, $Z$ belong to $\cE$. Then consider the triangle 
+%\end{proof}
+
+Also important for our work is the concept of a \emph{tensor triangulated category}, that is, a triangulated symmetric monoidal category in which the triangulated structures are compatible, in the following sense:
+
+\begin{definition}\label{tentri}
+    A \textit{tensor triangulated category} is a triangulated symmetric monoidal category $(\cC,\otimes,S,\Sigma,\Omega,\cD)$ such that:\begin{enumerate}[label=\textbf{TT\arabic*}]
+        \item For all objects $X$ and $Y$ in $\cC$, there are natural isomorphisms
+        \[e_{X,Y}:(\Sigma X)\otimes Y\xrightarrow\cong\Sigma(X\otimes Y).\]
+        \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ is an additive functor.
+        \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ preserves distinguished triangles, in that given a distinguished triangle/(co)fiber sequence
+        \[A\xrightarrow fB\xrightarrow gC\xrightarrow\Sigma A,\]
+        then also
+        \[X\otimes A\xrightarrow{X\otimes f}X\otimes B\xrightarrow{X\otimes g}X\otimes C\xrightarrow{\Sigma(X\otimes h)}\Sigma(X\otimes A)\]
+        and
+        \[A\otimes X\xrightarrow{f\otimes X}B\otimes X\xrightarrow{g\otimes X}C\otimes X\xrightarrow{\Sigma(h\otimes X)}\Sigma(A\otimes X)\]
+        are distinguished triangles.
+    \end{enumerate}
+\end{definition}
+
+Usually, most tensor triangulated categories that arise in nature will satisfy additional coherence axioms (see axioms TC1--TC5 in \cite{MayTri}), but the above definition will suffice for our purposes. To avoid the awkwardness of saying ``a tensor triangulated category which is also a closed symmetric monoidal category,'' we introduce the following (nonstandard) terminology:
+
+\begin{definition}\label{closed_tentri}
+    We say a tensor triangulated category $(\cC,\otimes,S,\Sigma,\Omega)$ is \emph{closed} if $\cC$ is a closed symmetric monoidal category, in the sense that for each object $X\in\cC$, the functor $-\otimes X$ has a right adjoint $F(X,-)$.
+\end{definition}
+
+Note that given a tensor triangulated category, we have the following characterization of the shift functor:
+
+\begin{proposition}\label{tentri_characterize_shift}
+    Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,\Omega)$, there is a canonical natural isomorphism $\Sigma S\otimes -\cong\Sigma$. 
+\end{proposition}
+\begin{proof}
+    Given an object $X$ in $\cC$, we have natural isomorphisms
+    \[\Sigma S\otimes X\xrightarrow{e_{S,X}}\Sigma(S\otimes X)\xrightarrow{\Sigma\lambda_X}\Sigma X,\]
+    where $\lambda_X$ is the left unitor specified by the monoidal structure on $\cC$.
+\end{proof}
+
+\end{document}
