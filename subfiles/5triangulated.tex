@@ -60,7 +60,7 @@ We assume the reader is familiar with additive categories and (closed, symmetric
         is distinguished.
         \item (Octahedral axiom) Given three distinguished triangles
         \[X\xrightarrow fY\xrightarrow h Y/X\to\Sigma X\]
-        \[Y\xrightarrow g\xrightarrow k Z/Y\to\Sigma Y\]
+        \[Y\xrightarrow gZ\xrightarrow k Z/Y\to\Sigma Y\]
         \[X\xrightarrow{g\circ f}Z\xrightarrow lZ/X\to\Sigma X\]
         there exists a distinguished triangle
         \[Y/X\xrightarrow uZ/X\xrightarrow vZ/Y\xrightarrow w\Sigma(Y/X)\]
@@ -120,10 +120,11 @@ We now recall several important propositions for triangulated categories:
 
 \begin{proposition}\label{dist_tri_LES}
     Let $(\cC,\Sigma,\Omega,\cD)$ be a triangulated category. Given a distinguished triangle
-    \[X\xrightarrow fY\xrightarrow g\xrightarrow h\Sigma X\]
+    \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X\]
     and any object $A$ in $\cC$, there is a long exact sequence of abelian groups
-    \[\cdots\to[\Sigma^{n+1}A,Z]\xrightarrow{h_*}[\Sigma^nX,X]\xrightarrow{f_*}[\Sigma^nA,Y]\xrightarrow{g_*}[\Sigma^nA,Z]\xrightarrow{h_*}[\Sigma^{n-1}A,X]\to\cdots\]
-    extending infinitely in either direction, where for $n<0$ we define $\Sigma^{-n}:=\Omega^n$.
+    \[\cdots\to[\Sigma^{n+1}A,Z]\xrightarrow{\partial}[\Sigma^nX,X]\xrightarrow{f_*}[\Sigma^nA,Y]\xrightarrow{g_*}[\Sigma^nA,Z]\xrightarrow{\partial}[\Sigma^{n-1}A,X]\to\cdots\]
+    extending infinitely in either direction, where for $n<0$ we define $\Sigma^{-n}:=\Omega^n$, and $\partial$ is the map
+    \[[\Sigma^{n+1}A,Z]\xrightarrow{h_*}[\Sigma^{n+1}A,\Sigma X]\cong[\Sigma^{-1}\Sigma^{n+1}A,X]\cong[\Sigma^nA,X].\]
 \end{proposition}
 
 %\begin{lemma}\label{2-of-3_suffices_to_show_cofiber}
@@ -168,15 +169,19 @@ Also important for our work is the concept of a \emph{tensor triangulated catego
 \begin{definition}\label{tentri}
     A \textit{tensor triangulated category} is a triangulated symmetric monoidal category $(\cC,\otimes,S,\Sigma,\Omega,\cD)$ such that:\begin{enumerate}[label=\textbf{TT\arabic*}]
         \item For all objects $X$ and $Y$ in $\cC$, there are natural isomorphisms
-        \[e_{X,Y}:(\Sigma X)\otimes Y\xrightarrow\cong\Sigma(X\otimes Y).\]
+        \[e_{X,Y}:X\otimes (\Sigma Y)\xrightarrow\cong\Sigma(X\otimes Y).\]
         \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ is an additive functor.
         \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ preserves distinguished triangles, in that given a distinguished triangle/(co)fiber sequence
-        \[A\xrightarrow fB\xrightarrow gC\xrightarrow\Sigma A,\]
+        \[A\xrightarrow fB\xrightarrow gC\xrightarrow h\Sigma A,\]
         then also
-        \[X\otimes A\xrightarrow{X\otimes f}X\otimes B\xrightarrow{X\otimes g}X\otimes C\xrightarrow{\Sigma(X\otimes h)}\Sigma(X\otimes A)\]
+        \[X\otimes A\xrightarrow{X\otimes f}X\otimes B\xrightarrow{X\otimes g}X\otimes C\xrightarrow{X\otimes h}\Sigma(X\otimes A)\]
         and
-        \[A\otimes X\xrightarrow{f\otimes X}B\otimes X\xrightarrow{g\otimes X}C\otimes X\xrightarrow{\Sigma(h\otimes X)}\Sigma(A\otimes X)\]
-        are distinguished triangles.
+        \[A\otimes X\xrightarrow{f\otimes X}B\otimes X\xrightarrow{g\otimes X}C\otimes X\xrightarrow{h\otimes X}\Sigma(A\otimes X)\]
+        are distinguished triangles, where here we are being abusive and writing $X\otimes h$ and $h\otimes X$ to denote the compositions
+        \[X\otimes C\xrightarrow{X\otimes h}X\otimes(\Sigma A)\xrightarrow{e_{X,A}}\Sigma(X\otimes A)\]
+        and
+        \[C\otimes X\xrightarrow{h\otimes X}(\Sigma A)\otimes X\xrightarrow{\tau}X\otimes(\Sigma A)\xrightarrow{e_{X,A}}\Sigma(X\otimes A)\xrightarrow{\Sigma\tau}\Sigma(A\otimes X),\]
+        respectively.
     \end{enumerate}
 \end{definition}
 
@@ -193,8 +198,10 @@ Note that given a tensor triangulated category, we have the following characteri
 \end{proposition}
 \begin{proof}
     Given an object $X$ in $\cC$, we have natural isomorphisms
-    \[\Sigma S\otimes X\xrightarrow{e_{S,X}}\Sigma(S\otimes X)\xrightarrow{\Sigma\lambda_X}\Sigma X,\]
-    where $\lambda_X$ is the left unitor specified by the monoidal structure on $\cC$.
+    \[\Sigma S\otimes X\xrightarrow{\tau}X\otimes\Sigma S\xrightarrow{e_{X,S}}\Sigma(X\otimes S)\xrightarrow{\Sigma\rho_X}\Sigma X,\]
+    where $\rho$ is the right unitor specified by the monoidal structure on $\cC$.
 \end{proof}
+
+Because of the above proposition, when working with tensor triangulated categories we will often assume that $\Sigma=S^1\otimes-$ for some object $S^1$.
 
 \end{document}

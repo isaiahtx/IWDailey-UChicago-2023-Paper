@@ -196,6 +196,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 	Given some $a\in A$, the functors $\Sigma^a$ and $\Sigma^{-a}$ canonically form an adjoint equivalence of $\cSH$.
 \end{proposition}
 \begin{proof}
+	\todo{rewrite proof in a permutative category}
 	Let $X,Y\in\cSH$. By \cite[Lemma 3.2]{nlab:adjoint_equivalence}, in order to show $\Sigma^a$ and $\Sigma^{-a}$ are adjoint equivalences, it suffices to construct natural isomorphisms $\eta:\mathrm{Id}_\cSH\Rightarrow \Sigma^{-a}\circ\Sigma^a$ and $\vare:\Sigma^a\circ\Sigma^{-a}\Rightarrow\mathrm{Id}_\cSH$ such that for all $X$ in $\cSH$, the following diagram commutes:
 	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFNpZ21hXmEgWCJdLFsyLDIsIlxcU2lnbWFeYVgiXSxbMiwwLCJcXFNpZ21hXmFcXFNpZ21hXnstYX1cXFNpZ21hXmEgWCJdLFswLDFdLFswLDIsIihcXFNpZ21hXmFcXGV0YSlfWCJdLFsyLDEsIihcXHZhcmVcXFNpZ21hXmEpX1giXV0=
 	\begin{equation}\label{diag1}\begin{tikzcd}
@@ -221,7 +222,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow["{S^{-a}\otimes S^a\otimes f}", from=1-3, to=2-3]
 		\arrow["{\phi_{-a,a}\otimes Y}"', from=2-2, to=2-3]
 	\end{tikzcd}\]
-	The left square commutes by naturality of $\lambda$. The right square commutes by functoriality of $-\otimes-$. Hence $\eta$ is indeed a natural isomorhpism.
+	The left square commutes by naturality of $\lambda$. The right square commutes by functoriality of $-\otimes-$. Hence $\eta$ is indeed a natural isomorphism.
 
 	On the other hand, given an object $X$ in $\cSH$, define $\vare_X:\Sigma^a\Sigma^{-a}X=S^a\otimes S^{-a}\otimes X\to X$ to be  the composition
 	\[S^a\otimes S^{-a}\otimes X\xrightarrow{\phi_{a,-a}^{-1}}S\otimes X\xrightarrow{\lambda_X}X.\]
@@ -285,15 +286,15 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 \end{proof}
 
 \begin{proposition}[{\cite[Proposition 5.11]{nlab:introduction_to_stable_homotopy_theory_--_1-2}}]\label{module}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then for any object $X$ in $\cSH$, $E_*(-)$ is a functor from $\cSH$ to left $A$-graded $\pi_*(E)$-modules by endowing $E_*(X)$ with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to left $A$-graded $\pi_*(E)$-modules, where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
 	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
 	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
 	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xrightarrow{\mu\otimes X}E\otimes X.\]
-	Similarly $X_*(E)$ canonically inherits the structure of a right $A$-graded $\pi_*(E)$-module via the map
+	Similarly, the assignment $X\mapsto X_*(E)$ is a functor from $\cSH$ to right $A$-graded $\pi_*(E)$-modules, where the structure map
 	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
-	which given $a,b\in A$, sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
+	sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
 	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xrightarrow{X\otimes\mu}X\otimes E.\]
-	In particular, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
+	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
 \end{proposition}
 \begin{proof}
 	First we show that the map $\pi_*(E)\times E_*(X)\to E_*(X)$ endows $E_*(X)$ with the structure of a left $\pi_*(E)$-module. Let $a,b,c\in A$ and $x,x':S^a\to E\otimes X$, $y:S^b\to E$, and $z, z'\in S^c\to E$. Then we wish to show that:
@@ -336,7 +337,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 
 	Thus, we have shown that the indicated map does indeed endow $E_*(X)$ with the structure of a left $\pi_*(E)$-module. It remains to show that $E_*(-)$ sends maps in $\cSH$ to $A$-graded homomorphisms of left $A$-graded $\pi_*(E)$-modules. By definition, given $f:X\to Y$ in $\cSH$, $E_*(f)$ is the map which takes a class $x:S^a\to E\otimes X$ to the composition 
 	\[S^a\xrightarrow xE\otimes X\xrightarrow{E\otimes f}E\otimes Y.\]
-	To see this is a homomorphism, suppose we are given some other $x':S^a\to E\otimes X$ and some scalar $y:S^b\to E$. Then we would like to show $E_*(f)(x+x')=E_*(f)(x)+E_*(f)(x')$ and $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$. To see the former, consider the following diagram:
+	To see this assignment is a homomorphism, suppose we are given some other $x':S^a\to E\otimes X$ and some scalar $y:S^b\to E$. Then we would like to show $E_*(f)(x+x')=E_*(f)(x)+E_*(f)(x')$ and $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$. To see the former, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXmEiXSxbMSwxLCJTXmFcXG9wbHVzIFNeYSJdLFsyLDEsIihFXFxvdGltZXMgWClcXG9wbHVzKEVcXG90aW1lcyBYKSJdLFszLDAsIihFXFxvdGltZXMgWSlcXG9wbHVzKEVcXG90aW1lcyBZKSJdLFszLDEsIkVcXG90aW1lcyBZIl0sWzMsMiwiRVxcb3RpbWVzIFgiXSxbMCwxLCJcXERlbHRhIl0sWzEsMiwieFxcb3BsdXMgeCciXSxbMiwzLCIoRVxcb3RpbWVzIGYpXFxvcGx1cyAoRVxcb3RpbWVzIGYpIl0sWzMsNCwiXFxuYWJsYSJdLFsyLDUsIlxcbmFibGEiLDJdLFs1LDQsIkVcXG90aW1lcyBmIiwyXV0=
 	\[\begin{tikzcd}
 		&&& {(E\otimes Y)\oplus(E\otimes Y)} \\
@@ -361,9 +362,11 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow["{\mu\otimes X}"', from=1-3, to=2-3]
 		\arrow["{E\otimes f}", from=2-3, to=2-4]
 	\end{tikzcd}\]
-	It commutes by functoriality of $-\otimes-$. The top composition is $y\cdot E_*(f)(x)$, while the bottom composition is $E_*(f)(y\cdot x)$, so they are equal, as desired.
+	It commutes by functoriality of $-\otimes-$. The top composition is $E_*(f)(y\cdot x)$, while the bottom composition is $y\cdot E_*(f)(x)$, so they are equal, as desired.
 	
-	Showing that $X_*(E)$ has the structure of a right $\pi_*(E)$-module is entirely analagous.
+	Showing that $X_*(E)$ has the structure of a right $\pi_*(E)$-module and that if $f:X\to Y$ is a morphism in $\cSH$ then the map
+	\[X_*(E)=[S^*,X\otimes E]\xrightarrow{(f\otimes E)_*}[S^*,Y\otimes E]=Y_*(E)\]
+	is an $A$-graded homomorphism of right $A$-graded $\pi_*(E)$-modules is entirely analagous.
 
     It remains to show that $E_*(E)$ is a bimodule. Let $x:S^a\to E$, $y:S^b\to E\otimes E$, and $z:S^c\to E$, and consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmFcXG90aW1lcyBTXmJcXG90aW1lcyBTXmMiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzMsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzMsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzMsMSwiRVxcb3RpbWVzIEUiXSxbMCwxLCJcXGNvbmciXSxbMSwyLCJ4XFxvdGltZXMgeVxcb3RpbWVzIHoiXSxbMiwzLCJcXG11XFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMiw0LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbXUiLDJdLFsyLDUsIlxcbXVcXG90aW1lc1xcbXUiXSxbMyw1LCJFXFxvdGltZXNcXG11Il0sWzQsNSwiXFxtdVxcb3RpbWVzIEUiLDJdXQ==
@@ -387,12 +390,14 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 	\[E_*(E)\times E_*(X)\to E_*(E\otimes X)\]
 	which sends $x:S^{a}\to E\otimes E$ and $ y:S^{b}\to E\otimes X$ to the composition
 	\[x\cdot y:S^{a+b}\cong S^{a}\otimes S^{b}\xrightarrow{x\otimes y}E\otimes E\otimes E\otimes X\xrightarrow{E\otimes\mu\otimes X}E\otimes E\otimes X\]
-	induces a homomorphism of left $A$-graded $\pi_*(E)$-modules
+	induces an $A$-graded homomorphism of left $A$-graded $\pi_*(E)$-modules
 	\[E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
-	(where here $E_*(E)$ has a $\pi_*(E)$-bimodule structure and $E_*(X)$ has a left $\pi_*(E)$-module structure as specified by \autoref{module}, so $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ is a left $A$-graded $\pi_*(E)$-module by \autoref{tensor_of_A_graded_is_A_graded}). Furthermore, this homomorphism is natural in $X$, and if $X$ is cellular and $E$ is a cellular flat commutative ring spectrum (\autoref{cellular}, \autoref{flat}), then this map is an isomorphism.
+	(where here $E_*(E)$ has a $\pi_*(E)$-bimodule structure and $E_*(X)$ has a left $\pi_*(E)$-module structure as specified by \autoref{module}, so $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ is a left $A$-graded $\pi_*(E)$-module by \autoref{tensor_of_A_graded_is_A_graded}). Furthermore, this homomorphism is natural in $X$.
 \end{proposition}
 \begin{proof}
-	First, we show the given assignment is $\pi_*(E)$-balanced. By the identifications $E_*(E)=\pi_*(E\otimes E)$, $E_*(X)=\pi_*(E\otimes X)$, and $E_*(E\otimes X)=\pi_*(E\otimes E\otimes X)$, we know the assignment commutes with addition of maps in each argument by \autoref{bilinear}. Now, let $a,b,c\in A$, $x:S^a\to E\otimes E$, $y:S^b\to E\otimes X$, and $z:S^c\to E$. Then we wish to show $x z\cdot y=x\cdot z y$. Consider the following diagram
+	First, recall by definition of the tensor product, in order to show the assignment $E_*(E)\times E_*(X)\to E_*(E\otimes X)$ induces a homomorphism $E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)$ of $A$-graded abelian groups, it suffices to show that the assignment is $\pi_*(E)$-balanced, i.e., that it is linear in each argument and satisfies $xr\cdot y=x\cdot ry$ for $x\in E_*(E)$, $y\in E_*(X)$, and $r\in\pi_*(E)$.
+	
+	First, note that by the identifications $E_*(E)=\pi_*(E\otimes E)$, $E_*(X)=\pi_*(E\otimes X)$, and $E_*(E\otimes X)=\pi_*(E\otimes E\otimes X)$, and \autoref{bilinear}, it is straightforward to see that the assignment commutes with addition of maps in each argument. Now, let $a,b,c\in A$, $x:S^a\to E\otimes E$, $y:S^b\to E\otimes X$, and $z:S^c\to E$. Then we wish to show $x z\cdot y=x\cdot z y$. Consider the following diagram (where here we are passing to a permutative category):
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmFcXG90aW1lcyBTXmNcXG90aW1lcyBTXmIiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywxLCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwieFxcb3RpbWVzIHpcXG90aW1lcyB5Il0sWzIsMywiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgWCJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiLDJdLFs1LDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgWCIsMl1d
 	\[\begin{tikzcd}
 		&&& {E\otimes E\otimes E\otimes X} \\
@@ -405,7 +410,9 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow["{E\otimes E\otimes \mu\otimes X}"', from=2-3, to=3-4]
 		\arrow["{E\otimes \mu\otimes X}"', from=3-4, to=2-4]
 	\end{tikzcd}\]
-	(we have suppressed the associators from the notation). It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the top composition is given by $(x z)\cdot y$ and the bottom composition is $x\cdot( z y)$, so we have they are equal, as desired. Thus, since the map $E_*(E)\times E_*(X)\to E_*(E\otimes X)$ is $\pi_*(E)$-balanced, we have that it induces an $A$-graded homomorphism of abelian groups (that the map is $A$-graded is \autoref{tensor_lift_of_A_graded_is_A_graded}). To see it further induces a map of left $\pi_*(E)$-modules, we wish to show that $z(x\cdot y)=zx\cdot y$, where $x$, $y$, and $z$ are defined as above. Now consider the following diagram:
+	It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the top composition is given by $(x z)\cdot y$ and the bottom composition is $x\cdot( z y)$, so we have they are equal, as desired. Thus, since the map $E_*(E)\times E_*(X)\to E_*(E\otimes X)$ is $\pi_*(E)$-balanced, we have that it induces a homomorphism of abelian groups. Furthermore, by \autoref{tensor_lift_of_A_graded_is_A_graded} it is an $A$-graded homomorphism of $A$-graded abelian groups. 
+	
+	In order to see this map is furthermore a homomorphism of left $\pi_*(E)$-modules, we must show that $z(x\cdot y)=zx\cdot y$, where $x$, $y$, and $z$ are defined as above. Now consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmNcXG90aW1lcyBTXmFcXG90aW1lcyBTXmIiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywxLCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwielxcb3RpbWVzIHhcXG90aW1lcyB5Il0sWzIsMywiXFxtdVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgWCJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiLDJdLFs1LDQsIlxcbXVcXG90aW1lcyBFXFxvdGltZXMgWCIsMl0sWzIsNCwiXFxtdVxcb3RpbWVzXFxtdVxcb3RpbWVzIFgiXV0=
 	\[\begin{tikzcd}
 		&&& {E\otimes E\otimes E\otimes X} \\
@@ -425,7 +432,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 
 	Next, we would like to show that this homomorphism is natural in $X$. Let $f:X\to Y$ in $\cSH$. Then we would like to show the following diagram commutes:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihYKSJdLFswLDEsIkVfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9RV8qKFkpIl0sWzEsMSwiRV8qKEVcXG90aW1lcyBZKSJdLFsxLDAsIkVfKihFXFxvdGltZXMgWCkiXSxbMCwxLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihmKSIsMl0sWzEsMiwiXFxQaGlfWSJdLFswLDMsIlxcUGhpX1giXSxbMywyLCJFXyooRVxcb3RpbWVzIGYpIl1d
-	\begin{equation}\label{deq2}\begin{tikzcd}
+	\begin{equation}\label{naturality_diagram_for_E*EoxE_*X-->E_*(EoxX)}\begin{tikzcd}
 		{E_*(E)\otimes_{\pi_*(E)}E_*(X)} & {E_*(E\otimes X)} \\
 		{E_*(E)\otimes_{\pi_*(E)}E_*(Y)} & {E_*(E\otimes Y)}
 		\arrow["{E_*(E)\otimes_{\pi_*(E)}E_*(f)}"', from=1-1, to=2-1]
@@ -433,7 +440,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow["{\Phi_X}", from=1-1, to=1-2]
 		\arrow["{E_*(E\otimes f)}", from=1-2, to=2-2]
 	\end{tikzcd}\end{equation}
-	As all the maps here are homomorphisms, it suffices to chase generators around the diagram. In particular, suppose we are given $x:S^a\to E\otimes E$ and $y:S^b\to E\otimes X$, and consdier the following diagram:
+	As all the maps here are homomorphisms, it suffices to chase generators around the diagram. In particular, suppose we are given $x:S^a\to E\otimes E$ and $y:S^b\to E\otimes X$, and consider the following diagram exhibiting the two possible ways to chase $x\otimes y$ around the diagram (as usual, we are passing to a permutative category):
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15hXFxvdGltZXMgU15iIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDEsIkVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFsyLDEsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFkiXSxbMCwxLCJcXHBoaV97YSxifSJdLFsxLDIsInhcXG90aW1lcyB5Il0sWzIsMywiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIl0sWzMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBmIl0sWzIsNSwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgZiIsMl0sWzUsNCwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBZIl1d
 	\[\begin{tikzcd}
 		{S^{a+b}} & {S^a\otimes S^b} & {E\otimes E\otimes E\otimes X} & {E\otimes E\otimes X} \\
@@ -445,9 +452,16 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow["{E\otimes E\otimes E\otimes f}"', from=1-3, to=2-3]
 		\arrow["{E\otimes \mu\otimes Y}", from=2-3, to=2-4]
 	\end{tikzcd}\]
-	The diagram commutes by functoriality of $-\otimes-$. Unravelling definitions, it follows that diagram (\ref{deq2}) does indeed commute, as desired.
+	This diagram commutes by functoriality of $-\otimes-$. Thus we have that diagram (\ref{naturality_diagram_for_E*EoxE_*X-->E_*(EoxX)}) does indeed commute, as desired.
+\end{proof}
 
-	It remains to show that if $X$ is cellular and $E$ is cellular flat commutative, then this map is an isomorphism. To do so, let $\cE$ be the collection of objects $X$ in $\cSH$ for which this map is an isomorphism. Then it suffices to show that $\cE$ satisfies the three conditions given for the class of cellular objects in \autoref{cellular}. First, we need to show that the map is an isomorphism when $X=S^a$ for some $a\in A$.
+\begin{proposition}
+	Let $(E,\mu,e)$ be a \emph{flat} monoid object in $\cSH$ (\autoref{flat}) and let $X$ be any \emph{cellular} object in $\cSH$ (\autoref{cellular}). Then the natural homomorphism
+	\[\Phi_X:E_*(E)\otimes E_*(X)\to E_*(E\otimes X)\]
+	given in \autoref{2.2} is an isomorphism of left $\pi_*(E)$-modules.
+\end{proposition}
+\begin{proof}
+	It remains to show that if $X$ is cellular and $E$ is flat, then this map is an isomorphism. To start, let $\cE$ be the collection of objects $X$ in $\cSH$ for which this map is an isomorphism. Then in order to show $\cE$ contains every cellular object, it suffices to show that $\cE$ satisfies the three conditions given for the class of cellular objects in \autoref{cellular}. First, we need to show that $\Phi$ is an isomorphism when $X=S^a$ for some $a\in A$.
 %	Note that
 %	\[E_*(S^a)=[S^*,E\otimes S^a]\cong[S^{-a}\otimes S^*,E]\cong[S^{*-a},E]=\pi_{*-a}(E),\]
 %	where the first isomorphism follows by the adunction between $S^{-a}\otimes-$ and $-\otimes S^a\cong S^a\otimes-$ (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}). Similarly, we have
@@ -456,13 +470,38 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 %	\[E_*(E)\otimes_{\pi_*(E)}E_*(S^a)\cong E_*(E)\otimes_{\pi_*(E)}\pi_{*-a}(E)\cong E_{*-a}(E)\cong E_*(E\otimes S^a).\]
 	Indeed, consider the map
 	\begin{align*}
-		\Phi:E_*(E\otimes S^a)&\to E_*(E)\otimes_{\pi_*(E)}E_*(S^a)
+		\Psi:E_*(E\otimes S^a)&\to E_*(E)\otimes_{\pi_*(E)}E_*(S^a)
 	\end{align*}
 	which sends a class $x:S^b\to E\otimes E\otimes S^a$ in $E_b(E\otimes S^a)$ to the pure tensor $\wt x\otimes\wt e$, where $\wt x\in E_{b-a}(E)$ is the composition
 	\[S^{b-a}\cong S^b\otimes S^{-a}\xrightarrow{x\otimes S^{-a}}E\otimes E\otimes S^a\otimes S^{-a}\xrightarrow{E\otimes E\otimes\phi_{a,-a}^{-1}}E\otimes E\otimes S\xrightarrow{E\otimes\rho_E}E\otimes E\]
 	and $\wt e\in E_a(S^a)$ is the composition
 	\[S^a\cong S\otimes S^a\xrightarrow{e\otimes S^a}E\otimes S^a.\]
-	Now, we claim that $\Phi$ is an inverse to the map $\Psi:E_*(E)\otimes_{\pi_*(E)}E_*(S^a)\to E_*(E\otimes S^a)$ constructed above. Clearly by definition $\Phi$ is an ($A$-graded) homomorphism of $A$-graded abelian groups, so it suffices to check that $\Phi$ and $\Psi$ are inverses on generators. First, let $x:S^b\to E\otimes E\otimes S^a$ in $E_b(E\otimes S^a)$. We would like to show that $\Psi(\Phi(x))=x$. Consider the following diagram, where here we are passing to a permutative category:
+	First, note $\Psi$ is an ($A$-graded) homomorphism of abelian groups: Given $x,x'\in E_b(E\otimes S^a)$, we would like to show that $\wt x\otimes\wt e+\wt x'\otimes\wt e=\wt{x+x'}\otimes\wt e$. It suffices to show that $\wt x+\wt x'=\wt{x+x'}$. To see this, consider the following diagram (again, we are passing to a permutative category):
+	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiU157Yi1hfSJdLFsxLDAsIlNee2ItYX1cXG9wbHVzIFNee2ItYX0iXSxbMSwxLCIoU15iXFxvdGltZXMgU157LWF9KVxcb3BsdXMoU15iXFxvdGltZXMgU157LWF9KSJdLFsxLDIsIihFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSlcXG9wbHVzKEVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9KSJdLFsxLDMsIihFXFxvdGltZXMgRSlcXG9wbHVzKEVcXG90aW1lcyBFKSJdLFsxLDQsIkVcXG90aW1lcyBFIl0sWzAsMSwiU15iXFxvdGltZXMgU157LWF9Il0sWzAsMiwiKFNeYlxcb3BsdXMgU15iKVxcb3RpbWVzIFNeey1hfSJdLFswLDMsIigoRVxcb3RpbWVzIEVcXG90aW1lcyBTXmEpXFxvcGx1cyAoRVxcb3RpbWVzIEVcXG90aW1lcyBTXmEpKVxcb3RpbWVzIFNeey1hfSJdLFswLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9Il0sWzAsMSwiXFxEZWx0YSJdLFsxLDIsIlxccGhpX3tiLC1hfVxcb3BsdXNcXHBoaV97YiwtYX0iXSxbMiwzLCIoeFxcb3RpbWVzIFNeey1hfSlcXG9wbHVzKHgnXFxvdGltZXMgU157LWF9KSJdLFszLDQsIihFXFxvdGltZXMgRVxcb3RpbWVzXFxwaGlfe2EsLWF9XnstMX0pXFxvcGx1cyhFXFxvdGltZXMgRVxcb3RpbWVzXFxwaGlfe2EsLWF9XnstMX0pIl0sWzQsNSwiXFxuYWJsYSJdLFswLDYsIlxccGhpX3tiLWF9IiwyXSxbNiw3LCJcXERlbHRhXFxvdGltZXMgU157LWF9IiwyXSxbNyw4LCIoeFxcb3BsdXMgeCcpXFxvdGltZXMgU157LWF9IiwyXSxbOCw5LCJcXG5hYmxhXFxvdGltZXMgU157LWF9IiwyXSxbOSw1LCJFXFxvdGltZXMgRVxcb3RpbWVzXFxwaGlfe2EsLWF9XnstMX0iLDJdLFs3LDIsIlxcY29uZyJdLFs4LDMsIlxcY29uZyJdLFszLDksIlxcbmFibGEiXSxbNiwyLCJcXERlbHRhIl1d
+	\[\begin{tikzcd}
+		{S^{b-a}} & {S^{b-a}\oplus S^{b-a}} \\
+		{S^b\otimes S^{-a}} & {(S^b\otimes S^{-a})\oplus(S^b\otimes S^{-a})} \\
+		{(S^b\oplus S^b)\otimes S^{-a}} & {(E\otimes E\otimes S^a\otimes S^{-a})\oplus(E\otimes E\otimes S^a\otimes S^{-a})} \\
+		{((E\otimes E\otimes S^a)\oplus (E\otimes E\otimes S^a))\otimes S^{-a}} & {(E\otimes E)\oplus(E\otimes E)} \\
+		{E\otimes E\otimes S^a\otimes S^{-a}} & {E\otimes E}
+		\arrow["\Delta", from=1-1, to=1-2]
+		\arrow["{\phi_{b,-a}\oplus\phi_{b,-a}}", from=1-2, to=2-2]
+		\arrow["{(x\otimes S^{-a})\oplus(x'\otimes S^{-a})}", from=2-2, to=3-2]
+		\arrow["{(E\otimes E\otimes\phi_{a,-a}^{-1})\oplus(E\otimes E\otimes\phi_{a,-a}^{-1})}", from=3-2, to=4-2]
+		\arrow["\nabla", from=4-2, to=5-2]
+		\arrow["{\phi_{b-a}}"', from=1-1, to=2-1]
+		\arrow["{\Delta\otimes S^{-a}}"', from=2-1, to=3-1]
+		\arrow["{(x\oplus x')\otimes S^{-a}}"', from=3-1, to=4-1]
+		\arrow["{\nabla\otimes S^{-a}}"', from=4-1, to=5-1]
+		\arrow["{E\otimes E\otimes\phi_{a,-a}^{-1}}"', from=5-1, to=5-2]
+		\arrow["\cong", from=3-1, to=2-2]
+		\arrow["\cong", from=4-1, to=3-2]
+		\arrow["\nabla", from=3-2, to=5-1]
+		\arrow["\Delta", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	The top rectangle commutes by naturality of $\Delta$ in an additive category. The bottom triangle commutes by naturality of $\nabla$ in an additive category. Finally, the remaining regions of the diagram commute by additivity of $-\otimes-$. By functoriality of $-\otimes-$, it follows that the left composition is $\wt{x+x'}$ and the right composition is $\wt x+\wt x'$, so they are equal as desired. Thus $\Psi$ is a homomorphism of abelian groups, as desired.
+
+	Now, we claim that $\Psi$ is an inverse to $\Phi$, (which is enough to show $\Phi$ is an isomorphism of left $\pi_*(E)$-modules). Since $\Phi$ and $\Psi$ are homomorphisms it suffices to check that they are inverses on generators. First, let $x:S^b\to E\otimes E\otimes S^a$ in $E_b(E\otimes S^a)$. We would like to show that $\Phi(\Psi(x))=x$. Consider the following diagram, where here we are passing to a permutative category:
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJTXmIiXSxbMiwwLCJTXmJcXG90aW1lcyBTXnstYX1cXG90aW1lcyBTXmEiXSxbNCwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIEVcXG90aW1lcyBTXmEiXSxbMCwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmEiXSxbMCwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYSJdLFsyLDMsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFNeYSJdLFsyLDEsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hIFxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYSJdLFsyLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwieFxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIGVcXG90aW1lcyBTXmEiXSxbMyw0LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFNeYSJdLFswLDQsIngiLDJdLFs0LDUsIkVcXG90aW1lcyBFXFxvdGltZXMgZVxcb3RpbWVzIFNeYSIsMV0sWzUsMywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw2LCJ4XFxvdGltZXMgU157LWF9XFxvdGltZXMgU15hIiwxXSxbNCw2LCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFxccGhpX3stYSxhfSJdLFs2LDIsIkVcXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgZVxcb3RpbWVzIFNeYSIsMl0sWzcsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97YSwtYX1cXG90aW1lcyBTXmEiLDFdLFs3LDUsIkVcXG90aW1lcyBFXFxvdGltZXMgZVxcb3RpbWVzIFNeYSIsMV0sWzcsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxccGhpX3thLC1hfV57LTF9XFxvdGltZXMgRVxcb3RpbWVzIFNeYSJdXQ==
 	\[\begin{tikzcd}
 		{S^b} && {S^b\otimes S^{-a}\otimes S^a} \\
@@ -483,9 +522,9 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow[Rightarrow, no head, from=3-3, to=3-1]
 		\arrow["{E\otimes E\otimes \phi_{a,-a}^{-1}\otimes E\otimes S^a}", from=2-5, to=4-3]
 	\end{tikzcd}\]
-	The top left trapezoid commutes since the isomorphism $S^b\xrightarrow\cong S^b\otimes S^{-a}\otimes S^a$ may be given as $S^b\otimes\phi_{-a,a}$ (see \autoref{unique_comp_Sas}), in which case the trapezoid commmutes by functoriality of $-\otimes-$. The triangle below that commutes by coherence for the $\phi_{a,b}$'s. The triangle below that commutes by definition. The bottom left triangle commutes by unitality for $\mu$. The top right triangle commutes by functoriality of $-\otimes-$. Finally, the bottom right triangle commutes by functoriality of $-\otimes-$. It follows by unravelling definitions that the two outside compositions are $x$ (on the left) and $\Psi(\Phi(x))$ (on the right), so since the diagram commutes we indeed have $\Psi(\Phi(x))=x$, as desired.
+	The top left trapezoid commutes since the isomorphism $S^b\xrightarrow\cong S^b\otimes S^{-a}\otimes S^a$ may be given as $S^b\otimes\phi_{-a,a}$ (see \autoref{unique_comp_Sas}), in which case the trapezoid commmutes by functoriality of $-\otimes-$. The triangle below that commutes by coherence for the $\phi_{a,b}$'s. The triangle below that commutes by definition. The bottom left triangle commutes by unitality for $\mu$. The top right triangle commutes by functoriality of $-\otimes-$. Finally, the bottom right triangle commutes by functoriality of $-\otimes-$. It follows by unravelling definitions that the two outside compositions are $x$ (on the left) and $\Phi(\Psi(x))$ (on the right), so since the diagram commutes we indeed have $\Phi(\Psi(x))=x$, as desired.
 
-	On the other hand, suppose we are given a homogeneous pure tensor $x\otimes y$ in $E_*(E)\otimes_{\pi_*(E)}E_*(S^a)$, so $x:S^b\to E\otimes E$ and $y:S^c\to E\otimes S^a$ for some $b,c\in A$. Then we would like to show that $\Phi(\Psi(x\otimes y))=x\otimes y$. Unravelling definitions, $\Phi(\Psi(x\otimes y))$ is the homogeneous pure tensor $\wt{x y}\otimes\wt e$, where $\wt e:S^{a}\to E\otimes S^a$ is defined above, and by functoriality of $-\otimes-$, $\wt{xy}:S^{b+c-a}\to E\otimes E$ is the composition
+	On the other hand, suppose we are given a homogeneous pure tensor $x\otimes y$ in $E_*(E)\otimes_{\pi_*(E)}E_*(S^a)$, so $x:S^b\to E\otimes E$ and $y:S^c\to E\otimes S^a$ for some $b,c\in A$. Then we would like to show that $\Psi(\Phi(x\otimes y))=x\otimes y$. Unravelling definitions, $\Psi(\Phi(x\otimes y))$ is the homogeneous pure tensor $\wt{x y}\otimes\wt e$, where $\wt e:S^{a}\to E\otimes S^a$ is defined above, and by functoriality of $-\otimes-$, $\wt{xy}:S^{b+c-a}\to E\otimes E$ is the composition
 	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXntiK2MtYX0iXSxbMCwxLCJTXntiK2N9XFxvdGltZXMgU157LWF9Il0sWzAsMiwiU157Yn1cXG90aW1lcyBTXmNcXG90aW1lcyBTXnstYX0iXSxbMCwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBTXnstYX0iXSxbMCw0LCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSJdLFswLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgUyJdLFswLDYsIkVcXG90aW1lcyBFIl0sWzAsMSwiXFxwaGlfe2IrYywtYX0iXSxbMSwyLCJcXHBoaV97YixjfVxcb3RpbWVzICBTXnstYX0iXSxbMiwzLCJ4XFxvdGltZXMgeVxcb3RpbWVzIFNeey1hfSJdLFszLDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9Il0sWzQsNSwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97YSwtYX1eey0xfSJdLFs1LDYsIkVcXG90aW1lcyBcXHJob19FIl1d
 	\[\begin{tikzcd}
 		{S^{b+c-a}} \\
@@ -536,54 +575,144 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 		\arrow["{y\otimes S^{-a}\otimes S^a}"{description}, from=1-3, to=2-2]
 	\end{tikzcd}\]
 	The top left triangle commutes since we may take the isomorphism $S^c\xrightarrow{\cong}S^c\otimes S^{-a}\otimes S^a$ to be $S^c\otimes\phi_{-a,a}$, in which case commutativity of the triangle follows by functoriality of $-\otimes-$. Commutativity of the right triangle is also functoriality of $-\otimes-$. Commutativity of the bottom triangle is unitality of $\mu$. Finally, commutativity of the remaining middle $4$-sided region is again functoriality of $-\otimes-$. It follows that $y$ is equal to the outer composition, which is $r\cdot\wt e$, as desired. Thus, we have shown that
-	\[\Phi(\Psi(x\otimes y))=\wt{xy}\otimes\wt e=(x\cdot r)\otimes\wt e=x\otimes(r\cdot\wt e)=x\otimes y,\] 
-	as desired, so that for each $a\in A$, the object $S^a$ belongs to the class $\cE$. Now, we would like to show that given a distinguished triangle
-	\[X\to Y\to Z\to\Sigma X,\]
-	then if two of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. Indeed, supposing this is true, note first of all that since $\cSH$ is tensor triangulated, by axiom TT3 (\autoref{tentri}), the following triangle is also distinguished:
-	\[E\otimes X\to E\otimes Y\to E\otimes Z\to\Sigma(E\otimes X).\]
+	\[\Psi(\Phi(x\otimes y))=\wt{xy}\otimes\wt e=(x\cdot r)\otimes\wt e=x\otimes(r\cdot\wt e)=x\otimes y,\] 
+	as desired, so that for each $a\in A$, the object $S^a$ belongs to the class $\cE$. 
+	
+	Now, we would like to show that given a distinguished triangle
+	\[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
+	if two of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. Indeed, supposing this is true, note first of all that since $\cSH$ is tensor triangulated, by axiom TT3 (\autoref{tentri}), the following triangle is also distinguished:
+	\[E\otimes X\xrightarrow{E\otimes f} E\otimes Y\xrightarrow{E\otimes g} E\otimes Z\xrightarrow{E\otimes h}\Sigma(E\otimes X),\]
+	where here we are being abusive and writing $E\otimes h$ for the composition 
+	\[E\otimes X\xrightarrow{E\otimes h}E\otimes\Sigma X\xrightarrow{e_{E,X}}\Sigma(E\otimes X).\]
 	Thus, by \autoref{dist_tri_LES} we get a long exact sequence of $A$-graded abelian groups
-	% https://q.uiver.app/#q=WzAsOSxbMCwxLCJbU14qLEVcXG90aW1lcyBYXSJdLFsxLDEsIltTXiosRVxcb3RpbWVzIFldIl0sWzIsMSwiW1NeKixFXFxvdGltZXMgWl0iXSxbMCwyLCJbXFxTaWdtYV57LVxcMX1TXiosRVxcb3RpbWVzIFhdIl0sWzIsMCwiW1xcU2lnbWEgU14qLEVcXG90aW1lcyBaXSJdLFswLDAsIlxcY2RvdHMiXSxbMSwwLCJbXFxTaWdtYSBTXiosRVxcb3RpbWVzIFldIl0sWzEsMiwiW1xcU2lnbWFeey1cXDF9U14qLEVcXG90aW1lcyBZXSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxXSxbMSwyXSxbMiwzXSxbNCwwXSxbNSw2XSxbNiw0XSxbMyw3XSxbNyw4XV0=
-	\[\begin{tikzcd}
-		\cdots & {[\Sigma S^*,E\otimes Y]} & {[\Sigma S^*,E\otimes Z]} \\
-		{[S^*,E\otimes X]} & {[S^*,E\otimes Y]} & {[S^*,E\otimes Z]} \\
-		{[\Sigma^{-\1}S^*,E\otimes X]} & {[\Sigma^{-\1}S^*,E\otimes Y]} & \cdots
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=3-1]
-		\arrow[from=1-3, to=2-1]
+	% https://q.uiver.app/#q=WzAsOSxbMCwxLCJbXFxTaWdtYV5uU14qLEVcXG90aW1lcyBYXSJdLFsxLDEsIltcXFNpZ21hXm5TXiosRVxcb3RpbWVzIFldIl0sWzIsMSwiW1xcU2lnbWFeblNeKixFXFxvdGltZXMgWl0iXSxbMCwyLCJbXFxTaWdtYV57bi0xfVNeKixFXFxvdGltZXMgWF0iXSxbMiwwLCJbXFxTaWdtYV57bisxfSBTXiosRVxcb3RpbWVzIFpdIl0sWzEsMiwiW1xcU2lnbWFee24tMX1TXiosRVxcb3RpbWVzIFldIl0sWzAsMCwiXFxjZG90cyJdLFsxLDAsIltcXFNpZ21hXntuKzF9U14qLEVcXG90aW1lcyBZXSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxLCIoRVxcb3RpbWVzIGYpXyoiLDJdLFsxLDIsIihFXFxvdGltZXMgZylfKiJdLFsyLDMsIlxccGFydGlhbCIsMl0sWzQsMCwiXFxwYXJ0aWFsIiwyXSxbMyw1LCIoRVxcb3RpbWVzIGYpXyoiLDJdLFs2LDddLFs3LDQsIihFXFxvdGltZXMgZylfKiJdLFs1LDhdXQ==
+	\begin{equation}\label{E_homology_LES}\begin{tikzcd}
+		\cdots & {[\Sigma^{n+1}S^*,E\otimes Y]} & {[\Sigma^{n+1} S^*,E\otimes Z]} \\
+		{[\Sigma^nS^*,E\otimes X]} & {[\Sigma^nS^*,E\otimes Y]} & {[\Sigma^nS^*,E\otimes Z]} \\
+		{[\Sigma^{n-1}S^*,E\otimes X]} & {[\Sigma^{n-1}S^*,E\otimes Y]} & \cdots
+		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
+		\arrow["{(E\otimes g)_*}", from=2-2, to=2-3]
+		\arrow["\partial"', from=2-3, to=3-1]
+		\arrow["\partial"', from=1-3, to=2-1]
+		\arrow["{(E\otimes f)_*}"', from=3-1, to=3-2]
 		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=3-1, to=3-2]
+		\arrow["{(E\otimes g)_*}", from=1-2, to=1-3]
 		\arrow[from=3-2, to=3-3]
-	\end{tikzcd}\]
-	Note that by the isomorphisms $\Sigma^a S^*=S^a\otimes S^*\cong S^{*+a}$, this long exact sequence may be re-written as
-	\[E_{*+\1}(Y)\to E_{*+\1}(Z)\to E_*(X)\to E_*(Y)\to E_*(Z)\to E_{*-\1}(X)\to E_{*-\1}(Y).\]
-	Now, we may apply the functor $E_*(E)\otimes_{\pi_*(E)}-$ (which is exact since we are assuming $E_*(E)$ is a flat right $\pi_*(E)$-module), and we further get the following commutative diagram in which both rows are exact:
-	% https://q.uiver.app/#q=WzAsMTQsWzAsMCwiTF5FX3sqK1xcMX0oWSkiXSxbMSwwLCJMXkVfeyorXFwxfShaKSJdLFsyLDAsIkxeRV97Kn0oWCkiXSxbMywwLCJMXkVfeyp9KFkpIl0sWzQsMCwiTF5FX3sqfShaKSJdLFs1LDAsIkxeRV97Ki1cXDF9KFgpIl0sWzYsMCwiTF5FX3sqLVxcMX0oWSkiXSxbMCwxLCJFX3sqK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzEsMSwiRV97KitcXDF9KEVcXG90aW1lcyBaKSJdLFsyLDEsIkVfKihFXFxvdGltZXMgWCkiXSxbMywxLCJFXyooRVxcb3RpbWVzIFkpIl0sWzQsMSwiRV8qKEVcXG90aW1lcyBaKSJdLFs1LDEsIkVfeyotXFwxfShFXFxvdGltZXMgWCkiXSxbNiwxLCJFX3sqLVxcMX0oRVxcb3RpbWVzIFkpIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzQsNV0sWzUsNl0sWzAsN10sWzcsOF0sWzgsOV0sWzksMTBdLFsxMCwxMV0sWzExLDEyXSxbMTIsMTNdLFsxLDhdLFsyLDldLFszLDEwXSxbNCwxMV0sWzUsMTJdLFs2LDEzXV0=
-	\[\begin{tikzcd}[column sep=tiny]
-		{L^E_{*+\1}(Y)} & {L^E_{*+\1}(Z)} & {L^E_{*}(X)} & {L^E_{*}(Y)} & {L^E_{*}(Z)} & {L^E_{*-\1}(X)} & {L^E_{*-\1}(Y)} \\
-		{E_{*+\1}(E\otimes Y)} & {E_{*+\1}(E\otimes Z)} & {E_*(E\otimes X)} & {E_*(E\otimes Y)} & {E_*(E\otimes Z)} & {E_{*-\1}(E\otimes X)} & {E_{*-\1}(E\otimes Y)}
+	\end{tikzcd}\end{equation}
+	where for $n>0$ we define $\Sigma^n:=(\Sigma)^n=(\Sigma^\1)^n$ and $\Sigma^{-n}=(\Sigma^{-\1})^n$, $\Sigma^0=\mathrm{Id}_{\cSH}$, and the maps $\partial$ are given by the compositions
+	\[[\Sigma^{n+1} S^*,E\otimes Z]\xrightarrow{(E\otimes h)_*}[\Sigma^{n+1}S^*,\Sigma(E\otimes X)]\cong[\Sigma^{-\1}\Sigma^{n+1}S^*,E\otimes X]\cong[\Sigma^n S^*,E\otimes X]\]
+	(here we are using the fact that the pair $(\Sigma^{-\1},\Sigma^\1)$ forms an adjoint equivalence (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}) and the fact that $\Sigma=\Sigma^\1=S^\1\otimes-$).
+	Now, given some nonnegative integer $n$, we will write $\mbf n$ for the corresponding element in $A$, i.e., $\mbf0=0\in A$, and if $n>0$ then
+	\[\mbf n=\overbrace{\1+\cdots+\1}^\text{$n$ times}.\]
+	Then note that $\Sigma^0S^*=S^*$ and for $n>0$ we have isomorphisms
+	\[\Sigma^n S^*=\overbrace{S^\1\otimes\cdots\otimes S^\1}^\text{$n$ times}\otimes S^*\cong S^{*+\mbf n}\]
+	and
+	\[\Sigma^{-n} S^*=\overbrace{S^{-\1}\otimes\cdots\otimes S^{-\1}}^\text{$n$ times}\otimes S^*\cong S^{*-\mbf n},\]
+	where the isomorphisms are the unique ones obtained by composing products of copies of $\phi_{a,b}$'s, identities, associators, and their inverses (\autoref{unique_comp_Sas}). Thus for $n\in\bZ$ we have identifications $[\Sigma^nS^*,E\otimes W]\cong[S^{*+\mbf n},E\otimes W]=E_{*+\mbf n}(W)$, and it is straightforward to check that these yield an isomorphism of long exact sequences between (\ref{E_homology_LES}) and the following:
+	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiRV97KitcXG1iZiBuK1xcMX0oWSkiXSxbMiwwLCJFX3sqK1xcbWJmIG4rXFwxfShaKSJdLFswLDEsIkVfeyorXFwxfShYKSJdLFsxLDEsIkVfeyorXFwxfShZKSJdLFsyLDEsIkVfeyorXFwxfShaKSJdLFswLDIsIkVfeyorXFxtYmYgbi1cXDF9KFgpIl0sWzEsMiwiRV97KitcXG1iZiBuLVxcMX0oWSkiXSxbMiwyLCJcXGNkb3RzIl0sWzAsMV0sWzEsMiwiZ18qIl0sWzIsMywiXFxwYXJ0aWFsIiwyXSxbMyw0LCJmXyoiLDJdLFs0LDUsImdfKiJdLFs1LDYsIlxccGFydGlhbCJdLFs2LDcsImZfKiIsMl0sWzcsOF1d
+	\begin{equation}\label{E_homology_LES_2}\begin{tikzcd}
+		\cdots & {E_{*+\mbf n+\1}(Y)} & {E_{*+\mbf n+\1}(Z)} \\
+		{E_{*+\1}(X)} & {E_{*+\1}(Y)} & {E_{*+\1}(Z)} \\
+		{E_{*+\mbf n-\1}(X)} & {E_{*+\mbf n-\1}(Y)} & \cdots
 		\arrow[from=1-1, to=1-2]
-		\arrow[from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow[from=1-5, to=1-6]
-		\arrow[from=1-6, to=1-7]
-		\arrow[from=1-1, to=2-1]
-		\arrow[from=2-1, to=2-2]
-		\arrow[from=2-2, to=2-3]
-		\arrow[from=2-3, to=2-4]
-		\arrow[from=2-4, to=2-5]
-		\arrow[from=2-5, to=2-6]
-		\arrow[from=2-6, to=2-7]
-		\arrow[from=1-2, to=2-2]
-		\arrow[from=1-3, to=2-3]
-		\arrow[from=1-4, to=2-4]
-		\arrow[from=1-5, to=2-5]
-		\arrow[from=1-6, to=2-6]
-		\arrow[from=1-7, to=2-7]
+		\arrow["{g_*}", from=1-2, to=1-3]
+		\arrow["\partial"', from=1-3, to=2-1]
+		\arrow["{f_*}"', from=2-1, to=2-2]
+		\arrow["{g_*}", from=2-2, to=2-3]
+		\arrow["\partial", from=2-3, to=3-1]
+		\arrow["{f_*}"', from=3-1, to=3-2]
+		\arrow[from=3-2, to=3-3]
+	\end{tikzcd}\end{equation}
+	where here the maps $\partial$ are the compositions
+	\[[S^{*+\mbf n+\1},E\otimes Z]\xrightarrow{(E\otimes h)_*}[S^{*+\mbf n+\1},\Sigma(E\otimes X)]\cong[\Sigma^{-\1}S^{*+\mbf n+\1},E\otimes X]\cong[S^{*+\mbf n},E\otimes X].\]
+	An entirely analagous argument applied to the distinguished triangle
+	\[E\otimes E\otimes X\xrightarrow{E\otimes E\otimes f}E\otimes E\otimes Y\xrightarrow{E\otimes E\otimes g}E\otimes E\otimes Z\xrightarrow{E\otimes E\otimes h}\Sigma(E\otimes E\otimes X)\]
+	yields a long exact sequence
+	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMCwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFopIl0sWzAsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFgpIl0sWzEsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFopIl0sWzAsMiwiRV97KitcXG1iZiBuLVxcMX0oRVxcb3RpbWVzIFgpIl0sWzEsMiwiRV97KitcXG1iZiBuLVxcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMiwiXFxjZG90cyJdLFswLDFdLFsxLDIsIihFXFxvdGltZXMgZylfKiJdLFsyLDMsIlxccGFydGlhbCIsMl0sWzMsNCwiKEVcXG90aW1lcyBmKV8qIiwyXSxbNCw1LCIoRVxcb3RpbWVzIGcpXyoiXSxbNSw2LCJcXHBhcnRpYWwiXSxbNiw3LCIoRVxcb3RpbWVzIGYpXyoiLDJdLFs3LDhdXQ==
+	\begin{equation}\label{EE_homology_LES}\begin{tikzcd}
+		\cdots & {E_{*+\mbf n+\1}(E\otimes Y)} & {E_{*+\mbf n+\1}(E\otimes Z)} \\
+		{E_{*+\mbf n+\1}(E\otimes X)} & {E_{*+\mbf n+\1}(E\otimes Y)} & {E_{*+\mbf n+\1}(E\otimes Z)} \\
+		{E_{*+\mbf n-\1}(E\otimes X)} & {E_{*+\mbf n-\1}(E\otimes Y)} & \cdots
+		\arrow[from=1-1, to=1-2]
+		\arrow["{(E\otimes g)_*}", from=1-2, to=1-3]
+		\arrow["\partial"', from=1-3, to=2-1]
+		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
+		\arrow["{(E\otimes g)_*}", from=2-2, to=2-3]
+		\arrow["\partial", from=2-3, to=3-1]
+		\arrow["{(E\otimes f)_*}"', from=3-1, to=3-2]
+		\arrow[from=3-2, to=3-3]
+	\end{tikzcd}\end{equation}
+	Now, we may apply the functor $E_*(E)\otimes_{\pi_*(E)}-$ (which is exact since we are assuming $E_*(E)$ is a flat right $\pi_*(E)$-module) to the long exact sequence (\ref{E_homology_LES_2}), and we further get the following long exact sequence of $A$-graded left $\pi_*(E)$-modules:
+	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiTF97KitcXG1iZiBuK1xcMX1eRShZKSJdLFsyLDAsIkxfeyorXFxtYmYgbitcXDF9XkUoWikiXSxbMCwxLCJMX3sqK1xcbWJmIG59XkUoWCkiXSxbMSwxLCJMX3sqK1xcbWJmIG59XkUoWSkiXSxbMiwxLCJMX3sqK1xcbWJmIG59XkUoWikiXSxbMCwyLCJMX3sqK1xcbWJmIG4tXFwxfV5FKFgpIl0sWzEsMiwiTF97KitcXG1iZiBuLVxcMX1eRShZKSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxXSxbMSwyLCJMXkVfeyorXFxtYmYgbitcXDF9KGcpIl0sWzIsMywiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiLDFdLFszLDQsIkxfeyorXFxtYmYgbn1eRShmKSIsMl0sWzQsNSwiTF97KitcXG1iZiBufV5FKGcpIl0sWzUsNiwiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiLDFdLFs2LDcsIkxfeyorXFxtYmYgbi1cXDF9XkUoZikiLDJdLFs3LDhdXQ==
+	\begin{equation}\label{LE_LES}\begin{tikzcd}
+		\cdots & {L_{*+\mbf n+\1}^E(Y)} & {L_{*+\mbf n+\1}^E(Z)} \\
+		{L_{*+\mbf n}^E(X)} & {L_{*+\mbf n}^E(Y)} & {L_{*+\mbf n}^E(Z)} \\
+		{L_{*+\mbf n-\1}^E(X)} & {L_{*+\mbf n-\1}^E(Y)} & \cdots
+		\arrow[from=1-1, to=1-2]
+		\arrow["{L^E_{*+\mbf n+\1}(g)}", from=1-2, to=1-3]
+		\arrow["{E_*(E)\otimes\partial}"{description}, from=1-3, to=2-1]
+		\arrow["{L_{*+\mbf n}^E(f)}"', from=2-1, to=2-2]
+		\arrow["{L_{*+\mbf n}^E(g)}", from=2-2, to=2-3]
+		\arrow["{E_*(E)\otimes\partial}"{description}, from=2-3, to=3-1]
+		\arrow["{L_{*+\mbf n-\1}^E(f)}"', from=3-1, to=3-2]
+		\arrow[from=3-2, to=3-3]
+	\end{tikzcd}\end{equation}
+	where here $L_*^E(-)$ is shorthand for the functor $X\mapsto E_*(E)\otimes_{\pi_*(E)}E_*(X)$. Now, we claim that the natural map $\Phi:L_*^E(X)\to E_*(E\otimes X)$ yields a chain map between (\ref{LE_LES}) and (\ref{EE_homology_LES}). Since $\Phi$ is natural, we know that the following commutes for all $n\in\bZ$:
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJFX3sqK1xcbWJmIG59KEVcXG90aW1lcyBYKSJdLFsxLDEsIkVfeyorXFxtYmYgbn0oRVxcb3RpbWVzIFkpIl0sWzIsMSwiRV97KitcXG1iZiBufShFXFxvdGltZXMgWikiXSxbMCwwLCJMX3sqK1xcbWJmIG59XkUoWCkiXSxbMSwwLCJMX3sqK1xcbWJmIG59XkUoWSkiXSxbMiwwLCJMX3sqK1xcbWJmIG59XkUoWikiXSxbMCwxLCIoRVxcb3RpbWVzIGYpXyoiLDJdLFsxLDIsIihFXFxvdGltZXMgZylfKiIsMl0sWzMsNCwiTF5FX3sqK1xcbWJmIG59KGYpIl0sWzQsNSwiTF5FX3sqK1xcbWJmIG59KGcpIl0sWzMsMCwiXFxQaGlfWCIsMl0sWzQsMSwiXFxQaGlfWSIsMl0sWzUsMiwiXFxQaGlfWiIsMl1d
+	\[\begin{tikzcd}
+		{L_{*+\mbf n}^E(X)} & {L_{*+\mbf n}^E(Y)} & {L_{*+\mbf n}^E(Z)} \\
+		{E_{*+\mbf n}(E\otimes X)} & {E_{*+\mbf n}(E\otimes Y)} & {E_{*+\mbf n}(E\otimes Z)}
+		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
+		\arrow["{(E\otimes g)_*}"', from=2-2, to=2-3]
+		\arrow["{L^E_{*+\mbf n}(f)}", from=1-1, to=1-2]
+		\arrow["{L^E_{*+\mbf n}(g)}", from=1-2, to=1-3]
+		\arrow["{\Phi_X}"', from=1-1, to=2-1]
+		\arrow["{\Phi_Y}"', from=1-2, to=2-2]
+		\arrow["{\Phi_Z}"', from=1-3, to=2-3]
 	\end{tikzcd}\]
-	where here $L_*^E(-)$ is shorthand for the functor $E_*(E)\otimes_{\pi_*(E)}E_*(-)$. Assuming two out of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, by the five lemma applied to the above diagram, it follows that the third object belongs to $\cE$ as well.
+	Thus it remains to show that the following diagram commutes for all $n\in\bZ$:
+	% https://q.uiver.app/#q=WzAsNCxbMSwxLCJFX3sqK1xcbWJmIG59KEVcXG90aW1lcyBYKSJdLFsxLDAsIkxfeyorXFxtYmYgbn1eRShYKSJdLFswLDEsIkVfeyorXFxtYmYgbitcXDF9KEVcXG90aW1lcyBaKSJdLFswLDAsIkxfeyorXFxtYmYgbitcXDF9XkUoWikiXSxbMSwwLCJcXFBoaV9YIl0sWzIsMCwiXFxwYXJ0aWFsIl0sWzMsMSwiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiXSxbMywyLCJcXFBoaV9aIiwyXV0=
+	\[\begin{tikzcd}
+		{L_{*+\mbf n+\1}^E(Z)} & {L_{*+\mbf n}^E(X)} \\
+		{E_{*+\mbf n+\1}(E\otimes Z)} & {E_{*+\mbf n}(E\otimes X)}
+		\arrow["{\Phi_X}", from=1-2, to=2-2]
+		\arrow["\partial", from=2-1, to=2-2]
+		\arrow["{E_*(E)\otimes\partial}", from=1-1, to=1-2]
+		\arrow["{\Phi_Z}"', from=1-1, to=2-1]
+	\end{tikzcd}\]
+	Let's chase a generator around, so suppose we are given a homogeneous pure tensor $x\otimes y$ in $L^E_{*+\mbf n}(Z)=E_*(E)\otimes_{\pi_*(E)}E_{*+\mbf n+\1}(Z)$, so $x$ and $y$ are maps $S^a\to E\otimes E$ and $S^{b+\mbf n+\1}\to E\otimes Z$, respectively, for some $a,b\in A$. Then unravelling definitions, chasing $x\otimes y$ around the diagram yields the following two compositions:
+	% https://q.uiver.app/#q=WzAsMTgsWzIsMCwiU157YStiK1xcbn0iXSxbMiwyLCJTXmFcXG90aW1lcyBcXFNpZ21hXnstXFwxfVNee2IrXFxuK1xcMX0iXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBaKSJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxTaWdtYV57LVxcMX0oXFxTaWdtYShFXFxvdGltZXMgWCkpIl0sWzIsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMiw3LCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYICJdLFsyLDgsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDEsIlxcU2lnbWFeey1cXDF9KFNee2ErYitcXG4rXFwxfSkiXSxbMCwyLCJcXFNpZ21hXnstXFwxfShTXnthfVxcb3RpbWVzIFNee2IrXFxuK1xcMX0pIl0sWzAsMywiXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWiJdLFswLDQsIlxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBFXFxvdGltZXMgWikiXSxbMCw2LCJcXFNpZ21hXnstXFwxfShcXFNpZ21hKEVcXG90aW1lcyBFXFxvdGltZXMgWCkpIl0sWzAsNywiU1xcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDgsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDAsIlNee2ErYitcXG59Il0sWzIsMSwiU15hXFxvdGltZXMgU157YitcXG59Il0sWzAsNSwiXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzIEVcXG90aW1lc1xcU2lnbWEgWCkiXSxbMiw0LCJFXFxvdGltZXMgRVxcb3RpbWVzXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzXFxTaWdtYSBYKSJdLFsxLDIsInhcXG90aW1lcyB5Il0sWzMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97LVxcMSxcXDF9XnstMX0iXSxbNCw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbGFtYmRhX0VcXG90aW1lcyBYIl0sWzUsNiwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIl0sWzcsOCwiXFxTaWdtYV57LVxcMX1cXHBoaV97YSxiK1xcbitcXDF9Il0sWzgsOSwiXFxTaWdtYV57LVxcMX0oeFxcb3RpbWVzIHkpIl0sWzksMTAsIlxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBcXG11XFxvdGltZXMgWikiXSxbMTEsMTIsIlxccGhpX3stXFwxLFxcMX1cXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMTIsMTMsIlxcbGFtYmRhX3tFXFxvdGltZXMgRVxcb3RpbWVzIFh9Il0sWzE0LDcsIlxccGhpX3stXFwxLGErYitcXG4rXFwxfSJdLFswLDE1LCJcXHBoaV97YSxiK1xcbn0iXSxbMTUsMSwiU15hXFxvdGltZXNcXHBoaV97LVxcMSxiK1xcbitcXDF9Il0sWzEwLDE2LCJcXFNpZ21hXnstXFwxfShFXFxvdGltZXMgRVxcb3RpbWVzIGgpIl0sWzE2LDExLCJcXFNpZ21hXnstXFwxfShlX3tFXFxvdGltZXMgRSxYfSkiXSxbMiwxNywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXFNpZ21hXnstXFwxfShFXFxvdGltZXMgaCkiXSxbMTcsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXFNpZ21hXnstXFwxfShlX3tFLFh9KSJdXQ==
+	\[\begin{tikzcd}
+		{S^{a+b+\n}} && {S^{a+b+\n}} \\
+		{\Sigma^{-\1}(S^{a+b+\n+\1})} && {S^a\otimes S^{b+\n}} \\
+		{\Sigma^{-\1}(S^{a}\otimes S^{b+\n+\1})} && {S^a\otimes \Sigma^{-\1}S^{b+\n+\1}} \\
+		{\Sigma^{-\1}(E\otimes E\otimes E\otimes Z} && {E\otimes E\otimes \Sigma^{-\1}(E\otimes Z)} \\
+		{\Sigma^{-\1}(E\otimes E\otimes Z)} && {E\otimes E\otimes\Sigma^{-\1}(E\otimes\Sigma X)} \\
+		{\Sigma^{-\1}(E\otimes E\otimes\Sigma X)} && {E\otimes E\otimes \Sigma^{-\1}(\Sigma(E\otimes X))} \\
+		{\Sigma^{-\1}(\Sigma(E\otimes E\otimes X))} && {E\otimes E\otimes S\otimes E\otimes X} \\
+		{S\otimes E\otimes E\otimes X} && {E\otimes E\otimes E\otimes X } \\
+		{E\otimes E\otimes X} && {E\otimes E\otimes X}
+		\arrow["{x\otimes y}", from=3-3, to=4-3]
+		\arrow["{E\otimes E\otimes \phi_{-\1,\1}^{-1}}", from=6-3, to=7-3]
+		\arrow["{E\otimes E\otimes \lambda_E\otimes X}", from=7-3, to=8-3]
+		\arrow["{E\otimes \mu\otimes X}", from=8-3, to=9-3]
+		\arrow["{\Sigma^{-\1}\phi_{a,b+\n+\1}}", from=2-1, to=3-1]
+		\arrow["{\Sigma^{-\1}(x\otimes y)}", from=3-1, to=4-1]
+		\arrow["{\Sigma^{-\1}(E\otimes \mu\otimes Z)}", from=4-1, to=5-1]
+		\arrow["{\phi_{-\1,\1}\otimes E\otimes E\otimes X}", from=7-1, to=8-1]
+		\arrow["{\lambda_{E\otimes E\otimes X}}", from=8-1, to=9-1]
+		\arrow["{\phi_{-\1,a+b+\n+\1}}", from=1-1, to=2-1]
+		\arrow["{\phi_{a,b+\n}}", from=1-3, to=2-3]
+		\arrow["{S^a\otimes\phi_{-\1,b+\n+\1}}", from=2-3, to=3-3]
+		\arrow["{\Sigma^{-\1}(E\otimes E\otimes h)}", from=5-1, to=6-1]
+		\arrow["{\Sigma^{-\1}(e_{E\otimes E,X})}", from=6-1, to=7-1]
+		\arrow["{E\otimes E\otimes \Sigma^{-\1}(E\otimes h)}", from=4-3, to=5-3]
+		\arrow["{E\otimes E\otimes \Sigma^{-\1}(e_{E,X})}", from=5-3, to=6-3]
+	\end{tikzcd}\]
+	(left is bottom, right is top). Now we pass to a permutative category, and consider the following diagram:{\color{red}I'm stuck here, I don't know how to show these two compositions are equal.
+	}
+	
+	Assuming two out of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, by the five lemma applied to the above diagram, it follows that the third object belongs to $\cE$ as well.
 
 	Finally, it remains to show that $\cE$ is closed under taking arbitrary direct sums. Let ${\{X_i\}}_{i\in I}$ be a family of objects in $\cE$ indexed by some set $I$. Then note by definition, since direct sums are limits, we have that for any $W$ in $\cSH$ that
 	\[\left[W,\bigoplus_{i\in I}X_i\right]\cong\bigoplus_{i\in I}[W,X_i],\]
@@ -620,6 +749,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 
 	To recap, we have shown that the collection of objects $\cE$ for which $\Phi_X:E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)$ is an isomorphism satisfies the conditions outlined in \autoref{cellular}. Hence, $\cE$ contains every cellular object, as desired.
 	\todo{where did I use cellularity of $E$?}
+	
 \end{proof}
 
 In the following definition, let $\vare:E_*(E)\to \pi_*(E)$ be the map which sends some $\alpha:S^a\to E\otimes E$ to the composition

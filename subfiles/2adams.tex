@@ -9,7 +9,7 @@ In order to construct an abstract version of the Adams spectral sequence, we nee
 	A \emph{stable homotopy category} is the following data:
 	\begin{itemize}
 		\item A closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,\Omega)$ with arbitrary small (co)products.
-		\item A pointed abelian group $(A,\1)$ and a homomorphism $h:(A,\1)\to(\Pic(\cSH),\Sigma S)$ of pointed groups (i.e., $\1$ is sent to the isomorphism class of $\Sigma S$), where $\Pic(\cSH)$ is the group of isomorphism classes of invertible objects in $\cSH$\footnote{Recall an object $X$ in a symmetric monoidal category is \textit{invertible} if there exists some object $Y$ in $\cSH$ and an isomorphism $S\cong Y\otimes X$. To see $\Sigma S$ is invertible, note that we have isomorphisms
+		\item A pointed abelian group $(A,\1)$ and a homomorphism $h:(A,\1)\to(\Pic(\cSH),\Sigma S)$ of pointed groups (i.e., $\1$ is sent to the isomorphism class of $\Sigma S$), where $\Pic(\cSH)$ is the group of isomorphism classes of invertible objects in $\cSH$\footnote{Recall an object $X$ in a symmetric monoidal category is \emph{invertible} if there exists some object $Y$ in $\cSH$ and an isomorphism $S\cong Y\otimes X$. To see $\Sigma S$ is invertible, note that we have isomorphisms
 		\[\Sigma S\otimes \Omega S\cong\Sigma(S\otimes\Omega S)\cong \Sigma(\Omega S\otimes S)\cong\Sigma\Omega S\otimes S\cong S\otimes S\cong S,\]
 		where the first isomorphism is axiom TT1 for a tensor triangulated category (\autoref{tentri}), the second isomorphism is given by the symmetry in $\cSH$, the third isomorphism is again axiom TT1, the fourth isomorphism is the fact that $\Sigma$ and $\Omega$ for an adjoint equivalence, and finally the last isomorphism follows by the fact that $S$ is the monoidal unit in $\cSH$.}.
 		\item For each $a\in A$, a chosen object $S^a$ in the isomorphism class $h(a)$.
@@ -30,9 +30,9 @@ Given an abstract stable homotopy category as above, we will always assume witho
 		\tau_{X,Y}:X\otimes Y &\xrightarrow\cong Y\otimes X\\
 		\rho_X:X\otimes S&\xrightarrow\cong X.
 	\end{split}\]
-	Often we will suppress these isomorphisms from the notation (particularly the associators), choosing instead to denote them without their subscripts or simply with the symbol $\cong$.
+	Often we will suppress these isomorphisms from the notation (particularly the associators).
 	\item Given some $a\in A$, we define the functor $\Sigma^a:=S^a\otimes-$, so that in particular $\Sigma^\1=\Sigma$.
-	\item Given two objects $X$ and $Y$, we denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and we denote the internal hom object by $F(X,Y)$. We will often refer to morphisms in $\cSH$ as \textit{classes}, as we will think of them as representing homotopy classes of maps.
+	\item Given two objects $X$ and $Y$, we denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and we denote the internal hom object by $F(X,Y)$. We will often refer to morphisms in $\cSH$ as \emph{classes}, as we will think of them as representing homotopy classes of maps.
 	\item Given two objects $X$ and $Y$ in $\cSH$, we may extend the abelian group $[X,Y]$ to an $A$-graded abelian group $[X,Y]_*$ defined by
 	\[[X,Y]_a:=[\Sigma^aX,Y]=[S^a\otimes X,Y].\]
 	(See \autoref{(co)algebra} for a review of the theory of $A$-graded abelian groups, rings, modules, etc.)
@@ -46,7 +46,7 @@ Given an abstract stable homotopy category as above, we will always assume witho
 
 From now on, we fix the data of a stable homotopy category $\cSH$ given above once and for all. Observe that for all $a,b\in A$, the objects $S^{a+b}$ and $S^a\otimes S^b$ are isomorphic, since $h:A\to\Pic(\cSH)$ is a group homomorphism. Hence given a monoid object $(E,\mu,e)$ in $\cSH$ (\autoref{monoid_object}), supposing we had fixed isomorphisms $S^{a+b}\cong S^a\otimes S^b$ for all $a,b\in A$, we get a multiplication map $\pi_\ast(E)\times\pi_\ast(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the product
 \[S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes E\xrightarrow\mu E.\]
-Naturally, we would like this product to make $\pi_\ast(E)$ into an $A$-graded ring (with unit $e\in\pi_0(E)=[S,E]$), rather than just an $A$-graded abelian group. This is essentially the entire discussion of Dugger's paper \cite{Dugger_2014}, and as it turns out, $\pi_\ast(E)$ is in fact a graded ring provided we can choose these morphisms to be \emph{coherent}, in the following sense:
+Naturally, we would like this product to make $\pi_\ast(E)$ into an $A$-graded ring (with unit $e\in\pi_0(E)=[S,E]$), rather than just an $A$-graded abelian group. Whether or not this happens is essentially the entire discussion of Dugger's paper \cite{Dugger_2014}, and as it turns out, $\pi_\ast(E)$ is in fact a graded ring provided we can choose these morphisms to be \emph{coherent}, in the following sense:
 
 \begin{definition}\label{coherent_isos}
 	Suppose we have a family of isomorphisms
@@ -79,7 +79,7 @@ Furthermore, Dugger gaurantees that we can always find such a coherent family:
 Thus, from now on we will suppose once and for all we have fixed a coherent family $\{\phi_{a,b}\}_{a,b\in A}$. Such a coherent family has very nice properties, in particular:
 
 \begin{remark}\label{unique_comp_Sas}
-	Note that by induction the coherence conditions say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of tensor products of $\phi_{a,b}$, associators, and their inverses.
+	Note that by induction the coherence conditions say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of tensor products of $\phi_{a,b}$, identities, associators, and their inverses.
 \end{remark}
 
 Of course, we get our desired result: $\pi_*(E)$ is indeed an $A$-graded ring if $E$ is a monoid object.
@@ -135,28 +135,6 @@ The last ingredient in order to develop the Adams spectral sequence abstractly i
 	\end{enumerate}
 \end{definition}
 
-\subsection{Monoid objects in \texorpdfstring{$\cSH$}{TEXT}}
-
-We have constructed an Adams spectral sequence, but as it currently stands we do not yet know why it is useful. To start with, we'd like to provide a characterization of its $E_1$ and $E_2$ pages in terms of something more algebraic. To start, we first need to develop some theory of the algebra of monoid objects in $\cSH$. Much of this work is entirely straightforward although tedious to verify, so we relegate most of the proofs in this section to \Cref{monoid_objects}.
-
-\begin{proposition}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then for any object $X$ in $\cSH$, $E_*(X)$ canonically inherits the structure of a left $A$-graded module over $\pi_*(E)$ (which recall is an $A$-graded ring by \autoref{pi_*E_is_ring_for_E_monoid}) via the map
-	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
-	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E$ to the composition
-	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes (E\otimes X)\cong(E\otimes E)\otimes X\xrightarrow{\mu\otimes X}E\otimes X.\]
-	Similarly, $X_*(E)$ canonically inherits the structure of a right graded $\pi_*(E)$-module via the map
-	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
-	which given $a,b\in A$, sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
-	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xrightarrow{X\otimes\mu}X\otimes E.\]
-\end{proposition}
-\begin{proof}
-	See \autoref{module}.
-\end{proof}
-
-\begin{definition}\label{flat}
-	Given a monoid object $E$ in $\cSH$, we say $E$ is \emph{flat} if the canonical right $\pi_*(E)$-module structure on $E_*(E)$ (see the above proposition) is that of a flat module.
-\end{definition}
-
 \subsection{Construction of the Adams spectral sequence}
 
 In what follows, let $E$ be a commutative monoid object in $\cSH$.
@@ -168,7 +146,7 @@ In what follows, let $E$ be a commutative monoid object in $\cSH$.
 	\[Y_{s+1}\xrightarrow{i_s}Y_s\xrightarrow{j_s} W_s\xrightarrow{k_s}\Sigma Y_{s+1}(=S^\1\otimes Y_{s+1})\]
 	obtained by applying $-\otimes Y_s$ to the sequence
 	\[\ol E\to S\xrightarrow eE\to\Sigma\ol E\]
-	(and applying the necessary associator isomorphisms). These sequences can be spliced together to form the \emph{(canonical) Adams filtration of $Y$}:
+	(and applying the necessary associator and unitor isomorphisms). These sequences can be spliced together to form the \emph{(canonical) Adams filtration of $Y$}:
 	\[\begin{tikzcd}
 		\cdots & {Y_3} & {Y_2} & {Y_1} & {Y_0=Y} \\
 		& {W_3} & {W_2} & {W_1} & {W_0}
@@ -193,11 +171,34 @@ In what follows, let $E$ be a commutative monoid object in $\cSH$.
 		\arrow["{j_\aast}", from=1-3, to=3-3]
 		\arrow["{k_\aast}", from=3-3, to=1-1]
 	\end{tikzcd}\]
-	where $i_\aast$, $j_\aast$, and $k_\aast$ have $\bZ\times A$-degree $(-1,0)$, $(0,0)$, and $(1,-\1)$, respectively\footnote{Explicitly, the map $k_{s,a}:[X,W_s]_a\to [X,Y_{s+1}]_{a-\1}$ sends a map $f:S^a\otimes X\to W_s$ to the map $S^{a-\1}\otimes X\to Y_{s+1}$ corresponding under the isomorphism $[X,\Sigma Y_{s+1}]_\ast\cong[X,Y_{s+1}]_{\ast-\1}$ to the composition $k_s\circ f:S^a\otimes X\to\Sigma Y_{s+1}$.}. The standard argument yields a $\bN\times A$-graded spectral sequence called from this exact couple (cf.\ Section 5.9 of \cite{Weibel_1994}) with $E_1$ page given by 
+	where $i_\aast$, $j_\aast$, and $k_\aast$ have $\bZ\times A$-degree $(-1,0)$, $(0,0)$, and $(1,-\1)$, respectively\footnote{Explicitly, the map $k_{s,a}:[X,W_s]_a\to [X,Y_{s+1}]_{a-\1}$ sends a map $f:S^a\otimes X\to W_s$ to the map $S^{a-\1}\otimes X\to Y_{s+1}$ corresponding under the isomorphism $[X,\Sigma Y_{s+1}]_\ast\cong[X,Y_{s+1}]_{\ast-\1}$ to the composition $k_s\circ f:S^a\otimes X\to\Sigma Y_{s+1}$.}. The standard argument yields an $\bN\times A$-graded spectral sequence called from this exact couple (cf.\ Section 5.9 of \cite{Weibel_1994}) with $E_1$ page given by 
 	\[E_1^{s,a}=[X,W_s]_{a}\]
 	and $r^\text{th}$ differential of $\bZ\times A$-degree $(r,-\1)$:
 	\[d_r:E_r^{s,a}\to E_r^{s+r,a-\1}.\]
 	A priori, this is all $\bN\times A$-graded, but we regard it as being $\bZ\times A$-graded by setting $E_r^{s,a}:=0$ for $s<0$ and trivially extending the definition of the differentials to these zero groups. This spectral sequence is called the \emph{$E$-Adams spectral sequence} for the computation of $[X,Y]_\ast$. The index $s$ is called the \emph{Adams filtration} and $a$ is the \emph{stem}.
+\end{definition}
+
+\subsection{Monoid objects in \texorpdfstring{$\cSH$}{TEXT}}
+
+We have constructed an Adams spectral sequence, but as it currently stands we do not yet know why it is useful. To start with, we'd like to provide a characterization of its $E_1$ and $E_2$ pages in terms of something more algebraic. To start, we first need to develop some theory of the algebra of monoid objects in $\cSH$. Much of this work is entirely straightforward although tedious to verify, so we relegate most of the proofs in this section to \Cref{monoid_objects}.
+
+\begin{proposition}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to left $A$-graded $\pi_*(E)$-modules, where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
+	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
+	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xrightarrow{\mu\otimes X}E\otimes X.\]
+	Similarly, the assignment $X\mapsto X_*(E)$ is a functor from $\cSH$ to right $A$-graded $\pi_*(E)$-modules, where the structure map
+	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
+	sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xrightarrow{X\otimes\mu}X\otimes E.\]
+	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
+\end{proposition}
+\begin{proof}
+	See \autoref{module}.
+\end{proof}
+
+\begin{definition}\label{flat}
+	Given a monoid object $E$ in $\cSH$, we say $E$ is \emph{flat} if the canonical right $\pi_*(E)$-module structure on $E_*(E)$ (see the above proposition) is that of a flat module.
 \end{definition}
 
 \subsection{The \texorpdfstring{$E_1$}{TEXT} page}
