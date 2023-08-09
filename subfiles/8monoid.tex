@@ -456,7 +456,7 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 \end{proof}
 
 \begin{proposition}
-	Let $(E,\mu,e)$ be a \emph{flat} monoid object in $\cSH$ (\autoref{flat}) and let $X$ be any \emph{cellular} object in $\cSH$ (\autoref{cellular}). Then the natural homomorphism
+	Let $(E,\mu,e)$ be a \emph{flat, commutative} monoid object in $\cSH$ (\autoref{flat}) and let $X$ be any \emph{cellular} object in $\cSH$ (\autoref{cellular}). Then the natural homomorphism
 	\[\Phi_X:E_*(E)\otimes E_*(X)\to E_*(E\otimes X)\]
 	given in \autoref{2.2} is an isomorphism of left $\pi_*(E)$-modules.
 \end{proposition}
@@ -580,139 +580,226 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 	
 	Now, we would like to show that given a distinguished triangle
 	\[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
-	if two of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. Indeed, supposing this is true, note first of all that since $\cSH$ is tensor triangulated, by axiom TT3 (\autoref{tentri}), the following triangle is also distinguished:
-	\[E\otimes X\xrightarrow{E\otimes f} E\otimes Y\xrightarrow{E\otimes g} E\otimes Z\xrightarrow{E\otimes h}\Sigma(E\otimes X),\]
-	where here we are being abusive and writing $E\otimes h$ for the composition 
-	\[E\otimes X\xrightarrow{E\otimes h}E\otimes\Sigma X\xrightarrow{e_{E,X}}\Sigma(E\otimes X).\]
-	Thus, by \autoref{dist_tri_LES} we get a long exact sequence of $A$-graded abelian groups
-	% https://q.uiver.app/#q=WzAsOSxbMCwxLCJbXFxTaWdtYV5uU14qLEVcXG90aW1lcyBYXSJdLFsxLDEsIltcXFNpZ21hXm5TXiosRVxcb3RpbWVzIFldIl0sWzIsMSwiW1xcU2lnbWFeblNeKixFXFxvdGltZXMgWl0iXSxbMCwyLCJbXFxTaWdtYV57bi0xfVNeKixFXFxvdGltZXMgWF0iXSxbMiwwLCJbXFxTaWdtYV57bisxfSBTXiosRVxcb3RpbWVzIFpdIl0sWzEsMiwiW1xcU2lnbWFee24tMX1TXiosRVxcb3RpbWVzIFldIl0sWzAsMCwiXFxjZG90cyJdLFsxLDAsIltcXFNpZ21hXntuKzF9U14qLEVcXG90aW1lcyBZXSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxLCIoRVxcb3RpbWVzIGYpXyoiLDJdLFsxLDIsIihFXFxvdGltZXMgZylfKiJdLFsyLDMsIlxccGFydGlhbCIsMl0sWzQsMCwiXFxwYXJ0aWFsIiwyXSxbMyw1LCIoRVxcb3RpbWVzIGYpXyoiLDJdLFs2LDddLFs3LDQsIihFXFxvdGltZXMgZylfKiJdLFs1LDhdXQ==
-	\begin{equation}\label{E_homology_LES}\begin{tikzcd}
-		\cdots & {[\Sigma^{n+1}S^*,E\otimes Y]} & {[\Sigma^{n+1} S^*,E\otimes Z]} \\
-		{[\Sigma^nS^*,E\otimes X]} & {[\Sigma^nS^*,E\otimes Y]} & {[\Sigma^nS^*,E\otimes Z]} \\
-		{[\Sigma^{n-1}S^*,E\otimes X]} & {[\Sigma^{n-1}S^*,E\otimes Y]} & \cdots
-		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
-		\arrow["{(E\otimes g)_*}", from=2-2, to=2-3]
-		\arrow["\partial"', from=2-3, to=3-1]
-		\arrow["\partial"', from=1-3, to=2-1]
-		\arrow["{(E\otimes f)_*}"', from=3-1, to=3-2]
-		\arrow[from=1-1, to=1-2]
-		\arrow["{(E\otimes g)_*}", from=1-2, to=1-3]
-		\arrow[from=3-2, to=3-3]
-	\end{tikzcd}\end{equation}
-	where for $n>0$ we define $\Sigma^n:=(\Sigma)^n=(\Sigma^\1)^n$ and $\Sigma^{-n}=(\Sigma^{-\1})^n$, $\Sigma^0=\mathrm{Id}_{\cSH}$, and the maps $\partial$ are given by the compositions
-	\[[\Sigma^{n+1} S^*,E\otimes Z]\xrightarrow{(E\otimes h)_*}[\Sigma^{n+1}S^*,\Sigma(E\otimes X)]\cong[\Sigma^{-\1}\Sigma^{n+1}S^*,E\otimes X]\cong[\Sigma^n S^*,E\otimes X]\]
-	(here we are using the fact that the pair $(\Sigma^{-\1},\Sigma^\1)$ forms an adjoint equivalence (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}) and the fact that $\Sigma=\Sigma^\1=S^\1\otimes-$).
-	Now, given some nonnegative integer $n$, we will write $\mbf n$ for the corresponding element in $A$, i.e., $\mbf0=0\in A$, and if $n>0$ then
-	\[\mbf n=\overbrace{\1+\cdots+\1}^\text{$n$ times}.\]
-	Then note that $\Sigma^0S^*=S^*$ and for $n>0$ we have isomorphisms
-	\[\Sigma^n S^*=\overbrace{S^\1\otimes\cdots\otimes S^\1}^\text{$n$ times}\otimes S^*\cong S^{*+\mbf n}\]
-	and
-	\[\Sigma^{-n} S^*=\overbrace{S^{-\1}\otimes\cdots\otimes S^{-\1}}^\text{$n$ times}\otimes S^*\cong S^{*-\mbf n},\]
-	where the isomorphisms are the unique ones obtained by composing products of copies of $\phi_{a,b}$'s, identities, associators, and their inverses (\autoref{unique_comp_Sas}). Thus for $n\in\bZ$ we have identifications $[\Sigma^nS^*,E\otimes W]\cong[S^{*+\mbf n},E\otimes W]=E_{*+\mbf n}(W)$, and it is straightforward to check that these yield an isomorphism of long exact sequences between (\ref{E_homology_LES}) and the following:
-	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiRV97KitcXG1iZiBuK1xcMX0oWSkiXSxbMiwwLCJFX3sqK1xcbWJmIG4rXFwxfShaKSJdLFswLDEsIkVfeyorXFwxfShYKSJdLFsxLDEsIkVfeyorXFwxfShZKSJdLFsyLDEsIkVfeyorXFwxfShaKSJdLFswLDIsIkVfeyorXFxtYmYgbi1cXDF9KFgpIl0sWzEsMiwiRV97KitcXG1iZiBuLVxcMX0oWSkiXSxbMiwyLCJcXGNkb3RzIl0sWzAsMV0sWzEsMiwiZ18qIl0sWzIsMywiXFxwYXJ0aWFsIiwyXSxbMyw0LCJmXyoiLDJdLFs0LDUsImdfKiJdLFs1LDYsIlxccGFydGlhbCJdLFs2LDcsImZfKiIsMl0sWzcsOF1d
-	\begin{equation}\label{E_homology_LES_2}\begin{tikzcd}
-		\cdots & {E_{*+\mbf n+\1}(Y)} & {E_{*+\mbf n+\1}(Z)} \\
-		{E_{*+\1}(X)} & {E_{*+\1}(Y)} & {E_{*+\1}(Z)} \\
-		{E_{*+\mbf n-\1}(X)} & {E_{*+\mbf n-\1}(Y)} & \cdots
-		\arrow[from=1-1, to=1-2]
-		\arrow["{g_*}", from=1-2, to=1-3]
-		\arrow["\partial"', from=1-3, to=2-1]
-		\arrow["{f_*}"', from=2-1, to=2-2]
-		\arrow["{g_*}", from=2-2, to=2-3]
-		\arrow["\partial", from=2-3, to=3-1]
-		\arrow["{f_*}"', from=3-1, to=3-2]
-		\arrow[from=3-2, to=3-3]
-	\end{tikzcd}\end{equation}
-	where here the maps $\partial$ are the compositions
-	\[[S^{*+\mbf n+\1},E\otimes Z]\xrightarrow{(E\otimes h)_*}[S^{*+\mbf n+\1},\Sigma(E\otimes X)]\cong[\Sigma^{-\1}S^{*+\mbf n+\1},E\otimes X]\cong[S^{*+\mbf n},E\otimes X].\]
-	An entirely analagous argument applied to the distinguished triangle
-	\[E\otimes E\otimes X\xrightarrow{E\otimes E\otimes f}E\otimes E\otimes Y\xrightarrow{E\otimes E\otimes g}E\otimes E\otimes Z\xrightarrow{E\otimes E\otimes h}\Sigma(E\otimes E\otimes X)\]
-	yields a long exact sequence
-	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMCwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFopIl0sWzAsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFgpIl0sWzEsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFopIl0sWzAsMiwiRV97KitcXG1iZiBuLVxcMX0oRVxcb3RpbWVzIFgpIl0sWzEsMiwiRV97KitcXG1iZiBuLVxcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMiwiXFxjZG90cyJdLFswLDFdLFsxLDIsIihFXFxvdGltZXMgZylfKiJdLFsyLDMsIlxccGFydGlhbCIsMl0sWzMsNCwiKEVcXG90aW1lcyBmKV8qIiwyXSxbNCw1LCIoRVxcb3RpbWVzIGcpXyoiXSxbNSw2LCJcXHBhcnRpYWwiXSxbNiw3LCIoRVxcb3RpbWVzIGYpXyoiLDJdLFs3LDhdXQ==
-	\begin{equation}\label{EE_homology_LES}\begin{tikzcd}
-		\cdots & {E_{*+\mbf n+\1}(E\otimes Y)} & {E_{*+\mbf n+\1}(E\otimes Z)} \\
-		{E_{*+\mbf n+\1}(E\otimes X)} & {E_{*+\mbf n+\1}(E\otimes Y)} & {E_{*+\mbf n+\1}(E\otimes Z)} \\
-		{E_{*+\mbf n-\1}(E\otimes X)} & {E_{*+\mbf n-\1}(E\otimes Y)} & \cdots
-		\arrow[from=1-1, to=1-2]
-		\arrow["{(E\otimes g)_*}", from=1-2, to=1-3]
-		\arrow["\partial"', from=1-3, to=2-1]
-		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
-		\arrow["{(E\otimes g)_*}", from=2-2, to=2-3]
-		\arrow["\partial", from=2-3, to=3-1]
-		\arrow["{(E\otimes f)_*}"', from=3-1, to=3-2]
-		\arrow[from=3-2, to=3-3]
-	\end{tikzcd}\end{equation}
-	Now, we may apply the functor $E_*(E)\otimes_{\pi_*(E)}-$ (which is exact since we are assuming $E_*(E)$ is a flat right $\pi_*(E)$-module) to the long exact sequence (\ref{E_homology_LES_2}), and we further get the following long exact sequence of $A$-graded left $\pi_*(E)$-modules:
-	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiTF97KitcXG1iZiBuK1xcMX1eRShZKSJdLFsyLDAsIkxfeyorXFxtYmYgbitcXDF9XkUoWikiXSxbMCwxLCJMX3sqK1xcbWJmIG59XkUoWCkiXSxbMSwxLCJMX3sqK1xcbWJmIG59XkUoWSkiXSxbMiwxLCJMX3sqK1xcbWJmIG59XkUoWikiXSxbMCwyLCJMX3sqK1xcbWJmIG4tXFwxfV5FKFgpIl0sWzEsMiwiTF97KitcXG1iZiBuLVxcMX1eRShZKSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxXSxbMSwyLCJMXkVfeyorXFxtYmYgbitcXDF9KGcpIl0sWzIsMywiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiLDFdLFszLDQsIkxfeyorXFxtYmYgbn1eRShmKSIsMl0sWzQsNSwiTF97KitcXG1iZiBufV5FKGcpIl0sWzUsNiwiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiLDFdLFs2LDcsIkxfeyorXFxtYmYgbi1cXDF9XkUoZikiLDJdLFs3LDhdXQ==
-	\begin{equation}\label{LE_LES}\begin{tikzcd}
-		\cdots & {L_{*+\mbf n+\1}^E(Y)} & {L_{*+\mbf n+\1}^E(Z)} \\
-		{L_{*+\mbf n}^E(X)} & {L_{*+\mbf n}^E(Y)} & {L_{*+\mbf n}^E(Z)} \\
-		{L_{*+\mbf n-\1}^E(X)} & {L_{*+\mbf n-\1}^E(Y)} & \cdots
-		\arrow[from=1-1, to=1-2]
-		\arrow["{L^E_{*+\mbf n+\1}(g)}", from=1-2, to=1-3]
-		\arrow["{E_*(E)\otimes\partial}"{description}, from=1-3, to=2-1]
-		\arrow["{L_{*+\mbf n}^E(f)}"', from=2-1, to=2-2]
-		\arrow["{L_{*+\mbf n}^E(g)}", from=2-2, to=2-3]
-		\arrow["{E_*(E)\otimes\partial}"{description}, from=2-3, to=3-1]
-		\arrow["{L_{*+\mbf n-\1}^E(f)}"', from=3-1, to=3-2]
-		\arrow[from=3-2, to=3-3]
-	\end{tikzcd}\end{equation}
-	where here $L_*^E(-)$ is shorthand for the functor $X\mapsto E_*(E)\otimes_{\pi_*(E)}E_*(X)$. Now, we claim that the natural map $\Phi:L_*^E(X)\to E_*(E\otimes X)$ yields a chain map between (\ref{LE_LES}) and (\ref{EE_homology_LES}). Since $\Phi$ is natural, we know that the following commutes for all $n\in\bZ$:
-	% https://q.uiver.app/#q=WzAsNixbMCwxLCJFX3sqK1xcbWJmIG59KEVcXG90aW1lcyBYKSJdLFsxLDEsIkVfeyorXFxtYmYgbn0oRVxcb3RpbWVzIFkpIl0sWzIsMSwiRV97KitcXG1iZiBufShFXFxvdGltZXMgWikiXSxbMCwwLCJMX3sqK1xcbWJmIG59XkUoWCkiXSxbMSwwLCJMX3sqK1xcbWJmIG59XkUoWSkiXSxbMiwwLCJMX3sqK1xcbWJmIG59XkUoWikiXSxbMCwxLCIoRVxcb3RpbWVzIGYpXyoiLDJdLFsxLDIsIihFXFxvdGltZXMgZylfKiIsMl0sWzMsNCwiTF5FX3sqK1xcbWJmIG59KGYpIl0sWzQsNSwiTF5FX3sqK1xcbWJmIG59KGcpIl0sWzMsMCwiXFxQaGlfWCIsMl0sWzQsMSwiXFxQaGlfWSIsMl0sWzUsMiwiXFxQaGlfWiIsMl1d
+	if two of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. 
+	First we claim that if $X$ belongs to $\cE$, then for any $a\in A$, the object $\Sigma^aX=S^a\otimes X$ also belongs to $\cE$. To see this, consider the following diagram
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfSBFXyooXFxTaWdtYV5hWCkiXSxbMCwxLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfeyotYX0oWCkiXSxbMSwwLCJFXyooRVxcb3RpbWVzXFxTaWdtYV5hWCkiXSxbMiwwLCJFXyooXFxTaWdtYV5hKEVcXG90aW1lcyBYKSkiXSxbMiwxLCJFX3sqLWF9KEVcXG90aW1lcyBYKSJdLFsxLDEsIkVfeyotYX0oRVxcb3RpbWVzIFgpIl0sWzAsMSwiXFxjb25nIiwyXSxbMCwyLCJcXFBoaV97XFxTaWdtYV5hWH0iXSxbMiwzLCJFXyooXFx0YXVfe0UsU15hfVxcb3RpbWVzIFgpIl0sWzMsNCwiXFxjb25nIl0sWzEsNSwiXFxQaGlfWCJdLFs1LDQsIlxcY29uZyJdXQ==
 	\[\begin{tikzcd}
-		{L_{*+\mbf n}^E(X)} & {L_{*+\mbf n}^E(Y)} & {L_{*+\mbf n}^E(Z)} \\
-		{E_{*+\mbf n}(E\otimes X)} & {E_{*+\mbf n}(E\otimes Y)} & {E_{*+\mbf n}(E\otimes Z)}
-		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
-		\arrow["{(E\otimes g)_*}"', from=2-2, to=2-3]
-		\arrow["{L^E_{*+\mbf n}(f)}", from=1-1, to=1-2]
-		\arrow["{L^E_{*+\mbf n}(g)}", from=1-2, to=1-3]
-		\arrow["{\Phi_X}"', from=1-1, to=2-1]
-		\arrow["{\Phi_Y}"', from=1-2, to=2-2]
-		\arrow["{\Phi_Z}"', from=1-3, to=2-3]
+		{E_*(E)\otimes_{\pi_*(E)} E_*(\Sigma^aX)} & {E_*(E\otimes\Sigma^aX)} & {E_*(\Sigma^a(E\otimes X))} \\
+		{E_*(E)\otimes_{\pi_*(E)}E_{*-a}(X)} & {E_{*-a}(E\otimes X)} & {E_{*-a}(E\otimes X)}
+		\arrow["\cong"', from=1-1, to=2-1]
+		\arrow["{\Phi_{\Sigma^aX}}", from=1-1, to=1-2]
+		\arrow["{E_*(\tau_{E,S^a}\otimes X)}", from=1-2, to=1-3]
+		\arrow["\cong", from=1-3, to=2-3]
+		\arrow["{\Phi_X}", from=2-1, to=2-2]
+		\arrow["\cong", from=2-2, to=2-3]
 	\end{tikzcd}\]
-	Thus it remains to show that the following diagram commutes for all $n\in\bZ$:
-	% https://q.uiver.app/#q=WzAsNCxbMSwxLCJFX3sqK1xcbWJmIG59KEVcXG90aW1lcyBYKSJdLFsxLDAsIkxfeyorXFxtYmYgbn1eRShYKSJdLFswLDEsIkVfeyorXFxtYmYgbitcXDF9KEVcXG90aW1lcyBaKSJdLFswLDAsIkxfeyorXFxtYmYgbitcXDF9XkUoWikiXSxbMSwwLCJcXFBoaV9YIl0sWzIsMCwiXFxwYXJ0aWFsIl0sWzMsMSwiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiXSxbMywyLCJcXFBoaV9aIiwyXV0=
+	where:\begin{itemize}
+		\item the vertical isomorphisms are induced by the isomorphism $E_*(\Sigma^aW)\cong E_{*-a}(W)$ given by the composition
+		\[[S^*,E\otimes S^a\otimes W]\xrightarrow{(\tau_{E\otimes S^a}\otimes X)_*}[S^*,S^a\otimes E\otimes W]\cong[S^{-a}\otimes S^*,E\otimes W]\xrightarrow{(\phi_{-a,*})^*}[S^{*-a},E\otimes W]\]
+		where the middle arrow is the adjunction $S^{-a}\otimes-\dashv S^a\otimes-$ given by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}, and
+		\item the unlabelled bottom left horizontal isomorphism ???
+	\end{itemize}
+	Thus in order to show $\Sigma^aX$ belongs to $\cE$, it suffices to show diagram (\ref{pls_work}) commutes. Suppose we are given elements $x:S^b\to E\otimes E$ and $y:S^c\to E\otimes\Sigma^aX=E\otimes S^a\otimes X$. Then chasing $x\otimes y$ around diagram (\ref{pls_work}) yields the following two compositions:
+	% https://q.uiver.app/#q=WzAsMTUsWzAsMCwiU157YitjLWF9Il0sWzAsMSwiU15iXFxvdGltZXMgU157Yy1hfSJdLFswLDIsIlNeYlxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYyJdLFswLDMsIkVcXG90aW1lcyBFXFxvdGltZXMgU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFgiXSxbMCw0LCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsNSwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDYsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsyLDAsIlNee2IrYy1hfSJdLFsyLDEsIlNeey1hfVxcb3RpbWVzIFNee2IrY30iXSxbMiwyLCJTXnstYX1cXG90aW1lcyBTXmJcXG90aW1lcyBTXmMiXSxbMiwzLCJTXnstYX1cXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzIsNCwiU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzIsNSwiU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzIsNiwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzIsNywiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiXFxwaGlfe2IsYy1hfSIsMl0sWzEsMiwiU15iXFxvdGltZXMgXFxwaGlfey1hLGN9IiwyXSxbMiwzLCJ4XFxvdGltZXMgU157LWF9XFxvdGltZXMgeSIsMl0sWzMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXnstYX1cXG90aW1lcyBcXHRhdV97RSxTXmF9XFxvdGltZXMgWCIsMl0sWzQsNSwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97LWEsYX1eey0xfVxcb3RpbWVzIEVcXG90aW1lcyBYIiwyXSxbNSw2LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiLDJdLFs3LDgsIlxccGhpX3stYSxiK2N9Il0sWzgsOSwiU157LWF9XFxvdGltZXMgXFxwaGlfe2IsY30iXSxbOSwxMCwiU157LWF9XFxvdGltZXMgeFxcb3RpbWVzIHkiXSxbMTAsMTEsIlNeey1hfVxcb3RpbWVzIEVcXG90aW1lcyBcXG11XFxvdGltZXMgU15hXFxvdGltZXMgWCJdLFsxMSwxMiwiU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIFxcdGF1X3tFLFNeYX1cXG90aW1lcyBYIl0sWzEyLDEzLCJTXnstYX1cXG90aW1lcyBcXHRhdV97RSxTXmF9XFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMTMsMTQsIlxccGhpX3stYSxhfV57LTF9XFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl1d
 	\[\begin{tikzcd}
-		{L_{*+\mbf n+\1}^E(Z)} & {L_{*+\mbf n}^E(X)} \\
-		{E_{*+\mbf n+\1}(E\otimes Z)} & {E_{*+\mbf n}(E\otimes X)}
-		\arrow["{\Phi_X}", from=1-2, to=2-2]
-		\arrow["\partial", from=2-1, to=2-2]
-		\arrow["{E_*(E)\otimes\partial}", from=1-1, to=1-2]
-		\arrow["{\Phi_Z}"', from=1-1, to=2-1]
+		{S^{b+c-a}} && {S^{b+c-a}} \\
+		{S^b\otimes S^{c-a}} && {S^{-a}\otimes S^{b+c}} \\
+		{S^b\otimes S^{-a}\otimes S^c} && {S^{-a}\otimes S^b\otimes S^c} \\
+		{E\otimes E\otimes S^{-a}\otimes E\otimes S^a\otimes X} && {S^{-a}\otimes E\otimes E\otimes E\otimes S^a\otimes X} \\
+		{E\otimes E\otimes S^{-a}\otimes S^a\otimes E\otimes X} && {S^{-a}\otimes E\otimes E\otimes S^a\otimes X} \\
+		{E\otimes E\otimes E\otimes X} && {S^{-a}\otimes E\otimes S^a\otimes E\otimes X} \\
+		{E\otimes E\otimes X} && {S^{-a}\otimes S^a\otimes E\otimes E\otimes X} \\
+		&& {E\otimes E\otimes X}
+		\arrow["{\phi_{b,c-a}}"', from=1-1, to=2-1]
+		\arrow["{S^b\otimes \phi_{-a,c}}"', from=2-1, to=3-1]
+		\arrow["{x\otimes S^{-a}\otimes y}"', from=3-1, to=4-1]
+		\arrow["{E\otimes E\otimes S^{-a}\otimes \tau_{E,S^a}\otimes X}"', from=4-1, to=5-1]
+		\arrow["{E\otimes E\otimes \phi_{-a,a}^{-1}\otimes E\otimes X}"', from=5-1, to=6-1]
+		\arrow["{E\otimes \mu\otimes X}"', from=6-1, to=7-1]
+		\arrow["{\phi_{-a,b+c}}", from=1-3, to=2-3]
+		\arrow["{S^{-a}\otimes \phi_{b,c}}", from=2-3, to=3-3]
+		\arrow["{S^{-a}\otimes x\otimes y}", from=3-3, to=4-3]
+		\arrow["{S^{-a}\otimes E\otimes \mu\otimes S^a\otimes X}", from=4-3, to=5-3]
+		\arrow["{S^{-a}\otimes E\otimes \tau_{E,S^a}\otimes X}", from=5-3, to=6-3]
+		\arrow["{S^{-a}\otimes \tau_{E,S^a}\otimes E\otimes X}", from=6-3, to=7-3]
+		\arrow["{\phi_{-a,a}^{-1}\otimes E\otimes E\otimes X}", from=7-3, to=8-3]
 	\end{tikzcd}\]
-	Let's chase a generator around, so suppose we are given a homogeneous pure tensor $x\otimes y$ in $L^E_{*+\mbf n}(Z)=E_*(E)\otimes_{\pi_*(E)}E_{*+\mbf n+\1}(Z)$, so $x$ and $y$ are maps $S^a\to E\otimes E$ and $S^{b+\mbf n+\1}\to E\otimes Z$, respectively, for some $a,b\in A$. Then unravelling definitions, chasing $x\otimes y$ around the diagram yields the following two compositions:
-	% https://q.uiver.app/#q=WzAsMTgsWzIsMCwiU157YStiK1xcbn0iXSxbMiwyLCJTXmFcXG90aW1lcyBcXFNpZ21hXnstXFwxfVNee2IrXFxuK1xcMX0iXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBaKSJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxTaWdtYV57LVxcMX0oXFxTaWdtYShFXFxvdGltZXMgWCkpIl0sWzIsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMiw3LCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYICJdLFsyLDgsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDEsIlxcU2lnbWFeey1cXDF9KFNee2ErYitcXG4rXFwxfSkiXSxbMCwyLCJcXFNpZ21hXnstXFwxfShTXnthfVxcb3RpbWVzIFNee2IrXFxuK1xcMX0pIl0sWzAsMywiXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWiJdLFswLDQsIlxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBFXFxvdGltZXMgWikiXSxbMCw2LCJcXFNpZ21hXnstXFwxfShcXFNpZ21hKEVcXG90aW1lcyBFXFxvdGltZXMgWCkpIl0sWzAsNywiU1xcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDgsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDAsIlNee2ErYitcXG59Il0sWzIsMSwiU15hXFxvdGltZXMgU157YitcXG59Il0sWzAsNSwiXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzIEVcXG90aW1lc1xcU2lnbWEgWCkiXSxbMiw0LCJFXFxvdGltZXMgRVxcb3RpbWVzXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzXFxTaWdtYSBYKSJdLFsxLDIsInhcXG90aW1lcyB5Il0sWzMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97LVxcMSxcXDF9XnstMX0iXSxbNCw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbGFtYmRhX0VcXG90aW1lcyBYIl0sWzUsNiwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIl0sWzcsOCwiXFxTaWdtYV57LVxcMX1cXHBoaV97YSxiK1xcbitcXDF9Il0sWzgsOSwiXFxTaWdtYV57LVxcMX0oeFxcb3RpbWVzIHkpIl0sWzksMTAsIlxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBcXG11XFxvdGltZXMgWikiXSxbMTEsMTIsIlxccGhpX3stXFwxLFxcMX1cXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMTIsMTMsIlxcbGFtYmRhX3tFXFxvdGltZXMgRVxcb3RpbWVzIFh9Il0sWzE0LDcsIlxccGhpX3stXFwxLGErYitcXG4rXFwxfSJdLFswLDE1LCJcXHBoaV97YSxiK1xcbn0iXSxbMTUsMSwiU15hXFxvdGltZXNcXHBoaV97LVxcMSxiK1xcbitcXDF9Il0sWzEwLDE2LCJcXFNpZ21hXnstXFwxfShFXFxvdGltZXMgRVxcb3RpbWVzIGgpIl0sWzE2LDExLCJcXFNpZ21hXnstXFwxfShlX3tFXFxvdGltZXMgRSxYfSkiXSxbMiwxNywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXFNpZ21hXnstXFwxfShFXFxvdGltZXMgaCkiXSxbMTcsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXFNpZ21hXnstXFwxfShlX3tFLFh9KSJdXQ==
+	Then consider the following diagram
+	% https://q.uiver.app/#q=WzAsMTksWzIsMCwiU157YitjLWF9Il0sWzMsMCwiU15iXFxvdGltZXMgU157Yy1hfSJdLFszLDIsIlNeYlxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYyJdLFszLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFgiXSxbMyw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDcsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDAsIlNeey1hfVxcb3RpbWVzIFNee2IrY30iXSxbMCwyLCJTXnstYX1cXG90aW1lcyBTXmJcXG90aW1lcyBTXmMiXSxbMCw0LCJTXnstYX1cXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzAsNSwiU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzAsNywiU157LWF9XFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzEsNywiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzEsNSwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsxLDMsIlNeey1hfVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgU15jIl0sWzIsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBTXnstYX1cXG90aW1lcyBTXmMiXSxbMSwwLCJTXntiK2MtYX0iXSxbMSwxLCJTXntiLWF9XFxvdGltZXMgU15jIl0sWzIsMSwiU157Yi1hfVxcb3RpbWVzIFNeYyJdLFsxLDIsIlNeYlxcb3RpbWVzIFxccGhpX3stYSxjfSIsMl0sWzIsMywieFxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIHkiLDJdLFszLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgU157LWF9XFxvdGltZXMgXFx0YXVfe0UsU15hfVxcb3RpbWVzIFgiXSxbNCw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxccGhpX3stYSxhfV57LTF9XFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbNSw2LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiXSxbNyw4LCJTXnstYX1cXG90aW1lcyBcXHBoaV97YixjfSJdLFs4LDksIlNeey1hfVxcb3RpbWVzIHhcXG90aW1lcyB5Il0sWzksMTAsIlNeey1hfVxcb3RpbWVzIEVcXG90aW1lcyBcXG11XFxvdGltZXMgU15hXFxvdGltZXMgWCIsMl0sWzEwLDExLCJTXnstYX1cXG90aW1lcyBFXFxvdGltZXMgXFx0YXVfe0UsU15hfVxcb3RpbWVzIFgiLDJdLFsxMSwxMiwiU157LWF9XFxvdGltZXMgXFx0YXVfe0UsU15hfVxcb3RpbWVzIEVcXG90aW1lcyBYIiwyXSxbMTIsNiwiXFxwaGlfey1hLGF9XnstMX1cXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMTAsMTIsIlNeey1hfVxcb3RpbWVzIFxcdGF1X3tFXFxvdGltZXMgRSxTXmF9XFxvdGltZXMgWCIsMV0sWzksMTMsIlNeey1hfVxcb3RpbWVzIFxcdGF1X3tFXFxvdGltZXMgRVxcb3RpbWVzIEUsU15hfVxcb3RpbWVzIFgiLDFdLFsxMywxMiwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIl0sWzksMywiXFx0YXVfe1Neey1hfSxFXFxvdGltZXMgRX1cXG90aW1lcyBFXFxvdGltZXMgU15hXFxvdGltZXMgWCJdLFsxMyw0LCJcXHRhdV97U157LWF9XFxvdGltZXMgU15hLEVcXG90aW1lcyBFfVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzEzLDUsIlxccGhpX3stYSxhfV57LTF9XFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCIsMV0sWzAsMSwiXFxwaGlfe2IsYy1hfSJdLFs4LDIsIlxcdGF1X3tTXnstYX0sU15ifVxcb3RpbWVzIFNeYyIsMl0sWzgsMTQsIlNeey1hfVxcb3RpbWVzIHhcXG90aW1lcyBTXmMiLDFdLFsxNCwxNSwiXFx0YXVfe1Neey1hfSxFXFxvdGltZXMgRX1cXG90aW1lcyBTXmMiXSxbMiwxNSwieFxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIFNeYyIsMV0sWzE0LDksIlNeey1hfVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgeSIsMV0sWzE1LDMsIkVcXG90aW1lcyBFXFxvdGltZXMgU157LWF9XFxvdGltZXMgeSIsMV0sWzE2LDcsIlxccGhpX3stYSxiK2N9IiwxXSxbMTYsMTcsIlxccGhpX3tiLWEsY30iLDJdLFswLDE4LCJcXHBoaV97Yi1hLGN9Il0sWzE3LDgsIlxccGhpX3stYSxifVxcb3RpbWVzIFNeYyIsMV0sWzE4LDIsIlxccGhpX3tiLC1hfVxcb3RpbWVzIFNeYyIsMV0sWzAsMTYsIlxcc3Vic3RhY2t7XFx0ZXh0e3RoZSBtYXAgdGhhdCBnb2VzIGhlcmUgd2hpY2ggbWFrZXMgdGhlfVxcXFxcXHRleHR7YmVsb3cgY29tbXV0ZSBpcyBkZXBlbmRlbnQgb24gJGIkIGFuZCAkYyQhfX0iLDJdXQ==
 	\[\begin{tikzcd}
-		{S^{a+b+\n}} && {S^{a+b+\n}} \\
-		{\Sigma^{-\1}(S^{a+b+\n+\1})} && {S^a\otimes S^{b+\n}} \\
-		{\Sigma^{-\1}(S^{a}\otimes S^{b+\n+\1})} && {S^a\otimes \Sigma^{-\1}S^{b+\n+\1}} \\
-		{\Sigma^{-\1}(E\otimes E\otimes E\otimes Z} && {E\otimes E\otimes \Sigma^{-\1}(E\otimes Z)} \\
-		{\Sigma^{-\1}(E\otimes E\otimes Z)} && {E\otimes E\otimes\Sigma^{-\1}(E\otimes\Sigma X)} \\
-		{\Sigma^{-\1}(E\otimes E\otimes\Sigma X)} && {E\otimes E\otimes \Sigma^{-\1}(\Sigma(E\otimes X))} \\
-		{\Sigma^{-\1}(\Sigma(E\otimes E\otimes X))} && {E\otimes E\otimes S\otimes E\otimes X} \\
-		{S\otimes E\otimes E\otimes X} && {E\otimes E\otimes E\otimes X } \\
-		{E\otimes E\otimes X} && {E\otimes E\otimes X}
-		\arrow["{x\otimes y}", from=3-3, to=4-3]
-		\arrow["{E\otimes E\otimes \phi_{-\1,\1}^{-1}}", from=6-3, to=7-3]
-		\arrow["{E\otimes E\otimes \lambda_E\otimes X}", from=7-3, to=8-3]
-		\arrow["{E\otimes \mu\otimes X}", from=8-3, to=9-3]
-		\arrow["{\Sigma^{-\1}\phi_{a,b+\n+\1}}", from=2-1, to=3-1]
-		\arrow["{\Sigma^{-\1}(x\otimes y)}", from=3-1, to=4-1]
-		\arrow["{\Sigma^{-\1}(E\otimes \mu\otimes Z)}", from=4-1, to=5-1]
-		\arrow["{\phi_{-\1,\1}\otimes E\otimes E\otimes X}", from=7-1, to=8-1]
-		\arrow["{\lambda_{E\otimes E\otimes X}}", from=8-1, to=9-1]
-		\arrow["{\phi_{-\1,a+b+\n+\1}}", from=1-1, to=2-1]
-		\arrow["{\phi_{a,b+\n}}", from=1-3, to=2-3]
-		\arrow["{S^a\otimes\phi_{-\1,b+\n+\1}}", from=2-3, to=3-3]
-		\arrow["{\Sigma^{-\1}(E\otimes E\otimes h)}", from=5-1, to=6-1]
-		\arrow["{\Sigma^{-\1}(e_{E\otimes E,X})}", from=6-1, to=7-1]
-		\arrow["{E\otimes E\otimes \Sigma^{-\1}(E\otimes h)}", from=4-3, to=5-3]
-		\arrow["{E\otimes E\otimes \Sigma^{-\1}(e_{E,X})}", from=5-3, to=6-3]
+		{S^{-a}\otimes S^{b+c}} & {S^{b+c-a}} & {S^{b+c-a}} & {S^b\otimes S^{c-a}} \\
+		& {S^{b-a}\otimes S^c} & {S^{b-a}\otimes S^c} \\
+		{S^{-a}\otimes S^b\otimes S^c} &&& {S^b\otimes S^{-a}\otimes S^c} \\
+		& {S^{-a}\otimes E\otimes E\otimes S^c} & {E\otimes E\otimes S^{-a}\otimes S^c} \\
+		{S^{-a}\otimes E\otimes E\otimes E\otimes S^a\otimes X} &&& {E\otimes E\otimes S^{-a}\otimes E\otimes S^a\otimes X} \\
+		{S^{-a}\otimes E\otimes E\otimes S^a\otimes X} & {S^{-a}\otimes S^a\otimes E\otimes E\otimes E\otimes X} && {E\otimes E\otimes S^{-a}\otimes S^a\otimes E\otimes X} \\
+		&&& {E\otimes E\otimes E\otimes X} \\
+		{S^{-a}\otimes E\otimes S^a\otimes E\otimes X} & {S^{-a}\otimes S^a\otimes E\otimes E\otimes X} && {E\otimes E\otimes X}
+		\arrow["{S^b\otimes \phi_{-a,c}}"', from=1-4, to=3-4]
+		\arrow["{x\otimes S^{-a}\otimes y}"', from=3-4, to=5-4]
+		\arrow["{E\otimes E\otimes S^{-a}\otimes \tau_{E,S^a}\otimes X}", from=5-4, to=6-4]
+		\arrow["{E\otimes E\otimes \phi_{-a,a}^{-1}\otimes E\otimes X}", from=6-4, to=7-4]
+		\arrow["{E\otimes \mu\otimes X}", from=7-4, to=8-4]
+		\arrow["{S^{-a}\otimes \phi_{b,c}}", from=1-1, to=3-1]
+		\arrow["{S^{-a}\otimes x\otimes y}", from=3-1, to=5-1]
+		\arrow["{S^{-a}\otimes E\otimes \mu\otimes S^a\otimes X}"', from=5-1, to=6-1]
+		\arrow["{S^{-a}\otimes E\otimes \tau_{E,S^a}\otimes X}"', from=6-1, to=8-1]
+		\arrow["{S^{-a}\otimes \tau_{E,S^a}\otimes E\otimes X}"', from=8-1, to=8-2]
+		\arrow["{\phi_{-a,a}^{-1}\otimes E\otimes E\otimes X}", from=8-2, to=8-4]
+		\arrow["{S^{-a}\otimes \tau_{E\otimes E,S^a}\otimes X}"{description}, from=6-1, to=8-2]
+		\arrow["{S^{-a}\otimes \tau_{E\otimes E\otimes E,S^a}\otimes X}"{description}, from=5-1, to=6-2]
+		\arrow["{S^{-a}\otimes S^a\otimes E\otimes \mu\otimes X}", from=6-2, to=8-2]
+		\arrow["{\tau_{S^{-a},E\otimes E}\otimes E\otimes S^a\otimes X}", from=5-1, to=5-4]
+		\arrow["{\tau_{S^{-a}\otimes S^a,E\otimes E}\otimes E\otimes X}", from=6-2, to=6-4]
+		\arrow["{\phi_{-a,a}^{-1}\otimes E\otimes E\otimes E\otimes X}"{description}, from=6-2, to=7-4]
+		\arrow["{\phi_{b,c-a}}", from=1-3, to=1-4]
+		\arrow["{\tau_{S^{-a},S^b}\otimes S^c}"', from=3-1, to=3-4]
+		\arrow["{S^{-a}\otimes x\otimes S^c}"{description}, from=3-1, to=4-2]
+		\arrow["{\tau_{S^{-a},E\otimes E}\otimes S^c}", from=4-2, to=4-3]
+		\arrow["{x\otimes S^{-a}\otimes S^c}"{description}, from=3-4, to=4-3]
+		\arrow["{S^{-a}\otimes E\otimes E\otimes y}"{description}, from=4-2, to=5-1]
+		\arrow["{E\otimes E\otimes S^{-a}\otimes y}"{description}, from=4-3, to=5-4]
+		\arrow["{\phi_{-a,b+c}}"{description}, from=1-2, to=1-1]
+		\arrow["{\phi_{b-a,c}}"', from=1-2, to=2-2]
+		\arrow["{\phi_{b-a,c}}", from=1-3, to=2-3]
+		\arrow["{\phi_{-a,b}\otimes S^c}"{description}, from=2-2, to=3-1]
+		\arrow["{\phi_{b,-a}\otimes S^c}"{description}, from=2-3, to=3-4]
+		\arrow["{\substack{\text{the map that goes here which makes the}\\\text{below commute is dependent on $b$ and $c$!}}}"', from=1-3, to=1-2]
 	\end{tikzcd}\]
-	(left is bottom, right is top). Now we pass to a permutative category, and consider the following diagram:{\color{red}I'm stuck here, I don't know how to show these two compositions are equal.
-	}
+
 	
-	Assuming two out of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, by the five lemma applied to the above diagram, it follows that the third object belongs to $\cE$ as well.
+%	Indeed, supposing this is true, note first of all that since $\cSH$ is tensor triangulated, by axiom TT3 (\autoref{tentri}), the following triangle is also distinguished:
+%	\[E\otimes X\xrightarrow{E\otimes f} E\otimes Y\xrightarrow{E\otimes g} E\otimes Z\xrightarrow{E\otimes h}\Sigma(E\otimes X),\]
+%	where here we are being abusive and writing $E\otimes h$ for the composition 
+%	\[E\otimes X\xrightarrow{E\otimes h}E\otimes\Sigma X\xrightarrow{e_{E,X}}\Sigma(E\otimes X).\]
+%	Thus, by \autoref{dist_tri_LES} we get a long exact sequence of $A$-graded abelian groups
+%	% https://q.uiver.app/#q=WzAsOSxbMCwxLCJbXFxTaWdtYV5uU14qLEVcXG90aW1lcyBYXSJdLFsxLDEsIltcXFNpZ21hXm5TXiosRVxcb3RpbWVzIFldIl0sWzIsMSwiW1xcU2lnbWFeblNeKixFXFxvdGltZXMgWl0iXSxbMCwyLCJbXFxTaWdtYV57bi0xfVNeKixFXFxvdGltZXMgWF0iXSxbMiwwLCJbXFxTaWdtYV57bisxfSBTXiosRVxcb3RpbWVzIFpdIl0sWzEsMiwiW1xcU2lnbWFee24tMX1TXiosRVxcb3RpbWVzIFldIl0sWzAsMCwiXFxjZG90cyJdLFsxLDAsIltcXFNpZ21hXntuKzF9U14qLEVcXG90aW1lcyBZXSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxLCIoRVxcb3RpbWVzIGYpXyoiLDJdLFsxLDIsIihFXFxvdGltZXMgZylfKiJdLFsyLDMsIlxccGFydGlhbCIsMl0sWzQsMCwiXFxwYXJ0aWFsIiwyXSxbMyw1LCIoRVxcb3RpbWVzIGYpXyoiLDJdLFs2LDddLFs3LDQsIihFXFxvdGltZXMgZylfKiJdLFs1LDhdXQ==
+%	\begin{equation}\label{E_homology_LES}\begin{tikzcd}
+%		\cdots & {[\Sigma^{n+1}S^*,E\otimes Y]} & {[\Sigma^{n+1} S^*,E\otimes Z]} \\
+%		{[\Sigma^nS^*,E\otimes X]} & {[\Sigma^nS^*,E\otimes Y]} & {[\Sigma^nS^*,E\otimes Z]} \\
+%		{[\Sigma^{n-1}S^*,E\otimes X]} & {[\Sigma^{n-1}S^*,E\otimes Y]} & \cdots
+%		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
+%		\arrow["{(E\otimes g)_*}", from=2-2, to=2-3]
+%		\arrow["\partial"', from=2-3, to=3-1]
+%		\arrow["\partial"', from=1-3, to=2-1]
+%		\arrow["{(E\otimes f)_*}"', from=3-1, to=3-2]
+%		\arrow[from=1-1, to=1-2]
+%		\arrow["{(E\otimes g)_*}", from=1-2, to=1-3]
+%		\arrow[from=3-2, to=3-3]
+%	\end{tikzcd}\end{equation}
+%	where for $n>0$ we define $\Sigma^n:=(\Sigma)^n=(\Sigma^\1)^n$ and $\Sigma^{-n}=(\Sigma^{-\1})^n$, $\Sigma^0=\mathrm{Id}_{\cSH}$, and the maps $\partial$ are given by the compositions
+%	\[[\Sigma^{n+1} S^*,E\otimes Z]\xrightarrow{(E\otimes h)_*}[\Sigma^{n+1}S^*,\Sigma(E\otimes X)]\cong[\Sigma^{-\1}\Sigma^{n+1}S^*,E\otimes X]\cong[\Sigma^n S^*,E\otimes X]\]
+%	(here we are using the fact that the pair $(\Sigma^{-\1},\Sigma^\1)$ forms an adjoint equivalence (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}) and the fact that $\Sigma=\Sigma^\1=S^\1\otimes-$).
+%	Now, given some nonnegative integer $n$, we will write $\mbf n$ for the corresponding element in $A$, i.e., $\mbf0=0\in A$, and if $n>0$ then
+%	\[\mbf n=\overbrace{\1+\cdots+\1}^\text{$n$ times}.\]
+%	Then note that $\Sigma^0S^*=S^*$ and for $n>0$ we have isomorphisms
+%	\[\Sigma^n S^*=\overbrace{S^\1\otimes\cdots\otimes S^\1}^\text{$n$ times}\otimes S^*\cong S^{*+\mbf n}\]
+%	and
+%	\[\Sigma^{-n} S^*=\overbrace{S^{-\1}\otimes\cdots\otimes S^{-\1}}^\text{$n$ times}\otimes S^*\cong S^{*-\mbf n},\]
+%	where the isomorphisms are the unique ones obtained by composing products of copies of $\phi_{a,b}$'s, identities, associators, and their inverses (\autoref{unique_comp_Sas}). Thus for $n\in\bZ$ we have identifications $[\Sigma^nS^*,E\otimes W]\cong[S^{*+\mbf n},E\otimes W]=E_{*+\mbf n}(W)$, and it is straightforward to check that these yield an isomorphism of long exact sequences between (\ref{E_homology_LES}) and the following:
+%	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiRV97KitcXG1iZiBuK1xcMX0oWSkiXSxbMiwwLCJFX3sqK1xcbWJmIG4rXFwxfShaKSJdLFswLDEsIkVfeyorXFwxfShYKSJdLFsxLDEsIkVfeyorXFwxfShZKSJdLFsyLDEsIkVfeyorXFwxfShaKSJdLFswLDIsIkVfeyorXFxtYmYgbi1cXDF9KFgpIl0sWzEsMiwiRV97KitcXG1iZiBuLVxcMX0oWSkiXSxbMiwyLCJcXGNkb3RzIl0sWzAsMV0sWzEsMiwiZ18qIl0sWzIsMywiXFxwYXJ0aWFsIiwyXSxbMyw0LCJmXyoiLDJdLFs0LDUsImdfKiJdLFs1LDYsIlxccGFydGlhbCJdLFs2LDcsImZfKiIsMl0sWzcsOF1d
+%	\begin{equation}\label{E_homology_LES_2}\begin{tikzcd}
+%		\cdots & {E_{*+\mbf n+\1}(Y)} & {E_{*+\mbf n+\1}(Z)} \\
+%		{E_{*+\1}(X)} & {E_{*+\1}(Y)} & {E_{*+\1}(Z)} \\
+%		{E_{*+\mbf n-\1}(X)} & {E_{*+\mbf n-\1}(Y)} & \cdots
+%		\arrow[from=1-1, to=1-2]
+%		\arrow["{g_*}", from=1-2, to=1-3]
+%		\arrow["\partial"', from=1-3, to=2-1]
+%		\arrow["{f_*}"', from=2-1, to=2-2]
+%		\arrow["{g_*}", from=2-2, to=2-3]
+%		\arrow["\partial", from=2-3, to=3-1]
+%		\arrow["{f_*}"', from=3-1, to=3-2]
+%		\arrow[from=3-2, to=3-3]
+%	\end{tikzcd}\end{equation}
+%	where here the maps $\partial$ are the compositions
+%	\[[S^{*+\mbf n+\1},E\otimes Z]\xrightarrow{(E\otimes h)_*}[S^{*+\mbf n+\1},\Sigma(E\otimes X)]\cong[\Sigma^{-\1}S^{*+\mbf n+\1},E\otimes X]\cong[S^{*+\mbf n},E\otimes X].\]
+%	An entirely analagous argument applied to the distinguished triangle
+%	\[E\otimes E\otimes X\xrightarrow{E\otimes E\otimes f}E\otimes E\otimes Y\xrightarrow{E\otimes E\otimes g}E\otimes E\otimes Z\xrightarrow{E\otimes E\otimes h}\Sigma(E\otimes E\otimes X)\]
+%	yields a long exact sequence
+%	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMCwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFopIl0sWzAsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFgpIl0sWzEsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMSwiRV97KitcXG1iZiBuK1xcMX0oRVxcb3RpbWVzIFopIl0sWzAsMiwiRV97KitcXG1iZiBuLVxcMX0oRVxcb3RpbWVzIFgpIl0sWzEsMiwiRV97KitcXG1iZiBuLVxcMX0oRVxcb3RpbWVzIFkpIl0sWzIsMiwiXFxjZG90cyJdLFswLDFdLFsxLDIsIihFXFxvdGltZXMgZylfKiJdLFsyLDMsIlxccGFydGlhbCIsMl0sWzMsNCwiKEVcXG90aW1lcyBmKV8qIiwyXSxbNCw1LCIoRVxcb3RpbWVzIGcpXyoiXSxbNSw2LCJcXHBhcnRpYWwiXSxbNiw3LCIoRVxcb3RpbWVzIGYpXyoiLDJdLFs3LDhdXQ==
+%	\begin{equation}\label{EE_homology_LES}\begin{tikzcd}
+%		\cdots & {E_{*+\mbf n+\1}(E\otimes Y)} & {E_{*+\mbf n+\1}(E\otimes Z)} \\
+%		{E_{*+\mbf n+\1}(E\otimes X)} & {E_{*+\mbf n+\1}(E\otimes Y)} & {E_{*+\mbf n+\1}(E\otimes Z)} \\
+%		{E_{*+\mbf n-\1}(E\otimes X)} & {E_{*+\mbf n-\1}(E\otimes Y)} & \cdots
+%		\arrow[from=1-1, to=1-2]
+%		\arrow["{(E\otimes g)_*}", from=1-2, to=1-3]
+%		\arrow["\partial"', from=1-3, to=2-1]
+%		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
+%		\arrow["{(E\otimes g)_*}", from=2-2, to=2-3]
+%		\arrow["\partial", from=2-3, to=3-1]
+%		\arrow["{(E\otimes f)_*}"', from=3-1, to=3-2]
+%		\arrow[from=3-2, to=3-3]
+%	\end{tikzcd}\end{equation}
+%	Now, we may apply the functor $E_*(E)\otimes_{\pi_*(E)}-$ (which is exact since we are assuming $E_*(E)$ is a flat right $\pi_*(E)$-module) to the long exact sequence (\ref{E_homology_LES_2}), and we further get the following long exact sequence of $A$-graded left $\pi_*(E)$-modules:
+%	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiTF97KitcXG1iZiBuK1xcMX1eRShZKSJdLFsyLDAsIkxfeyorXFxtYmYgbitcXDF9XkUoWikiXSxbMCwxLCJMX3sqK1xcbWJmIG59XkUoWCkiXSxbMSwxLCJMX3sqK1xcbWJmIG59XkUoWSkiXSxbMiwxLCJMX3sqK1xcbWJmIG59XkUoWikiXSxbMCwyLCJMX3sqK1xcbWJmIG4tXFwxfV5FKFgpIl0sWzEsMiwiTF97KitcXG1iZiBuLVxcMX1eRShZKSJdLFsyLDIsIlxcY2RvdHMiXSxbMCwxXSxbMSwyLCJMXkVfeyorXFxtYmYgbitcXDF9KGcpIl0sWzIsMywiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiLDFdLFszLDQsIkxfeyorXFxtYmYgbn1eRShmKSIsMl0sWzQsNSwiTF97KitcXG1iZiBufV5FKGcpIl0sWzUsNiwiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiLDFdLFs2LDcsIkxfeyorXFxtYmYgbi1cXDF9XkUoZikiLDJdLFs3LDhdXQ==
+%	\begin{equation}\label{LE_LES}\begin{tikzcd}
+%		\cdots & {L_{*+\mbf n+\1}^E(Y)} & {L_{*+\mbf n+\1}^E(Z)} \\
+%		{L_{*+\mbf n}^E(X)} & {L_{*+\mbf n}^E(Y)} & {L_{*+\mbf n}^E(Z)} \\
+%		{L_{*+\mbf n-\1}^E(X)} & {L_{*+\mbf n-\1}^E(Y)} & \cdots
+%		\arrow[from=1-1, to=1-2]
+%		\arrow["{L^E_{*+\mbf n+\1}(g)}", from=1-2, to=1-3]
+%		\arrow["{E_*(E)\otimes\partial}"{description}, from=1-3, to=2-1]
+%		\arrow["{L_{*+\mbf n}^E(f)}"', from=2-1, to=2-2]
+%		\arrow["{L_{*+\mbf n}^E(g)}", from=2-2, to=2-3]
+%		\arrow["{E_*(E)\otimes\partial}"{description}, from=2-3, to=3-1]
+%		\arrow["{L_{*+\mbf n-\1}^E(f)}"', from=3-1, to=3-2]
+%		\arrow[from=3-2, to=3-3]
+%	\end{tikzcd}\end{equation}
+%	where here $L_*^E(-)$ is shorthand for the functor $X\mapsto E_*(E)\otimes_{\pi_*(E)}E_*(X)$. Now, we claim that the natural map $\Phi:L_*^E(X)\to E_*(E\otimes X)$ yields a chain map between (\ref{LE_LES}) and (\ref{EE_homology_LES}). Since $\Phi$ is natural, we know that the following commutes for all $n\in\bZ$:
+%	% https://q.uiver.app/#q=WzAsNixbMCwxLCJFX3sqK1xcbWJmIG59KEVcXG90aW1lcyBYKSJdLFsxLDEsIkVfeyorXFxtYmYgbn0oRVxcb3RpbWVzIFkpIl0sWzIsMSwiRV97KitcXG1iZiBufShFXFxvdGltZXMgWikiXSxbMCwwLCJMX3sqK1xcbWJmIG59XkUoWCkiXSxbMSwwLCJMX3sqK1xcbWJmIG59XkUoWSkiXSxbMiwwLCJMX3sqK1xcbWJmIG59XkUoWikiXSxbMCwxLCIoRVxcb3RpbWVzIGYpXyoiLDJdLFsxLDIsIihFXFxvdGltZXMgZylfKiIsMl0sWzMsNCwiTF5FX3sqK1xcbWJmIG59KGYpIl0sWzQsNSwiTF5FX3sqK1xcbWJmIG59KGcpIl0sWzMsMCwiXFxQaGlfWCIsMl0sWzQsMSwiXFxQaGlfWSIsMl0sWzUsMiwiXFxQaGlfWiIsMl1d
+%	\[\begin{tikzcd}
+%		{L_{*+\mbf n}^E(X)} & {L_{*+\mbf n}^E(Y)} & {L_{*+\mbf n}^E(Z)} \\
+%		{E_{*+\mbf n}(E\otimes X)} & {E_{*+\mbf n}(E\otimes Y)} & {E_{*+\mbf n}(E\otimes Z)}
+%		\arrow["{(E\otimes f)_*}"', from=2-1, to=2-2]
+%		\arrow["{(E\otimes g)_*}"', from=2-2, to=2-3]
+%		\arrow["{L^E_{*+\mbf n}(f)}", from=1-1, to=1-2]
+%		\arrow["{L^E_{*+\mbf n}(g)}", from=1-2, to=1-3]
+%		\arrow["{\Phi_X}"', from=1-1, to=2-1]
+%		\arrow["{\Phi_Y}"', from=1-2, to=2-2]
+%		\arrow["{\Phi_Z}"', from=1-3, to=2-3]
+%	\end{tikzcd}\]
+%	Thus it remains to show that the following diagram commutes for all $n\in\bZ$:
+%	% https://q.uiver.app/#q=WzAsNCxbMSwxLCJFX3sqK1xcbWJmIG59KEVcXG90aW1lcyBYKSJdLFsxLDAsIkxfeyorXFxtYmYgbn1eRShYKSJdLFswLDEsIkVfeyorXFxtYmYgbitcXDF9KEVcXG90aW1lcyBaKSJdLFswLDAsIkxfeyorXFxtYmYgbitcXDF9XkUoWikiXSxbMSwwLCJcXFBoaV9YIl0sWzIsMCwiXFxwYXJ0aWFsIl0sWzMsMSwiRV8qKEUpXFxvdGltZXNcXHBhcnRpYWwiXSxbMywyLCJcXFBoaV9aIiwyXV0=
+%	\[\begin{tikzcd}
+%		{L_{*+\mbf n+\1}^E(Z)} & {L_{*+\mbf n}^E(X)} \\
+%		{E_{*+\mbf n+\1}(E\otimes Z)} & {E_{*+\mbf n}(E\otimes X)}
+%		\arrow["{\Phi_X}", from=1-2, to=2-2]
+%		\arrow["\partial", from=2-1, to=2-2]
+%		\arrow["{E_*(E)\otimes\partial}", from=1-1, to=1-2]
+%		\arrow["{\Phi_Z}"', from=1-1, to=2-1]
+%	\end{tikzcd}\]
+%	Let's chase a generator around, so suppose we are given a homogeneous pure tensor $x\otimes y$ in $L^E_{*+\mbf n}(Z)=E_*(E)\otimes_{\pi_*(E)}E_{*+\mbf n+\1}(Z)$, so $x$ and $y$ are maps $S^a\to E\otimes E$ and $S^{b+\mbf n+\1}\to E\otimes Z$, respectively, for some $a,b\in A$. Then unravelling definitions, chasing $x\otimes y$ around the diagram yields the following two compositions:
+%	% https://q.uiver.app/#q=WzAsMTgsWzIsMCwiU157YStiK1xcbn0iXSxbMiwyLCJTXmFcXG90aW1lcyBcXFNpZ21hXnstXFwxfVNee2IrXFxuK1xcMX0iXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBaKSJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxTaWdtYV57LVxcMX0oXFxTaWdtYShFXFxvdGltZXMgWCkpIl0sWzIsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMiw3LCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYICJdLFsyLDgsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDEsIlxcU2lnbWFeey1cXDF9KFNee2ErYitcXG4rXFwxfSkiXSxbMCwyLCJcXFNpZ21hXnstXFwxfShTXnthfVxcb3RpbWVzIFNee2IrXFxuK1xcMX0pIl0sWzAsMywiXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWiJdLFswLDQsIlxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBFXFxvdGltZXMgWikiXSxbMCw2LCJcXFNpZ21hXnstXFwxfShcXFNpZ21hKEVcXG90aW1lcyBFXFxvdGltZXMgWCkpIl0sWzAsNywiU1xcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDgsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDAsIlNee2ErYitcXG59Il0sWzIsMSwiU15hXFxvdGltZXMgU157YitcXG59Il0sWzAsNSwiXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzIEVcXG90aW1lc1xcU2lnbWEgWCkiXSxbMiw0LCJFXFxvdGltZXMgRVxcb3RpbWVzXFxTaWdtYV57LVxcMX0oRVxcb3RpbWVzXFxTaWdtYSBYKSJdLFsxLDIsInhcXG90aW1lcyB5Il0sWzMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXHBoaV97LVxcMSxcXDF9XnstMX0iXSxbNCw1LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbGFtYmRhX0VcXG90aW1lcyBYIl0sWzUsNiwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIl0sWzcsOCwiXFxTaWdtYV57LVxcMX1cXHBoaV97YSxiK1xcbitcXDF9Il0sWzgsOSwiXFxTaWdtYV57LVxcMX0oeFxcb3RpbWVzIHkpIl0sWzksMTAsIlxcU2lnbWFeey1cXDF9KEVcXG90aW1lcyBcXG11XFxvdGltZXMgWikiXSxbMTEsMTIsIlxccGhpX3stXFwxLFxcMX1cXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMTIsMTMsIlxcbGFtYmRhX3tFXFxvdGltZXMgRVxcb3RpbWVzIFh9Il0sWzE0LDcsIlxccGhpX3stXFwxLGErYitcXG4rXFwxfSJdLFswLDE1LCJcXHBoaV97YSxiK1xcbn0iXSxbMTUsMSwiU15hXFxvdGltZXNcXHBoaV97LVxcMSxiK1xcbitcXDF9Il0sWzEwLDE2LCJcXFNpZ21hXnstXFwxfShFXFxvdGltZXMgRVxcb3RpbWVzIGgpIl0sWzE2LDExLCJcXFNpZ21hXnstXFwxfShlX3tFXFxvdGltZXMgRSxYfSkiXSxbMiwxNywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXFNpZ21hXnstXFwxfShFXFxvdGltZXMgaCkiXSxbMTcsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBcXFNpZ21hXnstXFwxfShlX3tFLFh9KSJdXQ==
+%	\[\begin{tikzcd}
+%		{S^{a+b+\n}} && {S^{a+b+\n}} \\
+%		{\Sigma^{-\1}(S^{a+b+\n+\1})} && {S^a\otimes S^{b+\n}} \\
+%		{\Sigma^{-\1}(S^{a}\otimes S^{b+\n+\1})} && {S^a\otimes \Sigma^{-\1}S^{b+\n+\1}} \\
+%		{\Sigma^{-\1}(E\otimes E\otimes E\otimes Z} && {E\otimes E\otimes \Sigma^{-\1}(E\otimes Z)} \\
+%		{\Sigma^{-\1}(E\otimes E\otimes Z)} && {E\otimes E\otimes\Sigma^{-\1}(E\otimes\Sigma X)} \\
+%		{\Sigma^{-\1}(E\otimes E\otimes\Sigma X)} && {E\otimes E\otimes \Sigma^{-\1}(\Sigma(E\otimes X))} \\
+%		{\Sigma^{-\1}(\Sigma(E\otimes E\otimes X))} && {E\otimes E\otimes S\otimes E\otimes X} \\
+%		{S\otimes E\otimes E\otimes X} && {E\otimes E\otimes E\otimes X } \\
+%		{E\otimes E\otimes X} && {E\otimes E\otimes X}
+%		\arrow["{x\otimes y}", from=3-3, to=4-3]
+%		\arrow["{E\otimes E\otimes \phi_{-\1,\1}^{-1}}", from=6-3, to=7-3]
+%		\arrow["{E\otimes E\otimes \lambda_E\otimes X}", from=7-3, to=8-3]
+%		\arrow["{E\otimes \mu\otimes X}", from=8-3, to=9-3]
+%		\arrow["{\Sigma^{-\1}\phi_{a,b+\n+\1}}", from=2-1, to=3-1]
+%		\arrow["{\Sigma^{-\1}(x\otimes y)}", from=3-1, to=4-1]
+%		\arrow["{\Sigma^{-\1}(E\otimes \mu\otimes Z)}", from=4-1, to=5-1]
+%		\arrow["{\phi_{-\1,\1}\otimes E\otimes E\otimes X}", from=7-1, to=8-1]
+%		\arrow["{\lambda_{E\otimes E\otimes X}}", from=8-1, to=9-1]
+%		\arrow["{\phi_{-\1,a+b+\n+\1}}", from=1-1, to=2-1]
+%		\arrow["{\phi_{a,b+\n}}", from=1-3, to=2-3]
+%		\arrow["{S^a\otimes\phi_{-\1,b+\n+\1}}", from=2-3, to=3-3]
+%		\arrow["{\Sigma^{-\1}(E\otimes E\otimes h)}", from=5-1, to=6-1]
+%		\arrow["{\Sigma^{-\1}(e_{E\otimes E,X})}", from=6-1, to=7-1]
+%		\arrow["{E\otimes E\otimes \Sigma^{-\1}(E\otimes h)}", from=4-3, to=5-3]
+%		\arrow["{E\otimes E\otimes \Sigma^{-\1}(e_{E,X})}", from=5-3, to=6-3]
+%	\end{tikzcd}\]
+%	(left is bottom, right is top). Now we pass to a permutative category, and consider the following diagram:{\color{red}I'm stuck here, I don't know how to show these two compositions are equal.}
+%	
+%	Assuming two out of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, by the five lemma applied to the above diagram, it follows that the third object belongs to $\cE$ as well.
 
 	Finally, it remains to show that $\cE$ is closed under taking arbitrary direct sums. Let ${\{X_i\}}_{i\in I}$ be a family of objects in $\cE$ indexed by some set $I$. Then note by definition, since direct sums are limits, we have that for any $W$ in $\cSH$ that
 	\[\left[W,\bigoplus_{i\in I}X_i\right]\cong\bigoplus_{i\in I}[W,X_i],\]
