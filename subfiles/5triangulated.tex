@@ -3,6 +3,14 @@
 
 We assume the reader is familiar with additive categories and (closed, symmetric) monoidal categories.
 
+\begin{definition}\label{defn_exact}
+    Let $\cC$ be an additive category. Given a sequence
+    \[X_1\to\cdots\to X_n\]
+    of morphisms in $\cC$, we say thsi sequence is \emph{exact} if, for any object $A$ in $\cC$, the induced sequence
+    \[\cC(A,X_1)\to\cC(A,X_n)\to\cdots\to\cC(A,X_n)\]
+    is an exact sequence of abelian groups.
+\end{definition}
+
 \begin{definition}\label{triangulated_defn}
     A \emph{triangulated category} is a tuple $(\cC,\Sigma,\Omega,\cD)$ such that\begin{enumerate}
         \item $\cC$ is an additive category.
@@ -36,7 +44,7 @@ We assume the reader is familiar with additive categories and (closed, symmetric
         is a distinguished triangle.
         \item For all $f:X\to Y$ there exists an object $C_f$ (also sometimes denoted $Y/X$) called the \emph{cofiber of $f$} and a distinguished triangle
         \[X\xrightarrow fY\to C_f\to\Sigma X.\]
-        \item Given a solid diagram with both rows commutative
+        \item Given a solid diagram
         % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYJyJdLFsxLDEsIlknIl0sWzIsMSwiWiciXSxbMywxLCJcXFNpZ21hIFgnIl0sWzAsMV0sWzEsMl0sWzIsM10sWzAsNCwiZiIsMl0sWzQsNV0sWzUsNl0sWzYsN10sWzEsNV0sWzIsNiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNywiXFxTaWdtYSBmIl1d
         \[\begin{tikzcd}
             X & Y & Z & {\Sigma X} \\
@@ -88,9 +96,143 @@ We assume the reader is familiar with additive categories and (closed, symmetric
     \end{enumerate}
 \end{definition}
 
-It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}).
+It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}). In this section, we fix a triangulated category $\cC$, and we will always use brackets $[-,-]$ to denote the hom-set in a triangulated category $\cC$. We now recall several important propositions for triangulated categories:
 
-We now recall several important propositions for triangulated categories:
+\begin{proposition}\label{distinguished_tri_is_exact}
+    Let $(\cC,\Sigma)$ be a triangulated category. Then any distinguished triangle in $\cC$ is an exact sequence.
+\end{proposition}
+\begin{proof}
+    Suppose we have some distinguished triangle
+    \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X.\]
+    Then we would like to show that given any object $A$ in $\cC$, that the sequence
+    \[[A,X]\xrightarrow{f_*}[A,Y]\xrightarrow{g_*}[A,Z]\xrightarrow{h_*}[A,\Sigma X]\]
+    is exact. First we show exactness at $[A,Y]$. To see $\imm f_*\sseq\ker g_*$, note it suffices to show that $g\circ f=0$. Indeed, consider the commuting diagram
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwwLCJYIl0sWzEsMCwiWCJdLFsyLDAsIjAiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDEsImYiXSxbNSw2XSxbNiw3XSxbNCwwLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    \[\begin{tikzcd}
+        X & X & 0 & {\Sigma X} \\
+        X & Y & Z & {\Sigma X}
+        \arrow["f", from=2-1, to=2-2]
+        \arrow["g", from=2-2, to=2-3]
+        \arrow["h", from=2-3, to=2-4]
+        \arrow[Rightarrow, no head, from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=2-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+    \end{tikzcd}\]
+    The top row is distinguished by axiom TR1. Thus by TR3, the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwwLCJYIl0sWzEsMCwiWCJdLFsyLDAsIjAiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDEsImYiXSxbNSw2XSxbNiw3XSxbNCwwLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDJdLFs3LDMsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+    \[\begin{tikzcd}
+        X & X & 0 & {\Sigma X} \\
+        X & Y & Z & {\Sigma X}
+        \arrow["f", from=2-1, to=2-2]
+        \arrow["g", from=2-2, to=2-3]
+        \arrow["h", from=2-3, to=2-4]
+        \arrow[Rightarrow, no head, from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=2-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow[from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+    \end{tikzcd}\]
+    In particular, commutativity of the second square tells us that $g\circ f=0$, as desired. Conversely, we'd liek to show that $\ker g_*\sseq\imm f_*$. Let $\psi: A\to Y$ be in the kernel of $g_*$, so that $g\circ\psi=0$. Consider the following commutative diagram:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJBIl0sWzEsMCwiMCJdLFsyLDAsIlxcU2lnbWEgQSJdLFszLDAsIlxcU2lnbWEgQSJdLFswLDEsIlkiXSxbMSwxLCJaIl0sWzIsMSwiXFxTaWdtYSBYIl0sWzMsMSwiXFxTaWdtYSBZIl0sWzAsMV0sWzEsMl0sWzIsMywiLVxcU2lnbWFcXGlkX0EiXSxbNCw1LCJnIl0sWzUsNiwiaCJdLFs2LDcsIi1cXFNpZ21hIGYiXSxbMCw0LCJcXHBzaSIsMl0sWzEsNV1d
+    \[\begin{tikzcd}
+        A & 0 & {\Sigma A} & {\Sigma A} \\
+        Y & Z & {\Sigma X} & {\Sigma Y}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{-\Sigma\id_A}", from=1-3, to=1-4]
+        \arrow["g", from=2-1, to=2-2]
+        \arrow["h", from=2-2, to=2-3]
+        \arrow["{-\Sigma f}", from=2-3, to=2-4]
+        \arrow["\psi"', from=1-1, to=2-1]
+        \arrow[from=1-2, to=2-2]
+    \end{tikzcd}\]
+    The top row is distinguished by axioms TR1 and TR4. The bottom row is distinguished by axiom TR4. Thus by axiom TR3 there exists a map $\wt\phi:\Sigma A\to \Sigma X$ such that the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJBIl0sWzEsMCwiMCJdLFsyLDAsIlxcU2lnbWEgQSJdLFszLDAsIlxcU2lnbWEgQSJdLFswLDEsIlkiXSxbMSwxLCJaIl0sWzIsMSwiXFxTaWdtYSBYIl0sWzMsMSwiXFxTaWdtYSBZIl0sWzAsMV0sWzEsMl0sWzIsMywiLVxcU2lnbWFcXGlkX0EiXSxbNCw1LCJnIl0sWzUsNiwiaCJdLFs2LDcsIi1cXFNpZ21hIGYiXSxbMCw0LCJcXHBzaSIsMl0sWzEsNV0sWzIsNiwiXFx3dFxccGhpIiwyXSxbMyw3LCJcXFNpZ21hXFxwc2kiLDJdXQ==
+    \[\begin{tikzcd}
+        A & 0 & {\Sigma A} & {\Sigma A} \\
+        Y & Z & {\Sigma X} & {\Sigma Y}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{-\Sigma\id_A}", from=1-3, to=1-4]
+        \arrow["g", from=2-1, to=2-2]
+        \arrow["h", from=2-2, to=2-3]
+        \arrow["{-\Sigma f}", from=2-3, to=2-4]
+        \arrow["\psi"', from=1-1, to=2-1]
+        \arrow[from=1-2, to=2-2]
+        \arrow["\wt\phi"', from=1-3, to=2-3]
+        \arrow["\Sigma\psi"', from=1-4, to=2-4]
+    \end{tikzcd}\]
+    Now, since $\Sigma$ is an equivalence, it is a full functor, so that in particular there exists some $\phi:A\to X$ such that $\wt\phi=\Sigma\phi$. Then by faithfullness, we may pull back the right square to get a commuting diagram 
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQSJdLFsxLDEsIlkiXSxbMCwxLCJYIl0sWzAsMSwiLVxcaWRfQSJdLFsxLDIsIlxccHNpIl0sWzAsMywiXFxwaGkiLDJdLFszLDIsIi1mIiwyXV0=
+    \[\begin{tikzcd}
+        A & A \\
+        X & Y
+        \arrow["{-\id_A}", from=1-1, to=1-2]
+        \arrow["\psi", from=1-2, to=2-2]
+        \arrow["\phi"', from=1-1, to=2-1]
+        \arrow["{-f}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    Hence, 
+    \[f_*(\phi)=f\circ\phi\overset{(*)}=-((-f)\circ\phi)=-(\psi\circ(-\id_A))\overset{(*)}=\psi\circ\id_A=\psi,\]
+    where the equalities marked $(*)$ follow by bilinearity of composition in an additive category. Thus $\psi\in\imm f_*$, as desired, meaning $\ker g_*\sseq\imm f_*$.
+
+    Now, we have shown that
+    \[[A,X]\xrightarrow{f_*}[A,Y]\xrightarrow{g_*}[A,Z]\xrightarrow{h_*}[A,\Sigma X]\]
+    is exact at $[A,Y]$. It remains to show exactness at $[A,Z]$. Yet this follows by the exact same argument given above applied to the sequence obtained from the shifted triangle (TR4)
+    \[Y\xrightarrow g Z\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y.\qedhere\]
+\end{proof}
+
+\begin{lemma}\label{2-of-3-dist_tri-lemma}
+    Suppose we have a commutative diagram
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYJyJdLFsxLDEsIlknIl0sWzIsMSwiWiciXSxbMywxLCJcXFNpZ21hIFgnIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzQsNSwiZiciXSxbNSw2LCJnJyJdLFs2LDcsImgnIl0sWzAsNCwiaiJdLFsxLDUsImsiXSxbMiw2LCJcXGVsbCJdLFszLDcsIlxcU2lnbWEgaiJdXQ==
+    \[\begin{tikzcd}
+        X & Y & Z & {\Sigma X} \\
+        {X'} & {Y'} & {Z'} & {\Sigma X'}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow["{f'}", from=2-1, to=2-2]
+        \arrow["{g'}", from=2-2, to=2-3]
+        \arrow["{h'}", from=2-3, to=2-4]
+        \arrow["j", from=1-1, to=2-1]
+        \arrow["k", from=1-2, to=2-2]
+        \arrow["\ell", from=1-3, to=2-3]
+        \arrow["{\Sigma j}", from=1-4, to=2-4]
+    \end{tikzcd}\]
+    with both rows distinguished. Then if any two of the maps $j$, $k$, and $\ell$ are isomorphisms, then so is the third.
+\end{lemma}
+\begin{proof}
+    Suppose we are given any object $A$ in $\cC$, and consider the commutative diagram
+    % https://q.uiver.app/#q=WzAsMTQsWzAsMCwiW0EsWF0iXSxbMSwwLCJbQSxZXSJdLFsyLDAsIltBLFpdIl0sWzMsMCwiW0EsXFxTaWdtYSBYXSJdLFs0LDAsIltBLFxcU2lnbWEgWV0iXSxbMCwxLCJbQSxYJ10iXSxbMSwxLCJbQSxZJ10iXSxbMiwxLCJbQSxaJ10iXSxbMywxLCJbQSxcXFNpZ21hIFgnXSJdLFs0LDEsIltBLFxcU2lnbWEgWSddIl0sWzUsMCwiW0EsXFxTaWdtYSBaXSJdLFs1LDEsIltBLFxcU2lnbWEgWiddIl0sWzYsMSwiW0EsXFxTaWdtYV4yWCddIl0sWzYsMCwiW0EsXFxTaWdtYV4yWF0iXSxbMCwxLCJmXyoiXSxbMSwyLCJnXyoiXSxbMiwzLCJrXyoiXSxbMyw0LCItXFxTaWdtYSBmXyoiXSxbMCw1LCJqXyoiXSxbNSw2LCJmXyonIl0sWzYsNywiZ18qJyJdLFs3LDgsImhfKiciXSxbOCw5LCItXFxTaWdtYSBmXyonIl0sWzEsNiwia18qIl0sWzIsNywiXFxlbGxfKiJdLFszLDgsIlxcU2lnbWEgal8qIl0sWzQsOSwiXFxTaWdtYSBrXyoiXSxbNCwxMCwiLVxcU2lnbWEgZ18qIl0sWzksMTEsIi1cXFNpZ21hIGdfKiciXSxbMTEsMTIsIi1cXFNpZ21hIGhfKiciXSxbMTAsMTMsIi1cXFNpZ21hIGhfKiJdLFsxMCwxMSwiXFxTaWdtYVxcZWxsXyoiXSxbMTMsMTIsIlxcU2lnbWFeMmpfKiJdXQ==
+    \[\begin{tikzcd}[column sep=small]
+        {[A,X]} & {[A,Y]} & {[A,Z]} & {[A,\Sigma X]} & {[A,\Sigma Y]} & {[A,\Sigma Z]} & {[A,\Sigma^2X]} \\
+        {[A,X']} & {[A,Y']} & {[A,Z']} & {[A,\Sigma X']} & {[A,\Sigma Y']} & {[A,\Sigma Z']} & {[A,\Sigma^2X']}
+        \arrow["{f_*}", from=1-1, to=1-2]
+        \arrow["{g_*}", from=1-2, to=1-3]
+        \arrow["{k_*}", from=1-3, to=1-4]
+        \arrow["{-\Sigma f_*}", from=1-4, to=1-5]
+        \arrow["{j_*}", from=1-1, to=2-1]
+        \arrow["{f_*'}", from=2-1, to=2-2]
+        \arrow["{g_*'}", from=2-2, to=2-3]
+        \arrow["{h_*'}", from=2-3, to=2-4]
+        \arrow["{-\Sigma f_*'}", from=2-4, to=2-5]
+        \arrow["{k_*}", from=1-2, to=2-2]
+        \arrow["{\ell_*}", from=1-3, to=2-3]
+        \arrow["{\Sigma j_*}", from=1-4, to=2-4]
+        \arrow["{\Sigma k_*}", from=1-5, to=2-5]
+        \arrow["{-\Sigma g_*}", from=1-5, to=1-6]
+        \arrow["{-\Sigma g_*'}", from=2-5, to=2-6]
+        \arrow["{-\Sigma h_*'}", from=2-6, to=2-7]
+        \arrow["{-\Sigma h_*}", from=1-6, to=1-7]
+        \arrow["{\Sigma\ell_*}", from=1-6, to=2-6]
+        \arrow["{\Sigma^2j_*}", from=1-7, to=2-7]
+    \end{tikzcd}\]
+    The rows are exact by \autoref{distinguished_tri_is_exact} and repeated applications of axiom TR4. It follows by the five lemma that if $j$ and $k$ are isomorphisms, then $\ell_*$ is an isomorphism. Similarly, if $k$ and $\ell$ are isomorphisms then $\Sigma j_*$ is an isomorphism. Finally, if $\ell$ and $j$ are isomorphisms, then $\Sigma k_*$ is an isomorphism. The desired result follows by faithfullness of $\Sigma$ and the Yoneda embedding.
+\end{proof}
 
 \begin{proposition}\label{cofiber_unique_up_to_isomorphism}
     Given a map $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, the cofiber sequence of $f$ is unique up to isomorphism, in the sense that given any two distinguished triangles
@@ -112,20 +254,143 @@ We now recall several important propositions for triangulated categories:
         \arrow[from=2-3, to=2-4]
     \end{tikzcd}\]
 \end{proposition}
+\begin{proof}
+    Suppose we have two distinguished triangles
+    \[X\xrightarrow fY\xrightarrow{g} Z\xrightarrow{h}\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\xrightarrow{g'} Z'\xrightarrow{h'}\Sigma X,\]
+    and consider the following commutative diagram
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJmIl0sWzUsNiwiZyciXSxbNiw3LCJoJyJdLFsxLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+    \[\begin{tikzcd}
+        X & Y & Z & {\Sigma X} \\
+        X & Y & {Z'} & {\Sigma X}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow["f", from=2-1, to=2-2]
+        \arrow["{g'}", from=2-2, to=2-3]
+        \arrow["{h'}", from=2-3, to=2-4]
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+    \end{tikzcd}\]
+    By axiom TR3, there exists some map $k:Z\to Z'$ which makes the following diagram commute:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJmIl0sWzUsNiwiZyciXSxbNiw3LCJoJyJdLFsxLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiayJdLFszLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+    \[\begin{tikzcd}
+        X & Y & Z & {\Sigma X} \\
+        X & Y & {Z'} & {\Sigma X}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow["f", from=2-1, to=2-2]
+        \arrow["{g'}", from=2-2, to=2-3]
+        \arrow["{h'}", from=2-3, to=2-4]
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+        \arrow["k", from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+    \end{tikzcd}\]
+    Now, by \autoref{2-of-3-dist_tri-lemma}, $k$ is an isomorphism.
+\end{proof}
 
 \begin{proposition}\label{fiber}
     Given an arrow $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, there exists an object $F_f$ called the \emph{fiber} of $f$, and a distinguished triangle
     \[F_f\to X\xrightarrow fY\to\Sigma F_f(\cong C_f).\]
 \end{proposition}
+\begin{proof}
+    By axiom TR2, we have a distinguished triangle
+    \[X\xrightarrow fY\xrightarrow gC_f\xrightarrow h\Sigma X.\]
+    Now, consider the commutative diagram
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIkNfZiJdLFszLDEsIlxcU2lnbWEgWCJdLFswLDAsIlgiXSxbMSwwLCJZIl0sWzIsMCwiXFxTaWdtYVxcT21lZ2EgQ19mIl0sWzMsMCwiXFxTaWdtYSBYIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImYiXSxbNSw2LCJcXHd0IGciXSxbNiw3LCJcXHd0IGgiXSxbNiwyLCJcXHZhcmVfe0NfZn0iLDJdLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxLCJmIl1d
+    \[\begin{tikzcd}
+        X & Y & {\Sigma\Omega C_f} & {\Sigma X} \\
+        X & Y & {C_f} & {\Sigma X}
+        \arrow["g", from=2-2, to=2-3]
+        \arrow["h", from=2-3, to=2-4]
+        \arrow[Rightarrow, no head, from=2-1, to=1-1]
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["{\wt g}", from=1-2, to=1-3]
+        \arrow["{\wt h}", from=1-3, to=1-4]
+        \arrow["{\vare_{C_f}}"', from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=2-4, to=1-4]
+        \arrow[Rightarrow, no head, from=2-2, to=1-2]
+        \arrow["f", from=2-1, to=2-2]
+    \end{tikzcd}\]
+    where $\vare:\Sigma\Omega\Rightarrow\mathrm{Id}_\cC$ is the counit of the adjunction $\Sigma\dashv\Omega$, $\wt g=\vare_{C_f}^{-1}\circ g$, and $\wt h=\vare_{C_f}^{-1}\circ h$. Since each vertical map is an isomorphism and the bottom row is distinguished, the top row is also distinguished by axiom TR0. Now, since $\Sigma$ is an equivalence of categories, it is faithful, so that in particular there exists some map $k:\Omega C_f\to X$ such that $\Sigma k=-\wt h\implies-\Sigma k=\wt h$. Thus, we have a distinguished triangle of the form
+    \[X\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega C_f\xrightarrow{-\Sigma k}\Sigma X.\]
+    Finally, by axiom TR4, we get a distinguished triangle
+    \[\Omega C_f\xrightarrow kX\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega C_f,\]
+    so we may define the fiber of $f$ to be $\Omega C_f$.
+\end{proof}
+
+\begin{lemma}\label{shift_dt_left}
+    Given a triangle
+    \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
+    it can be shifted to the left to obtain a distinguished triangle
+    \[\Omega Z\xrightarrow{-\wt h}X\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega Z,\]
+    where
+    \[\wt h:\Omega Z\xrightarrow{\Omega h}\Omega\Sigma X\xrightarrow{\eta_X^{-1}} X\qquad\text{and}\qquad\wt g:Y\xrightarrow gZ\xrightarrow{\vare_Z^{-1}}\Sigma\Omega Z,\]
+    where $\vare$ and $\eta$ are the counit and unit, respectively, of the adjunction $\Sigma\dashv\Omega$.
+\end{lemma}
+\begin{proof}
+    Consider the following diagram:
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhIFoiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCJmIl0sWzUsNiwiXFx3dCBnIl0sWzYsNywiXFxTaWdtYVxcd3QgaCJdLFs0LDAsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiwyLCJcXHZhcmVfWiJdLFs3LDMsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+    \begin{equation}\label{shift_left_diagram}\begin{tikzcd}
+        X & Y & {\Sigma\Omega Z} & {\Sigma X} \\
+        X & Y & Z & {\Sigma X}
+        \arrow["f", from=2-1, to=2-2]
+        \arrow["g", from=2-2, to=2-3]
+        \arrow["h", from=2-3, to=2-4]
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["{\wt g}", from=1-2, to=1-3]
+        \arrow["{\Sigma\wt h}", from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+        \arrow["{\vare_Z}", from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+    \end{tikzcd}\end{equation}
+    The left and middle squares commute by definition. To see that the right square commutes, consider the following diagram:
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXFNpZ21hXFxPbWVnYSBaIl0sWzEsMCwiXFxTaWdtYVxcT21lZ2FcXFNpZ21hIFgiXSxbMiwxLCJcXFNpZ21hIFgiXSxbMCwxLCJaIl0sWzIsMCwiXFxTaWdtYSBYIl0sWzAsMSwiXFxTaWdtYVxcT21lZ2EgaCJdLFswLDMsIlxcdmFyZV9aIiwyXSxbMywyLCJoIiwyXSxbMSw0LCJcXFNpZ21hXFxldGFfWF57LTF9Il0sWzIsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCJcXHZhcmVfe1xcU2lnbWEgWH0iLDFdXQ==
+    \[\begin{tikzcd}
+        {\Sigma\Omega Z} & {\Sigma\Omega\Sigma X} & {\Sigma X} \\
+        Z && {\Sigma X}
+        \arrow["{\Sigma\Omega h}", from=1-1, to=1-2]
+        \arrow["{\vare_Z}"', from=1-1, to=2-1]
+        \arrow["h"', from=2-1, to=2-3]
+        \arrow["{\Sigma\eta_X^{-1}}", from=1-2, to=1-3]
+        \arrow[Rightarrow, no head, from=2-3, to=1-3]
+        \arrow["{\vare_{\Sigma X}}"{description}, from=1-2, to=2-3]
+    \end{tikzcd}\]
+    By functoriality of $\Sigma$, the top composition is $\Sigma\wt h$. The left region commutes by naturality of $\vare$. Commutativity of the right region is precisely one of the the zig-zag identities for the unit and counit of an adjunction. Hence, since diagram (\ref{shift_left_diagram}) commutes, the vertical arrows are isomorphisms, and the bottom row is distinguished, we have that the top row is distinguished as well by axiom TR0. Then by axiom TR4, since $(f,\wt g,\Sigma\wt h)$ is distinguished, so is the triangle
+    \[\Omega Z\xrightarrow{-\wt h}X\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega Z.\qedhere\]
+\end{proof}
+
+\begin{lemma}
+    Suppose we have a distinguished triangle
+    \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X.\]
+    Then for any integer $n$, the sequence
+    \[\Sigma^nX\xrightarrow{\Sigma^nf}\Sigma^nY\xrightarrow{\Sigma^ng}\Sigma^nZ\xrightarrow{\Sigma^nh}\Sigma\Sigma^{n}X\]
+    is exact (\autoref{defn_exact}), where $\Sigma^0:=\mathrm{Id}_\cC$, and for $n>0$, $\Sigma^{-n}:=\Omega^n$. 
+\end{lemma}
+\begin{proof}
+    By \autoref{distinguished_tri_is_exact}, this holds when $n=0$. Now suppose we are given some $n>0$. Using axiom TR4, by induction we have that the triangle
+    \[\Sigma^nX\xrightarrow{(-1)^n\Sigma^nf}\Sigma^nY\xrightarrow{(-1)^n\Sigma^ng}\Sigma^nZ\xrightarrow{(-1)^n\Sigma^nh}\Sigma\Sigma^{n}X\]
+    is also distinguished.
+    Thus, again by \autoref{distinguished_tri_is_exact}, given any object $A$ in $\cC$, the sequence of abelian groups
+    \[[A,\Sigma^nX]\xrightarrow{(-1)^n\Sigma^nf_*}[A,\Sigma^nY]\xrightarrow{(-1)^n\Sigma^ng_*}[A,\Sigma^nZ]\xrightarrow{(-1)^n\Sigma^nh_*}[A,\Sigma\Sigma^{n}X]\]
+    is exact. A simple diagram chase yields that we can remove the signs and the sequence is still exact, so we have shown the desired statement for $n>0$. Now, we would like to show that for $n>0$ that the sequence
+    \[\Omega^nX\xrightarrow{\Omega^nf}\Omega^nY\xrightarrow{\Omega^ng}\Omega^nZ\xrightarrow{\Omega^nh}\Sigma\Omega^{n}X\]
+    is exact. First of all, consider the commutative diagram
+\end{proof}
 
 \begin{proposition}\label{dist_tri_LES}
-    Let $(\cC,\Sigma,\Omega,\cD)$ be a triangulated category. Given a distinguished triangle
+    Given a distinguished triangle
     \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X\]
     and any object $A$ in $\cC$, there is a long exact sequence of abelian groups
     \[\cdots\to[\Sigma^{n+1}A,Z]\xrightarrow{\partial}[\Sigma^nX,X]\xrightarrow{f_*}[\Sigma^nA,Y]\xrightarrow{g_*}[\Sigma^nA,Z]\xrightarrow{\partial}[\Sigma^{n-1}A,X]\to\cdots\]
-    extending infinitely in either direction, where for $n<0$ we define $\Sigma^{-n}:=\Omega^n$, and $\partial$ is the map
+    extending infinitely in either direction, where for $n>0$ we define $\Sigma^{-n}:=\Omega^n$, and $\partial$ is the map
     \[[\Sigma^{n+1}A,Z]\xrightarrow{h_*}[\Sigma^{n+1}A,\Sigma X]\cong[\Sigma^{-1}\Sigma^{n+1}A,X]\cong[\Sigma^nA,X].\]
 \end{proposition}
+\begin{proof}
+    
+\end{proof}
 
 %\begin{lemma}\label{2-of-3_suffices_to_show_cofiber}
 	%Let $\cE$ be a class of objects in a triangulated category $(\cC,\Sigma,\Omega)$ such that given any distinguished triangle
