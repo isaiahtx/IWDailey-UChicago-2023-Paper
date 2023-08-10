@@ -63,6 +63,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem*{thm*}{Theorem}
 \newcommand{\n}{\mbf{n}}
+\newcommand{\m}{\mbf{m}}
 
 %% theorems in `definition' style --- regular text, bold header
 \theoremstyle{definition}
@@ -118,6 +119,14 @@
 \newcommand{\RMod}{R-\mbf{Mod}}
 \newcommand{\op}{\mathrm{op}}
 
+\makeatletter
+\newcommand\xleftrightarrow[2][]{%
+  \ext@arrow 9999{\longleftrightarrowfill@}{#1}{#2}}
+\newcommand\longleftrightarrowfill@{%
+  \arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+
+
 \newcommand{\from}{\colon}
 \newcommand{\sseq}{\subseteq}
 \newcommand{\wt}{\widetilde}
@@ -136,6 +145,7 @@
 \newcommand{\sk}{\mathrm{sk}}
 \newcommand{\cD}{\mathcal D}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\Id}{\mathrm{Id}}
 \newcommand{\cE}{\mathcal E}
 \newcommand{\cF}{\mathcal F}
 \newcommand{\cG}{\mathcal G}

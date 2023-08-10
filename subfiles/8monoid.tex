@@ -192,73 +192,6 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 	where the last equality follows by the fact that $e$ is the unit for the multiplication on $\pi_\ast(E)$. An entirely analagous argument yields that $\theta_{0,a}=\id_S$.
 \end{proof}
 
-\begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
-	Given some $a\in A$, the functors $\Sigma^a$ and $\Sigma^{-a}$ canonically form an adjoint equivalence of $\cSH$.
-\end{proposition}
-\begin{proof}
-	\todo{rewrite proof in a permutative category}
-	Let $X,Y\in\cSH$. By \cite[Lemma 3.2]{nlab:adjoint_equivalence}, in order to show $\Sigma^a$ and $\Sigma^{-a}$ are adjoint equivalences, it suffices to construct natural isomorphisms $\eta:\mathrm{Id}_\cSH\Rightarrow \Sigma^{-a}\circ\Sigma^a$ and $\vare:\Sigma^a\circ\Sigma^{-a}\Rightarrow\mathrm{Id}_\cSH$ such that for all $X$ in $\cSH$, the following diagram commutes:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFNpZ21hXmEgWCJdLFsyLDIsIlxcU2lnbWFeYVgiXSxbMiwwLCJcXFNpZ21hXmFcXFNpZ21hXnstYX1cXFNpZ21hXmEgWCJdLFswLDFdLFswLDIsIihcXFNpZ21hXmFcXGV0YSlfWCJdLFsyLDEsIihcXHZhcmVcXFNpZ21hXmEpX1giXV0=
-	\begin{equation}\label{diag1}\begin{tikzcd}
-		{\Sigma^a X} && {\Sigma^a\Sigma^{-a}\Sigma^a X} \\
-		\\
-		&& {\Sigma^aX}
-		\arrow[from=1-1, to=3-3]
-		\arrow["{(\Sigma^a\eta)_X}", from=1-1, to=1-3]
-		\arrow["{(\vare\Sigma^a)_X}", from=1-3, to=3-3]
-	\end{tikzcd}\end{equation}
-	Given an object $X$ in $\cSH$, define $\eta_X:X\to \Sigma^{-a}\Sigma^a X=S^{-a}\otimes S^a\otimes X$ to be the composition
-	\[X\xrightarrow{\lambda_X^{-1}}S\otimes X\xrightarrow{\phi_{-a,a}\otimes X}S^{-a}\otimes S^a\otimes X.\]
-	Clearly this is an isomorphism. To see this is natural, let $f:X\to Y$ in $\cSH$. Then consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDAsIlNcXG90aW1lcyBYIl0sWzEsMSwiU1xcb3RpbWVzIFkiXSxbMiwwLCJTXnstYX1cXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzIsMSwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgWSJdLFswLDEsImYiLDJdLFswLDIsIlxcbGFtYmRhX1heey0xfSJdLFsxLDMsIlxcbGFtYmRhX1leey0xfSIsMl0sWzIsMywiU1xcb3RpbWVzIGYiXSxbMiw0LCJcXHBoaV97LWEsYX1cXG90aW1lcyBYIl0sWzQsNSwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgZiJdLFszLDUsIlxccGhpX3stYSxhfVxcb3RpbWVzIFkiLDJdXQ==
-	\[\begin{tikzcd}
-		X & {S\otimes X} & {S^{-a}\otimes S^a\otimes X} \\
-		Y & {S\otimes Y} & {S^{-a}\otimes S^a\otimes Y}
-		\arrow["f"', from=1-1, to=2-1]
-		\arrow["{\lambda_X^{-1}}", from=1-1, to=1-2]
-		\arrow["{\lambda_Y^{-1}}"', from=2-1, to=2-2]
-		\arrow["{S\otimes f}", from=1-2, to=2-2]
-		\arrow["{\phi_{-a,a}\otimes X}", from=1-2, to=1-3]
-		\arrow["{S^{-a}\otimes S^a\otimes f}", from=1-3, to=2-3]
-		\arrow["{\phi_{-a,a}\otimes Y}"', from=2-2, to=2-3]
-	\end{tikzcd}\]
-	The left square commutes by naturality of $\lambda$. The right square commutes by functoriality of $-\otimes-$. Hence $\eta$ is indeed a natural isomorphism.
-
-	On the other hand, given an object $X$ in $\cSH$, define $\vare_X:\Sigma^a\Sigma^{-a}X=S^a\otimes S^{-a}\otimes X\to X$ to be  the composition
-	\[S^a\otimes S^{-a}\otimes X\xrightarrow{\phi_{a,-a}^{-1}}S\otimes X\xrightarrow{\lambda_X}X.\]
-	Clearly this is an isomorphism. To see it is natural, let $f:X\to Y$ in $\cSH$. Then consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXmFcXG90aW1lcyBTXnstYX1cXG90aW1lcyBYIl0sWzAsMSwiU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgWSJdLFsxLDEsIlNcXG90aW1lcyBZIl0sWzEsMCwiU1xcb3RpbWVzIFgiXSxbMiwxLCJZIl0sWzIsMCwiWCJdLFswLDEsIlNeYVxcb3RpbWVzIFNeey1hfVxcb3RpbWVzIGYiLDJdLFsxLDIsIlxccGhpX3thLC1hfV57LTF9XFxvdGltZXMgWSIsMl0sWzAsMywiXFxwaGlfe2EsLWF9XnstMX1cXG90aW1lcyBYIl0sWzMsMiwiU1xcb3RpbWVzIGYiLDJdLFsyLDQsIlxccmhvX1kiLDJdLFszLDUsIlxccmhvX1giXSxbNSw0LCJmIl1d
-	\[\begin{tikzcd}
-		{S^a\otimes S^{-a}\otimes X} & {S\otimes X} & X \\
-		{S^a\otimes S^{-a}\otimes Y} & {S\otimes Y} & Y
-		\arrow["{S^a\otimes S^{-a}\otimes f}"', from=1-1, to=2-1]
-		\arrow["{\phi_{a,-a}^{-1}\otimes Y}"', from=2-1, to=2-2]
-		\arrow["{\phi_{a,-a}^{-1}\otimes X}", from=1-1, to=1-2]
-		\arrow["{S\otimes f}"', from=1-2, to=2-2]
-		\arrow["{\lambda_Y}"', from=2-2, to=2-3]
-		\arrow["{\lambda_X}", from=1-2, to=1-3]
-		\arrow["f", from=1-3, to=2-3]
-	\end{tikzcd}\]
-	The left square commutes by functoriality of $-\otimes-$. The right square commutes by naturality of $\lambda$. Hence, $\vare$ is natural.
-
-	Finally, let $X$ be an object in $\cSH$. Unravelling definitions, by functoriality of $-\otimes-$, in order to show that diagram (\ref{diag1}) commutes, it suffices to show the following diagram commutes:
-	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJTXmFcXG90aW1lcyBYIl0sWzQsMCwiU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgWCJdLFs0LDQsIlNeYVxcb3RpbWVzIFgiXSxbMiwwLCJTXmFcXG90aW1lcyBTXFxvdGltZXMgWCJdLFs0LDIsIlNcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzAsMywiU15hXFxvdGltZXNcXGxhbWJkYV9YXnstMX0iXSxbMywxLCJTXmFcXG90aW1lc1xccGhpX3stYSxhfVxcb3RpbWVzIFgiXSxbMSw0LCJcXHBoaV97YSwtYX1eey0xfVxcb3RpbWVzIFNeYVxcb3RpbWVzIFgiXSxbNCwyLCJcXHJob197U15hXFxvdGltZXMgWH0iXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDMsIlxccGhpX3thLDB9XFxvdGltZXMgWCIsMl1d
-	\[\begin{tikzcd}
-		{S^a\otimes X} && {S^a\otimes S\otimes X} && {S^a\otimes S^{-a}\otimes S^a\otimes X} \\
-		\\
-		&&&& {S\otimes S^a\otimes X} \\
-		\\
-		&&&& {S^a\otimes X}
-		\arrow["{S^a\otimes\lambda_X^{-1}}", from=1-1, to=1-3]
-		\arrow["{S^a\otimes\phi_{-a,a}\otimes X}", from=1-3, to=1-5]
-		\arrow["{\phi_{a,-a}^{-1}\otimes S^a\otimes X}", from=1-5, to=3-5]
-		\arrow["{\lambda_{S^a\otimes X}}", from=3-5, to=5-5]
-		\arrow[Rightarrow, no head, from=1-1, to=5-5]
-		\arrow["{\phi_{a,0}\otimes X}"', from=5-5, to=1-3]
-	\end{tikzcd}\]
-	First, note that by the coherence theorem for monoidal categories, $\lambda_{S^a\otimes X}=\lambda_{S^a}\otimes X$\footnote{Technically, this equality only holds up to composition with an associator, but we are ignoring such issues.}. And furthermore, recall $\lambda_{S^a}=\phi_{0,a}^{-1}$. Hence, the right triangle is precisely the diagram obtained by applying $-\otimes X$ to the coherence diagram for the $\phi_{a,b}$'s, so it commutes. Commutativity of the left triangle follows by the coherence theorem for monoidal categories and the fact that $\phi_{a,0}=\lambda_{S^a}^{-1}$. Hence, the diagram commutes, so $(\Sigma^a,\Sigma^{-a})$ forms an adjoint equivalence of $\cSH$.
-\end{proof}
-
 \begin{proposition}\label{bilinear}
 	Let $X$ and $Y$ be objects in $\cSH$. Then the pairing
 	\[\pi_*(X)\times\pi_*(Y)\to\pi_*(X\otimes Y)\]
@@ -580,8 +513,133 @@ in the sense of \autoref{coherent_isos} (the existence of such a coherent family
 	
 	Now, we would like to show that given a distinguished triangle
 	\[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
-	if two of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. 
-	First we claim that if $X$ belongs to $\cE$, then for any $a\in A$, the object $\Sigma^aX=S^a\otimes X$ also belongs to $\cE$. To see this, consider the following diagram
+	if two of three of the objects $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. First we claim that if $X$ belongs to $\cE$, then for any $n\in\bZ$, 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	\pagebreak
+	
+a
+
+	\pagebreak
+	
+a
+	
+	\pagebreak
+	
+a
+	
+	\pagebreak
+	
+	To see this, consider the following diagram
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfSBFXyooXFxTaWdtYV5hWCkiXSxbMCwxLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfeyotYX0oWCkiXSxbMSwwLCJFXyooRVxcb3RpbWVzXFxTaWdtYV5hWCkiXSxbMiwwLCJFXyooXFxTaWdtYV5hKEVcXG90aW1lcyBYKSkiXSxbMiwxLCJFX3sqLWF9KEVcXG90aW1lcyBYKSJdLFsxLDEsIkVfeyotYX0oRVxcb3RpbWVzIFgpIl0sWzAsMSwiXFxjb25nIiwyXSxbMCwyLCJcXFBoaV97XFxTaWdtYV5hWH0iXSxbMiwzLCJFXyooXFx0YXVfe0UsU15hfVxcb3RpbWVzIFgpIl0sWzMsNCwiXFxjb25nIl0sWzEsNSwiXFxQaGlfWCJdLFs1LDQsIlxcY29uZyJdXQ==
 	\[\begin{tikzcd}
 		{E_*(E)\otimes_{\pi_*(E)} E_*(\Sigma^aX)} & {E_*(E\otimes\Sigma^aX)} & {E_*(\Sigma^a(E\otimes X))} \\
