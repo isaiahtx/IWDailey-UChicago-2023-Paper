@@ -8,54 +8,102 @@ In order to construct an abstract version of the Adams spectral sequence, we nee
 \begin{definition}\label{stable_homotopy_cat_defn}
 	A \emph{stable homotopy category} $\cSH$ is the following data:
 	\begin{itemize}
-		\item An additive closed symmetric monoidal category $(\cSH,\otimes,S)$ with arbitrary (small) (co)products.
-		\item A pointed abelian group $(A,\1)$ along with a homomorphism $h:A\to\Pic\cSH$.
+		\item A closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,\cD)$ with arbitrary (small) (co)products.
+		\item A pointed abelian group $(A,\1)$ along with a homomorphism of pointed groups $h:(A,\1)\to(\Pic\cSH,\Sigma S)$.
 		\item For each $a\in A$, a chosen representative $S^a$ in the isomorphism class $h(a)$ such that $S^0=S$.
-		\item For each $a,b\in A$, an isomorphism $\phi_{a,b}:S^{a+b}\to S^a\otimes S^b$. 
-		\item A collection $\cD$ of triangles in $\cC$ of the following form
-		\[X\to Y\to Z\to \Sigma X.\]
-	\end{itemize}
-	These data are subject to the following additional conditions. First, we require that the $\phi_{a,b}$'s are \emph{coherent}, in the following sense:
-	\begin{itemize}
-		\item For all $a\in A$, we must have $\phi_{a,0}=\rho_{S^a}^{-1}:S^{a}\to S^a\otimes S$ and $\phi_{0,a}=\lambda_{S^a}^{-1}:S^a\to S\otimes S^a$.
-		\item For all $a,b,c\in A$, the following diagram must commute:
-		\[\begin{tikzcd}
-			{S^{a+b}\otimes S^c} & {S^{a+b+c}} & {S^a\otimes S^{b+c}} \\
-			{(S^a\otimes S^b)\otimes S^c} && {S^a\otimes(S^b\otimes S^c)}
-			\arrow["{\phi_{a+b,c}}"', from=1-2, to=1-1]
-			\arrow["{\phi_{a,b+c}}", from=1-2, to=1-3]
-			\arrow["{S^a\otimes\phi_{b,c}}", from=1-3, to=2-3]
-			\arrow["{\phi_{a,b}\otimes S^c}"', from=1-1, to=2-1]
-			\arrow["\cong", from=2-1, to=2-3]
-		\end{tikzcd}\]
-	\end{itemize}
-	Now, given $a\in A$, define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a}=S^{-a}\otimes-$. In particular, let $\Sigma:=\Sigma^\1$ and $\Omega:=\Omega^\1$. Then the above two conditions give that $\Sigma^a$ and $\Omega^a$ form an adjoint equivalence of $\cSH$, with unit $\eta^a$ and counit $\vare^a$ defined by
-	\[\eta^a_X:X\xrightarrow\cong S\otimes X\xrightarrow{\phi_{-a,a}\otimes X}(S^{-a}\otimes S^a)\otimes X\xrightarrow\cong S^{-a}\otimes (S^a\otimes X)=\Omega^{a}\Sigma^a X\]
-	and
-	\[\vare^a_X:\Sigma^a\Omega^{a}X=S^a\otimes (S^{-a}\otimes X)\xrightarrow{\cong}(S^a\otimes S^{-a})\otimes X\xrightarrow{\phi_{a,-a}^{-1}\otimes X}S\otimes X\xrightarrow\cong X.\]
-	Thus, further require the following:
-	\begin{itemize}
-		\item $(\cSH,\Sigma,\Omega,\eta^\1,\vare^\1,\cD)$  is a tensor triangulated category, where the isomorphisms $\Sigma X\otimes Y\cong\Sigma(X\otimes Y)$ are given by the associator:
-		\[\Sigma X\otimes Y=(S^\1\otimes X)\otimes Y\xrightarrow{\cong}S^\1\otimes(X\otimes Y)=\Sigma(X\otimes Y).\]
-		(See \autoref{triangulated_defn} for the definition of a triangulated category, and \autoref{tentri} for the definition of a tensor triangulated category.)
+		\item For each $a,b\in A$, an isomorphism $\phi_{a,b}:S^{a+b}\to S^a\otimes S^b$. This family of isomorphisms is required to be \emph{coherent}, in the following sense:
+		\begin{itemize}
+			\item For all $a\in A$, we must have that $\phi_{a,0}$ coincides with the right unitor $S^{a}\xrightarrow\cong S^a\otimes S$ and $\phi_{0,a}$ coincides the left unitor $S^a\xrightarrow\cong S\otimes S^a$.
+			\item For all $a,b,c\in A$, the following diagram must commute:
+			\[\begin{tikzcd}
+				{S^{a+b}\otimes S^c} & {S^{a+b+c}} & {S^a\otimes S^{b+c}} \\
+				{(S^a\otimes S^b)\otimes S^c} && {S^a\otimes(S^b\otimes S^c)}
+				\arrow["{\phi_{a+b,c}}"', from=1-2, to=1-1]
+				\arrow["{\phi_{a,b+c}}", from=1-2, to=1-3]
+				\arrow["{S^a\otimes\phi_{b,c}}", from=1-3, to=2-3]
+				\arrow["{\phi_{a,b}\otimes S^c}"', from=1-1, to=2-1]
+				\arrow["\cong", from=2-1, to=2-3]
+			\end{tikzcd}\]
+		\end{itemize}
 	\end{itemize}
 \end{definition}
 
-From now on we fix the data given in the above definition, and we establish the following conventions:
+From now on we fix the data given in the above definition, and we establish some conventions. First of all, given objects $X_1,\ldots,X_n$ in $\cSH$, we write $X_1\otimes\cdots\otimes X_n$ to denote the object
+\[X_1\otimes(X_2\otimes\cdots(X_{n-1}\otimes X_n)).\]
+In particular, given an object $X$ and a natural number $n>0$, we write
+\[X^n:=\overbrace{X\otimes\cdots\otimes X}^\text{$n$ times}\qquad\text{and}\qquad X^0:=S.\]
+We denote the associator, symmetry, left unitor, and right unitor isomorphisms in $\cSH$ by
+\[\begin{split}
+	\alpha_{X,Y,Z}:(X\otimes Y)\otimes Z&\xrightarrow\cong X\otimes(Y\otimes Z) \\
+	\lambda_X:S\otimes  X&\xrightarrow\cong X 
+\end{split}\qquad\qquad\begin{split}
+	\tau_{X,Y}:X\otimes Y &\xrightarrow\cong Y\otimes X\\
+	\rho_X:X\otimes S&\xrightarrow\cong X.
+\end{split}\]
+
+Note that since $S^\1$ belongs to the isomorphism class of $\Sigma S$, there exists some isomorphism $t:\Sigma S\xrightarrow\cong S^\1$, which we can use to construct a natural isomorphism $S^\1\otimes-\cong\Sigma$:
+\[S^\1\otimes X\xrightarrow{t\otimes X}\Sigma S\otimes X\xrightarrow{e_{S,X}}\Sigma(S\otimes X)\xrightarrow{\Sigma\lambda_X}\Sigma X.\]
+The last two arrows are natural in $X$ by definition. The first arrow is natural in $X$ by functoriality of $-\otimes-$. Furthermore, under this isomorphism $e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong \Sigma(X\otimes Y)$ corresponds to the associator, by commutativity of the following diagram:
+% https://q.uiver.app/#q=WzAsOSxbMCwwLCIoU15cXDFcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMCwyLCJTXlxcMVxcb3RpbWVzKFhcXG90aW1lcyBZKSJdLFsxLDAsIihcXFNpZ21hIFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMiwwLCJcXFNpZ21hKFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMywwLCJcXFNpZ21hIFhcXG90aW1lcyBZIl0sWzMsMiwiXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMSwyLCJcXFNpZ21hIFNcXG90aW1lcyAoWFxcb3RpbWVzIFkpIl0sWzIsMiwiXFxTaWdtYShTXFxvdGltZXMgKFhcXG90aW1lcyBZKSkiXSxbMiwxLCJcXFNpZ21hKChTXFxvdGltZXMgWClcXG90aW1lcyBZKSJdLFswLDEsIlxcYWxwaGEiLDJdLFswLDIsIih0XFxvdGltZXMgWClcXG90aW1lcyBZIl0sWzIsMywiZV97UyxYfVxcb3RpbWVzIFkiXSxbMyw0LCJcXFNpZ21hXFxsYW1iZGFfWFxcb3RpbWVzIFkiXSxbNCw1LCJlX3tYLFl9Il0sWzEsNiwidFxcb3RpbWVzIChYXFxvdGltZXMgWSkiLDJdLFs2LDcsImVfe1MsWFxcb3RpbWVzIFl9IiwyXSxbNyw1LCJcXFNpZ21hXFxsYW1iZGFfe1hcXG90aW1lcyBZfSIsMl0sWzIsNiwiXFxhbHBoYSJdLFszLDgsImVfe1NcXG90aW1lcyBYLFl9IiwyXSxbOCw3LCJcXFNpZ21hXFxhbHBoYSIsMl0sWzgsNSwiXFxTaWdtYShcXGxhbWJkYV9YXFxvdGltZXMgWSkiLDFdXQ==
+\[\begin{tikzcd}
+	{(S^\1\otimes X)\otimes Y} & {(\Sigma S\otimes X)\otimes Y} & {\Sigma(S\otimes X)\otimes Y} & {\Sigma X\otimes Y} \\
+	&& {\Sigma((S\otimes X)\otimes Y)} \\
+	{S^\1\otimes(X\otimes Y)} & {\Sigma S\otimes (X\otimes Y)} & {\Sigma(S\otimes (X\otimes Y))} & {\Sigma(X\otimes Y)}
+	\arrow["\alpha"', from=1-1, to=3-1]
+	\arrow["{(t\otimes X)\otimes Y}", from=1-1, to=1-2]
+	\arrow["{e_{S,X}\otimes Y}", from=1-2, to=1-3]
+	\arrow["{\Sigma\lambda_X\otimes Y}", from=1-3, to=1-4]
+	\arrow["{e_{X,Y}}", from=1-4, to=3-4]
+	\arrow["{t\otimes (X\otimes Y)}"', from=3-1, to=3-2]
+	\arrow["{e_{S,X\otimes Y}}"', from=3-2, to=3-3]
+	\arrow["{\Sigma\lambda_{X\otimes Y}}"', from=3-3, to=3-4]
+	\arrow["\alpha", from=1-2, to=3-2]
+	\arrow["{e_{S\otimes X,Y}}"', from=1-3, to=2-3]
+	\arrow["\Sigma\alpha"', from=2-3, to=3-3]
+	\arrow["{\Sigma(\lambda_X\otimes Y)}"{description}, from=2-3, to=3-4]
+\end{tikzcd}\]
+The left square commutes by naturality of $\alpha$. Commutativity of the middle square is axiom TT4 for a tensor triangulated category. Commutativity of the right trapezoid is naturality of $e$. Finally the bottom triangle commutes by coherence for monoidal categories and functoriality of $\Sigma$.
+
+\begin{remark}
+	In light of the above discussion, from now on we will always assume that $\Sigma=S^\1\otimes-$ and $e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong\Sigma(X\otimes Y)$ is the associator $\alpha:(S^\1\otimes X)\otimes Y\xrightarrow\alpha S^\1\otimes(X\otimes Y)$.
+\end{remark}
+
+Given some $a\in A$, we define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a}=S^{-a}\otimes-$. We specifically define $\Omega:=\Omega^\1$, and we are assuming $\Sigma=\Sigma^\1$. Then it turns out that $\Omega^a$ and $\Sigma^a$ form an adjoint equivalence of $\cSH$:
+
+\begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
+	For each $a\in A$, the isomorphisms $\eta^a_X:X\to\Sigma^{a}\Omega^a X$ and $\vare^a_X:\Omega^a\Sigma^a X\to X$ defined in \autoref{stable_homotopy_cat_defn} exhibit an adjoint autoequivalence $(\Omega^a,\Sigma^a,\eta^a,\vare^a)$ of $\cSH$.
+\end{proposition}
+\begin{proof}
+	In this proof, we will freely employ the coherence theorem for monoidal categories (see \cite{MLCoherence}), which essentially tells us that we may assume we are working in a strict monoidal category (i.e., that the associators and unitors and are identities). Then $\eta^a_X$ and $\vare^a_X$ become simply the maps
+	\[\eta^a_X:X\xrightarrow{\phi_{a,-a}\otimes X}S^{a}\otimes S^{-a}\otimes X\qquad\text{and}\qquad\vare_X^a:S^{-a}\otimes S^{a}\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}X.\]
+	That these maps are natural in $X$ follows by functoriality of $-\otimes-$. Now, recall that in order to show that these natural isomorphisms form an \emph{adjoint} equivalence, it suffices to show that the natural isomorphisms $\eta^a:\Id_\cSH\Rightarrow\Omega^a\Sigma^a$ and $\vare^a:\Sigma^a\Omega^a\Rightarrow\Id_\cSH$ satisfy one of the two zig-zag identities:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXmEiXSxbMSwwLCJcXE9tZWdhXmFcXFNpZ21hXmFcXE9tZWdhXmEiXSxbMSwxLCJcXE9tZWdhXmEiXSxbMiwwLCJcXFNpZ21hXmFcXE9tZWdhXmFcXFNpZ21hXmEiXSxbMywwLCJcXFNpZ21hXmEiXSxbMiwxLCJcXFNpZ21hXmEiXSxbMCwxLCJcXE9tZWdhXmFcXGV0YV5hIl0sWzEsMiwiXFx2YXJlcHNpbG9uXmFcXE9tZWdhXmEiXSxbMyw1LCJcXFNpZ21hXmFcXHZhcmVwc2lsb25eYSIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcZXRhXmFcXFNpZ21hXmEiLDJdXQ==
+	\[\begin{tikzcd}
+		{\Omega^a} & {\Omega^a\Sigma^a\Omega^a} & {\Sigma^a\Omega^a\Sigma^a} & {\Sigma^a} \\
+		& {\Omega^a} & {\Sigma^a}
+		\arrow["{\Omega^a\eta^a}", from=1-1, to=1-2]
+		\arrow["{\varepsilon^a\Omega^a}", from=1-2, to=2-2]
+		\arrow["{\Sigma^a\varepsilon^a}"', from=1-3, to=2-3]
+		\arrow[Rightarrow, no head, from=1-4, to=2-3]
+		\arrow[Rightarrow, no head, from=1-1, to=2-2]
+		\arrow["{\eta^a\Sigma^a}"', from=1-4, to=1-3]
+	\end{tikzcd}\]
+	(see \cite[Lemma 3.2]{nlab:adjoint_equivalence}). We will show that the left is satisfied. Unravelling definitions, we simply wish to show that the following diagram commutes for all $X$ in $\cSH$:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTXnstYX1cXG90aW1lcyBYIl0sWzEsMCwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgWCJdLFsxLDEsIlNeey1hfVxcb3RpbWVzIFgiXSxbMCwxLCJTXnstYX1cXG90aW1lcyBcXHBoaV97YSwtYX1cXG90aW1lcyBYIl0sWzEsMiwiXFxwaGlfey1hLGF9XnstMX1cXG90aW1lcyBTXnstYX1cXG90aW1lcyBYIl0sWzAsMiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		{S^{-a}\otimes X} & {S^{-a}\otimes S^a\otimes S^{-a}\otimes X} \\
+		& {S^{-a}\otimes X}
+		\arrow["{S^{-a}\otimes \phi_{a,-a}\otimes X}", from=1-1, to=1-2]
+		\arrow["{\phi_{-a,a}^{-1}\otimes S^{-a}\otimes X}", from=1-2, to=2-2]
+		\arrow[Rightarrow, no head, from=1-1, to=2-2]
+	\end{tikzcd}\]
+	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s, so it does commute, as desired.
+\end{proof}
+
+Given two objects $X$ and $Y$ in $\cSH$, we extend the abelian group $[X,Y]$ into an $A$-graded abelian group $[X,Y]_*$ by defining $[X,Y]_a:=[S^a\otimes X,Y]$.
 
 \begin{itemize}
-	\item Given objects $X_1,\ldots,X_n$ in $\cSH$, we write $X_1\otimes\cdots\otimes X_n$ to denote the object
-	\[X_1\otimes(X_2\otimes\cdots(X_{n-1}\otimes X_n)).\]
-	In particular, given an object $X$ and a natural number $n>0$, we write
-	\[X^n:=\overbrace{X\otimes\cdots\otimes X}^\text{$n$ times}\qquad\text{and}\qquad X^0:=S.\]
-	\item We denote the associator, symmetry, left unitor, and right unitor isomorphisms in $\cSH$ by
-	\[\begin{split}
-		\alpha_{X,Y,Z}:(X\otimes Y)\otimes Z&\xrightarrow\cong X\otimes(Y\otimes Z) \\
-		\lambda_X:S\otimes  X&\xrightarrow\cong X 
-	\end{split}\qquad\qquad\begin{split}
-		\tau_{X,Y}:X\otimes Y &\xrightarrow\cong Y\otimes X\\
-		\rho_X:X\otimes S&\xrightarrow\cong X.
-	\end{split}\]
+	\item Given some $a\in A$, we will define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a}=S^{-a}\otimes-$, so that in particular $\Sigma=\Sigma^\1$.
 	\item Given two objects $X$ and $Y$, we denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and we denote the internal hom object by $F(X,Y)$. We will often refer to morphisms in $\cSH$ as \emph{classes}, as we will think of them as representing homotopy classes of maps.
 	\item Given two objects $X$ and $Y$ in $\cSH$, we may extend the abelian group $[X,Y]$ to an $A$-graded abelian group $[X,Y]_*$ defined by
 	\[[X,Y]_a:=[\Sigma^aX,Y]=[S^a\otimes X,Y].\]
@@ -68,74 +116,21 @@ From now on we fix the data given in the above definition, and we establish the 
 	We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$}, or just $E$-homology, and we refer to $E^*(-)$ as the \emph{cohomology theory represented by $E$}, or just $E$-cohomology.
 \end{itemize}
 
-\begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
-	For each $a\in A$, the isomorphisms $\eta^a_X:X\to\Omega^{a}\Sigma^a X$ and $\vare^a_X:\Sigma^a\Omega^a X\to X$ defined in \autoref{stable_homotopy_cat_defn} exhibit an adjoint autoequivalence $(\Sigma^a,\Omega^a,\eta^a,\vare^a)$ of $\cSH$.
-\end{proposition}
-\begin{proof}
-	In this proof, we will freely employ the coherence theorem for monoidal categories (see \cite{MLCoherence}), which essentially tells us that we may assume we are working in a strict monoidal category (i.e., that the associators and unitors and are identities). Then $\eta^a_X$ and $\vare^a_X$ become simply the maps
-	\[\eta^a_X:X\xrightarrow{\phi_{-a,a}\otimes X}S^{-a}\otimes S^a\otimes X\qquad\text{and}\qquad\vare_X^a:S^a\otimes S^{-a}\otimes X\xrightarrow{\phi_{a,-a}^{-1}\otimes X}X.\]
-	That these maps are natural in $X$ follows by functoriality of $-\otimes-$. Now, recall that in order to show that these natural isomorphisms form an \emph{adjoint} equivalence, it suffices to show that the natural isomorphisms $\eta^a:\Id_\cSH\Rightarrow\Omega^a\Sigma^a$ and $\vare^a:\Sigma^a\Omega^a\Rightarrow\Id_\cSH$ satisfy one of the two zig-zag identities:
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXFNpZ21hXmEiXSxbMSwwLCJcXFNpZ21hXmFcXE9tZWdhXmFcXFNpZ21hXmEiXSxbMSwxLCJcXFNpZ21hXmEiXSxbMiwwLCJcXE9tZWdhXmFcXFNpZ21hXmFcXE9tZWdhXmEiXSxbMywwLCJcXE9tZWdhXmEiXSxbMiwxLCJcXE9tZWdhXmEiXSxbMCwxLCJcXFNpZ21hXmFcXGV0YV5hIl0sWzEsMiwiXFx2YXJlcHNpbG9uXmFcXFNpZ21hXmEiXSxbMyw1LCJcXE9tZWdhXmFcXHZhcmVwc2lsb25eYSIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcZXRhXmFcXE9tZWdhXmEiLDJdXQ==
-	\[\begin{tikzcd}
-		{\Sigma^a} & {\Sigma^a\Omega^a\Sigma^a} & {\Omega^a\Sigma^a\Omega^a} & {\Omega^a} \\
-		& {\Sigma^a} & {\Omega^a}
-		\arrow["{\Sigma^a\eta^a}", from=1-1, to=1-2]
-		\arrow["{\varepsilon^a\Sigma^a}", from=1-2, to=2-2]
-		\arrow["{\Omega^a\varepsilon^a}"', from=1-3, to=2-3]
-		\arrow[Rightarrow, no head, from=1-4, to=2-3]
-		\arrow[Rightarrow, no head, from=1-1, to=2-2]
-		\arrow["{\eta^a\Omega^a}"', from=1-4, to=1-3]
-	\end{tikzcd}\]
-	(see \cite[Lemma 3.2]{nlab:adjoint_equivalence}). We will show that the left is satisfied. Unravelling definitions, we simply wish to show that the following diagram commutes for all $X$ in $\cSH$:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTXmFcXG90aW1lcyBYIl0sWzIsMCwiU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgWCJdLFsyLDIsIlNeYVxcb3RpbWVzIFgiXSxbMCwxLCJTXmFcXG90aW1lc1xccGhpX3stYSxhfVxcb3RpbWVzIFgiXSxbMSwyLCJcXHBoaV97YSwtYX1eey0xfVxcb3RpbWVzIFNeYVxcb3RpbWVzIFgiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-	\[\begin{tikzcd}
-		{S^a\otimes X} && {S^a\otimes S^{-a}\otimes S^a\otimes X} \\
-		\\
-		&& {S^a\otimes X}
-		\arrow["{S^a\otimes\phi_{-a,a}\otimes X}", from=1-1, to=1-3]
-		\arrow["{\phi_{a,-a}^{-1}\otimes S^a\otimes X}", from=1-3, to=3-3]
-		\arrow[Rightarrow, no head, from=1-1, to=3-3]
-	\end{tikzcd}\]
-	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s, so it does commute, as desired.
-\end{proof}
+From now on, we fix the data of a stable homotopy category $\cSH$ given above once and for all. We first would like to make some remarks on the above definition. To start with, note that 
 
-
-From now on, we fix the data of a stable homotopy category $\cSH$ given above once and for all. Observe that for all $a,b\in A$, the objects $S^{a+b}$ and $S^a\otimes S^b$ are isomorphic, since $h:A\to\Pic(\cSH)$ is a group homomorphism. Hence given a monoid object $(E,\mu,e)$ in $\cSH$ (\autoref{monoid_object}), supposing we had fixed isomorphisms $S^{a+b}\cong S^a\otimes S^b$ for all $a,b\in A$, we get a multiplication map $\pi_\ast(E)\times\pi_\ast(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the product
-\[S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes E\xrightarrow\mu E.\]
-Naturally, we would like this product to make $\pi_\ast(E)$ into an $A$-graded ring (with unit $e\in\pi_0(E)=[S,E]$), rather than just an $A$-graded abelian group. Whether or not this happens is essentially the entire discussion of Dugger's paper \cite{Dugger_2014}, and as it turns out, $\pi_\ast(E)$ is in fact a graded ring provided we can choose these morphisms to be \emph{coherent}, in the following sense:
-
-\begin{definition}\label{coherent_isos}
-	Suppose we have a family of isomorphisms
-	\[\phi_{a,b}:S^{a+b}\xrightarrow\cong S^a\otimes S^b\]
-	for all $a,b\in A$. We say this family is \emph{coherent} if:
-	\begin{enumerate}
-		\item For all $a\in A$, we have equalities $\phi_{a,0}=\rho_{S^a}^{-1}:S^a\to S^a\otimes S$ and $\phi_{0,a}=\lambda_{S^a}^{-1}:S^a\to S\otimes S^a$.
-		\item For all $a,b,c\in A$, the following diagram commutes:
-		\[\begin{tikzcd}
-			{S^{a+b}\otimes S^c} & {S^{a+b+c}} & {S^a\otimes S^{b+c}} \\
-			{(S^a\otimes S^b)\otimes S^c} && {S^a\otimes(S^b\otimes S^c)}
-			\arrow["{\phi_{a+b,c}}"', from=1-2, to=1-1]
-			\arrow["{\phi_{a,b+c}}", from=1-2, to=1-3]
-			\arrow["{S^a\otimes\phi_{b,c}}", from=1-3, to=2-3]
-			\arrow["{\phi_{a,b}\otimes S^c}"', from=1-1, to=2-1]
-			\arrow["\cong", from=2-1, to=2-3]
-		\end{tikzcd}\]
-	\end{enumerate}
-\end{definition}
-
-Furthermore, Dugger gaurantees that we can always find such a coherent family:
-
-\begin{theorem}[{\cite[Proposition 7.1]{Dugger_2014}}]\label{coherent_existence}
-	There exists a coherent family of isomorphisms
-	\[\phi_{a,b}:S^{a+b}\xrightarrow\cong S^a\otimes S^b\]
-	in the sense of \autoref{coherent_isos},
-	and in particular, the set of such coherent families is in bijective correspondence with the set of normalized $2$-cocycles $Z^2(A;\mathrm{Aut}(S))_\mathit{norm}$, i.e., the set of functions $\alpha:A\times A\to\mathrm{Aut}(S)$ such that $\alpha(0,0)=\id_S$ and for all $a,b,c\in A$, $\alpha(a+b,c)\cdot\alpha(a,b)=\alpha(b,c)\cdot\alpha(a,b+c)$. 
-\end{theorem}
-
-Thus, from now on we will suppose once and for all we have fixed a coherent family $\{\phi_{a,b}\}_{a,b\in A}$. Such a coherent family has very nice properties, in particular:
+%Whether or not this happens is essentially the entire discussion of Dugger's paper \cite{Dugger_2014}, and as it turns out, $\pi_\ast(E)$ is in fact a graded ring provided we can choose these morphisms to be \emph{coherent}, in the following sense:
+%
+%\begin{theorem}[{\cite[Proposition 7.1]{Dugger_2014}}]\label{coherent_existence}
+	%There exists a coherent family of isomorphisms
+	%\[\phi_{a,b}:S^{a+b}\xrightarrow\cong S^a\otimes S^b\]
+	%in the sense of \autoref{coherent_isos},
+	%and in particular, the set of such coherent families is in bijective correspondence with the set of normalized $2$-cocycles $Z^2(A;\mathrm{Aut}(S))_\mathit{norm}$, i.e., the set of functions $\alpha:A\times A\to\mathrm{Aut}(S)$ such that $\alpha(0,0)=\id_S$ and for all $a,b,c\in A$, $\alpha(a+b,c)\cdot\alpha(a,b)=\alpha(b,c)\cdot\alpha(a,b+c)$. 
+%\end{theorem}
+%
+%Thus, from now on we will suppose once and for all we have fixed a coherent family $\{\phi_{a,b}\}_{a,b\in A}$. Such a coherent family has very nice properties, in particular:
 
 \begin{remark}\label{unique_comp_Sas}
-	Note that by induction the coherence conditions say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of tensor products of $\phi_{a,b}$, identities, associators, and their inverses.
+	Note that by induction the coherence conditions say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of products of $\phi_{a,b}$, identities, associators, and their inverses.
 \end{remark}
 
 Of course, we get our desired result: $\pi_*(E)$ is indeed an $A$-graded ring if $E$ is a monoid object.
@@ -265,7 +260,7 @@ The goal of this subsection is to provide the following characterization for the
 	Let $(E,\mu,e)$ be a monoid object in $\cSH$. We say $E$ is \emph{flat} if the canonical right $\pi_\ast(E)$-module structure on $E_\ast(E)$ is that of a flat module.
 \end{definition}
 
-\subsection{The \texorpdfstring{$E_2$}{TEXT} page}
+\subsection{The \texorpdfstring{$E_2$}{E\_2} page}
 
 \subsection{Convergence}
 

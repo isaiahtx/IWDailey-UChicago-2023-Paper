@@ -3,21 +3,14 @@
 
 We assume the reader is familiar with additive categories and (closed, symmetric) monoidal categories. 
 
-\begin{definition}\label{defn_exact}
-    Let $\cC$ be an additive category. Given a sequence
-    \[X_1\to\cdots\to X_n\]
-    of morphisms in $\cC$, we say this sequence is \emph{exact} if, for any object $A$ in $\cC$, the induced sequence
-    \[\cC(A,X_1)\to\cC(A,X_n)\to\cdots\to\cC(A,X_n)\]
-    is an exact sequence of abelian groups.
-\end{definition}
-
 \begin{definition}\label{triangulated_defn}
-    A \emph{triangulated category} is a tuple $(\cC,\Sigma,\Omega,\eta,\vare,\cD)$ such that\begin{enumerate}
-        \item $\cC$ is an additive category.
-        \item An adjoint pair of additive functors $\Sigma,\Omega:\cC\to\cC$ such that the unit $\eta:\Id_\cC\Rightarrow\Omega\Sigma$ and counit $\vare:\Sigma\Omega\Rightarrow\Id_\cC$ are natural isomorphisms, i.e., the tuple $(\Sigma,\Omega,\eta,\vare)$ forms an adjoint autoequivalence of $\cC$. Usually $\Sigma$ is called the \emph{shift functor}.
-        \item $\cD$ is a collection of \emph{distinguished triangles}, where a \emph{triangle} is a diagram of the form
+    A \emph{triangulated category} $(\cC,\Sigma,\cD)$ is the data of:\begin{enumerate}
+        \item An additive category $\cC$.
+        \item An additive auto-equivalence $\Sigma:\cC\to\cC$ called the \emph{shift functor}.
+        %\item An adjoint pair of additive functors $\Sigma,\Omega:\cC\to\cC$ such that the unit $\eta:\Id_\cC\Rightarrow\Omega\Sigma$ and counit $\vare:\Sigma\Omega\Rightarrow\Id_\cC$ are natural isomorphisms, i.e., the tuple $(\Sigma,\Omega,\eta,\vare)$ forms an adjoint autoequivalence of $\cC$. Usually $\Sigma$ is called the \emph{shift functor}.
+        \item A collection $\cD$ of \emph{distinguished} triangles in $\cC$, where a is a sequence of arrows of the form
         \[X\to Y\to Z\to\Sigma X.\]
-        These are also sometimes called \emph{cofiber sequences} or \emph{fiber sequences}.
+        Distinguished triangles are also sometimes called \emph{cofiber sequences} or \emph{fiber sequences}.
     \end{enumerate}
     These data must satisfy the following axioms:
     \begin{enumerate}[label={\textbf{TR\arabic*}}]
@@ -96,24 +89,18 @@ We assume the reader is familiar with additive categories and (closed, symmetric
     \end{enumerate}
 \end{definition}
 
-It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}). 
+It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}). From now on, we fix a triangulated category $(\cC,\Sigma,\cD)$. To start, recall the following definition:
 
-In this section, we fix a triangulated category $\cC$, and we will always use brackets $[-,-]$ to denote the homset in $\cC$. Note our definition of a triangulated category is slightly nonstandard, namely, we require that the shift functor gives an \emph{adjoint} autoequivalence of $\cC$, not just an equivalence. In other words, we require that the natural isomorphisms $\eta:\Id_\cC\Rightarrow\Sigma\Omega$ and $\vare:\Sigma\Omega\Rightarrow\Id_\cC$ satisfy either of the following zig-zag identities:
-% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXFNpZ21hIl0sWzEsMCwiXFxTaWdtYVxcT21lZ2FcXFNpZ21hIl0sWzEsMSwiXFxTaWdtYSJdLFsyLDAsIlxcT21lZ2FcXFNpZ21hXFxPbWVnYSJdLFszLDAsIlxcT21lZ2EiXSxbMiwxLCJcXE9tZWdhIl0sWzAsMSwiXFxTaWdtYVxcZXRhIl0sWzEsMiwiXFx2YXJlcHNpbG9uXFxTaWdtYSJdLFs0LDMsIlxcZXRhXFxPbWVnYSIsMl0sWzMsNSwiXFxPbWVnYVxcdmFyZXBzaWxvbiIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-\[\begin{tikzcd}
-    \Sigma & \Sigma\Omega\Sigma & \Omega\Sigma\Omega & \Omega \\
-    & \Sigma & \Omega
-    \arrow["\Sigma\eta", from=1-1, to=1-2]
-    \arrow["\varepsilon\Sigma", from=1-2, to=2-2]
-    \arrow["\eta\Omega"', from=1-4, to=1-3]
-    \arrow["\Omega\varepsilon"', from=1-3, to=2-3]
-    \arrow[Rightarrow, no head, from=1-4, to=2-3]
-    \arrow[Rightarrow, no head, from=1-1, to=2-2]
-\end{tikzcd}\]
-(Satisfying one implies the other is automatically satisfied, see \cite[Lemma 3.2]{nlab:adjoint_equivalence}). We have also fixed the data of natural isomorphisms $\eta$ and $\vare$ exhibiting the adjoint equivalence $(\Sigma,\Omega,\eta,\vare)$ in our definition. We very well could have only required that $\Sigma$ is \emph{an} adjoint equivalence, and everything we will do will go through all the same. 
+\begin{definition}\label{defn_exact}
+    A sequence
+    \[X_1\to X_2\to\cdots\to X_n\]
+    of arrows in $\cC$ is \emph{exact} if, for any object $A$ in $\cC$, the induced sequence
+    \[[A,X_1]\to[A,X_2]\to\cdots\to[A,X_n]\]
+    is an exact sequence of abelian groups.
+\end{definition}
 
 \begin{proposition}\label{distinguished_tri_is_exact}
-    Let $(\cC,\Sigma)$ be a triangulated category. Then any distinguished triangle in $\cC$ is an exact sequence (in the sense of \autoref{defn_exact}).
+    Any distinguished triangle is an exact sequence (in the sense of \autoref{defn_exact}).
 \end{proposition}
 \begin{proof}
     Suppose we have some distinguished triangle
@@ -150,7 +137,7 @@ In this section, we fix a triangulated category $\cC$, and we will always use br
         \arrow[from=1-3, to=2-3]
         \arrow[Rightarrow, no head, from=1-4, to=2-4]
     \end{tikzcd}\]
-    In particular, commutativity of the second square tells us that $g\circ f=0$, as desired. Conversely, we'd liek to show that $\ker g_*\sseq\imm f_*$. Let $\psi: A\to Y$ be in the kernel of $g_*$, so that $g\circ\psi=0$. Consider the following commutative diagram:
+    In particular, commutativity of the second square tells us that $g\circ f=0$, as desired. Conversely, we'd like to show that $\ker g_*\sseq\imm f_*$. Let $\psi: A\to Y$ be in the kernel of $g_*$, so that $g\circ\psi=0$. Consider the following commutative diagram:
     % https://q.uiver.app/#q=WzAsOCxbMCwwLCJBIl0sWzEsMCwiMCJdLFsyLDAsIlxcU2lnbWEgQSJdLFszLDAsIlxcU2lnbWEgQSJdLFswLDEsIlkiXSxbMSwxLCJaIl0sWzIsMSwiXFxTaWdtYSBYIl0sWzMsMSwiXFxTaWdtYSBZIl0sWzAsMV0sWzEsMl0sWzIsMywiLVxcU2lnbWFcXGlkX0EiXSxbNCw1LCJnIl0sWzUsNiwiaCJdLFs2LDcsIi1cXFNpZ21hIGYiXSxbMCw0LCJcXHBzaSIsMl0sWzEsNV1d
     \[\begin{tikzcd}
         A & 0 & {\Sigma A} & {\Sigma A} \\
@@ -305,34 +292,55 @@ In this section, we fix a triangulated category $\cC$, and we will always use br
 \end{proof}
 
 \begin{proposition}\label{fiber}
-    Given an arrow $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, there exists an object $F_f$ called the \emph{fiber} of $f$, and a distinguished triangle
+    Given an arrow $f:X\to Y$ in $\cC$, there exists an object $F_f$ called the \emph{fiber} of $f$, and a distinguished triangle
     \[F_f\to X\xrightarrow fY\to\Sigma F_f(\cong C_f).\]
 \end{proposition}
 \begin{proof}
-    By axiom TR2, we have a distinguished triangle
+    Since $\Sigma$ is an equivalence, there exists some functor $\Omega:\cC\to\cC$ and natural isomorphisms $\eta:\Omega\Sigma\Rightarrow\Id_\cC$ and $\vare:\Id_\cC\Rightarrow\Sigma\Omega$. By axiom TR2, we have a distinguished triangle
     \[X\xrightarrow fY\xrightarrow gC_f\xrightarrow h\Sigma X.\]
     Now, consider the commutative diagram
-    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIkNfZiJdLFszLDEsIlxcU2lnbWEgWCJdLFswLDAsIlgiXSxbMSwwLCJZIl0sWzIsMCwiXFxTaWdtYVxcT21lZ2EgQ19mIl0sWzMsMCwiXFxTaWdtYSBYIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImYiXSxbNSw2LCJcXHd0IGciXSxbNiw3LCJcXHd0IGgiXSxbNiwyLCJcXHZhcmVfe0NfZn0iLDJdLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxLCJmIl1d
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIkNfZiJdLFszLDAsIlxcU2lnbWEgWCJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiXFxTaWdtYVxcT21lZ2EgQ19mIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImYiXSxbNSw2LCJcXHd0IGciXSxbNiw3LCJcXHd0IGgiXSxbMiw2LCJcXGV0YV97Q19mfSJdLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxLCJmIl1d
     \[\begin{tikzcd}
-        X & Y & {\Sigma\Omega C_f} & {\Sigma X} \\
-        X & Y & {C_f} & {\Sigma X}
-        \arrow["g", from=2-2, to=2-3]
-        \arrow["h", from=2-3, to=2-4]
-        \arrow[Rightarrow, no head, from=2-1, to=1-1]
-        \arrow["f", from=1-1, to=1-2]
-        \arrow["{\wt g}", from=1-2, to=1-3]
-        \arrow["{\wt h}", from=1-3, to=1-4]
-        \arrow["{\vare_{C_f}}"', from=1-3, to=2-3]
-        \arrow[Rightarrow, no head, from=2-4, to=1-4]
-        \arrow[Rightarrow, no head, from=2-2, to=1-2]
+        X & Y & {C_f} & {\Sigma X} \\
+        X & Y & {\Sigma\Omega C_f} & {\Sigma X}
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-1]
         \arrow["f", from=2-1, to=2-2]
+        \arrow["{\wt g}", from=2-2, to=2-3]
+        \arrow["{\wt h}", from=2-3, to=2-4]
+        \arrow["{\eta_{C_f}}", from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+        \arrow["f", from=1-1, to=1-2]
     \end{tikzcd}\]
-    where $\vare:\Sigma\Omega\Rightarrow\mathrm{Id}_\cC$ is the counit of the adjunction $\Sigma\dashv\Omega$, $\wt g=\vare_{C_f}^{-1}\circ g$, and $\wt h=\vare_{C_f}^{-1}\circ h$. Since each vertical map is an isomorphism and the bottom row is distinguished, the top row is also distinguished by axiom TR0. Now, since $\Sigma$ is an equivalence of categories, it is faithful, so that in particular there exists some map $k:\Omega C_f\to X$ such that $\Sigma k=-\wt h\implies-\Sigma k=\wt h$. Thus, we have a distinguished triangle of the form
+    where $\wt g=\eta_{C_f}\circ g$, and $\wt h=\eta_{C_f}\circ h$. Since each vertical map is an isomorphism and the top row is distinguished, the bottom row is also distinguished by axiom TR0. Now, since $\Sigma$ is an equivalence of categories, it is faithful, so that in particular there exists some map $k:\Omega C_f\to X$ such that $\Sigma k=-\wt h\implies-\Sigma k=\wt h$. Thus, we have a distinguished triangle of the form
     \[X\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega C_f\xrightarrow{-\Sigma k}\Sigma X.\]
     Finally, by axiom TR4, we get a distinguished triangle
     \[\Omega C_f\xrightarrow kX\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega C_f,\]
     so we may define the fiber of $f$ to be $\Omega C_f$.
 \end{proof}
+
+
+For our purposes, we will always be dealing with triangulated categories with a bit of extra structure, in the following sense:
+
+\begin{definition}
+    An \emph{adjointly triangulated category} $(\cC,\Omega,\Sigma,\eta,\vare,\cD)$ is the data of a triangulated category $(\cC,\Sigma,\cD)$ along with a functor $\Omega:\cC\to\cC$ and natural isomorphisms $\eta:\Id_\cC\Rightarrow\Sigma\Omega$ and $\vare:\Omega\Sigma\Rightarrow\Id_\cC$ such that $(\Omega,\Sigma,\eta,\vare)$ forms an adjoint equivalence of $\cC$. In other words, $\eta$ and $\vare$ are natural isomorphisms which also are the unit and counit of an adjunction $\Omega\dashv\Sigma$, so they satisfy either of the following ``zig-zag identities'':
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhIl0sWzEsMCwiXFxPbWVnYVxcU2lnbWFcXE9tZWdhIl0sWzEsMSwiXFxPbWVnYSJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhXFxTaWdtYSJdLFszLDAsIlxcU2lnbWEiXSxbMiwxLCJcXFNpZ21hIl0sWzAsMSwiXFxPbWVnYVxcZXRhIl0sWzEsMiwiXFx2YXJlcHNpbG9uXFxPbWVnYSJdLFs0LDMsIlxcZXRhXFxTaWdtYSIsMl0sWzMsNSwiXFxTaWdtYVxcdmFyZXBzaWxvbiIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    \[\begin{tikzcd}
+        \Omega & \Omega\Sigma\Omega & \Sigma\Omega\Sigma & \Sigma \\
+        & \Omega & \Sigma
+        \arrow["\Omega\eta", from=1-1, to=1-2]
+        \arrow["\varepsilon\Omega", from=1-2, to=2-2]
+        \arrow["\eta\Sigma"', from=1-4, to=1-3]
+        \arrow["\Sigma\varepsilon"', from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=1-4, to=2-3]
+        \arrow[Rightarrow, no head, from=1-1, to=2-2]
+    \end{tikzcd}\]
+    (Satisfying one implies the other is automatically satisfied, see \cite[Lemma 3.2]{nlab:adjoint_equivalence}).
+\end{definition}
+
+From now on, we will assume that $\cC$ is an \emph{adjointly} triangulated category with inverse shift $\Omega$, unit $\eta:\Id_\cC\Rightarrow\Sigma\Omega$, and counit $\vare:\Omega\Sigma\Rightarrow\Id_\cC$.
 
 \begin{lemma}\label{shift_dt_left}
     Given a triangle
@@ -342,48 +350,48 @@ In this section, we fix a triangulated category $\cC$, and we will always use br
     where $\wt h:\Omega Z\to X$ is the adjoint of $h:Z\to\Sigma X$ and $\wt{\Omega g}:Y\to\Sigma\Omega Z$ is the adjoint of $\Omega g:\Omega Y\to\Omega Z$.
 \end{lemma}
 \begin{proof}
-    Note that unravelling definitions, if $\vare$ and $\eta$ are the counit and unit of the adjoint equivalence $\Sigma\dashv\Omega$, respectively (so $\eta^{-1}$ and $\vare^{-1}$ are the counit and unit of the adjunction $\Omega\dashv\Sigma$), then $\wt h$ and $\wt g$ are the compositions 
-    \[\wt h:\Omega Z\xrightarrow{\Omega h}\Omega\Sigma X\xrightarrow{\eta_X^{-1}}X\qquad\text{and}\qquad \wt{\Omega g}:Y\xrightarrow{\vare_Y^{-1}}\Sigma\Omega Y\xrightarrow{\Sigma\Omega g}\Sigma\Omega Z.\] 
+    Note that unravelling definitions, then $\wt h$ and $\wt g$ are the compositions 
+    \[\wt h:\Omega Z\xrightarrow{\Omega h}\Omega\Sigma X\xrightarrow{\vare_X}X\qquad\text{and}\qquad \wt{\Omega g}:Y\xrightarrow{\eta_Y}\Sigma\Omega Y\xrightarrow{\Sigma\Omega g}\Sigma\Omega Z.\] 
     Now consider the following diagram:
-    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhIFoiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCJmIl0sWzUsNiwiXFx3dHtcXE9tZWdhIGd9Il0sWzYsNywiXFxTaWdtYVxcd3QgaCJdLFs0LDAsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiwyLCJcXHZhcmVfWiJdLFs3LDMsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-    \[\begin{tikzcd}
-        X & Y & {\Sigma\Omega Z} & {\Sigma X} \\
-        X & Y & Z & {\Sigma X}
-        \arrow["f", from=2-1, to=2-2]
-        \arrow["g", from=2-2, to=2-3]
-        \arrow["h", from=2-3, to=2-4]
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlxcU2lnbWFcXE9tZWdhIFoiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCJmIl0sWzUsNiwiXFx3dHtcXE9tZWdhIGd9Il0sWzYsNywiXFxTaWdtYVxcd3QgaCJdLFs0LDAsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCJcXGV0YV9aIiwyXSxbNywzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    \begin{equation}\label{shift_left_diagram}\begin{tikzcd}
+        X & Y & Z & {\Sigma X} \\
+        X & Y & {\Sigma\Omega Z} & {\Sigma X}
         \arrow["f", from=1-1, to=1-2]
-        \arrow["{\wt{\Omega g}}", from=1-2, to=1-3]
-        \arrow["{\Sigma\wt h}", from=1-3, to=1-4]
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow[Rightarrow, no head, from=1-2, to=2-2]
-        \arrow["{\vare_Z}", from=1-3, to=2-3]
-        \arrow[Rightarrow, no head, from=1-4, to=2-4]
-    \end{tikzcd}\]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow["f", from=2-1, to=2-2]
+        \arrow["{\wt{\Omega g}}", from=2-2, to=2-3]
+        \arrow["{\Sigma\wt h}", from=2-3, to=2-4]
+        \arrow[Rightarrow, no head, from=2-1, to=1-1]
+        \arrow[Rightarrow, no head, from=2-2, to=1-2]
+        \arrow["{\eta_Z}"', from=1-3, to=2-3]
+        \arrow[Rightarrow, no head, from=2-4, to=1-4]
+    \end{tikzcd}\end{equation}
     The left square commutes by definition. To see that the middle square commutes, expanding definitions, note it is given by the following diagram:
-    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJZIl0sWzAsMSwiWSJdLFsyLDEsIloiXSxbMSwwLCJcXFNpZ21hXFxPbWVnYSBZIl0sWzIsMCwiXFxTaWdtYVxcT21lZ2EgWiJdLFswLDEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiZyJdLFswLDMsIlxcdmFyZV9ZXnstMX0iXSxbMyw0LCJcXFNpZ21hXFxPbWVnYSBnIl0sWzQsMiwiXFx2YXJlX1kiXV0=
+    % https://q.uiver.app/#q=WzAsNSxbMCwxLCJZIl0sWzAsMCwiWSJdLFsyLDAsIloiXSxbMSwxLCJcXFNpZ21hXFxPbWVnYSBZIl0sWzIsMSwiXFxTaWdtYVxcT21lZ2EgWiJdLFswLDEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiZyJdLFswLDMsIlxcZXRhX1kiXSxbMyw0LCJcXFNpZ21hXFxPbWVnYSBnIl0sWzIsNCwiXFxldGFfWSJdXQ==
     \[\begin{tikzcd}
-        Y & {\Sigma\Omega Y} & {\Sigma\Omega Z} \\
-        Y && Z
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow["g", from=2-1, to=2-3]
-        \arrow["{\vare_Y^{-1}}", from=1-1, to=1-2]
-        \arrow["{\Sigma\Omega g}", from=1-2, to=1-3]
-        \arrow["{\vare_Y}", from=1-3, to=2-3]
+        Y && Z \\
+        Y & {\Sigma\Omega Y} & {\Sigma\Omega Z}
+        \arrow[Rightarrow, no head, from=2-1, to=1-1]
+        \arrow["g", from=1-1, to=1-3]
+        \arrow["{\eta_Y}", from=2-1, to=2-2]
+        \arrow["{\Sigma\Omega g}", from=2-2, to=2-3]
+        \arrow["{\eta_Y}", from=1-3, to=2-3]
     \end{tikzcd}\]
-    and this commutes by naturality of $\vare$. To see that the right square commutes, consider the following diagram:
-    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXFNpZ21hXFxPbWVnYSBaIl0sWzEsMCwiXFxTaWdtYVxcT21lZ2FcXFNpZ21hIFgiXSxbMiwxLCJcXFNpZ21hIFgiXSxbMCwxLCJaIl0sWzIsMCwiXFxTaWdtYSBYIl0sWzAsMSwiXFxTaWdtYVxcT21lZ2EgaCJdLFswLDMsIlxcdmFyZV9aIiwyXSxbMywyLCJoIiwyXSxbMSw0LCJcXFNpZ21hXFxldGFfWF57LTF9Il0sWzIsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCJcXHZhcmVfe1xcU2lnbWEgWH0iLDFdXQ==
+    and this commutes by naturality of $\eta$. To see that the right square commutes, consider the following diagram:
+    % https://q.uiver.app/#q=WzAsNSxbMCwxLCJcXFNpZ21hXFxPbWVnYSBaIl0sWzEsMSwiXFxTaWdtYVxcT21lZ2FcXFNpZ21hIFgiXSxbMiwwLCJcXFNpZ21hIFgiXSxbMCwwLCJaIl0sWzIsMSwiXFxTaWdtYSBYIl0sWzAsMSwiXFxTaWdtYVxcT21lZ2EgaCIsMl0sWzMsMCwiXFxldGFfWiIsMl0sWzMsMiwiaCJdLFsxLDQsIlxcU2lnbWFcXHZhcmVfWCIsMl0sWzIsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiwxLCJcXGV0YV97XFxTaWdtYSBYfSIsMV1d
     \[\begin{tikzcd}
-        {\Sigma\Omega Z} & {\Sigma\Omega\Sigma X} & {\Sigma X} \\
-        Z && {\Sigma X}
-        \arrow["{\Sigma\Omega h}", from=1-1, to=1-2]
-        \arrow["{\vare_Z}"', from=1-1, to=2-1]
-        \arrow["h"', from=2-1, to=2-3]
-        \arrow["{\Sigma\eta_X^{-1}}", from=1-2, to=1-3]
-        \arrow[Rightarrow, no head, from=2-3, to=1-3]
-        \arrow["{\vare_{\Sigma X}}"{description}, from=1-2, to=2-3]
+        Z && {\Sigma X} \\
+        {\Sigma\Omega Z} & {\Sigma\Omega\Sigma X} & {\Sigma X}
+        \arrow["{\Sigma\Omega h}"', from=2-1, to=2-2]
+        \arrow["{\eta_Z}"', from=1-1, to=2-1]
+        \arrow["h", from=1-1, to=1-3]
+        \arrow["{\Sigma\vare_X}"', from=2-2, to=2-3]
+        \arrow[Rightarrow, no head, from=1-3, to=2-3]
+        \arrow["{\eta_{\Sigma X}}"{description}, from=1-3, to=2-2]
     \end{tikzcd}\]
-    By functoriality of $\Sigma$, the top composition is $\Sigma\wt h$. The left region commutes by naturality of $\vare$. Commutativity of the right region is precisely one of the the zig-zag identities for the unit and counit of an adjunction. Hence, since diagram (\ref{shift_left_diagram}) commutes, the vertical arrows are isomorphisms, and the bottom row is distinguished, we have that the top row is distinguished as well by axiom TR0. Then by axiom TR4, since $(f,\wt{\Omega g},\Sigma\wt h)$ is distinguished, so is the triangle
+    By functoriality of $\Sigma$, the bottom composition is $\Sigma\wt h$. The left region commutes by naturality of $\eta$. Commutativity of the right region is precisely one of the the zig-zag identities. Hence, since diagram (\ref{shift_left_diagram}) commutes, the vertical arrows are isomorphisms, and the bottom row is distinguished, we have that the top row is distinguished as well by axiom TR0. Then by axiom TR4, since $(f,\wt{\Omega g},\Sigma\wt h)$ is distinguished, so is the triangle
     \[\Omega Z\xrightarrow{-\wt h}X\xrightarrow fY\xrightarrow{\wt{\Omega g}}\Sigma\Omega Z.\qedhere\]
 \end{proof}
 
@@ -393,15 +401,14 @@ In this section, we fix a triangulated category $\cC$, and we will always use br
     for any $n>0$, the triangle
     \[\Omega^n X\xrightarrow{(-1)^n\Omega^n f} \Omega^n Y\xrightarrow{(-1)^n\Omega^n g}\Omega^n Z\xrightarrow{(-1)^n\Omega^n h}\Omega^n\Sigma X\cong\Sigma\Omega^n X,\]
     is distinguished, where the final isomorphism is given by the composition
-    \[\Omega^n\Sigma X=\Omega^{n-1}\Omega\Sigma X\xrightarrow{\Omega^{n-1}\eta_X^{-1}}\Omega^{n-1}X\xrightarrow{\vare_{\Omega^{n-1}X}^{-1}}\Sigma\Omega\Omega^{n-1}X=\Sigma\Omega^nX,\]
-    where $\vare$ and $\eta$ are the counit and unit of the adjunction $\Sigma\dashv\Omega$, respectively.
+    \[\Omega^n\Sigma X=\Omega^{n-1}\Omega\Sigma X\xrightarrow{\Omega^{n-1}\vare_X}\Omega^{n-1}X\xrightarrow{\eta_{\Omega^{n-1}X}}\Sigma\Omega\Omega^{n-1}X=\Sigma\Omega^nX.\]
 \end{lemma}
 \begin{proof}
     We give a proof by induction. First we show the case $n=1$. Note by \autoref{shift_dt_left}, we have that given a distinguished triangle
     \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
     we can shift it to the left to obtain a distinguished triangle
     \[\Omega Z\xrightarrow{-\wt h}X\xrightarrow fY\xrightarrow{\wt{\Omega g}}\Sigma\Omega Z,\]
-    where $\wt h:\Omega Z\to X$ is the adjoint of $h:Z\to\Sigma X$ and $\wt{\Omega g}$ is the adjoint of $\Omega g:\Omega Y\to\Omega Z$. If we apply this shifting operation again, we get the distinguished triangle
+    where $\wt h$ is the adjoint of $h:Z\to\Sigma X$ and $\wt{\Omega g}$ is the adjoint of $\Omega g:\Omega Y\to\Omega Z$. If we apply this shifting operation again, we get the distinguished triangle
     \[\Omega Y\xrightarrow{-\wt{\wt {\Omega g}}}\Omega Z\xrightarrow {-\wt h}X\xrightarrow{\wt{\Omega f}}\Sigma\Omega Y,\]
     where unravelling definitions, $\wt{\Omega f}$ is the right adjoint of $\Omega f:\Omega X\to\Omega Y$ and $\wt{\wt{\Omega g}}$ is the right adjoint of $\wt{\Omega g}$, which itself is the left adjoint of $\Omega g$, so $\wt{\wt{\Omega g}}=\Omega g$.
     Hence we have a distinguished triangle
@@ -410,160 +417,216 @@ In this section, we fix a triangulated category $\cC$, and we will always use br
     \[\Omega X\xrightarrow{-\Omega f}\Omega Y\xrightarrow{-\Omega g}\Omega Z\xrightarrow{\wt{\Omega(-\wt h)}}\Sigma\Omega X,\]
     where $\wt{\Omega (-\wt h)}$ is the right adjoint of $\Omega(-\wt h)=-\Omega\wt h:\Omega\Omega Z\to\Omega X$. Explicitly unravelling definitions, $\wt{\Omega(-\wt h)}=\wt{-\Omega\wt h}$ is the composition
     \begin{align*}
-        [\Omega Z\xrightarrow{\vare_{\Omega Z}^{-1}}\Sigma\Omega\Omega Z\xrightarrow{\Sigma(-\Omega\wt h)}\Sigma\Omega X]&=-[\Omega Z\xrightarrow{\vare_{\Omega Z}^{-1}}\Sigma\Omega\Omega Z\xrightarrow{\Sigma\Omega\wt h}\Sigma\Omega X] \\
-        &=-[\Omega Z\xrightarrow{\vare_{\Omega Z}^{-1}}\Sigma\Omega\Omega Z\xrightarrow{\Sigma\Omega\Omega h}\Sigma\Omega\Omega\Sigma X\xrightarrow{\Sigma\Omega\eta_X^{-1}}\Sigma\Omega X] \\
-        &=-[\Omega Z\xrightarrow{\Omega h}\Omega\Sigma X\xrightarrow{\eta_X^{-1}}X\xrightarrow{\vare_X^{-1}}\Sigma\Omega X],
+        [\Omega Z\xrightarrow{\eta_{\Omega Z}}\Sigma\Omega\Omega Z\xrightarrow{\Sigma(-\Omega\wt h)}\Sigma\Omega X]&=-[\Omega Z\xrightarrow{\eta_{\Omega Z}}\Sigma\Omega\Omega Z\xrightarrow{\Sigma\Omega\wt h}\Sigma\Omega X] \\
+        &=-[\Omega Z\xrightarrow{\eta_{\Omega Z}}\Sigma\Omega\Omega Z\xrightarrow{\Sigma\Omega\Omega h}\Sigma\Omega\Omega\Sigma X\xrightarrow{\Sigma\Omega\vare_X}\Sigma\Omega X] \\
+        &=-[\Omega Z\xrightarrow{\Omega h}\Omega\Sigma X\xrightarrow{\vare_X}X\xrightarrow{\eta_X}\Sigma\Omega X],
     \end{align*}
-    where the first equality follows by additivity of $\Sigma$ and additivity of composition, the second follows by further unravelling how $\wt h$ is defined, and the third follows by naturality of $\vare$, which tells us the following diagram commutes:
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhIFoiXSxbMCwxLCJcXFNpZ21hXFxPbWVnYVxcT21lZ2EgWiAiXSxbMSwxLCJcXFNpZ21hXFxPbWVnYVxcT21lZ2FcXFNpZ21hIFgiXSxbMiwxLCJcXFNpZ21hXFxPbWVnYSBYIl0sWzEsMCwiXFxPbWVnYVxcU2lnbWEgWCJdLFsyLDAsIlgiXSxbMCwxLCJcXHZhcmVwc2lsb25eey0xfV97XFxPbWVnYSBafSJdLFsxLDIsIlxcU2lnbWFcXE9tZWdhXFxPbWVnYSBoIiwyXSxbMiwzLCJcXFNpZ21hXFxPbWVnYVxcZXRhX1heey0xfSIsMl0sWzAsNCwiXFxPbWVnYSBoIl0sWzQsMiwiXFx2YXJlcHNpbG9uXnstMX1fe1xcT21lZ2FcXFNpZ21hIFh9Il0sWzQsNSwiXFxldGFeey0xfV9YIl0sWzUsMywiXFx2YXJlcHNpbG9uX1heey0xfSJdXQ==
+    where the first equality follows by additivity of $\Sigma$ and additivity of composition, the second follows by further unravelling how $\wt h$ is defined, and the third follows by naturality of $\eta$, which tells us the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhIFoiXSxbMCwxLCJcXFNpZ21hXFxPbWVnYVxcT21lZ2EgWiAiXSxbMSwxLCJcXFNpZ21hXFxPbWVnYVxcT21lZ2FcXFNpZ21hIFgiXSxbMiwxLCJcXFNpZ21hXFxPbWVnYSBYIl0sWzEsMCwiXFxPbWVnYVxcU2lnbWEgWCJdLFsyLDAsIlgiXSxbMCwxLCJcXGV0YV97XFxPbWVnYSBafSJdLFsxLDIsIlxcU2lnbWFcXE9tZWdhXFxPbWVnYSBoIiwyXSxbMiwzLCJcXFNpZ21hXFxPbWVnYVxcdmFyZV9YIiwyXSxbMCw0LCJcXE9tZWdhIGgiXSxbNCwyLCJcXGV0YV97XFxPbWVnYVxcU2lnbWEgWH0iXSxbNCw1LCJcXHZhcmVfWCJdLFs1LDMsIlxcZXRhX1giXV0=
     \[\begin{tikzcd}
         {\Omega Z} & {\Omega\Sigma X} & X \\
         {\Sigma\Omega\Omega Z } & {\Sigma\Omega\Omega\Sigma X} & {\Sigma\Omega X}
-        \arrow["{\varepsilon^{-1}_{\Omega Z}}", from=1-1, to=2-1]
+        \arrow["{\eta_{\Omega Z}}", from=1-1, to=2-1]
         \arrow["{\Sigma\Omega\Omega h}"', from=2-1, to=2-2]
-        \arrow["{\Sigma\Omega\eta_X^{-1}}"', from=2-2, to=2-3]
+        \arrow["{\Sigma\Omega\vare_X}"', from=2-2, to=2-3]
         \arrow["{\Omega h}", from=1-1, to=1-2]
-        \arrow["{\varepsilon^{-1}_{\Omega\Sigma X}}", from=1-2, to=2-2]
-        \arrow["{\eta^{-1}_X}", from=1-2, to=1-3]
-        \arrow["{\varepsilon_X^{-1}}", from=1-3, to=2-3]
+        \arrow["{\eta_{\Omega\Sigma X}}", from=1-2, to=2-2]
+        \arrow["{\vare_X}", from=1-2, to=1-3]
+        \arrow["{\eta_X}", from=1-3, to=2-3]
     \end{tikzcd}\]
     Thus indeed we have a distinguished triangle
     \[\Omega X\xrightarrow{-\Omega f}\Omega Y\xrightarrow{-\Omega g}\Omega Z\xrightarrow{-\Omega h}\Omega\Sigma X\cong\Sigma\Omega X,\]
-    where the last isomorphism is $\vare_X^{-1}\circ\eta_X^{-1}$, as desired.
+    where the last isomorphism is $\eta_X\circ\vare_X$, as desired.
     
     Now, we show the inductive step. Suppose we know that given a distinguished triangle
     \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
     that for some $n>0$ the triangle
     \[\Omega^n X\xrightarrow{(-1)^n\Omega^n f} \Omega^n Y\xrightarrow{(-1)^n\Omega^n g}\Omega^n Z\xrightarrow{(-1)^n h^n}\Sigma\Omega^n X,\]
     is distinguished, where $h^n:\Omega^nZ\to\Sigma\Omega^nX$ is the composition
-    \[\Omega^nZ\xrightarrow{\Omega^nh}\Omega^n\Sigma X\xrightarrow{\Omega^{n-1}\eta^{-1}_X}\Omega^{n-1}X\xrightarrow{\vare^{-1}_{\Omega^{n-1}X}}\Sigma\Omega^nX.\]
+    \[\Omega^nZ\xrightarrow{\Omega^nh}\Omega^n\Sigma X\xrightarrow{\Omega^{n-1}\vare_X}\Omega^{n-1}X\xrightarrow{\eta_{\Omega^{n-1}X}}\Sigma\Omega^nX.\]
     Then by applying the $n=1$ case to this triangle, we get that the following triangle is distinguished
     \[\Omega^{n+1}X\xrightarrow{-\Omega((-1)^n\Omega^nf)}\Omega^{n+1}Y\xrightarrow{-\Omega((-1)^n\Omega^ng)}\Omega^{n+1}Z\xrightarrow{-\Omega((-1)^nh^n)}\Omega\Sigma \Omega^nX\cong\Sigma\Omega^{n+1}X,\]
     where the final isomorphism is the composition
-    \[\Omega\Sigma\Omega^nX\xrightarrow{\eta_{\Omega^nX}^{-1}}\Omega^nX\xrightarrow{\vare_{\Omega^nX}^{-1}}\Sigma\Omega\Omega^nX=\Sigma\Omega^{n+1}X.\]
+    \[\Omega\Sigma\Omega^nX\xrightarrow{\vare_{\Omega^nX}}\Omega^nX\xrightarrow{\eta_{\Omega^nX}}\Sigma\Omega\Omega^nX=\Sigma\Omega^{n+1}X.\]
     We claim that this is precisely the distinguished triangle given in the statement of the lemma for $n+1$.
     First of all, note that $-\Omega((-1)^n\Omega^nf)=(-1)^{n+1}\Omega^{n+1}f$, $-\Omega((-1)^n\Omega^ng)=(-1)^{n+1}\Omega^{n+1}g$, and $-\Omega((-1)^nh^n)=(-1)^{n+1}\Omega h^n$ by additivity of $\Omega$, so that the triangle becomes
     \begin{equation}\label{2nd_to_last_omega_tri}\Omega^{n+1}X\xrightarrow{(-1)^{n+1}\Omega^{n+1}f}\Omega^{n+1}Y\xrightarrow{(-1)^{n+1}\Omega^{n+1}g}\Omega^{n+1}Z\xrightarrow{(-1)^{n+1}\Omega h^n}\Omega\Sigma\Omega^nX\cong\Sigma\Omega^{n+1}X.\end{equation}
     Thus, in order to prove the desired characterization, it remains to show this diagram commutes:
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXntuKzF9WiJdLFsyLDAsIlxcT21lZ2FcXFNpZ21hXFxPbWVnYV5uWCJdLFs0LDEsIlxcU2lnbWFcXE9tZWdhXntuKzF9WCJdLFswLDEsIlxcT21lZ2Fee24rMX1cXFNpZ21hIFgiXSxbMiwxLCJcXE9tZWdhXm5YIl0sWzQsMCwiXFxPbWVnYV5uWCJdLFswLDEsIigtMSlee24rMX1cXE9tZWdhIGhebiJdLFswLDMsIigtMSlee24rMX1cXE9tZWdhXntuKzF9aCIsMl0sWzMsNCwiXFxPbWVnYV5uXFxldGFeey0xfV9YIiwyXSxbNCwyLCJcXHZhcmVeey0xfV97XFxPbWVnYV5uWH0iLDJdLFsxLDUsIlxcZXRhXnstMX1fe1xcT21lZ2Feblh9Il0sWzUsMiwiXFx2YXJlXnstMX1fe1xcT21lZ2Feblh9Il1d
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXntuKzF9WiJdLFsyLDAsIlxcT21lZ2FcXFNpZ21hXFxPbWVnYV5uWCJdLFs0LDEsIlxcU2lnbWFcXE9tZWdhXntuKzF9WCJdLFswLDEsIlxcT21lZ2Fee24rMX1cXFNpZ21hIFgiXSxbMiwxLCJcXE9tZWdhXm5YIl0sWzQsMCwiXFxPbWVnYV5uWCJdLFswLDEsIigtMSlee24rMX1cXE9tZWdhIGhebiJdLFswLDMsIigtMSlee24rMX1cXE9tZWdhXntuKzF9aCIsMl0sWzMsNCwiXFxPbWVnYV5uXFx2YXJlX1giLDJdLFs0LDIsIlxcZXRhX3tcXE9tZWdhXm5YfSIsMl0sWzEsNSwiXFx2YXJlX3tcXE9tZWdhXm5YfSJdLFs1LDIsIlxcZXRhX3tcXE9tZWdhXm5YfSJdXQ==
     \[\begin{tikzcd}
         {\Omega^{n+1}Z} && {\Omega\Sigma\Omega^nX} && {\Omega^nX} \\
         {\Omega^{n+1}\Sigma X} && {\Omega^nX} && {\Sigma\Omega^{n+1}X}
         \arrow["{(-1)^{n+1}\Omega h^n}", from=1-1, to=1-3]
         \arrow["{(-1)^{n+1}\Omega^{n+1}h}"', from=1-1, to=2-1]
-        \arrow["{\Omega^n\eta^{-1}_X}"', from=2-1, to=2-3]
-        \arrow["{\vare^{-1}_{\Omega^nX}}"', from=2-3, to=2-5]
-        \arrow["{\eta^{-1}_{\Omega^nX}}", from=1-3, to=1-5]
-        \arrow["{\vare^{-1}_{\Omega^nX}}", from=1-5, to=2-5]
+        \arrow["{\Omega^n\vare_X}"', from=2-1, to=2-3]
+        \arrow["{\eta_{\Omega^nX}}"', from=2-3, to=2-5]
+        \arrow["{\vare_{\Omega^nX}}", from=1-3, to=1-5]
+        \arrow["{\eta_{\Omega^nX}}", from=1-5, to=2-5]
     \end{tikzcd}\]
-    (The top composition is the last two arrows in diagram (\ref{2nd_to_last_omega_tri}), and the bottom composition is the last two arrows in the diagram). Unravelling how $h^n$ is constructed, by additivity of $\Omega$ it further suffices to show the outside of the following diagram commutes:
-    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXE9tZWdhXntuKzF9WiJdLFs2LDAsIlxcT21lZ2FcXFNpZ21hXFxPbWVnYV5uWCJdLFs2LDIsIlxcU2lnbWFcXE9tZWdhXntuKzF9WCJdLFswLDIsIlxcT21lZ2Fee24rMX1cXFNpZ21hIFgiXSxbNCwyLCJcXE9tZWdhXm5YIl0sWzYsMSwiXFxPbWVnYV5uWCJdLFsyLDAsIlxcT21lZ2Fee24rMX1cXFNpZ21hIFgiXSxbNCwwLCJcXE9tZWdhXm5YIl0sWzAsMywiKC0xKV57bisxfVxcT21lZ2Fee24rMX1oIiwyXSxbMyw0LCJcXE9tZWdhXm5cXGV0YV57LTF9X1giLDJdLFs0LDIsIlxcdmFyZV57LTF9X3tcXE9tZWdhXm5YfSIsMl0sWzEsNSwiXFxldGFeey0xfV97XFxPbWVnYV5uWH0iXSxbNSwyLCJcXHZhcmVeey0xfV97XFxPbWVnYV5uWH0iXSxbMCw2LCIoLTEpXntuKzF9XFxPbWVnYV57bisxfWgiXSxbNiw3LCJcXE9tZWdhXm5cXGV0YV97WH1eey0xfSJdLFs3LDEsIlxcT21lZ2FcXHZhcmVfe1xcT21lZ2Fee24tMX1YfV57LTF9Il0sWzcsNCwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    (The top composition is the last two arrows in diagram (\ref{2nd_to_last_omega_tri}), and the bottom composition is the last two arrows in the diagram in the statement of the lemma). Unravelling how $h^n$ is constructed, by additivity of $\Omega$ it further suffices to show the outside of the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXE9tZWdhXntuKzF9WiJdLFs2LDAsIlxcT21lZ2FcXFNpZ21hXFxPbWVnYV5uWCJdLFs2LDIsIlxcU2lnbWFcXE9tZWdhXntuKzF9WCJdLFswLDIsIlxcT21lZ2Fee24rMX1cXFNpZ21hIFgiXSxbNCwyLCJcXE9tZWdhXm5YIl0sWzYsMSwiXFxPbWVnYV5uWCJdLFsyLDAsIlxcT21lZ2Fee24rMX1cXFNpZ21hIFgiXSxbNCwwLCJcXE9tZWdhXm5YIl0sWzAsMywiKC0xKV57bisxfVxcT21lZ2Fee24rMX1oIiwyXSxbMyw0LCJcXE9tZWdhXm5cXHZhcmVfWCIsMl0sWzQsMiwiXFxldGFfe1xcT21lZ2Feblh9IiwyXSxbMSw1LCJcXHZhcmVfe1xcT21lZ2Feblh9Il0sWzUsMiwiXFxldGFfe1xcT21lZ2Feblh9Il0sWzAsNiwiKC0xKV57bisxfVxcT21lZ2Fee24rMX1oIl0sWzYsNywiXFxPbWVnYV5uXFx2YXJlX3tYfSJdLFs3LDEsIlxcT21lZ2FcXGV0YV97XFxPbWVnYV57bi0xfVh9Il0sWzcsNCwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
     \[\begin{tikzcd}
         {\Omega^{n+1}Z} && {\Omega^{n+1}\Sigma X} && {\Omega^nX} && {\Omega\Sigma\Omega^nX} \\
         &&&&&& {\Omega^nX} \\
         {\Omega^{n+1}\Sigma X} &&&& {\Omega^nX} && {\Sigma\Omega^{n+1}X}
         \arrow["{(-1)^{n+1}\Omega^{n+1}h}"', from=1-1, to=3-1]
-        \arrow["{\Omega^n\eta^{-1}_X}"', from=3-1, to=3-5]
-        \arrow["{\vare^{-1}_{\Omega^nX}}"', from=3-5, to=3-7]
-        \arrow["{\eta^{-1}_{\Omega^nX}}", from=1-7, to=2-7]
-        \arrow["{\vare^{-1}_{\Omega^nX}}", from=2-7, to=3-7]
+        \arrow["{\Omega^n\vare_X}"', from=3-1, to=3-5]
+        \arrow["{\eta_{\Omega^nX}}"', from=3-5, to=3-7]
+        \arrow["{\vare_{\Omega^nX}}", from=1-7, to=2-7]
+        \arrow["{\eta_{\Omega^nX}}", from=2-7, to=3-7]
         \arrow["{(-1)^{n+1}\Omega^{n+1}h}", from=1-1, to=1-3]
-        \arrow["{\Omega^n\eta_{X}^{-1}}", from=1-3, to=1-5]
-        \arrow["{\Omega\vare_{\Omega^{n-1}X}^{-1}}", from=1-5, to=1-7]
+        \arrow["{\Omega^n\vare_{X}}", from=1-3, to=1-5]
+        \arrow["{\Omega\eta_{\Omega^{n-1}X}}", from=1-5, to=1-7]
         \arrow[Rightarrow, no head, from=1-5, to=3-5]
         \arrow[Rightarrow, no head, from=3-5, to=2-7]
     \end{tikzcd}\]
-    The left rectangle and bottom right triangle commute by definition. Finally, commutativity of the top right trapezoid is precisely one of the zig-zag identities for the adjunction $\Omega\dashv\Sigma$ applied to $\Omega^{n-1}X$. Hence, we have shown the desired result.
+    The left rectangle and bottom right triangle commute by definition. Finally, commutativity of the top right trapezoid is precisely one of the zig-zag identities applied to $\Omega^{n-1}X$. Hence, we have shown the desired result.
 \end{proof}
 
-\begin{lemma}\label{shifted_triangle_exact}
-    Suppose we have a distinguished triangle
-    \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X.\]
-    Then for any integer $n\geq0$, the sequence
-    \[\Sigma^nX\xrightarrow{\Sigma^nf}\Sigma^nY\xrightarrow{\Sigma^ng}\Sigma^nZ\xrightarrow{\Sigma^nh}\Sigma^{n+1}X\]
-    is exact. Similarly, for any integer $n>0$, the sequence
-    \[\Omega^nX\xrightarrow{\Omega^nf}\Omega^nY\xrightarrow{\Omega^ng}\Omega^nZ\xrightarrow{\Omega^nh}\Omega^n\Sigma X\cong\Omega^{n-1}X\]
-    are exact (\autoref{defn_exact}), where the isomorphism is given by $\Omega^{n-1}\eta_{X}^{-1}$, where $\eta:\mathrm{Id}_\cC\to\Omega\Sigma$ is the unit of the adjunction $\Sigma\dashv\Omega$. 
-\end{lemma}
-\begin{proof}
-    By \autoref{distinguished_tri_is_exact}, the first statement holds when $n=0$. Now suppose we are given some $n>0$. Using axiom TR4, by induction we have that the triangle
-    \[\Sigma^nX\xrightarrow{(-1)^n\Sigma^nf}\Sigma^nY\xrightarrow{(-1)^n\Sigma^ng}\Sigma^nZ\xrightarrow{(-1)^n\Sigma^nh}\Sigma^{n+1}X\]
-    is also distinguished.
-    Thus, again by \autoref{distinguished_tri_is_exact}, given any object $A$ in $\cC$, the sequence of abelian groups
-    \[[A,\Sigma^nX]\xrightarrow{(-1)^n\Sigma^nf_*}[A,\Sigma^nY]\xrightarrow{(-1)^n\Sigma^ng_*}[A,\Sigma^nZ]\xrightarrow{(-1)^n\Sigma^nh_*}[A,\Sigma^{n+1}X]\]
-    is exact. A simple diagram chase yields that we can remove the signs and the sequence is still exact, so we have shown the desired statement for $\Sigma$. Now, we would like to show for $n>0$ that the sequence
-    \[\Omega^nX\xrightarrow{\Omega^nf}\Omega^nY\xrightarrow{\Omega^ng}\Omega^nZ\xrightarrow{\Omega^nh}\Omega^{n}\Sigma X\cong\Omega^{n-1}X\]
-    is exact, where the final isomorphism is $\Omega^{n-1}\eta_{X}^{-1}$. Now, consider the following diagram:
-    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhXm5YIl0sWzIsMCwiXFxPbWVnYV5uWSJdLFs0LDAsIlxcT21lZ2FebloiXSxbNiwwLCJcXFNpZ21hXFxPbWVnYV5uWCJdLFs2LDIsIlxcT21lZ2Fee24tMX1YIl0sWzQsMiwiXFxPbWVnYV5uWiJdLFs1LDEsIlxcT21lZ2FeblxcU2lnbWEgWCJdLFswLDIsIlxcT21lZ2FeblgiXSxbMiwyLCJcXE9tZWdhXm5ZIl0sWzAsMSwiKC0xKV5uXFxPbWVnYV5uZiJdLFsxLDIsIigtMSleblxcT21lZ2FebmciXSxbMiwzLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw2LCIoLTEpXm5cXE9tZWdhXm5oIiwxXSxbNiw0LCJcXE9tZWdhXntuLTF9XFxldGFfe1h9XnstMX0iLDFdLFs3LDgsIigtMSleblxcT21lZ2FebmYiXSxbOCw1LCIoLTEpXm5cXE9tZWdhXm5nIl0sWzUsNCwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsNSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw4LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiKC0xKV5uXFxPbWVnYV5uaCIsMV0sWzQsMywiXFx2YXJlXnstMX1fe1xcT21lZ2Fee24tMX1YfSIsMl1d
-    \[\begin{tikzcd}
-        {\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Sigma\Omega^nX} \\
-        &&&&& {\Omega^n\Sigma X} \\
-        {\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Omega^{n-1}X}
-        \arrow["{(-1)^n\Omega^nf}", from=1-1, to=1-3]
-        \arrow["{(-1)^n\Omega^ng}", from=1-3, to=1-5]
-        \arrow[dashed, from=1-5, to=1-7]
-        \arrow["{(-1)^n\Omega^nh}"{description}, from=3-5, to=2-6]
-        \arrow["{\Omega^{n-1}\eta_{X}^{-1}}"{description}, from=2-6, to=3-7]
-        \arrow["{(-1)^n\Omega^nf}", from=3-1, to=3-3]
-        \arrow["{(-1)^n\Omega^ng}", from=3-3, to=3-5]
-        \arrow[dashed, from=3-5, to=3-7]
-        \arrow[Rightarrow, no head, from=1-5, to=3-5]
-        \arrow[Rightarrow, no head, from=1-3, to=3-3]
-        \arrow[Rightarrow, no head, from=1-1, to=3-1]
-        \arrow["{(-1)^n\Omega^nh}"{description}, from=1-5, to=2-6]
-        \arrow["{\vare^{-1}_{\Omega^{n-1}X}}"', from=3-7, to=1-7]
-    \end{tikzcd}\]
-    where the dashed arrows are the necessary compositions which makes this diagram commute. By \autoref{big_shift_left_dt}, the top row is distinguished, thus exact (by \autoref{distinguished_tri_is_exact}). Thus, since the diagram commutes and the vertical arrows are isomorphisms, it follows that the bottom row is exact. Again, a simple diagram chase yields that we can forget the signs and the sequence is still exact, so we get precisely the desired result.
-\end{proof}
+%\begin{lemma}\label{shifted_triangle_exact}
+    %Suppose we have a distinguished triangle
+    %\[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X.\]
+    %Then for any integer $n\geq0$, the sequence
+    %\[\Sigma^nX\xrightarrow{\Sigma^nf}\Sigma^nY\xrightarrow{\Sigma^ng}\Sigma^nZ\xrightarrow{\Sigma^nh}\Sigma^{n+1}X\]
+    %is exact. Similarly, for any integer $n>0$, the sequence
+    %\[\Omega^nX\xrightarrow{\Omega^nf}\Omega^nY\xrightarrow{\Omega^ng}\Omega^nZ\xrightarrow{\Omega^nh}\Omega^n\Sigma X\cong\Omega^{n-1}X\]
+    %are exact (\autoref{defn_exact}), where the isomorphism is given by $\Omega^{n-1}\eta_{X}^{-1}$, where $\eta:\mathrm{Id}_\cC\to\Omega\Sigma$ is the unit of the adjunction $\Sigma\dashv\Omega$. 
+%\end{lemma}
+%\begin{proof}
+    %By \autoref{distinguished_tri_is_exact}, the first statement holds when $n=0$. Now suppose we are given some $n>0$. Using axiom TR4, by induction we have that the triangle
+    %\[\Sigma^nX\xrightarrow{(-1)^n\Sigma^nf}\Sigma^nY\xrightarrow{(-1)^n\Sigma^ng}\Sigma^nZ\xrightarrow{(-1)^n\Sigma^nh}\Sigma^{n+1}X\]
+    %is also distinguished.
+    %Thus, again by \autoref{distinguished_tri_is_exact}, given any object $A$ in $\cC$, the sequence of abelian groups
+    %\[[A,\Sigma^nX]\xrightarrow{(-1)^n\Sigma^nf_*}[A,\Sigma^nY]\xrightarrow{(-1)^n\Sigma^ng_*}[A,\Sigma^nZ]\xrightarrow{(-1)^n\Sigma^nh_*}[A,\Sigma^{n+1}X]\]
+    %is exact. A simple diagram chase yields that we can remove the signs and the sequence is still exact, so we have shown the desired statement for $\Sigma$. Now, we would like to show for $n>0$ that the sequence
+    %\[\Omega^nX\xrightarrow{\Omega^nf}\Omega^nY\xrightarrow{\Omega^ng}\Omega^nZ\xrightarrow{\Omega^nh}\Omega^{n}\Sigma X\cong\Omega^{n-1}X\]
+    %is exact, where the final isomorphism is $\Omega^{n-1}\eta_{X}^{-1}$. Now, consider the following diagram:
+    %% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhXm5YIl0sWzIsMCwiXFxPbWVnYV5uWSJdLFs0LDAsIlxcT21lZ2FebloiXSxbNiwwLCJcXFNpZ21hXFxPbWVnYV5uWCJdLFs2LDIsIlxcT21lZ2Fee24tMX1YIl0sWzQsMiwiXFxPbWVnYV5uWiJdLFs1LDEsIlxcT21lZ2FeblxcU2lnbWEgWCJdLFswLDIsIlxcT21lZ2FeblgiXSxbMiwyLCJcXE9tZWdhXm5ZIl0sWzAsMSwiKC0xKV5uXFxPbWVnYV5uZiJdLFsxLDIsIigtMSleblxcT21lZ2FebmciXSxbMiwzLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw2LCIoLTEpXm5cXE9tZWdhXm5oIiwxXSxbNiw0LCJcXE9tZWdhXntuLTF9XFxldGFfe1h9XnstMX0iLDFdLFs3LDgsIigtMSleblxcT21lZ2FebmYiXSxbOCw1LCIoLTEpXm5cXE9tZWdhXm5nIl0sWzUsNCwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsNSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw4LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiKC0xKV5uXFxPbWVnYV5uaCIsMV0sWzQsMywiXFx2YXJlXnstMX1fe1xcT21lZ2Fee24tMX1YfSIsMl1d
+    %\[\begin{tikzcd}
+        %{\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Sigma\Omega^nX} \\
+        %&&&&& {\Omega^n\Sigma X} \\
+        %{\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Omega^{n-1}X}
+        %\arrow["{(-1)^n\Omega^nf}", from=1-1, to=1-3]
+        %\arrow["{(-1)^n\Omega^ng}", from=1-3, to=1-5]
+        %\arrow[dashed, from=1-5, to=1-7]
+        %\arrow["{(-1)^n\Omega^nh}"{description}, from=3-5, to=2-6]
+        %\arrow["{\Omega^{n-1}\eta_{X}^{-1}}"{description}, from=2-6, to=3-7]
+        %\arrow["{(-1)^n\Omega^nf}", from=3-1, to=3-3]
+        %\arrow["{(-1)^n\Omega^ng}", from=3-3, to=3-5]
+        %\arrow[dashed, from=3-5, to=3-7]
+        %\arrow[Rightarrow, no head, from=1-5, to=3-5]
+        %\arrow[Rightarrow, no head, from=1-3, to=3-3]
+        %\arrow[Rightarrow, no head, from=1-1, to=3-1]
+        %\arrow["{(-1)^n\Omega^nh}"{description}, from=1-5, to=2-6]
+        %\arrow["{\vare^{-1}_{\Omega^{n-1}X}}"', from=3-7, to=1-7]
+    %\end{tikzcd}\]
+    %where the dashed arrows are the necessary compositions which makes this diagram commute. By \autoref{big_shift_left_dt}, the top row is distinguished, thus exact (by \autoref{distinguished_tri_is_exact}). Thus, since the diagram commutes and the vertical arrows are isomorphisms, it follows that the bottom row is exact. Again, a simple diagram chase yields that we can forget the signs and the sequence is still exact, so we get precisely the desired result.
+%\end{proof}
 
 \begin{proposition}\label{dist_tri_LES}
     Given a distinguished triangle
     \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X,\]
-    the sequence
-    \[\cdots\to\Sigma^{n-1}Z\xrightarrow{\Sigma^{n-1}h}\Sigma^n X\xrightarrow{\Sigma^nf}\Sigma^nY\xrightarrow{\Sigma^ng}\Sigma^nZ\xrightarrow{\Sigma^nh}\Sigma^{n+1}X\to\cdots\]
-    extending infinitely in either direction is exact (in the sense of \autoref{defn_exact}), where for $n>0$ we are defining $\Sigma^{-n}:=\Omega^n$, and by abusive of notation we are writing $\Sigma^{-n}h$ to mean the composition
-    \[\Sigma^{-n}Z=\Omega^nZ\xrightarrow{\Omega^nh}\Omega^n\Sigma X\xrightarrow{\Omega^{n-1}\eta^{-1}_{X}}\Omega^{n-1}X=\Sigma^{-n+1}X,\]
-    where $\eta:\mathrm{Id}_\cC\Rightarrow\Omega\Sigma$ is the unit of the adjunction $\Sigma\dashv\Omega$.
+    let $\wt h:\Omega Z\to X$ be the left adjoint of $h$. Then the following infinite sequence is exact:
+    % https://q.uiver.app/#q=WzAsMTksWzQsMCwiXFxjZG90cyJdLFswLDEsIlxcT21lZ2Fee24rMX1aIl0sWzIsMSwiXFxPbWVnYV5uWCJdLFs0LDEsIlxcT21lZ2FeblkiXSxbNiwxLCJcXE9tZWdhXm5aIl0sWzgsMSwiXFxPbWVnYV57bi0xfVgiXSxbMCwzLCJcXE9tZWdhIFoiXSxbMiwzLCJYIl0sWzQsMywiWSJdLFs2LDMsIlogIl0sWzgsMywiXFxTaWdtYSBYIl0sWzQsMiwiXFxjZG90cyJdLFs0LDQsIlxcY2RvdHMiXSxbMCw1LCJcXFNpZ21hXntuLTF9WiJdLFsyLDUsIlxcU2lnbWFeblgiXSxbNCw1LCJcXFNpZ21hXm5ZIl0sWzYsNSwiXFxTaWdtYV5uWiJdLFs4LDUsIlxcU2lnbWFee24rMX1YIl0sWzQsNiwiXFxjZG90cyJdLFswLDFdLFsxLDIsIigtMSlee24rMX1cXE9tZWdhXm5cXHd0IGgiLDJdLFsyLDMsIigtMSleblxcT21lZ2FebmYiLDJdLFs0LDUsIigtMSleblxcT21lZ2Fee24tMX1cXHd0IGgiXSxbMyw0LCIoLTEpXm5cXE9tZWdhXm5nIl0sWzYsNywiLVxcd3QgaCIsMl0sWzcsOCwiZiIsMl0sWzgsOSwiZyJdLFs5LDEwLCJoIl0sWzUsMTFdLFsxMSw2XSxbMTAsMTJdLFsxMiwxM10sWzEzLDE0LCIoLTEpXntuLTF9XFxTaWdtYV57bn0gaCIsMl0sWzE0LDE1LCIoLTEpXm5cXFNpZ21hXm5mIiwyXSxbMTUsMTYsIigtMSleblxcU2lnbWFebiBnIl0sWzE2LDE3LCIoLTEpXm5cXFNpZ21hIF5uaCJdLFsxNywxOF1d
+    \[\begin{tikzcd}[column sep=scriptsize]
+        &&&& \cdots \\
+        {\Omega^{n+1}Z} && {\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Omega^{n-1}X} \\
+        &&&& \cdots \\
+        {\Omega Z} && X && Y && {Z } && {\Sigma X} \\
+        &&&& \cdots \\
+        {\Sigma^{n-1}Z} && {\Sigma^nX} && {\Sigma^nY} && {\Sigma^nZ} && {\Sigma^{n+1}X} \\
+        &&&& \cdots
+        \arrow[from=1-5, to=2-1]
+        \arrow["{(-1)^{n+1}\Omega^n\wt h}"', from=2-1, to=2-3]
+        \arrow["{(-1)^n\Omega^nf}"', from=2-3, to=2-5]
+        \arrow["{(-1)^n\Omega^{n-1}\wt h}", from=2-7, to=2-9]
+        \arrow["{(-1)^n\Omega^ng}", from=2-5, to=2-7]
+        \arrow["{-\wt h}"', from=4-1, to=4-3]
+        \arrow["f"', from=4-3, to=4-5]
+        \arrow["g", from=4-5, to=4-7]
+        \arrow["h", from=4-7, to=4-9]
+        \arrow[from=2-9, to=3-5]
+        \arrow[from=3-5, to=4-1]
+        \arrow[from=4-9, to=5-5]
+        \arrow[from=5-5, to=6-1]
+        \arrow["{(-1)^{n-1}\Sigma^{n} h}"', from=6-1, to=6-3]
+        \arrow["{(-1)^n\Sigma^nf}"', from=6-3, to=6-5]
+        \arrow["{(-1)^n\Sigma^n g}", from=6-5, to=6-7]
+        \arrow["{(-1)^n\Sigma ^nh}", from=6-7, to=6-9]
+        \arrow[from=6-9, to=7-5]
+    \end{tikzcd}\]
+    In particular, it remains exact even if we remove the signs.
 \end{proposition}
 \begin{proof}
+    \todo{proof is incorrect!}
     Exactness of
     \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y\]
-    is \autoref{distinguished_tri_is_exact} and axiom TR4. A simple diagram chase yields that the sequence is still exact after removing the sign (change $-\Sigma f$ to $\Sigma f$). Similarly, for $n>0$, exactness of
-    \[\Sigma^n X\xrightarrow{\Sigma^nf}\Sigma^n Y\xrightarrow{\Sigma^n g}\Sigma^n Z\xrightarrow{\Sigma^nh}\Sigma^n X\xrightarrow{-\Sigma^nf}\Sigma^nY\]
-    is \autoref{shifted_triangle_exact} combined with axiom TR4. Again, we can remove the sign and it is still exact. It remains to show exactness to the left. It suffices to show that the row in the following diagram is exact for all $n>0$:
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXm5YIl0sWzIsMCwiXFxPbWVnYV5uWSJdLFs0LDAsIlxcT21lZ2FebloiXSxbNiwwLCJcXE9tZWdhXntuLTF9WCJdLFs4LDAsIlxcT21lZ2Fee24tMX1ZIl0sWzUsMSwiXFxPbWVnYV5uXFxTaWdtYSBYIl0sWzAsMSwiXFxPbWVnYV5uZiJdLFsxLDIsIlxcT21lZ2FebmciXSxbMyw0LCJcXE9tZWdhXntuLTF9ZiJdLFsyLDMsIlxcT21lZ2Fee24tMX0oXFxldGFfWF57LTF9XFxjaXJjIFxcT21lZ2EgaCkiXSxbMiw1LCJcXE9tZWdhXm5oIiwyXSxbNSwzLCJcXE9tZWdhXntuLTF9XFxldGFeey0xfV97WH0iLDJdXQ==
-    \[\begin{tikzcd}[column sep=small]
+    is \autoref{distinguished_tri_is_exact} and axiom TR4. By induction using axiom TR4, for $n>0$ we get that each contiguous composition of three maps below is a distinguished triangle:
+    \[\Sigma^n X\xrightarrow{(-1)^n\Sigma^nf}\Sigma^n Y\xrightarrow{(-1)^n\Sigma^n g}\Sigma^n Z\xrightarrow{(-1)^n\Sigma^nh}\Sigma^{n+1} X\xrightarrow{(-1)^{n+1}\Sigma^{n+1}f}\Sigma^{n+1}Y,\]
+    thus the sequence is exact by \autoref{distinguished_tri_is_exact}.
+    It remains to show exactness of the LES to the left of $Y$. It suffices to show that the row in the following diagram is exact for all $n>0$:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXm5YIl0sWzIsMCwiXFxPbWVnYV5uWSJdLFs0LDAsIlxcT21lZ2FebloiXSxbNiwwLCJcXE9tZWdhXntuLTF9WCJdLFs4LDAsIlxcT21lZ2Fee24tMX1ZIl0sWzUsMSwiXFxPbWVnYV5uXFxTaWdtYSBYIl0sWzAsMSwiKC0xKV5uXFxPbWVnYV5uZiJdLFsxLDIsIigtMSleblxcT21lZ2FebmciXSxbMyw0LCIoLTEpXntuLTF9XFxPbWVnYV57bi0xfWYiXSxbMiwzLCIoLTEpXm5cXE9tZWdhXntuLTF9KFxcdmFyZXBzaWxvbl9YXFxjaXJjIFxcT21lZ2EgaCkiXSxbMiw1LCIoLTEpXm5cXE9tZWdhXm5oIiwyXSxbNSwzLCJcXE9tZWdhXntuLTF9XFx2YXJlcHNpbG9uX3tYfSIsMl1d
+    \begin{equation}\label{diag_asdjsaj}\begin{tikzcd}
         {\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Omega^{n-1}X} && {\Omega^{n-1}Y} \\
         &&&&& {\Omega^n\Sigma X}
-        \arrow["{\Omega^nf}", from=1-1, to=1-3]
-        \arrow["{\Omega^ng}", from=1-3, to=1-5]
-        \arrow["{\Omega^{n-1}f}", from=1-7, to=1-9]
-        \arrow["{\Omega^{n-1}(\eta_X^{-1}\circ \Omega h)}", from=1-5, to=1-7]
-        \arrow["{\Omega^nh}"', from=1-5, to=2-6]
-        \arrow["{\Omega^{n-1}\eta^{-1}_{X}}"', from=2-6, to=1-7]
-    \end{tikzcd}\]
-    Exactness of the first three arrows is \autoref{shifted_triangle_exact}. Thus, we would like to show that for all $n>0$ that the row in the following diagram is exact:
-    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE9tZWdhXm5aIl0sWzIsMCwiXFxPbWVnYV57bi0xfVgiXSxbNCwwLCJcXE9tZWdhXntuLTF9WSJdLFsxLDEsIlxcT21lZ2FeblxcU2lnbWEgWCJdLFsxLDIsIlxcT21lZ2Fee24tMX1mIl0sWzAsMSwiXFxPbWVnYV57bi0xfShcXGV0YV9YXnstMX1cXGNpcmMgXFxPbWVnYSBoKSJdLFswLDMsIlxcT21lZ2FebmgiLDJdLFszLDEsIlxcT21lZ2Fee24tMX1cXGV0YV57LTF9X3tYfSIsMl1d
-    \begin{equation}\label{last_bit_exact}\begin{tikzcd}
-        {\Omega^nZ} && {\Omega^{n-1}X} && {\Omega^{n-1}Y} \\
-        & {\Omega^n\Sigma X}
-        \arrow["{\Omega^{n-1}f}", from=1-3, to=1-5]
-        \arrow["{\Omega^{n-1}(\eta_X^{-1}\circ \Omega h)}", from=1-1, to=1-3]
-        \arrow["{\Omega^nh}"', from=1-1, to=2-2]
-        \arrow["{\Omega^{n-1}\eta^{-1}_{X}}"', from=2-2, to=1-3]
+        \arrow["{(-1)^n\Omega^nf}", from=1-1, to=1-3]
+        \arrow["{(-1)^n\Omega^ng}", from=1-3, to=1-5]
+        \arrow["{(-1)^{n-1}\Omega^{n-1}f}", from=1-7, to=1-9]
+        \arrow["{(-1)^n\Omega^{n-1}(\varepsilon_X\circ \Omega h)}", from=1-5, to=1-7]
+        \arrow["{(-1)^n\Omega^nh}"', from=1-5, to=2-6]
+        \arrow["{\Omega^{n-1}\varepsilon_{X}}"', from=2-6, to=1-7]
     \end{tikzcd}\end{equation}
-    By \autoref{shift_dt_left}, the row in the following commutative diagram is a distinguished triangle:
-    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXE9tZWdhIFoiXSxbMiwwLCJYIl0sWzQsMCwiWSJdLFs2LDAsIlxcU2lnbWFcXE9tZWdhIFoiXSxbMSwxLCJcXE9tZWdhXFxTaWdtYSBYIl0sWzAsMSwiLVxcd3QgaCJdLFsxLDIsImYiXSxbMiwzLCJcXHd0e1xcT21lZ2EgZ30iXSxbMCw0LCItXFxPbWVnYSBoIiwyXSxbNCwxLCJcXGV0YV9YXnstMX0iLDJdXQ==
+    First of all, to see exactness at $\Omega^nY$ and $\Omega^nZ$, consider the following commutative diagram:
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXE9tZWdhXm5YIl0sWzIsMCwiXFxPbWVnYV5uWSJdLFs0LDAsIlxcT21lZ2FebloiXSxbNiwwLCJcXE9tZWdhXntuLTF9WCJdLFs1LDEsIlxcT21lZ2FeblxcU2lnbWEgWCJdLFswLDIsIlxcT21lZ2FeblgiXSxbMiwyLCJcXE9tZWdhXm5ZIl0sWzQsMiwiXFxPbWVnYV5uWiJdLFs2LDIsIlxcU2lnbWFcXE9tZWdhXm5YIl0sWzAsMSwiKC0xKV5uXFxPbWVnYV5uZiJdLFsxLDIsIigtMSleblxcT21lZ2FebmciXSxbMiwzLCIoLTEpXm5cXE9tZWdhXntuLTF9KFxcdmFyZXBzaWxvbl9YXFxjaXJjIFxcT21lZ2EgaCkiXSxbMiw0LCIoLTEpXm5cXE9tZWdhXm5oIiwxXSxbNCwzLCJcXE9tZWdhXntuLTF9XFx2YXJlcHNpbG9uX3tYfSIsMV0sWzAsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw2LCIoLTEpXm5cXE9tZWdhXm5mIl0sWzYsNywiKC0xKV5uXFxPbWVnYV5uZyJdLFs3LDgsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDYsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMyw4LCJcXGV0YV97XFxPbWVnYV57bi0xfVh9Il0sWzcsNCwiKC0xKV5uXFxPbWVnYV5uaCIsMV1d
     \[\begin{tikzcd}
-        {\Omega Z} && X && Y && {\Sigma\Omega Z} \\
-        & {\Omega\Sigma X}
-        \arrow["{-\wt h}", from=1-1, to=1-3]
-        \arrow["f", from=1-3, to=1-5]
-        \arrow["{\wt{\Omega g}}", from=1-5, to=1-7]
-        \arrow["{-\Omega h}"', from=1-1, to=2-2]
-        \arrow["{\eta_X^{-1}}"', from=2-2, to=1-3]
+        {\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Omega^{n-1}X} \\
+        &&&&& {\Omega^n\Sigma X} \\
+        {\Omega^nX} && {\Omega^nY} && {\Omega^nZ} && {\Sigma\Omega^nX}
+        \arrow["{(-1)^n\Omega^nf}", from=1-1, to=1-3]
+        \arrow["{(-1)^n\Omega^ng}", from=1-3, to=1-5]
+        \arrow["{(-1)^n\Omega^{n-1}(\varepsilon_X\circ \Omega h)}", from=1-5, to=1-7]
+        \arrow["{(-1)^n\Omega^nh}"{description}, from=1-5, to=2-6]
+        \arrow["{\Omega^{n-1}\varepsilon_{X}}"{description}, from=2-6, to=1-7]
+        \arrow[Rightarrow, no head, from=1-1, to=3-1]
+        \arrow["{(-1)^n\Omega^nf}", from=3-1, to=3-3]
+        \arrow["{(-1)^n\Omega^ng}", from=3-3, to=3-5]
+        \arrow[dashed, from=3-5, to=3-7]
+        \arrow[Rightarrow, no head, from=1-3, to=3-3]
+        \arrow[Rightarrow, no head, from=1-5, to=3-5]
+        \arrow["{\eta_{\Omega^{n-1}X}}", from=1-7, to=3-7]
+        \arrow["{(-1)^n\Omega^nh}"{description}, from=3-5, to=2-6]
     \end{tikzcd}\]
-    Thus the row is exact by \autoref{distinguished_tri_is_exact}, and again we can remove the sign to get that the row in (\ref{last_bit_exact}) is exact when $n=1$. Finally, we can apply \autoref{shifted_triangle_exact} to the distinguished triangle in the above diagram to get exactness of (\ref{last_bit_exact}) when $n>1$.
+    (here the dashed arrow is the morphism which makes the diagram commute). The bottom row is distinguished by \autoref{big_shift_left_dt}. Then by axiom TR0, the top row is distinguished, and thus exact by \autoref{distinguished_tri_is_exact}. Thus we have shown exactness of (\ref{diag_asdjsaj}) at $\Omega^nY$ and $\Omega^nZ$. It remains to show exactness at $\Omega^{n-1}X$. In the case $n=1$, we want to show exactness at $X$ in the following diagram:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE9tZWdhIFoiXSxbMiwwLCJYIl0sWzQsMCwiWSJdLFsxLDEsIlxcT21lZ2FcXFNpZ21hIFgiXSxbMCwxLCItKFxcdmFyZV9YXFxjaXJjXFxPbWVnYSBoKSJdLFsxLDIsImYiXSxbMCwzLCItXFxPbWVnYSBoIiwyXSxbMywxLCJcXHZhcmVfWCIsMl1d
+    \[\begin{tikzcd}
+        {\Omega Z} && X && Y \\
+        & {\Omega\Sigma X}
+        \arrow["{-(\vare_X\circ\Omega h)}", from=1-1, to=1-3]
+        \arrow["f", from=1-3, to=1-5]
+        \arrow["{-\Omega h}"', from=1-1, to=2-2]
+        \arrow["{\vare_X}"', from=2-2, to=1-3]
+    \end{tikzcd}\]
+    Unravelling definitions, $\vare_X\circ\Omega h$ is precisely the adjoint $\wt h:\Omega Z\to X$ of $h:Z\to\Sigma X$, in which case we have that the row in the above diagram fits into a distinguished triangle by \autoref{shift_dt_left}, and thus it is exact by \autoref{distinguished_tri_is_exact}. To see exactness at $\Omega^{n-1}X$ in diagram (\ref{diag_asdjsaj}), note that if we apply \autoref{shift_dt_left} to the sequence \autoref{big_shift_left_dt} for $n-1$, then we get that the following composition fits into a distinguished triangle, and is thus exact:
+    \[\Omega^nZ\xrightarrow{-k}\Omega^{n-1}X\xrightarrow{(-1)^{n-1}\Omega^{n-1}f}\Omega^{n-1}Y,\]
+    where $k:\Omega(\Omega^{n-1}Z)\to\Omega^{n-1}X$ is the adjoint of the composition
+    \[\Omega^{n-1}Z\xrightarrow{(-1)^{n-1}\Omega^{n-1}h}\Omega^{n-1}\Sigma X\xrightarrow{\Omega^{n-2}\vare_X}\Omega^{n-2}X\xrightarrow{\eta_{\Omega^{n-2}X}}\Sigma\Omega^{n-1}X.\]
+    Further expanding how adjoints are constructed, $k$ is the composition
+    \[\Omega^nZ\xrightarrow{(-1)^{n-1}\Omega^nh}\Omega^{n}\Sigma X\xrightarrow{\Omega^{n-1}\vare_X}\Omega^{n-1}X\xrightarrow{\Omega\eta_{\Omega^{n-2}X}}\Omega\Sigma\Omega^{n-1}X\xrightarrow{\vare_{\Omega^{n-1}X}}\Omega^{n-1}X.\]
+    Thus, in order to show exactness of (\ref{diag_asdjsaj}) at $\Sigma^{n-1}X$, it suffices to show that $k=(-1)^{n-1}\Omega^{n-1}(\vare_X\circ\Omega h)$. To that end, consider the following diagram:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXm5aIl0sWzEsMCwiXFxPbWVnYV5uXFxTaWdtYSBYIl0sWzIsMCwiXFxPbWVnYV57bi0xfVgiXSxbMywwLCJcXE9tZWdhXFxTaWdtYVxcT21lZ2Fee24tMX1YIl0sWzMsMiwiXFxPbWVnYV57bi0xfVgiXSxbMCwyLCJcXE9tZWdhXm5cXFNpZ21hIFgiXSxbMCwxLCIoLTEpXntuLTF9XFxPbWVnYV5uaCJdLFsxLDIsIlxcT21lZ2Fee24tMX1cXHZhcmVfWCJdLFsyLDMsIlxcT21lZ2FcXGV0YV97XFxPbWVnYV57bi0yfVh9Il0sWzMsNCwiXFx2YXJlX3tcXE9tZWdhXntuLTF9WH0iXSxbMCw1LCIoLTEpXntuLTF9XFxPbWVnYV5uaCIsMl0sWzUsNCwiXFxPbWVnYV57bi0xfVxcdmFyZV9YIiwyXSxbMiw0LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    \[\begin{tikzcd}
+        {\Omega^nZ} & {\Omega^n\Sigma X} & {\Omega^{n-1}X} & {\Omega\Sigma\Omega^{n-1}X} \\
+        \\
+        {\Omega^n\Sigma X} &&& {\Omega^{n-1}X}
+        \arrow["{(-1)^{n-1}\Omega^nh}", from=1-1, to=1-2]
+        \arrow["{\Omega^{n-1}\vare_X}", from=1-2, to=1-3]
+        \arrow["{\Omega\eta_{\Omega^{n-2}X}}", from=1-3, to=1-4]
+        \arrow["{\vare_{\Omega^{n-1}X}}", from=1-4, to=3-4]
+        \arrow["{(-1)^{n-1}\Omega^nh}"', from=1-1, to=3-1]
+        \arrow["{\Omega^{n-1}\vare_X}"', from=3-1, to=3-4]
+        \arrow[Rightarrow, no head, from=1-3, to=3-4]
+    \end{tikzcd}\]
+    The top composition is $k$, while the bottom composition is $(-1)^{n-1}\Omega^{n-1}(\vare_X\circ\Omega h)$. The left region commutes by definition, while commutativity of the right region is precisely one of the zig-zag identities applied to $\Omega^{n-2}X$. Thus, we have shown that $-k=(-1)^n\Omega^{n-1}(\vare_X\circ\Omega h)$, so (\ref{diag_asdjsaj}) is exact at $\Omega^{n-1}X$, as desired.
 \end{proof}
 
 %\begin{lemma}\label{2-of-3_suffices_to_show_cofiber}
@@ -622,13 +685,13 @@ Also important for our work is the concept of a \emph{tensor triangulated catego
         \[C\otimes X\xrightarrow{h\otimes X}\Sigma A\otimes X\xrightarrow{e_{A,X}}\Sigma(A\otimes X),\]
         respectively.
         \item Given objects $X$, $Y$, and $Z$ in $\cC$, the following diagram must commute:
-        % https://q.uiver.app/#q=WzAsNSxbMCwwLCIoXFxTaWdtYSBYXFxvdGltZXMgWSlcXG90aW1lcyBaIl0sWzEsMCwiXFxTaWdtYShYXFxvdGltZXMgWSlcXG90aW1lcyBaIl0sWzIsMCwiXFxTaWdtYSgoWFxcb3RpbWVzIFkpXFxvdGltZXMgWikiXSxbMiwxLCJcXFNpZ21hKFhcXG90aW1lcyhZXFxvdGltZXMgWikpIl0sWzAsMSwiXFxTaWdtYSBYXFxvdGltZXMoWVxcb3RpbWVzIFopIl0sWzAsMSwiZV97WCxZfVxcb3RpbWVzIFoiXSxbMSwyLCJlX3tYXFxvdGltZXMgWSxafSJdLFsyLDMsIlxcYWxwaGEiXSxbMCw0LCJcXGFscGhhIiwyXSxbNCwzLCJlX3tYLFlcXG90aW1lcyBafSIsMl1d
+        % https://q.uiver.app/#q=WzAsNSxbMCwwLCIoXFxTaWdtYSBYXFxvdGltZXMgWSlcXG90aW1lcyBaIl0sWzEsMCwiXFxTaWdtYShYXFxvdGltZXMgWSlcXG90aW1lcyBaIl0sWzIsMCwiXFxTaWdtYSgoWFxcb3RpbWVzIFkpXFxvdGltZXMgWikiXSxbMiwxLCJcXFNpZ21hKFhcXG90aW1lcyhZXFxvdGltZXMgWikpIl0sWzAsMSwiXFxTaWdtYSBYXFxvdGltZXMoWVxcb3RpbWVzIFopIl0sWzAsMSwiZV97WCxZfVxcb3RpbWVzIFoiXSxbMSwyLCJlX3tYXFxvdGltZXMgWSxafSJdLFsyLDMsIlxcU2lnbWFcXGFscGhhIl0sWzAsNCwiXFxhbHBoYSIsMl0sWzQsMywiZV97WCxZXFxvdGltZXMgWn0iLDJdXQ==
         \[\begin{tikzcd}
             {(\Sigma X\otimes Y)\otimes Z} & {\Sigma(X\otimes Y)\otimes Z} & {\Sigma((X\otimes Y)\otimes Z)} \\
             {\Sigma X\otimes(Y\otimes Z)} && {\Sigma(X\otimes(Y\otimes Z))}
             \arrow["{e_{X,Y}\otimes Z}", from=1-1, to=1-2]
             \arrow["{e_{X\otimes Y,Z}}", from=1-2, to=1-3]
-            \arrow["\alpha", from=1-3, to=2-3]
+            \arrow["\Sigma\alpha", from=1-3, to=2-3]
             \arrow["\alpha"', from=1-1, to=2-1]
             \arrow["{e_{X,Y\otimes Z}}"', from=2-1, to=2-3]
         \end{tikzcd}\]
@@ -725,5 +788,20 @@ but we just as well could have chosen isomorphisms
     \end{tikzcd}\]
     Unravelling definitions, the top composition is $e'_{X,Y\otimes Z}\circ X\otimes e_{Y,Z}'$ and the bottom composition is $e_{X\otimes Y,Z}'$, so it suffices to show this diagram commutes. The top left square commutes by coherence for symmetric monoidal categories. The trapezoid below that on the left commutes by naturality of $e$. The triangle below that commutes by coherence for symmetric monoidal categories. The top right rectangle commutes by functoriality of $-\otimes-$ and naturality of $\tau$. The small triangle below that in the middle of the diagram commutes by axiom TT4 for a tensor triangulated category. Commutativity of the trapezoid on the middle right is naturality of $e$. Finally, the remaining two regions on the bottom commutes by coherence for symmetric monoidal categories. 
 \end{proof}
+
+\begin{definition}
+    A \textit{strongly tensor triangulated category} $(\cC,\otimes,S,S^1,S^{-1},\omega,\cD)$ is the data of: 
+    \begin{itemize}
+        \item An additive symmetric monoidal category $(\cC,\otimes,S)$,
+        \item A pair of distinguished invertible elements $S^1$ and $S^{-1}$ in $\cC$ along with a ,
+        \item A collection $\cD$ of \emph{triangles} in $\cC$:
+        \[X\to Y\to Z\to S^1\otimes X.\]
+    \end{itemize}
+    These data must satisfy the following conditions:
+    \begin{itemize}
+        \item $-\otimes-$ is additive in each variable,
+        \item 
+    \end{itemize}
+\end{definition}
 
 \end{document}
