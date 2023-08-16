@@ -15,6 +15,10 @@ First, we develop the theory of things graded by an abelian group. In what follo
 	We often will denote an $A$-graded abelian group $B$ by $B_*$. Given some $a\in A$, we can define the shifted $A$-graded abelian group $B_{*+a}$ whose $b^\text{th}$ component is $B_{b+a}$.
 \end{remark}
 
+\begin{remark}
+	By the universal property of the coproduct in $\Ab$, an $A$-graded homomorphism $\varphi:B\to C$ of $A$-graded abelian groups is precisely the data of an arbitrary collection of homomorphisms $\varphi_a:B_a\to C_a$ indexed by $a\in A$. We will nearly always use this fact without comment.
+\end{remark}
+
 \begin{definition}
     More generally, given two $A$-graded abelian groups $B$ and $C$ and some $d\in A$, a group homomorphism $f:B\to C$ is \emph{an $A$-graded homomorphism of degree $d$} if it restricts to a map $B_a\to C_{a+d}$ for all $a\in A$. Thus, an $A$-graded homomorphism of degree $d$ from $B$ to $C$ is equivalently an $A$-graded homomorphism $B_*\to C_{*+d}$.
 \end{definition}
@@ -35,13 +39,7 @@ Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an 
 \end{proof}
 
 \begin{definition}
-	An $A$-graded ring $R$ is a ring such that is underlying abelian group is $A$-graded, and the multiplication map $R\times R\to R$ is a (degree 0) homomorphism of $A$-graded abelian groups (here $R$ has the structure of an $A$-graded abelian group by \autoref{product_of_A_graded}).
-\end{definition}
-
-\begin{definition}
-	Let $R$ be an $A$-graded ring. A left $A$-graded $R$-module $M$ is a left $R$-module $M$ such that $M$ is an $A$-graded abelian group, and the multiplication map $R\times M\to M$ is a homomorphism of $A$-graded abelian groups (i.e., for all $a,b\in A$ this map must restrict to $R_a\times M_b\to M_{a+b}$). Right $A$-graded $R$-modules are defined similarly. Finally, an $A$-graded $R$-bimodule is an $A$-graded abelian group $M$ along with action maps
-	\[R\times M\to M\qquad\text{and}\qquad M\times R\to M\]
-	which endow $M$ with the structure of a left and right $A$-graded $R$-module, respectively, such that given $r,s\in R$ and $m\in M$, $r\cdot(m\cdot s)=(r\cdot m)\cdot s$.
+	An $A$-graded ring $R$ is a ring such that is underlying abelian group is $A$-graded, and the multiplication map $R\times R\to R$ is a (degree 0) homomorphism of $A$-graded abelian groups (here $R\times R$ has the structure of an $A$-graded abelian group by \autoref{product_of_A_graded}).
 \end{definition}
 
 \begin{definition}
@@ -60,7 +58,7 @@ Explicitly, given an $A$-graded ring $R$ and homogeneous elements $x,y\in R$, we
 	\[r\cdot s=\(\sum_{a\in A}r_a\)\cdot\(\sum_{b\in A}s_b\)=\sum_{a,b\in A}r_a\cdot s_b=\sum_{a,b\in A}m_{a,b}(r_a,s_b).\]
 	Thus, we have shown uniqueness. It remains to show this product actually gives $R$ the structure of a ring.  First we claim that the sum on the right is actually finite. Note there exists only finitely many nonzero $r_a$'s and $s_b$'s, and if $s_b=0$ then 
 	\[m_{a,b}(r_a,0)=m_{a,b}(r_a,0+0)\overset{(*)}=m_{a,b}(r_a,0)+m_{a,b}(r_a,0)\implies m_{a,b}(r_a,0)=0,\]
-	where $(*)$ follows from bilinearity of $m_{a,b}$. A similar argument yields that $m_{a,b}(0,r_b)=0$ for all $a,b\in A$. Hence indeed $m_{a,b}(r_a,s_b)$ is zero for all but finitely many pairs $(a,b)\in A^2$, as desired. Observe that in particular
+	where $(*)$ follows from bilinearity of $m_{a,b}$. A similar argument yields that $m_{a,b}(0,s_b)=0$ for all $a,b\in A$. Hence indeed $m_{a,b}(r_a,s_b)$ is zero for all but finitely many pairs $(a,b)\in A^2$, as desired. Observe that in particular
 	\[(r\cdot s)_a=\sum_{b+c=a}m_{b,c}(r_b,s_c)=\sum_{b\in A}m_{b,a-b}(r_b,s_{a-b})=\sum_{c\in A}m_{a-c,c}(r_{a-c},s_{c}).\]
 	Now we claim this multiplication is associative. Given $t=\sum_{a\in A}t_a\in R$, we have
 	\begin{align*}
@@ -73,9 +71,7 @@ Explicitly, given an $A$-graded ring $R$ and homogeneous elements $x,y\in R$, we
 		&=\sum_{a,c\in A}m_{a,c}(r_a,(s\cdot t)_c)=r\cdot(s\cdot t),
 	\end{align*}
 	where each occurrence of $(1)$ follows by bilinearity of the $m_{a,b}$'s, each occurrence of $(2)$ is associativity of the $m_{a,b}$'s, and $(3)$ is obtained by re-indexing by re-defining $a:=c$, $b:=a-c$, and $c:=a+b-c$. Next, we wish to show that the distinguished element $1\in R_0$ is a unit with respect to this multiplication. Indeed, we have
-	\[1\cdot r\overset{(1)}=\sum_{a\in A}m_{0,a}(1,r_a)\overset{(2)}=\sum_{a\in A}r_a=r\]
-	and
-	\[r\cdot 1\overset{(1)}=\sum_{a\in A}m_{a,0}(r_a,1)\overset{(2)}=\sum_{a\in A}r_a=r,\]
+	\[1\cdot r\overset{(1)}=\sum_{a\in A}m_{0,a}(1,r_a)\overset{(2)}=\sum_{a\in A}r_a=r\qquad\text{and}\qquad r\cdot 1\overset{(1)}=\sum_{a\in A}m_{a,0}(r_a,1)\overset{(2)}=\sum_{a\in A}r_a=r,\]
 	where $(1)$ follows by the fact that $m_{a,b}(0,-)=m_{a,b}(-,0)=0$, which we have shown above, and $(2)$ follows by unitality of the $m_{0,a}$'s and $m_{0,a}$'s, respectively. Finally, we wish to show that this product is distributive. Indeed, we have
 	\begin{align*}
 		r\cdot(s+t)&=\sum_{a,b\in A}m_{a,b}(r_a,(s+t)_b) \\
@@ -85,7 +81,13 @@ Explicitly, given an $A$-graded ring $R$ and homogeneous elements $x,y\in R$, we
 	where $(*)$ follows by bilinearity of $m_{a,b}$. An entirely analagous argument yields that $(r+s)\cdot t=(r\cdot t)+(s\cdot t)$.
 \end{proof}
 
-When working with $A$-graded abelian groups, we will freely use the above proposition without comment. 
+When working with $A$-graded rings, we will often freely use the above proposition without comment. 
+
+\begin{definition}
+	Let $R$ be an $A$-graded ring. A left $A$-graded $R$-module $M$ is a left $R$-module $M$ such that $M$ is an $A$-graded abelian group, and the multiplication map $R\times M\to M$ is a homomorphism of $A$-graded abelian groups (i.e., for all $a,b\in A$ this map must restrict to $R_a\times M_b\to M_{a+b}$). Right $A$-graded $R$-modules are defined similarly. Finally, an $A$-graded $R$-bimodule is an $A$-graded abelian group $M$ along with $A$-graded action maps
+	\[R\times M\to M\qquad\text{and}\qquad M\times R\to M\]
+	which endow $M$ with the structure of a left and right $A$-graded $R$-module, respectively, such that given $r,s\in R$ and $m\in M$, $r\cdot(m\cdot s)=(r\cdot m)\cdot s$. Morphisms between $A$-graded $R$-(bi)modules are precisely $A$-graded $R$-(bi)module homomorphisms.
+\end{definition}
 
 \begin{proposition}\label{tensor_of_A_graded_is_A_graded}
 	Let $R$ be an $A$-graded ring, and suppose we have a right $A$-graded $R$-module $M$ and a left $A$-graded $R$-module $N$. Then the tensor product
@@ -95,19 +97,19 @@ When working with $A$-graded abelian groups, we will freely use the above propos
 \begin{proof}
 	By definition, since $M$ and $N$ are $A$-graded abelian groups, they are generated (as abelian groups) by their homogeneous elements. Thus it follows that $M\otimes_RN$ is generated by \textit{homogeneous pure tensors}, that is, elements of the form $m\otimes n$ with $m\in M$ and $n\in N$ homogeneous. Now, given a homogeneous pure tensor $m\otimes n$, we define its \textit{degree} by the formula $|m\otimes n|:=|m|+|n|$. It follows this formula is well-defined by checking that given homogeneous elements $m\in M$, $n\in N$, and $r\in R$ that
 	\[|(m\cdot r)\otimes n|=|m\cdot r|+|n|=|m|+|r|+|n|=|m|+|r\cdot n|=|m\otimes(r\cdot n)|.\]
-	Thus, we may define $(M\otimes_RN)_a$ to be the subgroup of $M\otimes_RN$ generated by those pure homogeneous tensors of degree $a$. Now, we construct a map
+	Thus, we may define $(M\otimes_RN)_a$ to be the subgroup of $M\otimes_RN$ generated by those pure homogeneous tensors of degree $a$. Now, consider the map
 	\[\Phi:M\times N\to\bigoplus_{a\in A}(M\otimes_RN)_a\]
 	which takes a pair $(m,n)=\sum_{a\in A}(m_a,n_a)$ to the element $\Phi(m,n)$ whose $a^\text{th}$ component is
-	\[(\Phi(m,n))_a:=\sum_{b+c=a}m_a\otimes n_a.\]
-	It is straightforward to see that this map is $R$-balanced, in the sense that it is additive in each argument and $\Phi(m\cdot r,n)=\Phi(m,r\cdot n)$ for all $m\in M$, $n\in N$, and $r\in R$. Thus by the universal property of $M\otimes_RN$, we get a lift $\wt\Phi:M\otimes_RN\to\bigoplus_{a\in A}(M\otimes_RN)_a$. Now, also consider the canonical map
+	\[(\Phi(m,n))_a:=\sum_{b+c=a}m_b\otimes n_c.\]
+	It is straightforward to see that this map is $R$-balanced, in the sense that it is additive in each argument and $\Phi(m\cdot r,n)=\Phi(m,r\cdot n)$ for all $m\in M$, $n\in N$, and $r\in R$. Thus by the universal property of $M\otimes_RN$, we get a homomorphism of abelian groups $\wt\Phi:M\otimes_RN\to\bigoplus_{a\in A}(M\otimes_RN)_a$ lifting $\Phi$ along the canonical map $M\times N\to M\otimes_RN$. Now, also consider the canonical map
 	\[\Psi:\bigoplus_{a\in A}(M\otimes_RN)_a\to M\otimes_RN.\]
-	We would like to show $\wt\Phi$ and $\Psi$ are inverses of eah other. It suffices to show this on generators. Let $m\otimes n$ be a pure homogeneous tensor with $m=m_a\in M_a$ and $n=n_a\in N_b$. Then we have
+	We would like to show $\wt\Phi$ and $\Psi$ are inverses of eah other. Since $\wt\Phi$ and $\Psi$ are both homomorphisms, it suffices to show this on generators. Let $m\otimes n$ be a homogeneous pure tensor with $m=m_a\in M_a$ and $n=n_b\in N_b$. Then we have
 	\[\Psi(\wt\Phi(m\otimes n))=\Psi\(\bigoplus_{a\in A}\sum_{b+c=a}m_b\otimes n_c\)\overset{(*)}=\Psi(m\otimes n)=m\otimes n,\]
 	and
 	\[\wt\Phi(\Psi(m\otimes n))=\wt\Phi(m\otimes n)=\bigoplus_{a\in A}\sum_{b+c=a}m_b\otimes n_c\overset{(*)}=m\otimes n,\]
 	where both occurrences of $(\ast)$ follow by the fact that $m_b\otimes n_c=0$ unless $b=c=a$, in which case $m_a\otimes n_a=m\otimes n$. Thus since $\Psi$ is an isomorphism, $M\otimes_RN$ is indeed an $A$-graded abelian group, as desired.
 
-	Now, suppose that $M$ is an $A$-graded $R$-bimodule, so there exists a left and right action of $R$ on $M$ such that given $r,s\in R$ and $m\in M$ we have $r\cdot(m\cdot s)=(r\cdot m)\cdot s$. Then we would like to show that given a left $A$-graded $R$-module $N$ that $M\otimes_RN$ is canonically a left $A$-graded $R$-module. Indeed, define the action of $R$ on $M\otimes_RN$ on pure tensors by the formula
+	Now, suppose that $M$ is an $A$-graded $R$-bimodule, so there exists left and right $A$-graded actions of $R$ on $M$ such that given $r,s\in R$ and $m\in M$ we have $r\cdot(m\cdot s)=(r\cdot m)\cdot s$. Then we would like to show that given a left $A$-graded $R$-module $N$ that $M\otimes_RN$ is canonically a left $A$-graded $R$-module. Indeed, define the action of $R$ on $M\otimes_RN$ on pure tensors by the formula
 	\[r\cdot(m\otimes n)=(r\cdot m)\otimes n.\]
 	First of all, clearly this map is $A$-graded, as if $r\in R_a$, $m\in M_b$, and $n\in N_c$ then $(r\cdot m)\otimes n$, by definition, has degree $|r\cdot m|+|n|=|r|+|m|+|n|$ (the last equality follows since the left action of $R$ on $M$ is $A$-graded). In order to show the above map defines a left module structure, it suffices to show that given pure tensors $m\otimes n,m'\otimes n'\in M\otimes_RN$ and elements $r,r'\in R$ that
 	\begin{enumerate}
@@ -403,22 +405,22 @@ When working with $A$-graded abelian groups, we will freely use the above propos
 %	\todo{TODO}
 %\end{proof}
 
-\begin{lemma}\label{tensor_shift_A_graded}
-	Let $R$ be an $A$-graded ring, and suppose we have an $A$-graded $R$-bimodule $M$. Then for all $a\in A$, we have an $A$-graded isomorphism of left $A$-graded $R$-modules
-	\[M\otimes_R R_{*+a}\cong M_{*+a}\]
-	induced by the assignment
-	\[M\times R_{*+a}\to M_{*+a}\]
-	sending $m\in M_b$ and $r\in R_{c+a}$ to $m\cdot r\in M_{b+c+a}$ (where here $M\otimes_RR$ has the structure of a left $A$-graded $R$-module by \autoref{tensor_of_A_graded_is_A_graded}, and $m\cdot r$ denotes the right action of $r$ on $m$).
-\end{lemma}
-\begin{proof}
-	First of all, note that if you ignore the grading then the map $M\times R_{*+a}\to M_{*+a}$ is simply the structure map for the right action of $R$ on $M$. In particular, by the module axioms this map is $R$-balanced, so it does indeed induce an $A$-graded homomorphism of $A$-graded abelian groups $\varphi:M\otimes_RR_{*+a}\to M_{*+a}$. Furthermore, note this map is actually a homomorphism of left $A$-graded $R$-modules, as given $m\in M$ and $r,r'\in R$, we have $r\cdot(m\cdot r')=(r\cdot m)\cdot r'$, since $M$ is a bimodule. Now, to see this map is an isomorphism, it suffices to construct an inverse. Indeed, define the map
-	\[\psi:M_{*+a}\to M\otimes_RR_{*+a}\]
-	to send $m\mapsto m\otimes 1$. First of all note this map is $A$-graded, as given $m\in M_{b+a}$, we have $\psi(m)=m\otimes 1$ has degree $|m|+|1|=|m|=b+a$, by definition of the graded structure on $M\otimes_RR_{*+a}$. Note that it is a homomorphism of left $R$-modules, as given $m,m'\in M$ and $r,r'\in R$ we have
-	\[\psi(rm+r'm')=(rm+r'm')\otimes 1=r(m\otimes1)+r'(m'\otimes1)=r\psi(m)+r'\psi(m').\]
-	Now, to see $\psi$ and $\varphi$ are inverses, note first that given $m\in M_{*+a}$ that
-	\[\varphi(\psi(m))=\varphi(m\otimes 1)=m\cdot1=m,\]
-	and given $m\otimes r\in M\otimes_RR_{*+a}$, 
-	\[\psi(\varphi(m\otimes r))=\psi(m\cdot r)=(m\cdot r)\otimes 1=m\otimes(r\cdot 1)=m\otimes r.\]
-\end{proof}
+%\begin{lemma}\label{tensor_shift_A_graded}
+	%Let $R$ be an $A$-graded ring, and suppose we have an $A$-graded $R$-bimodule $M$. Then for all $a\in A$, we have an $A$-graded isomorphism of left $A$-graded $R$-modules
+	%\[M\otimes_R R_{*+a}\cong M_{*+a}\]
+	%induced by the assignment
+	%\[M\times R_{*+a}\to M_{*+a}\]
+	%sending $m\in M_b$ and $r\in R_{c+a}$ to $m\cdot r\in M_{b+c+a}$ (where here $M\otimes_RR$ has the structure of a left $A$-graded $R$-module by \autoref{tensor_of_A_graded_is_A_graded}, and $m\cdot r$ denotes the right action of $r$ on $m$).
+%\end{lemma}
+%\begin{proof}
+	%First of all, note that if you ignore the grading then the map $M\times R_{*+a}\to M_{*+a}$ is simply the structure map for the right action of $R$ on $M$. In particular, by the module axioms this map is $R$-balanced, so it does indeed induce an $A$-graded homomorphism of $A$-graded abelian groups $\varphi:M\otimes_RR_{*+a}\to M_{*+a}$. Furthermore, note this map is actually a homomorphism of left $A$-graded $R$-modules, as given $m\in M$ and $r,r'\in R$, we have $r\cdot(m\cdot r')=(r\cdot m)\cdot r'$, since $M$ is a bimodule. Now, to see this map is an isomorphism, it suffices to construct an inverse. Indeed, define the map
+	%\[\psi:M_{*+a}\to M\otimes_RR_{*+a}\]
+	%to send $m\mapsto m\otimes 1$. First of all note this map is $A$-graded, as given $m\in M_{b+a}$, we have $\psi(m)=m\otimes 1$ has degree $|m|+|1|=|m|=b+a$, by definition of the graded structure on $M\otimes_RR_{*+a}$. Note that it is a homomorphism of left $R$-modules, as given $m,m'\in M$ and $r,r'\in R$ we have
+	%\[\psi(rm+r'm')=(rm+r'm')\otimes 1=r(m\otimes1)+r'(m'\otimes1)=r\psi(m)+r'\psi(m').\]
+	%Now, to see $\psi$ and $\varphi$ are inverses, note first that given $m\in M_{*+a}$ that
+	%\[\varphi(\psi(m))=\varphi(m\otimes 1)=m\cdot1=m,\]
+	%and given $m\otimes r\in M\otimes_RR_{*+a}$, 
+	%\[\psi(\varphi(m\otimes r))=\psi(m\cdot r)=(m\cdot r)\otimes 1=m\otimes(r\cdot 1)=m\otimes r.\]
+%\end{proof}
 
 \end{document}

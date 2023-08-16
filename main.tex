@@ -127,6 +127,9 @@
   \arrowfill@\leftarrow\relbar\rightarrow}
 \makeatother
 
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
 
 \newcommand{\from}{\colon}
 \newcommand{\sseq}{\subseteq}
@@ -259,11 +262,13 @@
 %\setcounter{tocdepth}{0}
 \tableofcontents
 
-test
-
 \section{Introduction}
 
-\subfile{subfiles/1introduction.tex}
+\subfile{subfiles/0introduction.tex}
+
+\section{Triangulated categories with sub-Picard grading}\label{section:tri_cat_with_sub-picard_grading}
+
+\subfile{subfiles/1tri_cat_w_subp_grading.tex}
 
 \section{The Adams spectral sequence}
 
@@ -291,7 +296,7 @@ test
 
 \subfile{subfiles/7coalgebra.tex}
 
-\section{Monoid objects in a stable homotopy category}\label{monoid_objects}
+\section{Monoid objects}\label{monoid_objects}
 
 \subfile{subfiles/8monoid.tex}
 
