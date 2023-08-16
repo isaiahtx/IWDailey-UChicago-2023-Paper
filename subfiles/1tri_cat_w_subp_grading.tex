@@ -1,0 +1,306 @@
+\documentclass[../main.tex]{subfiles}
+
+\makeatletter
+\renewcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+\begin{document}
+
+\subsection{Setup}\label{setup}
+
+In order to construct an abstract version of the Adams spectral sequence, we need to work in some axiomatic version of a stable homotopy category $\cSH$ which acts like the familiar classical stable homotopy category $\hoSp$ (\Cref{classical}) or the motivic stable homotopy category $\SH\scS$ over some base scheme $\scS$ (\Cref{motivic}). 
+
+\begin{definition}\label{defn_compact}
+	Let $\cC$ be an additive category with arbitrary (small) coproducts. Then an object $X$ in $\cC$ is \emph{compact} if, for any collection of objects $Y_i$ in $\cC$ indexed by some (small) set $I$, the canonical map
+	\[\coprod_i\cC(X,Y_i)\to\cC(X,\coprod_iY_i)\]
+	is an isomorphism of abelian groups. (Explicitly, the above map takes a generator $x\in\cC(X,Y_i)$ to the composition $X\xr xY_i\into\coprod_iY_i$.)
+\end{definition}
+
+
+\begin{definition}\label{sub_Picard_grading_defn}
+	Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}), a \emph{sub-Picard grading} on $\cC$ is the following data:
+	\begin{itemize}
+		\item A pointed abelian group $(A,\1)$ along with a homomorphism of pointed groups $h:(A,\1)\to(\Pic\cC,\Sigma S)$, where $\Pic\cC$ is the \emph{Picard group} of isomorphism classes of invertible objects in $\cC$.\footnote{Recall an object $X$ is a symmetric monoidal category is \emph{invertible} if there exists some object $Y$ and an isomorphism $S\cong X\otimes Y$.}
+		\item For each $a\in A$, a chosen representative $S^a$ in the isomorphism class $h(a)$ such that each $S^a$ is a compact object (\autoref{defn_compact}) and $S^0=S$.
+		\item A chosen isomorphism $\nu:\Sigma S\xr\cong S^\1$.
+		\item For each $a,b\in A$, an isomorphism $\phi_{a,b}:S^{a+b}\to S^a\otimes S^b$. This family of isomorphisms is required to be \emph{coherent}, in the following sense:
+		\begin{itemize}
+			\item For all $a\in A$, we must have that $\phi_{a,0}$ coincides with the right unitor $S^{a}\xrightarrow\cong S^a\otimes S$ and $\phi_{0,a}$ coincides the left unitor $S^a\xrightarrow\cong S\otimes S^a$.
+			\item For all $a,b,c\in A$, the following ``associativity diagram'' must commute:
+			\[\begin{tikzcd}
+				{S^{a+b}\otimes S^c} & {S^{a+b+c}} & {S^a\otimes S^{b+c}} \\
+				{(S^a\otimes S^b)\otimes S^c} && {S^a\otimes(S^b\otimes S^c)}
+				\arrow["{\phi_{a+b,c}}"', from=1-2, to=1-1]
+				\arrow["{\phi_{a,b+c}}", from=1-2, to=1-3]
+				\arrow["{S^a\otimes\phi_{b,c}}", from=1-3, to=2-3]
+				\arrow["{\phi_{a,b}\otimes S^c}"', from=1-1, to=2-1]
+				\arrow["\cong", from=2-1, to=2-3]
+			\end{tikzcd}\]
+		\end{itemize}
+	\end{itemize}
+\end{definition}
+
+\begin{remark}\label{unique_comp_Sas}
+	Note that by induction the coherence conditions for the $\phi_{a,b}$'s in the above definition say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of products of $\phi_{a,b}$, identities, associators, unitors, and their inverses.
+\end{remark}
+
+From now on we fix a monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ with arbitrary (small) (co)products and sub-Picard grading $(A,\1,h,\{S^a\},\nu,\{\phi_{a,b}\})$.
+We establish some conventions. First of all, given %objects $X_1,\ldots,X_n$ in $\cSH$, we write $X_1\otimes\cdots\otimes X_n$ to denote the object
+%\[X_1\otimes(X_2\otimes\cdots(X_{n-1}\otimes X_n)).\]
+%In particular, given 
+an object $X$ and a natural number $n>0$, we write
+\[X^n:=\overbrace{X\otimes\cdots\otimes X}^\text{$n$ times}\qquad\text{and}\qquad X^0:=S.\]
+We denote the associator, symmetry, left unitor, and right unitor isomorphisms in $\cSH$ by
+\[\begin{split}
+	\alpha_{X,Y,Z}:(X\otimes Y)\otimes Z&\xrightarrow\cong X\otimes(Y\otimes Z) \\
+	\lambda_X:S\otimes  X&\xrightarrow\cong X 
+\end{split}\qquad\qquad\begin{split}
+	\tau_{X,Y}:X\otimes Y &\xrightarrow\cong Y\otimes X\\
+	\rho_X:X\otimes S&\xrightarrow\cong X.
+\end{split}\]
+Often we will drop the subscripts. Furthermore, by the coherence theorem for symmetric monoidal categories, we will often assume $\alpha$, $\rho$, and $\lambda$ are actual equalities. Given some inte, there exists some isomorphismger $n\in\bZ$, we will write a bold $\n$ to denote the element $n\cdot\1$ in $A$. Note that we can use the isomorphism $\nu:S^\1\otimes-\cong\Sigma$ to construct a natural isomorphism $S^\1\otimes-\cong\Sigma$:
+\[S^\1\otimes X\xrightarrow{\nu\otimes X}\Sigma S\otimes X\xrightarrow{e_{S,X}}\Sigma(S\otimes X)\xrightarrow{\Sigma\lambda_X}\Sigma X.\]
+The last two arrows are natural in $X$ by definition. The first arrow is natural in $X$ by functoriality of $-\otimes-$. By abuse of notation, we will also use $\nu$ to denote this natural isomorphism. Furthermore, under this isomorphism, $e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong \Sigma(X\otimes Y)$ corresponds to the associator, by commutativity of the following diagram:
+% https://q.uiver.app/#q=WzAsOSxbMCwwLCIoU15cXDFcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMCwyLCJTXlxcMVxcb3RpbWVzKFhcXG90aW1lcyBZKSJdLFsxLDAsIihcXFNpZ21hIFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMiwwLCJcXFNpZ21hKFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMywwLCJcXFNpZ21hIFhcXG90aW1lcyBZIl0sWzMsMiwiXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMSwyLCJcXFNpZ21hIFNcXG90aW1lcyAoWFxcb3RpbWVzIFkpIl0sWzIsMiwiXFxTaWdtYShTXFxvdGltZXMgKFhcXG90aW1lcyBZKSkiXSxbMiwxLCJcXFNpZ21hKChTXFxvdGltZXMgWClcXG90aW1lcyBZKSJdLFswLDEsIlxcYWxwaGEiLDJdLFswLDIsIihcXG51XFxvdGltZXMgWClcXG90aW1lcyBZIl0sWzIsMywiZV97UyxYfVxcb3RpbWVzIFkiXSxbMyw0LCJcXFNpZ21hXFxsYW1iZGFfWFxcb3RpbWVzIFkiXSxbNCw1LCJlX3tYLFl9Il0sWzEsNiwiXFxudVxcb3RpbWVzIChYXFxvdGltZXMgWSkiLDJdLFs2LDcsImVfe1MsWFxcb3RpbWVzIFl9IiwyXSxbNyw1LCJcXFNpZ21hXFxsYW1iZGFfe1hcXG90aW1lcyBZfSIsMl0sWzIsNiwiXFxhbHBoYSJdLFszLDgsImVfe1NcXG90aW1lcyBYLFl9IiwyXSxbOCw3LCJcXFNpZ21hXFxhbHBoYSIsMl0sWzgsNSwiXFxTaWdtYShcXGxhbWJkYV9YXFxvdGltZXMgWSkiLDFdXQ==
+\[\begin{tikzcd}
+	{(S^\1\otimes X)\otimes Y} & {(\Sigma S\otimes X)\otimes Y} & {\Sigma(S\otimes X)\otimes Y} & {\Sigma X\otimes Y} \\
+	&& {\Sigma((S\otimes X)\otimes Y)} \\
+	{S^\1\otimes(X\otimes Y)} & {\Sigma S\otimes (X\otimes Y)} & {\Sigma(S\otimes (X\otimes Y))} & {\Sigma(X\otimes Y)}
+	\arrow["\alpha"', from=1-1, to=3-1]
+	\arrow["{(\nu\otimes X)\otimes Y}", from=1-1, to=1-2]
+	\arrow["{e_{S,X}\otimes Y}", from=1-2, to=1-3]
+	\arrow["{\Sigma\lambda_X\otimes Y}", from=1-3, to=1-4]
+	\arrow["{e_{X,Y}}", from=1-4, to=3-4]
+	\arrow["{\nu\otimes (X\otimes Y)}"', from=3-1, to=3-2]
+	\arrow["{e_{S,X\otimes Y}}"', from=3-2, to=3-3]
+	\arrow["{\Sigma\lambda_{X\otimes Y}}"', from=3-3, to=3-4]
+	\arrow["\alpha", from=1-2, to=3-2]
+	\arrow["{e_{S\otimes X,Y}}"', from=1-3, to=2-3]
+	\arrow["\Sigma\alpha"', from=2-3, to=3-3]
+	\arrow["{\Sigma(\lambda_X\otimes Y)}"{description}, from=2-3, to=3-4]
+\end{tikzcd}\]
+The left square commutes by naturality of $\alpha$. Commutativity of the middle square is axiom TT4 for a tensor triangulated category. Commutativity of the right trapezoid is naturality of $e$. Finally the bottom triangle commutes by coherence for monoidal categories and functoriality of $\Sigma$.
+%
+%\begin{remark}
+	%In light of the above discussion, from now on we will impose the condition that $\Sigma=S^\1\otimes-$ and $e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong\Sigma(X\otimes Y)$ is the associator $\alpha:(S^\1\otimes X)\otimes Y\xrightarrow\alpha S^\1\otimes(X\otimes Y)$.
+%\end{remark}
+
+Given some $a\in A$, we define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a}=S^{-a}\otimes-$. We specifically define $\Omega:=\Omega^\1$. We will see later that for each $a\in A$, $\Sigma^a$ and $\Omega^a$ form an adjoint equivalence of $\cSH$ (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}), so that in particular since $\Omega$ forms an adjoint equivalence with $\Sigma^\1\cong\Sigma$, $\cSH$ is canonically an \emph{adjointly} triangulated category (\autoref{adjointly_triangulated_defn}).
+
+Given two objects $X$ and $Y$ in $\cSH$, we will denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and the internal hom object by $F(X,Y)$. We can extend the abelian group $[X,Y]$ into an $A$-graded abelian group $[X,Y]_*$ by defining $[X,Y]_a:=[S^a\otimes X,Y]$. Given an object $X$ in $\cSH$ and some $a\in A$, we can define the abelian group
+\[\pi_a(X):=[S^a,X],\]
+which we call the \emph{$a^\text{th}$ stable homotopy group of $X$}. We write $\pi_*(X)$ for the $A$-graded abelian group $\bigoplus_{a\in A}\pi_a(X)$, so that in particular we have a canonical isomorphism
+\[\pi_*(X)=[S^*,X]\cong[S,X]_*.\]
+Given some other object $E$, we can define the $A$-graded abelian groups $E_*(X)$ and $E^*(X)$ by the formulas
+\[E_a(X):=\pi_a(E\otimes X)=[S^a,E\otimes X]\qquad\text{and}\qquad E^a(X):=[X,S^a\otimes E].\]
+We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$}, or just $E$-homology, and we refer to $E^*(-)$ as the \emph{cohomology theory represented by $E$}, or just $E$-cohomology. Finally, we state the following definition in $\cSH$:
+
+\begin{definition}\label{cellular}
+	Define the class of \emph{cellular} objects in $\cSH$ to be the smallest class of objects such that:
+	\begin{enumerate}
+		\item For all $a\in A$, $S^a$ is cellular.
+		\item If we have a distinguished triangle
+		\[X\to Y\to Z\to\Sigma X\]
+		such that two of the three objects $X$, $Y$, and $Z$ are cellular, than the third object is also cellular.
+		\item Given a collection of cellular objects $X_i$ indexed by some (small) set $I$, the object $\coprod_{i\in I} X_i$ is cellular (recall we have chosen $\cSH$ to have arbitrary (co)products).
+	\end{enumerate}
+\end{definition}
+
+\subsection{Miscellaneous facts about \texorpdfstring{$\cSH$}{SH}}\todo{what do I call this subsection?}
+
+\begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
+	For each $a\in A$, the isomorphisms
+	\[\eta^a_X:X\xr{\lambda_X^{-1}}S\otimes X\xr{\Phi_{a,-a}\otimes X}(S^{a}\otimes S^{-a})\otimes X\xr\alpha S^a\otimes(S^{-a}\otimes X)=\Sigma^{a}\Omega^a X\]
+	and 
+	\[\vare^a_X:\Omega^a\Sigma^a X=S^{-a}\otimes(S^a\otimes X)\xrightarrow{\alpha^{-1}}(S^{-a}\otimes S^a)\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}S\otimes X\xrightarrow{\lambda_X}X\]
+	are natural in $X$, and furthermore, they are the unit and counit respectively of the adjoint autoequivalence $(\Omega^a,\Sigma^a,\eta^a,\vare^a)$ of $\cSH$. In particular, since $\Sigma\cong\Sigma^\1$, $\Omega:=\Omega^\1$ is a left adjoint for $\Sigma$, so that $(\cSH,\Omega,\Sigma,\eta,\vare,\cD)$ is an \emph{adjointly} triangulated category (\autoref{adjointly_triangulated_defn}), where $\eta$ and $\vare$ are the compositions 
+	\[\eta:\Id_\cSH\xRightarrow{\eta^\1}\Sigma^\1\Omega\xRightarrow{\nu\Omega}\Sigma\Omega\qquad\text{and}\qquad\vare:\Omega\Sigma\xRightarrow{\Omega\nu^{-1}}\Omega\Sigma^\1\xRightarrow{\vare^\1}\Id_\cSH.\]
+\end{proposition}
+\begin{proof}
+	In this proof, we will freely employ the coherence theorem for monoidal categories (see \cite{MLCoherence}), which essentially tells us that we may assume we are working in a strict monoidal category (i.e., that the associators and unitors and are identities). Then $\eta^a_X$ and $\vare^a_X$ become simply the maps
+	\[\eta^a_X:X\xrightarrow{\phi_{a,-a}\otimes X}S^{a}\otimes S^{-a}\otimes X\qquad\text{and}\qquad\vare_X^a:S^{-a}\otimes S^{a}\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}X.\]
+	That these maps are natural in $X$ follows by functoriality of $-\otimes-$. Now, recall that in order to show that these natural isomorphisms form an \emph{adjoint} equivalence, it suffices to show that the natural isomorphisms $\eta^a:\Id_\cSH\Rightarrow\Omega^a\Sigma^a$ and $\vare^a:\Sigma^a\Omega^a\Rightarrow\Id_\cSH$ satisfy one of the two zig-zag identities:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXmEiXSxbMSwwLCJcXE9tZWdhXmFcXFNpZ21hXmFcXE9tZWdhXmEiXSxbMSwxLCJcXE9tZWdhXmEiXSxbMiwwLCJcXFNpZ21hXmFcXE9tZWdhXmFcXFNpZ21hXmEiXSxbMywwLCJcXFNpZ21hXmEiXSxbMiwxLCJcXFNpZ21hXmEiXSxbMCwxLCJcXE9tZWdhXmFcXGV0YV5hIl0sWzEsMiwiXFx2YXJlcHNpbG9uXmFcXE9tZWdhXmEiXSxbMyw1LCJcXFNpZ21hXmFcXHZhcmVwc2lsb25eYSIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcZXRhXmFcXFNpZ21hXmEiLDJdXQ==
+	\[\begin{tikzcd}
+		{\Omega^a} & {\Omega^a\Sigma^a\Omega^a} & {\Sigma^a\Omega^a\Sigma^a} & {\Sigma^a} \\
+		& {\Omega^a} & {\Sigma^a}
+		\arrow["{\Omega^a\eta^a}", from=1-1, to=1-2]
+		\arrow["{\varepsilon^a\Omega^a}", from=1-2, to=2-2]
+		\arrow["{\Sigma^a\varepsilon^a}"', from=1-3, to=2-3]
+		\arrow[Rightarrow, no head, from=1-4, to=2-3]
+		\arrow[Rightarrow, no head, from=1-1, to=2-2]
+		\arrow["{\eta^a\Sigma^a}"', from=1-4, to=1-3]
+	\end{tikzcd}\]
+	(that it suffices to show only one is \cite[Lemma 3.2]{nlab:adjoint_equivalence}). We will show that the left is satisfied. Unravelling definitions, we simply wish to show that the following diagram commutes for all $X$ in $\cSH$:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTXnstYX1cXG90aW1lcyBYIl0sWzEsMCwiU157LWF9XFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9XFxvdGltZXMgWCJdLFsxLDEsIlNeey1hfVxcb3RpbWVzIFgiXSxbMCwxLCJTXnstYX1cXG90aW1lcyBcXHBoaV97YSwtYX1cXG90aW1lcyBYIl0sWzEsMiwiXFxwaGlfey1hLGF9XnstMX1cXG90aW1lcyBTXnstYX1cXG90aW1lcyBYIl0sWzAsMiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		{S^{-a}\otimes X} & {S^{-a}\otimes S^a\otimes S^{-a}\otimes X} \\
+		& {S^{-a}\otimes X}
+		\arrow["{S^{-a}\otimes \phi_{a,-a}\otimes X}", from=1-1, to=1-2]
+		\arrow["{\phi_{-a,a}^{-1}\otimes S^{-a}\otimes X}", from=1-2, to=2-2]
+		\arrow[Rightarrow, no head, from=1-1, to=2-2]
+	\end{tikzcd}\]
+	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s (since $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, and here we are taking the unitors and associators to be equalities), so it does commute, as desired.
+\end{proof}
+
+%Whether or not this happens is essentially the entire discussion of Dugger's paper \cite{Dugger_2014}, and as it turns out, $\pi_\ast(E)$ is in fact a graded ring provided we can choose these morphisms to be \emph{coherent}, in the following sense:
+%
+%\begin{theorem}[{\cite[Proposition 7.1]{Dugger_2014}}]\label{coherent_existence}
+	%There exists a coherent family of isomorphisms
+	%\[\phi_{a,b}:S^{a+b}\xrightarrow\cong S^a\otimes S^b\]
+	%in the sense of \autoref{coherent_isos},
+	%and in particular, the set of such coherent families is in bijective correspondence with the set of normalized $2$-cocycles $Z^2(A;\mathrm{Aut}(S))_\mathit{norm}$, i.e., the set of functions $\alpha:A\times A\to\mathrm{Aut}(S)$ such that $\alpha(0,0)=\id_S$ and for all $a,b,c\in A$, $\alpha(a+b,c)\cdot\alpha(a,b)=\alpha(b,c)\cdot\alpha(a,b+c)$. 
+%\end{theorem}
+%
+%Thus, from now on we will suppose once and for all we have fixed a coherent family $\{\phi_{a,b}\}_{a,b\in A}$. Such a coherent family has very nice properties, in particular:
+
+%Of course, we get our desired result: $\pi_*(E)$ is indeed an $A$-graded ring if $E$ is a monoid object.
+%
+%\begin{proposition}\label{pi_*E_is_ring_for_E_monoid}
+	%Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$, and consider the multiplication map $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
+	%\[S^{a+b}\xrightarrow{\phi_{a,b}}S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes E\xrightarrow\mu E.\]
+	%Then this endows $\pi_*(E)$ with the structure of an $A$-graded ring with unit $e\in\pi_0(E)=[S,E]$.
+%\end{proposition}
+%\begin{proof}
+	%See \autoref{pi_*E_is_ring_for_E_monoid_appendix}. 
+%\end{proof}
+%
+%Furthermore, it turns out that if $E$ is a \emph{commutative} monoid object in $\cSH$, then $\pi_\ast(E)$ is ``$A$-graded commutative,'' in the following sense:
+%
+%\begin{proposition}
+	%For all $a,b\in A$ there exists an element $\theta_{a,b}\in\pi_0(S)=[S,S]$ (determined by choice of coherent family $\{\phi_{a,b}\}$) such that given any commutative monoid object $(E,\mu,e)$ in $\cSH$, the $A$-graded ring structure on $\pi_\ast(E)$ (\autoref{pi_*E_is_ring_for_E_monoid}) has a commutativity formula given by
+	%\[x\cdot y=y\cdot x\cdot (e\circ\theta_{a,b})\]
+	%for all $x\in\pi_a(E)$ and $y\in\pi_b(E)$.
+%	
+	%Furthermore, $\theta_{0,a}=\theta_{a,0}=\id_S$ for all $a\in A$, so that if either $x$ or $y$ has degree $0$, $x\cdot y=y\cdot x$.
+%\end{proposition}
+%\begin{proof}
+	%See \autoref{pi_*(E)_is_A-graded_commutative_if_E_is_commutative} and \autoref{theta_a,0=theta_0,a=id_S}.
+%\end{proof}
+%
+%The last ingredient in order to develop the Adams spectral sequence abstractly is a notion of \emph{cellularity} in $\cSH$:
+
+\subsection{Monoid objects in \texorpdfstring{$\cSH$}{SH}}
+
+\begin{proposition}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$ (\autoref{monoid_object}). Then $\pi_*(E)$ is canonically an $A$-graded ring via the assignment $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which takes classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
+	\[S^{a+b}\xr\phi_{a,b}S^a\otimes S^b\xr{x\otimes y}E\otimes E\xr\mu E.\]
+	In particular, the unit for this ring is the element $e\in[S,E]=\pi_0(E)$.
+\end{proposition}
+\begin{proof}
+	See \autoref{pi_*E_is_ring_for_E_monoid_appendix}.
+\end{proof}
+
+\begin{proposition}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to left $A$-graded $\pi_*(E)$-modules, where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
+	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
+	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xrightarrow{\mu\otimes X}E\otimes X.\]
+	Similarly, the assignment $X\mapsto X_*(E)$ is a functor from $\cSH$ to right $A$-graded $\pi_*(E)$-modules, where the structure map
+	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
+	sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xrightarrow{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xrightarrow{X\otimes\mu}X\otimes E.\]
+	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
+\end{proposition}
+\begin{proof}
+	See \autoref{module}.
+\end{proof}
+
+\begin{definition}\label{flat}
+	Given a monoid object $E$ in $\cSH$, we say $E$ is \emph{flat} if the canonical right $\pi_*(E)$-module structure on $E_*(E)$ (see the above proposition) is that of a flat module.
+\end{definition}
+
+%\begin{proposition}
+    %Suppose we have a distinguished triangle
+    %\[X\xr fY\xr gZ\xr h\Sigma X\]
+    %and an object $E$ in $\cSH$. Then there is an associated \emph{$E$-homology long exact sequence} of $A$-graded abelian groups:
+    %% https://q.uiver.app/#q=WzAsOSxbMiwwLCJFX3sqK1xcbisxfShaKSJdLFswLDEsIkVfeyorXFxufShYKSJdLFsxLDEsIkVfeyorXFxufShZKSJdLFsyLDEsIkVfeyorXFxufShaKSJdLFswLDIsIkVfeyorXFxuLVxcMX0oWCkiXSxbMSwyLCJFX3sqK1xcbi1cXDF9KFkpIl0sWzEsMCwiRV97KitcXG4rXFwxfShZKSJdLFswLDAsIlxcY2RvdHMiXSxbMiwyLCJcXGNkb3RzIl0sWzAsMSwiXFxwYXJ0aWFsIiwxXSxbMSwyLCJFX3sqK1xcbn0oZikiLDJdLFsyLDMsIkVfeyorXFxufShnKSJdLFszLDQsIlxccGFydGlhbCIsMV0sWzQsNSwiRV97KitcXG4tXFwxfShmKSIsMl0sWzYsMCwiRV97KitcXG4rXFwxfShnKSJdLFs3LDZdLFs1LDhdXQ==
+    %\[\begin{tikzcd}
+        %\cdots & {E_{*+\n+\1}(Y)} & {E_{*+\n+1}(Z)} \\
+        %{E_{*+\n}(X)} & {E_{*+\n}(Y)} & {E_{*+\n}(Z)} \\
+        %{E_{*+\n-\1}(X)} & {E_{*+\n-\1}(Y)} & \cdots
+        %\arrow["\partial"{description}, from=1-3, to=2-1]
+        %\arrow["{E_{*+\n}(f)}"', from=2-1, to=2-2]
+        %\arrow["{E_{*+\n}(g)}", from=2-2, to=2-3]
+        %\arrow["\partial"{description}, from=2-3, to=3-1]
+        %\arrow["{E_{*+\n-\1}(f)}"', from=3-1, to=3-2]
+        %\arrow["{E_{*+\n+\1}(g)}", from=1-2, to=1-3]
+        %\arrow[from=1-1, to=1-2]
+        %\arrow[from=3-2, to=3-3]
+    %\end{tikzcd}\]
+    %extending infinitely in either direction, where $\partial:E_{*+\n+\1}(Z)\to E_{*+\n}(X)$ takes a class $x:S^{a+\n+\1}\to E\otimes Z$ to the composition
+    %\[S^{a+\n}\cong S^{a+\n+\1}S^{-\1}\xr{x\otimes S^{-\1}} E\otimes Z\otimes S^{-\1}\xrightarrow{E\otimes h\otimes S^{-\1}}E\otimes S^\1\otimes X\otimes S^{-\1}\xr{E\otimes S^\1\otimes\tau}E\otimes S^\1\otimes S^{-\1}\otimes X\xr{E\otimes\phi_{\1,-\1}^{-1}\otimes X}E\otimes X\]
+    %(where here we are ignoring associators and unitors).  Furthermore, if $(E,\mu,e)$ is a monoid object in $\cSH$, then the above sequence is a long exact sequence of left $A$-graded $\pi_*(E)$-modules.
+%\end{proposition}
+%\begin{proof}
+	%First of all, note that by axiom TT3 for a tensor triangulated category, the following triangle is distinguished:
+	%\[E\otimes X\xr{E\otimes f}E\otimes Y\xr{E\otimes g}E\otimes Z\xr{E\otimes'h} \Sigma(E\otimes X)\]
+	%where $E\otimes' h$ is the composition
+	%\[E\otimes Z\xr{E\otimes h}E\otimes\Sigma X\xr{e_{E,X}'}\Sigma(E\otimes X),\]
+	%where $e'_{X,Y}:X\otimes\Sigma Y$ is the natural isomorphism given by the composition
+	%\[X\otimes\Sigma Y\xr{\tau_{X,\Sigma Y}}\Sigma Y\otimes X\xr{e_{Y,X}}\Sigma(Y\otimes X)\xr{\Sigma\tau_{Y,X}}\Sigma(X\otimes Y).\]
+	%(see \autoref{e'_defn}).
+	%Since $\cSH$ is adjointly tensor triangulated (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}), we can apply \autoref{dist_tri_LES} to this distinguished triangle to get a long exact sequence in $\cSH$, and applying $\pi_*=[S^*,-]$ yields the following long exact sequence of $A$-graded abelian groups:
+    %% https://q.uiver.app/#q=WzAsMTksWzQsMCwiXFxwaV8qKFxcT21lZ2Fee24rMX0oRVxcb3RpbWVzIFopKSJdLFswLDIsIlxccGlfKihcXE9tZWdhXm4oRVxcb3RpbWVzIFgpKSJdLFsyLDIsIlxccGlfKihcXE9tZWdhXm4oRVxcb3RpbWVzIFkpKSJdLFs0LDIsIlxccGlfKihcXE9tZWdhXm4oRVxcb3RpbWVzIFopKSJdLFswLDQsIlxccGlfKihcXE9tZWdhXntuLTF9KEVcXG90aW1lcyBYKSkiXSxbMiw0LCJcXGNkb3RzIl0sWzIsMCwiXFxjZG90cyJdLFs0LDQsIlxccGlfKihcXE9tZWdhKEVcXG90aW1lcyBaKSkiXSxbMCw2LCJcXHBpXyooRVxcb3RpbWVzIFgpIl0sWzIsNiwiXFxwaV8qKEVcXG90aW1lcyBZKSJdLFs0LDYsIlxccGlfKihFXFxvdGltZXMgWikiXSxbMCw4LCJcXHBpXyooXFxTaWdtYShFXFxvdGltZXMgWCkpIl0sWzIsOCwiXFxjZG90cyJdLFs0LDgsIlxccGlfKihcXFNpZ21hXntuLTF9KEVcXG90aW1lcyBaKSkiXSxbMCwxMCwiXFxwaV8qKFxcU2lnbWFee259KEVcXG90aW1lcyBYKSkiXSxbMiwxMCwiXFxwaV8qKFxcU2lnbWFee259KEVcXG90aW1lcyBZKSkiXSxbNCwxMCwiXFxwaV8qKFxcU2lnbWFee259KEVcXG90aW1lcyBaKSkiXSxbMCwxMiwiXFxwaV8qKFxcU2lnbWFee24rMX0oRVxcb3RpbWVzIFgpKSJdLFsyLDEyLCJcXGNkb3RzIl0sWzAsMSwiXFxwaV8qKFxcT21lZ2FebihcXHdpZGV0aWxkZXtFXFxvdGltZXMnaH0pKSIsMV0sWzEsMiwiXFxwaV8qKFxcT21lZ2FebihFXFxvdGltZXMgZikpIiwyXSxbMiwzLCJcXHBpXyooXFxPbWVnYV5uKEVcXG90aW1lcyBnKSkiXSxbMyw0LCJcXHBpXyooXFxPbWVnYV57bi0xfShcXHdpZGV0aWxkZXtFXFxvdGltZXMnaH0pKSIsMV0sWzQsNV0sWzYsMF0sWzUsN10sWzcsOCwiXFxwaV8qKFxcd2lkZXRpbGRle0VcXG90aW1lcydofSkiLDFdLFs4LDksIlxccGlfKihFXFxvdGltZXMgZikiLDJdLFs5LDEwLCJcXHBpXyooRVxcb3RpbWVzIGcpIl0sWzEwLDExLCJcXHBpXyooRVxcb3RpbWVzJ2gpIiwxXSxbMTEsMTJdLFsxMiwxM10sWzEzLDE0LCJcXHBpXyooXFxTaWdtYV57bi0xfShFXFxvdGltZXMnaCkpIiwxXSxbMTQsMTUsIlxccGlfKihcXFNpZ21hXm4oRVxcb3RpbWVzIGYpKSIsMl0sWzE1LDE2LCJcXHBpXyooXFxTaWdtYV5uKEVcXG90aW1lcyBnKSkiXSxbMTYsMTcsIlxccGlfKihcXFNpZ21hXntufShFXFxvdGltZXMnaCkpIiwxXSxbMTcsMThdXQ==
+    %\begin{equation}\label{E_LES_diag_1}\begin{tikzcd}
+        %&& \cdots && {\pi_*(\Omega^{n+1}(E\otimes Z))} \\
+        %\\
+        %{\pi_*(\Omega^n(E\otimes X))} && {\pi_*(\Omega^n(E\otimes Y))} && {\pi_*(\Omega^n(E\otimes Z))} \\
+        %\\
+        %{\pi_*(\Omega^{n-1}(E\otimes X))} && \cdots && {\pi_*(\Omega(E\otimes Z))} \\
+        %\\
+        %{\pi_*(E\otimes X)} && {\pi_*(E\otimes Y)} && {\pi_*(E\otimes Z)} \\
+        %\\
+        %{\pi_*(\Sigma(E\otimes X))} && \cdots && {\pi_*(\Sigma^{n-1}(E\otimes Z))} \\
+        %\\
+        %{\pi_*(\Sigma^{n}(E\otimes X))} && {\pi_*(\Sigma^{n}(E\otimes Y))} && {\pi_*(\Sigma^{n}(E\otimes Z))} \\
+        %\\
+        %{\pi_*(\Sigma^{n+1}(E\otimes X))} && \cdots
+        %\arrow["{\pi_*(\Omega^n(\widetilde{E\otimes'h}))}"{description}, from=1-5, to=3-1]
+        %\arrow["{\pi_*(\Omega^n(E\otimes f))}"', from=3-1, to=3-3]
+        %\arrow["{\pi_*(\Omega^n(E\otimes g))}", from=3-3, to=3-5]
+        %\arrow["{\pi_*(\Omega^{n-1}(\widetilde{E\otimes'h}))}"{description}, from=3-5, to=5-1]
+        %\arrow[from=5-1, to=5-3]
+        %\arrow[from=1-3, to=1-5]
+        %\arrow[from=5-3, to=5-5]
+        %\arrow["{\pi_*(\widetilde{E\otimes'h})}"{description}, from=5-5, to=7-1]
+        %\arrow["{\pi_*(E\otimes f)}"', from=7-1, to=7-3]
+        %\arrow["{\pi_*(E\otimes g)}", from=7-3, to=7-5]
+        %\arrow["{\pi_*(E\otimes'h)}"{description}, from=7-5, to=9-1]
+        %\arrow[from=9-1, to=9-3]
+        %\arrow[from=9-3, to=9-5]
+        %\arrow["{\pi_*(\Sigma^{n-1}(E\otimes'h))}"{description}, from=9-5, to=11-1]
+        %\arrow["{\pi_*(\Sigma^n(E\otimes f))}"', from=11-1, to=11-3]
+        %\arrow["{\pi_*(\Sigma^n(E\otimes g))}", from=11-3, to=11-5]
+        %\arrow["{\pi_*(\Sigma^{n}(E\otimes'h))}"{description}, from=11-5, to=13-1]
+        %\arrow[from=13-1, to=13-3]
+    %\end{tikzcd}\end{equation}
+    %where $\wt{E\otimes'h}:\Omega(E\otimes Z)\to E\otimes X$ is the left adjoint of $E\otimes'h:E\otimes Z\to\Sigma(E\otimes X)$ (note here $\Sigma^n$ and $\Omega^n$ denote $n$ applications of $\Sigma=\Sigma^\1$ and $\Omega=\Omega^\1$, respectively. They are not the same as $\Sigma^\n$ or $\Omega^\n$). Note that for all $a\in A$ and $X$ in $\cSH$, we have an isomorphism $s_X^{a,n}:\pi_*((\Sigma^a)^nX)\cong\pi_{*-n\cdot a}(X)$ given by the composition
+    %\[[S^*,\overbrace{S^a\otimes\cdots\otimes S^a}^\text{$n$ times}\otimes X]\xrightarrow{(\phi\otimes X)_*}[S^*,S^{n\cdot a}\otimes X]\cong[S^{-n\cdot a}\otimes S^*,X]\xrightarrow{(\phi_{-n\cdot a,*})^*}[S^{*-n\cdot a},X],\]
+    %where the $\phi$ in the first arrow stands for the unique isomorphism $(S^a)^n\cong S^{n\cdot a}$ that can be obtained by composing copies of products of $\phi_{a,b}$'s, associators, unitors, and their inverses, and the middle isomorphism is the adjunction given by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. It is straightforward to see that each of the above arrows is natural in $X$ (the first is natural by functoriality of $-\otimes-$, the middle is natural as it is the isomorphism given by an adjunction, and the last is clearly natural simply by unravelling definitions). Thus for all $n>0$ we have isomorphisms of exact sequences
+    %% https://q.uiver.app/#q=WzAsMTMsWzAsMCwiXFxwaV8qKFxcT21lZ2FebihFXFxvdGltZXMgWCkpIl0sWzEsMCwiXFxwaV8qKFxcT21lZ2FebihFXFxvdGltZXMgWSkpIl0sWzIsMCwiXFxwaV8qKFxcT21lZ2FebihFXFxvdGltZXMgWikpIl0sWzAsMSwiRV97KitcXG59KFgpIl0sWzEsMSwiRV97KitcXG59KFkpIl0sWzIsMSwiRV97KitcXG59KFopIl0sWzEsMiwiXFx0ZXh0e2FuZH0iXSxbMCwzLCJcXHBpXyooXFxTaWdtYV5uKEVcXG90aW1lcyBYKSkiXSxbMSwzLCJcXHBpXyooXFxTaWdtYV5uKEVcXG90aW1lcyBZKSkiXSxbMiwzLCJcXHBpXyooXFxTaWdtYV5uKEVcXG90aW1lcyBaKSkiXSxbMCw0LCJFX3sqLVxcbn0oWCkiXSxbMSw0LCJFX3sqLVxcbn0oWSkiXSxbMiw0LCJFX3sqLVxcbn0oWikiXSxbMCwxLCJcXHBpXyooXFxPbWVnYV5uKEVcXG90aW1lcyBmKSkiXSxbMSwyLCJcXHBpXyooXFxPbWVnYV5uKEVcXG90aW1lcyBnKSkiXSxbMCwzLCJzXnstXFwxLG59IiwyXSxbMyw0LCJFX3srXFxufShmKSIsMl0sWzQsNSwiRV97KitcXG59KGcpIiwyXSxbMSw0LCJzXnstXFwxLG59IiwyXSxbMiw1LCJzXnstXFwxLG59IiwyXSxbNyw4LCJcXHBpXyooXFxTaWdtYV5uKEVcXG90aW1lcyBmKSkiXSxbOCw5LCJcXHBpXyooXFxTaWdtYV5uKEVcXG90aW1lcyBnKSkiXSxbNywxMCwic157XFwxLG59IiwyXSxbMTAsMTEsIkVfeyotXFxufShmKSIsMl0sWzExLDEyLCJFX3sqLVxcbn0oZykiLDJdLFs4LDExLCJzXntcXDEsbn0iLDJdLFs5LDEyLCJzXntcXDEsbn0iLDJdXQ==
+    %\[\begin{tikzcd}
+        %{\pi_*(\Omega^n(E\otimes X))} & {\pi_*(\Omega^n(E\otimes Y))} & {\pi_*(\Omega^n(E\otimes Z))} \\
+        %{E_{*+\n}(X)} & {E_{*+\n}(Y)} & {E_{*+\n}(Z)} \\
+        %& {\text{and}} \\
+        %{\pi_*(\Sigma^n(E\otimes X))} & {\pi_*(\Sigma^n(E\otimes Y))} & {\pi_*(\Sigma^n(E\otimes Z))} \\
+        %{E_{*-\n}(X)} & {E_{*-\n}(Y)} & {E_{*-\n}(Z)}
+        %\arrow["{\pi_*(\Omega^n(E\otimes f))}", from=1-1, to=1-2]
+        %\arrow["{\pi_*(\Omega^n(E\otimes g))}", from=1-2, to=1-3]
+        %\arrow["{s^{-\1,n}}"', from=1-1, to=2-1]
+        %\arrow["{E_{+\n}(f)}"', from=2-1, to=2-2]
+        %\arrow["{E_{*+\n}(g)}"', from=2-2, to=2-3]
+        %\arrow["{s^{-\1,n}}"', from=1-2, to=2-2]
+        %\arrow["{s^{-\1,n}}"', from=1-3, to=2-3]
+        %\arrow["{\pi_*(\Sigma^n(E\otimes f))}", from=4-1, to=4-2]
+        %\arrow["{\pi_*(\Sigma^n(E\otimes g))}", from=4-2, to=4-3]
+        %\arrow["{s^{\1,n}}"', from=4-1, to=5-1]
+        %\arrow["{E_{*-\n}(f)}"', from=5-1, to=5-2]
+        %\arrow["{E_{*-\n}(g)}"', from=5-2, to=5-3]
+        %\arrow["{s^{\1,n}}"', from=4-2, to=5-2]
+        %\arrow["{s^{\1,n}}"', from=4-3, to=5-3]
+    %\end{tikzcd}\]
+    %It remains to show that the following diagram commutes:
+%\end{proof}
+
+\end{document}
