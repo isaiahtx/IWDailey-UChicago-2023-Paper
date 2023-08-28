@@ -10,6 +10,11 @@
 
 \setlength{\marginparwidth}{1in}
 
+%% indent subsections in table of contents
+\makeatletter 
+%%\def\l@subsection{\@tocline{2}{0pt}{1pc}{5pc}{}} 
+\def\l@subsection{\@tocline{2}{0pt}{2pc}{6pc}{}} \makeatother
+
 \usepackage{todonotes}
 
 %%hyperref for clickable links
@@ -45,10 +50,10 @@
 
 % Paragraph spacing
 
-%\usepackage{parskip}
-%
-%\setlength{\parskip}{0.5em}
-%\setlength{\parindent}{1.5em}
+\usepackage{parskip}
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{1.5em}
 
 %% comment these lines if you do not want to use bibtex for bibliography management.
 \usepackage[backend=biber]{biblatex}
@@ -71,6 +76,7 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{condition}[theorem]{Condition}
 \newtheorem{discussion}[theorem]{Discussion}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{convention}[theorem]{Convention}
@@ -85,6 +91,8 @@
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\imm}{im}
 \newcommand{\Mod}{\mbf{Mod}}
+\newcommand{\Gr}{\mbf{Gr}}
+\newcommand{\GrMod}{\mbf{GrMod}}
 \newcommand{\cSH}{\mathcal{SH}}
 \newcommand{\CoMod}{\mbf{CoMod}}
 \newcommand{\Top}{\mbf{Top}}
@@ -251,7 +259,7 @@
 %%% to strike through text without deleting it
 \usepackage[normalem]{ulem}
 
-\title{The Motivic Adams spectral sequence}
+\title{An axiomatic approach to the Adams spectral sequence}
 
 \author{Isaiah Dailey}
 \date{\today}
@@ -263,6 +271,8 @@
 \tableofcontents
 
 \section{Introduction}
+
+{8/28:\color{red}Prove that if $E$ and $X$ are cellular and $E_*(X)$ is a projective left $\pi_*(E)$-module, then $[X,E\otimes Y]_*\cong\Hom_{\pi_*(E)}^*(E_*(X),E_*(Y))$.}
 
 \subfile{subfiles/0introduction.tex}
 
@@ -292,9 +302,9 @@
 
 \subfile{subfiles/6spectralseqs.tex}
 
-\section{(Co)algebra}\label{(co)algebra}
+\section{\texorpdfstring{$A$}{A}-graded abelian groups, rings, and modules}\label{graded_stuff}
 
-\subfile{subfiles/7coalgebra.tex}
+\subfile{subfiles/7grading.tex}
 
 \section{Monoid objects}\label{monoid_objects}
 

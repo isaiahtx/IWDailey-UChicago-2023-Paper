@@ -1,10 +1,154 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-In what follows, we fix an abelian group $A$. We will freely use the theory and results of \autoref{(co)algebra}
+In what follows, we fix an abelian group $A$. We will freely use the theory and results of \autoref{graded_stuff}
 
 \begin{definition}
-    An \emph{$A$-graded spectral sequence} is the data of a collection of $A$-graded abelian groups $\{E_r^*\}_{r\ge r_0}$ along with homomorphisms of $A$-graded abelian groups $d_r:E_r\to E_r$ (usually of nonzero degree) such that $d_r\circ d_r=0$ and $E_{r+1}=\ker d_r/\mathrm{im}\,d_r$.
+    An \emph{$A$-graded spectral sequence} $(E_r,d_r)_{r\geq r_0}$ is the data of:\begin{itemize}
+        \item A collection of $A$-graded abelian groups $\{E_r^{*}\}_{r\geq r_0}$
+        \item A collection of $A$-graded homomorphisms $d_r:E_r\to E_r$ for $r\ge r_0$ (of possibly nonzero degree) such that $d_r\circ d_r=0$ 
+        \item For each $r\geq r_0$, an $A$-graded isomorphism $E_{r+1}\cong\ker d_r/\imm d_r$ of degree $0$ (where $\ker d_r$ and $\imm d_r$ are canonically $A$-graded by \autoref{image_and_kernel_of_A_graded_map_is_A_graded}, and their quotient is canonically $A$-graded by \autoref{quotient_of_A_graded_is_A_graded}.
+    \end{itemize}
 \end{definition}
+
+Typically we call a $\bZ^2$-graded spectral sequence a \emph{bigraded} spectral sequence, and a $\bZ^3$-graded spectral sequence is a \emph{trigraded} spectral sequence.
+
+%Let $(E_r,d_r)_{r\geq 1}$ be an $A$-graded spectral sequence. Then first of all, define the $A$-graded subgroups $Z_{1}:=\ker d_{1}\sseq E_{1}$ and $B_{1}:=\imm d_{1}\sseq E_{1}$, so that we have identifications $E_{2}\cong Z_{1}/B_{1}$, under which $d_{2}$ is given as a map
+%\[Z_{1}/B_{1}\xr{d_{2}}Z_{1}/B_{1}.\]
+%Now define $Z_{2}:=p^{-1}(\ker d_2)$ and $B_{2}:=p^{-1}(\imm d_2)$, where $p:Z_{1}\onto Z_{1}/B_{1}$ is the canonical projection map. Then since $0\sseq\imm d_{2}\sseq \ker d_{2}$, we have 
+%\[p^{-1}(0)=B_1\sseq B_{2}\sseq Z_{2},\]
+%and $\ker d_2=Z_{2}/B_{1}$ and $\imm d_2=B_{2}/B_{1}$, so we have identifications
+%\[E_3\cong\frac{Z_2/B_1}{B_2/B_1}\cong Z_2/B_2,\]
+%under which $d_3$ corresponds to a homomorphism
+%\[Z_2/B_2\xr{d_3}Z_2/B_2.\]
+%We can repeat the above process inductively.
+
+For our purposes, we will only care about spectral sequences which arise from \emph{$A$-graded unrolled exact couples}. In what follows, we follow \cite{Boardman_1999}, with minor modifications for our setting, in which everything is $A$-graded.
+
+\begin{definition}\label{unrolled_exact_couple}
+    An $A$-graded \emph{unrolled exact couple} $(D,E;i,j,k)$ is a diagram of $A$-graded abelian groups and $A$-graded homomorphisms (of possibly non-zero degree)
+    % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkRee3MrMn0iXSxbMiwwLCJEXntzKzF9Il0sWzMsMCwiRF57c30iXSxbNCwwLCJEXntzLTF9Il0sWzUsMCwiXFxjZG90cyJdLFsxLDEsIkVee3MrMn0iXSxbMiwxLCJFXntzKzF9Il0sWzMsMSwiRV5zIl0sWzQsMSwiRV57cy0xfSJdLFswLDFdLFsxLDIsImkiXSxbMiwzLCJpIl0sWzMsNCwiaSJdLFs0LDVdLFsxLDYsImoiXSxbMiw3LCJqIl0sWzMsOCwiaiJdLFs0LDksImoiXSxbNywxLCJrIiwxXSxbOCwyLCJrIiwxXSxbOSwzLCJrIiwxXV0=
+    \[\begin{tikzcd}
+        \cdots & {D^{s+2}} & {D^{s+1}} & {D^{s}} & {D^{s-1}} & \cdots \\
+        & {E^{s+2}} & {E^{s+1}} & {E^s} & {E^{s-1}}
+        \arrow[from=1-1, to=1-2]
+        \arrow["i", from=1-2, to=1-3]
+        \arrow["i", from=1-3, to=1-4]
+        \arrow["i", from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+        \arrow["j", from=1-2, to=2-2]
+        \arrow["j", from=1-3, to=2-3]
+        \arrow["j", from=1-4, to=2-4]
+        \arrow["j", from=1-5, to=2-5]
+        \arrow["k"{description}, from=2-3, to=1-2]
+        \arrow["k"{description}, from=2-4, to=1-3]
+        \arrow["k"{description}, from=2-5, to=1-4]
+    \end{tikzcd}\]
+    in which each triangle $D^{s+1}\xr iD^s\xr jE_s\xr kD^{s+1}$ is an exact sequence. We require that each occurrence of $i$ (resp.\ $j$, $k$) is of the same degree. In other words, an unrolled exact couple can be described as a tuple $(D,E;i,j,k)$ of $\bZ\times A$-graded abelian groups and $\bZ\times A$-graded maps $i:D\to D$, $j:D\to E$, and $k:E\to D$, such that the $\bZ$-degrees of $i$, $j$, and $k$ are $-1$, $0$, and $1$, respectively. Usually $i$ and one of $j$ or $k$ will be of $A$-degree $0$.
+\end{definition}
+
+\begin{definition}[The spectral sequence associated to an unrolled exact couple]\label{SSeq_assoc_to_unrolled_EC}
+    Given an $A$-graded unrolled exact couple $\{D,E;i,j,k\}$, we may define an associated $\bZ\times A$-graded spectral sequence as follows: Given some $s\in\bZ$ and some $r\geq1$, we first define the following subgroups of $E_s$:
+    \[Z_r^s:= k^{-1}(\imm[i^{r-1}:D^{s+r}\to D^{s+1}])\qquad\text{and}\qquad B_r^s:=j(\ker[i^{r-1}:D^s\to D^{s-r+1}])\]
+    where we adopt the convention that $i^{0}$ is simply the identity. These are furthermore $A$-graded subgrous of $E_s$ (by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{preimage_of_A_graded_is_A_graded}). In this way, for each $s\in\bZ$, we get an infinite sequence of $A$-graded subgroups:
+    \[0=B_1^s\sseq B_2^s\sseq B_3^s\sseq\cdots\sseq\imm j=\ker k\sseq\cdots\sseq Z_3^s\sseq Z_2^s\sseq Z_1^s=E^s.\]
+    Now, for each $s\in\bZ$ and $r\geq1$, we define the $A$-graded abelian group
+    \[E^s_r:=Z^s_r/B^s_r,\]
+    so that in particular $E^s_1=E^s$ for all $s\in\bZ$, as $Z_1^s=k^{-1}(D^{s+1})=E^s$ and $B_1^s=j(\ker \id_{D^s})=j(0)=0$. Now we can define differentials $d_r^s:E_r^s\to E_r^{s+r}$ to be the composition
+    \[E_r^s=Z_r^s/B_r^s\xr k\imm[i^{r-1}:D^{s+r}\to D^{s+1}]\xr{j\circ i^{-(r-1)}}Z^{s+r}_r/B^{s+r}_r=E_r^{s+r},\]
+    where given some $e\in Z^s_r=k^{-1}(\imm i^{r-1})$, the first arrow takes a class $[e]\in E^s_r$ represented by some $e\in Z^s_r$ to the element $k(e)$, which lives in $\imm i^{r-1}$ by definition, and the second arrow takes $i^{r-1}(d)$ to the class $[j(d)]$. Note the first map is well-defined, as given $b\in B^s_r=j(\ker[i^{r-1}])$, we have $k(b)=0$, as $b\in\imm j=\ker k$. To see the second map is well-defined, first note that given $d\in D^{s+r}$, that 
+    \[k(j(d))=0\in\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}],\] 
+    so that 
+    \[j(d)\in k^{-1}(\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}])= Z^{s+r}_r,\] 
+    as desired, so that given $d\in D^{s+r}$, $j(d)in Z_r^{s+r}$, so it makes sense to discuss the class $[j(d)]\in Z_r^{s+r}/B_r^{s+r}=E_r^{s+r}$. Secondly, if $i^{r-1}(d)=i^{r-1}(d')$ for some $d,d'\in D^{s+r}$, then
+    \[j(d)-j(d')=j(d-d')\in j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])=B^{s+r}_r,\]
+    so that $[j(d)]=[j(d')]$ in $E_r^{s+r}$, as desired. It is straightforward to check that these maps are also $A$-graded homomorphisms, so that by unravelling definitions $d_r^s$ is an $A$-graded homomorphism of degree $\deg k-(r-1)\cdot\deg i+\deg j$ (so that in the standard case $\deg i=0$, $d_r^s$ simply has degree $\deg k+\deg j$).
+
+    These differentials square to zero, in the sense that for each $s\in\bZ$ and $r\geq1$ we have that $d_r^{s+r}\circ d_r^s:E^s_r\to E_r^{s+2r}$ is the zero map. Indeed, suppose we are given some class $[e]\in E^s_r$ represented by an element $e\in E^s$, so $k(e)=i^{r-1}(d)$ for some $d\in D^{s+r}$. Then 
+    \[d_r^{s+r}(d_r^s([e]))=d_r^{s+r}([j(d)])=[j(i^{-(r-1)}(k(j(d))))]=[j(i^{-(r-1)}(0))]=0,\]
+    where the second-to-last equality follows by the fact that $k\circ j=0$. Note that by unravelling definitions, $d_1^s=j\circ k$.
+    
+    We claim that $\ker d_r^s=Z^s_{r+1}/B^s_r$. First of all, let $[e]\in E_r^s=Z_r^s/B_r^s$, so that $[e]$ is represented by some $e\in E^s$ with $k(e)=i^{r-1}(d)$ for some $d\in D^{s+r}$. Then if $[e]\in\ker d_r^s$, by definition this means $j(d)\in B_r^{s+r}=j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])$, so $j(d)=j(d')$ for some $d'\in D^{s+r}$ with $i^{r-1}(d')=0$. Thus $d-d'\in\ker j=\imm i$, so there exists some $d''\in D^{s+r+1}$ such that $i(d'')=d-d'$. Then
+    \[k(e)=i^{r-1}(d)=i^{r-1}(i(d'')+d')=i^r(d'')+i^{r-1}(d'),\]
+    but since $i^{r-1}(d')=0$, we have $k(e)\in\imm[i^r:D^{s+r+1}\to D^{s+1}]$, so that $e\in Z^s_{r+1}$, meaning $[e]\in Z^s_{r+1}/B^s_r$, as desired. On the other hand, suppose we are given some class $[e]\in Z^s_{r+1}/B^s_r$, represented by $e\in Z^s_{r+1}$ with $k(e)\in\imm[i^r:D^{s+r+1}\to D^{s+1}]$. Then if we write $k(e)=i^r(d)=i^{r-1}(i(d))$, then $d_r^s([e])=[j(i(d))]=0$ (since $j\circ i=0$), as asserted.
+
+    Finally, we claim that the image of $d_r^{s-r}:E^{s-r}_r\to E^s_r$ is $B^s_{r+1}/B^s_r$. First, let $e\in Z^{s-r}_r$, so $k(e)=i^{r-1}(d)$ for some $d\in D^{s}$. Then we'd like to show that $d_r^s([e])=[j(d)]$ belongs to $B^s_{r+1}/B^s_r$. It suffices to show that $d\in \ker[i^r:D^s\to D^{s-r}]$. To see this, note that 
+    \[i^r(d)=i(i^{r-1}(d))=i(k(e))=0,\]
+    since $i\circ k=0$. Hence we've shown $\imm d_r^{s-r}\sseq B^s_{r+1}/B^s_r$. Conversely, let $j(d)\in B^s_{r+1}$, so $d\in D^s$ and $i^{r}(d)=0$. Then we'd like to show that $[j(d)]\in B^s_{r+1}/B^s_r$ is in the image of $d_r^{s-r}$. To see this, note that
+    \[i^r(d)=0\implies i^{r-1}(d)\in\ker i=\imm k,\]
+    so there exists some $e\in E^{s-r}$ such that $k(e)=i^{r-1}(d)$, so $e\in Z^{s-r}_r$. Unravelling definitions, it follows that $d_r^{s-r}([e])=[j(d)]$, so $[j(d)]$ is indeed in the image of $d_r^{s-r}$, as desired.
+
+    To recap, we have constructed for each $s\in\bZ$ and $r\geq1$ an $A$-graded abelian group $E_r^s$ along with differentials $d_r^s:E_r^s\to E_r^{s+r}$. Furthermore, if we take homology in the middle term of the following sequence
+    \[E_r^{s-r}\xr{d_r^{s-r}}E_r^s\xr{d_r^s}E^{s+r}_r,\]
+    we get
+    \[\ker d_r^s/\imm d_r^{s-r}=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\]
+    Expressed differently, we have constructed a $\bZ\times A$-graded spectral sequence $r\geq1\mapsto(E_r,d_r)$, where $E_r:=\bigoplus_{s\in\bZ}E_r^s$ and the differentials
+    \[d_r:E_r\to E_r\]
+    have $\bZ\times A$-degree $(r,\deg j-(r-1)\cdot\deg i+\deg k)$.
+\end{definition}
+
+\begin{definition}[Exact couple]
+    An $A$-graded \emph{exact couple} is a tuple $\cE=(D,E;i,j,k)$, where $D$ and $E$ are $A$-graded abelian groups and $i$, $j$, and $k$ are $A$-graded homomorphisms (of possibly nonzero degree)
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJEXyoiXSxbMiwwLCJEXyoiXSxbMSwxLCJFXyoiXSxbMCwxLCJpIl0sWzEsMiwiaiJdLFsyLDAsImsiXV0=
+    \[\begin{tikzcd}
+        {D_*} && {D_*} \\
+        & {E_*}
+        \arrow["i", from=1-1, to=1-3]
+        \arrow["j", from=1-3, to=2-2]
+        \arrow["k", from=2-2, to=1-1]
+    \end{tikzcd}\]
+    which form an \emph{exact triangle}, in the sense that kernel $=$ image at each vertex.
+\end{definition}
+
+\begin{definition}[Derived couple]
+    Given an exact couple $(D,E;i,j,k)$ as in the above definition, the composition $j\circ k:E\to E$ itself satisfies 
+    \[(j\circ k)\circ (j\circ k)=j\circ(k\circ j)\circ k=j\circ 0\circ k=0,\]
+    so we may form the $A$-graded homology group $H(E):=\ker(j\circ k)/\imm(j\circ k)$. Then we may form the triangle $\cE'$
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJpKEQpIl0sWzIsMCwiaShEKSJdLFsxLDEsIkgoRSkiXSxbMCwxLCJpJyJdLFsxLDIsImonIl0sWzIsMCwiayciXV0=
+    \[\begin{tikzcd}
+        {i(D)} && {i(D)} \\
+        & {H(E)}
+        \arrow["{i'}", from=1-1, to=1-3]
+        \arrow["{j'}", from=1-3, to=2-2]
+        \arrow["{k'}", from=2-2, to=1-1]
+    \end{tikzcd}\]
+    where $i'$ is the restriction of $i$ to $i(D)$, while $j'$ and $k'$ are given by
+    \[j'(i(d))=[j(d)]\qquad\text{and}\qquad k'([e])=k(e).\]
+    The map $j'$ is well-defined since if $i(d)=i(d')$ then $i(d-d')=0$, so that $d-d'\in\ker i=\imm k$, meaning $d-d'= k(e)$ for some $e\in E$, so that 
+    \[j(d)-j(d')=j(d-d')=j(k(e))\in\imm(j\circ k)\]
+    is a boundary, so that $[j(d)]=[j(d')]$. Similarly $k'$ is well defined since if $[e]=[e']$ then $e-e'\in\imm(j\circ k)$, which implies $e-e'=j(k(e''))$ for some $e''\in E$, so that
+    \[k(e)-k(e')=k(e-e')=k(j(k(e'')))=0,\]
+    where the last equality follows by the fact that $k\circ j=0$. Further note that $i(D)$ and $H(E)$ are $A$-graded by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{quotient_of_A_graded_is_A_graded}, in which case by unravelling definitions, each of $i'$, $j'$, and $k'$ are $A$-graded homomorphisms with
+    \[\deg i'=\deg i,\qquad \deg j'=\deg j-\deg i,\qquad\text{and}\qquad\deg k'=\deg k.\]
+    We call $\cE'$ the \emph{derived couple} of $\cE$. A diagram chase (left to the reader, or see \cite[Lemma 1.10]{nlab:introduction_to_the_adams_spectral_sequence}) yields that $\cE'$ is an exact couple.
+
+    If we iterate the process of taking the exact couple $r$ times, the result is called the \emph{$r^\text{th}$ derived couple $\cE_r$ of $\cE$}.
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJEXnIiXSxbMiwwLCJEXnIiXSxbMSwxLCJFXnIiXSxbMCwxLCJpIl0sWzEsMiwial57KHIpfSJdLFsyLDAsImsiXV0=
+    \[\begin{tikzcd}
+        {D_r} && {D_r} \\
+        & {E_r}
+        \arrow["i", from=1-1, to=1-3]
+        \arrow["{j^{(r)}}", from=1-3, to=2-2]
+        \arrow["k", from=2-2, to=1-1]
+    \end{tikzcd}\]
+    Here $D_r=i^{r}(D)$ is a subgroup of $D$, and $E_r=H(E_{r-1})$ is a subquotient of $E$. The maps $i$ and $k$ are induced from the $i$ and $k$ of $\cE$, while $j^{(r)}$ sends $[i^r(d)]$ to $[j(d)]$. In particular, by induction it can be seen that $\deg j^{(r)}=\deg j-r\cdot\deg i$, and the degrees of $i$ and $k$ remain unchanged as we take successive derived couples.
+\end{definition}
+
+\begin{definition}[The spectral sequence associated to an exact couple]
+    An $A$-graded exact couple $\cE=(D,E;i,j,k)$ gives rise to a spectral sequence $(E_r,d_r)_{r\geq0}$, where $E_0=E$, $d_0=j\circ k$, and for $r>0$, $E_r$ is defined above and $d_r$ is the composition $j^{(r)}\circ k$.
+
+    In practice, we will always shift everything up a degree by re-defining $E_r:= E_{r-1}$ and $d_r:= d_{r-1}$, so we get a spectral sequence $(E_r,d_r)_{r\geq1}$ with $E^1=E$ and $d^1=j\circ k$. Then it follows that the differential $d^r=j^{(r-1)}\circ k$ has degree
+    \[\deg j^{(r-1)}+\deg k=\deg j-(r-1)\cdot\deg i+\deg k.\]
+\end{definition}
+
+\begin{remark}
+    Given an exact couple $\cE=(D,E;i,j,k)$, we can define $A$-graded subgroups $Z_r=k^{-1}(i^r(D))\sseq E$ and $B_r=j(\ker(i^r))\sseq E$ for $r\geq1$. By induction, it is straightforward to check that we have inclusions
+    \[B_1\sseq B_2\sseq B_3\sseq\cdots\sseq\imm j=\ker k\sseq\cdots\sseq Z_3\sseq Z_2\sseq Z_1\]
+    and that the maps
+    \[Z_r\to E_r\]
+    sending an element $e$ to its class $[[\cdots[e]\cdots]]$ has kernel $B_r$, so we have identifications $E_r=Z_r/B_r$ as $A$-graded abelian groups. Let $e\in Z_r$, so $k(e)=i^r(d)$ for some $d\in D$. Then under this identification, it can be seen that the map $d_{r+1}:Z_r/B_r\to Z_r/B_r$ sends the coset $e+B_r\in Z_r/B_r$ to the coset $j(d)+B_r$, and that $\ker d_r=Z_r$ and $\imm d_r=B_r$ for all $r\geq1$.
+\end{remark}
+
+Henceforth, we fix an $A$-graded exact couple $\cE=(D,E;i,j,k)$, and we let $(E_r,d_r)_{r\geq1}$ denote the associated $A$-graded spectral sequence. We make the identifications given by the above remark, so we assume $E_r$ is the $A$-graded abelian group $Z_r/B_r$ for all $r\geq1$, so that in particular for all $a\in A$ we have identifications $E_r^a=Z_r^a/B_r^a$ (by \autoref{quotient_of_A_graded_is_A_graded}).
 
 \end{document}

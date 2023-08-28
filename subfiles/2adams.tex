@@ -4,51 +4,62 @@
 
 \subsection{Construction of the Adams spectral sequence}
 
-In what follows, let $E$ be a commutative monoid object in $\cSH$.
+In what follows, let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. In this section we will freely use the coherence theorem for symmetric monoidal categories without comment, in particular, we will assume unitality and associativity hold up to strict equality.
 
 \begin{definition}\label{mASS}
-	Let $\ol E$ be the fiber of the unit map $e:S\to E$ (\autoref{fiber}), and for $s\geq0$ define
-	\[Y_s:=\ol E^s\otimes Y,\qquad W_s = E\otimes Y_s=E\otimes(\ol E^s\otimes Y),\]
-	where recall for $s>0$, $\ol E^s$ denotes the $s$-fold product parenthesized as $\ol E\otimes(\ol E\otimes\cdots(\ol E\otimes\ol E))$, and $\ol E^0:=S$. Then we get fiber sequences
-	\[Y_{s+1}\xrightarrow{i_s}Y_s\xrightarrow{j_s} W_s\xrightarrow{k_s}\Sigma Y_{s+1}(=S^\1\otimes Y_{s+1})\]
-	obtained by applying $-\otimes Y_s$ to the sequence
-	\[\ol E\to S\xrightarrow eE\to\Sigma\ol E\]
-	(and applying the necessary associator and unitor isomorphisms). These sequences can be spliced together to form the \emph{(canonical) Adams filtration of $Y$}:
+	Let $\ol E$ be the fiber of the unit map $e:S\to E$ (\autoref{fiber}). Let $Y_0:=Y$ and $W_0:= E\otimes Y$. Then for $s>0$, define
+	\[Y_s:=\ol E^s\otimes Y,\qquad W_s := E\otimes Y_s=E\otimes\ol E^s\otimes Y,\]
+	where $\ol E^s$ denotes the $s$-fold tensor product $\ol E\otimes\cdots\otimes\ol E$. Then we get fiber sequences
+	\[Y_{s+1}\xrightarrow{i_s}Y_s\xrightarrow{j_s} W_s\xrightarrow{k_s}\Sigma Y_{s+1}\]
+	obtained by applying $-\otimes Y_s$ to the fiber sequence
+	\[\ol E\to S\xrightarrow eE\to\Sigma\ol E.\]
+	We can splice these sequences together to get the \emph{(canonical) Adams filtration of $Y$}:
+	% https://q.uiver.app/#q=WzAsOSxbMSwwLCJZXzMiXSxbMiwwLCJZXzIiXSxbMywwLCJZXzEiXSxbNCwwLCJZXzA9WSJdLFswLDAsIlxcY2RvdHMiXSxbMSwxLCJXXzMiXSxbMiwxLCJXXzIiXSxbMywxLCJXXzEiXSxbNCwxLCJXXzAiXSxbMCwxLCJpXzIiXSxbMSwyLCJpXzEiXSxbMiwzLCJpXzAiXSxbNCwwXSxbMCw1LCJqXzMiXSxbMSw2LCJqXzIiXSxbMiw3LCJqXzEiXSxbMyw4LCJqXzAiXSxbNiwwLCJrXzIiLDAseyJsYWJlbF9wb3NpdGlvbiI6MzAsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs3LDEsImtfMSIsMCx7ImxhYmVsX3Bvc2l0aW9uIjozMCwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsMiwia18wIiwwLHsibGFiZWxfcG9zaXRpb24iOjMwLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 	\[\begin{tikzcd}
 		\cdots & {Y_3} & {Y_2} & {Y_1} & {Y_0=Y} \\
 		& {W_3} & {W_2} & {W_1} & {W_0}
-		\arrow[from=1-1, to=1-2]
 		\arrow["{i_2}", from=1-2, to=1-3]
 		\arrow["{i_1}", from=1-3, to=1-4]
 		\arrow["{i_0}", from=1-4, to=1-5]
-		\arrow["{j_0}", from=1-5, to=2-5]
-		\arrow["{k_0}"', dashed, from=2-5, to=1-4]
-		\arrow["{j_1}", from=1-4, to=2-4]
-		\arrow["{k_1}"', dashed, from=2-4, to=1-3]
+		\arrow[from=1-1, to=1-2]
 		\arrow["{j_3}", from=1-2, to=2-2]
 		\arrow["{j_2}", from=1-3, to=2-3]
-		\arrow["{k_2}"', dashed, from=2-3, to=1-2]
+		\arrow["{j_1}", from=1-4, to=2-4]
+		\arrow["{j_0}", from=1-5, to=2-5]
+		\arrow["{k_2}"{pos=0.3}, dashed, from=2-3, to=1-2]
+		\arrow["{k_1}"{pos=0.3}, dashed, from=2-4, to=1-3]
+		\arrow["{k_0}"{pos=0.3}, dashed, from=2-5, to=1-4]
 	\end{tikzcd}\]
-	where the diagonal dashed arrows are of degree $-\1$ (note these triangles do NOT commute in any sense). Now we may apply the functor $[X,-]_\ast$, and by \autoref{dist_tri_LES} we obtain an exact couple of $\bN\times A$-graded abelian groups:
+	where here each $k_s$ is of degree $-\1$ (in particular, the above diagram does not commute in any sense), and each $i_s$ and $j_s$ have degree $0$. We can extend this diagram to the right by setting $Y_s=Y$ and $W_s=0$, and $i_s=\id_Y$ for $s<0$. Then we may apply the functor ${[X,-]}_\ast$, and by \autoref{X,Y*_LES_compact}, we obtain the following unrolled exact couple (\autoref{unrolled_exact_couple}):
+	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIntbWCxZX3tzKzJ9XX1fKiJdLFsyLDAsIntbWCxZX3tzKzF9XX1fKiJdLFszLDAsIntbWCxZX3tzfV19XyoiXSxbNCwwLCJ7W1gsWV97cy0xfV19XyoiXSxbNSwwLCJcXGNkb3RzIl0sWzIsMSwie1tYLFdfe3MrMX1dfV8qIl0sWzEsMSwie1tYLFdfe3MrMn1dfV8qIl0sWzQsMSwie1tYLFdfe3MtMX1dfV8qIl0sWzMsMSwie1tYLFdfe3N9XX1fKiJdLFswLDFdLFsxLDIsImlfe3MrMX0iXSxbMiwzLCJpX3MiXSxbMyw0LCJpX3tzLTF9Il0sWzQsNV0sWzIsNiwial97cysxfSJdLFs2LDEsIlxccGFydGlhbF97cysxfSJdLFsxLDcsImpfe3MrMn0iXSxbNCw4LCJqX3tzLTF9Il0sWzgsMywiXFxwYXJ0aWFsX3tzLTF9Il0sWzMsOSwial97c30iXSxbOSwyLCJcXHBhcnRpYWxfcyJdXQ==
 	\[\begin{tikzcd}
-		{[X,Y_\ast]_\ast} && {[X,Y_\ast]_\ast} \\
-		\\
-		&& {[X,W_\ast]_\ast}
-		\arrow["{i_\aast}", from=1-1, to=1-3]
-		\arrow["{j_\aast}", from=1-3, to=3-3]
-		\arrow["{k_\aast}", from=3-3, to=1-1]
+		\cdots & {{[X,Y_{s+2}]}_*} & {{[X,Y_{s+1}]}_*} & {{[X,Y_{s}]}_*} & {{[X,Y_{s-1}]}_*} & \cdots \\
+		& {{[X,W_{s+2}]}_*} & {{[X,W_{s+1}]}_*} & {{[X,W_{s}]}_*} & {{[X,W_{s-1}]}_*}
+		\arrow[from=1-1, to=1-2]
+		\arrow["{i_{s+1}}", from=1-2, to=1-3]
+		\arrow["{i_s}", from=1-3, to=1-4]
+		\arrow["{i_{s-1}}", from=1-4, to=1-5]
+		\arrow[from=1-5, to=1-6]
+		\arrow["{j_{s+1}}", from=1-3, to=2-3]
+		\arrow["{\partial_{s+1}}", from=2-3, to=1-2]
+		\arrow["{j_{s+2}}", from=1-2, to=2-2]
+		\arrow["{j_{s-1}}", from=1-5, to=2-5]
+		\arrow["{\partial_{s-1}}", from=2-5, to=1-4]
+		\arrow["{j_{s}}", from=1-4, to=2-4]
+		\arrow["{\partial_s}", from=2-4, to=1-3]
 	\end{tikzcd}\]
-	where $i_\aast$, $j_\aast$, and $k_\aast$ have $\bZ\times A$-degree $(-1,0)$, $(0,0)$, and $(1,-\1)$, respectively\footnote{Explicitly, the map $k_{s,a}:[X,W_s]_a\to [X,Y_{s+1}]_{a-\1}$ sends a map $f:S^a\otimes X\to W_s$ to the map $S^{a-\1}\otimes X\to Y_{s+1}$ corresponding under the isomorphism $[X,\Sigma Y_{s+1}]_\ast\cong[X,Y_{s+1}]_{\ast-\1}$ to the composition $k_s\circ f:S^a\otimes X\to\Sigma Y_{s+1}$.}. The standard argument yields an $\bN\times A$-graded spectral sequence called from this exact couple (cf.\ Section 5.9 of \cite{Weibel_1994}) with $E_1$ page given by 
-	\[E_1^{s,a}=[X,W_s]_{a}\]
-	and $r^\text{th}$ differential of $\bZ\times A$-degree $(r,-\1)$:
-	\[d_r:E_r^{s,a}\to E_r^{s+r,a-\1}.\]
-	A priori, this is all $\bN\times A$-graded, but we regard it as being $\bZ\times A$-graded by setting $E_r^{s,a}:=0$ for $s<0$ and trivially extending the definition of the differentials to these zero groups. This spectral sequence is called the \emph{$E$-Adams spectral sequence} for the computation of $[X,Y]_\ast$. The index $s$ is called the \emph{Adams filtration} and $a$ is the \emph{stem}.
+	where here we are being abusive and writing $i_s:{[X,Y_{s+1}]}_*\to{[X,Y_{s}]}_*$ and $j_s:{[X,Y_s]}_*\to{[X,W_s]}_*$ to denote the pushforwards of $i_s:Y_{s+1}\to Y_s$ and $j_s:Y_s\to W_s$, respectively. Each $i_s$, $j_s$, and $\partial_s$ are $A$-graded homomorphisms of degrees $0$, $0$, and $-\1$, respectively. 
+
+	We may associate a $\bZ\times A$-graded spectral sequence $r\mapsto(E_r^{*,*}(X,Y),d_r)$ to the above unrolled exact couple (\autoref{SSeq_assoc_to_unrolled_EC}), where $d_r$ has $\bZ\times A$-degree $(r,-\1)$. We call this spectral sequence the \emph{$E$-Adams spectral sequence for the computation of ${[X,Y]}_*$}.
 \end{definition}
 
+\subsection{The \texorpdfstring{$E_1$}{E1} page}
 
-\subsection{The \texorpdfstring{$E_1$}{TEXT} page}
+The goal of this subsection is to provide a nicer characterization of the $E_1$ page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$, in the case that $E$ and $X$ satisfy either of the following condition:
 
-The goal of this subsection is to provide the following characterization for the $E_1$ page of the Adams spectral sequence:
+\begin{condition}
+	The canonical map 
+\end{condition}
 
 \begin{theorem}
 	Let $E$ be a flat commutative monoid object in $\cSH$, and let $X$ and $Y$ be two objects in $\cSH$ such that $E_\ast(X)$ is a projective module over $\pi_\ast(E)$. Then for all $s\geq0$ and $a\in A$, we have isomorphisms in the associated $E$-Adams spectral sequence
@@ -60,9 +71,9 @@ The goal of this subsection is to provide the following characterization for the
 \end{theorem}
 \begin{proof}
 	By \autoref{2.30_2.33}, for all $s\geq0$ and $t,w\in\bZ$, we have isomorphisms
-	\[[X,E\otimes Y_s]_{t,w}\cong\Hom_{E_\ast(E)}^{t,w}(E_\ast(X),E_\ast(E\otimes Y_s)).\]
+	\[{[X,E\otimes Y_s]}_{t,w}\cong\Hom_{E_\ast(E)}^{t,w}(E_\ast(X),E_\ast(E\otimes Y_s)).\]
 	since $W_s=E\otimes Y_s$, we have that
-	\[E_1^{s,(t,w)}=[X,W_s]_{t,w}\cong\Hom_{E_\ast(E)}^{t,w}(E_\ast(X),E_\ast(W_s)),\]
+	\[E_1^{s,(t,w)}={[X,W_s]}_{t,w}\cong\Hom_{E_\ast(E)}^{t,w}(E_\ast(X),E_\ast(W_s)),\]
 	as desired. 
 \end{proof}
 

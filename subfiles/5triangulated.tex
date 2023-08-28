@@ -55,7 +55,7 @@ We assume the reader is familiar with additive categories and (closed, symmetric
         \end{tikzcd}\]
         such that the leftmost square commmutes and both rows are distinguished, there exists a dashed arrow $Z\to Z'$ which makes the remaining two squares commute.
         \item A triangle
-        \[X\xrightarrow fY\xrightarrow gZ\xrightarrow\Sigma X\]
+        \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X\]
         is distinguished if and only if
         \[Y\xrightarrow gZ\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y\]
         is distinguished.
@@ -94,18 +94,20 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
 \begin{definition}\label{defn_exact}
     A sequence
     \[X_1\to X_2\to\cdots\to X_n\]
-    of arrows in $\cC$ is \emph{exact} if, for any object $A$ in $\cC$, the induced sequence
-    \[[A,X_1]\to[A,X_2]\to\cdots\to[A,X_n]\]
-    is an exact sequence of abelian groups.
+    of arrows in $\cC$ is \emph{exact} if, for any object $A$ in $\cC$, the induced sequences
+    \[[A,X_1]\to[A,X_2]\to\cdots\to[A,X_{n-1}]\to[A,X_n]\]
+    and
+    \[[X_n,A]\to[X_{n-1},A]\to\cdots\to[X_2,A]\to[X_1,A]\]
+    are exact sequences of abelian groups.
 \end{definition}
 
 \begin{proposition}\label{distinguished_tri_is_exact}
-    Any distinguished triangle is an exact sequence (in the sense of \autoref{defn_exact}).
+    Every distinguished triangle is an exact sequence (in the sense of \autoref{defn_exact}).
 \end{proposition}
 \begin{proof}
     Suppose we have some distinguished triangle
     \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X.\]
-    Then we would like to show that given any object $A$ in $\cC$, the sequence
+    Then first we would like to show that given any object $A$ in $\cC$, the sequence
     \[[A,X]\xrightarrow{f_*}[A,Y]\xrightarrow{g_*}[A,Z]\xrightarrow{h_*}[A,\Sigma X]\]
     is exact. First we show exactness at $[A,Y]$. To see $\imm f_*\sseq\ker g_*$, note it suffices to show that $g\circ f=0$. Indeed, consider the commuting diagram
     % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwwLCJYIl0sWzEsMCwiWCJdLFsyLDAsIjAiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDEsImYiXSxbNSw2XSxbNiw3XSxbNCwwLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
@@ -184,7 +186,33 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     Now, we have shown that
     \[[A,X]\xrightarrow{f_*}[A,Y]\xrightarrow{g_*}[A,Z]\xrightarrow{h_*}[A,\Sigma X]\]
     is exact at $[A,Y]$. It remains to show exactness at $[A,Z]$. Yet this follows by the exact same argument given above applied to the sequence obtained from the shifted triangle (TR4)
-    \[Y\xrightarrow g Z\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y.\qedhere\]
+    \[Y\xrightarrow g Z\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y\]
+
+    On the other hand, we would like to show that
+    \[[\Sigma X,A]\xr{h^*}[Z,A]\xr{g^*}[Y,A]\xr{f^*}[X,A]\]
+    is exact. As above, since we can shift the triangle, it suffices to show exactness at $[Z,A]$. First, since we have shown $g\circ f=0$, we have $f^*\circ g^*=(g\circ f)^*=0$, so that $\imm g^*\sseq\ker f^*$, as desired. Conversely, in order to see $\ker f^*\sseq\imm g^*$, suppose $\psi:Y\to A$ is in the kernel of $f^*$, so that $\psi\circ f=0$. Consider the following commuting diagram:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCIwIl0sWzEsMSwiQSJdLFsyLDEsIkEiXSxbMywxLCIwIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNF0sWzQsNV0sWzUsNiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiw3XSxbMSw1LCJcXHBzaSJdXQ==
+    \[\begin{tikzcd}
+        X & Y & Z & {\Sigma X} \\
+        0 & A & A & 0
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=2-1, to=2-2]
+        \arrow[Rightarrow, no head, from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow["\psi", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    The top row is a distinguished triangle by assumption, and the bottom row is distinguished by axioms TR1 and TR4 for a triangulated category, along with the fact that $\Sigma0=0$ since $\Sigma $ is additive. Thus by axiom TR3 there exists a map $\phi:Z\to A$ such that $\phi\circ g=\psi$, i.e., $g^*(\phi)=\psi$, so that $\phi\in\imm g^*$ as desired. 
+
+    Thus, we have shown exactness of 
+    \[[\Sigma X,A]\xr{h^*}[Z,A]\xr{g^*}[Y,A]\xr{f^*}[X,A]\]
+    at $[Y,A]$. To see $\ker g^*=\imm h^*$, again the same arguments applied to the shifted triangle
+    \[Y\xr gZ\xr h\Sigma X\xr{-\Sigma f}\Sigma Y\]
+    yield that
+    \[[\Sigma Y,A]\xr{(-\Sigma f)^*}[\Sigma X,A]\xr {h^*}[Z,A]\xr{g^*}[Y,A]\]
+    is exact at $[Z,A]$, so $\ker g^*=\imm h^*$, as desired.
 \end{proof}
 
 \begin{lemma}\label{2-of-3-dist_tri-lemma}
@@ -858,11 +886,15 @@ Usually, most tensor triangulated categories that arise in nature will satisfy a
     An \emph{adjointly tensor triangulated} category is a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ along with the structure of an adjointly triangulated category $(\cC,\Omega,\Sigma,\eta,\vare,\cD)$.
 \end{definition}
 
-From now on, we fix an adjointly tensor triangulated category $(\cC,\otimes,S,\Omega,\Sigma,\eta,\vare,e,\cD)$. First of all, note we may define natural isomorphisms $o_{X,Y}:\Omega X\otimes Y\xr\cong\Omega(X\otimes Y)$ and $o_{X,Y}':X\otimes\Omega Y\xr\cong\Omega(X\otimes Y)$ as the compositions
-\[o_{X,Y}:\Omega X\otimes Y\xr{\vare_{\Omega X\otimes Y}^{-1}}\Omega\Sigma(\Omega X\otimes Y)\xr{\Omega e_{\Omega X, Y}^{-1}}\Omega(\Sigma\Omega X\otimes Y)\xr{\Omega(\eta_X^{-1}\otimes Y)}\Omega(X\otimes Y)\]
-and
-\[o_{X,Y}':X\otimes\Omega Y\xr{\tau_{X,\Omega Y}}\Omega Y\otimes X\xr{o_{Y,X}}\Omega(Y\otimes X)\xr{\Omega\tau_{Y,X}}\Omega(X\otimes Y).\]
-These are both clearly natural by naturality of $\vare$, $e$, $\eta$, and $\tau$.
+From now on, we fix an adjointly tensor triangulated category $(\cC,\otimes,S,\Omega,\Sigma,\eta,\vare,e,\cD)$. 
+
+\begin{definition}\label{o_X,Ys_in_AdjlyTenTri_cat}
+    We may define natural isomorphisms $o_{X,Y}:\Omega X\otimes Y\xr\cong\Omega(X\otimes Y)$ and $o_{X,Y}':X\otimes\Omega Y\xr\cong\Omega(X\otimes Y)$ as the compositions
+    \[o_{X,Y}:\Omega X\otimes Y\xr{\vare_{\Omega X\otimes Y}^{-1}}\Omega\Sigma(\Omega X\otimes Y)\xr{\Omega e_{\Omega X, Y}^{-1}}\Omega(\Sigma\Omega X\otimes Y)\xr{\Omega(\eta_X^{-1}\otimes Y)}\Omega(X\otimes Y)\]
+    and
+    \[o_{X,Y}':X\otimes\Omega Y\xr{\tau_{X,\Omega Y}}\Omega Y\otimes X\xr{o_{Y,X}}\Omega(Y\otimes X)\xr{\Omega\tau_{Y,X}}\Omega(X\otimes Y).\]
+    These are both clearly natural by naturality of $\vare$, $e$, $\eta$, and $\tau$.
+\end{definition}
 
 \begin{proposition}\label{LES_remains_exact_after_tensor}
     Suppose we have a distinguished triangle
