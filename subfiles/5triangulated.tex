@@ -349,11 +349,36 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     so we may define the fiber of $f$ to be $\Omega C_f$.
 \end{proof}
 
+\begin{definition}[{\cite[Definition 1.6.4]{Neeman_2001}}]
+    Assume that $\cC$ has countable coproducts. Let
+    \[X_0\xr{j_1}X_1\xr{j_2} X_2\xr{j_3}X_3\to\cdots\]
+    be a sequence of objects and morphisms in $\cC$. The \emph{homotopy colimit} of the sequence, denoted $\holim X_i$, is by definition given, up to non-canonical isomorphism, as the cofiber of the map
+    \[\coprod_{i=0}^\infty X_i\xr{1-\text{shift}}\coprod_{i=0}^\infty X_i,\]
+    where the shift map $\coprod_{i=0}^\infty X_i\xr{\text{shift}}\coprod_{i=0}^\infty X_i$ is understood to be the direct sum of $j_{i+1}:X_i\to X_{i+1}$. In other words, the map $1-\text{shift}$ is the infinite matrix
+    \[\begin{bmatrix}
+        \id_{X_0} & 0 & 0 & 0 & \cdots \\
+        -j_1 & \id_{X_1} & 0 & 0 & \cdots \\
+        0 & -j_2 & \id_{X_2} & 0 & \cdots \\
+        0 & 0 & -j_3 & \id_{X_3} & \cdots \\
+        \vdots & \vdots & \vdots & \vdots & \ddots
+    \end{bmatrix}\]
+\end{definition}
+
+\begin{proposition}[{\cite[Proposition 1.6.8]{Neeman_2001}}]\label{idempotent_splits_in_tri_cat_with_countable_coproducts}
+    Suppose $\cC$ has countable coproducts, and suppose $e:X\to X$ is an idempotent in $\cC$, so that $e\circ e=e$. Then $e$ splits in $\cC$, i.e., $e$ factors as
+    \[X\xr rY\xr \iota X\]
+    with $r\circ\iota=\id_Y$ and $\iota\circ r=e$. In particular, we may take $Y$ to be the colimit of
+    \[X\xr eX\xr eX\xr eX\xr e\cdots.\]
+\end{proposition}
+\begin{proof}
+    See~\cite[Proposition 1.6.8]{Neeman_2001}
+    \todo{write proof down?}
+\end{proof}
 
 For our purposes, we will always be dealing with triangulated categories with a bit of extra structure, in the following sense:
 
 \begin{definition}\label{adjointly_triangulated_defn}
-    An \emph{adjointly triangulated category} $(\cC,\Omega,\Sigma,\eta,\vare,\cD)$ is the data of a triangulated category $(\cC,\Sigma,\cD)$ along with a functor $\Omega:\cC\to\cC$ and natural isomorphisms $\eta:\Id_\cC\Rightarrow\Sigma\Omega$ and $\vare:\Omega\Sigma\Rightarrow\Id_\cC$ such that $(\Omega,\Sigma,\eta,\vare)$ forms an adjoint equivalence of $\cC$. In other words, $\eta$ and $\vare$ are natural isomorphisms which also are the unit and counit of an adjunction $\Omega\dashv\Sigma$, so they satisfy either of the following ``zig-zag identities'':
+    An \emph{adjointly triangulated category} $(\cC,\Omega,\Sigma,\eta,\vare,\cD)$ is the data of a triangulated category $(\cC,\Sigma,\cD)$ along with an inverse shift functor $\Omega:\cC\to\cC$ and natural isomorphisms $\eta:\Id_\cC\Rightarrow\Sigma\Omega$ and $\vare:\Omega\Sigma\Rightarrow\Id_\cC$ such that $(\Omega,\Sigma,\eta,\vare)$ forms an adjoint equivalence of $\cC$. In other words, $\eta$ and $\vare$ are natural isomorphisms which also are the unit and counit of an adjunction $\Omega\dashv\Sigma$, so they satisfy either of the following ``zig-zag identities'':
     % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhIl0sWzEsMCwiXFxPbWVnYVxcU2lnbWFcXE9tZWdhIl0sWzEsMSwiXFxPbWVnYSJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhXFxTaWdtYSJdLFszLDAsIlxcU2lnbWEiXSxbMiwxLCJcXFNpZ21hIl0sWzAsMSwiXFxPbWVnYVxcZXRhIl0sWzEsMiwiXFx2YXJlcHNpbG9uXFxPbWVnYSJdLFs0LDMsIlxcZXRhXFxTaWdtYSIsMl0sWzMsNSwiXFxTaWdtYVxcdmFyZXBzaWxvbiIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
     \[\begin{tikzcd}
         \Omega & \Omega\Sigma\Omega & \Sigma\Omega\Sigma & \Sigma \\

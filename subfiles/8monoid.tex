@@ -3,25 +3,25 @@
 
 \begin{document}
 
-In the first section, we fix a symmetric monoidal category $(\cC,\otimes,S)$ withj left unitor, right unitor, associator, and symmetry isomorphism $\lambda$, $\rho$, $\alpha$, and $\tau$, respectively.
+In what follows, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with left unitor, right unitor, associator, and symmetry isomorphisms $\lambda$, $\rho$, $\alpha$, and $\tau$, respectively.
 
 \begin{definition}\label{monoid_object}
     A \emph{monoid object} $(E,\mu,e)$ is an object $E$ in $\cC$ along with a multiplication map $\mu:E\otimes E\to E$ and a unit map $e:S\to E$ such that the following diagram commutes:
-    % https://q.uiver.app/#q=WzAsOSxbMSwwLCJFXFxvdGltZXMgRSJdLFsxLDEsIkUiXSxbMiwwLCJTXFxvdGltZXMgRSJdLFswLDAsIkVcXG90aW1lcyBTIl0sWzMsMCwiKEVcXG90aW1lcyBFKVxcb3RpbWVzIEUiXSxbMywxLCJFXFxvdGltZXMoRVxcb3RpbWVzIEUpIl0sWzQsMSwiRVxcb3RpbWVzIEUiXSxbNSwxLCJFIl0sWzUsMCwiRVxcb3RpbWVzIEUiXSxbMCwxLCJcXG11Il0sWzIsMCwiZVxcb3RpbWVzIEUiLDJdLFszLDAsIkVcXG90aW1lcyBlIl0sWzIsMSwiXFxsYW1iZGEiXSxbMywxLCJcXHJobyIsMl0sWzQsNSwiXFxhbHBoYSIsMl0sWzUsNiwiRVxcb3RpbWVzXFxtdSJdLFs2LDcsIlxcbXUiXSxbNCw4LCJcXG11XFxvdGltZXMgRSJdLFs4LDcsIlxcbXUiXV0=
-    \[\begin{tikzcd}
-        {E\otimes S} & {E\otimes E} & {S\otimes E} & {(E\otimes E)\otimes E} && {E\otimes E} \\
-        & E && {E\otimes(E\otimes E)} & {E\otimes E} & E
-        \arrow["\mu", from=1-2, to=2-2]
-        \arrow["{e\otimes E}"', from=1-3, to=1-2]
-        \arrow["{E\otimes e}", from=1-1, to=1-2]
-        \arrow["\lambda", from=1-3, to=2-2]
-        \arrow["\rho"', from=1-1, to=2-2]
-        \arrow["\alpha"', from=1-4, to=2-4]
-        \arrow["E\otimes\mu", from=2-4, to=2-5]
-        \arrow["\mu", from=2-5, to=2-6]
-        \arrow["{\mu\otimes E}", from=1-4, to=1-6]
-        \arrow["\mu", from=1-6, to=2-6]
-    \end{tikzcd}\]
+	% https://q.uiver.app/#q=WzAsOSxbMSwwLCJFXFxvdGltZXMgRSJdLFsxLDEsIkUiXSxbMiwwLCJTXFxvdGltZXMgRSJdLFswLDAsIkVcXG90aW1lcyBTIl0sWzMsMCwiKEVcXG90aW1lcyBFKVxcb3RpbWVzIEUiXSxbMywxLCJFXFxvdGltZXMoRVxcb3RpbWVzIEUpIl0sWzQsMSwiRVxcb3RpbWVzIEUiXSxbNSwxLCJFIl0sWzUsMCwiRVxcb3RpbWVzIEUiXSxbMCwxLCJcXG11Il0sWzIsMCwiZVxcb3RpbWVzIEUiLDJdLFszLDAsIkVcXG90aW1lcyBlIl0sWzIsMSwiXFxsYW1iZGFfRSJdLFszLDEsIlxccmhvX0UiLDJdLFs0LDUsIlxcYWxwaGEiLDJdLFs1LDYsIkVcXG90aW1lc1xcbXUiXSxbNiw3LCJcXG11Il0sWzQsOCwiXFxtdVxcb3RpbWVzIEUiXSxbOCw3LCJcXG11Il1d
+	\[\begin{tikzcd}
+		{E\otimes S} & {E\otimes E} & {S\otimes E} & {(E\otimes E)\otimes E} && {E\otimes E} \\
+		& E && {E\otimes(E\otimes E)} & {E\otimes E} & E
+		\arrow["\mu", from=1-2, to=2-2]
+		\arrow["{e\otimes E}"', from=1-3, to=1-2]
+		\arrow["{E\otimes e}", from=1-1, to=1-2]
+		\arrow["{\lambda_E}", from=1-3, to=2-2]
+		\arrow["{\rho_E}"', from=1-1, to=2-2]
+		\arrow["\alpha"', from=1-4, to=2-4]
+		\arrow["E\otimes\mu", from=2-4, to=2-5]
+		\arrow["\mu", from=2-5, to=2-6]
+		\arrow["{\mu\otimes E}", from=1-4, to=1-6]
+		\arrow["\mu", from=1-6, to=2-6]
+	\end{tikzcd}\]
     The first diagram expresses unitality, while the second expressed associativity. If in addition the following diagram commutes, 
     % https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXFxvdGltZXMgRSJdLFsyLDAsIkVcXG90aW1lcyBFIl0sWzEsMSwiRSJdLFswLDEsIlxcdGF1Il0sWzEsMiwiXFxtdSJdLFswLDIsIlxcbXUiLDJdXQ==
     \[\begin{tikzcd}
@@ -34,49 +34,327 @@ In the first section, we fix a symmetric monoidal category $(\cC,\otimes,S)$ wit
     then we say $(E,\mu,e)$ is a \emph{commutative} monoid object.
 \end{definition}
 
-%\begin{definition}
-%	Let $(E,\mu,e)$ be a monoid object in $\cC$. Then a \emph{left module object} $(N,\kappa)$ over $(E,\mu,e)$ is the data of an object $N$ in $\cC$ and a morphism $\kappa:E\otimes N\to N$ such that the following two diagrams commute in $\cC$:
-%	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJTXFxvdGltZXMgTiJdLFsxLDAsIkVcXG90aW1lcyBOIl0sWzEsMSwiTiJdLFsyLDAsIihFXFxvdGltZXMgRSlcXG90aW1lcyBOIl0sWzQsMCwiRVxcb3RpbWVzIE4iXSxbNCwxLCJOIl0sWzIsMSwiRVxcb3RpbWVzKEVcXG90aW1lcyBOKSJdLFszLDEsIkVcXG90aW1lcyBOIl0sWzAsMSwiZVxcb3RpbWVzIE4iXSxbMSwyLCJcXGthcHBhIl0sWzAsMiwiXFxsYW1iZGFfTiIsMl0sWzMsNCwiXFxtdVxcb3RpbWVzIE4iXSxbNCw1LCJcXGthcHBhIl0sWzMsNiwiXFxhbHBoYSIsMl0sWzYsNywiRVxcb3RpbWVzIFxca2FwcGEiXSxbNyw1LCJcXGthcHBhIl1d
-%	\[\begin{tikzcd}
-%		{S\otimes N} & {E\otimes N} & {(E\otimes E)\otimes N} && {E\otimes N} \\
-%		& N & {E\otimes(E\otimes N)} & {E\otimes N} & N
-%		\arrow["{e\otimes N}", from=1-1, to=1-2]
-%		\arrow["\kappa", from=1-2, to=2-2]
-%		\arrow["{\lambda_N}"', from=1-1, to=2-2]
-%		\arrow["{\mu\otimes N}", from=1-3, to=1-5]
-%		\arrow["\kappa", from=1-5, to=2-5]
-%		\arrow["\alpha"', from=1-3, to=2-3]
-%		\arrow["{E\otimes \kappa}", from=2-3, to=2-4]
-%		\arrow["\kappa", from=2-4, to=2-5]
-%	\end{tikzcd}\]
-%\end{definition}
-%
-%\begin{definition}
-%	Let $(E,\mu,e)$ be a monoid object in $\cC$, and suppose we have two left module objects $(N,\kappa)$ and $(N',\kappa')$ over $(E,\mu,e)$. Then a morphism $f:N\to N'$ is a \emph{left $E$-module homomorphism} if the following diagram commutes in $\cC$:
-%	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxvdGltZXMgTiJdLFsxLDAsIkVcXG90aW1lcyBOJyJdLFswLDEsIk4iXSxbMSwxLCJOJyJdLFswLDEsIkVcXG90aW1lcyBmIl0sWzAsMiwiXFxrYXBwYSIsMl0sWzIsMywiZiJdLFsxLDMsIlxca2FwcGEnIl1d
-%	\[\begin{tikzcd}
-%		{E\otimes N} & {E\otimes N'} \\
-%		N & {N'}
-%		\arrow["{E\otimes f}", from=1-1, to=1-2]
-%		\arrow["\kappa"', from=1-1, to=2-1]
-%		\arrow["f", from=2-1, to=2-2]
-%		\arrow["{\kappa'}", from=1-2, to=2-2]
-%	\end{tikzcd}\]
-%\end{definition}
+\begin{definition}\label{left_module_object}
+	Let $(E,\mu,e)$ be a monoid object in $\cC$. Then a \emph{left module object} $(N,\kappa)$ over $(E,\mu,e)$ is the data of an object $N$ in $\cC$ and a morphism $\kappa:E\otimes N\to N$ such that the following two diagrams commute in $\cC$:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJTXFxvdGltZXMgTiJdLFsxLDAsIkVcXG90aW1lcyBOIl0sWzEsMSwiTiJdLFsyLDAsIihFXFxvdGltZXMgRSlcXG90aW1lcyBOIl0sWzQsMCwiRVxcb3RpbWVzIE4iXSxbNCwxLCJOIl0sWzIsMSwiRVxcb3RpbWVzKEVcXG90aW1lcyBOKSJdLFszLDEsIkVcXG90aW1lcyBOIl0sWzAsMSwiZVxcb3RpbWVzIE4iXSxbMSwyLCJcXGthcHBhIl0sWzAsMiwiXFxsYW1iZGFfTiIsMl0sWzMsNCwiXFxtdVxcb3RpbWVzIE4iXSxbNCw1LCJcXGthcHBhIl0sWzMsNiwiXFxhbHBoYSIsMl0sWzYsNywiRVxcb3RpbWVzIFxca2FwcGEiXSxbNyw1LCJcXGthcHBhIl1d
+	\[\begin{tikzcd}
+		{S\otimes N} & {E\otimes N} & {(E\otimes E)\otimes N} && {E\otimes N} \\
+		& N & {E\otimes(E\otimes N)} & {E\otimes N} & N
+		\arrow["{e\otimes N}", from=1-1, to=1-2]
+		\arrow["\kappa", from=1-2, to=2-2]
+		\arrow["{\lambda_N}"', from=1-1, to=2-2]
+		\arrow["{\mu\otimes N}", from=1-3, to=1-5]
+		\arrow["\kappa", from=1-5, to=2-5]
+		\arrow["\alpha"', from=1-3, to=2-3]
+		\arrow["{E\otimes \kappa}", from=2-3, to=2-4]
+		\arrow["\kappa", from=2-4, to=2-5]
+	\end{tikzcd}\]
+\end{definition}
+
+\begin{definition}\label{homomorphism_of_left_module_objects}
+	Let $(E,\mu,e)$ be a monoid object in $\cC$, and suppose we have two left module objects $(N,\kappa)$ and $(N',\kappa')$ over $(E,\mu,e)$. Then a morphism $f:N\to N'$ is a \emph{left $E$-module homomorphism} if the following diagram commutes in $\cC$:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxvdGltZXMgTiJdLFsxLDAsIkVcXG90aW1lcyBOJyJdLFswLDEsIk4iXSxbMSwxLCJOJyJdLFswLDEsIkVcXG90aW1lcyBmIl0sWzAsMiwiXFxrYXBwYSIsMl0sWzIsMywiZiJdLFsxLDMsIlxca2FwcGEnIl1d
+	\[\begin{tikzcd}
+		{E\otimes N} & {E\otimes N'} \\
+		N & {N'}
+		\arrow["{E\otimes f}", from=1-1, to=1-2]
+		\arrow["\kappa"', from=1-1, to=2-1]
+		\arrow["f", from=2-1, to=2-2]
+		\arrow["{\kappa'}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+\end{definition}
+
+\begin{definition}
+	Given a monoid object $(E,\mu,e)$ in $\cSH$, we write $E\text-\Mod$ to denote the category of left module objects over $E$ and left $E$-module homomorphisms between them. We denote the homset in $E\text-\Mod$ by
+	\[\Hom_{E\text-\Mod}(M,N),\qquad\text{or simply}\qquad\Hom_E(M,N).\]
+\end{definition}
+
+\begin{lemma}\label{module_if_iso_to_module}
+	Let $(E,\mu,e)$ be a monoid object in $\cC$ and let $(N,\kappa)$ be a left $E$ module object. Then given some object $X$ in $\cC$ and an isomorphism $\phi:N\xr\cong X$, $X$ inherits the structure of a left $E$-module via the multiplication
+	\[\kappa_\phi:E\otimes X\xr{E\otimes\phi^{-1}}E\otimes N\xr\kappa N\xr\phi X.\]
+\end{lemma}
+\begin{proof}
+	We need to show the two coherence diagrams in \autoref{left_module_object} commute. To see the former commutes, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJYIl0sWzMsMywiWCJdLFszLDAsIkVcXG90aW1lcyBYIl0sWzMsMSwiRVxcb3RpbWVzIE4iXSxbMywyLCJOIl0sWzIsMSwiTiJdLFswLDEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMiwiZVxcb3RpbWVzIFgiXSxbMiwzLCJFXFxvdGltZXNcXHBoaV57LTF9Il0sWzMsNCwiXFxrYXBwYSJdLFs0LDEsIlxccGhpIl0sWzUsNCwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSwzLCJlXFxvdGltZXMgTiJdLFswLDUsIlxccGhpXnstMX0iXV0=
+	\[\begin{tikzcd}
+		X &&& {E\otimes X} \\
+		&& N & {E\otimes N} \\
+		&&& N \\
+		&&& X
+		\arrow[Rightarrow, no head, from=1-1, to=4-4]
+		\arrow["{e\otimes X}", from=1-1, to=1-4]
+		\arrow["{E\otimes\phi^{-1}}", from=1-4, to=2-4]
+		\arrow["\kappa", from=2-4, to=3-4]
+		\arrow["\phi", from=3-4, to=4-4]
+		\arrow[Rightarrow, no head, from=2-3, to=3-4]
+		\arrow["{e\otimes N}", from=2-3, to=2-4]
+		\arrow["{\phi^{-1}}", from=1-1, to=2-3]
+	\end{tikzcd}\]
+	The top trapezoid commutes by functoriality of $-\otimes-$. The middle small triangle commutes by unitality of $\kappa$. The remaining region commutes by definition. To see the second coherence diagram commutes, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMCwiRVxcb3RpbWVzIFgiXSxbMywxLCJFXFxvdGltZXMgTiJdLFszLDIsIk4iXSxbMywzLCJYIl0sWzAsMSwiRVxcb3RpbWVzIEVcXG90aW1lcyBOIl0sWzAsMiwiRVxcb3RpbWVzIE4iXSxbMCwzLCJFXFxvdGltZXMgWCJdLFsxLDMsIkVcXG90aW1lcyBOIl0sWzIsMywiTiJdLFswLDEsIlxcbXVcXG90aW1lcyBYIl0sWzEsMiwiRVxcb3RpbWVzXFxwaGleey0xfSJdLFsyLDMsIlxca2FwcGEiXSxbMyw0LCJcXHBoaSJdLFswLDUsIkVcXG90aW1lcyBFXFxvdGltZXNcXHBoaV57LTF9IiwyXSxbNSw2LCJFXFxvdGltZXNcXGthcHBhIiwyXSxbNiw3LCJFXFxvdGltZXNcXHBoaSIsMl0sWzcsOCwiRVxcb3RpbWVzXFxwaGleezEtfSIsMl0sWzgsOSwiXFxrYXBwYSIsMl0sWzksNCwiXFxwaGkiLDJdLFs1LDIsIlxcbXVcXG90aW1lcyBOIl0sWzYsMywiXFxrYXBwYSJdLFs2LDgsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		{E\otimes E\otimes X} &&& {E\otimes X} \\
+		{E\otimes E\otimes N} &&& {E\otimes N} \\
+		{E\otimes N} &&& N \\
+		{E\otimes X} & {E\otimes N} & N & X
+		\arrow["{\mu\otimes X}", from=1-1, to=1-4]
+		\arrow["{E\otimes\phi^{-1}}", from=1-4, to=2-4]
+		\arrow["\kappa", from=2-4, to=3-4]
+		\arrow["\phi", from=3-4, to=4-4]
+		\arrow["{E\otimes E\otimes\phi^{-1}}"', from=1-1, to=2-1]
+		\arrow["E\otimes\kappa"', from=2-1, to=3-1]
+		\arrow["E\otimes\phi"', from=3-1, to=4-1]
+		\arrow["{E\otimes\phi^{1-}}"', from=4-1, to=4-2]
+		\arrow["\kappa"', from=4-2, to=4-3]
+		\arrow["\phi"', from=4-3, to=4-4]
+		\arrow["{\mu\otimes N}", from=2-1, to=2-4]
+		\arrow["\kappa", from=3-1, to=3-4]
+		\arrow[Rightarrow, no head, from=3-1, to=4-2]
+	\end{tikzcd}\]
+	The top rectangle commutes by functoriality of $-\otimes-$. The middle rectangle commutes by coherence for $\kappa$. The bottom two regions commute by definition.
+\end{proof}
+
+\begin{proposition}\label{free_forgetful_E-Mod}
+	Given a monoid object $(E,\mu,e)$ in $\cC$, the forgetful functor $E\text-\Mod\to\cC$ has a left adjoint $\cC\to E\text-\Mod$ sending an object $X\mapsto (E\otimes X,\kappa_X)$ where $\kappa_X$ is the composition
+	\[E\otimes(E\otimes X)\xr{\alpha^{-1}}(E\otimes E)\otimes X\xr{\mu\otimes X}E\otimes X,\]
+	and sending a morphism $f:X\to Y$ to $E\otimes f:E\otimes X\to E\otimes Y$.
+\end{proposition}
+\begin{proof}
+	In this proof, we work in a symmetric strict monoidal category. First, we wish to show that $E\otimes-:\cC\to E\text-\Mod$ as constructed is well-defined. First, to see that $(X,\kappa_X)$ is actually a left $E$-module, we need to show the two diagrams in \autoref{left_module_object} commute. Indeed, consider the following diagrams:
+	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJFXFxvdGltZXMgWCJdLFsxLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsxLDEsIkVcXG90aW1lcyBYIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDEsIkVcXG90aW1lcyBYIl0sWzIsMSwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiZVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzEsMiwiXFxtdVxcb3RpbWVzIFgiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDQsIlxcbXVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFs0LDUsIlxcbXVcXG90aW1lcyBYIl0sWzMsNiwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIiwyXSxbNiw1LCJcXG11XFxvdGltZXMgWCIsMl1d
+	\[\begin{tikzcd}
+		{E\otimes X} & {E\otimes E\otimes X} & {E\otimes E\otimes E\otimes X} & {E\otimes E\otimes X} \\
+		& {E\otimes X} & {E\otimes E\otimes X} & {E\otimes X}
+		\arrow["{e\otimes E\otimes X}", from=1-1, to=1-2]
+		\arrow["{\mu\otimes X}", from=1-2, to=2-2]
+		\arrow[Rightarrow, no head, from=1-1, to=2-2]
+		\arrow["{\mu\otimes E\otimes X}", from=1-3, to=1-4]
+		\arrow["{\mu\otimes X}", from=1-4, to=2-4]
+		\arrow["{E\otimes \mu\otimes X}"', from=1-3, to=2-3]
+		\arrow["{\mu\otimes X}"', from=2-3, to=2-4]
+	\end{tikzcd}\]
+	These are precisely the diagrams obtained by applying $X\otimes-$ to the coherence diagrams for $\mu$, so that they commute as desired. Now, suppose $f:X\to Y$ is a morphism in $\cC$, then we would like to show that $E\otimes f:E\otimes X\to E\otimes Y$ is a morphism of left $E$-module objects. Indeed, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMSwwLCJFXFxvdGltZXMgRVxcb3RpbWVzIFkiXSxbMSwxLCJFXFxvdGltZXMgWSJdLFswLDEsIkVcXG90aW1lcyBYIl0sWzAsMSwiRVxcb3RpbWVzIEVcXG90aW1lcyBmIl0sWzEsMiwiXFxtdVxcb3RpbWVzIFkiXSxbMCwzLCJcXG11XFxvdGltZXMgWCIsMl0sWzMsMiwiRVxcb3RpbWVzIGYiXV0=
+	\[\begin{tikzcd}
+		{E\otimes E\otimes X} & {E\otimes E\otimes Y} \\
+		{E\otimes X} & {E\otimes Y}
+		\arrow["{E\otimes E\otimes f}", from=1-1, to=1-2]
+		\arrow["{\mu\otimes Y}", from=1-2, to=2-2]
+		\arrow["{\mu\otimes X}"', from=1-1, to=2-1]
+		\arrow["{E\otimes f}", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	It commutes by functoriality of $-\otimes-$, so $E\otimes f$ is indeed a left $E$-module homomorphism as desired.
+
+	Now, in order to see that $E\otimes-$ is left adjoint to the forgetful functor, it suffices to construct a unit and counit for the adjunction and show they satisfy the zig-zag identities. Given $X$ in $\cC$ and $(N,\kappa)$ in $E\text-\Mod$, define $\eta_X:=e\otimes X:X\to E\otimes X$ and $\vare_{(N,\kappa)}:=\kappa:E\otimes N\to N$. $\eta_X$ is clearly natural in $X$ by functoriality of $-\otimes-$, and $\vare_{(N,\kappa)}$ is natural in $(N,\kappa)$ by how morphisms in $E\text-\Mod$ are defined. Now, to see these are actually the unit and counit of an adjunction, we need to show that the following diagrams commute for all $X$ in $\cC$ and $(N,\kappa)$ in $E\text-\Mod$:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJFXFxvdGltZXMgWCJdLFsyLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsyLDIsIkVcXG90aW1lcyBYIl0sWzUsMCwiRVxcb3RpbWVzIE4iXSxbNSwyLCJOIl0sWzcsMCwiTiJdLFswLDEsIkVcXG90aW1lc1xcZXRhX1g9RVxcb3RpbWVzIGVcXG90aW1lcyBYIl0sWzEsMiwiXFx2YXJlX3soRVxcb3RpbWVzIFgsXFxrYXBwYV9YKX09XFxtdVxcb3RpbWVzIFgiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDQsIlxcdmFyZV97KE4sXFxrYXBwYSl9PVxca2FwcGEiLDJdLFs1LDMsIlxcZXRhX049ZVxcb3RpbWVzIE4iLDJdLFs1LDQsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		{E\otimes X} && {E\otimes E\otimes X} &&& {E\otimes N} && N \\
+		\\
+		&& {E\otimes X} &&& N
+		\arrow["{E\otimes\eta_X=E\otimes e\otimes X}", from=1-1, to=1-3]
+		\arrow["{\vare_{(E\otimes X,\kappa_X)}=\mu\otimes X}", from=1-3, to=3-3]
+		\arrow[Rightarrow, no head, from=1-1, to=3-3]
+		\arrow["{\vare_{(N,\kappa)}=\kappa}"', from=1-6, to=3-6]
+		\arrow["{\eta_N=e\otimes N}"', from=1-8, to=1-6]
+		\arrow[Rightarrow, no head, from=1-8, to=3-6]
+	\end{tikzcd}\]
+	Commutativity of the left diagram is unitality of $\mu$, while commutativity of the right diagram is unitality of $\kappa$. Thus indeed $E\otimes-:\cC\to E\text-\Mod$ is a left adjoint of the forgetful functor $E\text-\Mod\to\cC$, as desired.
+\end{proof}
+
+\begin{definition}\label{free_module}
+	We call the functor $E\otimes-:\cC\to E\text-\Mod$ constructed above the \emph{free} functor, and we call left $E$-modules in the image of the free functor \emph{free modules}.
+\end{definition}
 
 %\begin{proposition}\label{product_of_monoids_is_a_monoid}
-	%Let $(E_1,\mu_1,e_1)$ and $(E_2,\mu_2,e_2)$ be monoid objects in a symmetric monoidal category $(\cC,\otimes,S)$. Then $E_1\otimes E_2$ is canonically a ring spectrum via the maps
-	%\[\mu:E_1\otimes E_2\otimes E_1\otimes E_2\xr{E_1\otimes\tau\otimes E_2}E_1\otimes E_1\otimes E_2\otimes E_2\xr{\mu_1\otimes\mu_2}E_1\otimes E_2\]
-	%and
-	%\[e:S\cong S\otimes S\xr{e_1\otimes e_2}E_1\otimes E_2.\]
+%	Let $(E_1,\mu_1,e_1)$ and $(E_2,\mu_2,e_2)$ be monoid objects in a symmetric monoidal category $(\cC,\otimes,S)$. Then $E_1\otimes E_2$ is canonically a ring spectrum via the maps
+%	\[\mu:E_1\otimes E_2\otimes E_1\otimes E_2\xr{E_1\otimes\tau\otimes E_2}E_1\otimes E_1\otimes E_2\otimes E_2\xr{\mu_1\otimes\mu_2}E_1\otimes E_2\]
+%	and
+%	\[e:S\cong S\otimes S\xr{e_1\otimes e_2}E_1\otimes E_2.\]
 %\end{proposition}
 %\begin{proof}
-	%\todo{todo}
+%	\todo{todo}
 %\end{proof}
 
 From now on we fix a
-%Karoubi complete
 monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}) with arbitrary (small) (co)products and sub-Picard grading $(A,\1,h,\{S^a\},\{\phi_{a,b}\})$ (\autoref{sub_Picard_grading_defn}), and we adopt the conventions outlined in \Cref{setup}. In all proofs that follow we will freely use the coherence theorem for symmetric monoidal categories. In particular, we will assume without loss of generality that the associators and unitors in $\cSH$ are identities.
+
+\begin{lemma}\label{suspension_of_module_object_is_module_object}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and suppose $(N,\kappa)$ is a left module object over $E$. Then for all $a\in A$, $\Sigma^a N$ is canonically a left $E$-module object, with action map given by
+	\[\kappa^a:E\otimes S^a\otimes N\]
+	\[\kappa^a:E\otimes\Sigma^aN=E\otimes S^a\otimes N\xr{\tau\otimes N}S^a\otimes E\otimes N\xr{S^a\otimes\kappa}S^a\otimes N=\Sigma^aN.\]
+\end{lemma}
+\begin{proof}
+	In this proof, we are assuming that unitality and associativity hold up to strict equality, by the coherence theorem for monoidal categories. In order to show $(\Sigma^a N,\kappa^a)$ is a left module object over $E$, we need to show $\kappa^a$ makes the two coherence diagrams in \autoref{left_module_object} commute. First, to see the first diagram commutes, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJTXmFcXG90aW1lcyBOIl0sWzIsMCwiRVxcb3RpbWVzIFNeYVxcb3RpbWVzIE4iXSxbMiwyLCJTXmFcXG90aW1lcyBOIl0sWzIsMSwiU15hXFxvdGltZXMgRVxcb3RpbWVzIE4iXSxbMCwxLCJlXFxvdGltZXMgU15hXFxvdGltZXMgTiJdLFsxLDMsIlxcdGF1XFxvdGltZXMgTiJdLFszLDIsIlNeYVxcb3RpbWVzIFxca2FwcGEiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDMsIlNeYVxcb3RpbWVzIGVcXG90aW1lcyBOIiwxXV0=
+	\[\begin{tikzcd}
+		{S^a\otimes N} && {E\otimes S^a\otimes N} \\
+		&& {S^a\otimes E\otimes N} \\
+		&& {S^a\otimes N}
+		\arrow["{e\otimes S^a\otimes N}", from=1-1, to=1-3]
+		\arrow["{\tau\otimes N}", from=1-3, to=2-3]
+		\arrow["{S^a\otimes \kappa}", from=2-3, to=3-3]
+		\arrow[Rightarrow, no head, from=1-1, to=3-3]
+		\arrow["{S^a\otimes e\otimes N}"{description}, from=1-1, to=2-3]
+	\end{tikzcd}\]
+	The top inner triangle commutes by coherence for a symmetric monoidal category, and the bottom inner triangle commutes by the coherence condition for $\kappa$. To see the other module condition for $\wt\kappa$, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIE4iXSxbMiwwLCJFXFxvdGltZXMgU15hXFxvdGltZXMgTiJdLFsyLDEsIlNeYVxcb3RpbWVzIEVcXG90aW1lcyBOIl0sWzIsMiwiU15hXFxvdGltZXMgTiJdLFswLDEsIkVcXG90aW1lcyBTXmFcXG90aW1lcyBFXFxvdGltZXMgTiJdLFswLDIsIkVcXG90aW1lcyBTXmFcXG90aW1lcyBOIl0sWzEsMiwiU15hXFxvdGltZXMgRVxcb3RpbWVzIE4iXSxbMSwxLCJTXmFcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIE4iXSxbMCwxLCJcXG11XFxvdGltZXMgU15hXFxvdGltZXMgTiJdLFsxLDIsIlxcdGF1XFxvdGltZXMgTiJdLFsyLDMsIlNeYVxcb3RpbWVzIFxca2FwcGEiXSxbMCw0LCJFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBOIiwyXSxbNCw1LCJFXFxvdGltZXMgU15hXFxvdGltZXMgXFxrYXBwYSIsMl0sWzUsNiwiXFx0YXVcXG90aW1lcyBOIl0sWzYsMywiU15hXFxvdGltZXMgXFxrYXBwYSJdLFswLDcsIlxcdGF1X3tFXFxvdGltZXMgRSxTXmF9XFxvdGltZXMgTiIsMV0sWzcsMiwiU15hXFxvdGltZXMgXFxtdVxcb3RpbWVzIE4iXSxbNyw2LCJTXmFcXG90aW1lcyBFXFxvdGltZXMgXFxrYXBwYSIsMV0sWzQsNywiXFx0YXVcXG90aW1lcyBFXFxvdGltZXMgTiIsMl1d
+	\[\begin{tikzcd}
+		{E\otimes E\otimes S^a\otimes N} && {E\otimes S^a\otimes N} \\
+		{E\otimes S^a\otimes E\otimes N} & {S^a\otimes E\otimes E\otimes N} & {S^a\otimes E\otimes N} \\
+		{E\otimes S^a\otimes N} & {S^a\otimes E\otimes N} & {S^a\otimes N}
+		\arrow["{\mu\otimes S^a\otimes N}", from=1-1, to=1-3]
+		\arrow["{\tau\otimes N}", from=1-3, to=2-3]
+		\arrow["{S^a\otimes \kappa}", from=2-3, to=3-3]
+		\arrow["{E\otimes \tau\otimes N}"', from=1-1, to=2-1]
+		\arrow["{E\otimes S^a\otimes \kappa}"', from=2-1, to=3-1]
+		\arrow["{\tau\otimes N}", from=3-1, to=3-2]
+		\arrow["{S^a\otimes \kappa}", from=3-2, to=3-3]
+		\arrow["{\tau_{E\otimes E,S^a}\otimes N}"{description}, from=1-1, to=2-2]
+		\arrow["{S^a\otimes \mu\otimes N}", from=2-2, to=2-3]
+		\arrow["{S^a\otimes E\otimes \kappa}"{description}, from=2-2, to=3-2]
+		\arrow["{\tau\otimes E\otimes N}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	The top left triangle commutes by coherence for a symmetric monoidal category. The bottom left rectangle and top right trapezoid commute by naturality of $\tau$. Finally, the bottom right square commutes by the coherence condition for $\kappa$.
+\end{proof}
+
+\begin{lemma}\label{free_susp_is_susp_of_free}
+	Given a monoid object $(E,\mu,e)$ in $\cSH$, an object $X$ in $\cSH$, and some $a\in A$, the suspension of the free module $\Sigma^a(E\otimes X)$ is naturally isomorphic as a left $E$-module object to the free $E$-module $E\otimes\Sigma^aX$.
+\end{lemma}
+\begin{proof}
+	It suffices to show the isomorphism $S^a\otimes E\otimes X\xr{\tau\otimes X}E\otimes S^a\otimes X$ is a homomorphism of left $E$-module objects. To see this, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJFXFxvdGltZXMgU15hXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMCwxLCJTXmFcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMCwyLCJTXmFcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsyLDIsIkVcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYIl0sWzAsMSwiXFx0YXVcXG90aW1lcyBFXFxvdGltZXMgWCIsMl0sWzEsMiwiU15hXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiLDJdLFsyLDMsIlxcdGF1XFxvdGltZXMgWCJdLFswLDQsIkVcXG90aW1lcyBcXHRhdVxcb3RpbWVzIFgiXSxbNCwzLCJcXG11XFxvdGltZXMgU15hXFxvdGltZXMgWCJdLFsxLDQsIlxcdGF1X3tTXmEsRVxcb3RpbWVzIEV9XFxvdGltZXMgWCIsMl1d
+	\[\begin{tikzcd}
+		{E\otimes S^a\otimes E\otimes X} && {E\otimes E\otimes S^a\otimes X} \\
+		{S^a\otimes E\otimes E\otimes X} \\
+		{S^a\otimes E\otimes X} && {E\otimes S^a\otimes X}
+		\arrow["{\tau\otimes E\otimes X}"', from=1-1, to=2-1]
+		\arrow["{S^a\otimes \mu\otimes X}"', from=2-1, to=3-1]
+		\arrow["{\tau\otimes X}", from=3-1, to=3-3]
+		\arrow["{E\otimes \tau\otimes X}", from=1-1, to=1-3]
+		\arrow["{\mu\otimes S^a\otimes X}", from=1-3, to=3-3]
+		\arrow["{\tau_{S^a,E\otimes E}\otimes X}"', from=2-1, to=1-3]
+	\end{tikzcd}\]
+	The top triangle commutes by coherence for a symmetric monoidal category. The bottom trapezoid commutes by naturality of $\tau$. 
+\end{proof}
+
+\begin{definition}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and suppose $(N,\kappa)$ and $(N',\kappa')$ are left $E$-module objects in $E\text-\Mod$. Then the hom-sets in $E\text-\Mod$ can be extended to $A$-graded abelian groups $\Hom^*_{E\text-\Mod}(N,N')$, by defining 
+	\[\Hom^a_{E\text-\Mod}(N,N'):=\Hom_{E\text-\Mod}(\Sigma^a N,N')\]
+	for each $a\in A$ (where $\Sigma^{*}N$ has the left $E$-module structure given by \autoref{suspension_of_module_object_is_module_object}).
+\end{definition}
+
+\begin{proposition}\label{coproduct_of_E_modules_is_coproduct_in_E_mod}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and suppose we have a family of left $E$-module objects $(N_i,\kappa_i)$ indexed by some small set $I$. Then $N:=\bigoplus_{i\in I}N_i$ is canonically a left $E$-module, with action map given by the composition
+	\[\kappa:E\otimes\bigoplus_iN_i\xr\cong\bigoplus_i(E\otimes N_i)\xrightarrow{\bigoplus_i\kappa_i}\bigoplus_iN_i,\]
+	where the first isomorphism is given by the fact that $E\otimes-$ preserves coproducts, since it is a left adjoint as $\cSH$ is monoidal closed. Furthermore, $N$ is the coproduct of all the $N_i$'s in $E\text-\Mod$, so that $E\text-\Mod$ has arbitrary coproducts.
+\end{proposition}
+\begin{proof}
+	We need to show the action map $\kappa$ makes the diagrams in \autoref{left_module_object} commute. To see the first (unitality) diagram commutes, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJpZ29wbHVzX2lOX2kiXSxbNCwwLCJFXFxvdGltZXNcXGJpZ29wbHVzX2lOX2kiXSxbNCwyLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIE5faSkiXSxbNCw0LCJcXGJpZ29wbHVzX2lOX2kiXSxbMCwxLCJlXFxvdGltZXNcXGJpZ29wbHVzX2lOX2kiXSxbMSwyLCJcXGNvbmciXSxbMiwzLCJcXGJpZ29wbHVzX2lcXGthcHBhX2kiXSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDIsIlxcYmlnb3BsdXNfaShlXFxvdGltZXMgTl9pKSIsMV1d
+	\[\begin{tikzcd}
+		{\bigoplus_iN_i} &&&& {E\otimes\bigoplus_iN_i} \\
+		\\
+		&&&& {\bigoplus_i(E\otimes N_i)} \\
+		\\
+		&&&& {\bigoplus_iN_i}
+		\arrow["{e\otimes\bigoplus_iN_i}", from=1-1, to=1-5]
+		\arrow["\cong", from=1-5, to=3-5]
+		\arrow["{\bigoplus_i\kappa_i}", from=3-5, to=5-5]
+		\arrow[Rightarrow, no head, from=1-1, to=5-5]
+		\arrow["{\bigoplus_i(e\otimes N_i)}"{description}, from=1-1, to=3-5]
+	\end{tikzcd}\]
+	The top triangle commutes by additivity of $E\otimes-$ The bottom triangle commutes by unitality of each of the $\kappa_i$'s. To see the second coherence diagram commutes, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFXFxvdGltZXMgRVxcb3RpbWVzXFxiaWdvcGx1c19pTl9pIl0sWzIsMCwiRVxcb3RpbWVzIFxcYmlnb3BsdXNfaU5faSJdLFswLDEsIkVcXG90aW1lc1xcYmlnb3BsdXNfaShFXFxvdGltZXMgTl9pKSJdLFswLDIsIkVcXG90aW1lc1xcYmlnb3BsdXNfaU5faSJdLFsxLDIsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgTl9pKSJdLFsyLDIsIlxcYmlnb3BsdXNfaU5faSJdLFsyLDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgTl9pKSJdLFsxLDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgRVxcb3RpbWVzIE5faSkiXSxbMCwxLCJcXG11XFxvcGx1c1xcYmlnb3BsdXNfaU5faSJdLFswLDIsIkVcXG90aW1lc1xcY29uZyIsMl0sWzIsMywiRVxcb3RpbWVzXFxiaWdvcGx1c19pXFxrYXBwYV9pIiwyXSxbMyw0LCJcXGNvbmciLDJdLFs0LDUsIlxcYmlnb3BsdXNfaVxca2FwcGFfaSIsMl0sWzEsNiwiXFxjb25nIl0sWzYsNSwiXFxiaWdvcGx1c19pXFxrYXBwYV9pIl0sWzAsNywiXFxjb25nIl0sWzIsNywiXFxjb25nIl0sWzcsNiwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBOX2kpIl0sWzcsNCwiXFxiaWdvcGx1c19pKEVcXG90aW1lc1xca2FwcGFfaSkiLDJdXQ==
+	\[\begin{tikzcd}
+		{E\otimes E\otimes\bigoplus_iN_i} && {E\otimes \bigoplus_iN_i} \\
+		{E\otimes\bigoplus_i(E\otimes N_i)} & {\bigoplus_i(E\otimes E\otimes N_i)} & {\bigoplus_i(E\otimes N_i)} \\
+		{E\otimes\bigoplus_iN_i} & {\bigoplus_i(E\otimes N_i)} & {\bigoplus_iN_i}
+		\arrow["{\mu\oplus\bigoplus_iN_i}", from=1-1, to=1-3]
+		\arrow["E\otimes\cong"', from=1-1, to=2-1]
+		\arrow["{E\otimes\bigoplus_i\kappa_i}"', from=2-1, to=3-1]
+		\arrow["\cong"', from=3-1, to=3-2]
+		\arrow["{\bigoplus_i\kappa_i}"', from=3-2, to=3-3]
+		\arrow["\cong", from=1-3, to=2-3]
+		\arrow["{\bigoplus_i\kappa_i}", from=2-3, to=3-3]
+		\arrow["\cong", from=1-1, to=2-2]
+		\arrow["\cong", from=2-1, to=2-2]
+		\arrow["{\bigoplus_i(\mu\otimes N_i)}", from=2-2, to=2-3]
+		\arrow["{\bigoplus_i(E\otimes\kappa_i)}"', from=2-2, to=3-2]
+	\end{tikzcd}\]
+	The bottom right square commutes by coherence for the $\kappa_i$'s. Every other region commutes by additivity of $-\otimes-$ in each variable.
+
+	Now, we claim that $(N,\kappa)$ is the coproduct of the $(N_i,\kappa_i)$'s in $E\text-\Mod$. First, we need to show that the canonical maps $\iota_i:N_i\into N$ are morphisms in $E\text-\Mod$ for all $i\in I$. To see $\iota_i$ is a homomorphism of left $E$-module objects, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJFXFxvdGltZXMgTl9pIl0sWzIsMCwiRVxcb3RpbWVzXFxiaWdvcGx1c19pTl9pIl0sWzAsMiwiTl9pIl0sWzIsMiwiXFxiaWdvcGx1c19pTl9pIl0sWzIsMSwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBOX2kpIl0sWzAsMSwiRVxcb3RpbWVzXFxpb3RhX2kiXSxbMCwyLCJcXGthcHBhX2kiLDJdLFsyLDMsIlxcaW90YV9pIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSw0LCJcXGNvbmciXSxbNCwzLCJcXGJpZ29wbHVzX2lcXGthcHBhX2kiXSxbMCw0LCJcXGlvdGFfe0VcXG90aW1lcyBOX2l9IiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+	\[\begin{tikzcd}
+		{E\otimes N_i} && {E\otimes\bigoplus_iN_i} \\
+		&& {\bigoplus_i(E\otimes N_i)} \\
+		{N_i} && {\bigoplus_iN_i}
+		\arrow["{E\otimes\iota_i}", from=1-1, to=1-3]
+		\arrow["{\kappa_i}"', from=1-1, to=3-1]
+		\arrow["{\iota_i}"', hook, from=3-1, to=3-3]
+		\arrow["\cong", from=1-3, to=2-3]
+		\arrow["{\bigoplus_i\kappa_i}", from=2-3, to=3-3]
+		\arrow["{\iota_{E\otimes N_i}}"{description}, hook, from=1-1, to=2-3]
+	\end{tikzcd}\]
+	The top triangle commutes by additivity of $E\otimes-$. The bottom trapezoid commutes since, by univeral property of the coproduct, $\bigoplus_i\kappa_i$ is the unique arrow which makes the trapezoid commute for all $i\in I$. Now, it remains to show that given a left $E$-module object $(N',\kappa')$ and homomorphisms $f_i:N_i\to N'$ of left $E$-module objects for all $i\in I$, that the unique arrow $f:N\to N'$ in $\cSH$ satisfying $f\circ\iota_i=f_i$ for all $i\in I$ is a homomorphism of left $E$-module objects, so that $N$ is actually the coproduct of the $N_i$'s. To see this, first let $h:\bigoplus_i(E\otimes N_i)\to E\otimes N'$ be the arrow determined by the maps $E\otimes N_i\xrightarrow{E\otimes f_i}E\otimes N'$. Then consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJFXFxvdGltZXNcXGJpZ29wbHVzX2lOX2kiXSxbMiwwLCJFXFxvdGltZXMgTiciXSxbMCwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIE5faSkiXSxbMCwzLCJcXGJpZ29wbHVzX2lOX2kiXSxbMiwzLCJOJyJdLFsxLDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgTicpIl0sWzEsMiwiXFxiaWdvcGx1c19pTiciXSxbMCwxLCJFXFxvdGltZXMgZiJdLFswLDIsIlxcY29uZyIsMl0sWzIsMywiXFxiaWdvcGx1c19pXFxrYXBwYV9pIiwyXSxbMyw0LCJmIiwyXSxbMSw0LCJcXGthcHBhJyJdLFsyLDUsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgZl9pKSIsMl0sWzIsMSwiaCJdLFs1LDEsIlxcbmFibGEiLDJdLFs1LDYsIlxcYmlnb3BsdXNfaVxca2FwcGEnIl0sWzYsNCwiXFxuYWJsYSJdLFszLDYsIlxcYmlnb3BsdXNfaWZfaSIsMV1d
+	\[\begin{tikzcd}
+		{E\otimes\bigoplus_iN_i} && {E\otimes N'} \\
+		{\bigoplus_i(E\otimes N_i)} & {\bigoplus_i(E\otimes N')} \\
+		& {\bigoplus_iN'} \\
+		{\bigoplus_iN_i} && {N'}
+		\arrow["{E\otimes f}", from=1-1, to=1-3]
+		\arrow["\cong"', from=1-1, to=2-1]
+		\arrow["{\bigoplus_i\kappa_i}"', from=2-1, to=4-1]
+		\arrow["f"', from=4-1, to=4-3]
+		\arrow["{\kappa'}", from=1-3, to=4-3]
+		\arrow["{\bigoplus_i(E\otimes f_i)}"', from=2-1, to=2-2]
+		\arrow["h", from=2-1, to=1-3]
+		\arrow["\nabla"', from=2-2, to=1-3]
+		\arrow["{\bigoplus_i\kappa'}", from=2-2, to=3-2]
+		\arrow["\nabla", from=3-2, to=4-3]
+		\arrow["{\bigoplus_if_i}"{description}, from=4-1, to=3-2]
+	\end{tikzcd}\]
+	The top triangle commutes by additivity of $E\otimes-$. The triangle below that commutes by the universal property of the coproduct, since it is straightforward to check that $\nabla\circ\bigoplus_i(E\otimes f_i)$ and $h$ both satisfy the universal property of the colimit. The left trapezoid commutes by functoriality of $-\oplus-$ and the fact that $f_i$ is a homomorphism of left $E$-module objects for all $i$ in $I$. The right trapezoid commutes by naturality of $\nabla$. Finally, the botto triangle commutes by the universal product of the coproduct, by showing that $\nabla\circ\bigoplus_if_i$ in place of $f$ also satisfies the universal property of the colimit. Hence $f$ is inded a homomorphism of left $E$-module objects, as desired.
+
+	To recap, we have shown that given a set of left $E$-module objects $\{(N_i,\kappa_i)\}_{i\in I}$, that the inclusion maps $\iota_i:N_i\into \bigoplus_iN_i$ are morphisms in $E\text-\Mod$, and that given morphism $f_i:(N_i,\kappa_i)\to(N',\kappa')$ for all $i\in I$, the unique induced map $\bigoplus_iN_i\to N'$ is a morphism in $E\text-\Mod$. Thus, $E\text-\Mod$ does indeed have finite coproducts, and the forgetful functor $E\text-\Mod\to\cSH$ preserves them.
+\end{proof}
+
+\begin{proposition}\label{E-Mod,free,forgetful_are_additive}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E\text-\Mod$ is an additive category, so that in particular the forgetful functor $E\text-\Mod\to\cSH$ and the free functor $\cSH\to E\text-\Mod$ are additive.
+\end{proposition}
+\begin{proof}
+	It is a general fact that adjoint functors between additive categories are necessarily additive. In order to show $E\text-\Mod$ is an additive category, it suffices to show it has finite coproducts, that $\Hom_{E\text-\Mod}(N,N')$ is an abelian group for all left $E$-modules $N$ and $N'$, and that composition is bilinear. We know that $E\text-\Mod$ has coproducts which are preserved by the forgetful functor $E\text-\Mod\to\cSH$ by \autoref{coproduct_of_E_modules_is_coproduct_in_E_mod} (which is clearly faithful). Thus, because $\cSH$ is $\Ab$-enriched and $\Hom_{E\text-\Mod}(N,N')\sseq\cSH(N,N')$, it suffices to show that $\Hom_{E\text-\Mod}(N,N')$ is closed under addition and taking inverses. To see the former, let $f,g:N\to N'$ be left $E$-module homomorphisms, and consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiRVxcb3RpbWVzIE4iXSxbMSwwLCJFXFxvdGltZXMgKE5cXG9wbHVzIE4pIl0sWzMsMCwiRVxcb3RpbWVzIChOJ1xcb3BsdXMgTicpIl0sWzQsMCwiRVxcb3RpbWVzIE4nIl0sWzQsNCwiTiciXSxbMCw0LCJOIl0sWzEsMSwiKEVcXG90aW1lcyBOKVxcb3BsdXMoRVxcb3RpbWVzIE4pIl0sWzMsMSwiKEVcXG90aW1lcyBOJylcXG90aW1lcyAoRVxcb3RpbWVzIE4nKSJdLFsyLDIsIihFXFxvdGltZXMgTicpXFxvdGltZXMgKEVcXG90aW1lcyBOKSJdLFsxLDQsIk5cXG9wbHVzIE4iXSxbMyw0LCJOJ1xcb3BsdXMgTiciXSxbMiwzLCJOJ1xcb3BsdXMgTiJdLFswLDEsIkVcXG90aW1lc1xcRGVsdGFfTiJdLFsxLDIsIkVcXG90aW1lcyAoZlxcb3BsdXMgZykiXSxbMiwzLCJFXFxvdGltZXMgXFxuYWJsYV97Tid9Il0sWzMsNCwiXFxrYXBwYSciXSxbMCw1LCJcXGthcHBhIiwyXSxbMCw2LCJcXERlbHRhX3tFXFxvdGltZXMgTn0iLDJdLFs2LDcsIihFXFxvdGltZXMgZilcXG9wbHVzKEVcXG90aW1lcyBnKSJdLFsyLDcsIlxcY29uZyJdLFsxLDYsIlxcY29uZyIsMl0sWzcsMywiXFxuYWJsYV97RVxcb3RpbWVzIE4nfSIsMl0sWzYsOCwiKEVcXG90aW1lcyBmKVxcb3BsdXMoRVxcb3RpbWVzIE4pIiwxXSxbOCw3LCIoRVxcb3RpbWVzIE4nKVxcb3BsdXMoRVxcb3RpbWVzIGcpIiwxXSxbNSw5LCJcXERlbHRhX04iXSxbOSwxMCwiZlxcb3BsdXMgZyJdLFsxMCw0LCJcXG5hYmxhX3tOJ30iXSxbOSwxMSwiZlxcb3BsdXMgTiJdLFsxMSwxMCwiTidcXG9wbHVzIGciXSxbNiw5LCJcXGthcHBhXFxvcGx1c1xca2FwcGEiLDJdLFs3LDEwLCJcXGthcHBhJ1xcb3BsdXNcXGthcHBhJyJdLFs4LDExLCJcXGthcHBhJ1xcb3BsdXNcXGthcHBhIl1d
+	\[\begin{tikzcd}[column sep=tiny]
+		{E\otimes N} & {E\otimes (N\oplus N)} && {E\otimes (N'\oplus N')} & {E\otimes N'} \\
+		& {(E\otimes N)\oplus(E\otimes N)} && {(E\otimes N')\otimes (E\otimes N')} \\
+		&& {(E\otimes N')\otimes (E\otimes N)} \\
+		&& {N'\oplus N} \\
+		N & {N\oplus N} && {N'\oplus N'} & {N'}
+		\arrow["{E\otimes\Delta_N}", from=1-1, to=1-2]
+		\arrow["{E\otimes (f\oplus g)}", from=1-2, to=1-4]
+		\arrow["{E\otimes \nabla_{N'}}", from=1-4, to=1-5]
+		\arrow["{\kappa'}", from=1-5, to=5-5]
+		\arrow["\kappa"', from=1-1, to=5-1]
+		\arrow["{\Delta_{E\otimes N}}"', from=1-1, to=2-2]
+		\arrow["{(E\otimes f)\oplus(E\otimes g)}", from=2-2, to=2-4]
+		\arrow["\cong", from=1-4, to=2-4]
+		\arrow["\cong"', from=1-2, to=2-2]
+		\arrow["{\nabla_{E\otimes N'}}"', from=2-4, to=1-5]
+		\arrow["{(E\otimes f)\oplus(E\otimes N)}"{description}, from=2-2, to=3-3]
+		\arrow["{(E\otimes N')\oplus(E\otimes g)}"{description}, from=3-3, to=2-4]
+		\arrow["{\Delta_N}", from=5-1, to=5-2]
+		\arrow["{f\oplus g}", from=5-2, to=5-4]
+		\arrow["{\nabla_{N'}}", from=5-4, to=5-5]
+		\arrow["{f\oplus N}", from=5-2, to=4-3]
+		\arrow["{N'\oplus g}", from=4-3, to=5-4]
+		\arrow["\kappa\oplus\kappa"', from=2-2, to=5-2]
+		\arrow["{\kappa'\oplus\kappa'}", from=2-4, to=5-4]
+		\arrow["{\kappa'\oplus\kappa}", from=3-3, to=4-3]
+	\end{tikzcd}\]
+	The outermost trapezoids commute by naturality of $\Delta$ and $\nabla$. The triangles in the top corners and the top middle rectangle commute by additivity of $E\otimes-$. The middle triangle commutes by functoriality of $\oplus$ and $\otimes$. The middle trapezoids commute by the fact that $f$ and $g$ are homomorphisms of left $E$-modules. Finally, the middle bottom triangle commutes by functoriality of $-\oplus-$. Commutativity of the above diagram shows that $f+g$ is a homomorphism of left $E$-modules as desired. Finally, to see $-f$ is a left $E$-module homomorphism if $f$ is, we would like to show that $\kappa'\circ(E\otimes(-f))=(-f)\circ\kappa$. This follows by the fact that $\kappa'\circ(E\otimes f)=f\circ\kappa$ and additivity of $-\otimes-$ and composition.
+\end{proof}
 
 \begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
 	For each $a\in A$, the isomorphisms
@@ -112,17 +390,6 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	\end{tikzcd}\]
 	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s (since $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, and here we are taking the unitors and associators to be equalities), so it does commute, as desired.
 \end{proof}
-
-%\begin{lemma}\label{wedge_of_supsensions_of_monoid_object_is_module_object}
-%	Let $(E,\mu,e)$ be a monoid object in $\cSH$, then given a family of integers $n_i\in\bZ$ indexed by some set $I$, the object $\bigoplus_i\Sigma^{n_i}E$ is canonically a left module object over $E$, where for $n>0$ we define $\Sigma^{-n}:=\Omega^n=(\Omega^\1)^n=(S^{-\1}\otimes-)^n$. Explicitly, the action map
-%	\[E\otimes\bigoplus_i\Sigma^{n_i}E\to \bigoplus_i\Sigma^{n_i}E\]
-%	is given by the composition
-%	\[E\otimes\bigoplus_i\Sigma^{n_i}E\xr\cong\bigoplus_i(E\otimes\Sigma^{n_i}E)\xr\cong\bigoplus_i\Sigma^{n_i}(E\otimes E)\xr{\bigoplus_i\Sigma^{n_i}\mu}\bigoplus_i\Sigma^{n_i}E,\]
-%	where the first arrow is the canonical isomorphism given by the fact that $-\otimes-$ commutes with arbitrary colimits in each argument (since $\cC$ is symmetric monoidal closed) and the second arrow is given componentwise by repeated applications of $e'$ if $n_i>0$ (\autoref{e'_defn}) or $o'$ if $n_i<0$ (see \autoref{o_X,Ys_in_AdjlyTenTri_cat}, which we get since $\cSH$ is adjointly triangulated by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}).
-%\end{lemma}
-%\begin{proof}
-%	\todo{TODO}
-%\end{proof}
 
 \begin{proposition}\label{pi_*E_is_ring_for_E_monoid_appendix}
 	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and consider the multiplication map $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
@@ -193,105 +460,20 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	The unlabeled isomorphisms are those given by the fact that $-\otimes-$ is additive in each variable (since $\cSH$ is tensor triangulated). Commutativity of the left squares is naturality of $\Delta:X\to X\oplus X$ in an additive category. Commutativity of the rest of the diagram follows again from the fact that $-\otimes-$ is an additive functor in each variable. Hence, by functoriality of $-\otimes-$, these diagrams tell us that $(x+x')\cdot y=x\cdot y+x'\cdot y$ and $x\cdot(y+y')=x\cdot y+x\cdot y'$, respectively.
 \end{proof}
 
-%\begin{lemma}\label{E-module_N_implies_pi*N_is_pi*E_module}
-%	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ a left $E$-module in $\cSH$. Then the map
-%	\[\pi_*(E)\times\pi_*(N)\to\pi_*(N)\]
-%	sending a class $x:S^a\to E$ and $y:S^b\to N$ to the composition
-%	\[S^{a+b}\xr{\phi_{a,b}} S^a\otimes S^b\xr{x\otimes y}E\otimes N\xr\kappa N\]
-%	endows $\pi_*(N)$ with the structure of an $A$-graded left $\pi_*(E)$-module.
-%\end{lemma}
+%\begin{proposition}\label{theta_a,0=theta_0,a=id_S}
+	%Given $a\in A$, we have $\theta_{0,a}=\theta_{a,0}=\id_S$.
+%\end{proposition}
 %\begin{proof}
-%	\todo{TODO}
+	%Recall $\theta_{a,0}$ is the composition
+	%\[S\xr{\phi_{-a,a}} S^{-a}\otimes S^a\xr{S^{-a}\otimes\phi_{a,0}} S^{-a}\otimes(S^a\otimes S)\xr{S^{-a}\otimes\tau}S^{-a}\otimes(S\otimes S^a)\xr{S^{-a}\otimes\phi_{0,a}^{-1}} S^{-a}\otimes S^a\xr{\phi_{-a,a}^{-1}}S\]
+	%By the coherence theorem for symmetric monoidal categories and the fact that $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, we have that the composition
+	%\[S^a\xr{\phi_{a,0}=\rho_{S^a}^{-1}} S^a\otimes S\xr\tau S\otimes S^a\xr{\phi_{0,a}^{-1}=\lambda_{S^a}}S^a\]
+	%is precisely the identity map, so by functoriality of $-\otimes-$, we have that $\theta_{a,0}$ is the composition
+	%\[S\xr{\phi_{-a,a}}S^{-a}\otimes S^a\xr=S^{-a}\otimes S^{a}\xr{\phi_{-a,a}^{-1}}S,\]
+	%so $\theta_{a,0}=\id_S$, meaning
+	%\[x\cdot y=y\cdot x\cdot(e\circ\theta_{a,0})=y\cdot x\cdot e=y\cdot x,\]
+	%where the last equality follows by the fact that $e$ is the unit for the multiplication on $\pi_\ast(E)$. An entirely analagous argument yields that $\theta_{0,a}=\id_S$.
 %\end{proof}
-%
-%\begin{lemma}
-%	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ a left $E$-module in $\cSH$. Further suppose that $E$ and $N$ are both cellular (\autoref{cellular}) and that $\pi_*(N)$ is a projective left $\pi_*(E)$-module (\autoref{E-module_N_implies_pi*N_is_pi*E_module}). Then there exists a collection of objects $x_i\in\pi_*(N)$ indexed by some (small) set $I$ and a commuting diagram
-%	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJOIl0sWzEsMCwiXFxiaWdvcGx1c19pXFxTaWdtYV57fHhfaXx9RSJdLFsyLDAsIk4iXSxbMCwxLCJpIiwyXSxbMSwyLCJyIiwyXSxbMCwyLCIiLDAseyJjdXJ2ZSI6LTQsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-%	\[\begin{tikzcd}
-%		N & {\bigoplus_i\Sigma^{|x_i|}E} & N
-%		\arrow["i"', from=1-1, to=1-2]
-%		\arrow["r"', from=1-2, to=1-3]
-%		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-3]
-%	\end{tikzcd},\]
-%	where $i$ and $r$ are homomorphisms of left $E$-module objects (where $\bigoplus_i\Sigma^{|x_i|}E$ has the left $E$-module structure prescribed by \autoref{wedge_of_supsensions_of_monoid_object_is_module_object}).
-%\end{lemma}
-%\begin{proof}
-%	\todo{TODO}
-%\end{proof}
-
-\begin{proposition}\label{pi_*(E)_is_A-graded_commutative_if_E_is_commutative}
-	For all $a,b\in A$ there exists an element $\theta_{a,b}\in\pi_0(S)=[S,S]$ (determined by choice of coherent family $\{\phi_{a,b}\}$) such that given any commutative monoid object $(E,\mu,e)$ in $\cSH$, the $A$-graded ring structure on $\pi_\ast(E)$ (\autoref{pi_*E_is_ring_for_E_monoid}) has a commutativity formula given by
-	\[x\cdot y=y\cdot x\cdot (e\circ\theta_{a,b})\]
-	for all $x\in\pi_a(E)$ and $y\in\pi_b(E)$. In particular, $\theta_{a,b}\in\mathrm{Aut}(S)$ is the composition
-	\[S\xr{\cong}S^{-a-b}\otimes S^a\otimes S^b\xr{S^{-a-b}\otimes\tau}S^{-a-b}\otimes S^b\otimes S^a\xr\cong S,\]
-	where the outermost maps are the unique maps specified by \autoref{unique_comp_Sas}.
-\end{proposition}
-\begin{proof}
-	Let $(E,\mu,e)$, $x$, and $y$ as in the statement of the proposition. Now consider the following diagram
-	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXnthK2J9Il0sWzAsMiwiU157YStifSJdLFsyLDIsIlNeYlxcb3RpbWVzIFNeYSJdLFsyLDAsIlNeYVxcb3RpbWVzIFNeYiJdLFs0LDAsIkVcXG90aW1lcyBFIl0sWzQsMiwiRVxcb3RpbWVzIEUiXSxbNiwxLCJFIl0sWzAsMSwiXFxwaGlfe2IsYX1eey0xfVxcY2lyY1xcdGF1XFxjaXJjXFxwaGlfe2EsYn0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwyLCJcXHBoaV97YixhfSJdLFswLDMsIlxccGhpX3thLGJ9Il0sWzMsMiwiXFx0YXUiLDJdLFs0LDUsIlxcdGF1IiwyXSxbNCw2LCJcXG11Il0sWzIsNSwieVxcb3RpbWVzIHgiXSxbNSw2LCJcXG11IiwyXSxbMyw0LCJ4XFxvdGltZXMgeSJdXQ==
-	\[\begin{tikzcd}[sep=small]
-		{S^{a+b}} && {S^a\otimes S^b} && {E\otimes E} \\
-		&&&&&& E \\
-		{S^{a+b}} && {S^b\otimes S^a} && {E\otimes E}
-		\arrow["{\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b}}"', dashed, from=1-1, to=3-1]
-		\arrow["{\phi_{b,a}}", from=3-1, to=3-3]
-		\arrow["{\phi_{a,b}}", from=1-1, to=1-3]
-		\arrow["\tau"', from=1-3, to=3-3]
-		\arrow["\tau"', from=1-5, to=3-5]
-		\arrow["\mu", from=1-5, to=2-7]
-		\arrow["{y\otimes x}", from=3-3, to=3-5]
-		\arrow["\mu"', from=3-5, to=2-7]
-		\arrow["{x\otimes y}", from=1-3, to=1-5]
-	\end{tikzcd}\]
-	The left square commutes by definition. The middle square commutes by naturality of the symmetry isomorphism. Finally, the right square commutes by commutativity of $E$. Unravelling definitions, we have shown that under the product on $\pi_\ast(E)$ induced by the $\phi_{a,b}$'s,
-	\[x\cdot y=(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b}).\]
-	Thus, in order to show the desired result it further suffices to show that
-	\[(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b})=y\cdot x\cdot(e\circ\theta_{a,b}).\]
-	Consider the following diagram:
-	% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiU157YStifSJdLFswLDEsIlNeYlxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hLWJ9XFxvdGltZXMgU15hXFxvdGltZXMgU15iIl0sWzAsMiwiU15iXFxvdGltZXMgU15hXFxvdGltZXMgU157LWEtYn1cXG90aW1lcyBTXmJcXG90aW1lcyBTXmEiXSxbMCw0LCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMiw0LCJFXFxvdGltZXMgRSJdLFsxLDIsIlNeYlxcb3RpbWVzIFNeYSJdLFsyLDAsIlNeYVxcb3RpbWVzIFNeYiJdLFsyLDEsIlNeYlxcb3RpbWVzIFNeYSJdLFsyLDIsIlNee2ErYn0iXSxbMiwzLCJFXFxvdGltZXMgRSJdLFswLDUsIkVcXG90aW1lcyBFIl0sWzIsNSwiRSJdLFswLDEsIlxcY29uZyIsMl0sWzAsNiwiXFxwaGlfe2EsYn0iXSxbNiw3LCJcXHRhdSJdLFs3LDgsIlxccGhpX3tiLGF9XnstMX0iXSxbOCw1LCJcXHBoaV97YixhfSIsMl0sWzIsNywiXFxjb25nIl0sWzEsNiwiXFxjb25nIiwyXSxbOSwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIGUiLDJdLFsxLDIsIlNeYlxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hLWJ9XFxvdGltZXNcXHRhdSIsMl0sWzMsMTAsIlxcbXVcXG90aW1lcyBFIiwyXSxbMyw0LCJFXFxvdGltZXMgXFxtdSJdLFs0LDExLCJcXG11Il0sWzEwLDExLCJcXG11IiwyXSxbOSw0LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDksInlcXG90aW1lcyB4Il0sWzUsMywieVxcb3RpbWVzIHhcXG90aW1lcyBlIiwyXSxbMiw1LCJcXGNvbmciXSxbNSw3LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-	\[\begin{tikzcd}
-		{S^{a+b}} && {S^a\otimes S^b} \\
-		{S^b\otimes S^a\otimes S^{-a-b}\otimes S^a\otimes S^b} && {S^b\otimes S^a} \\
-		{S^b\otimes S^a\otimes S^{-a-b}\otimes S^b\otimes S^a} & {S^b\otimes S^a} & {S^{a+b}} \\
-		&& {E\otimes E} \\
-		{E\otimes E\otimes E} && {E\otimes E} \\
-		{E\otimes E} && E
-		\arrow["\cong"', from=1-1, to=2-1]
-		\arrow["{\phi_{a,b}}", from=1-1, to=1-3]
-		\arrow["\tau", from=1-3, to=2-3]
-		\arrow["{\phi_{b,a}^{-1}}", from=2-3, to=3-3]
-		\arrow["{\phi_{b,a}}"', from=3-3, to=3-2]
-		\arrow["\cong", from=3-1, to=2-3]
-		\arrow["\cong"', from=2-1, to=1-3]
-		\arrow["{E\otimes E\otimes e}"', from=4-3, to=5-1]
-		\arrow["{S^b\otimes S^a\otimes S^{-a-b}\otimes\tau}"', from=2-1, to=3-1]
-		\arrow["{\mu\otimes E}"', from=5-1, to=6-1]
-		\arrow["{E\otimes \mu}", from=5-1, to=5-3]
-		\arrow["\mu", from=5-3, to=6-3]
-		\arrow["\mu"', from=6-1, to=6-3]
-		\arrow[Rightarrow, no head, from=4-3, to=5-3]
-		\arrow["{y\otimes x}", from=3-2, to=4-3]
-		\arrow["{y\otimes x\otimes e}"', from=3-2, to=5-1]
-		\arrow["\cong", from=3-1, to=3-2]
-		\arrow[Rightarrow, no head, from=3-2, to=2-3]
-	\end{tikzcd}\]
-	Here any map simply labelled $\cong$ is an appropriate composition of copies of $\phi_{a,b}$'s, associators, and their inverses, so that each of these maps are necessarily unique by \autoref{unique_comp_Sas}. The triangles in the top large rectangle commutes by coherence for the $\phi_{a,b}$'s. The parallelogram commutes by naturality of $\tau$ and coherence of the of $\phi_{a,b}$'s. The middle skewed triangle commutes by functoriality of $-\otimes-$. The triangle below that commutes by unitality of $\mu$. Finally, the bottom rectangle commmutes by associativity of $\mu$. Hence, by unravelling definitions and applying functoriality of $-\otimes-$, we get that the right composition is $(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b})$, while the left composition is $y\cdot x\cdot(e\circ\theta_{a,b})$, so they are equal as desired.
-\end{proof}
-
-\begin{proposition}\label{theta_a,0=theta_0,a=id_S}
-	Given $a\in A$, we have $\theta_{0,a}=\theta_{a,0}=\id_S$.
-\end{proposition}
-\begin{proof}
-	Recall $\theta_{a,0}$ is the composition
-	\[S\xr{\phi_{-a,a}} S^{-a}\otimes S^a\xr{S^{-a}\otimes\phi_{a,0}} S^{-a}\otimes(S^a\otimes S)\xr{S^{-a}\otimes\tau}S^{-a}\otimes(S\otimes S^a)\xr{S^{-a}\otimes\phi_{0,a}^{-1}} S^{-a}\otimes S^a\xr{\phi_{-a,a}^{-1}}S\]
-	By the coherence theorem for symmetric monoidal categories and the fact that $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, we have that the composition
-	\[S^a\xr{\phi_{a,0}=\rho_{S^a}^{-1}} S^a\otimes S\xr\tau S\otimes S^a\xr{\phi_{0,a}^{-1}=\lambda_{S^a}}S^a\]
-	is precisely the identity map, so by functoriality of $-\otimes-$, we have that $\theta_{a,0}$ is the composition
-	\[S\xr{\phi_{-a,a}}S^{-a}\otimes S^a\xr=S^{-a}\otimes S^{a}\xr{\phi_{-a,a}^{-1}}S,\]
-	so $\theta_{a,0}=\id_S$, meaning
-	\[x\cdot y=y\cdot x\cdot(e\circ\theta_{a,0})=y\cdot x\cdot e=y\cdot x,\]
-	where the last equality follows by the fact that $e$ is the unit for the multiplication on $\pi_\ast(E)$. An entirely analagous argument yields that $\theta_{0,a}=\id_S$.
-\end{proof}
 
 \begin{proposition}\label{bilinear}
 	Let $X$ and $Y$ be objects in $\cSH$. Then the $A$-graded pairing
@@ -319,6 +501,95 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	The isomorphisms are given by the fact that $-\otimes-$ is additive in each variable. Both triangles and the parallelogram commute since $-\otimes-$ is additive. By functoriality of $-\otimes-$, the top composition is $( x_1+ x_2)\cdot y$ and the bottom composition is $ x_1\cdot y+ x_2\cdot y$, so they are equal, as desired. An entirely analagous argument yields that $ x\cdot( y_1+ y_2)= x\cdot y_1+ x\cdot y_2$ for $ x\in\pi_*(X)$ and $ y_1, y_2\in\pi_*(Y)$.
 \end{proof}
 
+\begin{lemma}\label{E-module_N_implies_pi*N_is_pi*E_module}
+	Let $(E,\mu,e)$ be a monoid object. Then the assignment $\pi_*:(N,\kappa)\mapsto\pi_*(N)$ yields an additive functor from $E\text-\Mod$ to $A$-graded left $\pi_*(E)$-modules. In particular, if $(N,\kappa)$ is a left $E$-module in $\cSH$ then the map
+	\[\pi_*(E)\times\pi_*(N)\to\pi_*(N)\]
+	sending a class $r:S^a\to E$ and $x:S^b\to N$ to the composition
+	\[r\cdot x:S^{a+b}\xr{\phi_{a,b}} S^a\otimes S^b\xr{r\otimes x}E\otimes N\xr\kappa N\]
+	endows $\pi_*(N)$ with the structure of an $A$-graded left $\pi_*(E)$-module.
+\end{lemma}
+\begin{proof}
+	First let $(N,\kappa)$ be an $E$-module object. Let $a,b,c\in A$ and $x,x':S^a\to N$, $y:S^b\to E$, and $z, z'\in S^c\to E$. Then by \autoref{A-graded_module}, it suffices to show that
+	\begin{enumerate}
+		\item $y\cdot( x+ x')= y\cdot x+ y\cdot x'$, 
+		\item $( z+ z')\cdot x= z\cdot x+ z'\cdot x$,
+		\item $(zy)\cdot  x= z\cdot( y\cdot x)$,
+		\item $e\cdot x= x$.
+	\end{enumerate}
+	The first two axioms follow by \autoref{bilinear}. To see $(3)$, consider the diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmNcXG90aW1lcyBTXmJcXG90aW1lcyBTXmEiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIE4iXSxbMywwLCJFXFxvdGltZXMgTiJdLFszLDEsIk4iXSxbMywyLCJFXFxvdGltZXMgTiJdLFswLDEsIlxcY29uZyJdLFsxLDIsInpcXG90aW1lcyB5XFxvdGltZXMgeCJdLFsyLDMsIkVcXG90aW1lc1xca2FwcGEiXSxbMyw0LCJcXGthcHBhIl0sWzIsNSwiXFxtdVxcb3RpbWVzIE4iLDJdLFs1LDQsIlxca2FwcGEiLDJdXQ==
+	\[\begin{tikzcd}
+		&&& {E\otimes N} \\
+		{S^{a+b+c}} & {S^c\otimes S^b\otimes S^a} & {E\otimes E\otimes N} & N \\
+		&&& {E\otimes N}
+		\arrow["\cong", from=2-1, to=2-2]
+		\arrow["{z\otimes y\otimes x}", from=2-2, to=2-3]
+		\arrow["E\otimes\kappa", from=2-3, to=1-4]
+		\arrow["\kappa", from=1-4, to=2-4]
+		\arrow["{\mu\otimes N}"', from=2-3, to=3-4]
+		\arrow["\kappa"', from=3-4, to=2-4]
+	\end{tikzcd}\]
+	It commutes by coherence for $\kappa$. By functoriality of $-\otimes-$, the two outside compositions equal $z\cdot(y\cdot x)$ on the top and $(z\cdot y)\cdot x$ on the bottom. Hence, they are equal, as desired.
+
+	Next, to see $(4)$, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJTXmEiXSxbMSwxLCJOIl0sWzIsMCwiTiJdLFsxLDIsIkVcXG90aW1lcyBOIl0sWzEsMiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzLCJlXFxvdGltZXMgTiIsMV0sWzAsMiwieCJdLFszLDIsIlxca2FwcGEiLDIseyJjdXJ2ZSI6M31dLFswLDEsIngiLDJdLFswLDMsImVcXG90aW1lcyB4IiwyLHsiY3VydmUiOjN9XV0=
+	\[\begin{tikzcd}
+		{S^a} && N \\
+		& N \\
+		& {E\otimes N}
+		\arrow[Rightarrow, no head, from=2-2, to=1-3]
+		\arrow["{e\otimes N}"{description}, from=2-2, to=3-2]
+		\arrow["x", from=1-1, to=1-3]
+		\arrow["\kappa"', curve={height=18pt}, from=3-2, to=1-3]
+		\arrow["x"', from=1-1, to=2-2]
+		\arrow["{e\otimes x}"', curve={height=18pt}, from=1-1, to=3-2]
+	\end{tikzcd}\]
+	The top triangle commutes by definition. The left triangle commutes by functoriality of $-\otimes-$. The right triangle commutes by unitality of $\kappa$. The top composition is $ x$ while the bottom is $e\cdot x$, thus they are necessarily equal since the diagram commutes.
+
+	Now, we'd like to show that if $f:(N,\kappa)\to(N',\kappa)$ is a homomorphism of left $E$-module objects, then $\pi_*(f):\pi_*(N)\to\pi_*(N')$ is a homomorphism of left $\pi_*(E)$-modules. To see this, let $r:S^a\to E$ in $\pi_a(E)$ and $x,x:S^b\to N$ in $\pi_b(N)$. We'd like to show that $\pi_*(f)(x+x')=\pi_*(f)(x)+\pi_*(f)(x')$ and $\pi_*(f)(r\cdot x)=r\cdot\pi_*(f)(x)$. To see the former, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXmEiXSxbMSwxLCJTXmFcXG9wbHVzIFNeYSJdLFsyLDEsIk5cXG9wbHVzIE4iXSxbMywwLCJOJ1xcb3BsdXMgTiciXSxbMywxLCJOJyJdLFszLDIsIk4iXSxbMCwxLCJcXERlbHRhIl0sWzEsMiwieFxcb3BsdXMgeCciXSxbMiwzLCJmXFxvcGx1cyBmIl0sWzMsNCwiXFxuYWJsYSJdLFsyLDUsIlxcbmFibGEiLDJdLFs1LDQsImYiLDJdXQ==
+	\[\begin{tikzcd}
+		&&& {N'\oplus N'} \\
+		{S^a} & {S^a\oplus S^a} & {N\oplus N} & {N'} \\
+		&&& N
+		\arrow["\Delta", from=2-1, to=2-2]
+		\arrow["{x\oplus x'}", from=2-2, to=2-3]
+		\arrow["{f\oplus f}", from=2-3, to=1-4]
+		\arrow["\nabla", from=1-4, to=2-4]
+		\arrow["\nabla"', from=2-3, to=3-4]
+		\arrow["f"', from=3-4, to=2-4]
+	\end{tikzcd}\]
+	It commutes by naturality of $\nabla$ in an additive category. The top composition is $\pi_*(f)(x)+\pi_*(f)(x')$, while the bottom is $\pi_*(f)(x+x')$, so they are equal as desired. To see that $\pi_*(f)(r\cdot x)=r\cdot \pi_*(f)(x)$, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2J9Il0sWzEsMSwiU15iXFxvdGltZXMgU15hIl0sWzIsMSwiRVxcb3RpbWVzIE4iXSxbMywwLCJFXFxvdGltZXMgTiciXSxbMywxLCJOJyJdLFszLDIsIk4iXSxbMCwxLCJcXHBoaV97YixhfSJdLFsxLDIsInJcXG90aW1lcyB4Il0sWzIsMywiRVxcb3RpbWVzIGYiXSxbMyw0LCJcXGthcHBhJyJdLFsyLDUsIlxca2FwcGEiLDJdLFs1LDQsImYiLDJdXQ==
+	\[\begin{tikzcd}
+		&&& {E\otimes N'} \\
+		{S^{a+b}} & {S^b\otimes S^a} & {E\otimes N} & {N'} \\
+		&&& N
+		\arrow["{\phi_{b,a}}", from=2-1, to=2-2]
+		\arrow["{r\otimes x}", from=2-2, to=2-3]
+		\arrow["{E\otimes f}", from=2-3, to=1-4]
+		\arrow["{\kappa'}", from=1-4, to=2-4]
+		\arrow["\kappa"', from=2-3, to=3-4]
+		\arrow["f"', from=3-4, to=2-4]
+	\end{tikzcd}\]
+	It commutes by the fact that $f$ is a homomorphism of left $E$-module objects. The bottom composition is $\pi_*(f)(r\cdot x)$, while the top composition is $r\cdot \pi_*(f)(x)$, so they are equal, as desired.
+ 
+	It remains to show this functor is additive. It suffices to show it preserves the zero object and preserves coproducts. To see the former, note that $\pi_*(0)=[S^*,0]=0$ by definition, since $0$ is terminal. To see the latter, we need to show that given $(N,\kappa),(N',\kappa')\in E\text-\Mod$ that $\pi_*(N)\oplus\pi_*(N')\cong\pi_*(N\oplus N')$, and that the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsMyxbMSwxLCJcXHBpXyooTlxcb3BsdXMgTicpIl0sWzAsMCwiXFxwaV8qKE4pIl0sWzAsMSwiXFxwaV8qKE4pXFxvcGx1c1xccGlfKihOJykiXSxbMSwwLCJcXHBpXyooXFxpb3RhX04pIl0sWzIsMCwiXFxjb25nIiwyXSxbMSwyLCJcXGlvdGFfe1xccGlfKihOKX0iLDJdXQ==
+	\[\begin{tikzcd}
+		{\pi_*(N)} \\
+		{\pi_*(N)\oplus\pi_*(N')} & {\pi_*(N\oplus N')}
+		\arrow["{\pi_*(\iota_N)}", from=1-1, to=2-2]
+		\arrow["\cong"', from=2-1, to=2-2]
+		\arrow["{\iota_{\pi_*(N)}}"', from=1-1, to=2-1]
+	\end{tikzcd}\]
+	Since each $S^a$ is compact, for all $a,b\in A$ we have isomorphisms
+	\[\pi_a(N)\oplus\pi_a(N')=[S^a,N]\oplus[S^a,N']\cong[S^a,N\oplus N']=\pi_a(N,N'),\]
+	and these combine together to yield $A$-graded isomorphisms $\pi_*(N)\oplus\pi_*(N')\xr\cong\pi_*(N\oplus N')$. To see the above diagram commutes, note that since everything is an $A$-graded homomorphism of $A$-graded abelian groups, it suffices to chase homogeneous elements around to show it commutes. Indeed, it is entirely straightforward, by unravelling definitions, that both compositions around the diagram take a generator $x:S^a\to N$ in $\pi_a(N)$ to the composition
+	\[S^a\xr xN\xr{\iota_N}N\oplus N'.\]
+	Thus, we have shown that $\pi_*$ preserves all finite coproducts, so it is additive.
+\end{proof}
+
 \begin{proposition}[{\cite[Proposition 5.11]{nlab:introduction_to_stable_homotopy_theory_--_1-2}}]\label{module}
 	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to left $A$-graded $\pi_*(E)$-modules, where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
 	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
@@ -331,72 +602,7 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
 \end{proposition}
 \begin{proof}
-	First we show that the map $\pi_*(E)\times E_*(X)\to E_*(X)$ endows $E_*(X)$ with the structure of a left $\pi_*(E)$-module. Let $a,b,c\in A$ and $x,x':S^a\to E\otimes X$, $y:S^b\to E$, and $z, z'\in S^c\to E$. Then we wish to show that:
-	\begin{enumerate}
-		\item $ y\cdot( x+ x')= y\cdot x+ y\cdot x'$, 
-		\item $( z+ z')\cdot x= z\cdot x+ z'\cdot x$,
-		\item $(zy)\cdot  x= z\cdot( y\cdot x)$,
-		\item $e\cdot x= x$.
-	\end{enumerate}
-	Axioms $(1)$ and $(2)$ follow by the fact that $E_*(X)=\pi_*(E\otimes X)$ and \autoref{bilinear}. To see $(3)$, consider the diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmNcXG90aW1lcyBTXmJcXG90aW1lcyBTXmEiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMSwiRVxcb3RpbWVzIFgiXSxbMCwxLCJcXGNvbmciXSxbMSwyLCJ6XFxvdGltZXMgeVxcb3RpbWVzIHgiXSxbMiwzLCJcXG11XFxvdGltZXMgRVxcb3RpbWVzIFgiLDJdLFsyLDQsIkVcXG90aW1lc1xcbXVcXG90aW1lcyBYIl0sWzQsNSwiXFxtdVxcb3RpbWVzIFgiXSxbMyw1LCJcXG11XFxvdGltZXMgWCIsMV1d
-	\[\begin{tikzcd}
-		&&& {E\otimes E\otimes X} \\
-		{S^{a+b+c}} & {S^c\otimes S^b\otimes S^a} & {E\otimes E\otimes E\otimes X} & {E\otimes X} \\
-		&&& {E\otimes E\otimes X}
-		\arrow["\cong", from=2-1, to=2-2]
-		\arrow["{z\otimes y\otimes x}", from=2-2, to=2-3]
-		\arrow["{\mu\otimes E\otimes X}"', from=2-3, to=3-4]
-		\arrow["{E\otimes\mu\otimes X}", from=2-3, to=1-4]
-		\arrow["{\mu\otimes X}", from=1-4, to=2-4]
-		\arrow["{\mu\otimes X}"{description}, from=3-4, to=2-4]
-	\end{tikzcd}\]
-	It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the two outside compositions equal $z\cdot(y\cdot x)$ on the top and $(z\cdot y)\cdot x$ on the bottom. Hence, they are equal, as desired.
-
-	Next, to see $(4)$, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJTXmEiXSxbMSwxLCJFXFxvdGltZXMgWCJdLFsyLDAsIkVcXG90aW1lcyAgWCJdLFsxLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsxLDIsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMywiZVxcb3RpbWVzIEVcXG90aW1lcyBYIiwxXSxbMCwyLCJ4Il0sWzMsMiwiXFxtdVxcb3RpbWVzIFgiLDIseyJjdXJ2ZSI6M31dLFswLDEsIngiLDJdLFswLDMsImVcXG90aW1lcyB4IiwyLHsiY3VydmUiOjN9XV0=
-	\[\begin{tikzcd}
-		{S^a} && {E\otimes  X} \\
-		& {E\otimes X} \\
-		& {E\otimes E\otimes X}
-		\arrow[Rightarrow, no head, from=2-2, to=1-3]
-		\arrow["{e\otimes E\otimes X}"{description}, from=2-2, to=3-2]
-		\arrow["x", from=1-1, to=1-3]
-		\arrow["{\mu\otimes X}"', curve={height=18pt}, from=3-2, to=1-3]
-		\arrow["x"', from=1-1, to=2-2]
-		\arrow["{e\otimes x}"', curve={height=18pt}, from=1-1, to=3-2]
-	\end{tikzcd}\]
-	The top triangle commutes by definition. The left triangle commutes by functoriality of $-\otimes-$. The right triangle commutes by unitality of $\mu$.
-	The top composition is $ x$ while the bottom is $e\cdot x$, thus they are necessarily equal since the diagram commutes.
-
-	Thus, we have shown that the indicated map does indeed endow $E_*(X)$ with the structure of a left $\pi_*(E)$-module. It remains to show that $E_*(-)$ sends maps in $\cSH$ to $A$-graded homomorphisms of left $A$-graded $\pi_*(E)$-modules. By definition, given $f:X\to Y$ in $\cSH$, $E_*(f)$ is the map which takes a class $x:S^a\to E\otimes X$ to the composition 
-	\[S^a\xr xE\otimes X\xr{E\otimes f}E\otimes Y.\]
-	To see this assignment is a homomorphism, suppose we are given some other $x':S^a\to E\otimes X$ and some scalar $y:S^b\to E$. Then we would like to show $E_*(f)(x+x')=E_*(f)(x)+E_*(f)(x')$ and $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$. To see the former, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXmEiXSxbMSwxLCJTXmFcXG9wbHVzIFNeYSJdLFsyLDEsIihFXFxvdGltZXMgWClcXG9wbHVzKEVcXG90aW1lcyBYKSJdLFszLDAsIihFXFxvdGltZXMgWSlcXG9wbHVzKEVcXG90aW1lcyBZKSJdLFszLDEsIkVcXG90aW1lcyBZIl0sWzMsMiwiRVxcb3RpbWVzIFgiXSxbMCwxLCJcXERlbHRhIl0sWzEsMiwieFxcb3BsdXMgeCciXSxbMiwzLCIoRVxcb3RpbWVzIGYpXFxvcGx1cyAoRVxcb3RpbWVzIGYpIl0sWzMsNCwiXFxuYWJsYSJdLFsyLDUsIlxcbmFibGEiLDJdLFs1LDQsIkVcXG90aW1lcyBmIiwyXV0=
-	\[\begin{tikzcd}
-		&&& {(E\otimes Y)\oplus(E\otimes Y)} \\
-		{S^a} & {S^a\oplus S^a} & {(E\otimes X)\oplus(E\otimes X)} & {E\otimes Y} \\
-		&&& {E\otimes X}
-		\arrow["\Delta", from=2-1, to=2-2]
-		\arrow["{x\oplus x'}", from=2-2, to=2-3]
-		\arrow["{(E\otimes f)\oplus (E\otimes f)}", from=2-3, to=1-4]
-		\arrow["\nabla", from=1-4, to=2-4]
-		\arrow["\nabla"', from=2-3, to=3-4]
-		\arrow["{E\otimes f}"', from=3-4, to=2-4]
-	\end{tikzcd}\]
-	It commutes by naturality of $\nabla$ in an additive category. The top composition is $E_*(f)(x)+E_*(f)(x')$, while the bottom is $E_*(f)(x+x')$, so they are equal as desired. To see that $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15iXFxvdGltZXMgU15hIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBZIl0sWzMsMSwiRVxcb3RpbWVzIFkiXSxbMiwxLCJFXFxvdGltZXMgWCJdLFswLDEsIlxccGhpX3tiLGF9Il0sWzEsMiwieVxcb3RpbWVzIHgiXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIGYiXSxbMyw0LCJcXG11XFxvdGltZXMgWSJdLFsyLDUsIlxcbXVcXG90aW1lcyBYIiwyXSxbNSw0LCJFXFxvdGltZXMgZiJdXQ==
-	\[\begin{tikzcd}
-		{S^{a+b}} & {S^b\otimes S^a} & {E\otimes E\otimes X} & {E\otimes E\otimes Y} \\
-		&& {E\otimes X} & {E\otimes Y}
-		\arrow["{\phi_{b,a}}", from=1-1, to=1-2]
-		\arrow["{y\otimes x}", from=1-2, to=1-3]
-		\arrow["{E\otimes E\otimes f}", from=1-3, to=1-4]
-		\arrow["{\mu\otimes Y}", from=1-4, to=2-4]
-		\arrow["{\mu\otimes X}"', from=1-3, to=2-3]
-		\arrow["{E\otimes f}", from=2-3, to=2-4]
-	\end{tikzcd}\]
-	It commutes by functoriality of $-\otimes-$. The bottom composition is $E_*(f)(y\cdot x)$, while the top composition is $y\cdot E_*(f)(x)$, so they are equal, as desired.
+	Note that $E_*(X)=\pi_*(E\otimes X)$, so that $E_*(-)$ is the composition of the free $E$-module functor (\autoref{free_module}, which is additive by \autoref{E-Mod,free,forgetful_are_additive}) with the additive functor $\pi_*$ from $E\text-\Mod$ to left $A$-graded $\pi_*(E)$-modules (\autoref{E-module_N_implies_pi*N_is_pi*E_module}). Thus indeed $E_*(X)$ is a left $\pi_*(E)$-module for all $X$, and given $f:X\to Y$ in $\cSH$, $E_*(f)$ is a homomorphism of left $\pi_*(E)$-modules.
 	
 	Showing that $X_*(E)$ has the structure of a right $\pi_*(E)$-module and that if $f:X\to Y$ is a morphism in $\cSH$ then the map
 	\[X_*(E)=[S^*,X\otimes E]\xr{(f\otimes E)_*}[S^*,Y\otimes E]=Y_*(E)\]
@@ -419,14 +625,262 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	Commutativity follows by functoriality of $-\otimes-$, which also tells us that the two outside compositions are $(x\cdot y)\cdot z$ (on top) and $x\cdot(y\cdot z)$ (on bottom). Hence they are equal, as desired.
 \end{proof}
 
+\begin{lemma}\label{tw^a_isos}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$, $(N,\kappa)$ a left $E$-module, and $a\in A$. Then the assignment
+	\[\mathrm{tw}^a:\pi_{*-a}(N)\to\pi_*(\Sigma^aN)\]
+	sending $x:S^{b-a}\to N$ to the composition
+	\[S^b\xr{\phi_{b-a,a}}S^{b-a}\otimes S^a\xr{x\otimes S^a}N\otimes S^a\xr\tau S^a\otimes N=\Sigma^aN\]
+	is an $A$-graded isomorphism of left $A$-graded $\pi_*(E)$-modules (where here $\pi_*(N)$ is a left $\pi_*(E)$-module by \autoref{E-module_N_implies_pi*N_is_pi*E_module}, and $\pi_*(\Sigma^aN)$ has the left $\pi_*(E)$ module given by \autoref{suspension_of_module_object_is_module_object} and \autoref{E-module_N_implies_pi*N_is_pi*E_module}).
+\end{lemma}
+\begin{proof}
+	Unravelling definitions, the map $\mathrm{tw}^a:\pi_{*-a}(N)\to\pi_*(\Sigma^aN)$ factors as
+	\[\pi_{*-a}(N)=[S^{*-a},N]\xr{-\otimes S^a}[S^{*-a}\otimes S^a,N\otimes S^a]\xrightarrow{(\phi_{*-a,a})^*}[S^*,N\otimes S^a]\xrightarrow{\tau_*}[S^*,S^a\otimes N]=\pi_*(\Sigma^aN).\]
+	The arrow labeled $-\otimes S^a$ is an isomorphism of abelian groups because $-\otimes S^a\cong \Sigma^a$ is an autoequivalence of $\cSH$ (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}). Hence, we have shown the map is an isomorphism of abelian groups. Clearly the map preserves degree, so it is an $A$-graded homomorphism as desired. Finally, it remains to show that this map is a homomorphism of left $\pi_*(E)$-modules, i.e., that given $r:S^b\to E$ in $\pi_*(E)$ and $x:S^{c-a}\to N$ in $\pi_{*-a}(N)$ that $\mathrm{tw}^a(r\cdot x)=r\cdot\mathrm{tw}^a(x)$. Unravelling definitions, $\mathrm{tw}^a(r\cdot x)$ is the composition
+	\[S^{b+c}\xr\cong S^b\otimes S^{c-a}\otimes S^a\xrightarrow{r\otimes x\otimes S^a}E\otimes N\otimes S^a\xrightarrow{\kappa\otimes  S^a}N\otimes S^a\xrightarrow\tau S^a\otimes N,\]
+	while on the other hand $r\cdot\mathrm{tw}^a(x)$ is the composition
+	\[S^{b+c}\xr\cong S^b\otimes S^{c-a}\otimes S^a\xrightarrow{r\otimes x\otimes S^a}E\otimes N\otimes S^a\xrightarrow{E\otimes \tau}E\otimes S^a\otimes N\xrightarrow{\tau\otimes  N}S^a\otimes E\otimes N\xrightarrow{S^a\otimes \kappa}S^a\otimes N.\]
+	To see these are equal, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNyxbMCwxLCJTXntiK2N9Il0sWzEsMSwiU15iXFxvdGltZXMgU157Yy1hfVxcb3RpbWVzIFNeYSJdLFsyLDEsIkVcXG90aW1lcyBOXFxvdGltZXMgU15hIl0sWzIsMCwiRVxcb3RpbWVzIFNeYVxcb3RpbWVzIE4iXSxbMywwLCJTXmFcXG90aW1lcyBFXFxvdGltZXMgTiJdLFszLDEsIlNeYVxcb3RpbWVzIE4iXSxbMywyLCJOXFxvdGltZXMgU15hIl0sWzAsMSwiXFxwaGkiXSxbMSwyLCJyXFxvdGltZXMgeFxcb3RpbWVzIFNeYSJdLFszLDQsIlxcdGF1XFxvdGltZXMgTiJdLFs0LDUsIlNeYVxcb3RpbWVzXFxrYXBwYSJdLFsyLDYsIlxca2FwcGFcXG90aW1lcyBTXmEiLDJdLFs2LDUsIlxcdGF1IiwyXSxbMiw0LCJcXHRhdV97RVxcb3RpbWVzIE4sU15hfSIsMV0sWzIsMywiRVxcb3RpbWVzIFxcdGF1Il1d
+	\[\begin{tikzcd}
+		&& {E\otimes S^a\otimes N} & {S^a\otimes E\otimes N} \\
+		{S^{b+c}} & {S^b\otimes S^{c-a}\otimes S^a} & {E\otimes N\otimes S^a} & {S^a\otimes N} \\
+		&&& {N\otimes S^a}
+		\arrow["\phi", from=2-1, to=2-2]
+		\arrow["{r\otimes x\otimes S^a}", from=2-2, to=2-3]
+		\arrow["{\tau\otimes N}", from=1-3, to=1-4]
+		\arrow["{S^a\otimes\kappa}", from=1-4, to=2-4]
+		\arrow["{\kappa\otimes S^a}"', from=2-3, to=3-4]
+		\arrow["\tau"', from=3-4, to=2-4]
+		\arrow["{\tau_{E\otimes N,S^a}}"{description}, from=2-3, to=1-4]
+		\arrow["{E\otimes \tau}", from=2-3, to=1-3]
+	\end{tikzcd}\]
+	The top triangle commutes by coherence for a symmetric monoidal category, while the right triangle commutes by naturality of $\tau$.
+\end{proof}
+
+%\begin{corollary}\label{pi_*:Hom^*(N,N')toHom^*(pi*N,pi*N')}
+%	The homomorphisms
+%	\[\pi_*:\Hom_{E\text-\Mod}(N,N')\to\Hom_{\pi_*(E)}(\pi_*(N),\pi_*(N'))\]
+%	constructed in \autoref{E-module_N_implies_pi*N_is_pi*E_module} extend to $A$-graded homomorphisms of abelian groups
+%	\[\pi_*:\Hom_{E\text-\Mod}^*(N,N')\to\Hom_{\pi_*(E)}^*(\pi_*(N),\pi_*(N'))\]
+%	as
+%	\[\Hom_{E\text-\Mod}(\Sigma^aN,N')\xr{\pi_*}\Hom_{\pi_*(E)}(\pi_*(\Sigma^aN),\pi_*(N'))\xr{(\mathrm{tw}^a)^*}\Hom_{\pi_*(E)}(\pi_{*-a}(N),\pi_*(N')).\]
+%	Explicitly, this map sends a class $f:S^a\otimes N\to N'$ to the map $\pi_{*-a}(N)\to\pi_*(N')$ which sends a class $x:S^{b-a}\to N$ to the composition
+%	\[S^b\xr{\phi}S^{b-a}\otimes S^a\xr{x\otimes S^a}N\otimes S^a\xr\tau S^a\otimes N\xr fN'.\]
+%\end{corollary}
+
+\begin{lemma}\label{pi_*_iso_when_N_retract_of_wedge_of_susps}
+	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ a left $E$-module object in $\cSH$. Then given a collection of $a_i\in A$ indexed by some set $I$, if $(N,\kappa)$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$,\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of left free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself a left $E$-module object.} then for all left $E$-module objects $(N',\kappa')$ in $\cSH$, the functor $\pi_*$ (\autoref{E-module_N_implies_pi*N_is_pi*E_module}) induces an isomorphism
+	\[\pi_*:\Hom_{E\text-\Mod}(N,N')\to\Hom_{\pi_*(E)}(\pi_*(N),\pi_*(N')).\]
+\end{lemma}
+\begin{proof}
+	First, we consider the case $N=\bigoplus_i(E\otimes S^{a_i})$. Consider the following diagram:
+	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXEhvbV97RVxcdGV4dC1cXE1vZH0oXFxiaWdvcGx1c19pIChFXFxvdGltZXMgU157YV9pfSksTicpIl0sWzEsMCwiXFxIb21fe1xccGlfKihFKX0oXFxwaV8qKFxcYmlnb3BsdXNfaSAoRVxcb3RpbWVzIFNee2FfaX0pKSxcXHBpXyooTicpKSJdLFswLDEsIlxccHJvZF9pXFxIb21fe0VcXHRleHQtXFxNb2R9KEVcXG90aW1lcyBTXnthX2l9LE4nKSJdLFswLDIsIlxccHJvZF9pW1Nee2FfaX0sTiddIl0sWzEsMSwiXFxIb21fe1xccGlfKihFKX0oXFxiaWdvcGx1c19pXFxwaV8qKEVcXG90aW1lcyBTXnthX2l9KSxcXHBpXyooTicpKSJdLFsxLDIsIlxccHJvZF9pXFxIb21fe1xccGlfKihFKX0oXFxwaV8qKEVcXG90aW1lcyBTXnthX2l9KSxcXHBpXyooTicpKSJdLFsxLDMsIlxccHJvZF9pXFxIb21fe1xccGlfKihFKX0oXFxwaV97Ki1hX2l9KEUpLFxccGlfKihOJykpIl0sWzEsNCwiXFxwcm9kX2lcXEhvbV57YV9pfV97XFxwaV8qKEUpfShcXHBpX3sqfShFKSxcXHBpXyooTicpKSJdLFswLDQsIlxccHJvZF9pXFxwaV97YV9pfShOJykiXSxbMCwxLCJcXHBpXyoiXSxbMCwyLCJcXGNvbmciLDJdLFsyLDMsIlxcY29uZyIsMl0sWzEsNCwiXFxjb25nIl0sWzQsNSwiXFxjb25nIl0sWzUsNiwiXFxjb25nIl0sWzYsNywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNyw4LCJcXHByb2RfaVxcbWF0aHJte2V2fV8xIiwyXSxbMyw4LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{\Hom_{E\text-\Mod}(\bigoplus_i (E\otimes S^{a_i}),N')} & {\Hom_{\pi_*(E)}(\pi_*(\bigoplus_i (E\otimes S^{a_i})),\pi_*(N'))} \\
+		{\prod_i\Hom_{E\text-\Mod}(E\otimes S^{a_i},N')} & {\Hom_{\pi_*(E)}(\bigoplus_i\pi_*(E\otimes S^{a_i}),\pi_*(N'))} \\
+		{\prod_i[S^{a_i},N']} & {\prod_i\Hom_{\pi_*(E)}(\pi_*(E\otimes S^{a_i}),\pi_*(N'))} \\
+		& {\prod_i\Hom_{\pi_*(E)}(\pi_{*-a_i}(E),\pi_*(N'))} \\
+		{\prod_i\pi_{a_i}(N')} & {\prod_i\Hom^{a_i}_{\pi_*(E)}(\pi_{*}(E),\pi_*(N'))}
+		\arrow["{\pi_*}", from=1-1, to=1-2]
+		\arrow["\cong"', from=1-1, to=2-1]
+		\arrow["\cong"', from=2-1, to=3-1]
+		\arrow["\cong", from=1-2, to=2-2]
+		\arrow["\cong", from=2-2, to=3-2]
+		\arrow["\cong", from=3-2, to=4-2]
+		\arrow[Rightarrow, no head, from=4-2, to=5-2]
+		\arrow["{\prod_i\mathrm{ev}_1}"', from=5-2, to=5-1]
+		\arrow[Rightarrow, no head, from=3-1, to=5-1]
+	\end{tikzcd}\]
+	Here the top left vertical isomorphism exibits the universal property of the coproduct in $E\text-\Mod$, and middle left vertical isomorphism below that is the free-forgetful adjunction for $E$-modules (\autoref{free_forgetful_E-Mod}). The bottom horizontal isomorphism is the product of the evaluation-at-$1$ isomorphisms (\autoref{ev_at_1_is_iso}). On the other side, the top right vertical isomorphism is given by the fact that $S^a$ is compact for each $a\in A$, so we have isomorphisms
+	\[\bigoplus_i\pi_*(E\otimes S^{a_i})=\bigoplus_{a\in A}\bigoplus_{i}[S^a,E\otimes S^{a_i}]\cong\bigoplus_{a\in A}[S^a,\bigoplus_{i}(E\otimes S^{a_i})]=\pi_*(\bigoplus_i(E\otimes S^{a_i})),\]
+	where the middle isomorphism takes a generator $x:S^a\xr E\otimes S^{a_i}$ to the composition $S^a\xr xE\otimes S^{a_i}\into\bigoplus_i(E\otimes S^{a_i})$. The middle right vertical isomorphism exhibits the universal property of the coproduct of modules. Finally the bottom right vertical isomorphism is given by the isomorphisms
+	\[\pi_{*-a_i}(E\otimes S^{a_i})=[S^{*-a_i},E\otimes S^{a_i}]\xr{-\otimes S^{a_i}}[S^{*-a_i}\otimes S^{a_i},E\otimes S^{a_i}]\xr{\phi^*}[S^*,E\otimes S^{a_i}]=\pi_*(E\otimes S^{a_i}),\]
+	where $-\otimes S^{a_i}\cong\Sigma^{a_i}$ is an isomorphism by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. Now, we claim this diagram commutes. This really simply amounts to unravelling definitions, and chasing a homomorphism $f:\bigoplus_i(E\otimes S^{a_i})\to N'$ of left $E$-module objects both ways around the diagram yields the composition
+	\[\prod_i(S^{a_i}\xr{e\otimes S^{a_i}}E\otimes S^{a_i}\into\bigoplus_i(E\otimes S^{a_i})\xr fN').\]
+	Thus, since the diagram commutes, we have that 
+	\[\pi_*:\Hom_{E\text-\Mod}(\bigoplus_i(E\otimes S^{a_i}),N')\to\Hom_{\pi_*(E)}(\pi_*(\bigoplus_i(E\otimes S^{a_i})),\pi_*(N'))\] is an isomorphism, as desired.
+
+	Now, consider the case that $N$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$, so there exists a commuting diagram of left $E$-module object homomorphisms:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJOIl0sWzEsMCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBTXnthX2l9KSJdLFsyLDAsIk4iXSxbMCwxLCJcXGlvdGEiLDJdLFsxLDIsInIiLDJdLFswLDIsIiIsMix7ImN1cnZlIjotNCwibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		N & {\bigoplus_i(E\otimes S^{a_i})} & N
+		\arrow["\iota"', from=1-1, to=1-2]
+		\arrow["r"', from=1-2, to=1-3]
+		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-3]
+	\end{tikzcd}\]
+	Now consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMiwwLCJcXEhvbV4qX3tFXFx0ZXh0LVxcTW9kfShOLE4nKSJdLFsxLDAsIlxcSG9tX3tFXFx0ZXh0LVxcTW9kfV4qKFxcYmlnb3BsdXNfaShFXFxvdGltZXMgU157YV9pfSksTicpIl0sWzAsMCwiXFxIb21eKl97RVxcdGV4dC1cXE1vZH0oTixOJykiXSxbMSwxLCJcXEhvbV97XFxwaV8qKEUpfV4qKFxccGlfKihcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee2FfaX0pKSxcXHBpXyooTicpKSJdLFswLDEsIlxcSG9tXipfe1xccGlfKihFKX0oXFxwaV8qKE4pLFxccGlfKihOJykpIl0sWzIsMSwiXFxIb21eKl97XFxwaV8qKEUpfShcXHBpXyooTiksXFxwaV8qKE4nKSkiXSxbMiwxLCJyXioiXSxbMSwwLCJcXGlvdGFeKiJdLFsyLDAsIiIsMix7ImN1cnZlIjotNCwibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzLCJcXHBpXyoiXSxbMiw0LCJcXHBpXyoiLDJdLFs0LDMsIihcXHBpXyoocikpXioiXSxbMyw1LCIoXFxwaV8qKFxcaW90YSkpXioiXSxbMCw1LCJcXHBpXyoiLDJdLFs0LDUsIiIsMix7ImN1cnZlIjo0LCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\[\begin{tikzcd}[column sep=small]
+		{\Hom^*_{E\text-\Mod}(N,N')} & {\Hom_{E\text-\Mod}^*(\bigoplus_i(E\otimes S^{a_i}),N')} & {\Hom^*_{E\text-\Mod}(N,N')} \\
+		{\Hom^*_{\pi_*(E)}(\pi_*(N),\pi_*(N'))} & {\Hom_{\pi_*(E)}^*(\pi_*(\bigoplus_i(E\otimes S^{a_i})),\pi_*(N'))} & {\Hom^*_{\pi_*(E)}(\pi_*(N),\pi_*(N'))}
+		\arrow["{r^*}", from=1-1, to=1-2]
+		\arrow["{\iota^*}", from=1-2, to=1-3]
+		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-3]
+		\arrow["{\pi_*}", from=1-2, to=2-2]
+		\arrow["{\pi_*}"', from=1-1, to=2-1]
+		\arrow["{(\pi_*(r))^*}", from=2-1, to=2-2]
+		\arrow["{(\pi_*(\iota))^*}", from=2-2, to=2-3]
+		\arrow["{\pi_*}"', from=1-3, to=2-3]
+		\arrow[curve={height=24pt}, Rightarrow, no head, from=2-1, to=2-3]
+	\end{tikzcd}\]
+	Each square commutes by functoriality of $\pi_*$. We have shown the middle vertical arrow is an isomorphism. Thus the outside arrows are isomorphisms as well, as a retract of an isomorphism is an isomorphism.
+\end{proof}
+
+\begin{proposition}\label{UCT_for_retract}
+	Let $(E,\mu,e)$ be a monoid object and $X$ an object in $\cSH$. If there is a collection of $a_i\in A$ indexed by some set $I$ such that $E\otimes X$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$,\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of left free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself a left $E$-module object.} then for all left $E$-module objects $(N,\kappa)$ the assignment
+	\[\Psi:[X,N]_*\to\Hom_{\pi_*(E)}^*(E_*(X),\pi_*(N))\]
+	sending $f:S^a\otimes X\to N$ to the map $E_{*-a}(X)\to\pi_*(N)$ which sends a class $x:S^{b-a}\to E\otimes X$ to the composition
+	\[\Psi(f)(x):S^b\xr\phi S^{b-a}\otimes S^a\xrightarrow{x\otimes S^a}E\otimes X\otimes S^a\xr{E\otimes\tau}E\otimes S^a\otimes X\xr{E\otimes f}E\otimes N\xr\kappa N\]
+	is an $A$-graded isomorphism of $A$-graded abelian groups.
+\end{proposition}
+\begin{proof}
+	Clearly as constructed, assuming $\Psi(f)$ as defined is actually a homomorphism of left $\pi_*(E)$-modules, this map is $A$-graded. Thus, it suffices to show that for all $a\in A$, the restriction
+	\[\Psi_a:[X,N]_a\to\Hom_{\pi_*(E)}^a(E_*(X),\pi_*(N))\]
+	is an isomorphism. First of all, note that $\Psi_a$ factors as
+	% https://q.uiver.app/#q=WzAsNyxbMSwwLCJbXFxTaWdtYV5hWCxOXSJdLFsxLDEsIlxcSG9tX3tFXFx0ZXh0LVxcTW9kfShFXFxvdGltZXNcXFNpZ21hXmFYLE4pIl0sWzEsMiwiXFxIb21fe0VcXHRleHQtXFxNb2R9KFxcU2lnbWFeYShFXFxvdGltZXMgWCksTikiXSxbMSwzLCJcXEhvbV97XFxwaV8qKEUpfShcXHBpXyooXFxTaWdtYV5hKEVcXG90aW1lcyBYKSksXFxwaV8qKE4pKSJdLFsxLDQsIlxcSG9tX3tcXHBpXyooRSl9KEVfeyotYX0oWCksXFxwaV8qKE4pKSJdLFswLDAsIltYLE5dX2EiXSxbMiw0LCJcXEhvbV97XFxwaV8qKEUpfV5hKEVfKihYKSxcXHBpXyooTikpIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwiXFxjb25nIl0sWzIsMywiXFxwaV8qIl0sWzMsNCwiKFxcbWF0aHJte3R3fV5hKV4qIl0sWzUsMCwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{[X,N]_a} & {[\Sigma^aX,N]} \\
+		& {\Hom_{E\text-\Mod}(E\otimes\Sigma^aX,N)} \\
+		& {\Hom_{E\text-\Mod}(\Sigma^a(E\otimes X),N)} \\
+		& {\Hom_{\pi_*(E)}(\pi_*(\Sigma^a(E\otimes X)),\pi_*(N))} \\
+		& {\Hom_{\pi_*(E)}(E_{*-a}(X),\pi_*(N))} & {\Hom_{\pi_*(E)}^a(E_*(X),\pi_*(N))}
+		\arrow["\cong", from=1-2, to=2-2]
+		\arrow["\cong", from=2-2, to=3-2]
+		\arrow["{\pi_*}", from=3-2, to=4-2]
+		\arrow["{(\mathrm{tw}^a)^*}", from=4-2, to=5-2]
+		\arrow[Rightarrow, no head, from=1-1, to=1-2]
+		\arrow[Rightarrow, no head, from=5-2, to=5-3]
+	\end{tikzcd}\]
+	where the first isomorphism is the free-forgetful adjunction for $E$-modules (\autoref{free_forgetful_E-Mod}), the second isomorphism is given by \autoref{free_susp_is_susp_of_free}, the third map is that induced by the functor $\pi_*$ constructed in \autoref{E-module_N_implies_pi*N_is_pi*E_module}, and the final map is induced by the isomorphism $\mathrm{tw}^a:\pi_{*-a}(E\otimes X)\xr\cong\pi_*(\Sigma^a(E\otimes X))$ (\autoref{tw^a_isos}). Unravelling definitions, this composition sends a class $f:S^a\otimes X\to N$ to the map $E_{*-a}(X)\to\pi_*(N)$ which sends a class $x:S^{b-a}\to E\otimes X$ to the composition
+	\[S^b\xrightarrow\cong S^{b-a}\otimes S^a\xrightarrow{x\otimes S^a}E\otimes X\otimes S^a\xrightarrow{\tau_{E\otimes X,S^a}}S^a\otimes E\otimes X\xrightarrow{\tau\otimes X}E\otimes S^a\otimes X\xrightarrow{E\otimes f}E\otimes N\xrightarrow{\kappa}N,\]
+	and clearly this equals $\Psi(f)(x)$, by coherence for the symmetries. Thus, it suffices to show that
+	\[\pi_*:\Hom_{E\text-\Mod}(\Sigma^a(E\otimes X),N)\to\Hom_{\pi_*(E)}(\pi_{*}(\Sigma^a(E\otimes X)),\pi_*(N))\]
+	is an isomorphism when $E\otimes X$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$. This is precisely \autoref{pi_*_iso_when_N_retract_of_wedge_of_susps}.
+\end{proof}
+
+\begin{proposition}\label{if_pi_*N_graded_proj_then_retract_of_wedge_of_susps}
+	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ a left $E$-module object in $\cSH$. Further suppose that $E$ and $N$ are cellular and that $\pi_*(N)$ is a \emph{graded projective} (\autoref{graded_projective_module}) left $\pi_*(E)$-module (\autoref{E-module_N_implies_pi*N_is_pi*E_module}). Then given some homogeneous generating set $\{x_i\}_{i\in I}\sseq \pi_*(N)$, $N$ is a retract of $\bigoplus_i(E\otimes S^{|x_i|})$ in $E\text-\Mod$.\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of left free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself a left $E$-module object.}
+\end{proposition}
+\begin{proof}
+	Let $M:=\bigoplus_i(E\otimes S^{|x_i|})$. We have a map
+	\[r:M\to N\]
+	induced by the maps
+	\[r_i:E\otimes S^{|x_i|}\xrightarrow{E\otimes x_i}E\otimes N\xr{\kappa} N.\]
+	This is a homomorphism of left $E$-module objects:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFXFxvdGltZXNcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee3x4X2l8fSkiXSxbMiwwLCJFXFxvdGltZXMgTiJdLFsyLDQsIk4iXSxbMCwyLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzAsNCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzEsMiwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBOKSJdLFsxLDMsIlxcYmlnb3BsdXNfaSBOIl0sWzEsMSwiRVxcb3RpbWVzXFxiaWdvcGx1c19pTiJdLFswLDEsIkVcXG90aW1lcyByIl0sWzEsMiwiXFxrYXBwYSJdLFswLDMsIlxcY29uZyIsMl0sWzMsNCwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBTXnt8eF9pfH0pIiwyXSxbNCwyLCJyIl0sWzMsNSwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyByX2kpIl0sWzUsNiwiXFxiaWdvcGx1c19pXFxrYXBwYSJdLFs2LDIsIlxcbmFibGEiXSxbNCw2LCJcXGJpZ29wbHVzX2lyX2kiXSxbMCw3LCJFXFxvdGltZXNcXGJpZ29wbHVzX2lyX2kiLDFdLFs3LDUsIlxcY29uZyIsMl0sWzcsMSwiRVxcb3RpbWVzXFxuYWJsYSIsMV0sWzUsMSwiXFxuYWJsYSIsMl1d
+	\[\begin{tikzcd}
+		{E\otimes\bigoplus_i(E\otimes S^{|x_i|})} && {E\otimes N} \\
+		& {E\otimes\bigoplus_iN} \\
+		{\bigoplus_i(E\otimes E\otimes S^{|x_i|})} & {\bigoplus_i(E\otimes N)} \\
+		& {\bigoplus_i N} \\
+		{\bigoplus_i(E\otimes S^{|x_i|})} && N
+		\arrow["{E\otimes r}", from=1-1, to=1-3]
+		\arrow["\kappa", from=1-3, to=5-3]
+		\arrow["\cong"', from=1-1, to=3-1]
+		\arrow["{\bigoplus_i(\mu\otimes S^{|x_i|})}"', from=3-1, to=5-1]
+		\arrow["r", from=5-1, to=5-3]
+		\arrow["{\bigoplus_i(E\otimes r_i)}", from=3-1, to=3-2]
+		\arrow["{\bigoplus_i\kappa}", from=3-2, to=4-2]
+		\arrow["\nabla", from=4-2, to=5-3]
+		\arrow["{\bigoplus_ir_i}", from=5-1, to=4-2]
+		\arrow["{E\otimes\bigoplus_ir_i}"{description}, from=1-1, to=2-2]
+		\arrow["\cong"', from=2-2, to=3-2]
+		\arrow["E\otimes\nabla"{description}, from=2-2, to=1-3]
+		\arrow["\nabla"', from=3-2, to=1-3]
+	\end{tikzcd}\]
+	The right trapezoid commutes by naturality of $\nabla$. The bottom triangle commutes by the fact that $\nabla\circ\bigoplus_ir_i$ and $r$ satisfy the same unviersal property for the coproduct. Every other region commutes by additivity of $E\otimes-$, except the left trapezoid: Note that by expanding out how $r_i$ is defined, it becomes
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzQsMCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBFXFxvdGltZXMgWCkiXSxbMiwwLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBOKSJdLFs0LDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgWCkiXSxbMCwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee3x4X2l8fSkiXSxbMiwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIE4pIl0sWzAsMiwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBFXFxvdGltZXMgeF9pKSJdLFsyLDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXNcXGthcHBhKSJdLFsxLDMsIlxcYmlnb3BsdXNfaVxca2FwcGEiXSxbMCw0LCJcXGJpZ29wbHVzX2koXFxtdVxcb3RpbWVzIFNee3x4X2l8fSkiLDJdLFs0LDUsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgeF9pKSIsMl0sWzUsMywiXFxiaWdvcGx1c19pXFxrYXBwYSIsMl0sWzIsNSwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBYKSJdXQ==
+	\[\begin{tikzcd}
+		{\bigoplus_i(E\otimes E\otimes S^{|x_i|})} && {\bigoplus_i(E\otimes E\otimes N)} && {\bigoplus_i(E\otimes E\otimes X)} \\
+		{\bigoplus_i(E\otimes S^{|x_i|})} && {\bigoplus_i(E\otimes N)} && {\bigoplus_i(E\otimes X)}
+		\arrow["{\bigoplus_i(E\otimes E\otimes x_i)}", from=1-1, to=1-3]
+		\arrow["{\bigoplus_i(E\otimes\kappa)}", from=1-3, to=1-5]
+		\arrow["{\bigoplus_i\kappa}", from=1-5, to=2-5]
+		\arrow["{\bigoplus_i(\mu\otimes S^{|x_i|})}"', from=1-1, to=2-1]
+		\arrow["{\bigoplus_i(E\otimes x_i)}"', from=2-1, to=2-3]
+		\arrow["{\bigoplus_i\kappa}"', from=2-3, to=2-5]
+		\arrow["{\bigoplus_i(\mu\otimes X)}", from=1-3, to=2-3]
+	\end{tikzcd}\]
+	The left square commutes by functoriality of $-\otimes-$, and the right square commutes by coherence for $\kappa$. Hence, we've shown that $r$ is a homomorphism of left $E$-modules, as desired. Thus, $r$ induces a homomorphism of left $\pi_*(E)$-modules $\pi_*(r)\in\Hom_{\pi_*(E)}(\pi_*(M),\pi_*(N)))$ Further note that for all $i\in I$, $x_i$ is in the image of $\pi_*(r)$, as by definition $\pi_*(r)$ sends the class 
+	\[S^{|x_i|}\xr{e\otimes S^{|x_i|}}E\otimes S^{|x_i|}\into M\]
+	in $\pi_{|x_i|}(M)$ to the composition
+	\[S^{|x_i|}\xr{e\otimes S^{|x_i|}}E\otimes S^{|x_i|}\xr{E\otimes x_i}E\otimes N\xr\kappa N,\]
+	and by unitality of $\kappa$ this composition is simply $x_i:S^{|x_i|}\to N$. Thus, we have constructed a surjective $A$-graded homomorphism $\pi_*(r):\pi_*(M)\to \pi_*(N)$ of left $\pi_*(E)$-modules, so that since $\pi_*(N)$ is projective graded module there exists an $A$-graded left $\pi_*(E)$-module homomorphism $\iota:\pi_*(N)\to\pi_*(M)$ which makes the following diagram commute:
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooTSkiXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDEsIlxccGlfKihyKSJdLFswLDIsIlxcaW90YSJdXQ==
+	\[\begin{tikzcd}
+		& {\pi_*(M)} \\
+		{\pi_*(N)} & {\pi_*(N)}
+		\arrow[Rightarrow, no head, from=2-1, to=2-2]
+		\arrow["{\pi_*(r)}", from=1-2, to=2-2]
+		\arrow["\iota", from=2-1, to=1-2]
+	\end{tikzcd}\]
+	which further induces the corresponding idempotent of left $\pi_*(E)$-modules:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXyooTSkiXSxbMSwwLCJcXHBpXyooTikiXSxbMiwwLCJcXHBpXyooTSkiXSxbMCwxLCJcXHBpXyoocikiXSxbMSwyLCJcXGlvdGEiXV0=
+	\[\begin{tikzcd}
+		{\pi_*(M)} & {\pi_*(N)} & {\pi_*(M)}
+		\arrow["{\pi_*(r)}", from=1-1, to=1-2]
+		\arrow["\iota", from=1-2, to=1-3]
+	\end{tikzcd}\]
+	Now, by \autoref{pi_*_iso_when_N_retract_of_wedge_of_susps}, since $M=\bigoplus_i(E\otimes S^{|x_i|})$, we have that this map is actually induced by some endomorphism $\ell:M\to M$ of left $E$-module objects. Now $\ell$ splits by \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}, meaning there exists a diagram in $\cSH$ of the form
+	\[\ell:M\xr{r'}X\xr{\iota'}M\]
+	with $r'\circ \iota'=\id_X$. Note that since $E$ and each $S^{|x_i|}$ are cellular, $E\otimes S^{|x_i|}$ is cellular for all $i\in I$ (\autoref{cellular_closed_under_tensor}), so that $M=\bigoplus_i(E\otimes S^{|x_i|})$ is cellular, as by definition an arbitrary coproduct of cellular objects is cellular. Thus by \autoref{cellular_idempotent_splits_cellularly} $X$ is cellular as well. Now consider the following commutative diagram
+	% https://q.uiver.app/#q=WzAsOSxbMywxLCJcXHBpXyooTSkiXSxbMiwyLCJcXHBpXyooWCkiXSxbNCwwLCJcXHBpXyooTikiXSxbNCwyLCJcXHBpXyooWCkiXSxbNSwxLCJcXHBpXyooTSkiXSxbNiwxLCJcXHBpXyooWCkiXSxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooXFxpb3RhJykiLDJdLFswLDIsIlxccGlfKihyKSJdLFswLDMsIlxccGlfKihyJykiLDJdLFszLDQsIlxccGlfKihcXGlvdGEnKSIsMl0sWzIsNCwiXFxpb3RhIl0sWzQsNSwiXFxwaV8qKHInKSJdLFszLDUsIiIsMSx7ImN1cnZlIjozLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDcsIlxcaW90YSIsMl0sWzcsMSwiXFxwaV8qKHInKSIsMl0sWzcsOCwiXFxwaV8qKHIpIl0sWzgsMCwiXFxpb3RhIl0sWzYsOCwiIiwwLHsiY3VydmUiOi0zLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNywwLCJcXHBpXyooXFxlbGwpIl0sWzAsNCwiXFxwaV8qKFxcZWxsKSJdXQ==
+	\[\begin{tikzcd}
+		&& {\pi_*(N)} && {\pi_*(N)} \\
+		{\pi_*(N)} & {\pi_*(M)} && {\pi_*(M)} && {\pi_*(M)} & {\pi_*(X)} \\
+		&& {\pi_*(X)} && {\pi_*(X)}
+		\arrow["{\pi_*(\iota')}"', from=3-3, to=2-4]
+		\arrow["{\pi_*(r)}", from=2-4, to=1-5]
+		\arrow["{\pi_*(r')}"', from=2-4, to=3-5]
+		\arrow["{\pi_*(\iota')}"', from=3-5, to=2-6]
+		\arrow["\iota", from=1-5, to=2-6]
+		\arrow["{\pi_*(r')}", from=2-6, to=2-7]
+		\arrow[curve={height=18pt}, Rightarrow, no head, from=3-5, to=2-7]
+		\arrow["\iota"', from=2-1, to=2-2]
+		\arrow["{\pi_*(r')}"', from=2-2, to=3-3]
+		\arrow["{\pi_*(r)}", from=2-2, to=1-3]
+		\arrow["\iota", from=1-3, to=2-4]
+		\arrow[curve={height=-18pt}, Rightarrow, no head, from=2-1, to=1-3]
+		\arrow[Rightarrow, no head, from=3-3, to=3-5]
+		\arrow[Rightarrow, no head, from=1-3, to=1-5]
+		\arrow["{\pi_*(\ell)}", from=2-2, to=2-4]
+		\arrow["{\pi_*(\ell)}", from=2-4, to=2-6]
+	\end{tikzcd}\]
+	From this diagram we read off that the middle diagonal composition
+	\[\pi_*(X)\xr{\pi_*(\iota')}\pi_*(M)\xr{\pi_*(r)}\pi_*(N)\]
+	is an isomorphism with inverse $\pi_*(r')\circ\iota$. Now, since $X$ and $N$ are cellular, and $\pi_*(r\circ\iota')$ is an isomorphism, by \autoref{cellular_closed_under_iso} we have that $r\circ\iota'$ is an isomorphism, say with inverse $p$. Thus we have a commuting diagram
+	% https://q.uiver.app/#q=WzAsNCxbMiwwLCJNIl0sWzQsMCwiTiJdLFswLDAsIk4iXSxbMSwxLCJYIl0sWzAsMSwiciIsMl0sWzIsMCwiXFxpb3RhJ1xcY2lyYyBwIiwyXSxbMiwzLCJwIiwyXSxbMywwLCJcXGlvdGEnIiwyXSxbMiwxLCIiLDAseyJjdXJ2ZSI6LTQsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		N && M && N \\
+		& X
+		\arrow["r"', from=1-3, to=1-5]
+		\arrow["{\iota'\circ p}"', from=1-1, to=1-3]
+		\arrow["p"', from=1-1, to=2-2]
+		\arrow["{\iota'}"', from=2-2, to=1-3]
+		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-5]
+	\end{tikzcd}\]
+	and the middle row exhibits $N$ as a retract of $M=\bigoplus_i(E\otimes S^{|x_i|})$, as desired.
+\end{proof}
+
+\begin{corollary}\label{UCT_for_graded_projective}
+	Let $(E,\mu,e)$ be a monoid object and let $X$ and $Y$ be objects in $\cSH$. Then if $E$ and $X$ are cellular and $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (\autoref{module}), then the map
+	\[\Psi_{X,Y}:[X,E\otimes Y]_*\to\Hom_{\pi_*(E)}^*(E_*(X),E_*(Y))\]
+	sending $f:S^a\otimes X\to E\otimes Y$ to the map $E_{*-a}(X)\to E_*(Y)$ which sends a class $x:S^{b-a}\to E\otimes X$ to the composition
+	\[\Psi_{X,Y}(f)(x):S^b\xr\phi S^{b-a}\otimes S^a\xr{x\otimes S^a}E\otimes X\otimes S^a\xr{E\otimes \tau}E\otimes S^a\otimes X\xr{E\otimes f}E\otimes E\otimes Y\xr{\mu\otimes Y}E\otimes Y\]
+	is an $A$-graded isomorphism of $A$-graded abelian groups.
+\end{corollary}
+\begin{proof}
+	By \autoref{if_pi_*N_graded_proj_then_retract_of_wedge_of_susps}, since $E\otimes X$ is a left $E$-module object (\autoref{free_module}), $E_*(X)=\pi_*(E\otimes X)$ is a graded projective left $\pi_*(E)$-module, and $E\otimes X$ is cellular (\autoref{cellular_closed_under_tensor}), it follows that $E\otimes X$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$ for some collection of $a_i\in A$ indexed by some set $I$. Thus the desired result follows by \autoref{UCT_for_retract} with $N=E\otimes Y$ (which is an $E$-module by \autoref{free_module}).
+\end{proof}
+
 \begin{proposition}\label{X,Y*_LES_appendix}
 	Suppose we are given a distinguished triangle
 	\[X\xr fY\xr gZ\xr h\Sigma X\]
 	and some object $W$ in $\cSH$. Then there is an infinite long exact sequence
 	\begin{equation}
-		\label{X,Y*_LES_diag}\cdots\to[W,Z]_{*+\n+\1}\xr\partial[W,X]_{*+\n}\xr{f_*}[W,Y]_{*+\n}\xr{g_*}[W,Z]_{*+\n}\xr{\partial}[W,Z]_{*+\n-\1}\to\cdots,
+		\label{X,Y*_LES_diag}\cdots\to{[W,Z]}_{*+\n+\1}\xr\partial{[W,X]}_{*+\n}\xr{f_*}{[W,Y]}_{*+\n}\xr{g_*}{[W,Z]}_{*+\n}\xr{\partial}{[W,Z]}_{*+\n-\1}\to\cdots,
 	\end{equation}
-	where $\partial:[W,Z]_{*+\n+\1}\to[W,X]_{*+\n}$ sends a class $x:S^{a+\n+1}\otimes W\to Z$ to the composition
+	where $\partial:{[W,Z]}_{*+\n+\1}\to{[W,X]}_{*+\n}$ sends a class $x:S^{a+\n+1}\otimes W\to Z$ to the composition
 	\[S^{a+\n}\otimes W\cong S^{-\1}\otimes S^{a+\n+\1}\otimes W\xrightarrow{S^{-\1}\otimes x}S^{-\1}\otimes Z\xrightarrow{S^{-\1}\otimes h}S^{-\1}\otimes \Sigma X\xrightarrow{S^{-\1}\otimes \nu_X}S^{-\1}\otimes S^\1\otimes X\xrightarrow{\phi_{-\1,\1}^{-\1}\otimes X}X.\]
 \end{proposition}
 \begin{proof}
@@ -438,13 +892,13 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	\[\Sigma^nX\xrightarrow{\nu^n_X}(S^\1)^n\otimes X\xrightarrow{\phi\otimes X}S^\n\otimes X=\Sigma^\n X,\]
 	where again $\phi$ stands for the canonical isomorphism $(S^\1)^n\cong S^\n$, and we inductively define $\nu^1:=\nu$ and $\nu^{n+1}_X$ to be the composition
 	\[\Sigma^{n+1}X=\Sigma^n\Sigma X\xrightarrow{\nu^n_{\Sigma X}}(S^\1)^n\otimes\Sigma X\xrightarrow{(S^\1)^n\otimes\nu_X}(S^\1)^{n}\otimes S^\1\otimes X=(S^\1)^{n+1}\otimes X.\]
-	Finally, we define $s^0$ to be the identity natural transformation on $\cSH$. Then together with the natural isomorphisms $r^\n_{W,V}:[W,\Sigma^\n V]_*\cong[W,V]_{*-\n}$ given by \autoref{X,X,Sigma^aY*_eq_X,Y*-a}, we get the following natural isomorphisms of $A$-graded abelian groups for all $n\in\bZ$
-	\[\ell^{n}_{V}:[W,\Sigma^n V]_*\xrightarrow{(s^n_V)_*}[W,\Sigma^\n V]_*\xr{r_{W,V}^\n}[W,V]_{*-\n}.\]
+	Finally, we define $s^0$ to be the identity natural transformation on $\cSH$. Then together with the natural isomorphisms $r^\n_{W,V}:{[W,\Sigma^\n V]}_*\cong{[W,V]}_{*-\n}$ given by \autoref{X,X,Sigma^aY*_eq_X,Y*-a}, we get the following natural isomorphisms of $A$-graded abelian groups for all $n\in\bZ$
+	\[\ell^{n}_{V}:{[W,\Sigma^n V]}_*\xrightarrow{(s^n_V)_*}{[W,\Sigma^\n V]}_*\xr{r_{W,V}^\n}{[W,V]}_{*-\n}.\]
 	Now, given $n\in\bZ$, consider the following diagram
-	% https://q.uiver.app/#q=WzAsMTAsWzEsMCwiW1csXFxTaWdtYV5uWF1fKiJdLFsyLDAsIltXLFxcU2lnbWFeblldXyoiXSxbMywwLCJbVyxcXFNpZ21hXm5aXV8qIl0sWzEsMSwiW1csWF1feyotXFxufSJdLFsyLDEsIltXLFldX3sqLVxcbn0iXSxbMywxLCJbVyxaXV97Ki1cXG59Il0sWzQsMCwiW1csXFxTaWdtYV57bisxfVhdXyoiXSxbNCwxLCJbVyxYXV97Ki1cXG4tXFwxfSJdLFswLDAsIltXLFxcU2lnbWFee24tMX1aXV8qIl0sWzAsMSwiW1csWl1feyotXFxuK1xcMX0iXSxbMCwxLCJcXFNpZ21hXm5mXyoiXSxbMSwyLCJcXFNpZ21hXm5nXyoiXSxbMyw0LCJmXyoiLDJdLFs0LDUsImdfKiIsMl0sWzEsNCwiXFxlbGxebl9ZIiwyXSxbMiw1LCJcXGVsbF5uX1oiLDJdLFsyLDYsImhfbiJdLFs1LDcsIlxccGFydGlhbCIsMl0sWzYsNywiXFxlbGxee24rMX1fWCJdLFswLDMsIlxcZWxsXm5fWCIsMl0sWzgsOSwiXFxlbGxee24tMX1fWiIsMl0sWzksMywiXFxwYXJ0aWFsIiwyXSxbOCwwLCJoX3tuLTF9Il1d
+	% https://q.uiver.app/#q=WzAsMTAsWzEsMCwie1tXLFxcU2lnbWFeblhdfV8qIl0sWzIsMCwie1tXLFxcU2lnbWFeblldfV8qIl0sWzMsMCwie1tXLFxcU2lnbWFeblpdfV8qIl0sWzEsMSwie1tXLFhdfV97Ki1cXG59Il0sWzIsMSwie1tXLFldfV97Ki1cXG59Il0sWzMsMSwie1tXLFpdfV97Ki1cXG59Il0sWzQsMCwie1tXLFxcU2lnbWFee24rMX1YXX1fKiJdLFs0LDEsIntbVyxYXX1feyotXFxuLVxcMX0iXSxbMCwwLCJ7W1csXFxTaWdtYV57bi0xfVpdfV8qIl0sWzAsMSwie1tXLFpdfV97Ki1cXG4rXFwxfSJdLFswLDEsIlxcU2lnbWFebmZfKiJdLFsxLDIsIlxcU2lnbWFebmdfKiJdLFszLDQsImZfKiIsMl0sWzQsNSwiZ18qIiwyXSxbMSw0LCJcXGVsbF5uX1kiLDJdLFsyLDUsIlxcZWxsXm5fWiIsMl0sWzIsNiwiaF9uIl0sWzUsNywiXFxwYXJ0aWFsIiwyXSxbNiw3LCJcXGVsbF57bisxfV9YIl0sWzAsMywiXFxlbGxebl9YIiwyXSxbOCw5LCJcXGVsbF57bi0xfV9aIiwyXSxbOSwzLCJcXHBhcnRpYWwiLDJdLFs4LDAsImhfe24tMX0iXV0=
 	\[\begin{tikzcd}
-		{[W,\Sigma^{n-1}Z]_*} & {[W,\Sigma^nX]_*} & {[W,\Sigma^nY]_*} & {[W,\Sigma^nZ]_*} & {[W,\Sigma^{n+1}X]_*} \\
-		{[W,Z]_{*-\n+\1}} & {[W,X]_{*-\n}} & {[W,Y]_{*-\n}} & {[W,Z]_{*-\n}} & {[W,X]_{*-\n-\1}}
+		{{[W,\Sigma^{n-1}Z]}_*} & {{[W,\Sigma^nX]}_*} & {{[W,\Sigma^nY]}_*} & {{[W,\Sigma^nZ]}_*} & {{[W,\Sigma^{n+1}X]}_*} \\
+		{{[W,Z]}_{*-\n+\1}} & {{[W,X]}_{*-\n}} & {{[W,Y]}_{*-\n}} & {{[W,Z]}_{*-\n}} & {{[W,X]}_{*-\n-\1}}
 		\arrow["{\Sigma^nf_*}", from=1-2, to=1-3]
 		\arrow["{\Sigma^ng_*}", from=1-3, to=1-4]
 		\arrow["{f_*}"', from=2-2, to=2-3]
@@ -929,20 +1383,11 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 \end{proof}
 
 \begin{proposition}
-	Let $(E,\mu,e)$ be a ring spectrum in $\cSH$, and let $X$ and $Y$ be two objects in $\cSH$. Consider the map
-	\[[X,E\otimes Y]_*\to\Hom_{\pi_*(E)}^*(E_*(X),E_*(Y))\]
-	which sends a class $f:S^a\otimes X\to E\otimes Y$ in $[X,E\otimes Y]_*$ to 
-
-	Suppose there exists set $I$, a collection $\{a_i\}_{i\in I}\sseq A$, and maps $r$ and $i$ which fit into a retract diagram:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXFxvdGltZXMgWCJdLFsxLDAsIlxcYmlnb3BsdXNfe2lcXGluIEl9XFxTaWdtYV57YV9pfUUiXSxbMSwxLCJFXFxvdGltZXMgWCJdLFswLDEsIlxcaW90YSJdLFsxLDIsInIiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-	\[\begin{tikzcd}
-		{E\otimes X} & {\bigoplus_{i\in I}\Sigma^{a_i}E} \\
-		& {E\otimes X}
-		\arrow["\iota", from=1-1, to=1-2]
-		\arrow["r", from=1-2, to=2-2]
-		\arrow[Rightarrow, no head, from=1-1, to=2-2]
-	\end{tikzcd}\]
-	Then 
+	Let $(E,\mu,e)$ be a ring spectrum in $\cSH$, and let $X$ and $Y$ be two objects in $\cSH$ such that $E$ and $X$ are both cellular (\autoref{cellular}) and $E_*(X)$ is a projective left $\pi_*(E)$-module (\autoref{module}). Then the map
+	\[{[X,E\otimes Y]}_*\to\Hom_{\pi_*(E)}^*(E_*(X),E_*(Y))\]
+	which sends a generator $f:S^a\otimes X\to E\otimes Y$ in ${[X,E\otimes Y]}_*$ to the assignment which sends a generator $x:S^b\to E\otimes X$ in $E_*(X)$ to the composition
+	\[S^{a+b}\to S^a\otimes S^b\xr{S^a\otimes x}S^a\otimes E\otimes X\xr{\tau\otimes X}E\otimes S^a\otimes X\xr{E\otimes f}E\otimes E\otimes Y\xr{\mu}E\otimes Y\]
+	is an $A$-graded isomorphism of $A$-graded abelian groups.
 \end{proposition}
 
 %In the following definition, let $\vare:E_*(E)\to \pi_*(E)$ be the map which sends some $\alpha:S^a\to E\otimes E$ to the composition

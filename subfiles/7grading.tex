@@ -33,23 +33,20 @@ Explicitly, given an $A$-graded ring $R$ and homogeneous elements $x,y\in R$, we
 
 \begin{lemma}\label{product_of_A_graded}
 	Given an $A$-graded ring $R$ and two left (resp.\ right) $A$-graded $R$-modules $M$ and $N$, their direct sum $M\oplus N$ is naturally a left (resp.\ right) $A$-graded $R$-module group by defining
-	\[(M\oplus N)_a:=\bigoplus_{b+c=a}M_b\oplus N_c.\]
+	\[(M\oplus N)_a:=M_a\oplus N_a.\]
 \end{lemma}
 \begin{proof}
-	Consider the isomorphism
-	\[M\oplus N\cong\(\bigoplus_{b\in A} M_b\)\oplus\(\bigoplus_{c\in A}N_c\)\cong\bigoplus_{b,c\in A}M_b\oplus N_c\cong\bigoplus_{a\in A}\bigoplus_{b\in A}M_b\oplus N_{a-b}\cong\bigoplus_{a\in A}\(\bigoplus_{b+c=a}M_b\oplus N_c\).\]
-	It is entirely straightforward to see that this isomorphism is precisely the inverse of the canonical map
-	\[\bigoplus_{a\in A}\(\bigoplus_{b+c=a}M_b\oplus N_c\)\to M\oplus N,\]
-	so $M\oplus N$ is indeed $A$-graded as indicated.
+	The canonical map $\bigoplus_{a\in A}(M_a\oplus N_a)\to M\oplus N$ factors as
+	\[\bigoplus_{a\in A}(M_a\oplus N_a)\xr\cong\bigoplus_{a\in A}M_a\oplus\bigoplus_{a\in A}N_a\xr\cong M\oplus N.\qedhere\]
 \end{proof}
 
 Oftentimes when constructing $A$-graded rings, we do so only by defining the product of homogeneous elements, like so:
 
-\begin{proposition}\label{A_graded_ring}
+\begin{lemma}\label{A_graded_ring}
 	Suppose we have an $A$-graded abelian group $R$, a distinguished element $1\in R_0$, and $\bZ$-bilinear maps $m_{a,b}:R_a\times R_b\to R_{a+b}$ for all $a,b\in A$. Further suppose that for all $x\in R_a$, $y\in R_b$, and $z\in R_c$, we have
 	\[m_{a+b,c}(m_{a,b}(x,y),z)=m_{a,b+c}(x,m_{b,c}(y,z))\qquad\text{and}\qquad m_{a,0}(x,1)=m_{0,a}(1,x)=x.\]
 	Then there exists a unique multiplication map $m:R\times R\to R$ which endows $R$ with the structure of an $A$-graded ring and restricts to $m_{a,b}$ for all $a,b\in A$.
-\end{proposition}
+\end{lemma}
 \begin{proof}
 	Given $r,s\in R$, since $R\cong\bigoplus_{a\in A}R_a$, we may uniquely decompose $r$ and $s$ into homogeneous elements as $r=\sum_{a\in A}r_a$ and $s=\sum_{a\in A}s_a$ with each $r_a,s_a\in R_a$ such that only finitely many of the $r_a$'s and $s_a$'s are nonzero. Then in order to define a distributive product $R\times R\to R$ which restricts to $m_{a,b}:R_a\times R_b\to R_{a+b}$, note we \emph{must} define
 	\[r\cdot s=\(\sum_{a\in A}r_a\)\cdot\(\sum_{b\in A}s_b\)=\sum_{a,b\in A}r_a\cdot s_b=\sum_{a,b\in A}m_{a,b}(r_a,s_b).\]
@@ -78,7 +75,52 @@ Oftentimes when constructing $A$-graded rings, we do so only by defining the pro
 	where $(*)$ follows by bilinearity of $m_{a,b}$. An entirely analagous argument yields that $(r+s)\cdot t=(r\cdot t)+(s\cdot t)$.
 \end{proof}
 
-When working with $A$-graded rings, we will often freely use the above proposition without comment. In what follows, fix an $A$-graded ring $R$. We will simply say ``$A$-graded $R$-module'' when we are freely considering either left or right $A$-graded $R$-modules.
+\begin{lemma}\label{A-graded_module}
+	Let $R$ be an $A$-graded ring, $M$ an $A$-graded abelian group, and suppose there exists $\bZ$-bilinear maps $\kappa_{a,b}:R_a\times M_b\to M_{a+b}$ for all $a,b\in A$. Further suppose that for all $r\in R_a$, $r'\in R_b$, and $m\in M_c$ that
+	\[\kappa_{a+b,c}(r\cdot r',m)=\kappa_{a,b+c}(r,\kappa_{b,c}(r',m))\qquad\text{and}\qquad\kappa_{0,c}(1,m)=m.\]
+	Then there is a unique map $\kappa:R\times M\to M$ which endows $M$ with the structure of a left $A$-graded $R$-module and restricts to $\kappa_{a,b}$ for all $a,b\in A$.
+
+	On the other hand, suppose there exists $\bZ$-bilinear maps $\kappa_{a,b}:M_a\times R_b\to M_{a+b}$ for all $a,b\in A$. Further suppose that for all $r\in R_a$, $r'\in R_b$, and $m\in M_c$ that
+	\[\kappa_{c,a+b}(m,r\cdot r')=\kappa_{c+a,b}(\kappa_{c,a}(m,r),r')\qquad\text{and}\qquad\kappa_{c,0}(m,1)=m.\]
+	Then there is a unique map $\kappa:M\times R\to M$ which endows $M$ with the structure of a right $A$-graded $R$-module and restricts to $\kappa_{a,b}$ for all $a,b\in A$.
+\end{lemma}
+\begin{proof}
+	We show the left module case, as the right module case is entirely analagous. Supposing for each $a,b\in A$ we have a map $\kappa_{a,b}:R_a\times M_b\to M_{a+b}$ satisfying the above conditions, in order to extend these to a map $R\times M\to M$, by additivity we \emph{must} define
+	\[\kappa:R\times M\to M\]
+	to be the map sending $r=\sum_ar_a$ and $m=\sum_am_a$ to $\sum_{a,b\in A}\kappa_{a,b}(r_a, m_b)$. Now, we need to check that for all $r,s\in R$, $x,y\in M$ that\begin{enumerate}
+		\item $r\cdot(x+y)=r\cdot x+r\cdot y$
+  		\item $(r+s)\cdot x=r\cdot x+s\cdot x$
+		\item $(rs)\cdot x=r\cdot(s\cdot x)$
+		\item $1\cdot x=x$,
+	\end{enumerate}
+	where above we are written $-\cdot-$ for $\kappa(-,-)$. To see the first, note
+	\begin{align*}
+		\kappa(r,x+y)&=\sum_{a,b\in A}\kappa_{a,b}(r_a,(x+y)_b) \\
+		&=\sum_{a,b\in A}\kappa_{a,b}(r_a,x_b+y_b) \\
+		&=\sum_{a,b\in A}(\kappa_{a,b}(r_a,x_b)+\kappa_{a,b}(r_a,y_b)) \\
+		&=\sum_{a,b\in A}\kappa_{a,b}(r_a,x_b)+\sum_{a,b\in A}\kappa_{a,b}(r_a,y_b) \\
+		&=\kappa(r,x)+\kappa(r,y).
+	\end{align*}
+	To see the second, note
+	\begin{align*}
+		\kappa(r+s,x)&=\sum_{a,b\in A}\kappa_{a,b}((r+s)_a,x_b) \\
+		&=\sum_{a,b\in A}\kappa_{a,b}(r_a+s_a,x_b) \\
+		&=\sum_{a,b\in A}(\kappa_{a,b}(r_a,x_b)+\kappa_{a,b}(s_a,x_b)) \\
+		&=\sum_{a,b\in A}\kappa_{a,b}(r_a,x_b)+\sum_{a,b\in A}\kappa_{a,b}(s_a,x_b) \\
+		&=\kappa(r,x)+\kappa(s,x).
+	\end{align*}
+	To see the third, note
+	\begin{align*}
+		\kappa(rs,x)&=\sum_{a,b\in A}\kappa_{a,b}((rs)_a,x_b) \\
+		&=\sum_{a,b\in A}\kappa_{a,b}\(\sum_{c\in A}r_cs_{a-c},x_b\) \\
+		&=\sum_{a,b,c\in A}\kappa_{a,b}(r_cs_{a-c},x_b) \\
+		&=\sum_{a,b,c\in A}\kappa_{a,b}(r_c,\kappa_{a-c,b}(s_{a-c},x_b)) \\
+		&=
+	\end{align*}
+	\todo{FINISH}
+\end{proof}
+
+When working with $A$-graded rings and modules, we will often freely use the above propositions without comment. In what follows, fix an $A$-graded ring $R$. We will simply say ``$A$-graded $R$-module'' when we are freely considering either left or right $A$-graded $R$-modules.
 
 \begin{remark}
 	We often will denote an $A$-Braded $R$-module $M$ by $M_*$. Given some $a\in A$, we can define the shifted $A$-graded abelian group $M_{*+a}$ whose $b^\text{th}$ component is $M_{b+a}$.
@@ -86,12 +128,74 @@ When working with $A$-graded rings, we will often freely use the above propositi
 
 \begin{definition}
     More generally, given two $A$-graded $R$-modules $M$ and $N$ and some $d\in A$, an $R$-module homomorphism $f:M\to N$ is \emph{an $A$-graded homomorphism of degree $d$} if it restricts to a map $M_a\to N_{a+d}$ for all $a\in A$. Thus, an $A$-graded homomorphism of degree $d$ from $M$ to $N$ is equivalently an $A$-graded homomorphism $M_*\to N_{*+d}$ or an $A$-graded homomorphism $M_{*-d}\to N$. Given some $a\in A$ and left (resp.\ right) $R$-modules $M$ and $N$, we will write 
-	\[\Hom_R^d(M,N)\]
-	to denote the abelian group of $A$-graded homomorphisms of degree $d$ from $M$ to $N$. Thus we have an $A$-graded abelian group
+	\[\Hom_R^d(M,N)=\Hom_R(M_*,N_{*+d})=\Hom_R(M_{*-d},N_*)\]
+	to denote the set of $A$-graded homomorphisms of degree $d$ from $M$ to $N$, and simply
+	\[\Hom_R(M,N)\] 
+	to denote the set of degree-$0$ $A$-graded homomorphisms from $M$ to $N$. Clearly $A$-graded homomorphisms may be added and subtracted, so these are further abelian groups. Thus we have an $A$-graded abelian group
 	\[\Hom_R^*(M,N).\]
 \end{definition}
 
 Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an $A$-graded homomorphism of degree $0$. 
+
+\begin{lemma}\label{ev_at_1_is_iso}
+	Let $R$ be an $A$-graded ring and $M$ an $A$-graded left (resp.\ right) $R$-module. Then for all $d\in A$, the evaluation map
+	\begin{align*}
+		\mathrm{ev_1}:\Hom_{R}^d(R,M)&\to M_d \\
+		\varphi&\mapsto\varphi(1)
+	\end{align*}
+	is an isomorphism of abelian groups.
+\end{lemma}
+\begin{proof}
+	We consider the case that $M$ is a left $A$-graded $R$-module, as showing it when $M$ is a right module is entirely analagous. First of all, this map is clearly a homomorphism, as given degree $d$ $A$-graded homomorphisms $\varphi,\psi:R\to M$, we have 
+	\[\mathrm{ev}_1(\varphi+\psi)=(\varphi+\psi)(1)=\varphi(1)+\psi(1)=\mathrm{ev}_1(\varphi)+\mathrm{ev}_1(\psi).\]
+	Now, to see it is surjective, let $m\in M_d$, and define $\varphi_m:R\to M$ to send $r\mapsto r\cdot m$. First of all, $\varphi_m$ is a module homomorphism, as given $r,s\in R$, 
+	\[\varphi_m(r+s)=(r+s)\cdot m=r\cdot m+s\cdot m=\varphi_m(r)+\varphi_m(s)\quad\text{and}\quad\varphi_m(r\cdot s)=r\cdot s\cdot m=r\cdot\varphi_m(s).\]
+	Furthermore, it is clearly $A$-graded of degree $d$, as given a homogeneous element $r\in R_a$ for some $a\in A$, we have $\varphi_m(r)=r\cdot m\in R_{a+d}$, since $m$ is homogeneous of degree $d$. Finally, clearly 
+	\[\mathrm{ev}_1(\varphi_m)=\varphi_m(1)=1\cdot m=m,\]
+	so indeed $\mathrm{ev}_1$ is surjective. On the other hand, to see it is injective, suppose we are given $\varphi,\psi\in\Hom_R^d(R,M)$ such that $\varphi(1)=\psi(1)$. Then given $r\in R$, we must have
+	\[\varphi(r)=\varphi(r\cdot 1)=r\cdot\varphi(1)=r\cdot\psi(1)=\psi(r\cdot 1)=\psi(r),\]
+	so $\varphi$ and $\psi$ are exactly the same map. Thus, $\mathrm{ev}_1$ is injective, as desired.
+\end{proof}
+
+Recall that given a ring $R$, a left (resp.\ right) module $P$ is \emph{projective} if, for all diagrams of $R$-module homomorphisms of the form
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJQIl0sWzEsMSwiTiJdLFsxLDAsIk0iXSxbMCwxLCJmIiwyXSxbMiwxLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
+\[\begin{tikzcd}
+	& M \\
+	P & N
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["g", two heads, from=1-2, to=2-2]
+\end{tikzcd}\]
+with $g$ an epimorphism, there exists a lift $h:P\to M$ satisfying $g\circ h=f$
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJQIl0sWzEsMSwiTiJdLFsxLDAsIk0iXSxbMCwxLCJmIiwyXSxbMiwxLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMiwiaCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	& M \\
+	P & N
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["g", two heads, from=1-2, to=2-2]
+	\arrow["h", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+(Note $h$ is not required to be unique.)
+
+\begin{definition}\label{graded_projective_module}
+	Let $R$ be an $A$-graded ring, and let $P$ be a left (resp.\ right) $A$-graded $R$-module. Then $P$ is a \emph{graded projective} module if, for all diagrams of $A$-graded $R$-module homomorphisms of the form 
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJQIl0sWzEsMSwiTiJdLFsxLDAsIk0iXSxbMCwxLCJmIiwyXSxbMiwxLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
+	\[\begin{tikzcd}
+		& M \\
+		P & N
+		\arrow["f"', from=2-1, to=2-2]
+		\arrow["g", two heads, from=1-2, to=2-2]
+	\end{tikzcd}\]
+	with $g$ an epimorphism, there exists an $A$-graded homomorphism $h:P\to M$ satisfying $g\circ h=f$.
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJQIl0sWzEsMSwiTiJdLFsxLDAsIk0iXSxbMCwxLCJmIiwyXSxbMiwxLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMiwiaCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& M \\
+		P & N
+		\arrow["f"', from=2-1, to=2-2]
+		\arrow["g", two heads, from=1-2, to=2-2]
+		\arrow["h", dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+	(Note $h$ is not required to be unique.)
+\end{definition}
 
 \begin{definition}
 	Let $M$ be an $A$-graded $R$-module. Then an \emph{$A$-graded $R$-submodule} is an $A$-graded $R$-module $N$ which is a subset of $M$ and for which the inclusion $N\into M$ is an $A$-graded homomorphism of $R$-modules. Equivalently, it is a submodule $N$ one for which the canonical map
@@ -171,6 +275,18 @@ Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an 
 	is an isomorphism. It is clearly surjective, as $(M/N)_a$ is generated by elements $m+N$ for $m\in M_a$, and these elements make up precisely the image of $\varphi_a$. Thus $\varphi_a$ hits every generator of $(M/N)_a$, so $\varphi_a$ is surjective. On the other hand, suppose we are given some $m\in M_a$ such that $\varphi(m+N_a)=m+N=0$. Thus $m\in N$, and $m\in M_a$, so that $m\in M_a\cap N=N_a$, meaning $m+N_a=0$ in $M_a/N_a$, as desired.
 \end{proof}
 
+Recall that given a ring $R$, a left $R$-module $M$, a right $R$-module $N$, and an abelian group $A$, an \emph{$R$-balanced map} $\varphi:M\times N\to B$ is one which satisifies
+\begin{align*}
+	\varphi(m,n+n')&=\varphi(m,n)+\varphi(m,n') \\
+	\varphi(m+m',n)&=\varphi(m,n)+\varphi(m',n) \\
+	\varphi(m\cdot r,n)&=\varphi(m,r\cdot n).
+\end{align*}
+for all $m,m'\in M$, $n,n'\in N$, and $r\in R$. Then the tensor product $M\otimes_RN$ is the universal abelian group equipped with an $R$-balanced map $\otimes:M\times N\to M\otimes_RN$ such that for every abelian group $B$ and every $R$-balanced map $\varphi:M\times N\to B$, there is a \emph{unique} group homomorphism $\wt\varphi:M\otimes_RN\to B$ such that $\wt f\circ\otimes=f$. We call elements in the image of $\otimes:M\times N\to M\otimes_RN$ \emph{pure tensors}. It is a standard fact that $M\otimes_RN$ is generated as an abelian group by its pure tensors.
+
+\begin{definition}
+	Suppose we have a right $A$-graded $R$-module $M$, a left $A$-graded $R$-module $N$, and an $A$-graded abelian group $B$. Then an \emph{$A$-graded $R$-balanced map} $\varphi:M\times N\to B$ is an $R$-balanced map which restricts to $M_a\times N_b\to B_{a+b}$ for all $a,b\in A$.
+\end{definition}
+
 \begin{proposition}\label{tensor_of_A_graded_is_A_graded}
 	Suppose we have a right $A$-graded $R$-module $M$ and a left $A$-graded $R$-module $N$. Then the tensor product
 	\[M\otimes_RN\]
@@ -210,16 +326,16 @@ Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an 
 \end{proof}
 
 \begin{lemma}\label{tensor_lift_of_A_graded_is_A_graded}
-	Let $R$ be an $A$-graded ring, and suppose we have a right $A$-graded $R$-module $M$ and a left $A$-graded $R$-module $N$. Then given an $A$-graded abelian group $B$ and an $A$-graded $R$-balanced homomorphism
-	\[\varphi:M\times N\to B\]
-	(here $M\times N$ is regarded as an $A$-graded abelian group by \autoref{product_of_A_graded}), the lift
+	Let $R$ be an $A$-graded ring, and suppose we have a right $A$-graded $R$-module $M$ and a left $A$-graded $R$-module $N$. Then given an $A$-graded abelian group $B$ and an $A$-graded $R$-balanced map
+	\[\varphi:M\times N\to B,\]
+	the lift
 	\[\wt\varphi:M\otimes_RN\to B\]
 	determined by the universal property of $M\otimes_RN$ is an $A$-graded homomorphism.
 \end{lemma}
 \begin{proof}
-	This simply amounts to unravelling definitions. Recall that the subgroup of homogeneous elements of degree $a$ in $M\otimes_RN$ is that generated by pure tensors $m\otimes n$ with $m$ and $n$ homogeneous satisfying $|m|+|n|=a$. Thus, in order to show $\wt\varphi$ is an $A$-graded homomorphism, it suffices to show that given homogeneous $m\in M$ and $n\in N$, we have
+	This simply amounts to unravelling definitions. Recall that the subgroup of homogeneous elements of degree $a$ in $M\otimes_RN$ is that generated by pure tensors $m\otimes n$ with $m$ and $n$ homogeneous satisfying $|m|+|n|=a$. Thus, in order to show $\wt\varphi$ is an $A$-graded homomorphism, it suffices to show that given homogeneous $m\in M$ and $n\in N$ that $\wt\varphi(m\otimes n)$ is homogeneous and that
 	\[|\wt\varphi(m\otimes n)|=|m\otimes n|=|m|+|n|.\]
-	Indeed, given two such elements, consider the following diagram
+	Indeed, given two such elements $m$ and $n$, consider the following diagram
 	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJNXFx0aW1lcyBOIl0sWzAsMCwiTVxcb3RpbWVzX1JOIl0sWzEsMSwiQiJdLFswLDFdLFsxLDIsIlxcd3RcXHZhcnBoaSJdLFswLDIsIlxcdmFycGhpIiwyXV0=
 	\[\begin{tikzcd}
 		{M\otimes_RN} \\
@@ -229,8 +345,8 @@ Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an 
 		\arrow["\varphi"', from=2-1, to=2-2]
 	\end{tikzcd}\]
 	This diagram commutes by universal property of $-\otimes_R-$. Note that the element $m\otimes n$ is mapped to by the pair $(m,n)$ along the left vertical map. Hence by commutativity, we necessarily have
-	\[|\wt\varphi(m\otimes n)|=|\varphi(m,n)|\overset{(*)}=|(m,n)|=|m|+|n|,\]
-	where $(*)$ follows by the fact that $\varphi$ is an $A$-graded homomorphism.
+	\[|\wt\varphi(m\otimes n)|=|\varphi(m,n)|\overset{(*)}=|m|+|n|,\]
+	where $(*)$ follows by the fact that $\varphi$ is an $A$-graded $R$-balanced map.
 \end{proof}
 
 %In this section, fix the following data:

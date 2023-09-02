@@ -47,44 +47,46 @@ For our purposes, we will only care about spectral sequences which arise from \e
     in which each triangle $D^{s+1}\xr iD^s\xr jE_s\xr kD^{s+1}$ is an exact sequence. We require that each occurrence of $i$ (resp.\ $j$, $k$) is of the same degree. In other words, an unrolled exact couple can be described as a tuple $(D,E;i,j,k)$ of $\bZ\times A$-graded abelian groups and $\bZ\times A$-graded maps $i:D\to D$, $j:D\to E$, and $k:E\to D$, such that the $\bZ$-degrees of $i$, $j$, and $k$ are $-1$, $0$, and $1$, respectively. Usually $i$ and one of $j$ or $k$ will be of $A$-degree $0$.
 \end{definition}
 
-\begin{definition}[The spectral sequence associated to an unrolled exact couple]\label{SSeq_assoc_to_unrolled_EC}
-    Given an $A$-graded unrolled exact couple $\{D,E;i,j,k\}$, we may define an associated $\bZ\times A$-graded spectral sequence as follows: Given some $s\in\bZ$ and some $r\geq1$, we first define the following subgroups of $E_s$:
-    \[Z_r^s:= k^{-1}(\imm[i^{r-1}:D^{s+r}\to D^{s+1}])\qquad\text{and}\qquad B_r^s:=j(\ker[i^{r-1}:D^s\to D^{s-r+1}])\]
-    where we adopt the convention that $i^{0}$ is simply the identity. These are furthermore $A$-graded subgrous of $E_s$ (by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{preimage_of_A_graded_is_A_graded}). In this way, for each $s\in\bZ$, we get an infinite sequence of $A$-graded subgroups:
-    \[0=B_1^s\sseq B_2^s\sseq B_3^s\sseq\cdots\sseq\imm j=\ker k\sseq\cdots\sseq Z_3^s\sseq Z_2^s\sseq Z_1^s=E^s.\]
-    Now, for each $s\in\bZ$ and $r\geq1$, we define the $A$-graded abelian group
-    \[E^s_r:=Z^s_r/B^s_r,\]
-    so that in particular $E^s_1=E^s$ for all $s\in\bZ$, as $Z_1^s=k^{-1}(D^{s+1})=E^s$ and $B_1^s=j(\ker \id_{D^s})=j(0)=0$. Now we can define differentials $d_r^s:E_r^s\to E_r^{s+r}$ to be the composition
-    \[E_r^s=Z_r^s/B_r^s\xr k\imm[i^{r-1}:D^{s+r}\to D^{s+1}]\xr{j\circ i^{-(r-1)}}Z^{s+r}_r/B^{s+r}_r=E_r^{s+r},\]
-    where given some $e\in Z^s_r=k^{-1}(\imm i^{r-1})$, the first arrow takes a class $[e]\in E^s_r$ represented by some $e\in Z^s_r$ to the element $k(e)$, which lives in $\imm i^{r-1}$ by definition, and the second arrow takes $i^{r-1}(d)$ to the class $[j(d)]$. Note the first map is well-defined, as given $b\in B^s_r=j(\ker[i^{r-1}])$, we have $k(b)=0$, as $b\in\imm j=\ker k$. To see the second map is well-defined, first note that given $d\in D^{s+r}$, that 
-    \[k(j(d))=0\in\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}],\] 
-    so that 
-    \[j(d)\in k^{-1}(\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}])= Z^{s+r}_r,\] 
-    as desired, so that given $d\in D^{s+r}$, $j(d)in Z_r^{s+r}$, so it makes sense to discuss the class $[j(d)]\in Z_r^{s+r}/B_r^{s+r}=E_r^{s+r}$. Secondly, if $i^{r-1}(d)=i^{r-1}(d')$ for some $d,d'\in D^{s+r}$, then
-    \[j(d)-j(d')=j(d-d')\in j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])=B^{s+r}_r,\]
-    so that $[j(d)]=[j(d')]$ in $E_r^{s+r}$, as desired. It is straightforward to check that these maps are also $A$-graded homomorphisms, so that by unravelling definitions $d_r^s$ is an $A$-graded homomorphism of degree $\deg k-(r-1)\cdot\deg i+\deg j$ (so that in the standard case $\deg i=0$, $d_r^s$ simply has degree $\deg k+\deg j$).
+Given an $A$-graded unrolled exact couple $(D,E;i,j,k)$, we may define an associated $\bZ\times A$-graded spectral sequence as follows: Given some $s\in\bZ$ and some $r\geq1$, we first define the following subgroups of $E_s$:
+\[Z_r^s:= k^{-1}(\imm[i^{r-1}:D^{s+r}\to D^{s+1}])\qquad\text{and}\qquad B_r^s:=j(\ker[i^{r-1}:D^s\to D^{s-r+1}])\]
+where we adopt the convention that $i^{0}$ is simply the identity. These are furthermore $A$-graded subgrous of $E_s$ (by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{preimage_of_A_graded_is_A_graded}). In this way, for each $s\in\bZ$, we get an infinite sequence of $A$-graded subgroups:
+\[0=B_1^s\sseq B_2^s\sseq B_3^s\sseq\cdots\sseq\imm j=\ker k\sseq\cdots\sseq Z_3^s\sseq Z_2^s\sseq Z_1^s=E^s.\]
+Now, for each $s\in\bZ$ and $r\geq1$, we define the $A$-graded abelian group
+\[E^s_r:=Z^s_r/B^s_r,\]
+so that in particular $E^s_1=E^s$ for all $s\in\bZ$, as $Z_1^s=k^{-1}(D^{s+1})=E^s$ and $B_1^s=j(\ker \id_{D^s})=j(0)=0$. Now we can define differentials $d_r^s:E_r^s\to E_r^{s+r}$ to be the composition
+\[E_r^s=Z_r^s/B_r^s\xr k\imm[i^{r-1}:D^{s+r}\to D^{s+1}]\xr{j\circ i^{-(r-1)}}Z^{s+r}_r/B^{s+r}_r=E_r^{s+r},\]
+where given some $e\in Z^s_r=k^{-1}(\imm i^{r-1})$, the first arrow takes a class $[e]\in E^s_r$ represented by some $e\in Z^s_r$ to the element $k(e)$, which lives in $\imm i^{r-1}$ by definition, and the second arrow takes $i^{r-1}(d)$ to the class $[j(d)]$. Note the first map is well-defined, as given $b\in B^s_r=j(\ker[i^{r-1}])$, we have $k(b)=0$, as $b\in\imm j=\ker k$. To see the second map is well-defined, first note that given $d\in D^{s+r}$, that 
+\[k(j(d))=0\in\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}],\] 
+so that 
+\[j(d)\in k^{-1}(\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}])= Z^{s+r}_r,\] 
+as desired, so that given $d\in D^{s+r}$, $j(d)in Z_r^{s+r}$, so it makes sense to discuss the class $[j(d)]\in Z_r^{s+r}/B_r^{s+r}=E_r^{s+r}$. Secondly, if $i^{r-1}(d)=i^{r-1}(d')$ for some $d,d'\in D^{s+r}$, then
+\[j(d)-j(d')=j(d-d')\in j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])=B^{s+r}_r,\]
+so that $[j(d)]=[j(d')]$ in $E_r^{s+r}$, as desired. It is straightforward to check that these maps are also $A$-graded homomorphisms, so that by unravelling definitions $d_r^s$ is an $A$-graded homomorphism of degree $\deg k-(r-1)\cdot\deg i+\deg j$ (so that in the standard case $\deg i=0$, $d_r^s$ simply has degree $\deg k+\deg j$).
 
-    These differentials square to zero, in the sense that for each $s\in\bZ$ and $r\geq1$ we have that $d_r^{s+r}\circ d_r^s:E^s_r\to E_r^{s+2r}$ is the zero map. Indeed, suppose we are given some class $[e]\in E^s_r$ represented by an element $e\in E^s$, so $k(e)=i^{r-1}(d)$ for some $d\in D^{s+r}$. Then 
-    \[d_r^{s+r}(d_r^s([e]))=d_r^{s+r}([j(d)])=[j(i^{-(r-1)}(k(j(d))))]=[j(i^{-(r-1)}(0))]=0,\]
-    where the second-to-last equality follows by the fact that $k\circ j=0$. Note that by unravelling definitions, $d_1^s=j\circ k$.
-    
-    We claim that $\ker d_r^s=Z^s_{r+1}/B^s_r$. First of all, let $[e]\in E_r^s=Z_r^s/B_r^s$, so that $[e]$ is represented by some $e\in E^s$ with $k(e)=i^{r-1}(d)$ for some $d\in D^{s+r}$. Then if $[e]\in\ker d_r^s$, by definition this means $j(d)\in B_r^{s+r}=j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])$, so $j(d)=j(d')$ for some $d'\in D^{s+r}$ with $i^{r-1}(d')=0$. Thus $d-d'\in\ker j=\imm i$, so there exists some $d''\in D^{s+r+1}$ such that $i(d'')=d-d'$. Then
-    \[k(e)=i^{r-1}(d)=i^{r-1}(i(d'')+d')=i^r(d'')+i^{r-1}(d'),\]
-    but since $i^{r-1}(d')=0$, we have $k(e)\in\imm[i^r:D^{s+r+1}\to D^{s+1}]$, so that $e\in Z^s_{r+1}$, meaning $[e]\in Z^s_{r+1}/B^s_r$, as desired. On the other hand, suppose we are given some class $[e]\in Z^s_{r+1}/B^s_r$, represented by $e\in Z^s_{r+1}$ with $k(e)\in\imm[i^r:D^{s+r+1}\to D^{s+1}]$. Then if we write $k(e)=i^r(d)=i^{r-1}(i(d))$, then $d_r^s([e])=[j(i(d))]=0$ (since $j\circ i=0$), as asserted.
+These differentials square to zero, in the sense that for each $s\in\bZ$ and $r\geq1$ we have that $d_r^{s+r}\circ d_r^s:E^s_r\to E_r^{s+2r}$ is the zero map. Indeed, suppose we are given some class $[e]\in E^s_r$ represented by an element $e\in E^s$, so $k(e)=i^{r-1}(d)$ for some $d\in D^{s+r}$. Then 
+\[d_r^{s+r}(d_r^s([e]))=d_r^{s+r}([j(d)])=[j(i^{-(r-1)}(k(j(d))))]=[j(i^{-(r-1)}(0))]=0,\]
+where the second-to-last equality follows by the fact that $k\circ j=0$. Note that by unravelling definitions, $d_1^s=j\circ k$.
 
-    Finally, we claim that the image of $d_r^{s-r}:E^{s-r}_r\to E^s_r$ is $B^s_{r+1}/B^s_r$. First, let $e\in Z^{s-r}_r$, so $k(e)=i^{r-1}(d)$ for some $d\in D^{s}$. Then we'd like to show that $d_r^s([e])=[j(d)]$ belongs to $B^s_{r+1}/B^s_r$. It suffices to show that $d\in \ker[i^r:D^s\to D^{s-r}]$. To see this, note that 
-    \[i^r(d)=i(i^{r-1}(d))=i(k(e))=0,\]
-    since $i\circ k=0$. Hence we've shown $\imm d_r^{s-r}\sseq B^s_{r+1}/B^s_r$. Conversely, let $j(d)\in B^s_{r+1}$, so $d\in D^s$ and $i^{r}(d)=0$. Then we'd like to show that $[j(d)]\in B^s_{r+1}/B^s_r$ is in the image of $d_r^{s-r}$. To see this, note that
-    \[i^r(d)=0\implies i^{r-1}(d)\in\ker i=\imm k,\]
-    so there exists some $e\in E^{s-r}$ such that $k(e)=i^{r-1}(d)$, so $e\in Z^{s-r}_r$. Unravelling definitions, it follows that $d_r^{s-r}([e])=[j(d)]$, so $[j(d)]$ is indeed in the image of $d_r^{s-r}$, as desired.
+We claim that $\ker d_r^s=Z^s_{r+1}/B^s_r$. First of all, let $[e]\in E_r^s=Z_r^s/B_r^s$, so that $[e]$ is represented by some $e\in E^s$ with $k(e)=i^{r-1}(d)$ for some $d\in D^{s+r}$. Then if $[e]\in\ker d_r^s$, by definition this means $j(d)\in B_r^{s+r}=j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])$, so $j(d)=j(d')$ for some $d'\in D^{s+r}$ with $i^{r-1}(d')=0$. Thus $d-d'\in\ker j=\imm i$, so there exists some $d''\in D^{s+r+1}$ such that $i(d'')=d-d'$. Then
+\[k(e)=i^{r-1}(d)=i^{r-1}(i(d'')+d')=i^r(d'')+i^{r-1}(d'),\]
+but since $i^{r-1}(d')=0$, we have $k(e)\in\imm[i^r:D^{s+r+1}\to D^{s+1}]$, so that $e\in Z^s_{r+1}$, meaning $[e]\in Z^s_{r+1}/B^s_r$, as desired. On the other hand, suppose we are given some class $[e]\in Z^s_{r+1}/B^s_r$, represented by $e\in Z^s_{r+1}$ with $k(e)\in\imm[i^r:D^{s+r+1}\to D^{s+1}]$. Then if we write $k(e)=i^r(d)=i^{r-1}(i(d))$, then $d_r^s([e])=[j(i(d))]=0$ (since $j\circ i=0$), as asserted.
 
-    To recap, we have constructed for each $s\in\bZ$ and $r\geq1$ an $A$-graded abelian group $E_r^s$ along with differentials $d_r^s:E_r^s\to E_r^{s+r}$. Furthermore, if we take homology in the middle term of the following sequence
-    \[E_r^{s-r}\xr{d_r^{s-r}}E_r^s\xr{d_r^s}E^{s+r}_r,\]
-    we get
-    \[\ker d_r^s/\imm d_r^{s-r}=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\]
-    Expressed differently, we have constructed a $\bZ\times A$-graded spectral sequence $r\geq1\mapsto(E_r,d_r)$, where $E_r:=\bigoplus_{s\in\bZ}E_r^s$ and the differentials
+Finally, we claim that the image of $d_r^{s-r}:E^{s-r}_r\to E^s_r$ is $B^s_{r+1}/B^s_r$. First, let $e\in Z^{s-r}_r$, so $k(e)=i^{r-1}(d)$ for some $d\in D^{s}$. Then we'd like to show that $d_r^s([e])=[j(d)]$ belongs to $B^s_{r+1}/B^s_r$. It suffices to show that $d\in \ker[i^r:D^s\to D^{s-r}]$. To see this, note that 
+\[i^r(d)=i(i^{r-1}(d))=i(k(e))=0,\]
+since $i\circ k=0$. Hence we've shown $\imm d_r^{s-r}\sseq B^s_{r+1}/B^s_r$. Conversely, let $j(d)\in B^s_{r+1}$, so $d\in D^s$ and $i^{r}(d)=0$. Then we'd like to show that $[j(d)]\in B^s_{r+1}/B^s_r$ is in the image of $d_r^{s-r}$. To see this, note that
+\[i^r(d)=0\implies i^{r-1}(d)\in\ker i=\imm k,\]
+so there exists some $e\in E^{s-r}$ such that $k(e)=i^{r-1}(d)$, so $e\in Z^{s-r}_r$. Unravelling definitions, it follows that $d_r^{s-r}([e])=[j(d)]$, so $[j(d)]$ is indeed in the image of $d_r^{s-r}$, as desired.
+
+To recap, we have constructed for each $s\in\bZ$ and $r\geq1$ an $A$-graded abelian group $E_r^s$ along with differentials $d_r^s:E_r^s\to E_r^{s+r}$. Furthermore, if we take homology in the middle term of the following sequence
+\[E_r^{s-r}\xr{d_r^{s-r}}E_r^s\xr{d_r^s}E^{s+r}_r,\]
+we get
+\[\ker d_r^s/\imm d_r^{s-r}=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\]
+Thus, we get a spectral sequence:
+
+\begin{definition}\label{SSeq_assoc_to_unrolled_EC}
+    We may associate a $\bZ\times A$-graded spectral sequence $r\mapsto(E_r,d_r)$ to the $A$-graded unrolled exact couple $(D,E;i,j,k)$ by defining $E_r:=\bigoplus_{s\in\bZ}E_r^s$ and the differentials 
     \[d_r:E_r\to E_r\]
-    have $\bZ\times A$-degree $(r,\deg j-(r-1)\cdot\deg i+\deg k)$.
+    are those constructed above, which have $\bZ\times A$-degree $(r,\deg j-(r-1)\cdot\deg i+\deg k)$.
 \end{definition}
 
 \begin{definition}[Exact couple]
