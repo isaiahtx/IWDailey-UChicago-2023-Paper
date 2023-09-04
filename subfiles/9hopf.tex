@@ -1,0 +1,102 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+We will freely use the results of \Cref{graded_stuff} in this section. In what follows, fix an $A$-graded ring $R$. Further suppose that for all $a,b\in A$, there exists units $\theta_{a,b}\in R_0$ such that:\begin{itemize}
+	\item For all $a\in A$, $\theta_{a,0}=\theta_{0,a}=1$,
+ 	\item For all $a,b\in A$, $\theta_{a,b}^{-1}=\theta_{b,a}$,
+  	\item For all $a,b,c\in A$, $\theta_{a,b}\cdot\theta_{a,c}=\theta_{a,b+c}$ and $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$. %https://q.uiver.app/#q=WzAsMjgsWzAsMCwiUyJdLFsxLDAsIlNeey1hLWN9U157YStjfSJdLFsyLDAsIlNeey1hLWN9U15hIFNeYyJdLFszLDAsIlNeey1hLWN9U15jU15hIl0sWzQsMCwiU157LWEtY31TXnthK2N9Il0sWzQsMSwiUyJdLFs0LDIsIlNeey1hLWJ9U157YStifSJdLFs0LDMsIlNeey1hLWJ9U15hU15iIl0sWzQsNCwiU157LWEtYn1TXmJTXmEiXSxbNCw3LCJTXnstYS1ifVNee2ErYn0iXSxbMCwzLCJTXnstYS1iLWN9U157YX1TXntiK2N9Il0sWzAsNCwiU157LWEtYi1jfVNee2IrY31TXmEiXSxbMCwyLCJTXnstYS1iLWN9U157YStiK2N9Il0sWzEsMSwiU157LWF9U157LWN9U157YS1ifVNeYlNeYyJdLFsxLDIsIlNeey1hfVNeey1jfVNeey1ifVNeYVNeYlNeYyJdLFsxLDMsIlNeey1hLWN9U157LWJ9U15hU157Yn1TXmMiXSxbMSw0LCJTXnstYS1jfVNeey1ifVNee2J9U15jU15hIl0sWzIsMSwiU157LWF9U157LWN9U15jU157YS1ifVNeYiJdLFsyLDIsIlNeey1hfVNeey1jfVNeY1Neey1ifVNee2F9U15iIl0sWzIsMywiU157LWEtY31TXmNTXnstYn1TXmFTXmIiXSxbMyw0LCJTXnstYS1jfVNee2MtYn1TXmJTXmEiXSxbMywzLCJTXnstYS1jfVNee2MtYn1TXmFTXmIiXSxbMiw3LCJTIl0sWzAsNywiU157LWEtYi1jfVNee2ErYitjfSJdLFsyLDQsIlNeey1hLWN9U15jU157LWJ9U15iU15hIl0sWzEsNiwiU157LWEtY31TU15jU15hIl0sWzIsNSwiU157LWEtY31TXmNTU15hIl0sWzMsNiwiU157LWEtY31TXmNTXmEiXSxbMCwxLCJcXHBoaV97LWEtYyxhK2N9Il0sWzEsMiwiU157LWEtY31cXHBoaV97YSxjfSJdLFsyLDMsIlNeey1hLWN9XFx0YXUiXSxbMyw0LCJTXnthLWN9XFxwaGleey0xfV97YyxhfSJdLFs0LDUsIlxccGhpXnstMX1fey1hLWMsYStjfSJdLFs1LDYsIlxccGhpX3stYS1iLGErYn0iXSxbNiw3LCJTXnstYS1ifVxccGhpX3thLGJ9Il0sWzcsOCwiU157LWEtYn1cXHRhdV97U15hLFNeYn0iXSxbOCw5LCJTXnstYS1ifVxccGhpXnstMX1fe2IsYX0iXSxbMTAsMTEsIlNeey1hLWItY31cXHRhdV97YSxiK2N9IiwyXSxbMCwxMiwiXFxwaGlfey1hLWItYyxhK2IrY30iLDJdLFsxMiwxMCwiU157LWEtYi1jfVxccGhpX3thLGIrY30iLDJdLFsyLDEzLCJcXHBoaV97LWEsLWN9XFxwaGlfe2EtYixifVNeYyIsMV0sWzEzLDE0LCJTXnstYX1TXnstY31cXHBoaV97LWIsYX1TXmJTXmMiLDJdLFsxMCwxNSwiXFxwaGlfey1hLWMsLWJ9U15hXFxwaGlfe2IsY30iLDJdLFsxNSwxNCwiXFxwaGlfey1hLC1jfVNeey1ifVNeYVNeYlNeYyIsMV0sWzExLDE2LCJcXHBoaV97LWEtYywtYn1cXHBoaV97YixjfVNeYSIsMl0sWzE2LDE1LCJTXnstYS1jfVNeey1ifVxcdGF1X3tTXmJTXmMsU15hfSIsMV0sWzMsMTcsIlxccGhpX3stYS1jfVNeY1xccGhpX3thLWIsYn0iLDFdLFsxMywxNywiU157LWF9U157LWN9XFx0YXVfe1Nee2EtYn1TXmIsU15jfSIsMl0sWzE3LDE4LCJTXnstYX1TXnstY31TXmNcXHBoaV97LWIsYX1TXmIiXSxbMTQsMTgsIlNeey1hfVNeey1jfVxcdGF1X3tTXnstYn1TXmFTXmIsU15jfSJdLFsxNSwxOSwiU157LWEtY31cXHRhdV97U157LWJ9U15hU15iLFNeY30iLDJdLFsxOSwxOCwiXFxwaGlfey1hLC1jfVNeY1Neey1ifVNeYVNeYiIsMV0sWzgsMjAsIlxccGhpX3stYS1jLGMtYn1TXmJTXmEiXSxbNywyMSwiXFxwaGlfey1hLWMsYy1ifVNeYVNeYiIsMl0sWzIxLDIwLCJTXnstYS1jfVNee2MtYn1cXHRhdSJdLFsyMSwxOSwiU157LWEtY31cXHBoaV97YywtYn1TXmFTXmIiLDJdLFs5LDIyLCJcXHBoaV97LWEtYixhK2J9XnstMX0iXSxbMTEsMjMsIlNeey1hLWItY31cXHBoaV97YitjLGF9XnstMX0iLDJdLFsxNiwyNCwiU157LWEtY31cXHRhdV97U157LWJ9U157Yn0sU15jfSIsMl0sWzE5LDI0LCJTXnstYS1jfVNeY1Neey1ifVxcdGF1IiwxXSxbMjAsMjQsIlNeey1hLWN9XFxwaGlfe2MsLWJ9U15iU15hIiwyXSxbMjUsMTYsIlNeey1hLWN9XFxwaGlfey1iLGJ9U15jU15hIl0sWzI1LDI2LCJTXnstYS1jfVxcdGF1X3tTLFNeY31TXmEiLDFdLFsyMywyMiwiXFxwaGlfey1hLWItYyxhK2IrY31eey0xfSIsMl0sWzI2LDI0LCJTXnstYS1jfVNeY1xccGhpX3stYixifVNeYSIsMV0sWzI3LDI2LCJTXnstYS1jfVxccGhpX3tjLDB9U15hIiwxXSxbMjcsMjUsIlNeey1hLWN9XFxwaGlfezAsY31TXmEiXSxbMjcsMjAsIlNeey1hLWN9XFxwaGlfe2MtYixifVNeYSIsMl1d
+	\item For all $x\in R_a$ and $y\in R_b$,
+	\[x\cdot y=y\cdot x\cdot\theta_{a,b}.\]
+\end{itemize}
+
+\begin{definition}
+	Let $\GrCAlg R$ denote the following category:\begin{itemize}
+		\item The objects are pairs $(S,\varphi)$ where $S$ is an $A$-graded ring and $\varphi:R\to S$ is an $A$-graded ring homomorphism such that for all $x\in S_a$ and $y\in S_b$, we have
+		\[x\cdot y=y\cdot x\cdot\varphi(\theta_{a,b}),\]
+		\item The morphisms $(S,\varphi)\to(S',\varphi')$ are $A$-graded ring homomorphisms $f:S\to S'$ such that $f\circ\varphi=\varphi'$.
+	\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{objects_in_R-GrCAlg_are_R-bimodules}
+	Let $(S,\varphi)$ be an object in $\GrCAlg R$. Then $S$ is canonically an $A$-graded $R$-bimodule via the action maps $(r,s)\mapsto\varphi(r)\cdot s$ and $(s,r)\mapsto s\cdot\varphi(r)$ for $r\in R$ and $s\in S$.
+\end{lemma}
+\begin{proof}
+	\todo{TODO}
+\end{proof}
+
+\begin{proposition}
+	Let $(B,\varphi_B)$ and $(C,\varphi_C)$ in $\GrCAlg R$. Then since $B$ and $C$ are $A$-graded $R$-bimodules (\autoref{objects_in_R-GrCAlg_are_R-bimodules}), their $R$-tensor product $B\otimes_RC$ is also an $A$-graded $R$-bimodule (\autoref{A-graded_module}). Then $B\otimes_RC$ is canonically an element of $\GrCAlg R$, with product
+	\[(B\otimes_RC)\times(B\otimes_RC)\to(B\otimes_RC)\]
+	sending pure homogeneous tensors $(b\otimes c,b'\otimes c')$ to the element
+	\[\theta_{|c|,|b'|}\cdot(bb'\otimes cc'),\]
+	(where here $\cdot$ denotes the left module action of $R$ on $B\otimes_RC$), and with structure map
+	\begin{align*}
+		\varphi:R&\to B\otimes_R C \\
+		r&\mapsto \varphi_B(r)\otimes 1_C.
+	\end{align*}
+\end{proposition}
+\begin{proof}
+	First we claim the indicated map is well-defined and actually gives $B\otimes_RC$ the structure of an $A$-graded ring. Here we are employing \autoref{A_graded_ring}, so it suffices to check the map is well-defined, unital, associative, and distributive with respect to homogeneous elements. By distributivity, it further suffices to check this for pure homogeneous tensors. First, to see that this product is well-defined and distributive, it suffices to check that for all homogeneous $b\in B$ and $c\in C$ that the assignments $B\times C\to B\otimes_RC$
+	\[(b',c')\mapsto (b\otimes c)(b'\otimes c')=\theta_{|c|,|b'|}\cdot(bb'\otimes cc')\qquad\text{and}\qquad (b',c')\mapsto(b'\otimes c')(b\otimes c)=\theta_{|c'|,|b|}\cdot(b'b\otimes c'c)\]
+	are $R$-balanced, as then we get that the product $(B\otimes_RC)\times(B\otimes_RC)\to B\otimes_RC$ is an $A$-graded homomorphism of abelian groups in each argument, as desired. We show that the first assignment is $R$-balanced, showing the second is entirely analagous. To see this, note that given $b,b',b''\in B$, $c,c',c''\in C$, and $r\in R$ homogeneous with $|b'|=|b''|$ and $|c'|=|c''|$, that
+	\begin{align*}
+		(b\otimes c)((b'+b'')\otimes c')&=\theta_{|c|,|b'+b''|}\cdot((b(b'+b''))\otimes cc') \\
+		&=\theta_{|c|,|b'|}\cdot(bb'\otimes cc')+\theta_{|c|,|b''|}\cdot(bb''\otimes cc') \\
+		&=(b\otimes c)(b'\otimes c')+(b\otimes c)(b''\otimes c'),
+	\end{align*}
+	where in the second equality we are using that $|b'+b''|=|b'|=|b''|$,
+	\begin{align*}
+		(b\otimes c)(b'\otimes(c'+c''))&=\theta_{|c|,|b'|}\cdot(bb'\otimes c(c'+c'')) \\
+		&=\theta_{|c|,|b'|}\cdot(bb'\otimes c c')+\theta_{|c|,|b'|}\cdot(bb'\otimes c c'') \\
+		&=(b\otimes c)(b'\otimes c')+(b\otimes c)(b'\otimes c''),
+	\end{align*}
+	and
+	\begin{align*}
+		(b\otimes c)(b'r\otimes c')&=\theta_{|c|,|b'r|}(bb'r\otimes cc') \\
+		&\overset{(1)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\otimes rcc') \\
+		&\overset{(2)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\otimes cr\varphi_C(\theta_{|r|,|c|})c') \\
+		&\overset{(3)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\otimes\varphi_C(\theta_{|r|,|c|})crc') \\
+		&\overset{(4)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\varphi_B(\theta_{|r|,|c|})\otimes crc') \\
+		&\overset{(3)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(\varphi_B(\theta_{|r|,|c|})bb'\otimes crc') \\
+		&\overset{(5)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot\theta_{|r|,|c|}\cdot(bb'\otimes crc') \\
+		&\overset{(6)}=\theta_{|c|,|b'|}\cdot(bb'\otimes crc') \\
+		&=(b\otimes c)(b'\otimes rc'),
+	\end{align*}
+	where:\begin{itemize}
+		\item $(1)$ follows by the fact that $|b'r|=|b'|+|r|$, by definition, so that $\theta_{|c|,|b'r|}=\theta_{|c|,|b'|+|r|}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}$,
+		\item $(2)$ follows by the fact that since $(C,\varphi_C)$ is an object in $\GrCAlg{R}$ that $rcc'=cr\varphi_C(\theta_{|r|,|c|})c'$,
+		\item Each occurrence of $(3)$ follows by the fact that since $\theta_{|r|,|c|}$ is of degree $0$, it commutes with everything, since $\theta_{|r|,|c|}\cdot x=x\cdot\theta_{|r|,|c|}\cdot\theta_{0,x}=x\cdot\theta_{|r|,|c|}\cdot1=x\cdot\theta_{|r|,|c|}$,
+		\item $(4)$ follows by definition of the tensor product,
+		\item $(5)$ follows by definition of the $R$-bimodule structure on $B\otimes_RC$, and
+		\item $(6)$ follows by the fact that $\theta_{|c|,|r|}^{-1}=\theta_{|r|,|c|}$.
+	\end{itemize}
+
+	Now, to see this product is associative, let $b,b',b''\in B$ and $c,c',c''\in C$ homogeneous. Then
+	\begin{align*}
+		((b\otimes c)(b'\otimes c'))(b''\otimes c'')&=(\theta_{|c|,|b'|}\cdot (bb'\otimes cc'))(b''\otimes c'') \\
+		&=\theta_{|cc'|,|b''|}\cdot\theta_{|c|,|b'|}\cdot (bb'b''\otimes cc'c'') \\
+		&\overset{(1)}=\theta_{|c|,|b''|}\cdot\theta_{|c'|,|b''|}\cdot\theta_{|c|,|b'|}\cdot(bb'b''\otimes cc'c'') \\
+		&\overset{(2)}=\theta_{|c|,|b''|+|b'|}\cdot\theta_{|c'|,|b''|}\cdot(bb'b''\otimes cc'c'') \\
+		&=(b\otimes c)(\theta_{|c'|,|b''|}(b'b''\otimes c'c'')) \\
+		&=(b\otimes c)((b'\otimes c')(b''\otimes c'')),
+	\end{align*}
+	as desired.
+\end{proof}
+
+\begin{definition}
+	An \emph{$R$-ring} is a monoid object (\autoref{monoid_object}) in the category of $A$-graded $R$-bimodules. An \emph{$R$-coring} is a monoid object in the opposite category of the category of $A$-graded $R$-bimodules.
+\end{definition}
+
+\begin{definition}
+	A \emph{right $R$-bialgebroid $B$} consists of an $R$-bimodule $B$ with the structure of an $R\otimes R^\op$-ring $(B,s,t)$ and an $R$-coring $(B,\Delta,\vare)$ such that:\begin{enumerate}[label=(\roman*)]
+		\item The bimodule structure in the $R$-coring $(B,\Delta,\vare)$ is related to the $R\otimes R^\op$ ring $(B,s,t)$ via
+		\[r\cdot b\cdot r'=b\cdot s(r')\cdot t(r),\qquad\text{for $r,r'\in R$, $b\in B$}.\]
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	A \emph{Hopf algebroid}
+\end{definition}
+
+\end{document}
