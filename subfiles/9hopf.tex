@@ -18,85 +18,350 @@ We will freely use the results of \Cref{graded_stuff} in this section. In what f
 	\end{itemize}
 \end{definition}
 
-\begin{lemma}\label{objects_in_R-GrCAlg_are_R-bimodules}
-	Let $(S,\varphi)$ be an object in $\GrCAlg R$. Then $S$ is canonically an $A$-graded $R$-bimodule via the action maps $(r,s)\mapsto\varphi(r)\cdot s$ and $(s,r)\mapsto s\cdot\varphi(r)$ for $r\in R$ and $s\in S$.
+\begin{example}
+	Let $A=\bZ$, let $R$ be the ring $\bZ$, viewed as a $\bZ$-graded ring concentrated in degree $0$, and let $\theta_{n,m}:=(-1)^{n\cdot m}$ for all $n,m\in\bZ$. Then the category $\GrCAlg R$ is simply the category of graded anticommutative rings, i.e., $\bZ$-graded rings $S$ such that for all homogeneous $x,y\in S$, $x\cdot y=y\cdot x\cdot(-1)^{|x||y|}$.
+\end{example}
+
+\begin{lemma}\label{morphism_in_R-GrCAlg_makes_bimodule}
+	Let $f:(B,\varphi_B)\to(C,\varphi_C)$ be a morphism in $\GrCAlg R$. Then $(C,\varphi_C)$ is canonically an $A$-graded $B$-bimodule via the action maps $(b,c)\mapsto f(b) c$ and $(c,b)\mapsto cf(b)$ for $b\in B$ and $c\in C$. In particular, every element of $\GrCAlg{R}$ is canonically an $R$-bimodule.
 \end{lemma}
 \begin{proof}
-	\todo{TODO}
+	It is a standard result that given two rings $R,S$ and a ring homomorphism $\varphi:R\to S$, that $S$ canonically becomes an $R$-bimodule with left action $r\cdot s:=\varphi(r)s$ and right action $s\cdot r:=s\varphi(r)$. Furthermore, if $\varphi$ is an $A$-graded homomorphism of $A$-graded rings, these actions are clearly $A$-graded, so $S$ is an $A$-graded $R$-bimodule, as desired.
 \end{proof}
 
-\begin{proposition}
-	Let $(B,\varphi_B)$ and $(C,\varphi_C)$ in $\GrCAlg R$. Then since $B$ and $C$ are $A$-graded $R$-bimodules (\autoref{objects_in_R-GrCAlg_are_R-bimodules}), their $R$-tensor product $B\otimes_RC$ is also an $A$-graded $R$-bimodule (\autoref{A-graded_module}). Then $B\otimes_RC$ is canonically an element of $\GrCAlg R$, with product
-	\[(B\otimes_RC)\times(B\otimes_RC)\to(B\otimes_RC)\]
-	sending pure homogeneous tensors $(b\otimes c,b'\otimes c')$ to the element
-	\[\theta_{|c|,|b'|}\cdot(bb'\otimes cc'),\]
-	(where here $\cdot$ denotes the left module action of $R$ on $B\otimes_RC$), and with structure map
+\begin{proposition}\label{B-tensor_product_in_R-GrCAlg}
+	Let $(B,\varphi_B)$, $(C,\varphi_C)$, and $(D,\varphi_D)$ be objects in $\GrCAlg{R}$, and suppose we have morphisms $f:(B,\varphi_B)\to(C,\varphi_C)$ and $g:(B,\varphi_B)\to(D,\varphi_D)$. Then their tensor product $C\otimes_BD$ (as $D$-bimodules, see \autoref{morphism_in_R-GrCAlg_makes_bimodule}) canonically inherits the structure of an $A$-graded ring with unit $1_C\otimes 1_D$ via a product
+	\[(C\otimes_BD)\times(C\otimes_BD)\to C\otimes_BD\]
+	which sends a pair $(x\otimes y,x'\otimes y')$ of homogeneous pure tensors to the element
+	\[\varphi_B(\theta_{|x|,|y'|})\cdot(xx'\otimes yy'),\]
+	(where here $\cdot$ denotes the left module action of $B$ on $C\otimes_BD$). Furthermore $C\otimes_BD$ becomes an object in $\GrCAlg{R}$ with structure map
 	\begin{align*}
-		\varphi:R&\to B\otimes_R C \\
-		r&\mapsto \varphi_B(r)\otimes 1_C.
+		\varphi:R&\to C\otimes_BD \\ 
+		r&\mapsto \varphi_B(r)\cdot(1_C\otimes 1_D).
 	\end{align*}
 \end{proposition}
-\begin{proof}
-	First we claim the indicated map is well-defined and actually gives $B\otimes_RC$ the structure of an $A$-graded ring. Here we are employing \autoref{A_graded_ring}, so it suffices to check the map is well-defined, unital, associative, and distributive with respect to homogeneous elements. By distributivity, it further suffices to check this for pure homogeneous tensors. First, to see that this product is well-defined and distributive, it suffices to check that for all homogeneous $b\in B$ and $c\in C$ that the assignments $B\times C\to B\otimes_RC$
-	\[(b',c')\mapsto (b\otimes c)(b'\otimes c')=\theta_{|c|,|b'|}\cdot(bb'\otimes cc')\qquad\text{and}\qquad (b',c')\mapsto(b'\otimes c')(b\otimes c)=\theta_{|c'|,|b|}\cdot(b'b\otimes c'c)\]
-	are $R$-balanced, as then we get that the product $(B\otimes_RC)\times(B\otimes_RC)\to B\otimes_RC$ is an $A$-graded homomorphism of abelian groups in each argument, as desired. We show that the first assignment is $R$-balanced, showing the second is entirely analagous. To see this, note that given $b,b',b''\in B$, $c,c',c''\in C$, and $r\in R$ homogeneous with $|b'|=|b''|$ and $|c'|=|c''|$, that
+\begin{proof}[Proof sketch]
+	We simply lay out everything that needs to be shown, and we leave it to the reader to fill in the details. First to show that the indicated product is actually well-defined and distributive, by \autoref{tensor_lift_of_A_graded_is_A_graded} it suffices to show that for all homogeneous $c,c',c''\in C$, $d,d',d''\in D$, and $b\in B$ with $|c'|=|c''|$ and $|d'|=|d''|$, that
 	\begin{align*}
-		(b\otimes c)((b'+b'')\otimes c')&=\theta_{|c|,|b'+b''|}\cdot((b(b'+b''))\otimes cc') \\
-		&=\theta_{|c|,|b'|}\cdot(bb'\otimes cc')+\theta_{|c|,|b''|}\cdot(bb''\otimes cc') \\
-		&=(b\otimes c)(b'\otimes c')+(b\otimes c)(b''\otimes c'),
+		\varphi_B(\theta_{|d|,|c'+c''|})\cdot(c(c'+c'')\otimes dd')&=\varphi_B(\theta_{|d|,|c'|})\cdot(cc'\otimes dd')+\varphi_B(\theta_{|d|,|c''|})\cdot (cc''\otimes dd') \\
+		\varphi_B(\theta_{|d|,|c'|})\cdot (cc'\otimes d(d'+d''))&=\varphi_B(\theta_{|d|,|c'|})\cdot(cc'\otimes dd')+\varphi_B(\theta_{|d|,|c'|})\cdot(cc'\otimes dd'') \\
+		\varphi_B(\theta_{|d|,|c'\cdot b|})\cdot (c(c'\cdot b)\otimes dd')&=\varphi_B(\theta_{|d|,|c'|})\cdot(cc'\otimes d(b\cdot d')) \\
+		\varphi_B(\theta_{|d'|,|c|})\cdot((c'+c'')c\otimes d'd)&=\varphi_B(\theta_{|d'|,|c|})\cdot(c'c\otimes d'd)+\varphi_B(\theta_{|d'|,|c|})\cdot(c''c\otimes d'd) \\
+		\varphi_B(\theta_{|d'+d''|,|c|})\cdot(c'c\otimes (d'+d'')d)&=\varphi_B(\theta_{|d'|,|c|})\cdot(c'c\otimes d'd)+\varphi_B(\theta_{|d''|,|c|})\cdot(c'c\otimes d''d) \\
+		\varphi_B(\theta_{|d'|,|c|})((c'\cdot b)c\otimes d'd)&=\varphi_B(\theta_{|c|,|b\cdot d'|})\cdot (c'c\otimes (b\cdot d')d).
 	\end{align*}
-	where in the second equality we are using that $|b'+b''|=|b'|=|b''|$,
-	\begin{align*}
-		(b\otimes c)(b'\otimes(c'+c''))&=\theta_{|c|,|b'|}\cdot(bb'\otimes c(c'+c'')) \\
-		&=\theta_{|c|,|b'|}\cdot(bb'\otimes c c')+\theta_{|c|,|b'|}\cdot(bb'\otimes c c'') \\
-		&=(b\otimes c)(b'\otimes c')+(b\otimes c)(b'\otimes c''),
-	\end{align*}
+	These tell us that for all $x\in C\otimes_BD$ that the maps $C\otimes_BD\to C\otimes_BD$ sending $y\mapsto xy$ and $y\mapsto yx$ are well-defined $A$-graded homomorphisms of abelian groups, so we have a distributive product $(x,y)\mapsto xy$. Then to show that this product makes $C\otimes_BD$ an $A$-graded ring, by \autoref{A_graded_ring}, it suffices to show that for all homogeneous $x,y,z\in C\otimes_BD$ that $(xy)z=x(yz)$ and $x(1_C\otimes 1_D)=x=(1_C\otimes 1_D)x$. By distributivity, it further suffices to consider the case that $x$, $y$, and $z$ are homogeneous \emph{pure tensors} in $C\otimes_BD$, i.e., it suffices to show that for all homogeneous $c,c',c''\in C$ and $d,d',d''\in D$ that
+	\[((c\otimes d)(c'\otimes d'))(c''\otimes d'')=(c\otimes d)((c'\otimes d')(c''\otimes d''))\]
 	and
-	\begin{align*}
-		(b\otimes c)(b'r\otimes c')&=\theta_{|c|,|b'r|}(bb'r\otimes cc') \\
-		&\overset{(1)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\otimes rcc') \\
-		&\overset{(2)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\otimes cr\varphi_C(\theta_{|r|,|c|})c') \\
-		&\overset{(3)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\otimes\varphi_C(\theta_{|r|,|c|})crc') \\
-		&\overset{(4)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(bb'\varphi_B(\theta_{|r|,|c|})\otimes crc') \\
-		&\overset{(3)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot(\varphi_B(\theta_{|r|,|c|})bb'\otimes crc') \\
-		&\overset{(5)}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}\cdot\theta_{|r|,|c|}\cdot(bb'\otimes crc') \\
-		&\overset{(6)}=\theta_{|c|,|b'|}\cdot(bb'\otimes crc') \\
-		&=(b\otimes c)(b'\otimes rc'),
-	\end{align*}
-	where:\begin{itemize}
-		\item $(1)$ follows by the fact that $|b'r|=|b'|+|r|$, by definition, so that $\theta_{|c|,|b'r|}=\theta_{|c|,|b'|+|r|}=\theta_{|c|,|b'|}\cdot\theta_{|c|,|r|}$,
-		\item $(2)$ follows by the fact that since $(C,\varphi_C)$ is an object in $\GrCAlg{R}$ that $rcc'=cr\varphi_C(\theta_{|r|,|c|})c'$,
-		\item Each occurrence of $(3)$ follows by the fact that since $\theta_{|r|,|c|}$ is of degree $0$, it commutes with everything, since $\theta_{|r|,|c|}\cdot x=x\cdot\theta_{|r|,|c|}\cdot\theta_{0,x}=x\cdot\theta_{|r|,|c|}\cdot1=x\cdot\theta_{|r|,|c|}$,
-		\item $(4)$ follows by definition of the tensor product,
-		\item $(5)$ follows by definition of the $R$-bimodule structure on $B\otimes_RC$, and
-		\item $(6)$ follows by the fact that $\theta_{|c|,|r|}^{-1}=\theta_{|r|,|c|}$.
-	\end{itemize}
+	\[(c\otimes d)(1_C\otimes 1_D)=(c\otimes d)=(1_C\otimes 1_D)(c\otimes d).\]
+	Thus, we have that the given product endows $C\otimes_BD$ with the structure of an $A$-graded ring, as desired. Now, we wish to show that the given map $\varphi:R\to C\otimes_BD$ is a ring homomorphism. Clearly it sends $1$ to $1_C\otimes 1_D$, and again by linearity, it suffices to show that given \emph{homogeneous} $r,s\in R$ that
+	\[\varphi(r+s)=\varphi_B(r+s)(1_C\otimes 1_D)=\varphi_B(r)(1_C\otimes 1_D)+\varphi_B(s)(1_C\otimes 1_D)=\varphi(r)+\varphi(s)\]
+	and
+	\[\varphi(rs)=\varphi_B(rs)(1_C\otimes 1_D)=(\varphi_B(r)(1_C\otimes 1_D))(\varphi_B(s)(1_C\otimes 1_D))=\varphi(r)\varphi(s).\]
+	Finally, we need to show that $C\otimes_BD$ satisfies the graded commutativity condition, for which again by linearity it suffices to show that given homogeneous $c,c'\in C$ and $d,d'\in D$ that
+	\[(c\otimes d)(c'\otimes d')=\varphi(\theta_{|c\otimes d|,|c'\otimes d'|})(c'\otimes d')(c\otimes d)=\varphi(\theta_{|c|+|d|,|c'|+|d'|})(c'\otimes d)(c\otimes d).\]
+	Showing all of these is relatively straightforward.
+\end{proof}
 
-	Now, to see this product is associative, let $b,b',b''\in B$ and $c,c',c''\in C$ homogeneous. Then
-	\begin{align*}
-		((b\otimes c)(b'\otimes c'))(b''\otimes c'')&=(\theta_{|c|,|b'|}\cdot (bb'\otimes cc'))(b''\otimes c'') \\
-		&=\theta_{|cc'|,|b''|}\cdot\theta_{|c|,|b'|}\cdot (bb'b''\otimes cc'c'') \\
-		&\overset{(1)}=\theta_{|c|,|b''|}\cdot\theta_{|c'|,|b''|}\cdot\theta_{|c|,|b'|}\cdot(bb'b''\otimes cc'c'') \\
-		&\overset{(2)}=\theta_{|c|,|b''|+|b'|}\cdot\theta_{|c'|,|b''|}\cdot(bb'b''\otimes cc'c'') \\
-		&=(b\otimes c)(\theta_{|c'|,|b''|}(b'b''\otimes c'c'')) \\
-		&=(b\otimes c)((b'\otimes c')(b''\otimes c'')),
-	\end{align*}
-	as desired.
+\begin{proposition}\label{R-GrCAlg_has_pushouts_and_binary_coproducts}
+	The category $\GrCAlg{R}$ has pushouts, where given $f:(B,\varphi_B)\to (C,\varphi_C)$ and $g:(B,\varphi_B)\to(D,\varphi_D)$, their pushout is the object $(C\otimes_BD,\varphi)$ constructed in \autoref{B-tensor_product_in_R-GrCAlg}, along with the canonical maps $(C,\varphi_C)\to(C\otimes_BD,\varphi)$ sending $c\mapsto c\otimes1_D$ and $(D,\varphi_D)\to(C\otimes_BD,\varphi)$ sending $d\mapsto  1_C\otimes d$. In particular, since $(R,\id_R)$ is initial, $\GrCAlg{R}$ has binary coproducts.
+\end{proposition}
+\begin{proof}[Proof sketch]
+	First, we need to show that the given maps $i_C:(C,\varphi_C)\to(C\otimes_BD,\varphi)$ and $i_D:(D,\varphi_D)\to(C\otimes_BD,\varphi)$ are actually morphisms in $\GrCAlg{R}$, i.e., that they are ring homomorphisms and that the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsNCxbMSwxLCJDXFxvdGltZXNfQkQiXSxbMCwxLCJDIl0sWzIsMSwiRCJdLFsxLDAsIlIiXSxbMSwwLCJpX0MiLDJdLFsyLDAsImlfRCJdLFszLDEsIlxcdmFycGhpX0MiLDJdLFszLDIsIlxcdmFycGhpX0QiXSxbMywwLCJcXHZhcnBoaSIsMV1d
+	\[\begin{tikzcd}
+		& R \\
+		C & {C\otimes_BD} & D
+		\arrow["{i_C}"', from=2-1, to=2-2]
+		\arrow["{i_D}", from=2-3, to=2-2]
+		\arrow["{\varphi_C}"', from=1-2, to=2-1]
+		\arrow["{\varphi_D}", from=1-2, to=2-3]
+		\arrow["\varphi"{description}, from=1-2, to=2-2]
+	\end{tikzcd}\]
+	Showing this is entirely straightforward. Furthermore, $i_C$ and $i_D$ clearly make the following diagram commute:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzEsMCwiRCJdLFsxLDEsIkNcXG90aW1lc19CRCJdLFswLDEsIkMiXSxbMCwxLCJnIl0sWzEsMiwiaV9EIl0sWzAsMywiZiIsMl0sWzMsMiwiaV9DIiwyXV0=
+	\[\begin{tikzcd}
+		B & D \\
+		C & {C\otimes_BD}
+		\arrow["g", from=1-1, to=1-2]
+		\arrow["{i_D}", from=1-2, to=2-2]
+		\arrow["f"', from=1-1, to=2-1]
+		\arrow["{i_C}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	It remains to show that $i_C$ and $i_D$ are the universal such arrows. Suppose we have some object $(E,\varphi_E)$ in $\GrCAlg{R}$ and a commuting diagram
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzAsMSwiQyJdLFsxLDAsIkQiXSxbMSwxLCJFIl0sWzAsMSwiZiIsMl0sWzAsMiwiZyJdLFsxLDMsImgiXSxbMiwzLCJrIl1d
+	\[\begin{tikzcd}
+		B & D \\
+		C & E
+		\arrow["f"', from=1-1, to=2-1]
+		\arrow["g", from=1-1, to=1-2]
+		\arrow["h", from=2-1, to=2-2]
+		\arrow["k", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	of morphisms in $\GrCAlg{R}$. Then we'd like to show there exists a unique morphism $\ell:C\otimes_BD\to E$ in $\GrCAlg{R}$ which makes the following diagram commute:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJCIl0sWzAsMSwiQyJdLFsxLDAsIkQiXSxbMiwyLCJFIl0sWzEsMSwiQ1xcb3RpbWVzX0JEIl0sWzAsMSwiZiIsMl0sWzAsMiwiZyJdLFsxLDMsImgiLDIseyJjdXJ2ZSI6M31dLFsyLDMsImsiLDAseyJjdXJ2ZSI6LTN9XSxbMSw0LCJpX0MiXSxbMiw0LCJpX0QiLDJdLFs0LDMsIlxcZWxsIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+	\[\begin{tikzcd}
+		B & D \\
+		C & {C\otimes_BD} \\
+		&& E
+		\arrow["f"', from=1-1, to=2-1]
+		\arrow["g", from=1-1, to=1-2]
+		\arrow["h"', curve={height=18pt}, from=2-1, to=3-3]
+		\arrow["k", curve={height=-18pt}, from=1-2, to=3-3]
+		\arrow["{i_C}", from=2-1, to=2-2]
+		\arrow["{i_D}"', from=1-2, to=2-2]
+		\arrow["\ell"{description}, dashed, from=2-2, to=3-3]
+	\end{tikzcd}\]
+	First we show uniqueness. Supposing such an arrow $\ell$ existed, given elements $c\in C$ and $d\in D$, we must have
+	\[\ell(c\otimes d)=\ell((c\otimes 1_D)(1_C\otimes d))=\ell(c\otimes 1_D)\ell(1_C\otimes d)=\ell(i_C(c))\ell(i_D(d))=h(c)k(d).\]
+	Since pure tensors generate $C\otimes_BD$, we have uniquely determined $\ell$, and clearly it makes the above diagram commute. Now, it remains to show that as defined $\ell$ is a morphism in $\GrCAlg{R}$, i.e., that it is an $A$-graded ring homomorphism and that the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsMyxbMSwwLCJSIl0sWzAsMSwiQ1xcb3RpbWVzX0JEIl0sWzIsMSwiRSJdLFswLDEsIlxcdmFycGhpIiwyXSxbMSwyLCJcXGVsbCJdLFswLDIsIlxcdmFycGhpX0UiXV0=
+	\[\begin{tikzcd}
+		& R \\
+		{C\otimes_BD} && E
+		\arrow["\varphi"', from=1-2, to=2-1]
+		\arrow["\ell", from=2-1, to=2-3]
+		\arrow["{\varphi_E}", from=1-2, to=2-3]
+	\end{tikzcd}\]
+	This is all entirely straightforward to show.
 \end{proof}
 
 \begin{definition}
-	An \emph{$R$-ring} is a monoid object (\autoref{monoid_object}) in the category of $A$-graded $R$-bimodules. An \emph{$R$-coring} is a monoid object in the opposite category of the category of $A$-graded $R$-bimodules.
-\end{definition}
-
-\begin{definition}
-	A \emph{right $R$-bialgebroid $B$} consists of an $R$-bimodule $B$ with the structure of an $R\otimes R^\op$-ring $(B,s,t)$ and an $R$-coring $(B,\Delta,\vare)$ such that:\begin{enumerate}[label=(\roman*)]
-		\item The bimodule structure in the $R$-coring $(B,\Delta,\vare)$ is related to the $R\otimes R^\op$ ring $(B,s,t)$ via
-		\[r\cdot b\cdot r'=b\cdot s(r')\cdot t(r),\qquad\text{for $r,r'\in R$, $b\in B$}.\]
+	Let $\cC$ be a category admitting pullbacks. A \emph{groupoid object} in $\cC$ consists of a pair of objects $(M,O)$ together with five morphisms
+	\begin{enumerate}
+		\item \emph{Source and target}: $s,t:M\to O$,
+		\item \emph{Identity}: $e:O\to M$,
+		\item \emph{Composition}: $c:M\times_{O}M\to M$,
+		\item \emph{Inverse}: $i:M\to M$
+	\end{enumerate}
+	Explicitly, $M\times_OM$ fits into the following pullback diagram:
+	\[\begin{tikzcd}
+		{M\times_OM} & M \\
+		M & O
+		\arrow["{p_2}", from=1-1, to=1-2]
+		\arrow["{p_1}"', from=1-1, to=2-1]
+		\arrow["s"', from=2-1, to=2-2]
+		\arrow["t", from=1-2, to=2-2]
+		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+	\end{tikzcd}\]
+	so if we're working with sets, the composition map sends a pair $(g,f)$ such that the codomain of $f$ is the domain of $g$ to $g\circ f$.
+	These data must satisfy the following diagrams:
+	\begin{enumerate}
+		\item Composition works correctly:
+		\[\begin{tikzcd}
+			{M\times_OM} & M & M & O & M & {M\times_OM} & M \\
+			M & O && O && M & O
+			\arrow["e"', from=1-4, to=1-3]
+			\arrow["s"', from=1-3, to=2-4]
+			\arrow["e", from=1-4, to=1-5]
+			\arrow["t", from=1-5, to=2-4]
+			\arrow[Rightarrow, no head, from=1-4, to=2-4]
+			\arrow["c", from=1-1, to=1-2]
+			\arrow["t", from=1-2, to=2-2]
+			\arrow["{p_1}"', from=1-1, to=2-1]
+			\arrow["t", from=2-1, to=2-2]
+			\arrow["c"', from=1-6, to=2-6]
+			\arrow["s", from=2-6, to=2-7]
+			\arrow["{p_2}", from=1-6, to=1-7]
+			\arrow["s", from=1-7, to=2-7]
+		\end{tikzcd}\]
+		\item Associativity of composition:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJNXFx0aW1lc19PKE1cXHRpbWVzX09NKSJdLFsyLDAsIihNXFx0aW1lc19PTSlcXHRpbWVzX09NIl0sWzAsMSwiTVxcdGltZXNfT00iXSxbMSwxLCJNIl0sWzIsMSwiTVxcdGltZXNfT00iXSxbMCwxLCJcXGNvbmciXSxbMCwyLCJNXFx0aW1lcyBjIiwyXSxbMiwzLCJjIl0sWzEsNCwiY1xcdGltZXMgTSJdLFs0LDMsImMiLDJdXQ==
+		\[\begin{tikzcd}
+			{M\times_O(M\times_OM)} && {(M\times_OM)\times_OM} \\
+			{M\times_OM} & M & {M\times_OM}
+			\arrow["\cong", from=1-1, to=1-3]
+			\arrow["{M\times c}"', from=1-1, to=2-1]
+			\arrow["c", from=2-1, to=2-2]
+			\arrow["{c\times M}", from=1-3, to=2-3]
+			\arrow["c"', from=2-3, to=2-2]
+		\end{tikzcd}\]
+		where the top objects and the maps $M\times c$, $c\times M$ are determined like so, where both outer and inner squares in the following diagram are pullback squares:
+		\[\begin{tikzcd}
+			{M\times_O(M\times_OM)} && {M\times_OM} & {(M\times_OM)\times_OM} && M \\
+			& {M\times_OM} & M && {M\times_OM} & M \\
+			M & M & O & {M\times_OM} & M & O
+			\arrow["{p_2}", from=1-1, to=1-3]
+			\arrow["{p_2}", from=1-4, to=1-6]
+			\arrow["{p_1}"', from=1-4, to=3-4]
+			\arrow["c", from=3-4, to=3-5]
+			\arrow["s", from=3-5, to=3-6]
+			\arrow["c", from=1-3, to=2-3]
+			\arrow["t", from=2-3, to=3-3]
+			\arrow["{M\times c}", dashed, from=1-1, to=2-2]
+			\arrow["{c\times M}", dashed, from=1-4, to=2-5]
+			\arrow[from=2-5, to=3-5]
+			\arrow["{p_2}", from=2-2, to=2-3]
+			\arrow[Rightarrow, no head, from=1-6, to=2-6]
+			\arrow["t", from=2-6, to=3-6]
+			\arrow[from=2-5, to=2-6]
+			\arrow["{p_1}"', from=1-1, to=3-1]
+			\arrow[Rightarrow, no head, from=3-1, to=3-2]
+			\arrow["s", from=3-2, to=3-3]
+			\arrow["{p_1}"', from=2-2, to=3-2]
+		\end{tikzcd}\]
+		\item Unitality of composition: Given the maps $(\id_M,e\circ t),(e\circ s,\id_M):M\to M\times_OM$ defined by the universal property of $M\times_OM$:
+		\[\begin{tikzcd}
+			M &&& M \\
+			& {M\times_OM} & M && {M\times_OM} & M \\
+			& M & O && M & O
+			\arrow["{(\id_M,e\circ s)}", dashed, from=1-1, to=2-2]
+			\arrow["{p_2}", from=2-2, to=2-3]
+			\arrow["t", from=2-3, to=3-3]
+			\arrow["{p_1}"', from=2-2, to=3-2]
+			\arrow["s", from=3-2, to=3-3]
+			\arrow["{e\circ s}", curve={height=-18pt}, from=1-1, to=2-3]
+			\arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=3-2]
+			\arrow["{(e\circ t,\id_M)}", dashed, from=1-4, to=2-5]
+			\arrow["{p_2}", from=2-5, to=2-6]
+			\arrow["t", from=2-6, to=3-6]
+			\arrow["{p_1}"', from=2-5, to=3-5]
+			\arrow["s", from=3-5, to=3-6]
+			\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-4, to=2-6]
+			\arrow["{e\circ t}"', curve={height=18pt}, from=1-4, to=3-5]
+			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-5, to=3-6]
+		\end{tikzcd}\]
+		the following diagram commutes:
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNIl0sWzIsMiwiTSJdLFsyLDAsIk1cXHRpbWVzX09NIl0sWzAsMiwiTVxcdGltZXNfT00iXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDIsIihlXFxjaXJjIHQsXFxpZF9NKSJdLFsyLDEsImMiXSxbMCwzLCIoXFxpZF9NLGVcXGNpcmMgcykiLDJdLFszLDEsImMiLDJdXQ==
+		\[\begin{tikzcd}
+			M && {M\times_OM} \\
+			\\
+			{M\times_OM} && M
+			\arrow[Rightarrow, no head, from=1-1, to=3-3]
+			\arrow["{(e\circ t,\id_M)}", from=1-1, to=1-3]
+			\arrow["c", from=1-3, to=3-3]
+			\arrow["{(\id_M,e\circ s)}"', from=1-1, to=3-1]
+			\arrow["c"', from=3-1, to=3-3]
+		\end{tikzcd}\]
+		\item Inverse: The following diagrams must commute:
+		\[\begin{tikzcd}
+			& M & M & {M\times_OM} & M && M \\
+			M & M & O & M & O & O & M & O
+			\arrow["{(\id_M,i)}", from=1-3, to=1-4]
+			\arrow["t"', from=1-3, to=2-3]
+			\arrow["e", from=2-3, to=2-4]
+			\arrow["c", from=1-4, to=2-4]
+			\arrow["{(i,\id_M)}"', from=1-5, to=1-4]
+			\arrow["s", from=1-5, to=2-5]
+			\arrow["e"', from=2-5, to=2-4]
+			\arrow["i", from=1-2, to=2-2]
+			\arrow["i", from=1-7, to=2-7]
+			\arrow["s"', from=1-7, to=2-6]
+			\arrow["t"', from=2-7, to=2-6]
+			\arrow["t", from=1-7, to=2-8]
+			\arrow["s", from=2-7, to=2-8]
+			\arrow["i"', from=2-2, to=2-1]
+			\arrow[Rightarrow, no head, from=1-2, to=2-1]
+		\end{tikzcd}\]
+		where the arrows $(\id_M,i)$ and $(i,\id_M)$ are determined by the universal property of $M\times_OM$ like so:
+		\[\begin{tikzcd}
+			M &&& M \\
+			& {M\times_OM} & M && {M\times_OM} & M \\
+			& M & O && M & O
+			\arrow["{(i,\id_M)}", dashed, from=1-4, to=2-5]
+			\arrow["{p_2}", from=2-5, to=2-6]
+			\arrow["t", from=2-6, to=3-6]
+			\arrow["{p_1}"', from=2-5, to=3-5]
+			\arrow["s", from=3-5, to=3-6]
+			\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-4, to=2-6]
+			\arrow["i"', curve={height=18pt}, from=1-4, to=3-5]
+			\arrow["{(\id_M,i)}", dashed, from=1-1, to=2-2]
+			\arrow["{p_2}", from=2-2, to=2-3]
+			\arrow["t", from=2-3, to=3-3]
+			\arrow["{p_1}"', from=2-2, to=3-2]
+			\arrow["s", from=3-2, to=3-3]
+			\arrow["i", curve={height=-18pt}, from=1-1, to=2-3]
+			\arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=3-2]
+		\end{tikzcd}\]
 	\end{enumerate}
 \end{definition}
 
 \begin{definition}
-	A \emph{Hopf algebroid}
+	An \emph{$A$-graded commutative Hopf algebroid over $R$} is a co-groupoid object in $\GrCAlg{R}$, i.e., a groupoid object in $\GrCAlg{R}^\op$. Explicitly, an $A$-graded commutative Hopf algebroid over $E$ is a pair $(B,\Gamma)$ of objects in $\GrCAlg{R}$ along with morphisms
+	\begin{enumerate}
+		\item \emph{left unit}: $\eta_L:B\to\Gamma$,
+		\item \emph{right unit}: $\eta_R:B\to\Gamma$,
+		\item \emph{comultiplication}: $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$,
+		\item \emph{counit}: $\vare:\Gamma\to B$,
+		\item \emph{conjugation}: $c:\Gamma\to\Gamma$,
+	\end{enumerate}
+	where here $\Gamma$ is viewed as a left $B$-module via $\eta_L$ and a right $B$-module via $\eta_R$, in which case $\Gamma\otimes_B\Gamma$ is the usual tensor product of bimodules which fits into the following pushout diagram in $\GrCAlg{R}$ (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts})
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzAsMSwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFsxLDAsIlxcR2FtbWEiXSxbMCwxLCJcXGV0YV9SIiwyXSxbMSwyLCJnXFxtYXBzdG8gZ1xcb3RpbWVzIDEiLDJdLFswLDMsIlxcZXRhX0wiXSxbMywyLCJnXFxtYXBzdG8gMVxcb3RpbWVzIGciXV0=
+	\[\begin{tikzcd}
+		B & \Gamma \\
+		\Gamma & {\Gamma\otimes_B\Gamma}
+		\arrow["{\eta_R}"', from=1-1, to=2-1]
+		\arrow["{g\mapsto g\otimes 1}"', from=2-1, to=2-2]
+		\arrow["{\eta_L}", from=1-1, to=1-2]
+		\arrow["{g\mapsto 1\otimes g}", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	These data must make the following diagrams commute:
+	\begin{enumerate}
+		\item % https://q.uiver.app/#q=WzAsMTIsWzEsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzAsMCwiQiJdLFsxLDAsIlxcR2FtbWEiXSxbMCwxLCJcXEdhbW1hIl0sWzQsMCwiQiJdLFs0LDEsIkIiXSxbNSwwLCJcXEdhbW1hIl0sWzMsMCwiXFxHYW1tYSJdLFs3LDAsIkIiXSxbOCwwLCJcXEdhbW1hIl0sWzgsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzcsMSwiXFxHYW1tYSJdLFsxLDIsIlxcZXRhX1IiXSxbMSwzLCJcXGV0YV9SIiwyXSxbMywwLCJnXFxtYXBzdG8xXFxvdGltZXMgZyIsMl0sWzIsMCwiXFxQc2kiXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDYsIlxcZXRhX1IiXSxbNCw3LCJcXGV0YV9MIiwyXSxbNyw1LCJcXHZhcmUiLDJdLFs2LDUsIlxcdmFyZSJdLFs4LDksIlxcZXRhX0wiXSxbOSwxMCwiZ1xcbWFwc3RvIGdcXG90aW1lcyAxIl0sWzgsMTEsIlxcZXRhX0wiLDJdLFsxMSwxMCwiXFxQc2kiLDJdXQ==
+		\[\begin{tikzcd}
+			B & \Gamma && \Gamma & B & \Gamma && B & \Gamma \\
+			\Gamma & {\Gamma\otimes_B\Gamma} &&& B &&& \Gamma & {\Gamma\otimes_B\Gamma}
+			\arrow["{\eta_R}", from=1-1, to=1-2]
+			\arrow["{\eta_R}"', from=1-1, to=2-1]
+			\arrow["{g\mapsto1\otimes g}"', from=2-1, to=2-2]
+			\arrow["\Psi", from=1-2, to=2-2]
+			\arrow[Rightarrow, no head, from=1-5, to=2-5]
+			\arrow["{\eta_R}", from=1-5, to=1-6]
+			\arrow["{\eta_L}"', from=1-5, to=1-4]
+			\arrow["\vare"', from=1-4, to=2-5]
+			\arrow["\vare", from=1-6, to=2-5]
+			\arrow["{\eta_L}", from=1-8, to=1-9]
+			\arrow["{g\mapsto g\otimes 1}", from=1-9, to=2-9]
+			\arrow["{\eta_L}"', from=1-8, to=2-8]
+			\arrow["\Psi"', from=2-8, to=2-9]
+		\end{tikzcd}\]
+		\item % https://q.uiver.app/#q=WzAsNSxbMiwwLCJcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEiXSxbMSwwLCJcXEdhbW1hIl0sWzAsMCwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzAsMSwiKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CXFxHYW1tYSJdLFsyLDEsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSkiXSxbMSwyLCJcXFBzaSIsMl0sWzIsMywiXFxQc2lcXG90aW1lc19CXFxHYW1tYSIsMl0sWzAsNCwiXFxHYW1tYVxcb3RpbWVzX0JcXFBzaSJdLFsxLDAsIlxcUHNpIl0sWzMsNCwiXFxjb25nIl1d
+		\[\begin{tikzcd}
+			{\Gamma\otimes_B\Gamma} & \Gamma & {\Gamma\otimes_B\Gamma} \\
+			{(\Gamma\otimes_B\Gamma)\otimes_B\Gamma} && {\Gamma\otimes_B(\Gamma\otimes_B\Gamma)}
+			\arrow["\Psi"', from=1-2, to=1-1]
+			\arrow["{\Psi\otimes_B\Gamma}"', from=1-1, to=2-1]
+			\arrow["{\Gamma\otimes_B\Psi}", from=1-3, to=2-3]
+			\arrow["\Psi", from=1-2, to=1-3]
+			\arrow["\cong", from=2-1, to=2-3]
+		\end{tikzcd}\]
+		\item 
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEdhbW1hIl0sWzIsMCwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzIsMiwiXFxHYW1tYSJdLFswLDIsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDEsIlxcUHNpIl0sWzEsMiwiXFxpZF9cXEdhbW1hXFxjZG90IChcXGV0YV9SXFxjaXJjIFxcdmFyZSkiXSxbMCwzLCJcXFBzaSIsMl0sWzMsMiwiKFxcZXRhX0xcXGNpcmNcXHZhcmUpXFxjZG90XFxpZF9cXEdhbW1hIiwyXSxbMCwyLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+		\[\begin{tikzcd}
+			\Gamma && {\Gamma\otimes_B\Gamma} \\
+			\\
+			{\Gamma\otimes_B\Gamma} && \Gamma
+			\arrow["\Psi", from=1-1, to=1-3]
+			\arrow["{\id_\Gamma\cdot (\eta_R\circ \vare)}", from=1-3, to=3-3]
+			\arrow["\Psi"', from=1-1, to=3-1]
+			\arrow["{(\eta_L\circ\vare)\cdot\id_\Gamma}"', from=3-1, to=3-3]
+			\arrow[Rightarrow, no head, from=1-1, to=3-3]
+		\end{tikzcd}\]
+		where the right vertical arrow sends $g\otimes g'$ to $g\eta_R(\vare(g'))$ and the bottom horizontal arrow sends $g\otimes g'$ to $\eta_L(\vare(g))g'$.
+		\item 
+		% https://q.uiver.app/#q=WzAsMTMsWzEsMCwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWEiXSxbMCwxLCJcXEdhbW1hIl0sWzIsMCwiQiJdLFszLDAsIlxcR2FtbWEiXSxbNCwwLCJCIl0sWzQsMSwiXFxHYW1tYSJdLFszLDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFsyLDEsIlxcR2FtbWEiXSxbNiwwLCJcXEdhbW1hIl0sWzUsMCwiQiJdLFs3LDAsIkIiXSxbNiwxLCJcXEdhbW1hIl0sWzAsMSwiYyJdLFsxLDIsImMiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsIlxcdmFyZSJdLFs1LDYsIlxcZXRhX0wiXSxbNCw3LCJcXFBzaSIsMl0sWzMsOCwiXFxldGFfUiIsMl0sWzcsOCwiY1xcY2RvdFxcaWRfXFxHYW1tYSJdLFs0LDMsIlxcdmFyZSIsMl0sWzcsNiwiXFxpZF9cXEdhbW1hXFxjZG90IGMiLDJdLFsxMCw5LCJcXGV0YV9SIl0sWzExLDksIlxcZXRhX0wiLDJdLFs5LDEyLCJjIl0sWzEwLDEyLCJcXGV0YV9MIiwyXSxbMTEsMTIsIlxcZXRhX1IiXV0=
+		\[\begin{tikzcd}
+			& \Gamma & B & \Gamma & B & B & \Gamma & B \\
+			\Gamma & \Gamma & \Gamma & {\Gamma\otimes_B\Gamma} & \Gamma && \Gamma
+			\arrow["c", from=1-2, to=2-2]
+			\arrow["c", from=2-2, to=2-1]
+			\arrow[Rightarrow, no head, from=1-2, to=2-1]
+			\arrow["\vare", from=1-4, to=1-5]
+			\arrow["{\eta_L}", from=1-5, to=2-5]
+			\arrow["\Psi"', from=1-4, to=2-4]
+			\arrow["{\eta_R}"', from=1-3, to=2-3]
+			\arrow["{c\cdot\id_\Gamma}", from=2-4, to=2-3]
+			\arrow["\vare"', from=1-4, to=1-3]
+			\arrow["{\id_\Gamma\cdot c}"', from=2-4, to=2-5]
+			\arrow["{\eta_R}", from=1-6, to=1-7]
+			\arrow["{\eta_L}"', from=1-8, to=1-7]
+			\arrow["c", from=1-7, to=2-7]
+			\arrow["{\eta_L}"', from=1-6, to=2-7]
+			\arrow["{\eta_R}", from=1-8, to=2-7]
+		\end{tikzcd}\]
+		where the bottom left arrow in the middle diagram sends $g\otimes g'$ to $c(g)g'$ and the bottom right arrow in the middle diagram sends $g\otimes g'$ to $gc(g')$.
+	\end{enumerate}
 \end{definition}
 
 \end{document}

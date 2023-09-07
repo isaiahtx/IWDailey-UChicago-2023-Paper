@@ -89,68 +89,68 @@ Thus, we get a spectral sequence:
     are those constructed above, which have $\bZ\times A$-degree $(r,\deg j-(r-1)\cdot\deg i+\deg k)$.
 \end{proposition}
 
-\begin{definition}[Exact couple]
-    An $A$-graded \emph{exact couple} is a tuple $\cE=(D,E;i,j,k)$, where $D$ and $E$ are $A$-graded abelian groups and $i$, $j$, and $k$ are $A$-graded homomorphisms (of possibly nonzero degree)
-    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJEXyoiXSxbMiwwLCJEXyoiXSxbMSwxLCJFXyoiXSxbMCwxLCJpIl0sWzEsMiwiaiJdLFsyLDAsImsiXV0=
-    \[\begin{tikzcd}
-        {D_*} && {D_*} \\
-        & {E_*}
-        \arrow["i", from=1-1, to=1-3]
-        \arrow["j", from=1-3, to=2-2]
-        \arrow["k", from=2-2, to=1-1]
-    \end{tikzcd}\]
-    which form an \emph{exact triangle}, in the sense that kernel $=$ image at each vertex.
-\end{definition}
-
-\begin{definition}[Derived couple]
-    Given an exact couple $(D,E;i,j,k)$ as in the above definition, the composition $j\circ k:E\to E$ itself satisfies 
-    \[(j\circ k)\circ (j\circ k)=j\circ(k\circ j)\circ k=j\circ 0\circ k=0,\]
-    so we may form the $A$-graded homology group $H(E):=\ker(j\circ k)/\imm(j\circ k)$. Then we may form the triangle $\cE'$
-    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJpKEQpIl0sWzIsMCwiaShEKSJdLFsxLDEsIkgoRSkiXSxbMCwxLCJpJyJdLFsxLDIsImonIl0sWzIsMCwiayciXV0=
-    \[\begin{tikzcd}
-        {i(D)} && {i(D)} \\
-        & {H(E)}
-        \arrow["{i'}", from=1-1, to=1-3]
-        \arrow["{j'}", from=1-3, to=2-2]
-        \arrow["{k'}", from=2-2, to=1-1]
-    \end{tikzcd}\]
-    where $i'$ is the restriction of $i$ to $i(D)$, while $j'$ and $k'$ are given by
-    \[j'(i(d))=[j(d)]\qquad\text{and}\qquad k'([e])=k(e).\]
-    The map $j'$ is well-defined since if $i(d)=i(d')$ then $i(d-d')=0$, so that $d-d'\in\ker i=\imm k$, meaning $d-d'= k(e)$ for some $e\in E$, so that 
-    \[j(d)-j(d')=j(d-d')=j(k(e))\in\imm(j\circ k)\]
-    is a boundary, so that $[j(d)]=[j(d')]$. Similarly $k'$ is well defined since if $[e]=[e']$ then $e-e'\in\imm(j\circ k)$, which implies $e-e'=j(k(e''))$ for some $e''\in E$, so that
-    \[k(e)-k(e')=k(e-e')=k(j(k(e'')))=0,\]
-    where the last equality follows by the fact that $k\circ j=0$. Further note that $i(D)$ and $H(E)$ are $A$-graded by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{quotient_of_A_graded_is_A_graded}, in which case by unravelling definitions, each of $i'$, $j'$, and $k'$ are $A$-graded homomorphisms with
-    \[\deg i'=\deg i,\qquad \deg j'=\deg j-\deg i,\qquad\text{and}\qquad\deg k'=\deg k.\]
-    We call $\cE'$ the \emph{derived couple} of $\cE$. A diagram chase (left to the reader, or see \cite[Lemma 1.10]{nlab:introduction_to_the_adams_spectral_sequence}) yields that $\cE'$ is an exact couple.
-
-    If we iterate the process of taking the exact couple $r$ times, the result is called the \emph{$r^\text{th}$ derived couple $\cE_r$ of $\cE$}.
-    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJEXnIiXSxbMiwwLCJEXnIiXSxbMSwxLCJFXnIiXSxbMCwxLCJpIl0sWzEsMiwial57KHIpfSJdLFsyLDAsImsiXV0=
-    \[\begin{tikzcd}
-        {D_r} && {D_r} \\
-        & {E_r}
-        \arrow["i", from=1-1, to=1-3]
-        \arrow["{j^{(r)}}", from=1-3, to=2-2]
-        \arrow["k", from=2-2, to=1-1]
-    \end{tikzcd}\]
-    Here $D_r=i^{r}(D)$ is a subgroup of $D$, and $E_r=H(E_{r-1})$ is a subquotient of $E$. The maps $i$ and $k$ are induced from the $i$ and $k$ of $\cE$, while $j^{(r)}$ sends $[i^r(d)]$ to $[j(d)]$. In particular, by induction it can be seen that $\deg j^{(r)}=\deg j-r\cdot\deg i$, and the degrees of $i$ and $k$ remain unchanged as we take successive derived couples.
-\end{definition}
-
-\begin{definition}[The spectral sequence associated to an exact couple]
-    An $A$-graded exact couple $\cE=(D,E;i,j,k)$ gives rise to a spectral sequence $(E_r,d_r)_{r\geq0}$, where $E_0=E$, $d_0=j\circ k$, and for $r>0$, $E_r$ is defined above and $d_r$ is the composition $j^{(r)}\circ k$.
-
-    In practice, we will always shift everything up a degree by re-defining $E_r:= E_{r-1}$ and $d_r:= d_{r-1}$, so we get a spectral sequence $(E_r,d_r)_{r\geq1}$ with $E^1=E$ and $d^1=j\circ k$. Then it follows that the differential $d^r=j^{(r-1)}\circ k$ has degree
-    \[\deg j^{(r-1)}+\deg k=\deg j-(r-1)\cdot\deg i+\deg k.\]
-\end{definition}
-
-\begin{remark}
-    Given an exact couple $\cE=(D,E;i,j,k)$, we can define $A$-graded subgroups $Z_r=k^{-1}(i^r(D))\sseq E$ and $B_r=j(\ker(i^r))\sseq E$ for $r\geq1$. By induction, it is straightforward to check that we have inclusions
-    \[B_1\sseq B_2\sseq B_3\sseq\cdots\sseq\imm j=\ker k\sseq\cdots\sseq Z_3\sseq Z_2\sseq Z_1\]
-    and that the maps
-    \[Z_r\to E_r\]
-    sending an element $e$ to its class $[[\cdots[e]\cdots]]$ has kernel $B_r$, so we have identifications $E_r=Z_r/B_r$ as $A$-graded abelian groups. Let $e\in Z_r$, so $k(e)=i^r(d)$ for some $d\in D$. Then under this identification, it can be seen that the map $d_{r+1}:Z_r/B_r\to Z_r/B_r$ sends the coset $e+B_r\in Z_r/B_r$ to the coset $j(d)+B_r$, and that $\ker d_r=Z_r$ and $\imm d_r=B_r$ for all $r\geq1$.
-\end{remark}
-
-Henceforth, we fix an $A$-graded exact couple $\cE=(D,E;i,j,k)$, and we let $(E_r,d_r)_{r\geq1}$ denote the associated $A$-graded spectral sequence. We make the identifications given by the above remark, so we assume $E_r$ is the $A$-graded abelian group $Z_r/B_r$ for all $r\geq1$, so that in particular for all $a\in A$ we have identifications $E_r^a=Z_r^a/B_r^a$ (by \autoref{quotient_of_A_graded_is_A_graded}).
+%\begin{definition}[Exact couple]
+%    An $A$-graded \emph{exact couple} is a tuple $\cE=(D,E;i,j,k)$, where $D$ and $E$ are $A$-graded abelian groups and $i$, $j$, and $k$ are $A$-graded homomorphisms (of possibly nonzero degree)
+%    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJEXyoiXSxbMiwwLCJEXyoiXSxbMSwxLCJFXyoiXSxbMCwxLCJpIl0sWzEsMiwiaiJdLFsyLDAsImsiXV0=
+%    \[\begin{tikzcd}
+%        {D_*} && {D_*} \\
+%        & {E_*}
+%        \arrow["i", from=1-1, to=1-3]
+%        \arrow["j", from=1-3, to=2-2]
+%        \arrow["k", from=2-2, to=1-1]
+%    \end{tikzcd}\]
+%    which form an \emph{exact triangle}, in the sense that kernel $=$ image at each vertex.
+%\end{definition}
+%
+%\begin{definition}[Derived couple]
+%    Given an exact couple $(D,E;i,j,k)$ as in the above definition, the composition $j\circ k:E\to E$ itself satisfies 
+%    \[(j\circ k)\circ (j\circ k)=j\circ(k\circ j)\circ k=j\circ 0\circ k=0,\]
+%    so we may form the $A$-graded homology group $H(E):=\ker(j\circ k)/\imm(j\circ k)$. Then we may form the triangle $\cE'$
+%    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJpKEQpIl0sWzIsMCwiaShEKSJdLFsxLDEsIkgoRSkiXSxbMCwxLCJpJyJdLFsxLDIsImonIl0sWzIsMCwiayciXV0=
+%    \[\begin{tikzcd}
+%        {i(D)} && {i(D)} \\
+%        & {H(E)}
+%        \arrow["{i'}", from=1-1, to=1-3]
+%        \arrow["{j'}", from=1-3, to=2-2]
+%        \arrow["{k'}", from=2-2, to=1-1]
+%    \end{tikzcd}\]
+%    where $i'$ is the restriction of $i$ to $i(D)$, while $j'$ and $k'$ are given by
+%    \[j'(i(d))=[j(d)]\qquad\text{and}\qquad k'([e])=k(e).\]
+%    The map $j'$ is well-defined since if $i(d)=i(d')$ then $i(d-d')=0$, so that $d-d'\in\ker i=\imm k$, meaning $d-d'= k(e)$ for some $e\in E$, so that 
+%    \[j(d)-j(d')=j(d-d')=j(k(e))\in\imm(j\circ k)\]
+%    is a boundary, so that $[j(d)]=[j(d')]$. Similarly $k'$ is well defined since if $[e]=[e']$ then $e-e'\in\imm(j\circ k)$, which implies $e-e'=j(k(e''))$ for some $e''\in E$, so that
+%    \[k(e)-k(e')=k(e-e')=k(j(k(e'')))=0,\]
+%    where the last equality follows by the fact that $k\circ j=0$. Further note that $i(D)$ and $H(E)$ are $A$-graded by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{quotient_of_A_graded_is_A_graded}, in which case by unravelling definitions, each of $i'$, $j'$, and $k'$ are $A$-graded homomorphisms with
+%    \[\deg i'=\deg i,\qquad \deg j'=\deg j-\deg i,\qquad\text{and}\qquad\deg k'=\deg k.\]
+%    We call $\cE'$ the \emph{derived couple} of $\cE$. A diagram chase (left to the reader, or see \cite[Lemma 1.10]{nlab:introduction_to_the_adams_spectral_sequence}) yields that $\cE'$ is an exact couple.
+%
+%    If we iterate the process of taking the exact couple $r$ times, the result is called the \emph{$r^\text{th}$ derived couple $\cE_r$ of $\cE$}.
+%    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJEXnIiXSxbMiwwLCJEXnIiXSxbMSwxLCJFXnIiXSxbMCwxLCJpIl0sWzEsMiwial57KHIpfSJdLFsyLDAsImsiXV0=
+%    \[\begin{tikzcd}
+%        {D_r} && {D_r} \\
+%        & {E_r}
+%        \arrow["i", from=1-1, to=1-3]
+%        \arrow["{j^{(r)}}", from=1-3, to=2-2]
+%        \arrow["k", from=2-2, to=1-1]
+%    \end{tikzcd}\]
+%    Here $D_r=i^{r}(D)$ is a subgroup of $D$, and $E_r=H(E_{r-1})$ is a subquotient of $E$. The maps $i$ and $k$ are induced from the $i$ and $k$ of $\cE$, while $j^{(r)}$ sends $[i^r(d)]$ to $[j(d)]$. In particular, by induction it can be seen that $\deg j^{(r)}=\deg j-r\cdot\deg i$, and the degrees of $i$ and $k$ remain unchanged as we take successive derived couples.
+%\end{definition}
+%
+%\begin{definition}[The spectral sequence associated to an exact couple]
+%    An $A$-graded exact couple $\cE=(D,E;i,j,k)$ gives rise to a spectral sequence $(E_r,d_r)_{r\geq0}$, where $E_0=E$, $d_0=j\circ k$, and for $r>0$, $E_r$ is defined above and $d_r$ is the composition $j^{(r)}\circ k$.
+%
+%    In practice, we will always shift everything up a degree by re-defining $E_r:= E_{r-1}$ and $d_r:= d_{r-1}$, so we get a spectral sequence $(E_r,d_r)_{r\geq1}$ with $E^1=E$ and $d^1=j\circ k$. Then it follows that the differential $d^r=j^{(r-1)}\circ k$ has degree
+%    \[\deg j^{(r-1)}+\deg k=\deg j-(r-1)\cdot\deg i+\deg k.\]
+%\end{definition}
+%
+%\begin{remark}
+%    Given an exact couple $\cE=(D,E;i,j,k)$, we can define $A$-graded subgroups $Z_r=k^{-1}(i^r(D))\sseq E$ and $B_r=j(\ker(i^r))\sseq E$ for $r\geq1$. By induction, it is straightforward to check that we have inclusions
+%    \[B_1\sseq B_2\sseq B_3\sseq\cdots\sseq\imm j=\ker k\sseq\cdots\sseq Z_3\sseq Z_2\sseq Z_1\]
+%    and that the maps
+%    \[Z_r\to E_r\]
+%    sending an element $e$ to its class $[[\cdots[e]\cdots]]$ has kernel $B_r$, so we have identifications $E_r=Z_r/B_r$ as $A$-graded abelian groups. Let $e\in Z_r$, so $k(e)=i^r(d)$ for some $d\in D$. Then under this identification, it can be seen that the map $d_{r+1}:Z_r/B_r\to Z_r/B_r$ sends the coset $e+B_r\in Z_r/B_r$ to the coset $j(d)+B_r$, and that $\ker d_r=Z_r$ and $\imm d_r=B_r$ for all $r\geq1$.
+%\end{remark}
+%
+%Henceforth, we fix an $A$-graded exact couple $\cE=(D,E;i,j,k)$, and we let $(E_r,d_r)_{r\geq1}$ denote the associated $A$-graded spectral sequence. We make the identifications given by the above remark, so we assume $E_r$ is the $A$-graded abelian group $Z_r/B_r$ for all $r\geq1$, so that in particular for all $a\in A$ we have identifications $E_r^a=Z_r^a/B_r^a$ (by \autoref{quotient_of_A_graded_is_A_graded}).
 
 \end{document}

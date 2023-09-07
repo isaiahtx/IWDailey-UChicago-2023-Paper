@@ -483,9 +483,9 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	The trapezoids commute by naturality of the unitors, and the triangles commute by functoriality of $-\otimes-$. The outside compositions are $y\cdot x$ on the left and $x\cdot y$ on the right, and the middle composition is $x\circ y$, so indeed we have $y\cdot x=x\cdot y=x\circ y$, as desired.
 \end{proof}
 
-\begin{proposition}\label{theta_a,0=theta_0,a=id_S}
+\begin{lemma}\label{theta_a,0=theta_0,a=id_S}
 	Given $a\in A$, we have $\theta_{0,a}=\theta_{a,0}=\id_S$.
-\end{proposition}
+\end{lemma}
 \begin{proof}
 	Recall $\theta_{a,0}$ is the composition
 	\[S\xr{\phi_{-a,a}} S^{-a}\otimes S^a\xr{S^{-a}\otimes\phi_{a,0}} S^{-a}\otimes(S^a\otimes S)\xr{S^{-a}\otimes\tau}S^{-a}\otimes(S\otimes S^a)\xr{S^{-a}\otimes\phi_{0,a}^{-1}} S^{-a}\otimes S^a\xr{\phi_{-a,a}^{-1}}S\]
@@ -498,9 +498,9 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	where the last equality follows by the fact that $e$ is the unit for the multiplication on $\pi_\ast(E)$. An entirely analagous argument yields that $\theta_{0,a}=\id_S$.
 \end{proof}
 
-\begin{proposition}
+\begin{lemma}\label{theta_ab.theta_ba=id}
 	Let $a,b\in A$. Then $\theta_{a,b}\cdot\theta_{b,a}=\id_S$.
-\end{proposition}
+\end{lemma}
 \begin{proof}
 	By \autoref{multipy_by_degree_0_is_same_as_compose}, it suffices to show that $\theta_{a,b}\circ\theta_{b,a}=\id_S$. To see this, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTIl0sWzEsMCwiU157LWEtYn1cXG90aW1lcyBTXmJcXG90aW1lcyBTXmEiXSxbMiwwLCJTXnstYS1ifVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeYiJdLFszLDAsIlMiXSxbMywxLCJTXnstYS1ifVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeYiJdLFszLDIsIlNeey1hLWJ9XFxvdGltZXMgU15iXFxvdGltZXMgU15hIl0sWzMsMywiUyJdLFswLDEsIlxccGhpIl0sWzEsMiwiU157LWEtYn1cXG90aW1lcyBcXHRhdSJdLFsyLDMsIlxccGhpIl0sWzMsNCwiXFxwaGkiXSxbNCw1LCJTXnstYS1ifVxcb3RpbWVzIFxcdGF1Il0sWzUsNiwiXFxwaGkiXSxbMiw0LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDYsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
@@ -522,61 +522,106 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	Here we are suppressing associators, and any map labelled $\phi$ is the appropriate composition of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses (see \autoref{unique_comp_Sas}). Clearly each region commutes, the middle by the fact that $\tau^2=0$, and the other two regions by coherence for the $\phi$'s. Thus we have shwon $\theta_{a,b}\cdot\theta_{b,a}=\theta_{a,b}\cdot\theta_{b,a}=\id_S$, as desired.
 \end{proof}
 
-\begin{proposition}
+\begin{lemma}\label{theta_ab.theta_ac=theta_ab+c_and_theta_ba.theta_ca=theta_b+ca}
 	Let $a,b,c\in A$. Then $\theta_{a,b}\cdot\theta_{a,c}=\theta_{a,b+c}$ and $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$.
-\end{proposition}
+\end{lemma}
 \begin{proof}
-	% https://q.uiver.app/#q=WzAsMjgsWzAsMCwiUyJdLFsxLDAsIlNeey1hLWN9U157YStjfSJdLFsyLDAsIlNeey1hLWN9U15hIFNeYyJdLFszLDAsIlNeey1hLWN9U15jU15hIl0sWzQsMCwiU157LWEtY31TXnthK2N9Il0sWzQsMSwiUyJdLFs0LDIsIlNeey1hLWJ9U157YStifSJdLFs0LDMsIlNeey1hLWJ9U15hU15iIl0sWzQsNCwiU157LWEtYn1TXmJTXmEiXSxbNCw3LCJTXnstYS1ifVNee2ErYn0iXSxbMCwzLCJTXnstYS1iLWN9U157YX1TXntiK2N9Il0sWzAsNCwiU157LWEtYi1jfVNee2IrY31TXmEiXSxbMCwyLCJTXnstYS1iLWN9U157YStiK2N9Il0sWzEsMSwiU157LWF9U157LWN9U157YS1ifVNeYlNeYyJdLFsxLDIsIlNeey1hfVNeey1jfVNeey1ifVNeYVNeYlNeYyJdLFsxLDMsIlNeey1hLWN9U157LWJ9U15hU157Yn1TXmMiXSxbMSw0LCJTXnstYS1jfVNeey1ifVNee2J9U15jU15hIl0sWzIsMSwiU157LWF9U157LWN9U15jU157YS1ifVNeYiJdLFsyLDIsIlNeey1hfVNeey1jfVNeY1Neey1ifVNee2F9U15iIl0sWzIsMywiU157LWEtY31TXmNTXnstYn1TXmFTXmIiXSxbMyw0LCJTXnstYS1jfVNee2MtYn1TXmJTXmEiXSxbMywzLCJTXnstYS1jfVNee2MtYn1TXmFTXmIiXSxbMiw3LCJTIl0sWzAsNywiU157LWEtYi1jfVNee2ErYitjfSJdLFsyLDQsIlNeey1hLWN9U15jU157LWJ9U15iU15hIl0sWzEsNiwiU157LWEtY31TU15jU15hIl0sWzIsNSwiU157LWEtY31TXmNTU15hIl0sWzMsNiwiU157LWEtY31TXmNTXmEiXSxbMCwxLCJcXHBoaV97LWEtYyxhK2N9Il0sWzEsMiwiU157LWEtY31cXHBoaV97YSxjfSJdLFsyLDMsIlNeey1hLWN9XFx0YXUiXSxbMyw0LCJTXnthLWN9XFxwaGleey0xfV97YyxhfSJdLFs0LDUsIlxccGhpXnstMX1fey1hLWMsYStjfSJdLFs1LDYsIlxccGhpX3stYS1iLGErYn0iXSxbNiw3LCJTXnstYS1ifVxccGhpX3thLGJ9Il0sWzcsOCwiU157LWEtYn1cXHRhdV97U15hLFNeYn0iXSxbOCw5LCJTXnstYS1ifVxccGhpXnstMX1fe2IsYX0iXSxbMTAsMTEsIlNeey1hLWItY31cXHRhdV97YSxiK2N9IiwyXSxbMCwxMiwiXFxwaGlfey1hLWItYyxhK2IrY30iLDJdLFsxMiwxMCwiU157LWEtYi1jfVxccGhpX3thLGIrY30iLDJdLFsyLDEzLCJcXHBoaV97LWEsLWN9XFxwaGlfe2EtYixifVNeYyIsMV0sWzEzLDE0LCJTXnstYX1TXnstY31cXHBoaV97LWIsYX1TXmJTXmMiLDJdLFsxMCwxNSwiXFxwaGlfey1hLWMsLWJ9U15hXFxwaGlfe2IsY30iLDJdLFsxNSwxNCwiXFxwaGlfey1hLC1jfVNeey1ifVNeYVNeYlNeYyIsMV0sWzExLDE2LCJcXHBoaV97LWEtYywtYn1cXHBoaV97YixjfVNeYSIsMl0sWzE2LDE1LCJTXnstYS1jfVNeey1ifVxcdGF1X3tTXmJTXmMsU15hfSIsMV0sWzMsMTcsIlxccGhpX3stYS1jfVNeY1xccGhpX3thLWIsYn0iLDFdLFsxMywxNywiU157LWF9U157LWN9XFx0YXVfe1Nee2EtYn1TXmIsU15jfSIsMl0sWzE3LDE4LCJTXnstYX1TXnstY31TXmNcXHBoaV97LWIsYX1TXmIiXSxbMTQsMTgsIlNeey1hfVNeey1jfVxcdGF1X3tTXnstYn1TXmFTXmIsU15jfSJdLFsxNSwxOSwiU157LWEtY31cXHRhdV97U157LWJ9U15hU15iLFNeY30iLDJdLFsxOSwxOCwiXFxwaGlfey1hLC1jfVNeY1Neey1ifVNeYVNeYiIsMV0sWzgsMjAsIlxccGhpX3stYS1jLGMtYn1TXmJTXmEiXSxbNywyMSwiXFxwaGlfey1hLWMsYy1ifVNeYVNeYiIsMl0sWzIxLDIwLCJTXnstYS1jfVNee2MtYn1cXHRhdSJdLFsyMSwxOSwiU157LWEtY31cXHBoaV97YywtYn1TXmFTXmIiLDJdLFs5LDIyLCJcXHBoaV97LWEtYixhK2J9XnstMX0iXSxbMTEsMjMsIlNeey1hLWItY31cXHBoaV97YitjLGF9XnstMX0iLDJdLFsxNiwyNCwiU157LWEtY31cXHRhdV97U157LWJ9U157Yn0sU15jfSIsMl0sWzE5LDI0LCJTXnstYS1jfVNeY1Neey1ifVxcdGF1IiwxXSxbMjAsMjQsIlNeey1hLWN9XFxwaGlfe2MsLWJ9U15iU15hIiwyXSxbMjUsMTYsIlNeey1hLWN9XFxwaGlfey1iLGJ9U15jU15hIl0sWzI1LDI2LCJTXnstYS1jfVxcdGF1X3tTLFNeY31TXmEiLDFdLFsyMywyMiwiXFxwaGlfey1hLWItYyxhK2IrY31eey0xfSIsMl0sWzI2LDI0LCJTXnstYS1jfVNeY1xccGhpX3stYixifVNeYSIsMV0sWzI3LDI2LCJTXnstYS1jfVxccGhpX3tjLDB9U15hIiwxXSxbMjcsMjUsIlNeey1hLWN9XFxwaGlfezAsY31TXmEiXSxbMjcsMjAsIlNeey1hLWN9XFxwaGlfe2MtYixifVNeYSIsMl1d
+	By \autoref{multipy_by_degree_0_is_same_as_compose}, it suffices to show that $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$ and $\theta_{b,a}\circ\theta_{c,a}=\theta_{b+c,a}$. First we show $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$. To see this, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMjQsWzAsMCwiUyJdLFsyLDAsIlNeey1hLWN9U15hU15jIl0sWzQsMCwiU157LWEtY31TXmNTXmEiXSxbNiwwLCJTIl0sWzYsMiwiU157LWEtYn1TXmFTXmIiXSxbNiw0LCJTXnstYS1ifVNeYlNeYSJdLFs2LDgsIlMiXSxbMiwyLCJTXnstYS1jfVNeey1ifVNeYVNeYlNeYyJdLFswLDIsIlNeey1hLWItY31TXmFTXntiK2N9Il0sWzAsNCwiU157LWEtYi1jfVNee2IrY31TXmEiXSxbNCwyLCJTXnstYS1jfVNeY1Neey1ifVNeYVNeYiJdLFs0LDQsIlNeey1hLWN9U15jU157LWJ9U15iU15hIl0sWzIsNCwiU157LWEtY31TXnstYn1TXmJTXmNTXmEiXSxbMCw4LCJTIl0sWzIsNiwiU157LWEtY31TXmNTXmEiXSxbNCw2LCJTXnstYS1jfVNeY1NeYSJdLFsxLDEsIihcXHRleHQgQSkiXSxbMywxLCIoXFx0ZXh0IEIpIl0sWzUsMSwiKFxcdGV4dCBDKSJdLFsxLDMsIihcXHRleHQgRCkiXSxbMywzLCIoXFx0ZXh0IEUpIl0sWzUsMywiKFxcdGV4dCBGKSJdLFszLDUsIihcXHRleHQgRykiXSxbMyw3LCIoXFx0ZXh0IEgpIl0sWzAsMSwiXFxwaGkiXSxbMSwyLCJTXnstYS1jfVxcdGF1Il0sWzIsMywiXFxwaGkiXSxbMyw0LCJcXHBoaSJdLFs0LDUsIlNeey1hLWJ9XFx0YXUiXSxbNSw2LCJcXHBoaSJdLFsxLDcsIlxccGhpIiwyXSxbMCw4LCJcXHBoaSIsMl0sWzgsOSwiU157LWEtYi1jfVxcdGF1IiwyXSxbNywxMCwiU157LWEtY31cXHRhdV97U157LWJ9U15hU15iLFNeY30iXSxbMiwxMCwiXFxwaGkiXSxbMTAsMTEsIlNeey1hLWN9U15jU157LWJ9XFx0YXVfe2IsYX0iLDFdLFs0LDEwLCJcXHBoaSIsMl0sWzUsMTEsIlxccGhpIiwyXSxbOCw3LCJcXHBoaSJdLFs5LDEyLCJcXHBoaSJdLFs3LDEyLCJTXnstYS1jfVNeey1ifVxcdGF1X3tTXmEsU15iU15jfSIsMV0sWzEyLDExLCJTXnstYS1jfVxcdGF1X3tTXnstYn1TXmIsU15jfVNeYSJdLFs5LDEzLCJcXHBoaSIsMl0sWzEzLDYsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE0LDEyLCJcXHBoaSJdLFsxNCwxNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTUsMTEsIlxccGhpIiwyXV0=
+	\begin{equation}\label{theta_ab_o_theta_ac}\begin{tikzcd}[sep=tiny]
+		S && {S^{-a-c}S^aS^c} && {S^{-a-c}S^cS^a} && S \\
+		& {(\text A)} && {(\text B)} && {(\text C)} \\
+		{S^{-a-b-c}S^aS^{b+c}} && {S^{-a-c}S^{-b}S^aS^bS^c} && {S^{-a-c}S^cS^{-b}S^aS^b} && {S^{-a-b}S^aS^b} \\
+		& {(\text D)} && {(\text E)} && {(\text F)} \\
+		{S^{-a-b-c}S^{b+c}S^a} && {S^{-a-c}S^{-b}S^bS^cS^a} && {S^{-a-c}S^cS^{-b}S^bS^a} && {S^{-a-b}S^bS^a} \\
+		&&& {(\text G)} \\
+		&& {S^{-a-c}S^cS^a} && {S^{-a-c}S^cS^a} \\
+		&&& {(\text H)} \\
+		S &&&&&& S
+		\arrow["\phi", from=1-1, to=1-3]
+		\arrow["{S^{-a-c}\tau}", from=1-3, to=1-5]
+		\arrow["\phi", from=1-5, to=1-7]
+		\arrow["\phi", from=1-7, to=3-7]
+		\arrow["{S^{-a-b}\tau}", from=3-7, to=5-7]
+		\arrow["\phi", from=5-7, to=9-7]
+		\arrow["\phi"', from=1-3, to=3-3]
+		\arrow["\phi"', from=1-1, to=3-1]
+		\arrow["{S^{-a-b-c}\tau}"', from=3-1, to=5-1]
+		\arrow["{S^{-a-c}\tau_{S^{-b}S^aS^b,S^c}}", from=3-3, to=3-5]
+		\arrow["\phi", from=1-5, to=3-5]
+		\arrow["{S^{-a-c}S^cS^{-b}\tau_{b,a}}"{description}, from=3-5, to=5-5]
+		\arrow["\phi"', from=3-7, to=3-5]
+		\arrow["\phi"', from=5-7, to=5-5]
+		\arrow["\phi", from=3-1, to=3-3]
+		\arrow["\phi", from=5-1, to=5-3]
+		\arrow["{S^{-a-c}S^{-b}\tau_{S^a,S^bS^c}}"{description}, from=3-3, to=5-3]
+		\arrow["{S^{-a-c}\tau_{S^{-b}S^b,S^c}S^a}", from=5-3, to=5-5]
+		\arrow["\phi"', from=5-1, to=9-1]
+		\arrow[Rightarrow, no head, from=9-1, to=9-7]
+		\arrow["\phi", from=7-3, to=5-3]
+		\arrow[Rightarrow, no head, from=7-3, to=7-5]
+		\arrow["\phi"', from=7-5, to=5-5]
+	\end{tikzcd}\end{equation}
+	Here we are omitting $\otimes$ from the notation, and each occurrence of an arrow labelled $\phi$ indicates it is the unique arrow that can be obtained as a formal composition of tensor products of copies of $\phi_{a,b}$'s, unitors, associators, and their inverses (\autoref{unique_comp_Sas}). Clearly the composition going around the top and then the right is $\theta_{a,b}\circ\theta_{a,c}$ while the composition going left around the bottom is $\theta_{a,b+c}$. Thus, we wish to show the above diagram commutes.
+	
+	Regions $(\text A)$, $(\text C)$, and $(\text H)$ commute by coherence for the $\phi$'s (see previous remark). Region $(\text E)$ commutes by coherence for the $\tau$'s. To see region $(\text B)$ commutes, consider the following diagram, which commutes by naturality of $\tau$:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnstYS1jfVNeYSBTXmMiXSxbMiwwLCJTXnstYS1jfVNeY1NeYSJdLFswLDIsIlNeey1hLWN9U157YS1ifVNeYlNeYyJdLFsyLDIsIlNeey1hLWN9U15jU157YS1ifVNeYiJdLFsyLDQsIlNeey1hLWN9U15jU157LWJ9U157YX1TXmIiXSxbMCw0LCJTXnstYS1jfVNeey1ifVNeYVNeYlNeYyJdLFswLDEsIlNeey1hLWN9XFx0YXUiXSxbMCwyLCJTXnstYS1jfVxccGhpX3thLWIsYn1TXmMiLDJdLFsxLDMsIlNeey1hLWN9U15jXFxwaGlfe2EtYixifSJdLFsyLDMsIlNeey1hLWN9XFx0YXVfe1Nee2EtYn1TXmIsU15jfSJdLFszLDQsIlNeey1hLWN9U15jXFxwaGlfey1iLGF9U15iIl0sWzIsNSwiU157LWEtY31cXHBoaV97LWIsYX1TXmJTXmMiLDJdLFs1LDQsIlNeey1hLWN9XFx0YXVfe1Neey1ifVNeYVNeYixTXmN9Il1d
 	\[\begin{tikzcd}
-		S & {S^{-a-c}S^{a+c}} & {S^{-a-c}S^a S^c} & {S^{-a-c}S^cS^a} & {S^{-a-c}S^{a+c}} \\
-		& {S^{-a}S^{-c}S^{a-b}S^bS^c} & {S^{-a}S^{-c}S^cS^{a-b}S^b} && S \\
-		{S^{-a-b-c}S^{a+b+c}} & {S^{-a}S^{-c}S^{-b}S^aS^bS^c} & {S^{-a}S^{-c}S^cS^{-b}S^{a}S^b} && {S^{-a-b}S^{a+b}} \\
-		{S^{-a-b-c}S^{a}S^{b+c}} & {S^{-a-c}S^{-b}S^aS^{b}S^c} & {S^{-a-c}S^cS^{-b}S^aS^b} & {S^{-a-c}S^{c-b}S^aS^b} & {S^{-a-b}S^aS^b} \\
-		{S^{-a-b-c}S^{b+c}S^a} & {S^{-a-c}S^{-b}S^{b}S^cS^a} & {S^{-a-c}S^cS^{-b}S^bS^a} & {S^{-a-c}S^{c-b}S^bS^a} & {S^{-a-b}S^bS^a} \\
-		&& {S^{-a-c}S^cSS^a} \\
-		& {S^{-a-c}SS^cS^a} && {S^{-a-c}S^cS^a} \\
-		{S^{-a-b-c}S^{a+b+c}} && S && {S^{-a-b}S^{a+b}}
-		\arrow["{\phi_{-a-c,a+c}}", from=1-1, to=1-2]
-		\arrow["{S^{-a-c}\phi_{a,c}}", from=1-2, to=1-3]
-		\arrow["{S^{-a-c}\tau}", from=1-3, to=1-4]
-		\arrow["{S^{a-c}\phi^{-1}_{c,a}}", from=1-4, to=1-5]
-		\arrow["{\phi^{-1}_{-a-c,a+c}}", from=1-5, to=2-5]
-		\arrow["{\phi_{-a-b,a+b}}", from=2-5, to=3-5]
-		\arrow["{S^{-a-b}\phi_{a,b}}", from=3-5, to=4-5]
-		\arrow["{S^{-a-b}\tau_{S^a,S^b}}", from=4-5, to=5-5]
-		\arrow["{S^{-a-b}\phi^{-1}_{b,a}}", from=5-5, to=8-5]
-		\arrow["{S^{-a-b-c}\tau_{a,b+c}}"', from=4-1, to=5-1]
-		\arrow["{\phi_{-a-b-c,a+b+c}}"', from=1-1, to=3-1]
-		\arrow["{S^{-a-b-c}\phi_{a,b+c}}"', from=3-1, to=4-1]
-		\arrow["{\phi_{-a,-c}\phi_{a-b,b}S^c}"{description}, from=1-3, to=2-2]
-		\arrow["{S^{-a}S^{-c}\phi_{-b,a}S^bS^c}"', from=2-2, to=3-2]
-		\arrow["{\phi_{-a-c,-b}S^a\phi_{b,c}}"', from=4-1, to=4-2]
-		\arrow["{\phi_{-a,-c}S^{-b}S^aS^bS^c}"{description}, from=4-2, to=3-2]
-		\arrow["{\phi_{-a-c,-b}\phi_{b,c}S^a}"', from=5-1, to=5-2]
-		\arrow["{S^{-a-c}S^{-b}\tau_{S^bS^c,S^a}}"{description}, from=5-2, to=4-2]
-		\arrow["{\phi_{-a-c}S^c\phi_{a-b,b}}"{description}, from=1-4, to=2-3]
-		\arrow["{S^{-a}S^{-c}\tau_{S^{a-b}S^b,S^c}}"', from=2-2, to=2-3]
-		\arrow["{S^{-a}S^{-c}S^c\phi_{-b,a}S^b}", from=2-3, to=3-3]
-		\arrow["{S^{-a}S^{-c}\tau_{S^{-b}S^aS^b,S^c}}", from=3-2, to=3-3]
-		\arrow["{S^{-a-c}\tau_{S^{-b}S^aS^b,S^c}}"', from=4-2, to=4-3]
-		\arrow["{\phi_{-a,-c}S^cS^{-b}S^aS^b}"{description}, from=4-3, to=3-3]
-		\arrow["{\phi_{-a-c,c-b}S^bS^a}", from=5-5, to=5-4]
-		\arrow["{\phi_{-a-c,c-b}S^aS^b}"', from=4-5, to=4-4]
-		\arrow["{S^{-a-c}S^{c-b}\tau}", from=4-4, to=5-4]
-		\arrow["{S^{-a-c}\phi_{c,-b}S^aS^b}"', from=4-4, to=4-3]
-		\arrow["{\phi_{-a-b,a+b}^{-1}}", from=8-5, to=8-3]
-		\arrow["{S^{-a-b-c}\phi_{b+c,a}^{-1}}"', from=5-1, to=8-1]
-		\arrow["{S^{-a-c}\tau_{S^{-b}S^{b},S^c}}"', from=5-2, to=5-3]
-		\arrow["{S^{-a-c}S^cS^{-b}\tau}"{description}, from=4-3, to=5-3]
-		\arrow["{S^{-a-c}\phi_{c,-b}S^bS^a}"', from=5-4, to=5-3]
-		\arrow["{S^{-a-c}\phi_{-b,b}S^cS^a}", from=7-2, to=5-2]
-		\arrow["{S^{-a-c}\tau_{S,S^c}S^a}"{description}, from=7-2, to=6-3]
-		\arrow["{\phi_{-a-b-c,a+b+c}^{-1}}"', from=8-1, to=8-3]
-		\arrow["{S^{-a-c}S^c\phi_{-b,b}S^a}"{description}, from=6-3, to=5-3]
-		\arrow["{S^{-a-c}\phi_{c,0}S^a}"{description}, from=7-4, to=6-3]
-		\arrow["{S^{-a-c}\phi_{0,c}S^a}", from=7-4, to=7-2]
-		\arrow["{S^{-a-c}\phi_{c-b,b}S^a}"', from=7-4, to=5-4]
+		{S^{-a-c}S^a S^c} && {S^{-a-c}S^cS^a} \\
+		\\
+		{S^{-a-c}S^{a-b}S^bS^c} && {S^{-a-c}S^cS^{a-b}S^b} \\
+		\\
+		{S^{-a-c}S^{-b}S^aS^bS^c} && {S^{-a-c}S^cS^{-b}S^{a}S^b}
+		\arrow["{S^{-a-c}\tau}", from=1-1, to=1-3]
+		\arrow["{S^{-a-c}\phi_{a-b,b}S^c}"', from=1-1, to=3-1]
+		\arrow["{S^{-a-c}S^c\phi_{a-b,b}}", from=1-3, to=3-3]
+		\arrow["{S^{-a-c}\tau_{S^{a-b}S^b,S^c}}", from=3-1, to=3-3]
+		\arrow["{S^{-a-c}S^c\phi_{-b,a}S^b}", from=3-3, to=5-3]
+		\arrow["{S^{-a-c}\phi_{-b,a}S^bS^c}"', from=3-1, to=5-1]
+		\arrow["{S^{-a-c}\tau_{S^{-b}S^aS^b,S^c}}", from=5-1, to=5-3]
 	\end{tikzcd}\]
+	To see region $(\text D)$ commutes, note that it is simply the square
+	% https://q.uiver.app/#q=WzAsNCxbMiwwLCJTXnstYS1jfVNeey1ifVNeYVNeYlNeYyJdLFswLDAsIlNeey1hLWItY31TXmFTXntiK2N9Il0sWzAsMiwiU157LWEtYi1jfVNee2IrY31TXmEiXSxbMiwyLCJTXnstYS1jfVNeey1ifVNeYlNeY1NeYSJdLFsxLDIsIlNeey1hLWItY31cXHRhdSIsMl0sWzEsMCwiXFxwaGlfey1hLWMsLWJ9U15hXFxwaGlfe2IsY30iXSxbMiwzLCJcXHBoaV97LWEtYywtYn1cXHBoaV97YixjfVNeYSJdLFswLDMsIlNeey1hLWN9U157LWJ9XFx0YXVfe1NeYSxTXmJTXmN9IiwxXV0=
+	\[\begin{tikzcd}
+		{S^{-a-b-c}S^aS^{b+c}} && {S^{-a-c}S^{-b}S^aS^bS^c} \\
+		\\
+		{S^{-a-b-c}S^{b+c}S^a} && {S^{-a-c}S^{-b}S^bS^cS^a}
+		\arrow["{S^{-a-b-c}\tau}"', from=1-1, to=3-1]
+		\arrow["{\phi_{-a-c,-b}S^a\phi_{b,c}}", from=1-1, to=1-3]
+		\arrow["{\phi_{-a-c,-b}\phi_{b,c}S^a}", from=3-1, to=3-3]
+		\arrow["{S^{-a-c}S^{-b}\tau_{S^a,S^bS^c}}"{description}, from=1-3, to=3-3]
+	\end{tikzcd}\]
+	This diagram commutes by naturality of $\tau$. To see region $(\text F)$ commutes, consider the following diagram, which commutes by functoriality of $-\otimes-$:
+	% https://q.uiver.app/#q=WzAsNixbNCwwLCJTXnstYS1ifVNeYVNeYiJdLFs0LDIsIlNeey1hLWJ9U15iU15hIl0sWzAsMCwiU157LWEtY31TXmNTXnstYn1TXmFTXmIiXSxbMiwyLCJTXnstYS1jfVNee2MtYn1TXmJTXmEiXSxbMiwwLCJTXnstYS1jfVNee2MtYn1TXmFTXmIiXSxbMCwyLCJTXnstYS1jfVNeY1Neey1ifVNeYlNeYSJdLFswLDEsIlNeey1hLWJ9XFx0YXUiXSxbMSwzLCJcXHBoaV97LWEtYyxjLWJ9U15iU15hIiwyXSxbMCw0LCJcXHBoaV97LWEtYyxjLWJ9U15hU15iIiwyXSxbNCwzLCJTXnstYS1jfVNee2MtYn1cXHRhdSJdLFs0LDIsIlNeey1hLWN9XFxwaGlfe2MsLWJ9U15hU15iIiwyXSxbMiw1LCJTXnstYS1jfVNeY1Neey1ifVxcdGF1IiwyXSxbMyw1LCJTXnstYS1jfVxccGhpX3tjLC1ifVNeYlNeYSIsMl1d
+	\[\begin{tikzcd}
+		{S^{-a-c}S^cS^{-b}S^aS^b} && {S^{-a-c}S^{c-b}S^aS^b} && {S^{-a-b}S^aS^b} \\
+		\\
+		{S^{-a-c}S^cS^{-b}S^bS^a} && {S^{-a-c}S^{c-b}S^bS^a} && {S^{-a-b}S^bS^a}
+		\arrow["{S^{-a-b}\tau}", from=1-5, to=3-5]
+		\arrow["{\phi_{-a-c,c-b}S^bS^a}"', from=3-5, to=3-3]
+		\arrow["{\phi_{-a-c,c-b}S^aS^b}"', from=1-5, to=1-3]
+		\arrow["{S^{-a-c}S^{c-b}\tau}", from=1-3, to=3-3]
+		\arrow["{S^{-a-c}\phi_{c,-b}S^aS^b}"', from=1-3, to=1-1]
+		\arrow["{S^{-a-c}S^cS^{-b}\tau}"', from=1-1, to=3-1]
+		\arrow["{S^{-a-c}\phi_{c,-b}S^bS^a}"', from=3-3, to=3-1]
+	\end{tikzcd}\]
+	Finally, to see region $(\text G)$ commutes, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnstYS1jfVNeey1ifVNeYlNeY1NeYSJdLFswLDEsIlNeey1hLWN9U1NeY1NeYSJdLFsxLDEsIlNeey1hLWN9U15jU1NeYSJdLFsxLDAsIlNeey1hLWN9U15jU157LWJ9U15iU15hIl0sWzAsMiwiU157LWEtY31TXmNTXmEiXSxbMSwyLCJTXnstYS1jfVNeY1NeYSJdLFswLDMsIlNeey1hLWN9XFx0YXVfe1Neey1ifVNeYixTXmN9U15hIl0sWzEsMCwiU157LWEtY31cXHBoaV97LWIsYn1TXmNTXmEiXSxbMiwzLCJTXnstYS1jfVNeY1xccGhpX3stYixifVNeYSIsMl0sWzEsMiwiU157LWEtY31cXHRhdV97UyxTXmN9IFNeYSJdLFs0LDEsIlNeey1hLWN9XFxwaGlfezAsY31TXmE9U157LWEtY31cXGxhbWJkYV97U15jfV57LTF9U15hIl0sWzUsMiwiU157LWEtY31cXHBoaV97YywwfVNeYT1TXnstYS1jfVNcXHJob197U15jfV57LTF9U15hIiwyXSxbNCw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{S^{-a-c}S^{-b}S^bS^cS^a} & {S^{-a-c}S^cS^{-b}S^bS^a} \\
+		{S^{-a-c}SS^cS^a} & {S^{-a-c}S^cSS^a} \\
+		{S^{-a-c}S^cS^a} & {S^{-a-c}S^cS^a}
+		\arrow["{S^{-a-c}\tau_{S^{-b}S^b,S^c}S^a}", from=1-1, to=1-2]
+		\arrow["{S^{-a-c}\phi_{-b,b}S^cS^a}", from=2-1, to=1-1]
+		\arrow["{S^{-a-c}S^c\phi_{-b,b}S^a}"', from=2-2, to=1-2]
+		\arrow["{S^{-a-c}\tau_{S,S^c} S^a}", from=2-1, to=2-2]
+		\arrow["{S^{-a-c}\phi_{0,c}S^a=S^{-a-c}\lambda_{S^c}^{-1}S^a}", from=3-1, to=2-1]
+		\arrow["{S^{-a-c}\phi_{c,0}S^a=S^{-a-c}S\rho_{S^c}^{-1}S^a}"', from=3-2, to=2-2]
+		\arrow[Rightarrow, no head, from=3-1, to=3-2]
+	\end{tikzcd}\]
+	The top region commutes by naturality of $\tau$, while the bottom region commutes by coherence for a symmetric monoidal category. Thus, we have shown that diagram (\ref{theta_ab_o_theta_ac=theta_ab+c}) commutes, so that $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$, as desired. Now, to see that $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$, note that
+	\[\theta_{b,a}\cdot\theta_{c,a}\overset{(\ast)}=\theta_{a,b}^{-1}\cdot\theta_{a,c}^{-1}=(\theta_{a,c}\cdot\theta_{a,b})^{-1}=\theta_{a,b+c}^{-1}\overset{(\ast)}=\theta_{b+c,a},\]
+	where each occurrence of $(\ast)$ is \autoref{theta_ab.theta_ba=id},
 \end{proof}
 
 %\begin{proposition}\label{theta_a,0=theta_0,a=id_S}
@@ -1005,7 +1050,7 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 \begin{proof}
 	First, recall by definition of the tensor product, in order to show the assignment $E_*(E)\times E_*(X)\to E_*(E\otimes X)$ induces a homomorphism $E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)$ of $A$-graded abelian groups, it suffices to show that the assignment is $\pi_*(E)$-balanced, i.e., that it is linear in each argument and satisfies $xr\cdot y=x\cdot ry$ for $x\in E_*(E)$, $y\in E_*(X)$, and $r\in\pi_*(E)$.
 	
-	First, note that by the identifications $E_*(E)=\pi_*(E\otimes E)$, $E_*(X)=\pi_*(E\otimes X)$, and $E_*(E\otimes X)=\pi_*(E\otimes E\otimes X)$, and \autoref{bilinear}, it is straightforward to see that the assignment commutes with addition of maps in each argument. Now, let $a,b,c\in A$, $x:S^a\to E\otimes E$, $y:S^b\to E\otimes X$, and $z:S^c\to E$. Then we wish to show $x z\cdot y=x\cdot z y$. Consider the following diagram (where here we are passing to a permutative category):
+	First, note that by the identifications $E_*(E)=\pi_*(E\otimes E)$, $E_*(X)=\pi_*(E\otimes X)$, and $E_*(E\otimes X)=\pi_*(E\otimes E\otimes X)$, and \autoref{bilinear}, it is straightforward to see that the assignment commutes with addition of maps in each argument. Now, let $a,b,c\in A$, $x:S^a\to E\otimes E$, $y:S^b\to E\otimes X$, and $z:S^c\to E$. Then we wish to show $x z\cdot y=x\cdot z y$. Consider the following diagram (where here we are passing to a symmetric strict monoidal category):
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmFcXG90aW1lcyBTXmNcXG90aW1lcyBTXmIiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywxLCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwieFxcb3RpbWVzIHpcXG90aW1lcyB5Il0sWzIsMywiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgWCJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiLDJdLFs1LDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgWCIsMl1d
 	\[\begin{tikzcd}
 		&&& {E\otimes E\otimes E\otimes X} \\
@@ -1018,7 +1063,7 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 		\arrow["{E\otimes E\otimes \mu\otimes X}"', from=2-3, to=3-4]
 		\arrow["{E\otimes \mu\otimes X}"', from=3-4, to=2-4]
 	\end{tikzcd}\]
-	It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the top composition is given by $(x z)\cdot y$ and the bottom composition is $x\cdot( z y)$, so we have they are equal, as desired. Thus, since the map $E_*(E)\times E_*(X)\to E_*(E\otimes X)$ is $\pi_*(E)$-balanced, we have that it induces a homomorphism of abelian groups. Furthermore, by \autoref{tensor_lift_of_A_graded_is_A_graded} it is $A$-graded.
+	It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the top composition is given by $(x z)\cdot y$ and the bottom composition is $x\cdot( z y)$, so we have they are equal, as desired. Thus, by \autoref{tensor_lift_of_A_graded_is_A_graded} we get the desired $A$-graded homomorphism $E_*(E)\otimes_{\pi_*(E)} E_*(X)\to E_*(E\otimes X)$.
 	
 	In order to see this map is a homomorphism of left $\pi_*(E)$-modules, we must show that $z(x\cdot y)=zx\cdot y$, where $x$, $y$, and $z$ are defined as above. Now consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmNcXG90aW1lcyBTXmFcXG90aW1lcyBTXmIiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywxLCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMywyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMSwiXFxjb25nIl0sWzEsMiwielxcb3RpbWVzIHhcXG90aW1lcyB5Il0sWzIsMywiXFxtdVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFszLDQsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgWCJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiLDJdLFs1LDQsIlxcbXVcXG90aW1lcyBFXFxvdGltZXMgWCIsMl0sWzIsNCwiXFxtdVxcb3RpbWVzXFxtdVxcb3RpbWVzIFgiXV0=

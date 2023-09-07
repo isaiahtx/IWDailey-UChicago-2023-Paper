@@ -20,10 +20,10 @@ In order to construct an abstract version of the Adams spectral sequence, we nee
 	Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}), a \emph{sub-Picard grading} on $\cC$ is the following data:
 	\begin{itemize}
 		\item A pointed abelian group $(A,\1)$ along with a homomorphism of pointed groups $h:(A,\1)\to(\Pic\cC,\Sigma S)$, where $\Pic\cC$ is the \emph{Picard group} of isomorphism classes of invertible objects in $\cC$.\footnote{Recall an object $X$ is a symmetric monoidal category is \emph{invertible} if there exists some object $Y$ and an isomorphism $S\cong X\otimes Y$.}
-		\item For each $a\in A$, a chosen representative $S^a$ in the isomorphism class $h(a)$ such that each $S^a$ is a compact object (\autoref{defn_compact}) and $S^0=S$.
+		\item For each $a\in A$, a chosen representative $S^a$ called the \emph{$a$-sphere} in the isomorphism class $h(a)$ such that each $S^a$ is a com pact object (\autoref{defn_compact}) and $S^0=S$.
 		\item For each $a,b\in A$, an isomorphism $\phi_{a,b}:S^{a+b}\to S^a\otimes S^b$. This family of isomorphisms is required to be \emph{coherent}, in the following sense:
 		\begin{itemize}
-			\item For all $a\in A$, we must have that $\phi_{a,0}$ coincides with the right unitor $S^{a}\xrightarrow\cong S^a\otimes S$ and $\phi_{0,a}$ coincides the left unitor $S^a\xrightarrow\cong S\otimes S^a$.
+			\item For all $a\in A$, we must have that $\phi_{a,0}$ coincides with the right unitor $\rho_{S^a}^{-1}:S^{a}\xrightarrow\cong S^a\otimes S$ and $\phi_{0,a}$ coincides the left unitor $\lambda_{S^a}^{-1}:S^a\xrightarrow\cong S\otimes S^a$.
 			\item For all $a,b,c\in A$, the following ``associativity diagram'' must commute:
 			\[\begin{tikzcd}
 				{S^{a+b}\otimes S^c} & {S^{a+b+c}} & {S^a\otimes S^{b+c}} \\
@@ -492,16 +492,16 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}.
 \end{proposition}
 
 \begin{proposition}
-	The $\theta_{a,b}$'s described in \autoref{pi_*(E)_is_A-graded_commutative_if_E_is_commutative_main} satisfy the following properties for all $a,b,c\in A$:
+	The $\theta_{a,b}$'s described in \autoref{pi_*(E)_is_A-graded_commutative_if_E_is_commutative_main} satisfy the following properties for all $a,b,c,d\in A$:
 	\begin{enumerate}
-		\item $\theta_{a,b}\circ\theta_{c,d}=\theta_{c,d}\cdot\theta_{a,b}$ (where $\cdot$ denotes the product in $\pi_*(S)$ given in \autoref{pi_*E_is_ring_for_E_monoid_main}),
+		\item $\theta_{a,b}\cdot\theta_{c,d}=\theta_{a,b}\circ\theta_{c,d}=\theta_{c,d}\cdot\theta_{a,b}$ (where $\cdot$ denotes the product in $\pi_*(S)$ given in \autoref{pi_*E_is_ring_for_E_monoid_main}),
 		\item $\theta_{a,0}=\theta_{0,a}=\id_S$,
 		\item $\theta_{a,b}\cdot\theta_{b,a}=\id_S$,
 		\item $\theta_{a,b}\cdot\theta_{a,c}=\theta_{a,b+c}$ and $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$,
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	\todo{FINISH}
+	(1) is \autoref{multipy_by_degree_0_is_same_as_compose}, (2) is \autoref{theta_a,0=theta_0,a=id_S}, (3) is \autoref{theta_ab.theta_ba=id}, and (4) is \autoref{theta_ab.theta_ac=theta_ab+c_and_theta_ba.theta_ca=theta_b+ca}.
 \end{proof}
 
 \end{document}

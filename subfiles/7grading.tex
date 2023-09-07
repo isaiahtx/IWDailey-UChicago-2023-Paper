@@ -83,6 +83,10 @@ Oftentimes when constructing $A$-graded rings, we do so only by defining the pro
 	On the other hand, suppose there exists $\bZ$-bilinear maps $\kappa_{a,b}:M_a\times R_b\to M_{a+b}$ for all $a,b\in A$. Further suppose that for all $r\in R_a$, $r'\in R_b$, and $m\in M_c$ that
 	\[\kappa_{c,a+b}(m,r\cdot r')=\kappa_{c+a,b}(\kappa_{c,a}(m,r),r')\qquad\text{and}\qquad\kappa_{c,0}(m,1)=m.\]
 	Then there is a unique map $\kappa:M\times R\to M$ which endows $M$ with the structure of a right $A$-graded $R$-module and restricts to $\kappa_{a,b}$ for all $a,b\in A$.
+
+	Finally, if we have maps $\lambda_{a,b}:R_a\times M_b\to M_{a+b}$ and $\rho_{a,b}:M_a\times R_b\to M_{a+b}$ satisfying all of the above conditions, and if we further have that
+	\[\lambda_{a,b+c}(r,\rho_{b,c}(x,s))=\rho_{a+b,c}(\lambda_{a,b}(r,x),s)\]
+	for all $r\in R_a$, $x\in M_b$, and $s\in R_c$, then the left and right $A$-graded $R$-module structures induced on $M$ by the $\lambda$'s and $\rho$'s give $M$ the structure of an $A$-graded $R$-bimodule.
 \end{lemma}
 \begin{proof}
 	We show the left module case, as the right module case is entirely analagous. Supposing for each $a,b\in A$ we have a map $\kappa_{a,b}:R_a\times M_b\to M_{a+b}$ satisfying the above conditions, in order to extend these to a map $R\times M\to M$, by additivity we \emph{must} define
@@ -123,7 +127,7 @@ Oftentimes when constructing $A$-graded rings, we do so only by defining the pro
 When working with $A$-graded rings and modules, we will often freely use the above propositions without comment. In what follows, fix an $A$-graded ring $R$. We will simply say ``$A$-graded $R$-module'' when we are freely considering either left or right $A$-graded $R$-modules.
 
 \begin{remark}
-	We often will denote an $A$-Braded $R$-module $M$ by $M_*$. Given some $a\in A$, we can define the shifted $A$-graded abelian group $M_{*+a}$ whose $b^\text{th}$ component is $M_{b+a}$.
+	We often will denote an $A$-graded $R$-module $M$ by $M_*$. Given some $a\in A$, we can define the shifted $A$-graded abelian group $M_{*+a}$ whose $b^\text{th}$ component is $M_{b+a}$.
 \end{remark}
 
 \begin{definition}
@@ -198,8 +202,8 @@ with $g$ an epimorphism, there exists a lift $h:P\to M$ satisfying $g\circ h=f$
 \end{definition}
 
 \begin{definition}
-	Let $M$ be an $A$-graded $R$-module. Then an \emph{$A$-graded $R$-submodule} is an $A$-graded $R$-module $N$ which is a subset of $M$ and for which the inclusion $N\into M$ is an $A$-graded homomorphism of $R$-modules. Equivalently, it is a submodule $N$ one for which the canonical map
-	\[\bigoplus N\cap M_a\to N\]
+	Let $M$ be an $A$-graded $R$-module. Then an \emph{$A$-graded $R$-submodule} is an $A$-graded $R$-module $N$ which is a subset of $M$ and for which the inclusion $N\into M$ is an $A$-graded homomorphism of $R$-modules. Equivalently, it is a submodule $N$ for which the canonical map
+	\[\bigoplus_{a\in A} N\cap M_a\to N\]
 	is an isomorphism.
 \end{definition}
 
@@ -324,32 +328,17 @@ for all $m,m'\in M$, $n,n'\in N$, and $r\in R$. Then the tensor product $M\otime
 	\[(m\otimes n)\cdot r=m\otimes(n\cdot r)\]
 	is entirely analagous.
 
-	Finally, if both $M$ and $N$ are $R$-bimodules, then by what we have shown, $M\otimes_RN$ is both a left and right $R$-module. To see these coincide to get $M\otimes_RN$ an $R$-bimodule structure, note that given $m\in M$, $n\in N$, and $r,r'\in R$ that
+	Finally, if both $M$ and $N$ are $R$-bimodules, then by what we have shown, $M\otimes_RN$ is both a left and right $R$-module. To see these coincide to give $M\otimes_RN$ an $R$-bimodule structure, note that given $m\in M$, $n\in N$, and $r,r'\in R$ that
 	\[(r\cdot(m\otimes n))\cdot r'=((r\cdot m)\otimes n)\cdot r'=(r\cdot m)\otimes(n\cdot r')=r\cdot(m\otimes(n\cdot r'))=r\cdot((m\otimes n)\cdot r').\qedhere\]
 \end{proof}
 
 \begin{lemma}\label{tensor_lift_of_A_graded_is_A_graded}
-	Let $R$ be an $A$-graded ring, and suppose we have a right $A$-graded $R$-module $M$ and a left $A$-graded $R$-module $N$. Then given an $A$-graded abelian group $B$ and an $A$-graded $R$-balanced map
-	\[\varphi:M\times N\to B,\]
-	the lift
-	\[\wt\varphi:M\otimes_RN\to B\]
-	determined by the universal property of $M\otimes_RN$ is an $A$-graded homomorphism.
+	Let $R$ be an $A$-graded ring, $B$ an $A$-graded abelian group, $M$ a right $A$-graded $R$-module, and $N$ a left $A$-graded $R$-module. Further suppose we are given a map $\varphi_{a,b}:M_a\times N_b\to B_{a+b}$ for all $a,b\in A$ which commutes with addition in each argument, and such that for all $m\in M_a$, $n\in N_b$, and $r\in R_c$ that
+	\[\varphi_{a+b,c}(m\cdot r,n)=\varphi_{a,b+c}(m,r\cdot n).\]
+	Then there is a unique $A$-graded $R$-balanced map $\varphi:M\times N\to B$ which restricts to $\varphi_{a,b}$ for all $a,b\in A$, and furthermore, the induced homorphism $\wt\varphi:M\otimes_RN\to B$ is an $A$-graded homomorphism of abelian groups.
 \end{lemma}
 \begin{proof}
-	This simply amounts to unravelling definitions. Recall that the subgroup of homogeneous elements of degree $a$ in $M\otimes_RN$ is that generated by pure tensors $m\otimes n$ with $m$ and $n$ homogeneous satisfying $|m|+|n|=a$. Thus, in order to show $\wt\varphi$ is an $A$-graded homomorphism, it suffices to show that given homogeneous $m\in M$ and $n\in N$ that $\wt\varphi(m\otimes n)$ is homogeneous and that
-	\[|\wt\varphi(m\otimes n)|=|m\otimes n|=|m|+|n|.\]
-	Indeed, given two such elements $m$ and $n$, consider the following diagram
-	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJNXFx0aW1lcyBOIl0sWzAsMCwiTVxcb3RpbWVzX1JOIl0sWzEsMSwiQiJdLFswLDFdLFsxLDIsIlxcd3RcXHZhcnBoaSJdLFswLDIsIlxcdmFycGhpIiwyXV0=
-	\[\begin{tikzcd}
-		{M\otimes_RN} \\
-		{M\times N} & B
-		\arrow[from=2-1, to=1-1]
-		\arrow["\wt\varphi", from=1-1, to=2-2]
-		\arrow["\varphi"', from=2-1, to=2-2]
-	\end{tikzcd}\]
-	This diagram commutes by universal property of $-\otimes_R-$. Note that the element $m\otimes n$ is mapped to by the pair $(m,n)$ along the left vertical map. Hence by commutativity, we necessarily have
-	\[|\wt\varphi(m\otimes n)|=|\varphi(m,n)|\overset{(*)}=|m|+|n|,\]
-	where $(*)$ follows by the fact that $\varphi$ is an $A$-graded $R$-balanced map.
+	\todo{TODO}
 \end{proof}
 
 %In this section, fix the following data:
