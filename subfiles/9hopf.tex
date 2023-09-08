@@ -10,34 +10,29 @@ We will freely use the results of \Cref{graded_stuff} in this section. In what f
 	\[x\cdot y=y\cdot x\cdot\theta_{a,b}.\]
 \end{itemize}
 
-\begin{definition}
+\begin{definition}\label{R-GrCAlg_defn}
 	Let $\GrCAlg R$ denote the following category:\begin{itemize}
-		\item The objects are pairs $(S,\varphi)$ where $S$ is an $A$-graded ring and $\varphi:R\to S$ is an $A$-graded ring homomorphism such that for all $x\in S_a$ and $y\in S_b$, we have
+		\item The objects are pairs $(S,\varphi)$ called $A$-graded \emph{$R$-commutative} rings, where $S$ is an $A$-graded ring and $\varphi:R\to S$ is an $A$-graded ring homomorphism such that for all $x\in S_a$ and $y\in S_b$, we have
 		\[x\cdot y=y\cdot x\cdot\varphi(\theta_{a,b}),\]
 		\item The morphisms $(S,\varphi)\to(S',\varphi')$ are $A$-graded ring homomorphisms $f:S\to S'$ such that $f\circ\varphi=\varphi'$.
 	\end{itemize}
 \end{definition}
 
+Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as there may be multiple choices of families of units $\theta_{a,b}\in R_0$ satisfying the required properties which give rise to strictly different categories, as the following example illustrates. Despite this, for our purposes it will always be clear from context which collection of $\theta_{a,b}$'s we're working with.
+
 \begin{example}
-	Let $A=\bZ$, let $R$ be the ring $\bZ$, viewed as a $\bZ$-graded ring concentrated in degree $0$, and let $\theta_{n,m}:=(-1)^{n\cdot m}$ for all $n,m\in\bZ$. Then the category $\GrCAlg R$ is simply the category of graded anticommutative rings, i.e., $\bZ$-graded rings $S$ such that for all homogeneous $x,y\in S$, $x\cdot y=y\cdot x\cdot(-1)^{|x||y|}$.
+	Let $A=\bZ$, let $R$ be the ring $\bZ$, viewed as a $\bZ$-graded ring concentrated in degree $0$, and let $\theta_{n,m}:=(-1)^{n\cdot m}$ for all $n,m\in\bZ$. Then the category $\GrCAlg R$ is simply the category of graded anticommutative rings, i.e., $\bZ$-graded rings $S$ such that for all homogeneous $x,y\in S$, $x\cdot y=y\cdot x\cdot(-1)^{|x||y|}$. On the other hand, if we take the same $A$ and $R$, but instead we define $\theta_{n,m}=1$ for all $n,m\in\bZ$, then the category $\GrCAlg{R}$ becomes the category of strictly commutative $\bZ$-graded rings.
 \end{example}
 
-\begin{lemma}\label{morphism_in_R-GrCAlg_makes_bimodule}
-	Let $f:(B,\varphi_B)\to(C,\varphi_C)$ be a morphism in $\GrCAlg R$. Then $(C,\varphi_C)$ is canonically an $A$-graded $B$-bimodule via the action maps $(b,c)\mapsto f(b) c$ and $(c,b)\mapsto cf(b)$ for $b\in B$ and $c\in C$. In particular, every element of $\GrCAlg{R}$ is canonically an $R$-bimodule.
-\end{lemma}
-\begin{proof}
-	It is a standard result that given two rings $R,S$ and a ring homomorphism $\varphi:R\to S$, that $S$ canonically becomes an $R$-bimodule with left action $r\cdot s:=\varphi(r)s$ and right action $s\cdot r:=s\varphi(r)$. Furthermore, if $\varphi$ is an $A$-graded homomorphism of $A$-graded rings, these actions are clearly $A$-graded, so $S$ is an $A$-graded $R$-bimodule, as desired.
-\end{proof}
-
 \begin{proposition}\label{B-tensor_product_in_R-GrCAlg}
-	Let $(B,\varphi_B)$, $(C,\varphi_C)$, and $(D,\varphi_D)$ be objects in $\GrCAlg{R}$, and suppose we have morphisms $f:(B,\varphi_B)\to(C,\varphi_C)$ and $g:(B,\varphi_B)\to(D,\varphi_D)$. Then their tensor product $C\otimes_BD$ (as $D$-bimodules, see \autoref{morphism_in_R-GrCAlg_makes_bimodule}) canonically inherits the structure of an $A$-graded ring with unit $1_C\otimes 1_D$ via a product
+	Suppose we have two morphisms $f:(B,\varphi_B)\to(C,\varphi_C)$ and $g:(B,\varphi_B)\to(D,\varphi_D)$ of $A$-graded $R$-commutative rings in $\GrCAlg{R}$. Then $f$ and $g$ make $C$ and $D$ both $B$-bimodules, respectively,\footnote{Explicitly, it is a standard fact that given a ring homomorphism $\varphi:R\to S$ that $S$ canonically becomes an $R$-bimodule with left action $r\cdot s:=\varphi(r)s$ and right action $s\cdot r:=s\varphi(r)$, so that in particular if $\varphi$ is an $A$-graded homomorphism of $A$-graded rings, then $\varphi$ makes $S$ an $A$-graded $R$-bimodule.} so we may form their tensor product $C\otimes_BD$, which is itself an $A$-graded $B$-bimodule (\autoref{tensor_of_A_graded_is_A_graded}). Then $C\otimes_BD$ canonically inherits the structure of an $A$-graded $R$-commutative ring with unit $1_C\otimes 1_D$ via a product
 	\[(C\otimes_BD)\times(C\otimes_BD)\to C\otimes_BD\]
 	which sends a pair $(x\otimes y,x'\otimes y')$ of homogeneous pure tensors to the element
-	\[\varphi_B(\theta_{|x|,|y'|})\cdot(xx'\otimes yy'),\]
-	(where here $\cdot$ denotes the left module action of $B$ on $C\otimes_BD$). Furthermore $C\otimes_BD$ becomes an object in $\GrCAlg{R}$ with structure map
+	\[\varphi_B(\theta_{|x|,|y'|})\cdot(xx'\otimes yy')=\varphi_C(\theta_{|x|,|y'|})xx'\otimes yy',\]
+	(where here $\cdot$ denotes the left module action of $B$ on $C\otimes_BD$), and with structure map
 	\begin{align*}
 		\varphi:R&\to C\otimes_BD \\ 
-		r&\mapsto \varphi_B(r)\cdot(1_C\otimes 1_D).
+		r&\mapsto \varphi_B(r)\cdot(1_C\otimes 1_D)=(\varphi_C(r)\otimes 1_D)=(1_C\otimes\varphi_D(r)).
 	\end{align*}
 \end{proposition}
 \begin{proof}[Proof sketch]
@@ -277,7 +272,7 @@ We will freely use the results of \Cref{graded_stuff} in this section. In what f
 	\end{enumerate}
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{hopf_algebroid_defn}
 	An \emph{$A$-graded commutative Hopf algebroid over $R$} is a co-groupoid object in $\GrCAlg{R}$, i.e., a groupoid object in $\GrCAlg{R}^\op$. Explicitly, an $A$-graded commutative Hopf algebroid over $E$ is a pair $(B,\Gamma)$ of objects in $\GrCAlg{R}$ along with morphisms
 	\begin{enumerate}
 		\item \emph{left unit}: $\eta_L:B\to\Gamma$,
@@ -286,7 +281,7 @@ We will freely use the results of \Cref{graded_stuff} in this section. In what f
 		\item \emph{counit}: $\vare:\Gamma\to B$,
 		\item \emph{conjugation}: $c:\Gamma\to\Gamma$,
 	\end{enumerate}
-	where here $\Gamma$ is viewed as a left $B$-module via $\eta_L$ and a right $B$-module via $\eta_R$, in which case $\Gamma\otimes_B\Gamma$ is the usual tensor product of bimodules which fits into the following pushout diagram in $\GrCAlg{R}$ (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts})
+	where here $\Gamma$ may be viewed as a $B$-bimodule via $\eta_L$ and a $B$-bimodule via $\eta_R$, so we may form their tensor product $\Gamma\otimes_B\Gamma$ with the $\eta_R$ bimodule on the left and the $\eta_L$ bimodule on the right, so that it fits into the following pushout diagram in $\GrCAlg{R}$ (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}):
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzAsMSwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFsxLDAsIlxcR2FtbWEiXSxbMCwxLCJcXGV0YV9SIiwyXSxbMSwyLCJnXFxtYXBzdG8gZ1xcb3RpbWVzIDEiLDJdLFswLDMsIlxcZXRhX0wiXSxbMywyLCJnXFxtYXBzdG8gMVxcb3RpbWVzIGciXV0=
 	\[\begin{tikzcd}
 		B & \Gamma \\
