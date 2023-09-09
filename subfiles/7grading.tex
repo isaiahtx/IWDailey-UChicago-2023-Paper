@@ -31,14 +31,21 @@ Explicitly, given an $A$-graded ring $R$ and homogeneous elements $x,y\in R$, we
 	It is straightforward to see that an $A$-graded abelian group is equivalently an $A$-graded $\bZ$-module, where here we are considering $\bZ$ as an $A$-graded ring concentrated in degree $0$. Thus any result below about $A$-graded modules applies equally to $A$-graded abelian groups.
 \end{remark}
 
-\begin{lemma}\label{product_of_A_graded}
-	Given an $A$-graded ring $R$ and two left (resp.\ right) $A$-graded $R$-modules $M$ and $N$, their direct sum $M\oplus N$ is naturally a left (resp.\ right) $A$-graded $R$-module group by defining
-	\[(M\oplus N)_a:=M_a\oplus N_a.\]
-\end{lemma}
-\begin{proof}
-	The canonical map $\bigoplus_{a\in A}(M_a\oplus N_a)\to M\oplus N$ factors as
-	\[\bigoplus_{a\in A}(M_a\oplus N_a)\xr\cong\bigoplus_{a\in A}M_a\oplus\bigoplus_{a\in A}N_a\xr\cong M\oplus N.\qedhere\]
-\end{proof}
+\begin{remark}
+	We often will denote an $A$-graded $R$-module $M$ by $M_*$. Given some $a\in A$, we can define the shifted $A$-graded abelian group $M_{*+a}$ whose $b^\text{th}$ component is $M_{b+a}$.
+\end{remark}
+
+\begin{definition}
+    More generally, given two $A$-graded $R$-modules $M$ and $N$ and some $d\in A$, an $R$-module homomorphism $f:M\to N$ is \emph{an $A$-graded homomorphism of degree $d$} if it restricts to a map $M_a\to N_{a+d}$ for all $a\in A$. Thus, an $A$-graded homomorphism of degree $d$ from $M$ to $N$ is equivalently an $A$-graded homomorphism $M_*\to N_{*+d}$ or an $A$-graded homomorphism $M_{*-d}\to N$. Given some $a\in A$ and left (resp.\ right) $R$-modules $M$ and $N$, we will write 
+	\[\Hom_R^d(M,N)=\Hom_R(M_*,N_{*+d})=\Hom_R(M_{*-d},N_*)\]
+	to denote the set of $A$-graded homomorphisms of degree $d$ from $M$ to $N$, and simply
+	\[\Hom_R(M,N)\] 
+	to denote the set of degree-$0$ $A$-graded homomorphisms from $M$ to $N$. Clearly $A$-graded homomorphisms may be added and subtracted, so these are further abelian groups. Thus we have an $A$-graded abelian group
+	\[\Hom_R^*(M,N).\]
+\end{definition}
+
+Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an $A$-graded homomorphism of degree $0$. 
+
 
 Oftentimes when constructing $A$-graded rings, we do so only by defining the product of homogeneous elements, like so:
 
@@ -74,6 +81,8 @@ Oftentimes when constructing $A$-graded rings, we do so only by defining the pro
 	\end{align*}
 	where $(*)$ follows by bilinearity of $m_{a,b}$. An entirely analagous argument yields that $(r+s)\cdot t=(r\cdot t)+(s\cdot t)$.
 \end{proof}
+
+Similarly, when defining $A$-graded modules, we will only define the action maps for homogeneous elements:
 
 \begin{lemma}\label{A-graded_module}
 	Let $R$ be an $A$-graded ring, $M$ an $A$-graded abelian group, and suppose there exists $\bZ$-bilinear maps $\kappa_{a,b}:R_a\times M_b\to M_{a+b}$ for all $a,b\in A$. Further suppose that for all $r\in R_a$, $r'\in R_b$, and $m\in M_c$ that
@@ -124,42 +133,7 @@ Oftentimes when constructing $A$-graded rings, we do so only by defining the pro
 	\todo{FINISH}
 \end{proof}
 
-When working with $A$-graded rings and modules, we will often freely use the above propositions without comment. In what follows, fix an $A$-graded ring $R$. We will simply say ``$A$-graded $R$-module'' when we are freely considering either left or right $A$-graded $R$-modules.
-
-\begin{remark}
-	We often will denote an $A$-graded $R$-module $M$ by $M_*$. Given some $a\in A$, we can define the shifted $A$-graded abelian group $M_{*+a}$ whose $b^\text{th}$ component is $M_{b+a}$.
-\end{remark}
-
-\begin{definition}
-    More generally, given two $A$-graded $R$-modules $M$ and $N$ and some $d\in A$, an $R$-module homomorphism $f:M\to N$ is \emph{an $A$-graded homomorphism of degree $d$} if it restricts to a map $M_a\to N_{a+d}$ for all $a\in A$. Thus, an $A$-graded homomorphism of degree $d$ from $M$ to $N$ is equivalently an $A$-graded homomorphism $M_*\to N_{*+d}$ or an $A$-graded homomorphism $M_{*-d}\to N$. Given some $a\in A$ and left (resp.\ right) $R$-modules $M$ and $N$, we will write 
-	\[\Hom_R^d(M,N)=\Hom_R(M_*,N_{*+d})=\Hom_R(M_{*-d},N_*)\]
-	to denote the set of $A$-graded homomorphisms of degree $d$ from $M$ to $N$, and simply
-	\[\Hom_R(M,N)\] 
-	to denote the set of degree-$0$ $A$-graded homomorphisms from $M$ to $N$. Clearly $A$-graded homomorphisms may be added and subtracted, so these are further abelian groups. Thus we have an $A$-graded abelian group
-	\[\Hom_R^*(M,N).\]
-\end{definition}
-
-Unless stated otherwise, an ``$A$-graded homomorphism'' will always refer to an $A$-graded homomorphism of degree $0$. 
-
-\begin{lemma}\label{ev_at_1_is_iso}
-	Let $R$ be an $A$-graded ring and $M$ an $A$-graded left (resp.\ right) $R$-module. Then for all $d\in A$, the evaluation map
-	\begin{align*}
-		\mathrm{ev_1}:\Hom_{R}^d(R,M)&\to M_d \\
-		\varphi&\mapsto\varphi(1)
-	\end{align*}
-	is an isomorphism of abelian groups.
-\end{lemma}
-\begin{proof}
-	We consider the case that $M$ is a left $A$-graded $R$-module, as showing it when $M$ is a right module is entirely analagous. First of all, this map is clearly a homomorphism, as given degree $d$ $A$-graded homomorphisms $\varphi,\psi:R\to M$, we have 
-	\[\mathrm{ev}_1(\varphi+\psi)=(\varphi+\psi)(1)=\varphi(1)+\psi(1)=\mathrm{ev}_1(\varphi)+\mathrm{ev}_1(\psi).\]
-	Now, to see it is surjective, let $m\in M_d$, and define $\varphi_m:R\to M$ to send $r\mapsto r\cdot m$. First of all, $\varphi_m$ is a module homomorphism, as given $r,s\in R$, 
-	\[\varphi_m(r+s)=(r+s)\cdot m=r\cdot m+s\cdot m=\varphi_m(r)+\varphi_m(s)\quad\text{and}\quad\varphi_m(r\cdot s)=r\cdot s\cdot m=r\cdot\varphi_m(s).\]
-	Furthermore, it is clearly $A$-graded of degree $d$, as given a homogeneous element $r\in R_a$ for some $a\in A$, we have $\varphi_m(r)=r\cdot m\in R_{a+d}$, since $m$ is homogeneous of degree $d$. Finally, clearly 
-	\[\mathrm{ev}_1(\varphi_m)=\varphi_m(1)=1\cdot m=m,\]
-	so indeed $\mathrm{ev}_1$ is surjective. On the other hand, to see it is injective, suppose we are given $\varphi,\psi\in\Hom_R^d(R,M)$ such that $\varphi(1)=\psi(1)$. Then given $r\in R$, we must have
-	\[\varphi(r)=\varphi(r\cdot 1)=r\cdot\varphi(1)=r\cdot\psi(1)=\psi(r\cdot 1)=\psi(r),\]
-	so $\varphi$ and $\psi$ are exactly the same map. Thus, $\mathrm{ev}_1$ is injective, as desired.
-\end{proof}
+When working with $A$-graded rings and modules, we will often freely use the above propositions without comment. 
 
 Recall that given a ring $R$, a left (resp.\ right) module $P$ is \emph{projective} if, for all diagrams of $R$-module homomorphisms of the form
 % https://q.uiver.app/#q=WzAsMyxbMCwxLCJQIl0sWzEsMSwiTiJdLFsxLDAsIk0iXSxbMCwxLCJmIiwyXSxbMiwxLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
@@ -200,6 +174,38 @@ with $g$ an epimorphism, there exists a lift $h:P\to M$ satisfying $g\circ h=f$
 	\end{tikzcd}\]
 	(Note $h$ is not required to be unique.)
 \end{definition}
+
+%\begin{lemma}\label{product_of_A_graded}
+%	Given an $A$-graded ring $R$ and two left (resp.\ right) $A$-graded $R$-modules $M$ and $N$, their direct sum $M\oplus N$ is naturally a left (resp.\ right) $A$-graded $R$-module group by defining
+%	\[(M\oplus N)_a:=M_a\oplus N_a.\]
+%\end{lemma}
+%\begin{proof}
+%	The canonical map $\bigoplus_{a\in A}(M_a\oplus N_a)\to M\oplus N$ factors as
+%	\[\bigoplus_{a\in A}(M_a\oplus N_a)\xr\cong\bigoplus_{a\in A}M_a\oplus\bigoplus_{a\in A}N_a\xr\cong M\oplus N.\qedhere\]
+%\end{proof}
+
+\begin{lemma}\label{ev_at_1_is_iso}
+	Let $R$ be an $A$-graded ring, and let $M$ be an $A$-graded left (resp.\ right) $R$-module. Then for all $d\in A$, the evaluation map
+	\begin{align*}
+		\mathrm{ev_1}:\Hom_{R}^d(R,M)&\to M_d \\
+		\varphi&\mapsto\varphi(1)
+	\end{align*}
+	is an isomorphism of abelian groups.
+\end{lemma}
+\begin{proof}
+	We consider the case that $M$ is a left $A$-graded $R$-module, as showing it when $M$ is a right module is entirely analagous. First of all, this map is clearly a homomorphism, as given degree $d$ $A$-graded homomorphisms $\varphi,\psi:R\to M$, we have 
+	\[\mathrm{ev}_1(\varphi+\psi)=(\varphi+\psi)(1)=\varphi(1)+\psi(1)=\mathrm{ev}_1(\varphi)+\mathrm{ev}_1(\psi).\]
+	Now, to see it is surjective, let $m\in M_d$, and define $\varphi_m:R\to M$ to send $r\mapsto r\cdot m$. First of all, $\varphi_m$ is a module homomorphism, as given $r,s\in R$, 
+	\[\varphi_m(r+s)=(r+s)\cdot m=r\cdot m+s\cdot m=\varphi_m(r)+\varphi_m(s)\quad\text{and}\quad\varphi_m(r\cdot s)=r\cdot s\cdot m=r\cdot\varphi_m(s).\]
+	Furthermore, it is clearly $A$-graded of degree $d$, as given a homogeneous element $r\in R_a$ for some $a\in A$, we have $\varphi_m(r)=r\cdot m\in R_{a+d}$, since $m$ is homogeneous of degree $d$. Finally, clearly 
+	\[\mathrm{ev}_1(\varphi_m)=\varphi_m(1)=1\cdot m=m,\]
+	so indeed $\mathrm{ev}_1$ is surjective. On the other hand, to see it is injective, suppose we are given $\varphi,\psi\in\Hom_R^d(R,M)$ such that $\varphi(1)=\psi(1)$. Then given $r\in R$, we must have
+	\[\varphi(r)=\varphi(r\cdot 1)=r\cdot\varphi(1)=r\cdot\psi(1)=\psi(r\cdot 1)=\psi(r),\]
+	so $\varphi$ and $\psi$ are exactly the same map. Thus, $\mathrm{ev}_1$ is injective, as desired.
+\end{proof}
+
+\subsection{\texorpdfstring{$A$}{A}-graded submodules and quotient modules}
+In what follows, fix an $A$-graded ring $R$. We will simply say ``$A$-graded $R$-module'' when we are freely considering either left or right $A$-graded $R$-modules.
 
 \begin{definition}
 	Let $M$ be an $A$-graded $R$-module. Then an \emph{$A$-graded $R$-submodule} is an $A$-graded $R$-module $N$ which is a subset of $M$ and for which the inclusion $N\into M$ is an $A$-graded homomorphism of $R$-modules. Equivalently, it is a submodule $N$ for which the canonical map
@@ -278,6 +284,8 @@ with $g$ an epimorphism, there exists a lift $h:P\to M$ satisfying $g\circ h=f$
 	\[\varphi_a:M_a/N_a\to (M/N)_a\]
 	is an isomorphism. It is clearly surjective, as $(M/N)_a$ is generated by elements $m+N$ for $m\in M_a$, and these elements make up precisely the image of $\varphi_a$. Thus $\varphi_a$ hits every generator of $(M/N)_a$, so $\varphi_a$ is surjective. On the other hand, suppose we are given some $m\in M_a$ such that $\varphi(m+N_a)=m+N=0$. Thus $m\in N$, and $m\in M_a$, so that $m\in M_a\cap N=N_a$, meaning $m+N_a=0$ in $M_a/N_a$, as desired.
 \end{proof}
+
+\subsection{Tensor product of \texorpdfstring{$A$}{A}-graded modules}
 
 Recall that given a ring $R$, a left $R$-module $M$, a right $R$-module $N$, and an abelian group $A$, an \emph{$R$-balanced map} $\varphi:M\times N\to B$ is one which satisifies
 \begin{align*}

@@ -128,7 +128,7 @@ Given some other object $E$, we can define the $A$-graded abelian groups $E_*(X)
 \[E_a(X):=\pi_a(E\otimes X)=[S^a,E\otimes X]\qquad\text{and}\qquad E^a(X):=[X,S^a\otimes E].\]
 We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$}, or just $E$-homology, and we refer to $E^*(-)$ as the \emph{cohomology theory represented by $E$}, or just $E$-cohomology. 
 
-\todo{is this the best place for the below proposition and remark?}
+\subsection{The long exact sequence associated to a distinguished triangle}
 
 \begin{proposition}\label{X,Y*_LES}
 	Suppose we are given a distinguished triangle
@@ -662,7 +662,21 @@ Monoid objects in $\cSH$ will be the focus of the rest of this paper. The most i
 	and the unit of this ring is $e\in\pi_0(E)=[S,E]$.
 \end{proposition}
  
-We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. A natural question that arises is: In what sense is $\pi_*(E)$ a ``graded commutative ring'' if $(E,\mu,e)$ is a commutative monoid object? It turns out that $\pi_*(E)$ does satisfy a sort of graded commutativity condition, as follows:
+We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that $\pi_*$ takes monoids to rings. Given a monoid object $(E,\mu,e)$ in $\cSH$, $E_*$ sends objects to $\pi_*(E)$-modules:
+
+\begin{proposition}[\autoref{module}]\label{module_main}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to left $A$-graded modules over the ring $\pi_*(E)$ (\autoref{pi_*E_is_ring_for_E_monoid_main}), where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
+	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
+	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xr{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xr{\mu\otimes X}E\otimes X.\]
+	Similarly, the assignment $X\mapsto X_*(E)$ is a functor from $\cSH$ to right $A$-graded $\pi_*(E)$-modules, where the structure map
+	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
+	sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
+	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xr{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xr{X\otimes\mu}X\otimes E.\]
+	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
+\end{proposition}
+
+A natural question that arises is: In what sense is $\pi_*(E)$ a ``graded commutative ring'' if $(E,\mu,e)$ is a commutative monoid object? It turns out that $\pi_*(E)$ does satisfy a sort of graded commutativity condition, as follows:
 
 \begin{proposition}[\autoref{pi_*(E)_is_A-graded_commutative_if_E_is_commutative}]\label{pi_*(E)_is_A-graded_commutative_if_E_is_commutative_main}
 	For all $a,b\in A$ there exists an element $\theta_{a,b}\in\pi_0(S)=[S,S]$ such that given any commutative monoid object $(E,\mu,e)$ in $\cSH$, the $A$-graded ring structure on $\pi_\ast(E)$ (\autoref{pi_*E_is_ring_for_E_monoid_main}) has a commutativity formula given by
@@ -685,16 +699,25 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. A natural question 
 	(1) is \autoref{multipy_by_degree_0_is_same_as_compose}, (2) is \autoref{theta_a,0=theta_0,a=id_S}, (3) is \autoref{theta_ab.theta_ba=id}, and (4) is \autoref{theta_ab.theta_ac=theta_ab+c_and_theta_ba.theta_ca=theta_b+ca}.
 \end{proof}
 
-\begin{proposition}[\autoref{module}]\label{module_main}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to left $A$-graded modules over the ring $\pi_*(E)$ (\autoref{pi_*E_is_ring_for_E_monoid_main}), where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with the structure of a left $A$-graded $\pi_*(E)$-module via the map 
-	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
-	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
-	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xr{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xr{\mu\otimes X}E\otimes X.\]
-	Similarly, the assignment $X\mapsto X_*(E)$ is a functor from $\cSH$ to right $A$-graded $\pi_*(E)$-modules, where the structure map
-	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
-	sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
-	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xr{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xr{X\otimes\mu}X\otimes E.\]
-	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
+The above proposition motivates the following definition:
+
+\begin{definition}[\autoref{R-GrCAlg_defn}]
+	A \emph{$A$-graded $\pi_*(S)$-commutative ring} is a pair $(R,\varphi)$, where $R$ is an $A$-graded ring and $\varphi:\pi_*(S)\to R$ is an $A$-graded ring homomorphism such that for all homogeneous $x,y\in R$,
+	\[x\cdot y=y\cdot x\cdot\varphi(\theta_{|x|,|y|}).\]
+	A homomorphism $(R,\varphi)\to(R',\varphi')$ of $A$-graded $\pi_*(S)$-commutative rings is an $A$-graded ring homomorphism $f:R\to R'$ satisfying $f\circ\varphi=\varphi'$. We write $\GrCAlg{\pi_*(S)}$ to denote the category of $A$-graded $\pi_*(S)$-commutative rings and homomorphisms between them.
+\end{definition}
+
+We should think of objects in $\GrCAlg{\pi_*(S)}$ as ``$A$-graded (anti)commutative rings''. As one would expect, every commutative monoid object $(E,\mu,e)$ in $\cSH$ gives rise to an $A$-graded $\pi_*(S)$-commutative ring $\pi_*(E)$:
+
+\begin{proposition}[\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_appendix}]\label{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}
+    The assignment $(E,\mu,e)\mapsto(\pi_*(E),\pi_*(e))$ yields a functor 
+    \[\pi_*:\CMon_\cSH\to\GrCAlg{\pi_*(S)}\]
+    from the category of commutative monoid objects in $\cSH$ (\autoref{Mon_C,CMon_C}) to the category of $A$-graded $\pi_*(S)$-commutative rings (\autoref{R-GrCAlg_defn}).
 \end{proposition}
+
+\begin{corollary}\label{pi_*(E)_and_E_*(E)_are_pi_*(S)-commutative_rings}
+    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}, $\pi_*(E)$ and $E_*(E)=\pi_*(E\otimes E)$ are canonically $A$-graded $\pi_*(S)$-commutative rings (\autoref{R-GrCAlg_defn}), since $E\otimes E$ is a commutative monoid object in $\cSH$ by \autoref{product_of_monoids_is_monoid}.
+\end{corollary}
+
 
 \end{document}

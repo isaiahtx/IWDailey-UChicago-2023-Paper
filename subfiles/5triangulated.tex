@@ -3,6 +3,8 @@
 
 We assume the reader is familiar with additive categories and (closed, symmetric) monoidal categories. 
 
+\subsection{Triangulated categories and their properties}
+
 \begin{definition}\label{triangulated_defn}
     A \emph{triangulated category} $(\cC,\Sigma,\cD)$ is the data of:\begin{enumerate}
         \item An additive category $\cC$.
@@ -349,6 +351,8 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     so we may define the fiber of $f$ to be $\Omega C_f$.
 \end{proof}
 
+\subsection{Homotopy (co)limits in a triangulated category}
+
 \begin{definition}[{\cite[Definition 1.6.4]{Neeman_2001}}]\label{homotopy_colimit_defn}
     Assume that $\cC$ has countable coproducts. Let
     \[X_0\xr{j_1}X_1\xr{j_2} X_2\xr{j_3}X_3\to\cdots\]
@@ -374,6 +378,8 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     See~\cite[Proposition 1.6.8]{Neeman_2001}
     \todo{write proof down?}
 \end{proof}
+
+\subsection{Adjointly triangulated categories}
 
 For our purposes, we will always be dealing with triangulated categories with a bit of extra structure, in the following sense:
 
@@ -718,6 +724,7 @@ From now on, we will assume that $\cC$ is an \emph{adjointly} triangulated categ
     %We would like to show that if any two of $X$, $Y$, and $Z$ belong to $\cE$, then so does the third. By definition this holds if $X$, $Y$ belong to $\cE$. First suppose $Y$, $Z$ belong to $\cE$. Then consider the triangle 
 %\end{proof}
 
+\subsection{Tensor triangulated categories}
 Also important for our work is the concept of a \emph{tensor triangulated category}, that is, a triangulated symmetric monoidal category in which the triangulated structures are compatible, in the following sense:
 
 \begin{definition}\label{tentri}

@@ -3,6 +3,8 @@
 
 \begin{document}
 
+\subsection{Modules over a monoid object}
+
 In what follows, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with left unitor, right unitor, associator, and symmetry isomorphisms $\lambda$, $\rho$, $\alpha$, and $\tau$, respectively.
 
 \begin{definition}\label{left_module_object}
@@ -36,7 +38,7 @@ In what follows, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with lef
 \end{definition}
 
 \begin{definition}
-	Given a monoid object $(E,\mu,e)$ in $\cSH$, we write $E\text-\Mod$ to denote the category of left module objects over $E$ and left $E$-module homomorphisms between them. We denote the homset in $E\text-\Mod$ by
+	Given a monoid object $(E,\mu,e)$ in $\cC$, we write $E\text-\Mod$ to denote the category of left module objects over $E$ and left $E$-module homomorphisms between them. We denote the homset in $E\text-\Mod$ by
 	\[\Hom_{E\text-\Mod}(M,N),\qquad\text{or simply}\qquad\Hom_E(M,N).\]
 \end{definition}
 
@@ -208,12 +210,6 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	The top triangle commutes by coherence for a symmetric monoidal category. The bottom trapezoid commutes by naturality of $\tau$. 
 \end{proof}
 
-\begin{definition}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and suppose $(N,\kappa)$ and $(N',\kappa')$ are left $E$-module objects in $E\text-\Mod$. Then the hom-sets in $E\text-\Mod$ can be extended to $A$-graded abelian groups $\Hom^*_{E\text-\Mod}(N,N')$, by defining 
-	\[\Hom^a_{E\text-\Mod}(N,N'):=\Hom_{E\text-\Mod}(\Sigma^a N,N')\]
-	for each $a\in A$ (where $\Sigma^{*}N$ has the left $E$-module structure given by \autoref{suspension_of_module_object_is_module_object}).
-\end{definition}
-
 \begin{proposition}\label{coproduct_of_E_modules_is_coproduct_in_E_mod}
 	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and suppose we have a family of left $E$-module objects $(N_i,\kappa_i)$ indexed by some small set $I$. Then $N:=\bigoplus_{i\in I}N_i$ is canonically a left $E$-module, with action map given by the composition
 	\[\kappa:E\otimes\bigoplus_iN_i\xr\cong\bigoplus_i(E\otimes N_i)\xrightarrow{\bigoplus_i\kappa_i}\bigoplus_iN_i,\]
@@ -326,6 +322,12 @@ monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ (\a
 	\end{tikzcd}\]
 	The outermost trapezoids commute by naturality of $\Delta$ and $\nabla$. The triangles in the top corners and the top middle rectangle commute by additivity of $E\otimes-$. The middle triangle commutes by functoriality of $\oplus$ and $\otimes$. The middle trapezoids commute by the fact that $f$ and $g$ are homomorphisms of left $E$-modules. Finally, the middle bottom triangle commutes by functoriality of $-\oplus-$. Commutativity of the above diagram shows that $f+g$ is a homomorphism of left $E$-modules as desired. Finally, to see $-f$ is a left $E$-module homomorphism if $f$ is, we would like to show that $\kappa'\circ(E\otimes(-f))=(-f)\circ\kappa$. This follows by the fact that $\kappa'\circ(E\otimes f)=f\circ\kappa$ and additivity of $-\otimes-$ and composition.
 \end{proof}
+
+\begin{definition}
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and suppose $(N,\kappa)$ and $(N',\kappa')$ are left $E$-module objects in $E\text-\Mod$. Then the hom-sets in $E\text-\Mod$ can be extended to $A$-graded abelian groups $\Hom^*_{E\text-\Mod}(N,N')$, by defining 
+	\[\Hom^a_{E\text-\Mod}(N,N'):=\Hom_{E\text-\Mod}(\Sigma^a N,N')\]
+	for each $a\in A$ (where $\Sigma^{*}N$ has the left $E$-module structure given by \autoref{suspension_of_module_object_is_module_object}).
+\end{definition}
 
 \begin{proposition}\label{pi_*E_is_ring_for_E_monoid_appendix}
 	The assignment $(E,\mu,e)\mapsto\pi_*(E)$ is a functor $\pi_*$ from the category $\Mon_\cSH$ of monoid objects in $\cSH$ (\autoref{Mon_C,CMon_C}) to the category of $A$-graded rings. In particular, given a monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is canonically a ring with product $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
