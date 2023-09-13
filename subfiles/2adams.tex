@@ -50,4 +50,23 @@ In the sections that follow, let $(E,\mu,e)$ be a monoid object (\autoref{monoid
 	By \autoref{SSeq_assoc_to_unrolled_EC}, we may associate a $\bZ\times A$-graded spectral sequence $r\mapsto(E_r^{*,*}(X,Y),d_r)$ to the above $A$-graded unrolled exact couple, where $d_r$ has $\bZ\times A$-degree $(r,-\1)$. We call this spectral sequence the \emph{$E$-Adams spectral sequence for the computation of ${[X,Y]}_*$}.
 \end{definition}
 
+For those who would rather not lose themselves in the appendix, we give a brief unravelling of how \autoref{SSeq_assoc_to_unrolled_EC} applies to the present situation. Given some $s\in\bZ$ and some $r\geq1$, we may define the following $A$-graded subgroups of $[X,W_s]$:
+\[Z_r^s:=\partial_s^{-1}(\imm[i^{(r-1)}:{[X,Y_{s+r}]}_*\to{[X,Y_{s+1}]}_*])\]
+and
+\[B_r^s:=j_s(\ker[i^{(r-1)}:{[X,Y_s]}_*\to{[X,Y_{s-r+1}]}_*]),\]
+where we adopt the convention that $i^{(0)}$ is simply the identity. This yields an infinite sequence of inclusions
+\[0=B_1^s\sseq B_2^s\sseq B_3^s\sseq\cdots\sseq\imm j_s=\ker\partial_s\sseq\cdots\sseq Z_3^s\sseq Z_2^s\sseq Z_1^s={[X,W_s]}_*.\]
+Then for $r\geq1$, we define $E_r^s$ to be the $A$-graded quotient group
+\[E_r^s:=Z_r^s/B_r^s.\]
+Thus taking the direct sum of all the $E_r^s$'s yields the $r^\text{th}$ page of the spectral sequence
+\[E_r:=\bigoplus_{s\in \bZ}E_r^s,\]
+which is a $\bZ\times A$-graded abelian group. 
+
+The differential $d_r:E_r\to E_r$ is a map of $\bZ\times A$-degree $(r,\1)$, and is constructed as follows: an element of $E_r^s=Z_r^s/B_r^s$ is a coset represented by some $x\in Z_r^s$, so that $\partial_s(x)=i^{(r-1)}(y)$ for some $y\in{[X,Y_{s+r}]}_*$. Then we define $d_r([x])$ to be the coset $[j_{s+r}(y)]$ in $Z_r^{s+r}/B_r^{s+r}$. 
+
+In the case $r=1$, since $B_1^s=0$ and $Z_1^s={[X,W_s]}_*$, we have that $E_1^s={[X,W_s]}_*$, and given some $x\in E_1^s=[X,W_s]_*$, the differential $d_1$ is given by $d_1(x)=j_{s+1}(\partial_s(x))$, so that $d_1=j\circ\partial$.
+
+In \Cref{Unrolled_exact_couples_and_their_associated_SSeqs}, it is shown in explicit detail that all of these definitions make sense and are well-defined. In particular, it is shown that the differentials are well-defined $A$-graded homomorphisms, that $d_r\circ d_r=0$, and that
+\[\ker d_r^s/\imm d_r^s=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\] 
+
 \end{document}

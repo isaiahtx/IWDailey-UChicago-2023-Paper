@@ -735,10 +735,10 @@ Also important for our work is the concept of a \emph{tensor triangulated catego
         \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ preserves distinguished triangles, in that given a distinguished triangle/(co)fiber sequence
         \[A\xrightarrow fB\xrightarrow gC\xrightarrow h\Sigma A,\]
         then also
-        \[X\otimes A\xrightarrow{X\otimes f}X\otimes B\xrightarrow{X\otimes g}X\otimes C\xrightarrow{X\otimes h}\Sigma(X\otimes A)\]
+        \[X\otimes A\xrightarrow{X\otimes f}X\otimes B\xrightarrow{X\otimes g}X\otimes C\xrightarrow{X\otimes' h}\Sigma(X\otimes A)\]
         and
-        \[A\otimes X\xrightarrow{f\otimes X}B\otimes X\xrightarrow{g\otimes X}C\otimes X\xrightarrow{h\otimes X}\Sigma(A\otimes X)\]
-        are distinguished triangles, where here we are being abusive and writing $X\otimes h$ and $h\otimes X$ to denote the compositions
+        \[A\otimes X\xrightarrow{f\otimes X}B\otimes X\xrightarrow{g\otimes X}C\otimes X\xrightarrow{h\otimes' X}\Sigma(A\otimes X)\]
+        are distinguished triangles, where here we writing $X\otimes' h$ and $h\otimes' X$ to denote the compositions
         \[X\otimes C\xrightarrow{X\otimes h}X\otimes \Sigma A\xrightarrow\tau\Sigma A\otimes X\xrightarrow{e_{A,X}}\Sigma(A\otimes X)\xrightarrow{\Sigma\tau}\Sigma(X\otimes A)\]
         and
         \[C\otimes X\xrightarrow{h\otimes X}\Sigma A\otimes X\xrightarrow{e_{A,X}}\Sigma(A\otimes X),\]
@@ -784,98 +784,100 @@ Usually, most tensor triangulated categories that arise in nature will satisfy a
 \end{definition}
 
 
-\begin{lemma}
-    For all $X$ and $Y$ in $\cC$, the following diagram commutes:
-    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFNpZ21hIFhcXG90aW1lc1xcU2lnbWEgWSJdLFsxLDAsIlxcU2lnbWEoWFxcb3RpbWVzIFxcU2lnbWEgWSkiXSxbMSwxLCJcXFNpZ21hXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMCwxLCJcXFNpZ21hKFxcU2lnbWEgWFxcb3RpbWVzIFkpIl0sWzAsMSwiLWVfe1gsXFxTaWdtYSBZfSJdLFsxLDIsIlxcU2lnbWEgZSdfe1gsWX0iXSxbMCwzLCJlJ197XFxTaWdtYSBYLFl9IiwyXSxbMywyLCJcXFNpZ21hIGVfe1gsWX0iLDJdXQ==
-    \[\begin{tikzcd}
-        {\Sigma X\otimes\Sigma Y} & {\Sigma(X\otimes \Sigma Y)} \\
-        {\Sigma(\Sigma X\otimes Y)} & {\Sigma\Sigma(X\otimes Y)}
-        \arrow["{-e_{X,\Sigma Y}}", from=1-1, to=1-2]
-        \arrow["{\Sigma e'_{X,Y}}", from=1-2, to=2-2]
-        \arrow["{e'_{\Sigma X,Y}}"', from=1-1, to=2-1]
-        \arrow["{\Sigma e_{X,Y}}"', from=2-1, to=2-2]
-    \end{tikzcd}\]
-    (note the sign on the top map).
-\end{lemma}
-\begin{proof}
-    Note there are natural isomorphisms
-    \[a_X:\Sigma X\xr\cong \Sigma S\otimes X\]
-    given by the composition
-    \[\Sigma X\xr{\Sigma\lambda_X}\Sigma(S\otimes X)\xr{e_{S,X}^{-1}}\Sigma S\otimes X.\]
-    Furthermore, under the isomorphism $a:\Sigma\cong \Sigma S\otimes-$, $e_{X,Y}:\Sigma X\otimes Y\cong\Sigma(X\otimes Y)$ corresponds to the associator $(\Sigma S\otimes X)\otimes Y\cong\Sigma S\otimes(X\otimes Y)$. Indeed, consider the following diagram:
-    \[\begin{tikzcd}
-        {\Sigma X\otimes Y} && {\Sigma(X\otimes Y)} \\
-        {\Sigma(S\otimes X)\otimes Y} & {\Sigma((S\otimes X)\otimes Y)} & {\Sigma(S\otimes(X\otimes Y)} \\
-        {(\Sigma S\otimes X)\otimes Y} && {\Sigma S\otimes(X\otimes Y)}
-        \arrow["{e_{X,Y}}", from=1-1, to=1-3]
-        \arrow["{\Sigma\lambda_X\otimes Y}"', from=1-1, to=2-1]
-        \arrow["{e_{S,X}^{-1}\otimes Y}"', from=2-1, to=3-1]
-        \arrow["{\Sigma(\lambda_X\otimes Y)}"{description}, from=1-3, to=2-2]
-        \arrow["\alpha"', from=3-1, to=3-3]
-        \arrow["{e_{S\otimes X,Y}}"', from=2-1, to=2-2]
-        \arrow["{\Sigma\lambda_{X\otimes Y}}", from=1-3, to=2-3]
-        \arrow["\Sigma\alpha"', from=2-2, to=2-3]
-        \arrow["{e_{S,X\otimes Y}^{-1}}", from=2-3, to=3-3]
-    \end{tikzcd}\]
-    The two vertical composites are $a_X\otimes Y$ and $a_{X\otimes Y}$, respectively. The top trapezoid commutes by naturality of $e$. The triangle commutes by coherence for a monoidal category. Finally, commutativity of the bottom rectangle is axiom TT4 for a tensor triangulated category.
-    
-    Similarly, under the isomorphism $a:\Sigma\cong\Sigma S\otimes-$, $e_{X,Y}':X\otimes\Sigma Y\cong\Sigma(X\otimes Y)$ corresponds to the map $X\otimes\Sigma S\otimes Y\xr{\tau_{X,\Sigma S}\otimes Y}X\otimes Y\otimes\Sigma S$. To see this, consider the following diagram:
-    % https://q.uiver.app/#q=WzAsMTEsWzAsMCwiWFxcb3RpbWVzXFxTaWdtYSBZIl0sWzEsMCwiXFxTaWdtYSBZXFxvdGltZXMgWCJdLFsyLDAsIlxcU2lnbWEoWVxcb3RpbWVzIFgpIl0sWzMsMCwiXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMCwzLCJYXFxvdGltZXNcXFNpZ21hIFNcXG90aW1lcyBZIl0sWzMsMywiXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzIFkiXSxbMCwxLCJYXFxvdGltZXNcXFNpZ21hKFNcXG90aW1lcyBZKSJdLFszLDEsIlxcU2lnbWEoU1xcb3RpbWVzIFhcXG90aW1lcyBZKSJdLFsxLDEsIlxcU2lnbWEoU1xcb3RpbWVzIFkpXFxvdGltZXMgWCJdLFsyLDEsIlxcU2lnbWEoU1xcb3RpbWVzIFlcXG90aW1lcyBYKSJdLFsxLDIsIlxcU2lnbWEgU1xcb3RpbWVzIFlcXG90aW1lcyBYIl0sWzAsMSwiXFx0YXVfe1gsXFxTaWdtYSBZfSJdLFsxLDIsImVfe1ksWH0iXSxbMiwzLCJcXFNpZ21hXFx0YXVfe1ksWH0iXSxbNCw1LCJcXHRhdV97WCxcXFNpZ21hIFN9XFxvdGltZXMgWSJdLFswLDYsIlhcXG90aW1lc1xcU2lnbWFcXGxhbWJkYV9ZIiwyXSxbNiw0LCJYXFxvdGltZXMgZV97UyxZfV57LTF9IiwyXSxbMyw3LCJcXFNpZ21hXFxsYW1iZGFfe1hcXG90aW1lcyBZfSJdLFs3LDUsImVfe1MsWFxcb3RpbWVzIFl9XnstMX0iXSxbNiw4LCJcXHRhdV97WCxcXFNpZ21hKFNcXG90aW1lcyBZKX0iXSxbOCw5LCJlX3tTXFxvdGltZXMgWSxYfSJdLFsyLDksIlxcU2lnbWEoXFxsYW1iZGFfWVxcb3RpbWVzIFgpIiwyXSxbMSw4LCJcXFNpZ21hXFxsYW1iZGFfWVxcb3RpbWVzIFgiLDJdLFsxMCw4LCJlX3tTLFl9XFxvdGltZXMgWCJdLFs5LDcsIlxcU2lnbWEoU1xcb3RpbWVzXFx0YXVfe1ksWH0pIl0sWzQsMTAsIlxcdGF1X3tYLFxcU2lnbWEgU1xcb3RpbWVzIFl9Il0sWzEwLDUsIlxcU2lnbWEgU1xcb3RpbWVzIFxcdGF1X3tZLFh9Il0sWzEwLDksImVfe1MsWVxcb3RpbWVzIFh9IiwyXV0=
-    \[\begin{tikzcd}
-        {X\otimes\Sigma Y} & {\Sigma Y\otimes X} & {\Sigma(Y\otimes X)} & {\Sigma(X\otimes Y)} \\
-        {X\otimes\Sigma(S\otimes Y)} & {\Sigma(S\otimes Y)\otimes X} & {\Sigma(S\otimes Y\otimes X)} & {\Sigma(S\otimes X\otimes Y)} \\
-        & {\Sigma S\otimes Y\otimes X} \\
-        {X\otimes\Sigma S\otimes Y} &&& {\Sigma S\otimes X\otimes Y}
-        \arrow["{\tau_{X,\Sigma Y}}", from=1-1, to=1-2]
-        \arrow["{e_{Y,X}}", from=1-2, to=1-3]
-        \arrow["{\Sigma\tau_{Y,X}}", from=1-3, to=1-4]
-        \arrow["{\tau_{X,\Sigma S}\otimes Y}", from=4-1, to=4-4]
-        \arrow["{X\otimes\Sigma\lambda_Y}"', from=1-1, to=2-1]
-        \arrow["{X\otimes e_{S,Y}^{-1}}"', from=2-1, to=4-1]
-        \arrow["{\Sigma\lambda_{X\otimes Y}}", from=1-4, to=2-4]
-        \arrow["{e_{S,X\otimes Y}^{-1}}", from=2-4, to=4-4]
-        \arrow["{\tau_{X,\Sigma(S\otimes Y)}}", from=2-1, to=2-2]
-        \arrow["{e_{S\otimes Y,X}}", from=2-2, to=2-3]
-        \arrow["{\Sigma(\lambda_Y\otimes X)}"', from=1-3, to=2-3]
-        \arrow["{\Sigma\lambda_Y\otimes X}"', from=1-2, to=2-2]
-        \arrow["{e_{S,Y}\otimes X}", from=3-2, to=2-2]
-        \arrow["{\Sigma(S\otimes\tau_{Y,X})}", from=2-3, to=2-4]
-        \arrow["{\tau_{X,\Sigma S\otimes Y}}", from=4-1, to=3-2]
-        \arrow["{\Sigma S\otimes \tau_{Y,X}}", from=3-2, to=4-4]
-        \arrow["{e_{S,Y\otimes X}}"', from=3-2, to=2-3]
-    \end{tikzcd}\]
-    Here we are taking the associators to be isomorphisms, by coherence for monoidal categories. The top horizontal composition is $e_{X,Y}'$, by definition. The vertical edge compositions are $X\otimes a_Y$ and $a_{X\otimes Y}$. The top left rectangle commutes by naturality of $\tau$. The top middle rectangle commutes by naturality of $e$. The top right triangle commutes by naturality of $\tau$. The bottom left trapezoid commutes by naturality of $\tau$. The small middle triangle commutes by axiom TT4 for a tensor triangulated category. The bottom triangle commutes by coherence for a symmetric monoidal category. Finally, the remaining region on the right commutes by naturality of $e$. Thus, in order to show the diagram in the statement of the lemma commutes, it suffices to show the following diagram commutes:
-    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFNpZ21hIFNcXG90aW1lcyBYXFxvdGltZXNcXFNpZ21hIFNcXG90aW1lcyBZIl0sWzEsMCwiXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzXFxTaWdtYSBTXFxvdGltZXMgWSJdLFsxLDEsIlxcU2lnbWEgU1xcb3RpbWVzIFxcU2lnbWEgU1xcb3RpbWVzIFhcXG90aW1lcyBZIl0sWzAsMSwiXFxTaWdtYSBTXFxvdGltZXMgXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzIFkiXSxbMCwxLCItXFxhbHBoYSJdLFsxLDIsIlxcU2lnbWEgU1xcb3RpbWVzIFxcdGF1X3tYLFxcU2lnbWEgU31cXG90aW1lcyBZIl0sWzAsMywiXFx0YXVfe1xcU2lnbWEgU1xcb3RpbWVzIFgsXFxTaWdtYSBTfVxcb3RpbWVzIFkiLDJdLFszLDIsIlxcYWxwaGEiLDJdXQ==
-    \[\begin{tikzcd}
-        {\Sigma S\otimes X\otimes\Sigma S\otimes Y} & {\Sigma S\otimes X\otimes\Sigma S\otimes Y} \\
-        {\Sigma S\otimes \Sigma S\otimes X\otimes Y} & {\Sigma S\otimes \Sigma S\otimes X\otimes Y}
-        \arrow["{-\alpha}", from=1-1, to=1-2]
-        \arrow["{\Sigma S\otimes \tau_{X,\Sigma S}\otimes Y}", from=1-2, to=2-2]
-        \arrow["{\tau_{\Sigma S\otimes X,\Sigma S}\otimes Y}"', from=1-1, to=2-1]
-        \arrow["\alpha"', from=2-1, to=2-2]
-    \end{tikzcd}\]
-    To see this diagram commutes, consider the following diagram:
-    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXFNpZ21hIFNcXG90aW1lcyBYXFxvdGltZXNcXFNpZ21hIFNcXG90aW1lcyBZIl0sWzIsMCwiXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzXFxTaWdtYSBTXFxvdGltZXMgWSJdLFs0LDAsIlxcU2lnbWEgU1xcb3RpbWVzIFxcU2lnbWEgU1xcb3RpbWVzIFhcXG90aW1lcyBZIl0sWzAsMiwiXFxTaWdtYSBTXFxvdGltZXMgXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzIFkiXSxbNCwyLCJcXFNpZ21hIFNcXG90aW1lcyBcXFNpZ21hIFNcXG90aW1lcyBYXFxvdGltZXMgWSJdLFswLDEsIlxcYWxwaGEiXSxbMSwyLCJcXFNpZ21hIFNcXG90aW1lcyBcXHRhdV97WCxcXFNpZ21hIFN9XFxvdGltZXMgWSJdLFswLDMsIlxcdGF1X3tcXFNpZ21hIFNcXG90aW1lcyBYLFxcU2lnbWEgU31cXG90aW1lcyBZIiwyXSxbMyw0LCJcXGFscGhhIiwyXSxbMiw0LCJcXHRhdV97XFxTaWdtYSBTLFxcU2lnbWEgU31cXG90aW1lcyBYXFxvdGltZXMgWSJdXQ==
-    \[\begin{tikzcd}
-        {\Sigma S\otimes X\otimes\Sigma S\otimes Y} && {\Sigma S\otimes X\otimes\Sigma S\otimes Y} && {\Sigma S\otimes \Sigma S\otimes X\otimes Y} \\
-        \\
-        {\Sigma S\otimes \Sigma S\otimes X\otimes Y} &&&& {\Sigma S\otimes \Sigma S\otimes X\otimes Y}
-        \arrow["\alpha", from=1-1, to=1-3]
-        \arrow["{\Sigma S\otimes \tau_{X,\Sigma S}\otimes Y}", from=1-3, to=1-5]
-        \arrow["{\tau_{\Sigma S\otimes X,\Sigma S}\otimes Y}"', from=1-1, to=3-1]
-        \arrow["\alpha"', from=3-1, to=3-5]
-        \arrow["{\tau_{\Sigma S,\Sigma S}\otimes X\otimes Y}", from=1-5, to=3-5]
-    \end{tikzcd}\]
-    The diagram commutes by coherence for a symmetric monoidal category. The desired result follows by applying axiom TT5 for a tensor triangulated category, which tells us that $\tau_{\Sigma S,\Sigma S}=-1$, and additivity of $-\otimes-$ and composition.
-\end{proof}
+%\begin{lemma}
+%    For all $X$ and $Y$ in $\cC$, the following diagram commutes:
+%    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFNpZ21hIFhcXG90aW1lc1xcU2lnbWEgWSJdLFsxLDAsIlxcU2lnbWEoWFxcb3RpbWVzIFxcU2lnbWEgWSkiXSxbMSwxLCJcXFNpZ21hXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMCwxLCJcXFNpZ21hKFxcU2lnbWEgWFxcb3RpbWVzIFkpIl0sWzAsMSwiLWVfe1gsXFxTaWdtYSBZfSJdLFsxLDIsIlxcU2lnbWEgZSdfe1gsWX0iXSxbMCwzLCJlJ197XFxTaWdtYSBYLFl9IiwyXSxbMywyLCJcXFNpZ21hIGVfe1gsWX0iLDJdXQ==
+%    \[\begin{tikzcd}
+%        {\Sigma X\otimes\Sigma Y} & {\Sigma(X\otimes \Sigma Y)} \\
+%        {\Sigma(\Sigma X\otimes Y)} & {\Sigma\Sigma(X\otimes Y)}
+%        \arrow["{-e_{X,\Sigma Y}}", from=1-1, to=1-2]
+%        \arrow["{\Sigma e'_{X,Y}}", from=1-2, to=2-2]
+%        \arrow["{e'_{\Sigma X,Y}}"', from=1-1, to=2-1]
+%        \arrow["{\Sigma e_{X,Y}}"', from=2-1, to=2-2]
+%    \end{tikzcd}\]
+%    (note the sign on the top map).
+%\end{lemma}
+%\begin{proof}
+%    Note there are natural isomorphisms
+%    \[a_X:\Sigma X\xr\cong \Sigma S\otimes X\]
+%    given by the composition
+%    \[\Sigma X\xr{\Sigma\lambda_X}\Sigma(S\otimes X)\xr{e_{S,X}^{-1}}\Sigma S\otimes X.\]
+%    Furthermore, under the isomorphism $a:\Sigma\cong \Sigma S\otimes-$, $e_{X,Y}:\Sigma X\otimes Y\cong\Sigma(X\otimes Y)$ corresponds to the associator $(\Sigma S\otimes X)\otimes Y\cong\Sigma S\otimes(X\otimes Y)$. Indeed, consider the following diagram:
+%    \[\begin{tikzcd}
+%        {\Sigma X\otimes Y} && {\Sigma(X\otimes Y)} \\
+%        {\Sigma(S\otimes X)\otimes Y} & {\Sigma((S\otimes X)\otimes Y)} & {\Sigma(S\otimes(X\otimes Y)} \\
+%        {(\Sigma S\otimes X)\otimes Y} && {\Sigma S\otimes(X\otimes Y)}
+%        \arrow["{e_{X,Y}}", from=1-1, to=1-3]
+%        \arrow["{\Sigma\lambda_X\otimes Y}"', from=1-1, to=2-1]
+%        \arrow["{e_{S,X}^{-1}\otimes Y}"', from=2-1, to=3-1]
+%        \arrow["{\Sigma(\lambda_X\otimes Y)}"{description}, from=1-3, to=2-2]
+%        \arrow["\alpha"', from=3-1, to=3-3]
+%        \arrow["{e_{S\otimes X,Y}}"', from=2-1, to=2-2]
+%        \arrow["{\Sigma\lambda_{X\otimes Y}}", from=1-3, to=2-3]
+%        \arrow["\Sigma\alpha"', from=2-2, to=2-3]
+%        \arrow["{e_{S,X\otimes Y}^{-1}}", from=2-3, to=3-3]
+%    \end{tikzcd}\]
+%    The two vertical composites are $a_X\otimes Y$ and $a_{X\otimes Y}$, respectively. The top trapezoid commutes by naturality of $e$. The triangle commutes by coherence for a monoidal category. Finally, commutativity of the bottom rectangle is axiom TT4 for a tensor triangulated category.
+%    
+%    Similarly, under the isomorphism $a:\Sigma\cong\Sigma S\otimes-$, $e_{X,Y}':X\otimes\Sigma Y\cong\Sigma(X\otimes Y)$ corresponds to the map $X\otimes\Sigma S\otimes Y\xr{\tau_{X,\Sigma S}\otimes Y}X\otimes Y\otimes\Sigma S$. To see this, consider the following diagram:
+%    % https://q.uiver.app/#q=WzAsMTEsWzAsMCwiWFxcb3RpbWVzXFxTaWdtYSBZIl0sWzEsMCwiXFxTaWdtYSBZXFxvdGltZXMgWCJdLFsyLDAsIlxcU2lnbWEoWVxcb3RpbWVzIFgpIl0sWzMsMCwiXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMCwzLCJYXFxvdGltZXNcXFNpZ21hIFNcXG90aW1lcyBZIl0sWzMsMywiXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzIFkiXSxbMCwxLCJYXFxvdGltZXNcXFNpZ21hKFNcXG90aW1lcyBZKSJdLFszLDEsIlxcU2lnbWEoU1xcb3RpbWVzIFhcXG90aW1lcyBZKSJdLFsxLDEsIlxcU2lnbWEoU1xcb3RpbWVzIFkpXFxvdGltZXMgWCJdLFsyLDEsIlxcU2lnbWEoU1xcb3RpbWVzIFlcXG90aW1lcyBYKSJdLFsxLDIsIlxcU2lnbWEgU1xcb3RpbWVzIFlcXG90aW1lcyBYIl0sWzAsMSwiXFx0YXVfe1gsXFxTaWdtYSBZfSJdLFsxLDIsImVfe1ksWH0iXSxbMiwzLCJcXFNpZ21hXFx0YXVfe1ksWH0iXSxbNCw1LCJcXHRhdV97WCxcXFNpZ21hIFN9XFxvdGltZXMgWSJdLFswLDYsIlhcXG90aW1lc1xcU2lnbWFcXGxhbWJkYV9ZIiwyXSxbNiw0LCJYXFxvdGltZXMgZV97UyxZfV57LTF9IiwyXSxbMyw3LCJcXFNpZ21hXFxsYW1iZGFfe1hcXG90aW1lcyBZfSJdLFs3LDUsImVfe1MsWFxcb3RpbWVzIFl9XnstMX0iXSxbNiw4LCJcXHRhdV97WCxcXFNpZ21hKFNcXG90aW1lcyBZKX0iXSxbOCw5LCJlX3tTXFxvdGltZXMgWSxYfSJdLFsyLDksIlxcU2lnbWEoXFxsYW1iZGFfWVxcb3RpbWVzIFgpIiwyXSxbMSw4LCJcXFNpZ21hXFxsYW1iZGFfWVxcb3RpbWVzIFgiLDJdLFsxMCw4LCJlX3tTLFl9XFxvdGltZXMgWCJdLFs5LDcsIlxcU2lnbWEoU1xcb3RpbWVzXFx0YXVfe1ksWH0pIl0sWzQsMTAsIlxcdGF1X3tYLFxcU2lnbWEgU1xcb3RpbWVzIFl9Il0sWzEwLDUsIlxcU2lnbWEgU1xcb3RpbWVzIFxcdGF1X3tZLFh9Il0sWzEwLDksImVfe1MsWVxcb3RpbWVzIFh9IiwyXV0=
+%    \[\begin{tikzcd}
+%        {X\otimes\Sigma Y} & {\Sigma Y\otimes X} & {\Sigma(Y\otimes X)} & {\Sigma(X\otimes Y)} \\
+%        {X\otimes\Sigma(S\otimes Y)} & {\Sigma(S\otimes Y)\otimes X} & {\Sigma(S\otimes Y\otimes X)} & {\Sigma(S\otimes X\otimes Y)} \\
+%        & {\Sigma S\otimes Y\otimes X} \\
+%        {X\otimes\Sigma S\otimes Y} &&& {\Sigma S\otimes X\otimes Y}
+%        \arrow["{\tau_{X,\Sigma Y}}", from=1-1, to=1-2]
+%        \arrow["{e_{Y,X}}", from=1-2, to=1-3]
+%        \arrow["{\Sigma\tau_{Y,X}}", from=1-3, to=1-4]
+%        \arrow["{\tau_{X,\Sigma S}\otimes Y}", from=4-1, to=4-4]
+%        \arrow["{X\otimes\Sigma\lambda_Y}"', from=1-1, to=2-1]
+%        \arrow["{X\otimes e_{S,Y}^{-1}}"', from=2-1, to=4-1]
+%        \arrow["{\Sigma\lambda_{X\otimes Y}}", from=1-4, to=2-4]
+%        \arrow["{e_{S,X\otimes Y}^{-1}}", from=2-4, to=4-4]
+%        \arrow["{\tau_{X,\Sigma(S\otimes Y)}}", from=2-1, to=2-2]
+%        \arrow["{e_{S\otimes Y,X}}", from=2-2, to=2-3]
+%        \arrow["{\Sigma(\lambda_Y\otimes X)}"', from=1-3, to=2-3]
+%        \arrow["{\Sigma\lambda_Y\otimes X}"', from=1-2, to=2-2]
+%        \arrow["{e_{S,Y}\otimes X}", from=3-2, to=2-2]
+%        \arrow["{\Sigma(S\otimes\tau_{Y,X})}", from=2-3, to=2-4]
+%        \arrow["{\tau_{X,\Sigma S\otimes Y}}", from=4-1, to=3-2]
+%        \arrow["{\Sigma S\otimes \tau_{Y,X}}", from=3-2, to=4-4]
+%        \arrow["{e_{S,Y\otimes X}}"', from=3-2, to=2-3]
+%    \end{tikzcd}\]
+%    Here we are taking the associators to be isomorphisms, by coherence for monoidal categories. The top horizontal composition is $e_{X,Y}'$, by definition. The vertical edge compositions are $X\otimes a_Y$ and $a_{X\otimes Y}$. The top left rectangle commutes by naturality of $\tau$. The top middle rectangle commutes by naturality of $e$. The top right triangle commutes by naturality of $\tau$. The bottom left trapezoid commutes by naturality of $\tau$. The small middle triangle commutes by axiom TT4 for a tensor triangulated category. The bottom triangle commutes by coherence for a symmetric monoidal category. Finally, the remaining region on the right commutes by naturality of $e$. Thus, in order to show the diagram in the statement of the lemma commutes, it suffices to show the following diagram commutes:
+%    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFNpZ21hIFNcXG90aW1lcyBYXFxvdGltZXNcXFNpZ21hIFNcXG90aW1lcyBZIl0sWzEsMCwiXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzXFxTaWdtYSBTXFxvdGltZXMgWSJdLFsxLDEsIlxcU2lnbWEgU1xcb3RpbWVzIFxcU2lnbWEgU1xcb3RpbWVzIFhcXG90aW1lcyBZIl0sWzAsMSwiXFxTaWdtYSBTXFxvdGltZXMgXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzIFkiXSxbMCwxLCItXFxhbHBoYSJdLFsxLDIsIlxcU2lnbWEgU1xcb3RpbWVzIFxcdGF1X3tYLFxcU2lnbWEgU31cXG90aW1lcyBZIl0sWzAsMywiXFx0YXVfe1xcU2lnbWEgU1xcb3RpbWVzIFgsXFxTaWdtYSBTfVxcb3RpbWVzIFkiLDJdLFszLDIsIlxcYWxwaGEiLDJdXQ==
+%    \[\begin{tikzcd}
+%        {\Sigma S\otimes X\otimes\Sigma S\otimes Y} & {\Sigma S\otimes X\otimes\Sigma S\otimes Y} \\
+%        {\Sigma S\otimes \Sigma S\otimes X\otimes Y} & {\Sigma S\otimes \Sigma S\otimes X\otimes Y}
+%        \arrow["{-\alpha}", from=1-1, to=1-2]
+%        \arrow["{\Sigma S\otimes \tau_{X,\Sigma S}\otimes Y}", from=1-2, to=2-2]
+%        \arrow["{\tau_{\Sigma S\otimes X,\Sigma S}\otimes Y}"', from=1-1, to=2-1]
+%        \arrow["\alpha"', from=2-1, to=2-2]
+%    \end{tikzcd}\]
+%    To see this diagram commutes, consider the following diagram:
+%    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXFNpZ21hIFNcXG90aW1lcyBYXFxvdGltZXNcXFNpZ21hIFNcXG90aW1lcyBZIl0sWzIsMCwiXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzXFxTaWdtYSBTXFxvdGltZXMgWSJdLFs0LDAsIlxcU2lnbWEgU1xcb3RpbWVzIFxcU2lnbWEgU1xcb3RpbWVzIFhcXG90aW1lcyBZIl0sWzAsMiwiXFxTaWdtYSBTXFxvdGltZXMgXFxTaWdtYSBTXFxvdGltZXMgWFxcb3RpbWVzIFkiXSxbNCwyLCJcXFNpZ21hIFNcXG90aW1lcyBcXFNpZ21hIFNcXG90aW1lcyBYXFxvdGltZXMgWSJdLFswLDEsIlxcYWxwaGEiXSxbMSwyLCJcXFNpZ21hIFNcXG90aW1lcyBcXHRhdV97WCxcXFNpZ21hIFN9XFxvdGltZXMgWSJdLFswLDMsIlxcdGF1X3tcXFNpZ21hIFNcXG90aW1lcyBYLFxcU2lnbWEgU31cXG90aW1lcyBZIiwyXSxbMyw0LCJcXGFscGhhIiwyXSxbMiw0LCJcXHRhdV97XFxTaWdtYSBTLFxcU2lnbWEgU31cXG90aW1lcyBYXFxvdGltZXMgWSJdXQ==
+%    \[\begin{tikzcd}
+%        {\Sigma S\otimes X\otimes\Sigma S\otimes Y} && {\Sigma S\otimes X\otimes\Sigma S\otimes Y} && {\Sigma S\otimes \Sigma S\otimes X\otimes Y} \\
+%        \\
+%        {\Sigma S\otimes \Sigma S\otimes X\otimes Y} &&&& {\Sigma S\otimes \Sigma S\otimes X\otimes Y}
+%        \arrow["\alpha", from=1-1, to=1-3]
+%        \arrow["{\Sigma S\otimes \tau_{X,\Sigma S}\otimes Y}", from=1-3, to=1-5]
+%        \arrow["{\tau_{\Sigma S\otimes X,\Sigma S}\otimes Y}"', from=1-1, to=3-1]
+%        \arrow["\alpha"', from=3-1, to=3-5]
+%        \arrow["{\tau_{\Sigma S,\Sigma S}\otimes X\otimes Y}", from=1-5, to=3-5]
+%    \end{tikzcd}\]
+%    The diagram commutes by coherence for a symmetric monoidal category. The desired result follows by applying axiom TT5 for a tensor triangulated category, which tells us that $\tau_{\Sigma S,\Sigma S}=-1$, and additivity of $-\otimes-$ and composition.
+%\end{proof}
 
 \begin{lemma}\label{semi_tensor_exact_sequence_remains_exact}
-    Let $A\xr aB\xr bC\xr cD$ be any sequence isomorphic to a distinguished triangle. Then given any $E$ in $\cC$, the sequence
+    Let $A\xr aB\xr bC\xr cD$ be any sequence isomorphic to a distinguished triangle. Then given any $E$ in $\cC$, the sequences
     \[E\otimes A\xr{E\otimes a}E\otimes B\xr{E\otimes b}E\otimes C\xr{E\otimes c}E\otimes D\]
-    is exact.
+    and
+    \[A\otimes E\xr{a\otimes E}B\otimes E\xr{b\otimes E}C\otimes E\xr{c\otimes E}D\otimes E\]
+    are exact.
 \end{lemma}
 \begin{proof}
-    Suppose we have a commutative diagram
+    Since $(a,b,c)$ is isomorphic to a distinguished triangle, there exists a commuting diagram in $\cSH$
     % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJBIl0sWzEsMSwiQiJdLFsyLDEsIkMiXSxbMywxLCJEIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiXFxhbHBoYSIsMl0sWzQsNSwiYSIsMl0sWzUsNiwiYiIsMl0sWzYsNywiYyIsMl0sWzEsNSwiXFxiZXRhIiwyXSxbMiw2LCJcXGdhbW1hIiwyXSxbMyw3LCJcXGRlbHRhIiwyXV0=
     \[\begin{tikzcd}
         X & Y & Z & {\Sigma X} \\
@@ -892,7 +894,7 @@ Usually, most tensor triangulated categories that arise in nature will satisfy a
         \arrow["\delta"', from=1-4, to=2-4]
     \end{tikzcd}\]
     where the top row is distinguished and the vertical arrows are isomorphisms. Then the following diagram commutes by functoriality of $-\otimes-$:
-    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJFXFxvdGltZXMgWCJdLFsyLDAsIkVcXG90aW1lcyBZIl0sWzQsMCwiRVxcb3RpbWVzIFoiXSxbNiwwLCJcXFNpZ21hKEVcXG90aW1lcyBYKSJdLFswLDIsIkVcXG90aW1lcyBBIl0sWzIsMiwiRVxcb3RpbWVzIEIiXSxbNCwyLCJFXFxvdGltZXMgQyJdLFs2LDIsIkVcXG90aW1lcyBEIl0sWzUsMSwiRVxcb3RpbWVzIFxcU2lnbWEgWCJdLFswLDEsIkVcXG90aW1lcyBmIl0sWzEsMiwiRVxcb3RpbWVzIGciXSxbMiwzLCJFXFxvdGltZXMnIGgiXSxbMCw0LCJFXFxvdGltZXMgXFxhbHBoYSIsMl0sWzQsNSwiRVxcb3RpbWVzIGEiLDJdLFs1LDYsIkVcXG90aW1lcyBiIiwyXSxbNiw3LCJFXFxvdGltZXMgYyIsMl0sWzEsNSwiRVxcb3RpbWVzIFxcYmV0YSIsMl0sWzIsNiwiRVxcb3RpbWVzIFxcZ2FtbWEiLDJdLFsyLDgsIkVcXG90aW1lcyBoIiwxXSxbMyw4LCJlJ197RSxYfSIsMV0sWzgsNywiRVxcb3RpbWVzIFxcZGVsdGEiLDFdLFszLDcsIihFXFxvdGltZXNcXGRlbHRhKVxcY2lyYyBlJ197RSxYfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJFXFxvdGltZXMgWCJdLFsyLDAsIkVcXG90aW1lcyBZIl0sWzQsMCwiRVxcb3RpbWVzIFoiXSxbNiwwLCJcXFNpZ21hKEVcXG90aW1lcyBYKSJdLFswLDIsIkVcXG90aW1lcyBBIl0sWzIsMiwiRVxcb3RpbWVzIEIiXSxbNCwyLCJFXFxvdGltZXMgQyJdLFs2LDIsIkVcXG90aW1lcyBEIl0sWzUsMSwiRVxcb3RpbWVzIFxcU2lnbWEgWCJdLFswLDEsIkVcXG90aW1lcyBmIl0sWzEsMiwiRVxcb3RpbWVzIGciXSxbMiwzLCJFXFxvdGltZXMnIGgiXSxbMCw0LCJFXFxvdGltZXMgXFxhbHBoYSIsMl0sWzQsNSwiRVxcb3RpbWVzIGEiLDJdLFs1LDYsIkVcXG90aW1lcyBiIiwyXSxbNiw3LCJFXFxvdGltZXMgYyIsMl0sWzEsNSwiRVxcb3RpbWVzIFxcYmV0YSIsMl0sWzIsNiwiRVxcb3RpbWVzIFxcZ2FtbWEiLDJdLFsyLDgsIkVcXG90aW1lcyBoIiwxXSxbOCwzLCJlJ197RSxYfSIsMV0sWzgsNywiRVxcb3RpbWVzIFxcZGVsdGEiLDFdLFszLDcsIihFXFxvdGltZXNcXGRlbHRhKVxcY2lyYyB7KGUnX3tFLFh9KX1eey0xfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
     \[\begin{tikzcd}[sep=scriptsize]
         {E\otimes X} && {E\otimes Y} && {E\otimes Z} && {\Sigma(E\otimes X)} \\
         &&&&& {E\otimes \Sigma X} \\
@@ -907,11 +909,40 @@ Usually, most tensor triangulated categories that arise in nature will satisfy a
         \arrow["{E\otimes \beta}"', from=1-3, to=3-3]
         \arrow["{E\otimes \gamma}"', from=1-5, to=3-5]
         \arrow["{E\otimes h}"{description}, from=1-5, to=2-6]
-        \arrow["{e'_{E,X}}"{description}, from=1-7, to=2-6]
+        \arrow["{e'_{E,X}}"{description}, from=2-6, to=1-7]
         \arrow["{E\otimes \delta}"{description}, from=2-6, to=3-7]
-        \arrow["{(E\otimes\delta)\circ e'_{E,X}}", dashed, from=1-7, to=3-7]
+        \arrow["{(E\otimes\delta)\circ {(e'_{E,X})}^{-1}}", dashed, from=1-7, to=3-7]
     \end{tikzcd}\]
-    The top triangle is distinguished by axiom TT3 for a tensor triangulated category, thus exact by \autoref{distinguished_tri_is_exact}, so that the bottom triangle is also exact since the vertical arrows are isomorphisms and each square commutes.
+    The top triangle is distinguished by axiom TT3 for a tensor triangulated category, thus exact by \autoref{distinguished_tri_is_exact}, so that the bottom triangle is also exact since the vertical arrows are isomorphisms and each square commutes. Similarly, the following diagram also commutes by functoriality of $-\otimes-$:
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJYXFxvdGltZXMgRSJdLFsyLDAsIllcXG90aW1lcyBFIl0sWzQsMCwiWlxcb3RpbWVzIEUiXSxbNiwwLCJcXFNpZ21hKFhcXG90aW1lcyBFKSJdLFswLDIsIkFcXG90aW1lcyBFIl0sWzIsMiwiQlxcb3RpbWVzIEUiXSxbNCwyLCJDXFxvdGltZXMgRSJdLFs2LDIsIkRcXG90aW1lcyBFIl0sWzUsMSwiXFxTaWdtYSBYXFxvdGltZXMgRSJdLFswLDEsImZcXG90aW1lcyBFIl0sWzEsMiwiZ1xcb3RpbWVzIEUiXSxbMiwzLCJoXFxvdGltZXMnRSJdLFswLDQsIlxcYWxwaGFcXG90aW1lcyBFIiwyXSxbNCw1LCJhXFxvdGltZXMgRSIsMl0sWzUsNiwiYlxcb3RpbWVzIEUiLDJdLFs2LDcsImNcXG90aW1lcyBFIiwyXSxbMSw1LCJcXGJldGFcXG90aW1lcyBFIiwyXSxbMiw2LCJcXGdhbW1hXFxvdGltZXMgRSIsMl0sWzMsNywiKFxcZGVsdGFcXG90aW1lcyBFKVxcY2lyYyBlX3tYLEV9XnstMX0iXSxbMiw4LCJoXFxvdGltZXMgRSIsMV0sWzgsMywiZV97WCxFfSIsMV0sWzgsNywiXFxkZWx0YVxcb3RpbWVzIEUiLDFdXQ==
+    \[\begin{tikzcd}[sep=scriptsize]
+        {X\otimes E} && {Y\otimes E} && {Z\otimes E} && {\Sigma(X\otimes E)} \\
+        &&&&& {\Sigma X\otimes E} \\
+        {A\otimes E} && {B\otimes E} && {C\otimes E} && {D\otimes E}
+        \arrow["{f\otimes E}", from=1-1, to=1-3]
+        \arrow["{g\otimes E}", from=1-3, to=1-5]
+        \arrow["{h\otimes'E}", from=1-5, to=1-7]
+        \arrow["{\alpha\otimes E}"', from=1-1, to=3-1]
+        \arrow["{a\otimes E}"', from=3-1, to=3-3]
+        \arrow["{b\otimes E}"', from=3-3, to=3-5]
+        \arrow["{c\otimes E}"', from=3-5, to=3-7]
+        \arrow["{\beta\otimes E}"', from=1-3, to=3-3]
+        \arrow["{\gamma\otimes E}"', from=1-5, to=3-5]
+        \arrow["{(\delta\otimes E)\circ e_{X,E}^{-1}}", from=1-7, to=3-7]
+        \arrow["{h\otimes E}"{description}, from=1-5, to=2-6]
+        \arrow["{e_{X,E}}"{description}, from=2-6, to=1-7]
+        \arrow["{\delta\otimes E}"{description}, from=2-6, to=3-7]
+    \end{tikzcd}\]
+    The top row is distinguished by axiom TT3 for a tensor triangulated category, thus exact by \autoref{distinguished_tri_is_exact}, so that the bottom triangle is also exact since the vertical arrows are isomorphisms and each square commutes.
+\end{proof}
+
+\begin{proposition}\label{LES_remains_exact_after_tensor}
+    Suppose we have a distinguished triangle
+    \[X\to Y\to Z\to\Sigma X\]
+    in $\cC$. Then given any object $E$ in $\cC$, the long exact sequence given in \autoref{dist_tri_LES} remains exact after applying $E\otimes-$ or $-\otimes E$.
+\end{proposition}
+\begin{proof}
+    Recall that in the proof of \autoref{dist_tri_LES} we showed that the sequence was exact by showing that any two consecutive maps were isomorphic to a part of a distinguished triangle. Then the desired result follows from \autoref{semi_tensor_exact_sequence_remains_exact}.
 \end{proof}
 
 \begin{definition}
@@ -927,15 +958,6 @@ From now on, we fix an adjointly tensor triangulated category $(\cC,\otimes,S,\O
     \[o_{X,Y}':X\otimes\Omega Y\xr{\tau_{X,\Omega Y}}\Omega Y\otimes X\xr{o_{Y,X}}\Omega(Y\otimes X)\xr{\Omega\tau_{Y,X}}\Omega(X\otimes Y).\]
     These are both clearly natural by naturality of $\vare$, $e$, $\eta$, and $\tau$.
 \end{definition}
-
-\begin{proposition}\label{LES_remains_exact_after_tensor}
-    Suppose we have a distinguished triangle
-    \[X\to Y\to Z\to\Sigma X\]
-    in $\cC$. Then given any object $E$ in $\cC$, the long exact sequence given in \autoref{dist_tri_LES} remains exact after applying $E\otimes-$.
-\end{proposition}
-\begin{proof}
-    Recall that in the proof of \autoref{dist_tri_LES} we showed that the sequence was exact by showing that any two consecutive maps were isomorphic to a part of a distinguished triangle. Then the desired result follows from \autoref{semi_tensor_exact_sequence_remains_exact}.
-\end{proof}
 
 %Note that given a tensor triangulated category, we have the following characterization of the shift functor:
 %

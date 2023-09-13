@@ -128,7 +128,7 @@ Given some other object $E$, we can define the $A$-graded abelian groups $E_*(X)
 \[E_a(X):=\pi_a(E\otimes X)=[S^a,E\otimes X]\qquad\text{and}\qquad E^a(X):=[X,S^a\otimes E].\]
 We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$}, or just $E$-homology, and we refer to $E^*(-)$ as the \emph{cohomology theory represented by $E$}, or just $E$-cohomology. 
 
-\subsection{The long exact sequence associated to a distinguished triangle}
+\subsection{The homotopy long exact sequence}
 
 \begin{proposition}\label{X,Y*_LES}
 	Suppose we are given a distinguished triangle
@@ -267,7 +267,7 @@ We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$
 \end{proof}
 
 \begin{remark}\label{X,Y*_LES_compact}
-	Expressed more compactly, the above proposition says that for each object $W$ and distinguished triangle
+	Expressed more compactly, the above proposition says that each object $W$ and distinguished triangle
 	\[X\xr fY\xr gZ\xr h\Sigma X\]
 	in $\cSH$ gives rise to the following diagram of $A$-graded abelian groups
 	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJ7W1csWF19XyoiXSxbMSwwLCJ7W1csWV19XyoiXSxbMSwxLCJ7W1csWl19XyoiXSxbMCwxLCJmXyoiXSxbMSwyLCJnXyoiXSxbMiwwLCJcXHBhcnRpYWwiXV0=
@@ -284,7 +284,7 @@ We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$
 
 \subsection{Cellular objects in \texorpdfstring{$\cSH$}{SH}}
 
-One very important class of objects in $\cSH$ are the \emph{cellular} objects. Intuitively, these are the objects that can be built out of spheres via taking coproducts and (co)fibers.
+One very important class of objects in $\cSH$ are the \emph{cellular} objects. Intuitively, these are the objects that can be built out of the $S^a$'s via taking coproducts and (co)fibers.
 
 \begin{definition}\label{cellular}
 	Define the class of \emph{cellular} objects in $\cSH$ to be the smallest class of objects such that:
@@ -373,7 +373,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 	\[X\xr fY\xr gC_f\xr h\Sigma X.\]
 	First of all, note that by definition since $X$ and $Y$ are cellular, so is $C_f$. Now, we claim $\pi_*(C_f)=0$. Indeed, given $a\in A$, by \autoref{dist_tri_LES} we have the following exact sequence:
 	\[[S^a,X]\xr{f_*}[S^a,Y]\xr{g_*}[S^a,C_f]\xr{h_*}[S^a,\Sigma X]\xr{-(\Sigma f)_*}[S^a,\Sigma Y],\]
-	where the first arrow is an isomorphism, per our assumption that $f_*$ is an isomorphism. To see the last arrow is an isomorphism, consider the following diagram:
+	where the first arrow is an isomorphism, per our assumption that $f$ is an isomorphism. Now consider the following diagram:
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJbU15hLFxcU2lnbWEgWF0iXSxbMiwwLCJbU15hLFxcU2lnbWEgWV0iXSxbMCwxLCJbU15hLFNee1xcMX1cXG90aW1lcyBYXSJdLFsyLDEsIltTXmEsU15cXDFcXG90aW1lcyBZXSJdLFswLDIsIltTXnstXFwxfVxcb3RpbWVzIFNee2F9LFhdIl0sWzIsMiwiW1Neey1cXDF9XFxvdGltZXMgU157YX0sWV0iXSxbMCwzLCJbU157YS1cXDF9LFhdIl0sWzIsMywiW1Nee2EtXFwxfSxZXSJdLFswLDEsIihcXFNpZ21hIGYpXyoiXSxbMCwyLCIoXFxudV9YKV8qIiwyXSxbMSwzLCIoXFxudV9ZKV8qIl0sWzIsMywiKFNeXFwxXFxvdGltZXMgZilfKiJdLFs0LDUsImZfKiJdLFsyLDQsIlxcY29uZyIsMl0sWzMsNSwiXFxjb25nIl0sWzQsNiwieyhcXHBoaV97LVxcMSxhfSl9KiIsMl0sWzYsNywiZl8qIl0sWzUsNywieyhcXHBoaV97LVxcMSxhfSl9KiJdXQ==
 	\[\begin{tikzcd}
 		{[S^a,\Sigma X]} && {[S^a,\Sigma Y]} \\
@@ -391,7 +391,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 		\arrow["{f_*}", from=4-1, to=4-3]
 		\arrow["{{(\phi_{-\1,a})}*}", from=3-3, to=4-3]
 	\end{tikzcd}\]
-	where the middle vertical arrows are the adjunction natural isomorphisms specified by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. The bottom arrow is an isomorphism per our assumptions, so the top arrow is likewise an isomorphism, as desired. Thus $\imm h_*=\ker -(\Sigma f)_*=0$, and $\ker g_*=\imm f_*=[S^a,Y]$, so that $\ker h_*=\imm g_*=0$. It is only possible that $\ker h_*=\imm h_*=0$ if $[S^a,C_f]=0$. Thus, we have shown $\pi_*(C_f)=0$, and $C_f$ is cellular, so by \autoref{cellular_pi*=0_implies_contractible} there is an isomorphism $C_f\cong 0$. Now consider the following commuting diagram:
+	where the middle vertical arrows are the adjunction natural isomorphisms specified by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. The bottom arrow is an isomorphism per our assumptions, so the top arrow is likewise an isomorphism, as desired. Hence $-(\Sigma f)_*$ is an isomorphism, so that $\imm h_*=\ker(-(\Sigma f)_*)=0$. Yet we also have $\ker g_*=\imm f_*=[S^a,Y]$, so that $\ker h_*=\imm g_*=0$. It is only possible that $\ker h_*=\imm h_*=0$ if $[S^a,C_f]=0$. Thus, we have shown $\pi_*(C_f)=0$, and $C_f$ is cellular, so by \autoref{cellular_pi*=0_implies_contractible} there is an isomorphism $C_f\cong 0$. Now consider the following diagram:
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDEsIlkiXSxbMSwwLCJZICJdLFsyLDEsIjAiXSxbMiwwLCJDX2YiXSxbMywwLCJcXFNpZ21hIFgiXSxbMywxLCJcXFNpZ21hIFkiXSxbMCwxLCJmIl0sWzEsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCJmIl0sWzMsMiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw0XSxbMyw1XSxbNSw2XSxbNiw3LCJcXFNpZ21hIGYiXSxbNCw3XSxbNSw0LCJcXGNvbmciXV0=
 	\[\begin{tikzcd}
 		X & {Y } & {C_f} & {\Sigma X} \\
@@ -407,7 +407,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 		\arrow[from=2-3, to=2-4]
 		\arrow["\cong", from=1-3, to=2-3]
 	\end{tikzcd}\]
-	The top row is distinguished by assumption. The bottom row is distinguished by axiom TR2. Then since the middle two vertical arrows are isomorphisms, by \autoref{2-of-3-dist_tri-lemma}, $f$ is an isomorphism as well, as desired.
+	The middle square commutes since $0$ is terminal, while the right square commutes since $C_f\cong0$ is initial. The top row is distinguished by assumption. The bottom row is distinguished by axiom TR2. Then since the middle two vertical arrows are isomorphisms, by \autoref{2-of-3-dist_tri-lemma}, $f$ is an isomorphism as well, as desired.
 \end{proof}
 
 \begin{lemma}\label{cellular_idempotent_splits_cellularly}
@@ -594,67 +594,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 
 \subsection{Monoid objects in \texorpdfstring{$\cSH$}{SH}}\label{monoid_objects_subsection}
 
-Many of the proofs in this section are quite technical and not very euclidiating, so we direct the reader to the appendix for most proofs.
-To start with, we recall the following definitions:
-
-\begin{definition}\label{monoid_object}
-    Let $(\cC,\otimes,S)$ be a symmetric monoidal category with left unitor, right unitor, associator, and symmetry isomorphisms $\lambda$, $\rho$, $\alpha$, and $\tau$, respectively. A \emph{monoid object} $(E,\mu,e)$ is an object $E$ in $\cC$ along with a multiplication morphism $\mu:E\otimes E\to E$ and a unit map $e:S\to E$ such that the following diagrams commute:
-	% https://q.uiver.app/#q=WzAsOSxbMSwwLCJFXFxvdGltZXMgRSJdLFsxLDEsIkUiXSxbMiwwLCJTXFxvdGltZXMgRSJdLFswLDAsIkVcXG90aW1lcyBTIl0sWzMsMCwiKEVcXG90aW1lcyBFKVxcb3RpbWVzIEUiXSxbMywxLCJFXFxvdGltZXMoRVxcb3RpbWVzIEUpIl0sWzQsMSwiRVxcb3RpbWVzIEUiXSxbNSwxLCJFIl0sWzUsMCwiRVxcb3RpbWVzIEUiXSxbMCwxLCJcXG11Il0sWzIsMCwiZVxcb3RpbWVzIEUiLDJdLFszLDAsIkVcXG90aW1lcyBlIl0sWzIsMSwiXFxsYW1iZGFfRSJdLFszLDEsIlxccmhvX0UiLDJdLFs0LDUsIlxcYWxwaGEiLDJdLFs1LDYsIkVcXG90aW1lc1xcbXUiXSxbNiw3LCJcXG11Il0sWzQsOCwiXFxtdVxcb3RpbWVzIEUiXSxbOCw3LCJcXG11Il1d
-	\[\begin{tikzcd}
-		{E\otimes S} & {E\otimes E} & {S\otimes E} & {(E\otimes E)\otimes E} && {E\otimes E} \\
-		& E && {E\otimes(E\otimes E)} & {E\otimes E} & E
-		\arrow["\mu", from=1-2, to=2-2]
-		\arrow["{e\otimes E}"', from=1-3, to=1-2]
-		\arrow["{E\otimes e}", from=1-1, to=1-2]
-		\arrow["{\lambda_E}", from=1-3, to=2-2]
-		\arrow["{\rho_E}"', from=1-1, to=2-2]
-		\arrow["\alpha"', from=1-4, to=2-4]
-		\arrow["E\otimes\mu", from=2-4, to=2-5]
-		\arrow["\mu", from=2-5, to=2-6]
-		\arrow["{\mu\otimes E}", from=1-4, to=1-6]
-		\arrow["\mu", from=1-6, to=2-6]
-	\end{tikzcd}\]
-    The first diagram expresses unitality, while the second expressed associativity. If in addition the following diagram commutes, 
-    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXFxvdGltZXMgRSJdLFsyLDAsIkVcXG90aW1lcyBFIl0sWzEsMSwiRSJdLFswLDEsIlxcdGF1Il0sWzEsMiwiXFxtdSJdLFswLDIsIlxcbXUiLDJdXQ==
-    \[\begin{tikzcd}
-        {E\otimes E} && {E\otimes E} \\
-        & E
-        \arrow["\tau", from=1-1, to=1-3]
-        \arrow["\mu", from=1-3, to=2-2]
-        \arrow["\mu"', from=1-1, to=2-2]
-    \end{tikzcd}\]
-    then we say $(E,\mu,e)$ is a \emph{commutative} monoid object.
-\end{definition}
-
-\begin{definition}\label{Mon_C,CMon_C}
-	Given two monoid objects $(E_1,\mu_1,e_1)$ and $(E_2,\mu_2,e_2)$ in a symmetric monoidal category $(\cC,\otimes,S)$, a \emph{monoid homomorphism} from $E_1$ to $E_2$ is a morphism $f:E_1\to E_2$ in $\cC$ such that the following diagrams commute:
-	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJFXzFcXG90aW1lcyBFXzEiXSxbMSwwLCJFXzJcXG90aW1lcyBFXzIiXSxbMSwxLCJFXzIiXSxbMCwxLCJFXzEiXSxbMywwLCJTIl0sWzIsMSwiRV8xIl0sWzQsMSwiRV8yIl0sWzAsMSwiZlxcb3RpbWVzIGYiXSxbMSwyLCJcXG11XzIiXSxbMCwzLCJcXG11XzEiLDJdLFszLDIsImYiXSxbNCw1LCJlXzEiLDJdLFs1LDYsImYiXSxbNCw2LCJlXzIiXV0=
-	\[\begin{tikzcd}
-		{E_1\otimes E_1} & {E_2\otimes E_2} && S \\
-		{E_1} & {E_2} & {E_1} && {E_2}
-		\arrow["{f\otimes f}", from=1-1, to=1-2]
-		\arrow["{\mu_2}", from=1-2, to=2-2]
-		\arrow["{\mu_1}"', from=1-1, to=2-1]
-		\arrow["f", from=2-1, to=2-2]
-		\arrow["{e_1}"', from=1-4, to=2-3]
-		\arrow["f", from=2-3, to=2-5]
-		\arrow["{e_2}", from=1-4, to=2-5]
-	\end{tikzcd}\]
-	It is straightforward to show that $\id_{E_1}$ is a homomorphism of monoid objects from $E_1$ to itself, and that the composition of monoid homomorphisms is still a monoid homomorphism. Thus, we have categories $\Mon_\cC$ and $\CMon_\cC$ of monoid objects and commutative monoid objects, respectively, with monoid homomorphisms between them.
-\end{definition}
-
-\begin{proposition}\label{product_of_monoids_is_monoid}
-	Given two monoid objects $(E_1,\mu_1,e_2)$ and $(E_2,\mu_2,e_2)$ in a symmetric monoidal category $(\cC,\otimes,S)$, their tensor product $E_1\otimes E_2$ canonically becomes a monoid object in $\cC$ with unit map
-	\[e:S\xr\cong S\otimes S\xr{e_1\otimes e_2}E_1\otimes E_2\]
-	and multiplication map
-	\[\mu:E_1\otimes E_2\otimes E_1\otimes E_2\xr{E_1\otimes\tau\otimes E_2}E_1\otimes E_1\otimes E_2\otimes E_2\xr{\mu_1\otimes\mu_2}E_1\otimes E_2\]
-	(where here we are suppressing the associators from the notation). If in addition $(E_1,\mu_1,e_1)$ and $(E_2,\mu_2,e_2)$ are \emph{commutative} monoid objects, then $(E_1\otimes E_2,\mu,e)$ is as well.
-\end{proposition}
-\begin{proof}
-	Due to the size of the diagrams involved, we leave this as an exercise to the reader. It is entirely straightforward, especially provided one works in a symmetric strict monoidal category.
-\end{proof}
-
-Monoid objects in $\cSH$ will be the focus of the rest of this paper. The most important example of a monoid object in $\cSH$ is the unit $S$, which has multiplication map $\phi_{0,0}^{-1}=\lambda_S=\rho_S:S\otimes S\to S$ and unit map $\id_S:S\to S$.
+Many of the proofs in this section are quite technical and not very euclidiating, so we direct the reader to the appendix for most proofs. Monoid objects in $\cSH$ will be the focus of the rest of this paper. For a review of monoid objects in a symmetric monoidal category, see \Cref{monoid_objects_subsection_appendix}. The most important example of a monoid object in $\cSH$ is the unit $S$, which has multiplication map $\phi_{0,0}^{-1}=\lambda_S=\rho_S:S\otimes S\to S$ and unit map $\id_S:S\to S$.
 
 \begin{proposition}[\autoref{pi_*E_is_ring_for_E_monoid_appendix}]\label{pi_*E_is_ring_for_E_monoid_main}
 	The assignment $(E,\mu,e)\mapsto\pi_*(E)$ is a functor $\pi_*$ from the category $\Mon_\cSH$ of monoid objects in $\cSH$ (\autoref{Mon_C,CMon_C}) to the category of $A$-graded rings. In particular, given a monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is canonically a ring with product $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
@@ -701,13 +641,13 @@ A natural question that arises is: In what sense is $\pi_*(E)$ a ``graded commut
 
 The above proposition motivates the following definition:
 
-\begin{definition}[\autoref{R-GrCAlg_defn}]
-	A \emph{$A$-graded $\pi_*(S)$-commutative ring} is a pair $(R,\varphi)$, where $R$ is an $A$-graded ring and $\varphi:\pi_*(S)\to R$ is an $A$-graded ring homomorphism such that for all homogeneous $x,y\in R$,
+\begin{definition}[\autoref{R-GrCAlg_defn}]\label{pi*S-commutative_ring}
+	An \emph{$A$-graded $\pi_*(S)$-commutative ring} is a pair $(R,\varphi)$, where $R$ is an $A$-graded ring and $\varphi:\pi_*(S)\to R$ is an $A$-graded ring homomorphism such that for all homogeneous $x,y\in R$,
 	\[x\cdot y=y\cdot x\cdot\varphi(\theta_{|x|,|y|}).\]
 	A homomorphism $(R,\varphi)\to(R',\varphi')$ of $A$-graded $\pi_*(S)$-commutative rings is an $A$-graded ring homomorphism $f:R\to R'$ satisfying $f\circ\varphi=\varphi'$. We write $\GrCAlg{\pi_*(S)}$ to denote the category of $A$-graded $\pi_*(S)$-commutative rings and homomorphisms between them.
 \end{definition}
 
-We should think of objects in $\GrCAlg{\pi_*(S)}$ as ``$A$-graded (anti)commutative rings''. As one would expect, every commutative monoid object $(E,\mu,e)$ in $\cSH$ gives rise to an $A$-graded $\pi_*(S)$-commutative ring $\pi_*(E)$:
+We should think of objects in $\GrCAlg{\pi_*(S)}$ as ``$A$-graded (anti)commutative rings''. A useful fact is that this category has binary coproducts and pushouts (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}). As one would expect, every commutative monoid object $(E,\mu,e)$ in $\cSH$ gives rise to an $A$-graded $\pi_*(S)$-commutative ring $\pi_*(E)$:
 
 \begin{proposition}[\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_appendix}]\label{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}
     The assignment $(E,\mu,e)\mapsto(\pi_*(E),\pi_*(e))$ yields a functor 
@@ -716,7 +656,7 @@ We should think of objects in $\GrCAlg{\pi_*(S)}$ as ``$A$-graded (anti)commutat
 \end{proposition}
 
 \begin{corollary}\label{pi_*(E)_and_E_*(E)_are_pi_*(S)-commutative_rings}
-    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}, $\pi_*(E)$ and $E_*(E)=\pi_*(E\otimes E)$ are canonically $A$-graded $\pi_*(S)$-commutative rings (\autoref{R-GrCAlg_defn}), since $E\otimes E$ is a commutative monoid object in $\cSH$ by \autoref{product_of_monoids_is_monoid}.
+    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}, $\pi_*(E)$ and $E_*(E)=\pi_*(E\otimes E)$ are canonically $A$-graded $\pi_*(S)$-commutative rings (\autoref{pi*S-commutative_ring}), since $E\otimes E$ is a commutative monoid object in $\cSH$ by \autoref{product_of_monoids_is_monoid}.
 \end{corollary}
 
 
