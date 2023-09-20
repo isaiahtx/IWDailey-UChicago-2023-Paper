@@ -1,41 +1,50 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-In this section, we aim to provide a nicer characterization of the $E_1$ page. Here we will often work in a symmetric strict monoidal category by the coherence theorem for symmetric monoidal categories, and we will do so without comment. Recall that by how the Adams spectral sequence for the computation of $[X,Y]_*$ is constructed, that the $E_1$ page is the $\bZ\times A$-graded abelian group given by
+In this section, we aim to provide a nicer characterization of the $E_1$ page. Here we will often work in a symmetric strict monoidal category by the coherence theorem for symmetric monoidal categories, and we will do so without comment. This section closely follows \cite[Section 2]{nlab:introduction_to_the_adams_spectral_sequence}, where here we have made changes to fit our more general setting. Furthermore, many of the proofs in this section are long, technical, and not very enlightening, so we defer most of the details to the appendix.
+
+Recall that by how the Adams spectral sequence for the computation of $[X,Y]_*$ is constructed, that the $E_1$ page is the $\bZ\times A$-graded abelian group given by
 \[E_1^{s,a}(X,Y)=[X,W_s]_a=[S^a\otimes X,{\ol E}^s\otimes Y],\]
-where $\ol E$ is the fiber (\autoref{fiber}) of the unit map $e:S\to E$.  In this section, we will show that under suitable conditions, these groups may alternatively be computed as hom-groups of morphisms of comodules over the dual $E$-Steenrod algebra (to be defined).
+where $\ol E$ is the fiber (\autoref{fiber}) of the unit map $e:S\to E$. In this section, we will show that under suitable conditions, these groups may alternatively be computed as hom-groups of morphisms of comodules over the dual $E$-Steenrod algebra.
 
-\subsection{Flat monoid objects in \texorpdfstring{$\cSH$}{SH}}
+\subsection{A K\"unneth isomorphism in \texorpdfstring{$\cSH$}{SH}}
 
-\begin{definition}\label{flat}
-    Call a monoid object $(E,\mu,e)$ in $\cSH$ (\autoref{monoid_object}) \emph{flat} if the canonical right $\pi_*(E)$-module structure on $E_*(E)$ (\autoref{module_main}) is that of a flat module.
-\end{definition}
+A map that will be of utmost importance for us will be the following \emph{K\"unneth map}, which relates the tensor product of the $Z$-homology of $E$ with the $E$-homology of $W$ to $\pi_*(Z\otimes E\otimes W)$:
 
 \begin{proposition}[\autoref{Kunneth_map}]\label{Kunneth_map_construction_main}
-    Let $(E,\mu,e)$ be a monoid object (\autoref{monoid_object}) and $Z$ and $W$ be objects in $\cSH$. Then there is a homomorphism of abelian groups
-    \[\Phi_{Z,W}:\pi_*(Z\otimes E)\otimes_{\pi_*(E)}\pi_*(E\otimes W)\to\pi_*(Z\otimes E\otimes W)\]
-    which given homogeneous elements $x:S^a\to Z\otimes E$ in $\pi_*(Z\otimes E)$  and $y:S^b\to E\otimes W$ in $\pi_*(E\otimes W)$, sends the homogeneous pure tensor $x\otimes y$ in $\pi_*(Z\otimes E)\otimes_{\pi_*(E)}\pi_*(E\otimes W)$ to the composition
-    \[S^{a+b}\xr{\phi_{a,b}}S^a\otimes S^b\xr{x\otimes y}Z\otimes E\otimes E\otimes W\xr{Z\otimes\mu\otimes W}Z\otimes E\otimes W\]
-    (where here we are considering the canonical $A$-graded right $\pi_*(E)$-module structure on $\pi_*(Z\otimes E)=Z_*(E)$ and the canonical left $A$-graded $\pi_*(E)$-module structure on $\pi_*(E\otimes W)=E_*(W)$ given in \autoref{module_main}, so that $\pi_*(Z\otimes E)\otimes_{\pi_*(E)}\pi_*(E\otimes W)$ is a well-defined $A$-graded abelian group by \autoref{tensor_of_A_graded_is_A_graded}). Furthermore, this homomorphism is natural in both $Z$ and $W$.
+    Let $(E,\mu,e)$ be a monoid object and $Z$ and $W$ be objects in $\cSH$. Then there is a homomorphism of abelian groups
+    \[\Phi_{Z,W}:Z_*(E)\otimes_{\pi_*(E)}E_*(W)\to\pi_*(Z\otimes E\otimes W)\]
+    which given homogeneous elements $x:S^a\to Z\otimes E$ in $Z_*(E)=\pi_*(Z\otimes E)$  and $y:S^b\to E\otimes W$ in $E_*(W)=\pi_*(E\otimes W)$, sends the homogeneous pure tensor $x\otimes y$ in $Z_*(E)\otimes_{\pi_*(E)}E_*(W)$ to the composition
+    \[\Phi_{Z,W}(x\otimes y):S^{a+b}\xr{\phi_{a,b}}S^a\otimes S^b\xr{x\otimes y}Z\otimes E\otimes E\otimes W\xr{Z\otimes\mu\otimes W}Z\otimes E\otimes W\]
+    (where here we are considering the canonical $A$-graded right $\pi_*(E)$-module structure on $Z_*(E)$ and the canonical left $A$-graded $\pi_*(E)$-module structure on $E_*(W)$ given in \autoref{module_main}, so that $Z_*(E)\otimes_{\pi_*(E)}E_*(W)$ is a well-defined $A$-graded abelian group by \autoref{tensor_of_A_graded_is_A_graded}). Furthermore, this homomorphism is natural in both $Z$ and $W$.
 \end{proposition}
+
+Under suitable conditions, it will turn out that the K\"unneth map is not just a homomorphism of abelian groups, but an isomorphism. One important condition required for this to hold is a notion of \emph{flatness}:
+
+\begin{definition}\label{flat}
+    Call a monoid object $(E,\mu,e)$ in $\cSH$ (\autoref{monoid_object}) \emph{flat} if the canonical right $\pi_*(E)$-module structure on $E_*(E)$ (\autoref{module_main}) is that of a flat module.\footnote{Recall that given a ring $R$, a right $R$-module $M$ is \emph{flat} if the functor $M\otimes_R-:R\text-\Mod\to\Ab$ preserves short exact sequences. Similarly, a left $R$-module $M$ is flat if the functor $-\otimes_RM:\Mod\text-R\to\Ab$ preserves short exact sequences.}
+\end{definition}
 
 The key consequence of the assumption that $E$ is flat in the sense of \autoref{flat} is that $\Phi_{E,W}$ is an isomorphism for cellular objects $W$ in $\cSH$:
 
 \begin{proposition}[\autoref{Kunneth_iso_for_cellular_objects}]\label{Kunneth_map_iso_main}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then if either:\begin{enumerate}
-		\item $\pi_*(Z\otimes E)=Z_*(E)$ is a flat right $\pi_*(E)$-module (via \autoref{module}) and $W$ is cellular (\autoref{cellular}), or
-		\item $\pi_*(E\otimes W)=E_*(W)$ is a flat left $\pi_*(E)$-module (via \autoref{module}) and $Z$ is cellular (\autoref{cellular}),
+	Let $(E,\mu,e)$ be a monoid object and $Z$ and $W$ objects in $\cSH$. Then if either:\begin{enumerate}
+		\item $Z_*(E)$ is a flat right $\pi_*(E)$-module (via \autoref{module_main}) and $W$ is cellular (\autoref{cellular}), or
+		\item $E_*(W)$ is a flat left $\pi_*(E)$-module (via \autoref{module_main}) and $Z$ is cellular (\autoref{cellular}),
 	\end{enumerate} 
 	then the natural homomorphism
-	\[\Phi_{Z,W}:\pi_*(Z\otimes E)\otimes_{\pi_*(E)}\pi_*(E\otimes W)\to \pi_*(Z\otimes E\otimes W)\]
+	\[\Phi_{Z,W}:Z_*(E)\otimes_{\pi_*(E)}E_*(W)\to \pi_*(Z\otimes E\otimes W)\]
 	given in \autoref{Kunneth_map_construction_main} is an isomorphism of abelian groups.
 \end{proposition}
+\begin{proof}[Proof sketch]
+    We only outline the details here, details of the full proof are given in \Cref{subsection:Kunneth_appendix}. We outline the argument when $Z_*(E)$ is a flat right $\pi_*(E)$-module, as the other case is entirely analagous. In order to show $\Phi_{Z,W}$ is an isomorphism when $W$ is cellular, by the definition of cellularity (\autoref{cellular}), it suffices to show the collection $\cE$ of objects $W$ in $\cSH$ for which $\Phi_{Z,W}$ is an isomorphism contains each $S^a$, is closed under two-of-three for distinguished triangles, and is closed under taking arbitrary coproducts. Showing that $\Phi_{Z,S^a}$ is an isomorphism and that $\cE$ is closed under taking arbitrary coproducts is entirely straightforward to show. To see $\cE$ is closed under two-of-three for distinguished triangles, a subtle argument is needed using the $E$-homology long exact sequence associated to a distinguished triangle, flatness of $Z_*(E)$, naturality of $\Phi_{Z,-}$, and the five lemma. 
+\end{proof}
 
-\subsection{The dual \texorpdfstring{$E$}{E}-Steenrod algebra}
+\subsection{The dual \texorpdfstring{$E$}{E}-Steenrod algebra}\label{subsection:E-Steenrod_algebra}
 
 In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\mu,e)$ in $\cSH$, that $E_*(E)$ is canonically an $A$-graded bimodule over the ring $\pi_*(E)$. In this subsection, we will outline some additional structure carried by $E_*(E)$. In particular, we will show that if $(E,\mu,e)$ is a flat (\autoref{flat}) commutative monoid object, then the pair $(E_*(E),\pi_*(E))$ is canonically an $A$-graded commutative Hopf algebroid over the stable homotopy ring $\pi_*(S)$ (\autoref{hopf_algebroid_defn}), called the \emph{dual $E$-Steenrod algebra}. To start with, we outline some structure maps relating $E_*(E)$ and $\pi_*(E)$.
 
-\begin{proposition}\label{structure_maps_are_monoid_homos_main}
+\begin{proposition}[\autoref{structure_maps_are_monoid_homos_appendix}]\label{structure_maps_are_monoid_homos_main}
     Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the maps\begin{enumerate}
         \item $E\xr\cong E\otimes S\xr{E\otimes e}E\otimes E$,
         \item $E\xr\cong S\otimes E\xr{e\otimes E}E\otimes E$,
@@ -48,7 +57,7 @@ In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\m
         \item $\eta_L:\pi_*(E)\to E_*(E)$,
         \item $\eta_R:\pi_*(E)\to E_*(E)$,
         \item $h:E_*(E)\to E_*(E\otimes E)$,
-        \item $\vare:E_*(E)\to \pi_*(E)$, and
+        \item $\epsilon:E_*(E)\to \pi_*(E)$, and
         \item $c:E_*(E)\to E_*(E)$.
     \end{enumerate}
 \end{proposition}
@@ -56,6 +65,8 @@ In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\m
 \begin{lemma}[\autoref{eta_L_left_module/eta_R_right_module_coincide_appendix}]\label{eta_L_left_module/eta_R_right_module_coincide}
     Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the left (resp.\ right) $\pi_*(E)$-module structure induced on $E_*(E)$ by the ring homomorphism $\eta_L$ (resp.\ $\eta_R$)\footnote{Recall that given a homomorphism of rings $\varphi:R\to S$, that $S$ canonically inherits the structure of a left (resp.\ right) $R$-module by defining $r\cdot s:=\varphi(r)s$ (resp.\ $s\cdot r:=s\varphi(r)$).} coincides with the canonical left (resp.\ right) $\pi_*(E)$-module structure on $E_*(E)$ given in \autoref{module_main}.
 \end{lemma}
+
+This lemma tells us that we may view $E_*(E)\otimes_{\pi_*(E)}E_*(E)$ as not just an $A$-graded abelian group or $\pi_*(E)$-bimodule, but as an $A$-graded $\pi_*(S)$-commutative ring:
 
 \begin{corollary}[\autoref{E*E_ox_E*E_is_A-graded_pi*S-commutative_ring_appendix}]\label{E*E_ox_E*E_is_A-graded_pi*S-commutative_ring}
     Given a %flat (\autoref{flat}) and cellular (\autoref{cellular}) 
@@ -74,11 +85,15 @@ In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\m
     \end{tikzcd}\]
 \end{corollary}
 
+Furthermore, with respect to this ring structure $\Phi_{E,E}$ is a homomorphism of rings:
+
 \begin{lemma}[\autoref{Phi_E_is_homo_of_A-graded_pi_*S-commutative_rings_appendix}]\label{Phi_E_is_homo_of_A-graded_pi_*S-commutative_rings_main}
     Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the homomorphism
     \[\Phi_{E,E}:E_*(E)\otimes_{\pi_*(E)}E_*(E)\to E_*(E\otimes E)\]
-    constructed in \autoref{Kunneth_map_construction_main} is a homomorphism of $A$-graded $\pi_*(S)$-commutative rings, i.e.\ a morphism in $\GrCAlg{\pi_*(S)}$, where here $E_*(E)\otimes_{\pi_*(E)}E_*(E)$ is considered as an object in $\GrCAlg{\pi_*(S)}$ by \autoref{E*E_ox_E*E_is_A-graded_pi*S-commutative_ring}, and $E_*(E\otimes E)=\pi_*(E\otimes (E\otimes E))$ is considered as an object in $\GrCAlg{\pi_*(S)}$ by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}, since $E\otimes(E\otimes E)$ is a monoid object in $\cSH$ by \autoref{product_of_monoids_is_monoid}.
+    constructed in \autoref{Kunneth_map_construction_main} is a homomorphism of $A$-graded $\pi_*(S)$-commutative rings, i.e.\ a morphism in $\GrCAlg{\pi_*(S)}$, where here $E_*(E)\otimes_{\pi_*(E)}E_*(E)$ is considered as an object in $\GrCAlg{\pi_*(S)}$ by \autoref{E*E_ox_E*E_is_A-graded_pi*S-commutative_ring}, and $E_*(E\otimes E)=\pi_*(E\otimes (E\otimes E))$ is considered as an object in $\GrCAlg{\pi_*(S)}$ by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}, since $E\otimes(E\otimes E)$ is a commutative monoid object in $\cSH$ by \autoref{product_of_monoids_is_monoid}.
 \end{lemma}
+
+We can package all of this information into an object called the \emph{dual $E$-Steenrod algebra}:
 
 \begin{definition}\label{dual_E-Steenrod_algebra_defn}
     Let $(E,\mu,e)$ be a \emph{commutative} monoid object (\autoref{monoid_object}) which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the \emph{dual $E$-Steenrod algebra} is the pair of $A$-graded abelian groups $(E_*(E),\pi_*(E))$ equipped with the following structure:\begin{enumerate}[label={\arabic*.}]
@@ -101,7 +116,7 @@ In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\m
         \[E\otimes E\xr\cong E\otimes S\otimes E\xr{E\otimes e\otimes E}E\otimes E\otimes E,\]
         and $\Phi_{E,E}$ is morphism constructed in \autoref{Kunneth_map_construction_main}, which is proven to be an isomorphism in \autoref{Kunneth_map_iso_main} and a morphism in $\GrCAlg{\pi_*(S)}$ in \autoref{Phi_E_is_homo_of_A-graded_pi_*S-commutative_rings_main}.
         \item The homomorphism of $A$-graded $\pi_*(S)$-commutative rings
-        \[\vare:E_*(E)\to\pi_*(E)\]
+        \[\epsilon:E_*(E)\to\pi_*(E)\]
         induced under $\pi_*$ by the monoid object homomorphism
         \[E\otimes E\xr\mu E.\]
         \item The homomorphism of $A$-graded $\pi_*(S)$-commutative rings
@@ -111,19 +126,26 @@ In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\m
     \end{enumerate}
 \end{definition}
 
+The curious reader may wonder why we call $(E_*(E),\pi_*(E))$ the \emph{dual} $E$-Steenrod algebra. The ``dual'' is there because the $E$-Steenrod algebra refers instead to the $E$-self cohomology $E^*(E)\cong [E,E]_{-*}$. Clasically, the Adams spectral sequence was originally constructed in such a way that the $E_1$ and $E_2$ pages could be characterized in terms of cohomology and the $E$-Steenrod algebra, but it turns out that our approach using homology and the dual $E$-Steenrod algebra is somewhat better behaved, at least when $E$ is flat in the sense of \autoref{flat}.
+
+Given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$, it turns out that the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$ is precisely a \emph{Hopf algebroid}, a type of algebraic gadget which keeps track of the above structure:
+
 \begin{proposition}[\autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_appendix}]\label{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}
-    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$ which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$ with the structure maps $(\eta_L,\eta_R,\Psi,\vare,c)$ from \autoref{dual_E-Steenrod_algebra_defn} is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$ (\autoref{hopf_algebroid_defn}), i.e., a co-groupoid object in the category $\GrCAlg{\pi_*(S)}$.
+    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$ which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$ with the structure maps $(\eta_L,\eta_R,\Psi,\epsilon,c)$ from \autoref{dual_E-Steenrod_algebra_defn} is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$ (\autoref{hopf_algebroid_defn}), i.e., a co-groupoid object in the category $\GrCAlg{\pi_*(S)}$.
 \end{proposition}
 
-\subsection{Comodules over the dual \texorpdfstring{$E$}{E}-Steenrod algebra}
+\subsection{Comodules over the dual \texorpdfstring{$E$}{E}-Steenrod algebra}\label{subsection:E-Steenrod_comodules}
 
-\begin{lemma}
+\begin{lemma}\label{Phi_E,X_is_left_pi*E-module_homo_main}
     Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then for all objects $X$ in $\cSH$, the $A$-graded homomorphism
     \[E_*(E)\otimes_{\pi_*(E)}E_*(X)\xr{\Phi_{E,X}}E_*(E\otimes X)\]
-    is a homomorphism of left $A$-graded $\pi_*(E)$-module objects, where here we are considering the left $E$-module structure on $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ induced by the canonical $\pi_*(E)$-bimodule structure on $E_*(E)$ (\autoref{module_main}).
+    is a homomorphism of left $A$-graded $\pi_*(E)$-module objects, where here we are considering the left $A$-graded $E$-module structure on $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ induced by the canonical $A$-graded $\pi_*(E)$-bimodule structure on $E_*(E)$ (\autoref{module_main}).
 \end{lemma}
+\begin{proof}
+    \todo{TODO}
+\end{proof}
 
-\begin{proposition}
+\begin{proposition}[\autoref{E_*_functor_from_SH_to_E*E-comodules_appendix}]\label{E_*_functor_from_SH_to_E*E-comodules_main}
     Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to the category $E_*(E)\text-\CoMod$ of left $A$-graded comodules (\autoref{left_comodule_defn}) over the dual $E$-Steenrod algebra, which is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$, by \autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}.
 
     In particular, given an object $X$ in $\cSH$, we are viewing $E_*(X)$ with its canonical left $\pi_*(E)$-module structure (\autoref{module_main}), and the action map 
@@ -131,8 +153,55 @@ In \Cref{monoid_objects_subsection}, we showed that given a monoid object $(E,\m
     is given by the composition
     \[\Psi_X:E_*(X)\xr{E_*(e\otimes X)}E_*(E\otimes X)\xr{\Phi_{E,X}^{-1}}E_*(E)\otimes_{\pi_*(E)}E_*(X).\]
 \end{proposition}
-\begin{proof}
-    It is straightforward to check that the action map is a homomorphism of left $\pi_*(E)$-modules. Now, we need to show that it makes the two diagrams in \autoref{left_comodule_defn} commute.
+
+\begin{proof}[\autoref{Phi_E,X_is_comodule_homo_appendix}]\label{Phi_E,X_is_comodule_homo_main}
+    Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then given an object $X$ in $\cSH$, the map
+    \[\Phi_{E,X}:E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
+    constructed in \autoref{Kunneth_map_construction_main} is a homomorphism of $A$-graded left $\Gamma$-comodules, where here by \autoref{comodule_co-free_adjunction} we are viewing $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ as the co-free $E_*(E)$-comodule on $E_*(X)$ with its canonical $A$-graded left $\pi_*(E)$-module structure (via \autoref{module_main}).
 \end{proof}
+
+\subsection{A universal coefficient theorem}\label{subsection:UCT}
+
+So far, the key use of the Hopf algebroid structure on the dual $E$-Steenrod algebra has been to show that there is extra structure inherited by morphisms in $E$-homology from morphisms in $\cSH$. Namely, forming $E$-homology $E_*(f):E_*(X)\to E_*(Y)$ of a morphism $f:X\to Y$ in $\cSH$ does not just produce a morphism of $E$-homology groups
+\[[X,Y]_*\to\Hom_{\Ab^A}^*(E_*(X),E_*(Y))\]
+but in fact produces homomorphisms of comodules over $E_*(E)$
+\[\alpha:[X,Y]_*\to\Hom_{E_*(E)}^*(E_*(X),E_*(Y)).\]
+The goal of this subsection is to explore cases when $\alpha$ is an isomorphism. We will do so by use of a \emph{universal coefficient theorem}:
+
+\begin{proposition}[\autoref{UCT_for_graded_projective}]\label{UCT_for_graded_projective_main}
+    Let $(E,\mu,e)$ be a monoid object and let $X$ and $Y$ be objects in $\cSH$. Further suppose $E$ and $X$ are cellular (\autoref{cellular}) and $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module_main}). Then the map
+    \[[X,E\otimes Y]_*\to\Hom_{\pi_*(E)\text-\Mod}^*(E_*(X),E_*(Y))\]
+    sending $f:S^a\otimes X\to E\otimes Y$ to the map $E_{*-a}(X)\to E_*(Y)$ which sends a class $x:S^{b-a}\to E\otimes X$ to the composition
+    \[S^b\xr\phi S^{b-a}\otimes S^a\xr{x\otimes S^a}E\otimes X\otimes S^a\xr{E\otimes\tau}E\otimes S^a\otimes X\xr{E\otimes f}E\otimes E\otimes Y\xr{\mu\otimes Y}E\otimes Y\]
+    is an $A$-graded isomorphism of $A$-graded abelian groups.
+\end{proposition}
+
+The proof of this theorem is long and involved, and makes extensive use of the notion of left module objects over a monoid object in a symmetric monoidal category.
+
+\begin{proposition}[\autoref{[X,EY]-->Hom_E*E(E_*X,E_*EY)_is_iso_for_nice_E,X,Y_appendix}]\label{[X,EY]-->Hom_E*E(E_*X,E_*EY)_is_iso_for_nice_E,X,Y_main]}
+    Let $(E,\mu,e)$ commutative monoid object, and $X$ and $Y$ objects in $\cSH$. Suppose that\begin{enumerate}
+        \item $E$ is flat (\autoref{flat}) and cellular (\autoref{cellular}),
+        \item $X$ is cellular and $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module_main}),
+        \item $Y$ is cellular \emph{or} $E_*(Y)$ is a graded projective left $\pi_*(E)$ module (via \autoref{module_main}).
+    \end{enumerate}
+    Then the map 
+    \[\Psi_{X,Y}:[X,E\otimes Y]_*\to\Hom_{E_*(E)\text-\CoMod}^*(E_*(X),E_*(E\otimes Y))\]
+    sending $f:S^a\otimes X\to E\otimes Y$ to the map $E_{*-a}(X)\to E_*(E\otimes Y)$ which sends $x:S^{b-a}\to E\otimes X$ to the composition
+    \[S^b\xr\phi S^{b-a}\otimes S^a\xr{x\otimes S^a}E\otimes X\otimes S^a\xr{E\otimes\tau}E\otimes S^a\otimes X\xr{E\otimes f}E\otimes E\otimes Y\]
+    is a well-defined $A$-graded isomorphism of $A$-graded abelian groups.
+\end{proposition}
+
+\begin{corollary}
+    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$, and let $X$ and $Y$ be objects. Further suppose that \begin{enumerate}
+        \item $(E,\mu,e)$ is flat (\autoref{flat}) and cellular (\autoref{cellular}).
+        \item $X$ is cellular, and $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module_main}).
+        \item $Y$ is cellular \emph{or} $E_*(Y)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module_main}).
+    \end{enumerate}
+    Then the first page of the $E$-Adams spectral sequence for the computation of $[X,Y]_*$ (\autoref{ASS}) is isomorphic to the following chain complex of graded homs of comodules (\autoref{left_comodule_defn}) over the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$:
+    \[E_1^{s,a}(X,Y)\cong\Hom_{E_*(E)}^t(E_*(X),E_*(W_s)).\]
+    Furthermore, under this identification, the differential
+    \[d_1:E_1^{s,a}\to E_1^{s+1,a-\1}\]
+    is given by 
+\end{corollary}
 
 \end{document}

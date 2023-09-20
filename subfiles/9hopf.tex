@@ -45,13 +45,13 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 		\varphi_B(\theta_{|d|,|c'\cdot b|})\cdot (c(c'\cdot b)\otimes dd')&=\varphi_B(\theta_{|d|,|c'|})\cdot(cc'\otimes d(b\cdot d')) \\
 		\varphi_B(\theta_{|d'|,|c|})\cdot((c'+c'')c\otimes d'd)&=\varphi_B(\theta_{|d'|,|c|})\cdot(c'c\otimes d'd)+\varphi_B(\theta_{|d'|,|c|})\cdot(c''c\otimes d'd) \\
 		\varphi_B(\theta_{|d'+d''|,|c|})\cdot(c'c\otimes (d'+d'')d)&=\varphi_B(\theta_{|d'|,|c|})\cdot(c'c\otimes d'd)+\varphi_B(\theta_{|d''|,|c|})\cdot(c'c\otimes d''d) \\
-		\varphi_B(\theta_{|d'|,|c|})((c'\cdot b)c\otimes d'd)&=\varphi_B(\theta_{|c|,|b\cdot d'|})\cdot (c'c\otimes (b\cdot d')d).
+		\varphi_B(\theta_{|d'|,|c|})((c'\cdot b)c\otimes d'd)&=\varphi_B(\theta_{|c|,|b\cdot d'|})\cdot (c'c\otimes (b\cdot d')d),
 	\end{align*}
-	These tell us that for all $x\in C\otimes_BD$ that the maps $C\otimes_BD\to C\otimes_BD$ sending $y\mapsto xy$ and $y\mapsto yx$ are well-defined $A$-graded homomorphisms of abelian groups, so we have a distributive product $(x,y)\mapsto xy$. Then to show that this product makes $C\otimes_BD$ an $A$-graded ring, by \autoref{A_graded_ring}, it suffices to show that for all homogeneous $x,y,z\in C\otimes_BD$ that $(xy)z=x(yz)$ and $x(1_C\otimes 1_D)=x=(1_C\otimes 1_D)x$. By distributivity, it further suffices to consider the case that $x$, $y$, and $z$ are homogeneous \emph{pure tensors} in $C\otimes_BD$, i.e., it suffices to show that for all homogeneous $c,c',c''\in C$ and $d,d',d''\in D$ that
+	where each occurrence of $\cdot$ denotes the left or right module action of $B$. These tell us that for all $x\in C\otimes_BD$ that the maps $C\otimes_BD\to C\otimes_BD$ sending $y\mapsto xy$ and $y\mapsto yx$ are well-defined $A$-graded homomorphisms of abelian groups, so we have a distributive product $(x,y)\mapsto xy$. Then to show that this product makes $C\otimes_BD$ an $A$-graded ring, we need to show it is associative and unital. By \autoref{A_graded_ring}, it suffices to show that for all \emph{homogeneous} $x,y,z\in C\otimes_BD$ that $(xy)z=x(yz)$ and $x(1_C\otimes 1_D)=x=(1_C\otimes 1_D)x$. By distributivity, it further suffices to consider the case that $x$, $y$, and $z$ are homogeneous \emph{pure tensors} in $C\otimes_BD$, i.e., it suffices to show that for all homogeneous $c,c',c''\in C$ and $d,d',d''\in D$ that
 	\[((c\otimes d)(c'\otimes d'))(c''\otimes d'')=(c\otimes d)((c'\otimes d')(c''\otimes d''))\]
 	and
 	\[(c\otimes d)(1_C\otimes 1_D)=(c\otimes d)=(1_C\otimes 1_D)(c\otimes d).\]
-	Thus, we have that the given product endows $C\otimes_BD$ with the structure of an $A$-graded ring, as desired. Now, we wish to show that the given map $\varphi:R\to C\otimes_BD$ is a ring homomorphism. Clearly it sends $1$ to $1_C\otimes 1_D$, and again by linearity, it suffices to show that given \emph{homogeneous} $r,s\in R$ that
+	Thus, proving these hold will show $C\otimes_BD$ has the structure of an $A$-graded ring, as desired. Now, we wish to show that the given map $\varphi:R\to C\otimes_BD$ is a ring homomorphism. Clearly it sends $1$ to $1_C\otimes 1_D$, and again by linearity, it suffices to show that given \emph{homogeneous} $r,s\in R$ that
 	\[\varphi(r+s)=\varphi_B(r+s)(1_C\otimes 1_D)=\varphi_B(r)(1_C\otimes 1_D)+\varphi_B(s)(1_C\otimes 1_D)=\varphi(r)+\varphi(s)\]
 	and
 	\[\varphi(rs)=\varphi_B(rs)(1_C\otimes 1_D)=(\varphi_B(r)(1_C\otimes 1_D))(\varphi_B(s)(1_C\otimes 1_D))=\varphi(r)\varphi(s).\]
@@ -321,7 +321,7 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 		\item \emph{left unit}: $\eta_L:B\to\Gamma$ (corresponding to $t$),
 		\item \emph{right unit}: $\eta_R:B\to\Gamma$ (corresponding to $s$),
 		\item \emph{comultiplication}: $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$ (corresponding to $c$),
-		\item \emph{counit}: $\vare:\Gamma\to B$ (corresponding to $e$),
+		\item \emph{counit}: $\epsilon:\Gamma\to B$ (corresponding to $e$),
 		\item \emph{conjugation}: $c:\Gamma\to\Gamma$ (corresponding to $i$),
 	\end{enumerate}
 	where here $\Gamma$ may be viewed as a $B$-bimodule with left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$, so we may form the tensor product of bimodules $\Gamma\otimes_B\Gamma$, which further may be given the structure of an $A$-graded $R$-commutative ring (by \autoref{B-tensor_product_in_R-GrCAlg}), and fits into the following pushout diagram in $\GrCAlg{R}$ (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}):
@@ -337,7 +337,7 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 	These data must satisfy the following
 	\begin{enumerate}
 		\item The following diagrams must commute:
-		% https://q.uiver.app/#q=WzAsMTIsWzgsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzcsMCwiQiJdLFs4LDAsIlxcR2FtbWEiXSxbNywxLCJcXEdhbW1hIl0sWzQsMSwiQiJdLFs0LDAsIkIiXSxbNSwxLCJcXEdhbW1hIl0sWzMsMSwiXFxHYW1tYSJdLFswLDAsIkIiXSxbMCwxLCJcXEdhbW1hIl0sWzEsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzEsMCwiXFxHYW1tYSJdLFs0LDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsOSwiXFxldGFfTCIsMl0sWzksMTAsImdcXG1hcHN0byBnXFxvdGltZXMgMSIsMl0sWzgsMTEsIlxcZXRhX0wiXSxbMTEsMTAsIlxcUHNpIl0sWzUsNywiXFxldGFfUiIsMl0sWzcsNCwiXFx2YXJlIiwyXSxbNSw2LCJcXGV0YV9MIl0sWzYsNCwiXFx2YXJlIl0sWzEsMiwiXFxldGFfUiJdLFsyLDAsImdcXG1hcHN0bzFcXG90aW1lcyBnIl0sWzEsMywiXFxldGFfUiIsMl0sWzMsMCwiXFxQc2kiXV0=
+		% https://q.uiver.app/#q=WzAsMTIsWzgsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzcsMCwiQiJdLFs4LDAsIlxcR2FtbWEiXSxbNywxLCJcXEdhbW1hIl0sWzQsMSwiQiJdLFs0LDAsIkIiXSxbNSwxLCJcXEdhbW1hIl0sWzMsMSwiXFxHYW1tYSJdLFswLDAsIkIiXSxbMCwxLCJcXEdhbW1hIl0sWzEsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzEsMCwiXFxHYW1tYSJdLFs0LDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsOSwiXFxldGFfTCIsMl0sWzksMTAsImdcXG1hcHN0byBnXFxvdGltZXMgMSIsMl0sWzgsMTEsIlxcZXRhX0wiXSxbMTEsMTAsIlxcUHNpIl0sWzUsNywiXFxldGFfUiIsMl0sWzcsNCwiXFxlcHNpbG9uIiwyXSxbNSw2LCJcXGV0YV9MIl0sWzYsNCwiXFxlcHNpbG9uIl0sWzEsMiwiXFxldGFfUiJdLFsyLDAsImdcXG1hcHN0bzFcXG90aW1lcyBnIl0sWzEsMywiXFxldGFfUiIsMl0sWzMsMCwiXFxQc2kiXV0=
 		\[\begin{tikzcd}
 			B & \Gamma &&& B &&& B & \Gamma \\
 			\Gamma & {\Gamma\otimes_B\Gamma} && \Gamma & B & \Gamma && \Gamma & {\Gamma\otimes_B\Gamma}
@@ -347,9 +347,9 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 			\arrow["{\eta_L}", from=1-1, to=1-2]
 			\arrow["\Psi", from=1-2, to=2-2]
 			\arrow["{\eta_R}"', from=1-5, to=2-4]
-			\arrow["\vare"', from=2-4, to=2-5]
+			\arrow["\epsilon"', from=2-4, to=2-5]
 			\arrow["{\eta_L}", from=1-5, to=2-6]
-			\arrow["\vare", from=2-6, to=2-5]
+			\arrow["\epsilon", from=2-6, to=2-5]
 			\arrow["{\eta_R}", from=1-8, to=1-9]
 			\arrow["{g\mapsto1\otimes g}", from=1-9, to=2-9]
 			\arrow["{\eta_R}"', from=1-8, to=2-8]
@@ -392,20 +392,20 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 			\arrow["\Psi\otimes\Gamma"{description}, dashed, from=2-6, to=3-7]
 		\end{tikzcd}\]
 		\item The following diagram must commute:
-		% https://q.uiver.app/#q=WzAsNCxbMiwyLCJcXEdhbW1hIl0sWzAsMCwiXFxHYW1tYSJdLFsyLDAsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDIsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsMCwiKFxcZXRhX0xcXGNpcmNcXHZhcmUpXFxjZG90XFxpZF9cXEdhbW1hIl0sWzEsMiwiXFxQc2kiXSxbMywwLCJcXGlkX1xcR2FtbWFcXGNkb3QoXFxldGFfUlxcY2lyY1xcdmFyZSkiLDJdLFsxLDMsIlxcUHNpIiwyXV0=
+		% https://q.uiver.app/#q=WzAsNCxbMiwyLCJcXEdhbW1hIl0sWzAsMCwiXFxHYW1tYSJdLFsyLDAsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDIsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsMCwiKFxcZXRhX0xcXGNpcmNcXGVwc2lsb24pXFxjZG90XFxpZF9cXEdhbW1hIl0sWzEsMiwiXFxQc2kiXSxbMywwLCJcXGlkX1xcR2FtbWFcXGNkb3QoXFxldGFfUlxcY2lyY1xcZXBzaWxvbikiLDJdLFsxLDMsIlxcUHNpIiwyXV0=
 		\[\begin{tikzcd}
 			\Gamma && {\Gamma\otimes_B\Gamma} \\
 			\\
 			{\Gamma\otimes_B\Gamma} && \Gamma
 			\arrow[Rightarrow, no head, from=3-3, to=1-1]
-			\arrow["{(\eta_L\circ\vare)\cdot\id_\Gamma}", from=1-3, to=3-3]
+			\arrow["{(\eta_L\circ\epsilon)\cdot\id_\Gamma}", from=1-3, to=3-3]
 			\arrow["\Psi", from=1-1, to=1-3]
-			\arrow["{\id_\Gamma\cdot(\eta_R\circ\vare)}"', from=3-1, to=3-3]
+			\arrow["{\id_\Gamma\cdot(\eta_R\circ\epsilon)}"', from=3-1, to=3-3]
 			\arrow["\Psi"', from=1-1, to=3-1]
 		\end{tikzcd}\]
-		where the right vertical arrow sends $g\otimes g'$ to $\eta_L(\vare(g))g'$ and the bottom horizontal arrow sends $g\otimes g'$ to $g\eta_R(\vare(g'))$.
+		where the right vertical arrow sends $g\otimes g'$ to $\eta_L(\epsilon(g))g'$ and the bottom horizontal arrow sends $g\otimes g'$ to $g\eta_R(\epsilon(g'))$.
 		\item The following diagrams must commute:
-		% https://q.uiver.app/#q=WzAsMTMsWzEsMCwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWEiXSxbMCwxLCJcXEdhbW1hIl0sWzMsMSwiXFxHYW1tYSJdLFs0LDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFs0LDAsIlxcR2FtbWEiXSxbMywwLCJCIl0sWzUsMCwiQiJdLFs1LDEsIlxcR2FtbWEiXSxbOCwxLCJcXEdhbW1hIl0sWzgsMCwiXFxHYW1tYSJdLFs3LDAsIkIiXSxbOSwwLCJCIl0sWzAsMSwiYyJdLFsxLDIsImMiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcaWRfXFxHYW1tYVxcY2RvdCBjIl0sWzUsNiwiXFx2YXJlIiwyXSxbNiwzLCJcXGV0YV9MIiwyXSxbNSw0LCJpIiwyXSxbNSw3LCJcXHZhcmUiXSxbNyw4LCJcXGV0YV9SIl0sWzQsOCwiY1xcY2RvdFxcaWRfXFxHYW1tYSIsMl0sWzExLDEwLCJcXGV0YV9MIl0sWzEyLDEwLCJcXGV0YV9SIiwyXSxbMTAsOSwiYyIsMl0sWzExLDksIlxcZXRhX1IiLDJdLFsxMiw5LCJcXGV0YV9MIl1d
+		% https://q.uiver.app/#q=WzAsMTMsWzEsMCwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWEiXSxbMCwxLCJcXEdhbW1hIl0sWzMsMSwiXFxHYW1tYSJdLFs0LDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFs0LDAsIlxcR2FtbWEiXSxbMywwLCJCIl0sWzUsMCwiQiJdLFs1LDEsIlxcR2FtbWEiXSxbOCwxLCJcXEdhbW1hIl0sWzgsMCwiXFxHYW1tYSJdLFs3LDAsIkIiXSxbOSwwLCJCIl0sWzAsMSwiYyJdLFsxLDIsImMiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcaWRfXFxHYW1tYVxcY2RvdCBjIl0sWzUsNiwiXFxlcHNpbG9uIiwyXSxbNiwzLCJcXGV0YV9MIiwyXSxbNSw0LCJpIiwyXSxbNSw3LCJcXGVwc2lsb24iXSxbNyw4LCJcXGV0YV9SIl0sWzQsOCwiY1xcY2RvdFxcaWRfXFxHYW1tYSIsMl0sWzExLDEwLCJcXGV0YV9MIl0sWzEyLDEwLCJcXGV0YV9SIiwyXSxbMTAsOSwiYyIsMl0sWzExLDksIlxcZXRhX1IiLDJdLFsxMiw5LCJcXGV0YV9MIl1d
 		\[\begin{tikzcd}
 			& \Gamma && B & \Gamma & B && B & \Gamma & B \\
 			\Gamma & \Gamma && \Gamma & {\Gamma\otimes_B\Gamma} & \Gamma &&& \Gamma
@@ -413,10 +413,10 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 			\arrow["c", from=2-2, to=2-1]
 			\arrow[Rightarrow, no head, from=1-2, to=2-1]
 			\arrow["{\id_\Gamma\cdot c}", from=2-5, to=2-4]
-			\arrow["\vare"', from=1-5, to=1-4]
+			\arrow["\epsilon"', from=1-5, to=1-4]
 			\arrow["{\eta_L}"', from=1-4, to=2-4]
 			\arrow["i"', from=1-5, to=2-5]
-			\arrow["\vare", from=1-5, to=1-6]
+			\arrow["\epsilon", from=1-5, to=1-6]
 			\arrow["{\eta_R}", from=1-6, to=2-6]
 			\arrow["{c\cdot\id_\Gamma}"', from=2-5, to=2-6]
 			\arrow["{\eta_L}", from=1-8, to=1-9]
@@ -430,7 +430,7 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 \end{definition}
 
 \begin{proposition}\label{G_ox_B_G_has_one_interpretation_as_B-bimodule}
-	Suppose we have an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\vare$, and $c$. Recall in \autoref{hopf_algebroid_defn} we considered $\Gamma\otimes_B\Gamma$ to be the $A$-graded $R$-commutative ring whose underlying abelian group was given by the tensor product of $B$-bimodules, where $\Gamma$ has left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$. Then this left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ coincides with that induced by the ring homomorphism $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$).
+	Suppose we have an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. Recall in \autoref{hopf_algebroid_defn} we considered $\Gamma\otimes_B\Gamma$ to be the $A$-graded $R$-commutative ring whose underlying abelian group was given by the tensor product of $B$-bimodules, where $\Gamma$ has left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$. Thus $\Gamma\otimes_B\Gamma$ is canonically a $B$-bimodule, as it is a tensor product of $B$-bimodules. Then the canonical left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ coincides with that induced by the ring homomorphism $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$).
 \end{proposition}
 \begin{proof}
 	First we show the left module structures coincide. By additivity, in order to show the module structures coincide, it suffices to show that given a homogeneous pure tensor $g\otimes g'$ in $\Gamma\otimes_B\Gamma$ and some $b\in B$ that $\Psi(\eta_L(b))\cdot(g\otimes g')=(\eta_L(b)\cdot g)\otimes g'$, where $\cdot$ on the left denotes the product in $\Gamma\otimes_B\Gamma$ and the $\cdot$ on the right denotes the product in $\Gamma$. By the axioms for a Hopf algebroid, we have that $\Psi(\eta_L(b))=\eta_L(b)\otimes 1$. Thus by how the product in $\Gamma\otimes_B\Gamma$ is defined (\autoref{B-tensor_product_in_R-GrCAlg}), we have that
@@ -445,39 +445,28 @@ Note that our notation for the category $\GrCAlg{R}$ is somewhat deficient, as t
 \end{remark}
 
 \begin{proposition}
-	Suppose we have an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\vare$, and $c$. Then $\eta_L$ is a homomorphism of left $B$-modules, $\eta_R$ is a homomorphism of right $B$-modules, and $\Psi$ and $\vare$ are homomorphisms of $B$-bimodules.
+	Suppose we have an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. Then $\eta_L$ is a homomorphism of left $B$-modules, $\eta_R$ is a homomorphism of right $B$-modules, and $\Psi$ and $\epsilon$ are homomorphisms of $B$-bimodules.
 \end{proposition}
 \begin{proof}
 	Since the left (resp.\ right) $B$-module structure on $\Gamma$ is induced by $\eta_L$ (resp.\ $\eta_R$), the map $\eta_L$ (resp.\ $\eta_R$) is a homomorphism of left (resp.\ right) $B$-modules by definition.
 
-	Next, we want to show $\Psi$ is a homomorphism of $B$-bimodules. Note that given $b,b'\in B$ and $g\in\Gamma$, since $\Psi$ is a ring homomorphism, we have that
-	\[\Psi(\eta_L(b)g\eta_R(b'))=\Psi(\eta_L(b))\Psi(g)\Psi(\eta_R(b')).\]
-	By \autoref{G_ox_B_G_has_one_interpretation_as_B-bimodule}, we know that $\Psi(\eta_L(b))\Psi(g)\Psi(\eta_R(b'))=b\cdot\Psi(g)\cdot b'$, where the first and second $\cdot$ denotes the left and right action of $B$ on $\Gamma\otimes_B\Gamma$, respectively.
+	Next, we want to show $\Psi$ is a homomorphism of $B$-bimodules. In \autoref{eta_L_left_module/eta_R_right_module_coincide_appendix}, we showed that the left (resp.\ right) $B$-module structure on $\Gamma$ is that induced by $\eta_L$ (resp.\ $\eta_R$), and in \autoref{G_ox_B_G_has_one_interpretation_as_B-bimodule}, we showed that the left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ is that induced by $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$), so that by definition $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$ is a homomorphism of left (resp.\ right) $B$-modules.
 
-	Lastly, we claim that $\vare:\Gamma\to B$ is a homomorphism of $B$-bimodules. We need to show that given $g\in\Gamma$ and $b,b'\in B$ that $\vare(\eta_L(b)g\eta_R(g'))=b\vare(g)b'$. This follows from the fact that $\vare\circ\eta_L=\vare\circ\eta_R=\id_B$. 
+	Lastly, we claim that $\epsilon:\Gamma\to B$ is a homomorphism of $B$-bimodules. We need to show that given $g\in\Gamma$ and $b,b'\in B$ that $\epsilon(\eta_L(b)g\eta_R(g'))=b\epsilon(g)b'$. This follows from the fact that $\epsilon$ is a ring homomorphism satisfying $\epsilon\circ\eta_L=\epsilon\circ\eta_R=\id_B$. 
 \end{proof}
 
 \subsection{Comodules over a Hopf algebroid}
 
-In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\vare$, and $c$. We will always view $\Gamma$ as a $B$-bimodule, with left $B$-module structure induced by $\eta_L$, and right $B$-module structure induced by $\eta_R$.
-
-\begin{lemma}\label{triple_gamma_tensor_iso}
-	Let $N$ be an $A$-graded left $B$-module. Then we have an $A$-graded isomorphism of left $B$-modules
-	\[(\Gamma\otimes_B\Gamma)\otimes_BN\xr\cong\Gamma\otimes_B(\Gamma\otimes_BN)\]
-	sending a pure tensor $(g\otimes g')\otimes n$ to $g\otimes(g'\otimes n)$.
-\end{lemma}
-\begin{proof}
-	\todo{aghh i hate this}
-\end{proof}
+In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. We will always view $\Gamma$ with its \emph{canonical} $B$-bimodule structure, with left $B$-module structure induced by $\eta_L$, and right $B$-module structure induced by $\eta_R$. In particular, any tensor product over $B$ involving $\Gamma$ will always refer to $\Gamma$ with this bimodule structure.
 
 \begin{definition}\label{left_comodule_defn}
 	A \emph{left comodule over $\Gamma$} is a pair $(N,\Psi_N)$, where $N$ is a left $A$-graded $B$-module and $\Psi_N:N\to\Gamma\otimes_BN$ is an $A$-graded homomorphism of left $A$-graded $B$-modules (where here we view $\Gamma$ as a $B$-bimodule with its left module structure induced by $\eta_L$, and its right module structure induced by $\eta_R$). These data are required to make the following diagrams commute
-	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJOIl0sWzEsMCwiXFxHYW1tYVxcb3RpbWVzX0JOIl0sWzEsMSwiQlxcb3RpbWVzX0JOIl0sWzQsMCwiTiJdLFszLDAsIlxcR2FtbWFcXG90aW1lc19CTiJdLFszLDEsIihcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEpXFxvdGltZXNfQk4iXSxbNSwwLCJcXEdhbW1hXFxvdGltZXNfQk4iXSxbNSwxLCJcXEdhbW1hXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQk4pIl0sWzAsMSwiXFxQc2lfTiJdLFsxLDIsIlxcdmFyZVxcb3RpbWVzIE4iXSxbMCwyLCJcXGNvbmciLDJdLFszLDQsIlxcUHNpX04iLDJdLFs0LDUsIlxcUHNpXFxvdGltZXMgTiIsMl0sWzMsNiwiXFxQc2lfTiJdLFs2LDcsIlxcR2FtbWFcXG90aW1lc1xcUHNpX04iXSxbNSw3LCJcXGNvbmciXV0=
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJOIl0sWzEsMCwiXFxHYW1tYVxcb3RpbWVzX0JOIl0sWzEsMSwiQlxcb3RpbWVzX0JOIl0sWzQsMCwiTiJdLFszLDAsIlxcR2FtbWFcXG90aW1lc19CTiJdLFszLDEsIihcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEpXFxvdGltZXNfQk4iXSxbNSwwLCJcXEdhbW1hXFxvdGltZXNfQk4iXSxbNSwxLCJcXEdhbW1hXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQk4pIl0sWzAsMSwiXFxQc2lfTiJdLFsxLDIsIlxcZXBzaWxvblxcb3RpbWVzIE4iXSxbMCwyLCJcXGNvbmciLDJdLFszLDQsIlxcUHNpX04iLDJdLFs0LDUsIlxcUHNpXFxvdGltZXMgTiIsMl0sWzMsNiwiXFxQc2lfTiJdLFs2LDcsIlxcR2FtbWFcXG90aW1lc1xcUHNpX04iXSxbNSw3LCJcXGNvbmciXV0=
 	\[\begin{tikzcd}
 		N & {\Gamma\otimes_BN} && {\Gamma\otimes_BN} & N & {\Gamma\otimes_BN} \\
 		& {B\otimes_BN} && {(\Gamma\otimes_B\Gamma)\otimes_BN} && {\Gamma\otimes_B(\Gamma\otimes_BN)}
 		\arrow["{\Psi_N}", from=1-1, to=1-2]
-		\arrow["{\vare\otimes N}", from=1-2, to=2-2]
+		\arrow["{\epsilon\otimes N}", from=1-2, to=2-2]
 		\arrow["\cong"', from=1-1, to=2-2]
 		\arrow["{\Psi_N}"', from=1-5, to=1-4]
 		\arrow["{\Psi\otimes N}"', from=1-4, to=2-4]
@@ -485,7 +474,7 @@ In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over 
 		\arrow["{\Gamma\otimes\Psi_N}", from=1-6, to=2-6]
 		\arrow["\cong", from=2-4, to=2-6]
 	\end{tikzcd}\]
-	The maps $\vare\otimes N$ and $\Psi\otimes N$ are well-defined by \autoref{hopf_algebroid_structure_maps_are_module_homos}, and the bottom isomorphism in the right diagram is that given in \autoref{triple_gamma_tensor_iso}.
+	The maps $\epsilon\otimes N$ and $\Psi\otimes N$ are well-defined by \autoref{hopf_algebroid_structure_maps_are_module_homos}, and the bottom isomorphism in the right diagram is the canonical one sending $(g\otimes g')\otimes n\mapsto g\otimes(g'\otimes n)$.
 
 	Given two left $A$-graded $\Gamma$-comodules $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$, a homomorphism of left $A$-graded comodules $f:N_1\to N_2$ is an $A$-graded homomorphism of the underlying left $B$-modules such that the following diagram commutes:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOXzEiXSxbMSwwLCJOXzIiXSxbMSwxLCJcXEdhbW1hXFxvdGltZXNfQk5fMiJdLFswLDEsIlxcR2FtbWFcXG90aW1lc19CTl8xIl0sWzAsMSwiZiJdLFsxLDIsIlxcUHNpX3tOXzJ9Il0sWzAsMywiXFxQc2lfe05fMX0iLDJdLFszLDIsIlxcR2FtbWFcXG90aW1lcyBmIl1d
@@ -503,11 +492,35 @@ In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over 
 	In particular, we simply write $\Hom_{\Gamma\text-\CoMod}(N_1,N_2)$ or $\Hom_{\Gamma}(N_1,N_2)$ for the set of degree $0$ $A$-graded left $\Gamma$-comodule homomorphisms from $(N_1,\Psi_{N_1})$ to $(N_2,\Psi_{N_2})$.
 \end{definition}
 
+\begin{lemma}
+	Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then given any object in $\cSH$, the following diagram commutes:
+\end{lemma}
+
+\begin{proposition}\label{comodule_co-free_adjunction}
+	The forgetful functor $\Gamma\text-\CoMod\to B\text-\Mod^A$ (where here $B\text-\Mod^A$ is the category of $A$-graded left $B$-modules and $A$-graded module homomorphisms between them) has a right adjoint $\Gamma\otimes_B-:B\text-\Mod^A\to\Gamma\text-\CoMod$ called the \emph{co-free construction}, where the co-free left $A$-graded $\Gamma$-comodule on a left $A$-graded $B$-module $M$ is the $B$-module $\Gamma\otimes_BM$ equipped with the coaction
+	\[\Psi_{\Gamma\otimes_BM}:\Gamma\otimes_BM\xr{\Psi\otimes_BM}(\Gamma\otimes_B\Gamma)\otimes_BM\xr\cong\Gamma\otimes_B(\Gamma\otimes_BM).\]
+
+	In particular, for all objects $(N,\Psi_N)$ in $\Gamma\text-\CoMod$ and $M$ in $B\text-\Mod^A$, we have isomorphisms of $A$-graded abelian groups 
+	\[\Hom_{B\text-\Mod^A}^*(N,M)\cong\Hom_{\Gamma\text-\CoMod}^*(N,\Gamma\otimes_BM)\]
+	via the identifications
+	\[\Hom_{\Gamma\text-\CoMod}^a(N_*,N_*')=\Hom_{\Gamma\text-\CoMod}(N_{*-a},N_{*}')\]
+	and
+	\[\Hom_{B\text-\Mod^A}^a(M_*,M_*')=\Hom_{B\text-\Mod^A}(M_{*-a},M_{*}').\]
+
+	Explicitly, given some $(N,\Psi_N)$ in $\Gamma\text-\CoMod$ and some $M$ in $B\text-\Mod^A$, the counit and unit of this adjunction are given by
+	\[\eta_{(N,\Psi_N)}:N\xr{\Psi_N}\Gamma\otimes_BN\]
+	and
+	\[\vare_M:\Gamma\otimes_BM\xr{\epsilon\otimes_BM}B\otimes_BM\xr\cong M.\]
+\end{proposition}
+\begin{proof}
+	\todo{todo}
+\end{proof}
+
 \begin{proposition}
 	The category $\Gamma\text-\CoMod$ is an additive category.
 \end{proposition}
 \begin{proof}
-	First, we show the category is $\Ab$-enriched. As a subcategory of $B\text-\Mod$, it suffices to show that hom-sets in $\Gamma\text-\CoMod$ are closed under addition and taking inverses. To that end, suppose we have two $A$-graded left $\Gamma$-comodule homomorphisms $f,g:(N_1,\Psi_{N_1})\to(N_2,\Psi_{N_2})$, then we have
+	First, we show the category is $\Ab$-enriched. Since the forgetful functor $\Gamma\text-\CoMod\to B\text-\Mod$ is clearly faithful, we may view hom-sets in $\Gamma\text-\CoMod$ as subsets of hom-groups in $B\text-\Mod$, so that in order to show $\Gamma\text-\CoMod$ is $\Ab$-enriched, it suffices to show that hom-sets in $\Gamma\text-\CoMod$ are closed under addition of module homomorphisms and taking inverses. To that end, suppose we have two $A$-graded left $\Gamma$-comodule homomorphisms $f,g:(N_1,\Psi_{N_1})\to(N_2,\Psi_{N_2})$, then we have
 	\begin{align*}
 		\Psi_{N_2}\circ(f+g)&=(\Psi_{N_2}\circ f)+(\Psi_{N_2}\circ g) \\
 		&=((\Gamma\otimes_Bf)\circ\Psi_{N_1})+((\Gamma\otimes_Bg)\circ\Psi_{N_1}) \\
@@ -522,14 +535,24 @@ In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over 
 
 	Now, in order to show $\Gamma\text-\CoMod$ is additive, it suffices to show that it contains a zero object and has binary coproducts. First, note that the zero left $B$-module is clearly an $A$-graded left $\Gamma$-comodule with structure map the unique map $0\to\Gamma\otimes_B0\cong 0$, and that given any other $A$-graded left $\Gamma$-comodule $(N,\Psi_N)$, the unique homomorphisms of left $B$-modules $0\to N$ and $N\to 0$ are left comodule homomorphisms.
 
-	Now, suppose we have two $A$-graded left $\Gamma$-comodules $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$. First, we claim their direct sum as left $B$-modules $N_1\oplus N_2$ is canonically an $A$-graded left $\Gamma$-comodule. We know that $N_1\oplus N_2$ is an $A$-graded left $B$-mod
+	Now, suppose we have two $A$-graded left $\Gamma$-comodules $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$. First, we claim their direct sum as left $B$-modules $N_1\oplus N_2$ is canonically an $A$-graded left $\Gamma$-comodule. We know that $N_1\oplus N_2$ is an $A$-graded left $B$-module by \autoref{product_of_A_graded}, and we can define the structure map
+	\[\Psi_{N_1\oplus N_2}:N_1\oplus N_2\xr{\Psi_{N_1}\oplus\Psi_{N_2}}(\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2)\cong\Gamma\otimes_B(N_1\oplus N_2),\]
+	where the final isomorphism is the canonical one sending $(g_1\otimes n_1)\oplus(g_2\otimes n_2)$ to $(g_1\otimes n_1)+(g_2\otimes n_2)$. Then
+	\todo{finish}
 \end{proof}
 
 \begin{proposition}
 	Suppose that $\Gamma$ is flat as a right $B$-module (with its canonical right $B$-module structure induced by $\eta_R$). Then the category $\Gamma\text-\CoMod$ is an abelian category. 
 \end{proposition}
+\begin{proof}
+	\todo{finish}
+\end{proof}
 
-\subsection{The dual \texorpdfstring{$E$}{E}-Steenrod algebra is a Hopf algebroid}
+\begin{proposition}
+	
+\end{proposition}
+
+\subsection{The dual \texorpdfstring{$E$}{E}-Steenrod algebra}
 
 In this subsection, we fix a monoidal closed tensor triangulated category $\cSH$ with arbitrary (small) (co)products and sub-Picard grading $(A,\1,\{S^a\},\{\phi_{a,b}\})$ (\autoref{sub_Picard_grading_defn}), and we adopt the conventions outlined in \Cref{section:tri_cat_with_sub-picard_grading}.
 
@@ -576,7 +599,7 @@ In this subsection, we fix a monoidal closed tensor triangulated category $\cSH$
         \item $\eta_L:\pi_*(E)\to E_*(E)$,
         \item $\eta_R:\pi_*(E)\to E_*(E)$,
         \item $h:E_*(E)\to E_*(E\otimes E)$,
-        \item $\vare:E_*(E)\to \pi_*(E)$, and
+        \item $\epsilon:E_*(E)\to \pi_*(E)$, and
         \item $c:E_*(E)\to E_*(E)$.
     \end{enumerate}
 \end{proposition}
@@ -621,7 +644,77 @@ In this subsection, we fix a monoidal closed tensor triangulated category $\cSH$
     \end{tikzcd}\]
     The leftmost region commutes by naturality of the unitors, while the rightmost region commutes by functoriality of $-\otimes-$. Hence, we have shown $E\xr\cong E\otimes S\xr{E\otimes e}E\otimes E$ is indeed a monoid homomorphism, as desired. Showing that $E\xr\cong S\otimes E\xr{e\otimes E}E\otimes E$ is a monoid object homomorphism is entirely analagous.
 
-	Next, we will show that $E\otimes E\xr\cong E\otimes S\otimes E\xr{E\otimes e\otimes E}$ is a monoid object homomorphism.
+	Next, we will show that $E\otimes E\xr{E\otimes e\otimes E}E\otimes E\otimes E$ is a monoid object homomorphism. By what we have shown above, $E\otimes e:E\to E\otimes E$ is a monoid homomorphism, so that by \autoref{E_ox_f,f_ox_E_are_monoid_homos} we have that $(E\otimes e)\otimes E$ is a monoid homomorphism as well, as desired.
+
+	Next, we will show $\mu:E\otimes E\to E$ is a monoid homomorphism. Consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFszLDAsIkVcXG90aW1lcyBFIl0sWzMsNCwiRSJdLFswLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMCw0LCJFXFxvdGltZXMgRSJdLFsxLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFsyLDIsIkVcXG90aW1lcyBFIl0sWzIsMywiRVxcb3RpbWVzIEUiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMSwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMCwxLCJcXG11XFxvdGltZXNcXG11Il0sWzEsMiwiXFxtdSJdLFswLDMsIkVcXG90aW1lc1xcdGF1XFxvdGltZXMgRSIsMl0sWzMsNCwiXFxtdVxcb3RpbWVzXFxtdSIsMl0sWzQsMiwiXFxtdSIsMl0sWzAsNSwiRVxcb3RpbWVzXFxtdVxcb3RpbWVzIEUiLDFdLFszLDUsIkVcXG90aW1lc1xcbXVcXG90aW1lcyBFIiwyXSxbNSw2LCJcXG11XFxvdGltZXMgRSJdLFs1LDcsIkVcXG90aW1lc1xcbXUiLDFdLFs3LDIsIlxcbXUiLDJdLFs2LDIsIlxcbXUiXSxbMCw4LCJcXG11XFxvdGltZXMgRVxcb3RpbWVzIEUiLDFdLFs4LDEsIkVcXG90aW1lc1xcbXUiLDFdLFs4LDYsIlxcbXVcXG90aW1lcyBFIiwxXSxbMyw5LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbXUiLDFdLFs5LDcsIkVcXG90aW1lc1xcbXUiLDJdLFs5LDQsIlxcbXVcXG90aW1lcyBFIiwxXV0=
+	\[\begin{tikzcd}
+		{E\otimes E\otimes E\otimes E} &&& {E\otimes E} \\
+		&& {E\otimes E\otimes E} \\
+		{E\otimes E\otimes E\otimes E} & {E\otimes E\otimes E} & {E\otimes E} \\
+		& {E\otimes E\otimes E} & {E\otimes E} \\
+		{E\otimes E} &&& E
+		\arrow["\mu\otimes\mu", from=1-1, to=1-4]
+		\arrow["\mu", from=1-4, to=5-4]
+		\arrow["{E\otimes\tau\otimes E}"', from=1-1, to=3-1]
+		\arrow["\mu\otimes\mu"', from=3-1, to=5-1]
+		\arrow["\mu"', from=5-1, to=5-4]
+		\arrow["{E\otimes\mu\otimes E}"{description}, from=1-1, to=3-2]
+		\arrow["{E\otimes\mu\otimes E}"', from=3-1, to=3-2]
+		\arrow["{\mu\otimes E}", from=3-2, to=3-3]
+		\arrow["E\otimes\mu"{description}, from=3-2, to=4-3]
+		\arrow["\mu"', from=4-3, to=5-4]
+		\arrow["\mu", from=3-3, to=5-4]
+		\arrow["{\mu\otimes E\otimes E}"{description}, from=1-1, to=2-3]
+		\arrow["E\otimes\mu"{description}, from=2-3, to=1-4]
+		\arrow["{\mu\otimes E}"{description}, from=2-3, to=3-3]
+		\arrow["{E\otimes E\otimes \mu}"{description}, from=3-1, to=4-2]
+		\arrow["E\otimes\mu"', from=4-2, to=4-3]
+		\arrow["{\mu\otimes E}"{description}, from=4-2, to=5-1]
+	\end{tikzcd}\]
+	The top left triangle commutes by commutativity of $\mu$. Every other region commutes by functoriality of $-\otimes-$ and/or associativity of $\mu$. Thus, we have shown $\mu$ satisfies the first diagram in \autoref{Mon_C,CMon_C} required for it to be a monoid homomorphism. To see it satisfies the second condition, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMiwwLCJTIl0sWzAsMiwiRVxcb3RpbWVzIEUiXSxbNCwyLCJFIl0sWzIsMSwiRSJdLFswLDEsImVcXG90aW1lcyBlIiwyXSxbMSwyLCJcXG11Il0sWzAsMiwiZSJdLFswLDMsImUiXSxbMywxLCJFXFxvdGltZXMgZSIsMV0sWzMsMiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		&& S \\
+		&& E \\
+		{E\otimes E} &&&& E
+		\arrow["{e\otimes e}"', from=1-3, to=3-1]
+		\arrow["\mu", from=3-1, to=3-5]
+		\arrow["e", from=1-3, to=3-5]
+		\arrow["e", from=1-3, to=2-3]
+		\arrow["{E\otimes e}"{description}, from=2-3, to=3-1]
+		\arrow[Rightarrow, no head, from=2-3, to=3-5]
+	\end{tikzcd}\]
+	The top left region commutes by functoriality of $-\otimes-$. The top right region commutes by definition. Finally, the bottom region commutes by unitality of $\mu$. Thus we have shown $\mu$ is a monoid object homomorphism, as desired.
+
+	Finally, we will show $\tau_{E,E}:E\otimes E\to E\otimes E$ is a monoid homomorphism. 	Consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJFXzFcXG90aW1lcyBFXzJcXG90aW1lcyBFXzNcXG90aW1lcyBFXzQiXSxbMSwwLCJFXzJcXG90aW1lcyBFXzFcXG90aW1lcyBFXzRcXG90aW1lcyBFXzMiXSxbMCwxLCJFXzFcXG90aW1lcyBFXzNcXG90aW1lcyBFXzJcXG90aW1lcyBFXzQiXSxbMCwyLCJFX3sxLDN9XFxvdGltZXMgRV97Miw0fSJdLFsxLDIsIkVfezIsNH1cXG90aW1lcyBFX3sxLDN9Il0sWzEsMSwiRV8yXFxvdGltZXMgRV80XFxvdGltZXMgRV8xXFxvdGltZXMgRV8zIl0sWzAsMSwiXFx0YXVcXG90aW1lcyBcXHRhdSJdLFswLDIsIkVcXG90aW1lcyBcXHRhdVxcb3RpbWVzIEUiLDJdLFsyLDMsIlxcbXVcXG90aW1lcyBcXG11IiwyXSxbMyw0LCJcXHRhdSIsMl0sWzEsNSwiRVxcb3RpbWVzIFxcdGF1XFxvdGltZXMgRSJdLFs1LDQsIlxcbXVcXG90aW1lcyBcXG11Il0sWzIsNSwiXFx0YXVfe0VcXG90aW1lcyBFLEVcXG90aW1lcyBFfSJdXQ==
+	\[\begin{tikzcd}
+		{E_1\otimes E_2\otimes E_3\otimes E_4} & {E_2\otimes E_1\otimes E_4\otimes E_3} \\
+		{E_1\otimes E_3\otimes E_2\otimes E_4} & {E_2\otimes E_4\otimes E_1\otimes E_3} \\
+		{E_{1,3}\otimes E_{2,4}} & {E_{2,4}\otimes E_{1,3}}
+		\arrow["{\tau\otimes \tau}", from=1-1, to=1-2]
+		\arrow["{E\otimes \tau\otimes E}"', from=1-1, to=2-1]
+		\arrow["{\mu\otimes \mu}"', from=2-1, to=3-1]
+		\arrow["\tau"', from=3-1, to=3-2]
+		\arrow["{E\otimes \tau\otimes E}", from=1-2, to=2-2]
+		\arrow["{\mu\otimes \mu}", from=2-2, to=3-2]
+		\arrow["{\tau_{E\otimes E,E\otimes E}}", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	The top region commutes by coherence for the symmetries in a symmetric monoidal category, while the bottom region commutes by naturality of $\tau$. Now, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNSxbMiwwLCJTIl0sWzAsMiwiRVxcb3RpbWVzIEUiXSxbNCwyLCJFXFxvdGltZXMgRSJdLFsxLDEsIlNcXG90aW1lcyBTIl0sWzMsMSwiU1xcb3RpbWVzIFMiXSxbMSwyLCJcXHRhdSJdLFszLDQsIlxcdGF1Il0sWzAsMywiXFxjb25nIiwyXSxbMCw0LCJcXGNvbmciXSxbMywxLCJlXFxvdGltZXMgZSIsMV0sWzQsMiwiZVxcb3RpbWVzIGUiLDFdXQ==
+	\[\begin{tikzcd}
+		&& S \\
+		& {S\otimes S} && {S\otimes S} \\
+		{E\otimes E} &&&& {E\otimes E}
+		\arrow["\tau", from=3-1, to=3-5]
+		\arrow["\tau", from=2-2, to=2-4]
+		\arrow["\cong"', from=1-3, to=2-2]
+		\arrow["\cong", from=1-3, to=2-4]
+		\arrow["{e\otimes e}"{description}, from=2-2, to=3-1]
+		\arrow["{e\otimes e}"{description}, from=2-4, to=3-5]
+	\end{tikzcd}\]
+	The top triangle commutes by coherence for a symmetric monoidal category, while the bottom region commutes by naturality of $\tau$. Thus, we have shown $\tau_{E,E}$ is a homomorphism of monoid objects, as desired.
 \end{proof}
 
 \begin{lemma}\label{eta_L_left_module/eta_R_right_module_coincide_appendix}
@@ -793,103 +886,8 @@ In this subsection, we fix a monoidal closed tensor triangulated category $\cSH$
 	Here we have labelled the $E$'s to make things clearer. The left outside composition is $\Phi_E(x\otimes y)$, while the right composition is $\pi_*(g)(x)\cdot\pi_*(f)(y)$. The top right triangle commutes by coherence for a symmetric monoidal category. The middle tright triangle commutes by unitality of $\mu$ and coherence for a symmetric monoidal category. The bottom trapezoid commutes by unitality of $\mu$. The rest of the diagram commutes by definition. Thus we have $\Phi_E(x\otimes y)=\pi_*(g)(x)\cdot\pi_*(f)(y)$, so that $\Phi_E=\ell$ is not just an isomorphism of left $\pi_*(E)$-modules, but an isomorphism of $A$-graded $\pi_*(S)$-commutative rings, as desired.
 \end{proof}
 
-\begin{proposition}\label{(E,mu,e):Psi_defn_appendix}
-    Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then consider the map
-    \[\Psi:E_*(E)\xr{\pi_*(E\otimes e\otimes E)}E_*(E\otimes E)\xr{\Phi_E^{-1}}E_*(E)\otimes_{\pi_*(E)}E_*(E),\]
-    where $\Phi_E$ is the isomorphism given in \autoref{Kunneth_map_iso_main}. Then $\Psi$ is a homomorphism of $A$-graded $\pi_*(S)$-commutative rings, where here the object $E_*(E)\otimes_{\pi_*(E)}E_*(E)$ is considered an $A$-graded $\pi_*(S)$-commutative ring by \autoref{E*E_ox_E*E_is_A-graded_pi*S-commutative_ring_appendix}.
-\end{proposition}
-\begin{proof}
-	By \autoref{Phi_E_is_homo_of_A-graded_pi_*S-commutative_rings}, we know $\Phi_E:E_*(E)\otimes_{\pi_*(E)}E_*(E)\to E_*(E\otimes E)$ is a bijective homomorphism of $A$-graded $\pi_*(S)$-commutative rings, thus it is clearly an isomorphism in $\GrCAlg{\pi_*(S)}$, so that its inverse $\Phi_E^{-1}$ is also a homomorphism in $\GrCAlg{\pi_*(S)}$. Thus, it suffices to show that $\pi_*(E\otimes e\otimes E)$ is as well. By \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_appendix}, it suffices to show $E\otimes e\otimes E:E\otimes E\to E\otimes E\otimes E$ is a homomorphism of monoid objects in $\cSH$. Yet, we know this is true, as $e\otimes E:E\to E\otimes E$ is a homomorphism of monoid objects by \autoref{(E,mu,e):eta_L,eta_R_appendix}, so that by \autoref{E_ox_f,f_ox_E_are_monoid_homos} we have $E\otimes e\otimes E$ is also a homomorphism of monoid objects, as desired.
-\end{proof}
-
-\begin{proposition}\label{(E,mu,e):vare_appendix}
-    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the morphism 
-	\[\mu:E\otimes E\to E\] 
-	is a homomorphism of monoid objects (where $E\otimes E$ is considered a monoid object by \autoref{product_of_monoids_is_monoid}), so that by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_appendix}, under $\pi_*$ it induces a homomorphism of $A$-graded $\pi_*(S)$-commutative rings 
-    \[\vare:E_*(E)\to\pi_*(E).\]
-\end{proposition}
-\begin{proof}
-	Consider the following diagram:
-	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFszLDAsIkVcXG90aW1lcyBFIl0sWzMsNCwiRSJdLFswLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMCw0LCJFXFxvdGltZXMgRSJdLFsxLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFsyLDIsIkVcXG90aW1lcyBFIl0sWzIsMywiRVxcb3RpbWVzIEUiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMSwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMCwxLCJcXG11XFxvdGltZXNcXG11Il0sWzEsMiwiXFxtdSJdLFswLDMsIkVcXG90aW1lc1xcdGF1XFxvdGltZXMgRSIsMl0sWzMsNCwiXFxtdVxcb3RpbWVzXFxtdSIsMl0sWzQsMiwiXFxtdSIsMl0sWzAsNSwiRVxcb3RpbWVzXFxtdVxcb3RpbWVzIEUiLDFdLFszLDUsIkVcXG90aW1lc1xcbXVcXG90aW1lcyBFIiwyXSxbNSw2LCJcXG11XFxvdGltZXMgRSJdLFs1LDcsIkVcXG90aW1lc1xcbXUiLDFdLFs3LDIsIlxcbXUiLDJdLFs2LDIsIlxcbXUiXSxbMCw4LCJcXG11XFxvdGltZXMgRVxcb3RpbWVzIEUiLDFdLFs4LDEsIkVcXG90aW1lc1xcbXUiLDFdLFs4LDYsIlxcbXVcXG90aW1lcyBFIiwxXSxbMyw5LCJFXFxvdGltZXMgRVxcb3RpbWVzIFxcbXUiLDFdLFs5LDcsIkVcXG90aW1lc1xcbXUiLDJdLFs5LDQsIlxcbXVcXG90aW1lcyBFIiwxXV0=
-	\[\begin{tikzcd}
-		{E\otimes E\otimes E\otimes E} &&& {E\otimes E} \\
-		&& {E\otimes E\otimes E} \\
-		{E\otimes E\otimes E\otimes E} & {E\otimes E\otimes E} & {E\otimes E} \\
-		& {E\otimes E\otimes E} & {E\otimes E} \\
-		{E\otimes E} &&& E
-		\arrow["\mu\otimes\mu", from=1-1, to=1-4]
-		\arrow["\mu", from=1-4, to=5-4]
-		\arrow["{E\otimes\tau\otimes E}"', from=1-1, to=3-1]
-		\arrow["\mu\otimes\mu"', from=3-1, to=5-1]
-		\arrow["\mu"', from=5-1, to=5-4]
-		\arrow["{E\otimes\mu\otimes E}"{description}, from=1-1, to=3-2]
-		\arrow["{E\otimes\mu\otimes E}"', from=3-1, to=3-2]
-		\arrow["{\mu\otimes E}", from=3-2, to=3-3]
-		\arrow["E\otimes\mu"{description}, from=3-2, to=4-3]
-		\arrow["\mu"', from=4-3, to=5-4]
-		\arrow["\mu", from=3-3, to=5-4]
-		\arrow["{\mu\otimes E\otimes E}"{description}, from=1-1, to=2-3]
-		\arrow["E\otimes\mu"{description}, from=2-3, to=1-4]
-		\arrow["{\mu\otimes E}"{description}, from=2-3, to=3-3]
-		\arrow["{E\otimes E\otimes \mu}"{description}, from=3-1, to=4-2]
-		\arrow["E\otimes\mu"', from=4-2, to=4-3]
-		\arrow["{\mu\otimes E}"{description}, from=4-2, to=5-1]
-	\end{tikzcd}\]
-	The top left triangle commutes by commutativity of $\mu$. Every other region commutes by functoriality of $-\otimes-$ and/or associativity of $\mu$. Thus, we have shown $\mu$ satisfies the first diagram in \autoref{Mon_C,CMon_C} required for it to be a monoid homomorphism. To see it satisfies the second condition, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNCxbMiwwLCJTIl0sWzAsMiwiRVxcb3RpbWVzIEUiXSxbNCwyLCJFIl0sWzIsMSwiRSJdLFswLDEsImVcXG90aW1lcyBlIiwyXSxbMSwyLCJcXG11Il0sWzAsMiwiZSJdLFswLDMsImUiXSxbMywxLCJFXFxvdGltZXMgZSIsMV0sWzMsMiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
-	\[\begin{tikzcd}
-		&& S \\
-		&& E \\
-		{E\otimes E} &&&& E
-		\arrow["{e\otimes e}"', from=1-3, to=3-1]
-		\arrow["\mu", from=3-1, to=3-5]
-		\arrow["e", from=1-3, to=3-5]
-		\arrow["e", from=1-3, to=2-3]
-		\arrow["{E\otimes e}"{description}, from=2-3, to=3-1]
-		\arrow[Rightarrow, no head, from=2-3, to=3-5]
-	\end{tikzcd}\]
-	The top left region commutes by functoriality of $-\otimes-$. The top right region commutes by definition. Finally, the bottom region commutes by unitality of $\mu$. Thus we have shown $\mu$ is a monoid object homomorphism, as desired.
-\end{proof}
-
-\begin{proposition}\label{(E,mu,e):c_appendix}
-    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the morphism
-    \[\tau_{E,E}:E\otimes E\to E\otimes E\]
-    is a homomorphism of monoid objects (where $E\otimes E$ is considered a monoid object by \autoref{product_of_monoids_is_monoid}), so that by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_appendix}, under $\pi_*$ it induces a homomorphism of $A$-graded $\pi_*(S)$-commutative rings
-    \[c:E_*(E)\to E_*(E).\]
-\end{proposition}
-\begin{proof}
-	Consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJFXzFcXG90aW1lcyBFXzJcXG90aW1lcyBFXzNcXG90aW1lcyBFXzQiXSxbMSwwLCJFXzJcXG90aW1lcyBFXzFcXG90aW1lcyBFXzRcXG90aW1lcyBFXzMiXSxbMCwxLCJFXzFcXG90aW1lcyBFXzNcXG90aW1lcyBFXzJcXG90aW1lcyBFXzQiXSxbMCwyLCJFX3sxLDN9XFxvdGltZXMgRV97Miw0fSJdLFsxLDIsIkVfezIsNH1cXG90aW1lcyBFX3sxLDN9Il0sWzEsMSwiRV8yXFxvdGltZXMgRV80XFxvdGltZXMgRV8xXFxvdGltZXMgRV8zIl0sWzAsMSwiXFx0YXVcXG90aW1lcyBcXHRhdSJdLFswLDIsIkVcXG90aW1lcyBcXHRhdVxcb3RpbWVzIEUiLDJdLFsyLDMsIlxcbXVcXG90aW1lcyBcXG11IiwyXSxbMyw0LCJcXHRhdSIsMl0sWzEsNSwiRVxcb3RpbWVzIFxcdGF1XFxvdGltZXMgRSJdLFs1LDQsIlxcbXVcXG90aW1lcyBcXG11Il0sWzIsNSwiXFx0YXVfe0VcXG90aW1lcyBFLEVcXG90aW1lcyBFfSJdXQ==
-	\[\begin{tikzcd}
-		{E_1\otimes E_2\otimes E_3\otimes E_4} & {E_2\otimes E_1\otimes E_4\otimes E_3} \\
-		{E_1\otimes E_3\otimes E_2\otimes E_4} & {E_2\otimes E_4\otimes E_1\otimes E_3} \\
-		{E_{1,3}\otimes E_{2,4}} & {E_{2,4}\otimes E_{1,3}}
-		\arrow["{\tau\otimes \tau}", from=1-1, to=1-2]
-		\arrow["{E\otimes \tau\otimes E}"', from=1-1, to=2-1]
-		\arrow["{\mu\otimes \mu}"', from=2-1, to=3-1]
-		\arrow["\tau"', from=3-1, to=3-2]
-		\arrow["{E\otimes \tau\otimes E}", from=1-2, to=2-2]
-		\arrow["{\mu\otimes \mu}", from=2-2, to=3-2]
-		\arrow["{\tau_{E\otimes E,E\otimes E}}", from=2-1, to=2-2]
-	\end{tikzcd}\]
-	The top region commutes by coherence for the symmetries in a symmetric monoidal category, while the bottom region commutes by naturality of $\tau$. Now, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNSxbMiwwLCJTIl0sWzAsMiwiRVxcb3RpbWVzIEUiXSxbNCwyLCJFXFxvdGltZXMgRSJdLFsxLDEsIlNcXG90aW1lcyBTIl0sWzMsMSwiU1xcb3RpbWVzIFMiXSxbMSwyLCJcXHRhdSJdLFszLDQsIlxcdGF1Il0sWzAsMywiXFxjb25nIiwyXSxbMCw0LCJcXGNvbmciXSxbMywxLCJlXFxvdGltZXMgZSIsMV0sWzQsMiwiZVxcb3RpbWVzIGUiLDFdXQ==
-	\[\begin{tikzcd}
-		&& S \\
-		& {S\otimes S} && {S\otimes S} \\
-		{E\otimes E} &&&& {E\otimes E}
-		\arrow["\tau", from=3-1, to=3-5]
-		\arrow["\tau", from=2-2, to=2-4]
-		\arrow["\cong"', from=1-3, to=2-2]
-		\arrow["\cong", from=1-3, to=2-4]
-		\arrow["{e\otimes e}"{description}, from=2-2, to=3-1]
-		\arrow["{e\otimes e}"{description}, from=2-4, to=3-5]
-	\end{tikzcd}\]
-	The top triangle commutes by coherence for a symmetric monoidal category, while the bottom region commutes by naturality of $\tau$. Thus, we have shown $\tau_{E,E}$ is a homomorphism of monoid objects, as desired.
-\end{proof}
-
 \begin{proposition}\label{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_appendix}
-    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$ which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$ with the structure maps $(\eta_L,\eta_R,\Psi,\vare,c)$ constructed above is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$ (\autoref{hopf_algebroid_defn}), i.e., a co-groupoid object in the category $\GrCAlg{\pi_*(S)}$.
+    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$ which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$ with the structure maps $(\eta_L,\eta_R,\Psi,\epsilon,c)$ constructed above is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$ (\autoref{hopf_algebroid_defn}), i.e., a co-groupoid object in the category $\GrCAlg{\pi_*(S)}$.
 \end{proposition}
 \begin{proof}
 	We need to show all the diagrams in \autoref{hopf_algebroid_defn} commute. Since we are dealing with $A$-graded homomorphisms, when showing these diagrams commute, it always suffices to chase homogeneous elements around. To that end, we fix homogeneous elements $x:S^a\to E$ in $\pi_*(E)$ and $y:S^b\to E\otimes E$ in $E_*(E\otimes E)$ now.
@@ -927,17 +925,17 @@ In this subsection, we fix a monoidal closed tensor triangulated category $\cSH$
 	The top composition is $\pi_*(E\otimes e\otimes E)(\eta_R(x))$, while the bottom composition is $\Phi_{E,E}(1\otimes\eta_R(x))$. The top right region commutes by functoriality of $-\otimes-$. The bottom left triangle commutes by unitality of $\mu$. Finally, the middle triangle commutes by definition.
 
 	Now, we wish to show the following diagram commutes
-	% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHBpXyooRSkiXSxbMSwxLCJcXHBpXyooRSkiXSxbMiwwLCJFXyooRSkiXSxbMCwwLCJFXyooRSkiXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDIsIlxcZXRhX1IiXSxbMCwzLCJcXGV0YV9MIiwyXSxbMywxLCJcXHZhcmUiLDJdLFsyLDEsIlxcdmFyZSJdXQ==
+	% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHBpXyooRSkiXSxbMSwxLCJcXHBpXyooRSkiXSxbMiwwLCJFXyooRSkiXSxbMCwwLCJFXyooRSkiXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDIsIlxcZXRhX1IiXSxbMCwzLCJcXGV0YV9MIiwyXSxbMywxLCJcXGVwc2lsb24iLDJdLFsyLDEsIlxcZXBzaWxvbiJdXQ==
 	\[\begin{tikzcd}
 		{E_*(E)} & {\pi_*(E)} & {E_*(E)} \\
 		& {\pi_*(E)}
 		\arrow[Rightarrow, no head, from=1-2, to=2-2]
 		\arrow["{\eta_R}", from=1-2, to=1-3]
 		\arrow["{\eta_L}"', from=1-2, to=1-1]
-		\arrow["\vare"', from=1-1, to=2-2]
-		\arrow["\vare", from=1-3, to=2-2]
+		\arrow["\epsilon"', from=1-1, to=2-2]
+		\arrow["\epsilon", from=1-3, to=2-2]
 	\end{tikzcd}\]
-	Unravelling how $\eta_L$, $\eta_R$, and $\vare$ are defined, this is the diagram obtained by applying $\pi_*$ to the following diagram:
+	Unravelling how $\eta_L$, $\eta_R$, and $\epsilon$ are defined, this is the diagram obtained by applying $\pi_*$ to the following diagram:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxvdGltZXMgRSJdLFsxLDAsIkUiXSxbMiwwLCJFXFxvdGltZXMgRSJdLFsxLDEsIkUiXSxbMSwyLCJlXFxvdGltZXMgRSJdLFsyLDMsIlxcbXUiXSxbMCwzLCJcXG11IiwyXSxbMSwwLCJFXFxvdGltZXMgZSIsMl0sWzEsMywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
 	\[\begin{tikzcd}
 		{E\otimes E} & E & {E\otimes E} \\
@@ -953,6 +951,27 @@ In this subsection, we fix a monoidal closed tensor triangulated category $\cSH$
 	Showing that the third diagram in item (1) in \autoref{hopf_algebroid_defn} is entirely analagous to how we showed the first diagram commutes.
 
 	Now, we'd like to show the following diagram commutes:
+\end{proof}
+
+\begin{proposition}\label{E_*_functor_from_SH_to_E*E-comodules_appendix}
+    Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to the category $E_*(E)\text-\CoMod$ of left $A$-graded comodules (\autoref{left_comodule_defn}) over the dual $E$-Steenrod algebra, which is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$, by \autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}.
+
+    In particular, given an object $X$ in $\cSH$, we are viewing $E_*(X)$ with its canonical left $\pi_*(E)$-module structure (\autoref{module_main}), and the action map 
+    \[\Psi_X:E_*(X)\to E_*(E)\otimes_{\pi_*(E)}E_*(X)\]
+    is given by the composition
+    \[\Psi_X:E_*(X)\xr{E_*(e\otimes X)}E_*(E\otimes X)\xr{\Phi_{E,X}^{-1}}E_*(E)\otimes_{\pi_*(E)}E_*(X).\]
+\end{proposition}
+\begin{proof}
+	\todo{TODO}
+\end{proof}
+
+\begin{proposition}\label{Phi_E,X_is_comodule_homo_appendix}
+    Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then given an object $X$ in $\cSH$, the map
+    \[\Phi_{E,X}:E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
+    constructed in \autoref{Kunneth_map_construction_main} is a homomorphism of $A$-graded left $\Gamma$-comodules, where here by \autoref{comodule_co-free_adjunction} we are viewing $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ as the co-free $E_*(E)$-comodule on $E_*(X)$ with its canonical $A$-graded left $\pi_*(E)$-module structure (via \autoref{module_main}).
+\end{proposition}
+\begin{proof}
+	\todo{TODO}
 \end{proof}
 
 \end{document}

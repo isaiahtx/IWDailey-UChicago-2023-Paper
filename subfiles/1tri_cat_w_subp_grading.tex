@@ -20,7 +20,7 @@ In order to construct an abstract version of the Adams spectral sequence, we nee
 	Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}), a \emph{sub-Picard grading} on $\cC$ is the following data:
 	\begin{itemize}
 		\item A pointed abelian group $(A,\1)$ along with a homomorphism of pointed groups $h:(A,\1)\to(\Pic\cC,\Sigma S)$, where $\Pic\cC$ is the \emph{Picard group} of isomorphism classes of invertible objects in $\cC$.\footnote{Recall an object $X$ is a symmetric monoidal category is \emph{invertible} if there exists some object $Y$ and an isomorphism $S\cong X\otimes Y$.}
-		\item For each $a\in A$, a chosen representative $S^a$ called the \emph{$a$-sphere} in the isomorphism class $h(a)$ such that each $S^a$ is a com pact object (\autoref{defn_compact}) and $S^0=S$.
+		\item For each $a\in A$, a chosen representative $S^a$ called the \emph{$a$-sphere} in the isomorphism class $h(a)$ such that each $S^a$ is a compact object (\autoref{defn_compact}) and $S^0=S$.
 		\item For each $a,b\in A$, an isomorphism $\phi_{a,b}:S^{a+b}\to S^a\otimes S^b$. This family of isomorphisms is required to be \emph{coherent}, in the following sense:
 		\begin{itemize}
 			\item For all $a\in A$, we must have that $\phi_{a,0}$ coincides with the right unitor $\rho_{S^a}^{-1}:S^{a}\xrightarrow\cong S^a\otimes S$ and $\phi_{0,a}$ coincides the left unitor $\lambda_{S^a}^{-1}:S^a\xrightarrow\cong S\otimes S^a$.
@@ -60,8 +60,8 @@ We denote the associator, symmetry, left unitor, and right unitor isomorphisms i
 Often we will drop the subscripts. Furthermore, by the coherence theorem for symmetric monoidal categories (\cite{MLCoherence}), we will often assume $\alpha$, $\rho$, and $\lambda$ are actual equalities. 
 
 Given some integer $n\in\bZ$, we will write a bold $\n$ to denote the element $n\cdot\1$ in $A$. Note that we can use the isomorphism $\nu:\Sigma S\xr\cong S^\1$ to construct a natural isomorphism $\Sigma\cong S^\1\otimes-$:
-\[\Sigma X\xr{\Sigma\lambda_X^{-1}}\Sigma(S\otimes X)\xr{e_{S,X}^{-1}}\Sigma S\otimes X\xr{\nu\otimes X}S^\1\otimes X.\]
-The first two arrows are natural in $X$ by definition. The last arrow is natural in $X$ by functoriality of $-\otimes-$. By abuse of notation, we will also use $\nu$ to denote this natural isomorphism. 
+\[\Sigma X\xr{\Sigma\lambda_X^{-1}}\Sigma(S\otimes X)\xr{e_{S,X}^{-1}}\Sigma S\otimes X\xr{\nu\otimes X}S^\1\otimes X,\]
+where $e_{X,Y}:\Sigma X\otimes Y\to\Sigma(X\otimes Y)$ is the isomorphism specified by the fact that $\cSH$ is tensor-triangulated. The first two arrows are natural in $X$ by definition. The last arrow is natural in $X$ by functoriality of $-\otimes-$. By abuse of notation, we will also use $\nu$ to denote this natural isomorphism. 
 %\todo{is this characterization of $\nu$ and $e$ needed?}Furthermore, under this isomorphism, $e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong \Sigma(X\otimes Y)$ corresponds to the associator, by commutativity of the following diagram:
 %% https://q.uiver.app/#q=WzAsOSxbMywwLCIoU15cXDFcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMywyLCJTXlxcMVxcb3RpbWVzKFhcXG90aW1lcyBZKSJdLFsyLDAsIihcXFNpZ21hIFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMSwwLCJcXFNpZ21hKFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMCwwLCJcXFNpZ21hIFhcXG90aW1lcyBZIl0sWzAsMiwiXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMiwyLCJcXFNpZ21hIFNcXG90aW1lcyAoWFxcb3RpbWVzIFkpIl0sWzEsMiwiXFxTaWdtYShTXFxvdGltZXMgKFhcXG90aW1lcyBZKSkiXSxbMSwxLCJcXFNpZ21hKChTXFxvdGltZXMgWClcXG90aW1lcyBZKSJdLFswLDEsIlxcYWxwaGEiLDJdLFswLDIsIihcXG51XFxvdGltZXMgWClcXG90aW1lcyBZIiwyXSxbMywyLCJlX3tTLFh9XnstMX1cXG90aW1lcyBZIl0sWzQsMywiXFxTaWdtYVxcbGFtYmRhX1heey0xfVxcb3RpbWVzIFkiXSxbNCw1LCJlX3tYLFl9IiwyXSxbNiwxLCJcXG51XFxvdGltZXMgKFhcXG90aW1lcyBZKSIsMl0sWzcsNiwiZV97UyxYXFxvdGltZXMgWX1eey0xfSIsMl0sWzUsNywiXFxTaWdtYVxcbGFtYmRhX3tYXFxvdGltZXMgWX1eey0xfSIsMl0sWzIsNiwiXFxhbHBoYSJdLFszLDgsImVfe1NcXG90aW1lcyBYLFl9Il0sWzgsNywiXFxTaWdtYVxcYWxwaGEiXSxbOCw1LCJcXFNpZ21hKFxcbGFtYmRhX1hcXG90aW1lcyBZKSIsMV1d
 %\[\begin{tikzcd}
@@ -120,7 +120,23 @@ Given some $a\in A$, we define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a
 	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s (since $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, and here we are taking the unitors and associators to be equalities), so it does commute, as desired.
 \end{proof}
 
-Given two objects $X$ and $Y$ in $\cSH$, we will denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and the internal hom object by $F(X,Y)$. We can extend the abelian group $[X,Y]$ into an $A$-graded abelian group ${[X,Y]}_*$ by defining ${[X,Y]}_a:=[S^a\otimes X,Y]$. Given an object $X$ in $\cSH$ and some $a\in A$, we can define the abelian group
+Given two objects $X$ and $Y$ in $\cSH$, we will denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and the internal hom object by $F(X,Y)$. %In what follows, we write $\Ab^A$ for the category of $A$-graded abelian groups with its canonical self-enrichment.\footnote{Explicitly, given $A$-graded abelian groups $B$ and $C$, we define $\Hom_{\Ab^A}^*(X,Y)$ to be the $A$-graded abelian group by taking $\Hom_{\Ab^A}^a(X,Y)$ to be the abelian groups of degree-preserving abelian group homomorphisms $X_{*+a}\to Y_*$, where $X_{*+a}$ denotes the shifted $A$-graded abelian group.}
+We can extend the abelian group $[X,Y]$ into an $A$-graded abelian group ${[X,Y]}_*$ by defining ${[X,Y]}_a:=[S^a\otimes X,Y]$.
+
+%\begin{proposition}
+%	Each hom-group $[X,Y]$ in the category $\cSH$ can be extended to an $A$-graded abelian group $[X,Y]_*$ by the rule
+%	\[[X,Y]_a:=[\Sigma^a X,Y].\]
+%	This yields the $\Ab^A$-enriched category $\cSH^A$, where composition is the $A$-graded homomorphism
+%	\[[Y,Z]_*\times[X,Y]_*\to[X,Z]_*\]
+%	sending $f:S^a\otimes Y\to Z$ and $g:S^b\otimes X\to Y$ to the composition
+%	\[S^{a+b}\otimes X\xr{\phi_{a,b}\otimes X}(S^a\otimes S^b)\otimes X\xr\alpha S^a\otimes(S^b\otimes X)\xr{S^a\otimes g}S^a\otimes Y\xr{f}Z\]
+%	(where here we are suppressing associators from the notation).
+%\end{proposition}
+%\begin{proof}
+%	We only need to check that composition is bilinear. To that end, 
+%\end{proof}
+
+Given an object $X$ in $\cSH$ and some $a\in A$, we can define the abelian group
 \[\pi_a(X):=[S^a,X],\]
 which we call the \emph{$a^\text{th}$ (stable) homotopy group of $X$}. We write $\pi_*(X)$ for the $A$-graded abelian group $\bigoplus_{a\in A}\pi_a(X)$, so that in particular we have a canonical isomorphism
 \[\pi_*(X)=[S^*,X]\cong{[S,X]}_*.\]
@@ -134,7 +150,7 @@ We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$
 	Suppose we are given a distinguished triangle
 	\[X\xr fY\xr gZ\xr h\Sigma X\]
 	and some object $W$ in $\cSH$. Then there is an infinite long exact sequence of $A$-graded abelian groups:
-	\[\cdots\to{[W,Z]}_{*+\n+\1}\xr\partial{[W,X]}_{*+\n}\xr{f_*}{[W,Y]}_{*+\n}\xr{g_*}{[W,Z]}_{*+\n}\xr{\partial}{[W,Z]}_{*+\n-\1}\to\cdots,\]
+	\[\cdots\to{[W,Z]}_{*+\n+\1}\xr\partial{[W,X]}_{*+\n}\xr{f_*}{[W,Y]}_{*+\n}\xr{g_*}{[W,Z]}_{*+\n}\xr{\partial}{[W,X]}_{*+\n-\1}\to\cdots,\]
 	where $\partial:{[W,Z]}_{*+\n+\1}\to{[W,X]}_{*+\n}$ sends a class $x:S^{a+\n+\1}\otimes W\to Z$ to the composition 
 	\[S^{a+\n}\otimes W\xr{\phi_{-\1,a+\n+\1}}S^{-\1}\otimes S^{a+\n+\1}\otimes W\xrightarrow{S^{-\1}\otimes x}S^{-\1}\otimes Z\xr{\wt h}X,\]
 	where here we are suppressing the associator from the notation, and $\wt h:\Omega Z=S^{-\1}\otimes Z\to X$ is the adjoint (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}) of $h:Z\to\Sigma X$.
@@ -148,7 +164,7 @@ We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$
 	\[s^n_X:\Sigma^nX\xrightarrow{\nu^n_X}(S^\1)^n\otimes X\xrightarrow{\phi\otimes X}S^\n\otimes X=\Sigma^\n X,\]
 	where we recursively define $\nu^1:=\nu$ and $\nu^{n+1}$ is given by the composition
 	\[\nu^{n+1}_X:\Sigma^{n+1}X=\Sigma^n\Sigma X\xrightarrow{\nu^n_{\Sigma X}}(S^\1)^n\otimes\Sigma X\xrightarrow{(S^\1)^n\otimes\nu_X}(S^\1)^{n}\otimes S^\1\otimes X=(S^\1)^{n+1}\otimes X.\]
-	Finally, we define $s^0$ to be the identity natural transformation on $\cSH$. Then we get the following natural isomorphisms of $A$-graded abelian groups for all $n\in\bZ$
+	We may further define $s^0$ to be the identity natural transformation on $\cSH$. Then we get the following natural isomorphisms of $A$-graded abelian groups for all $n\in\bZ$
 	\[\ell^{n}_{V}:{[W,\Sigma^n V]}_*\xrightarrow{{(s^n_V)}_*}{[W,\Sigma^\n V]}_*\xr{r^\n_{W,V}}{[W,V]}_{*-\n},\]
 	where $r^\n_{W,V}$ is the natural isomorphism given as the composition
 	\[[W,\Sigma^\n V]_*\xr\cong [S^{-\n}\otimes S^*\otimes W,V]\xr{{(\phi\otimes W)}^*}[S^{*-\n}\otimes W,V]=[W,V]_{*-\n},\]
@@ -172,7 +188,7 @@ We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$
 		\arrow["\partial"', from=2-1, to=2-2]
 		\arrow["{h_{n-1}}", from=1-1, to=1-2]
 	\end{tikzcd}\end{equation}
-	where for $n\geq0$, $h_n=\Sigma^nh$, and for $n>0$, $h_{-n}=\Omega^{n-1}\wt h$ (where $\wt h:\Omega Z\to X$ is the adjoint of $h:Z\to\Sigma X$). We would like to show the bottom row is exact. The top row is exact since it is obtained by applying $[W,-]_*$ to a fiber sequence (see \autoref{dist_tri_LES} for full details), and we have constructed the vertical arrows to be isomorphisms. Thus it suffices to show each square commutes. The inner two squares commute by naturality of $\ell^n$. Thus, it further suffices to show the outermost squares commute. Since our choice of $n\in\bZ$ is arbitrary, we can just show the right square commutes. First consider the case that $n\geq0$, and consider the following diagram:
+	where for $n\geq0$, $h_n:=\Sigma^nh$, and for $n>0$, $h_{-n}:=\Omega^{n-1}\wt h$ (where $\wt h:\Omega Z\to X$ is the adjoint of $h:Z\to\Sigma X$). We would like to show the bottom row is exact. The top row is exact since it is obtained by applying $[W,-]_*$ to a fiber sequence (see \autoref{dist_tri_LES} for full details), and we have constructed the vertical arrows to be isomorphisms. Thus it suffices to show each square commutes. The inner two squares commute by naturality of $\ell^n$. Thus, it further suffices to show the outermost squares commute. Since our choice of $n\in\bZ$ is arbitrary, we can just show the right square commutes. First consider the case that $n\geq0$, and consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJbVyxcXFNpZ21hXm5aXV8qIl0sWzMsMCwiW1csXFxTaWdtYV57bisxfVhdXyoiXSxbMywzLCJbVyxYXV97Ki1cXG4tXFwxfSJdLFswLDMsIltXLFpdX3sqLVxcbn0iXSxbMSwxLCJbVyxcXFNpZ21hIFhdX3sqLVxcbn0iXSxbMiwyLCJbVyxcXFNpZ21hXlxcMVhdX3sqLVxcbn0iXSxbMCwxLCJcXFNpZ21hXm5oXyoiXSxbMSwyLCJcXGVsbF9YXntuKzF9Il0sWzAsMywiXFxlbGxfWl5uIiwyXSxbMywyLCJcXHBhcnRpYWwiLDJdLFs0LDUsInsoXFxudV9YKX1fKiJdLFs1LDIsInJeXFwxX3tXLFh9Il0sWzEsNCwiXFxlbGxebl97XFxTaWdtYSBYfSJdLFszLDQsImhfKiJdXQ==
 	\[\begin{tikzcd}
 		{[W,\Sigma^nZ]_*} &&& {[W,\Sigma^{n+1}X]_*} \\
@@ -295,6 +311,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 		such that two of the three objects $X$, $Y$, and $Z$ are cellular, than the third object is also cellular.
 		\item Given a collection of cellular objects $X_i$ indexed by some (small) set $I$, the object $\bigoplus_{i\in I} X_i$ is cellular (recall we have chosen $\cSH$ to have arbitrary coproducts).
 	\end{enumerate}
+	We write $\cSH\text-\Cell$ to denote the full subcategory of $\cSH$ on the cellular objects.
 \end{definition}
 
 \begin{lemma}\label{cellular_closed_under_iso}
