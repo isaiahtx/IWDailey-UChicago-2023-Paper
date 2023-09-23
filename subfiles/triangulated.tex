@@ -1,9 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-We assume the reader is familiar with additive categories and (closed, symmetric) monoidal categories. 
-
-\subsection{Triangulated categories and their properties}
+\subsection{Triangulated categories and their basic properties}
 
 \begin{definition}\label{triangulated_defn}
     A \emph{triangulated category} $(\cC,\Sigma,\cD)$ is the data of:\begin{enumerate}
@@ -207,14 +205,6 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
         \arrow["\psi", from=1-2, to=2-2]
     \end{tikzcd}\]
     The top row is a distinguished triangle by assumption, and the bottom row is distinguished by axioms TR1 and TR4 for a triangulated category, along with the fact that $\Sigma0=0$ since $\Sigma $ is additive. Thus by axiom TR3 there exists a map $\phi:Z\to A$ such that $\phi\circ g=\psi$, i.e., $g^*(\phi)=\psi$, so that $\phi\in\imm g^*$ as desired. 
-
-    Thus, we have shown exactness of 
-    \[[\Sigma X,A]\xr{h^*}[Z,A]\xr{g^*}[Y,A]\xr{f^*}[X,A]\]
-    at $[Y,A]$. To see $\ker g^*=\imm h^*$, again the same arguments applied to the shifted triangle
-    \[Y\xr gZ\xr h\Sigma X\xr{-\Sigma f}\Sigma Y\]
-    yield that
-    \[[\Sigma Y,A]\xr{(-\Sigma f)^*}[\Sigma X,A]\xr {h^*}[Z,A]\xr{g^*}[Y,A]\]
-    is exact at $[Z,A]$, so $\ker g^*=\imm h^*$, as desired.
 \end{proof}
 
 \begin{lemma}\label{2-of-3-dist_tri-lemma}
@@ -237,11 +227,11 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     with both rows distinguished. Then if any two of the maps $j$, $k$, and $\ell$ are isomorphisms, then so is the third.
 \end{lemma}
 \begin{proof}
-    Suppose we are given any object $A$ in $\cC$, and consider the commutative diagram
-    % https://q.uiver.app/#q=WzAsMTQsWzAsMCwiW0EsWF0iXSxbMSwwLCJbQSxZXSJdLFsyLDAsIltBLFpdIl0sWzMsMCwiW0EsXFxTaWdtYSBYXSJdLFs0LDAsIltBLFxcU2lnbWEgWV0iXSxbMCwxLCJbQSxYJ10iXSxbMSwxLCJbQSxZJ10iXSxbMiwxLCJbQSxaJ10iXSxbMywxLCJbQSxcXFNpZ21hIFgnXSJdLFs0LDEsIltBLFxcU2lnbWEgWSddIl0sWzUsMCwiW0EsXFxTaWdtYSBaXSJdLFs1LDEsIltBLFxcU2lnbWEgWiddIl0sWzYsMSwiW0EsXFxTaWdtYV4yWCddIl0sWzYsMCwiW0EsXFxTaWdtYV4yWF0iXSxbMCwxLCJmXyoiXSxbMSwyLCJnXyoiXSxbMiwzLCJrXyoiXSxbMyw0LCItXFxTaWdtYSBmXyoiXSxbMCw1LCJqXyoiXSxbNSw2LCJmXyonIl0sWzYsNywiZ18qJyJdLFs3LDgsImhfKiciXSxbOCw5LCItXFxTaWdtYSBmXyonIl0sWzEsNiwia18qIl0sWzIsNywiXFxlbGxfKiJdLFszLDgsIlxcU2lnbWEgal8qIl0sWzQsOSwiXFxTaWdtYSBrXyoiXSxbNCwxMCwiLVxcU2lnbWEgZ18qIl0sWzksMTEsIi1cXFNpZ21hIGdfKiciXSxbMTEsMTIsIi1cXFNpZ21hIGhfKiciXSxbMTAsMTMsIi1cXFNpZ21hIGhfKiJdLFsxMCwxMSwiXFxTaWdtYVxcZWxsXyoiXSxbMTMsMTIsIlxcU2lnbWFeMmpfKiJdXQ==
-    \[\begin{tikzcd}[column sep=small]
-        {[A,X]} & {[A,Y]} & {[A,Z]} & {[A,\Sigma X]} & {[A,\Sigma Y]} & {[A,\Sigma Z]} & {[A,\Sigma^2X]} \\
-        {[A,X']} & {[A,Y']} & {[A,Z']} & {[A,\Sigma X']} & {[A,\Sigma Y']} & {[A,\Sigma Z']} & {[A,\Sigma^2X']}
+    Suppose we are given any object $W$ in $\cC$, and consider the commutative diagram
+    % https://q.uiver.app/#q=WzAsMTQsWzAsMCwiW1csWF0iXSxbMSwwLCJbVyxZXSJdLFsyLDAsIltXLFpdIl0sWzMsMCwiW1csXFxTaWdtYSBYXSJdLFs0LDAsIltXLFxcU2lnbWEgWV0iXSxbMCwxLCJbVyxYJ10iXSxbMSwxLCJbVyxZJ10iXSxbMiwxLCJbVyxaJ10iXSxbMywxLCJbVyxcXFNpZ21hIFgnXSJdLFs0LDEsIltXLFxcU2lnbWEgWSddIl0sWzUsMCwiW1csXFxTaWdtYSBaXSJdLFs1LDEsIltXLFxcU2lnbWEgWiddIl0sWzYsMSwiW1csXFxTaWdtYV4yWCddIl0sWzYsMCwiW1csXFxTaWdtYV4yWF0iXSxbMCwxLCJmXyoiXSxbMSwyLCJnXyoiXSxbMiwzLCJrXyoiXSxbMyw0LCItXFxTaWdtYSBmXyoiXSxbMCw1LCJqXyoiXSxbNSw2LCJmXyonIl0sWzYsNywiZ18qJyJdLFs3LDgsImhfKiciXSxbOCw5LCItXFxTaWdtYSBmXyonIl0sWzEsNiwia18qIl0sWzMsOCwiXFxTaWdtYSBqXyoiXSxbNCw5LCJcXFNpZ21hIGtfKiJdLFs0LDEwLCItXFxTaWdtYSBnXyoiXSxbOSwxMSwiLVxcU2lnbWEgZ18qJyJdLFsxMSwxMiwiLVxcU2lnbWEgaF8qJyJdLFsxMCwxMywiLVxcU2lnbWEgaF8qIl0sWzEwLDExLCJcXFNpZ21hXFxlbGxfKiJdLFsxMywxMiwiXFxTaWdtYV4yal8qIl0sWzIsNywiXFxlbGxfKiJdXQ==
+    \[\begin{tikzcd}[column sep=tiny]
+        {[W,X]} & {[W,Y]} & {[W,Z]} & {[W,\Sigma X]} & {[W,\Sigma Y]} & {[W,\Sigma Z]} & {[W,\Sigma^2X]} \\
+        {[W,X']} & {[W,Y']} & {[W,Z']} & {[W,\Sigma X']} & {[W,\Sigma Y']} & {[W,\Sigma Z']} & {[W,\Sigma^2X']}
         \arrow["{f_*}", from=1-1, to=1-2]
         \arrow["{g_*}", from=1-2, to=1-3]
         \arrow["{k_*}", from=1-3, to=1-4]
@@ -252,7 +242,6 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
         \arrow["{h_*'}", from=2-3, to=2-4]
         \arrow["{-\Sigma f_*'}", from=2-4, to=2-5]
         \arrow["{k_*}", from=1-2, to=2-2]
-        \arrow["{\ell_*}", from=1-3, to=2-3]
         \arrow["{\Sigma j_*}", from=1-4, to=2-4]
         \arrow["{\Sigma k_*}", from=1-5, to=2-5]
         \arrow["{-\Sigma g_*}", from=1-5, to=1-6]
@@ -261,72 +250,73 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
         \arrow["{-\Sigma h_*}", from=1-6, to=1-7]
         \arrow["{\Sigma\ell_*}", from=1-6, to=2-6]
         \arrow["{\Sigma^2j_*}", from=1-7, to=2-7]
+        \arrow["{\ell_*}", from=1-3, to=2-3]
     \end{tikzcd}\]
-    The rows are exact by \autoref{distinguished_tri_is_exact} and repeated applications of axiom TR4. It follows by the five lemma that if $j$ and $k$ are isomorphisms, then $\ell_*$ is an isomorphism. Similarly, if $k$ and $\ell$ are isomorphisms then $\Sigma j_*$ is an isomorphism. Finally, if $\ell$ and $j$ are isomorphisms, then $\Sigma k_*$ is an isomorphism. The desired result follows by faithfullness of $\Sigma$ and the Yoneda embedding.
+    The rows are exact by \autoref{distinguished_tri_is_exact} and repeated applications of axiom TR4. It follows by the five lemma and faithfulness of $\Sigma$ that if $j$ and $k$ are isomorphisms, then $\ell_*$ is an isomorphism. Similarly, if $k$ and $\ell$ are isomorphisms then $\Sigma j_*$ is an isomorphism. Finally, if $\ell$ and $j$ are isomorphisms, then $\Sigma k_*$ is an isomorphism. The desired result follows by faithfullness of $\Sigma$ and the Yoneda embedding.
 \end{proof}
 
-\begin{proposition}\label{cofiber_unique_up_to_isomorphism}
-    Given a map $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, the cofiber sequence of $f$ is unique up to isomorphism, in the sense that given any two distinguished triangles
-    \[X\xrightarrow fY\to Z\to\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\to Z'\to\Sigma X,\]
-    there exists an isomorphism $Z\to Z'$ which makes the following diagram commute:
-    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzAsMSwiZiJdLFsxLDJdLFsyLDNdLFszLDQsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw2LCJmIl0sWzYsN10sWzEsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw3LCJrIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsNF1d
-    \[\begin{tikzcd}
-        X & Y & Z & {\Sigma X} \\
-        X & Y & {Z'} & {\Sigma X}
-        \arrow["f", from=1-1, to=1-2]
-        \arrow[from=1-2, to=1-3]
-        \arrow[from=1-3, to=1-4]
-        \arrow[Rightarrow, no head, from=1-4, to=2-4]
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow["f", from=2-1, to=2-2]
-        \arrow[from=2-2, to=2-3]
-        \arrow[Rightarrow, no head, from=1-2, to=2-2]
-        \arrow["k", dashed, from=1-3, to=2-3]
-        \arrow[from=2-3, to=2-4]
-    \end{tikzcd}\]
-\end{proposition}
-\begin{proof}
-    Suppose we have two distinguished triangles
-    \[X\xrightarrow fY\xrightarrow{g} Z\xrightarrow{h}\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\xrightarrow{g'} Z'\xrightarrow{h'}\Sigma X,\]
-    and consider the following commutative diagram
-    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJmIl0sWzUsNiwiZyciXSxbNiw3LCJoJyJdLFsxLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-    \[\begin{tikzcd}
-        X & Y & Z & {\Sigma X} \\
-        X & Y & {Z'} & {\Sigma X}
-        \arrow["f", from=1-1, to=1-2]
-        \arrow["g", from=1-2, to=1-3]
-        \arrow["h", from=1-3, to=1-4]
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow["f", from=2-1, to=2-2]
-        \arrow["{g'}", from=2-2, to=2-3]
-        \arrow["{h'}", from=2-3, to=2-4]
-        \arrow[Rightarrow, no head, from=1-2, to=2-2]
-    \end{tikzcd}\]
-    By axiom TR3, there exists some map $k:Z\to Z'$ which makes the following diagram commute:
-    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJmIl0sWzUsNiwiZyciXSxbNiw3LCJoJyJdLFsxLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiayJdLFszLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-    \[\begin{tikzcd}
-        X & Y & Z & {\Sigma X} \\
-        X & Y & {Z'} & {\Sigma X}
-        \arrow["f", from=1-1, to=1-2]
-        \arrow["g", from=1-2, to=1-3]
-        \arrow["h", from=1-3, to=1-4]
-        \arrow[Rightarrow, no head, from=1-1, to=2-1]
-        \arrow["f", from=2-1, to=2-2]
-        \arrow["{g'}", from=2-2, to=2-3]
-        \arrow["{h'}", from=2-3, to=2-4]
-        \arrow[Rightarrow, no head, from=1-2, to=2-2]
-        \arrow["k", from=1-3, to=2-3]
-        \arrow[Rightarrow, no head, from=1-4, to=2-4]
-    \end{tikzcd}\]
-    Now, by \autoref{2-of-3-dist_tri-lemma}, $k$ is an isomorphism.
-\end{proof}
+%\begin{proposition}\label{cofiber_unique_up_to_isomorphism}
+%    Given a map $f:X\to Y$ in a triangulated category $(\cC,\Sigma,\Omega,\cD)$, the cofiber sequence of $f$ is unique up to isomorphism, in the sense that given any two distinguished triangles
+%    \[X\xrightarrow fY\to Z\to\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\to Z'\to\Sigma X,\]
+%    there exists an isomorphism $Z\to Z'$ which makes the following diagram commute:
+%    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzAsMSwiZiJdLFsxLDJdLFsyLDNdLFszLDQsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw2LCJmIl0sWzYsN10sWzEsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw3LCJrIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsNF1d
+%    \[\begin{tikzcd}
+%        X & Y & Z & {\Sigma X} \\
+%        X & Y & {Z'} & {\Sigma X}
+%        \arrow["f", from=1-1, to=1-2]
+%        \arrow[from=1-2, to=1-3]
+%        \arrow[from=1-3, to=1-4]
+%        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+%        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+%        \arrow["f", from=2-1, to=2-2]
+%        \arrow[from=2-2, to=2-3]
+%        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+%        \arrow["k", dashed, from=1-3, to=2-3]
+%        \arrow[from=2-3, to=2-4]
+%    \end{tikzcd}\]
+%\end{proposition}
+%\begin{proof}
+%    Suppose we have two distinguished triangles
+%    \[X\xrightarrow fY\xrightarrow{g} Z\xrightarrow{h}\Sigma X\qquad\text{and}\qquad X\xrightarrow fY\xrightarrow{g'} Z'\xrightarrow{h'}\Sigma X,\]
+%    and consider the following commutative diagram
+%    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJmIl0sWzUsNiwiZyciXSxbNiw3LCJoJyJdLFsxLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+%    \[\begin{tikzcd}
+%        X & Y & Z & {\Sigma X} \\
+%        X & Y & {Z'} & {\Sigma X}
+%        \arrow["f", from=1-1, to=1-2]
+%        \arrow["g", from=1-2, to=1-3]
+%        \arrow["h", from=1-3, to=1-4]
+%        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+%        \arrow["f", from=2-1, to=2-2]
+%        \arrow["{g'}", from=2-2, to=2-3]
+%        \arrow["{h'}", from=2-3, to=2-4]
+%        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+%    \end{tikzcd}\]
+%    By axiom TR3, there exists some map $k:Z\to Z'$ which makes the following diagram commute:
+%    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlonIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzAsMSwiZiJdLFsxLDIsImciXSxbMiwzLCJoIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJmIl0sWzUsNiwiZyciXSxbNiw3LCJoJyJdLFsxLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiayJdLFszLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+%    \[\begin{tikzcd}
+%        X & Y & Z & {\Sigma X} \\
+%        X & Y & {Z'} & {\Sigma X}
+%        \arrow["f", from=1-1, to=1-2]
+%        \arrow["g", from=1-2, to=1-3]
+%        \arrow["h", from=1-3, to=1-4]
+%        \arrow[Rightarrow, no head, from=1-1, to=2-1]
+%        \arrow["f", from=2-1, to=2-2]
+%        \arrow["{g'}", from=2-2, to=2-3]
+%        \arrow["{h'}", from=2-3, to=2-4]
+%        \arrow[Rightarrow, no head, from=1-2, to=2-2]
+%        \arrow["k", from=1-3, to=2-3]
+%        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+%    \end{tikzcd}\]
+%    Now, by \autoref{2-of-3-dist_tri-lemma}, $k$ is an isomorphism.
+%\end{proof}
 
 \begin{proposition}\label{fiber}
     Given an arrow $f:X\to Y$ in $\cC$, there exists an object $F_f$ called the \emph{fiber} of $f$, and a distinguished triangle
     \[F_f\to X\xrightarrow fY\to\Sigma F_f(\cong C_f).\]
 \end{proposition}
 \begin{proof}
-    Since $\Sigma$ is an equivalence, there exists some functor $\Omega:\cC\to\cC$ and natural isomorphisms $\eta:\Omega\Sigma\Rightarrow\Id_\cC$ and $\vare:\Id_\cC\Rightarrow\Sigma\Omega$. By axiom TR2, we have a distinguished triangle
+    Since $\Sigma$ is an equivalence, there exists some functor $\Omega:\cC\to\cC$ and natural isomorphisms $\vare:\Omega\Sigma\Rightarrow\Id_\cC$ and $\eta:\Id_\cC\Rightarrow\Sigma\Omega$. By axiom TR2, we have a distinguished triangle
     \[X\xrightarrow fY\xrightarrow gC_f\xrightarrow h\Sigma X.\]
     Now, consider the commutative diagram
     % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIkNfZiJdLFszLDAsIlxcU2lnbWEgWCJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiXFxTaWdtYVxcT21lZ2EgQ19mIl0sWzMsMSwiXFxTaWdtYSBYIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImYiXSxbNSw2LCJcXHd0IGciXSxbNiw3LCJcXHd0IGgiXSxbMiw2LCJcXGV0YV97Q19mfSJdLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxLCJmIl1d
@@ -344,7 +334,7 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
         \arrow[Rightarrow, no head, from=1-2, to=2-2]
         \arrow["f", from=1-1, to=1-2]
     \end{tikzcd}\]
-    where $\wt g=\eta_{C_f}\circ g$, and $\wt h=\eta_{C_f}\circ h$. Since each vertical map is an isomorphism and the top row is distinguished, the bottom row is also distinguished by axiom TR0. Now, since $\Sigma$ is an equivalence of categories, it is faithful, so that in particular there exists some map $k:\Omega C_f\to X$ such that $\Sigma k=-\wt h\implies-\Sigma k=\wt h$. Thus, we have a distinguished triangle of the form
+    where $\wt g=\eta_{C_f}\circ g$, and $\wt h=h\circ\eta_{C_f}^{-1}$. Since each vertical map is an isomorphism and the top row is distinguished, the bottom row is also distinguished by axiom TR0. Now, since $\Sigma$ is an equivalence of categories, it is faithful, so that in particular there exists some map $k:\Omega C_f\to X$ such that $\Sigma k=-\wt h\implies-\Sigma k=\wt h$. Thus, we have a distinguished triangle of the form
     \[X\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega C_f\xrightarrow{-\Sigma k}\Sigma X.\]
     Finally, by axiom TR4, we get a distinguished triangle
     \[\Omega C_f\xrightarrow kX\xrightarrow fY\xrightarrow{\wt g}\Sigma\Omega C_f,\]
@@ -375,7 +365,7 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     \[X\xr eX\xr eX\xr eX\xr e\cdots.\]
 \end{proposition}
 \begin{proof}
-    See~\cite[Proposition 1.6.8]{Neeman_2001}
+    See~\cite[Proposition 1.6.8]{Neeman_2001}.
     \todo{write proof down?}
 \end{proof}
 
@@ -409,7 +399,7 @@ From now on, we will assume that $\cC$ is an \emph{adjointly} triangulated categ
     where $\wt h:\Omega Z\to X$ is the adjoint of $h:Z\to\Sigma X$ and $\wt{\Omega g}:Y\to\Sigma\Omega Z$ is the adjoint of $\Omega g:\Omega Y\to\Omega Z$.
 \end{lemma}
 \begin{proof}
-    Note that unravelling definitions, then $\wt h$ and $\wt g$ are the compositions 
+    Note that unravelling definitions, $\wt h$ and $\wt g$ are the compositions 
     \[\wt h:\Omega Z\xrightarrow{\Omega h}\Omega\Sigma X\xrightarrow{\vare_X}X\qquad\text{and}\qquad \wt{\Omega g}:Y\xrightarrow{\eta_Y}\Sigma\Omega Y\xrightarrow{\Sigma\Omega g}\Sigma\Omega Z.\] 
     Now consider the following diagram:
     % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIlxcU2lnbWFcXE9tZWdhIFoiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFsyLDMsImgiXSxbNCw1LCJmIl0sWzUsNiwiXFx3dHtcXE9tZWdhIGd9Il0sWzYsNywiXFxTaWdtYVxcd3QgaCJdLFs0LDAsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCJcXGV0YV9aIiwyXSxbNywzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
@@ -958,78 +948,5 @@ From now on, we fix an adjointly tensor triangulated category $(\cC,\otimes,S,\O
     \[o_{X,Y}':X\otimes\Omega Y\xr{\tau_{X,\Omega Y}}\Omega Y\otimes X\xr{o_{Y,X}}\Omega(Y\otimes X)\xr{\Omega\tau_{Y,X}}\Omega(X\otimes Y).\]
     These are both clearly natural by naturality of $\vare$, $e$, $\eta$, and $\tau$.
 \end{definition}
-
-%Note that given a tensor triangulated category, we have the following characterization of the shift functor:
-%
-%\begin{proposition}\label{tentri_characterize_shift}
-%    Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,\Omega)$, there is a canonical natural isomorphism $\Sigma S\otimes -\cong\Sigma$. 
-%\end{proposition}
-%\begin{proof}
-%    Given an object $X$ in $\cC$, we have natural isomorphisms
-%    \[\Sigma S\otimes X\xrightarrow{e_{S,X}}\Sigma(S\otimes X)\xrightarrow{\Sigma\lambda_X}\Sigma X,\]
-%    where $\lambda$ is the left unitor specified by the monoidal structure on $\cC$.
-%\end{proof}
-%
-%Because of the above proposition, when working with tensor triangulated categories we will often assume that $\Sigma=S^1\otimes-$ for some object $S^1$ in $\cC$.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%\begin{proposition}\label{coherence_for_e'}
-    %The isomorphisms $e_{X,Y}':X\otimes\Sigma Y\to\Sigma(X\otimes Y)$ defined above satisfy the following coherence condition for any objects $X$, $Y$, and $Z$:
-    %% https://q.uiver.app/#q=WzAsNSxbMCwxLCJYXFxvdGltZXMoWVxcb3RpbWVzXFxTaWdtYSBaKSJdLFsxLDEsIlhcXG90aW1lc1xcU2lnbWEoWVxcb3RpbWVzIFopIl0sWzIsMSwiXFxTaWdtYShYXFxvdGltZXMgKFlcXG90aW1lcyBaKSkiXSxbMCwwLCIoWFxcb3RpbWVzIFkpXFxvdGltZXNcXFNpZ21hIFoiXSxbMiwwLCJcXFNpZ21hKChYXFxvdGltZXMgWSlcXG90aW1lcyBaKSJdLFswLDEsIlhcXG90aW1lcyBlX3tZLFp9JyJdLFsxLDIsImVfe1gsWVxcb3RpbWVzIFp9JyJdLFszLDQsImVfe1hcXG90aW1lcyBZLFxcU2lnbWEgWn0nIl0sWzQsMiwiXFxTaWdtYVxcYWxwaGEiXSxbMywwLCJcXGFscGhhIiwyXV0=
-    %\[\begin{tikzcd}
-        %{(X\otimes Y)\otimes\Sigma Z} && {\Sigma((X\otimes Y)\otimes Z)} \\
-        %{X\otimes(Y\otimes\Sigma Z)} & {X\otimes\Sigma(Y\otimes Z)} & {\Sigma(X\otimes (Y\otimes Z))}
-        %\arrow["{X\otimes e_{Y,Z}'}", from=2-1, to=2-2]
-        %\arrow["{e_{X,Y\otimes Z}'}", from=2-2, to=2-3]
-        %\arrow["{e_{X\otimes Y,\Sigma Z}'}", from=1-1, to=1-3]
-        %\arrow["\Sigma\alpha", from=1-3, to=2-3]
-        %\arrow["\alpha"', from=1-1, to=2-1]
-    %\end{tikzcd}\]
-%\end{proposition}
-%\begin{proof}
-    %By the coherence theorem for monoidal categories, we may assume associativity holds up to strict equality, in which case we simply wish to show that the following diagram commutes:
-    %% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXFxvdGltZXMgWVxcb3RpbWVzIFxcU2lnbWEgWiJdLFsxLDAsIlhcXG90aW1lc1xcU2lnbWEoWVxcb3RpbWVzIFopIl0sWzEsMSwiXFxTaWdtYShYXFxvdGltZXMgWVxcb3RpbWVzIFopIl0sWzEsMiwiZV97WCxZXFxvdGltZXMgWn0nIl0sWzAsMiwiZV97WFxcb3RpbWVzIFksWn0nIiwyXSxbMCwxLCJYXFxvdGltZXMgZV97WSxafSciXV0=
-    %\[\begin{tikzcd}
-        %{X\otimes Y\otimes \Sigma Z} & {X\otimes\Sigma(Y\otimes Z)} \\
-        %& {\Sigma(X\otimes Y\otimes Z)}
-        %\arrow["{e_{X,Y\otimes Z}'}", from=1-2, to=2-2]
-        %\arrow["{e_{X\otimes Y,Z}'}"', from=1-1, to=2-2]
-        %\arrow["{X\otimes e_{Y,Z}'}", from=1-1, to=1-2]
-    %\end{tikzcd}\]
-    %Now consider the following diagram:
-    %% https://q.uiver.app/#q=WzAsMTMsWzAsMCwiWFxcb3RpbWVzIFlcXG90aW1lcyBcXFNpZ21hIFoiXSxbMSwwLCJYXFxvdGltZXMgXFxTaWdtYSBaXFxvdGltZXMgWSJdLFsyLDAsIlhcXG90aW1lcyBcXFNpZ21hKFpcXG90aW1lcyBZKSJdLFszLDAsIlhcXG90aW1lcyBcXFNpZ21hKFlcXG90aW1lcyBaKSJdLFszLDEsIlxcU2lnbWEoWVxcb3RpbWVzIFopXFxvdGltZXMgWCJdLFszLDIsIlxcU2lnbWEoWVxcb3RpbWVzIFpcXG90aW1lcyBYKSJdLFszLDMsIlxcU2lnbWEoWFxcb3RpbWVzIFlcXG90aW1lcyBaKSJdLFswLDEsIlxcU2lnbWEgWlxcb3RpbWVzIFhcXG90aW1lcyBZIl0sWzAsMywiXFxTaWdtYShaXFxvdGltZXMgWFxcb3RpbWVzIFkpIl0sWzEsMSwiXFxTaWdtYSBaXFxvdGltZXMgWVxcb3RpbWVzIFgiXSxbMiwxLCJcXFNpZ21hKFpcXG90aW1lcyBZKVxcb3RpbWVzIFgiXSxbMSwyLCJcXFNpZ21hKFpcXG90aW1lcyBZXFxvdGltZXMgWCkiXSxbMSwzLCJcXFNpZ21hKFhcXG90aW1lcyBaXFxvdGltZXMgWSkiXSxbMCwxLCJYXFxvdGltZXMgXFx0YXVfe1ksXFxTaWdtYSBafSJdLFsxLDIsIlhcXG90aW1lcyBlX3taLFl9Il0sWzIsMywiWFxcb3RpbWVzXFxTaWdtYVxcdGF1X3taLFl9Il0sWzMsNCwiXFx0YXVfe1gsXFxTaWdtYShZXFxvdGltZXMgWil9Il0sWzQsNSwiZV97WVxcb3RpbWVzIFosWH0iXSxbNSw2LCJcXFNpZ21hXFx0YXVfe1lcXG90aW1lcyBaLFh9Il0sWzAsNywiXFx0YXVfe1hcXG90aW1lcyBZLFxcU2lnbWEgWn0iLDJdLFs3LDgsImVfe1osWFxcb3RpbWVzIFl9IiwyXSxbOCw2LCJcXFNpZ21hXFx0YXVfe1osWFxcb3RpbWVzIFl9IiwwLHsiY3VydmUiOjV9XSxbMSw5LCJcXHRhdV97WCxcXFNpZ21hIFpcXG90aW1lcyBZfSJdLFs5LDEwLCJlX3taLFl9XFxvdGltZXMgWCJdLFsxMCw0LCJcXFNpZ21hXFx0YXVfe1osWX1cXG90aW1lcyBYIl0sWzEwLDExLCJlX3taXFxvdGltZXMgWSxYfSJdLFsxMSw1LCJcXFNpZ21hKFxcdGF1X3taLFl9XFxvdGltZXMgWCkiXSxbMTEsMTIsIlxcU2lnbWFcXHRhdV97Wlxcb3RpbWVzIFksWH0iXSxbOCwxMiwiXFxTaWdtYShcXHRhdV97WixYfVxcb3RpbWVzIFkpIl0sWzgsMTEsIlxcU2lnbWEoWlxcb3RpbWVzXFx0YXVfe1gsWX0pIl0sWzcsOSwiXFxTaWdtYSBaXFxvdGltZXNcXHRhdV97WCxZfSJdLFs5LDExLCJlX3taLFlcXG90aW1lcyBYfSIsMl0sWzEyLDYsIlxcU2lnbWEoWFxcb3RpbWVzXFx0YXVfe1osWX0pIl1d
-    %\[\begin{tikzcd}
-        %{X\otimes Y\otimes \Sigma Z} & {X\otimes \Sigma Z\otimes Y} & {X\otimes \Sigma(Z\otimes Y)} & {X\otimes \Sigma(Y\otimes Z)} \\
-        %{\Sigma Z\otimes X\otimes Y} & {\Sigma Z\otimes Y\otimes X} & {\Sigma(Z\otimes Y)\otimes X} & {\Sigma(Y\otimes Z)\otimes X} \\
-        %& {\Sigma(Z\otimes Y\otimes X)} && {\Sigma(Y\otimes Z\otimes X)} \\
-        %{\Sigma(Z\otimes X\otimes Y)} & {\Sigma(X\otimes Z\otimes Y)} && {\Sigma(X\otimes Y\otimes Z)}
-        %\arrow["{X\otimes \tau_{Y,\Sigma Z}}", from=1-1, to=1-2]
-        %\arrow["{X\otimes e_{Z,Y}}", from=1-2, to=1-3]
-        %\arrow["{X\otimes\Sigma\tau_{Z,Y}}", from=1-3, to=1-4]
-        %\arrow["{\tau_{X,\Sigma(Y\otimes Z)}}", from=1-4, to=2-4]
-        %\arrow["{e_{Y\otimes Z,X}}", from=2-4, to=3-4]
-        %\arrow["{\Sigma\tau_{Y\otimes Z,X}}", from=3-4, to=4-4]
-        %\arrow["{\tau_{X\otimes Y,\Sigma Z}}"', from=1-1, to=2-1]
-        %\arrow["{e_{Z,X\otimes Y}}"', from=2-1, to=4-1]
-        %\arrow["{\Sigma\tau_{Z,X\otimes Y}}", curve={height=30pt}, from=4-1, to=4-4]
-        %\arrow["{\tau_{X,\Sigma Z\otimes Y}}", from=1-2, to=2-2]
-        %\arrow["{e_{Z,Y}\otimes X}", from=2-2, to=2-3]
-        %\arrow["{\Sigma\tau_{Z,Y}\otimes X}", from=2-3, to=2-4]
-        %\arrow["{e_{Z\otimes Y,X}}", from=2-3, to=3-2]
-        %\arrow["{\Sigma(\tau_{Z,Y}\otimes X)}", from=3-2, to=3-4]
-        %\arrow["{\Sigma\tau_{Z\otimes Y,X}}", from=3-2, to=4-2]
-        %\arrow["{\Sigma(\tau_{Z,X}\otimes Y)}", from=4-1, to=4-2]
-        %\arrow["{\Sigma(Z\otimes\tau_{X,Y})}", from=4-1, to=3-2]
-        %\arrow["{\Sigma Z\otimes\tau_{X,Y}}", from=2-1, to=2-2]
-        %\arrow["{e_{Z,Y\otimes X}}"', from=2-2, to=3-2]
-        %\arrow["{\Sigma(X\otimes\tau_{Z,Y})}", from=4-2, to=4-4]
-    %\end{tikzcd}\]
-    %Unravelling definitions, the top composition is $e'_{X,Y\otimes Z}\circ X\otimes e_{Y,Z}'$ and the bottom composition is $e_{X\otimes Y,Z}'$, so it suffices to show this diagram commutes. The top left square commutes by coherence for symmetric monoidal categories. The trapezoid below that on the left commutes by naturality of $e$. The triangle below that commutes by coherence for symmetric monoidal categories. The top right rectangle commutes by functoriality of $-\otimes-$ and naturality of $\tau$. The small triangle below that in the middle of the diagram commutes by axiom TT4 for a tensor triangulated category. Commutativity of the trapezoid on the middle right is naturality of $e$. Finally, the remaining two regions on the bottom commutes by coherence for symmetric monoidal categories. 
-%\end{proof}
 
 \end{document}

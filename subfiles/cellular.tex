@@ -1,0 +1,126 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+One very important class of objects in $\cSH$ are the \emph{cellular} objects. Intuitively, these are the objects that can be built out of the $S^a$'s via taking coproducts and (co)fibers.
+
+\begin{definition}\label{cellular}
+	Define the class of \emph{cellular} objects in $\cSH$ to be the smallest class of objects such that:
+	\begin{enumerate}
+		\item For all $a\in A$, the $a$-sphere $S^a$ is cellular.
+		\item If we have a distinguished triangle
+		\[X\to Y\to Z\to\Sigma X\]
+		such that two of the three objects $X$, $Y$, and $Z$ are cellular, than the third object is also cellular.
+		\item Given a collection of cellular objects $X_i$ indexed by some (small) set $I$, the object $\bigoplus_{i\in I} X_i$ is cellular (recall we have chosen $\cSH$ to have arbitrary coproducts).
+	\end{enumerate}
+	We write $\cSH\text-\Cell$ to denote the full subcategory of $\cSH$ on the cellular objects.
+\end{definition}
+
+\begin{lemma}\label{cellular_closed_under_iso}
+	Let $X$ and $Y$ be two isomorphic objects in $\cSH$. Then $X$ is cellular iff $Y$ is cellular.
+\end{lemma}
+\begin{proof}
+	Assume we have an isomorphism $f:X\xr\cong Y$ and that $X$ is cellular. Then consider the following commutative diagram
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIjAiXSxbMywwLCJcXFNpZ21hIFgiXSxbMSwxLCJYIl0sWzAsMSwiWCJdLFsyLDEsIjAiXSxbMywxLCJcXFNpZ21hIFgiXSxbMCwxLCJmIl0sWzEsMl0sWzIsM10sWzEsNCwiZl57LTF9Il0sWzAsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDZdLFs2LDddLFszLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		X & Y & 0 & {\Sigma X} \\
+		X & X & 0 & {\Sigma X}
+		\arrow["f", from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow["{f^{-1}}", from=1-2, to=2-2]
+		\arrow[Rightarrow, no head, from=1-1, to=2-1]
+		\arrow[Rightarrow, no head, from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[Rightarrow, no head, from=1-4, to=2-4]
+		\arrow[Rightarrow, no head, from=1-3, to=2-3]
+	\end{tikzcd}\]
+	The bottom row is distinguished by axiom TR1 for a triangulated category. Hence since $X$ is cellular, $0$ is also cellular, since the class of cellular objects satisfies two-of-three for distinguished triangles. Furthermore, since the vertical arrows are all isomorphisms, the top row is distinguished as well, by axiom TR0. Thus again by two-of-three, since $X$ and $0$ are cellular, so is $Y$, as desired.
+\end{proof}
+
+\begin{lemma}\label{cellular_closed_under_tensor}
+	Let $X$ and $Y$ be cellular objects in $\cSH$. Then $X\otimes Y$ is cellular.
+\end{lemma}
+\begin{proof}
+	Let $E$ be a cellular object in $\cSH$, and let $\cE$ be the collection of objects $X$ in $\cSH$ such that $E\otimes X$ is cellular. First of all, suppose we have a distinguished triangle
+	\[X\to Y\to Z\to\Sigma X\]
+	such that two of three of $X$, $Y$, and $Z$ belong to $\cE$. Then since $\cSH$ is tensor triangulated, we have a distinguished triangle
+	\[E\otimes X\to E\otimes Y\to E\otimes Z\to \Sigma(E\otimes X).\]
+	Per our assumptions, two of three of $E\otimes X$, $E\otimes Y$, and $E\otimes Z$ are cellular, so that the third is by definition. Thus, all three of $X$, $Y$, and $Z$ belong to $\cE$ if two of them do.
+
+	Second of all, suppose we have a family $X_i$ of objects in $\cE$ indexed by some (small) set $I$, and set $X:=\bigoplus_iX_i$. Then we'd like to show $X$ belongs to $\cE$, i.e., that $E\otimes X$ is cellular. Indeed,
+	\[E\otimes X=E\otimes\(\bigoplus_iX_i\)\cong\bigoplus_i(E\otimes X_i),\]
+	where the isomorphism is given by the fact that $\cSH$ is monoidal closed, so $E\otimes-$ preserves arbitrary colimits as it is a left adjoint. Per our assumption, since each $E\otimes X_i$ is cellular, the rightmost object is cellular, since the class of cellular objects is closed under taking arbitrary coproducts, by definition. Hence $E\otimes X$ is cellular by \autoref{cellular_closed_under_iso}.
+
+	Finally, we would like to show that each $S^a$ belongs to $\cE$, i.e., that $S^a\otimes E$ is cellular for all $a\in A$. When $E=S^b$ for some $b\in A$, this is clearly true, since $S^b\otimes S^a\cong S^{a+b}$, which is cellular by definition, so that $S^b\otimes S^a$ is cellular by \autoref{cellular_closed_under_iso}. Thus by what we have shown, the class of objects $X$ for which $S^a\otimes X$ is cellular contains every cellular object. Hence in particular $E\otimes S^a\cong S^a\otimes E$ is cellular for all $a\in A$, as desired.
+\end{proof}
+
+\begin{lemma}\label{cellular_pi*=0_implies_contractible}
+	Let $W$ be a cellular object in $\cSH$ such that $\pi_*(W)=0$. Then $W\cong 0$.
+\end{lemma}
+\begin{proof}
+	Let $\cE$ be the collection of all $X$ in $\cSH$ such that and $[\Sigma^nX,W]=0$ for all $n\in\bZ$ (where for $n<0$ we define $\Sigma^n:=\Omega^{-n}=(S^{-\1}\otimes-)^n$). We claim $\cE$ contains every cellular object in $\cSH$. First of all, each $S^a$ belongs to $\cE$, as 
+	\[[\Sigma^nS^a,W]\cong[S^\n\otimes S^a,W]\cong[S^{a+\n},W]\leq\pi_*(W)=0.\] 
+	Furthermore, suppose we are given a distinguished triangle
+	\[X\to Y\to Z\to\Sigma X\]
+	such that two of three of $X$, $Y$, and $Z$ belong to $\cE$. By \autoref{dist_tri_LES}, for all $n\in\bZ$ we get an exact sequence of abelian groups
+	\[[\Sigma^{n+1}X,W]\to[\Sigma^nZ,W]\to[\Sigma^nY,W]\to[\Sigma^nX,W]\to[\Sigma^{n-1}Z,W].\]
+	Clearly if any two of three of $X$, $Y$, and $Z$ belong to $\cE$, then by exactness of the above sequence all three of the middle terms will be zero, so that the third object will belong to $\cE$ as well. Finally, suppose we have a collection of objects $X_i$ in $\cE$ indexed by some small set $I$. Then
+	\[\left[\Sigma^n\bigoplus_iX_i,W\right]\cong\left[\bigoplus_i\Sigma^nX_i,W\right]\cong\prod_i[\Sigma^nX_i,W]=\prod_i0=0,\]
+	where the first isomorphism follows by the fact that $\Sigma^n$ is apart of an adjoint equivalence (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}), so it preserves arbitrary colimits.
+
+	Thus, by definition of cellularity, $\cE$ contains every cellular object. In particular, $\cE$ contains $W$, so that $[W,W]=0$, meaning in particular that $\id_W=0$, so we have a commutative diagram
+	% https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzEsMCwiMCJdLFsyLDEsIlciXSxbMywwLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzEsMywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& 0 && 0 \\
+		W && W
+		\arrow[from=2-1, to=1-2]
+		\arrow[from=1-2, to=2-3]
+		\arrow[from=2-3, to=1-4]
+		\arrow[Rightarrow, no head, from=1-2, to=1-4]
+		\arrow[Rightarrow, no head, from=2-1, to=2-3]
+	\end{tikzcd}\]
+	Hence the diagonals exhibit isomorphisms between $0$ and $W$, as desired.
+\end{proof}
+
+\begin{theorem}\label{whitehead}
+	Let $X$ and $Y$ be cellular objects in $\cSH$, and suppose $f:X\to Y$ is a morphism such that $f_*:\pi_*(X)\to\pi_*(Y)$ is an isomorphism. Then $f$ is an isomorphism.
+\end{theorem}
+\begin{proof}
+	By axiom TR2 for a triangulated category, we have a distinguished triangle
+	\[X\xr fY\xr gC_f\xr h\Sigma X.\]
+	First of all, note that by definition since $X$ and $Y$ are cellular, so is $C_f$. We claim $\pi_*(C_f)=0$. Indeed, given $a\in A$, by axiom TR4 for a triangulated category and the fact that distinguished triangles are exact, the following sequence of abelian groups is exact:
+	\[[S^a,X]\xr{f_*}[S^a,Y]\xr{g_*}[S^a,C_f]\xr{h_*}[S^a,\Sigma X]\xr{{\Sigma f}_*}[S^a,\Sigma Y].\]
+	where the first arrow is and last arrows are isomorphisms, per our assumption that $f$ is an isomorphism. Then by exactness we have $\imm h_*=\ker({\Sigma f}_*)=0$. Yet we also have $\ker g_*=\imm f_*=[S^a,Y]$, so that $\ker h_*=\imm g_*=0$. It is only possible that $\ker h_*=\imm h_*=0$ if $[S^a,C_f]=0$. Thus, we have shown $\pi_*(C_f)=0$, and $C_f$ is cellular, so by \autoref{cellular_pi*=0_implies_contractible} there is an isomorphism $C_f\cong 0$. Now consider the following diagram:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDEsIlkiXSxbMSwwLCJZICJdLFsyLDEsIjAiXSxbMiwwLCJDX2YiXSxbMywwLCJcXFNpZ21hIFgiXSxbMywxLCJcXFNpZ21hIFkiXSxbMCwxLCJmIl0sWzEsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCJmIl0sWzMsMiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw0XSxbMyw1XSxbNSw2XSxbNiw3LCJcXFNpZ21hIGYiXSxbNCw3XSxbNSw0LCJcXGNvbmciXV0=
+	\[\begin{tikzcd}
+		X & {Y } & {C_f} & {\Sigma X} \\
+		Y & Y & 0 & {\Sigma Y}
+		\arrow["f", from=1-1, to=2-1]
+		\arrow[Rightarrow, no head, from=2-1, to=2-2]
+		\arrow["f", from=1-1, to=1-2]
+		\arrow[Rightarrow, no head, from=1-2, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow["{\Sigma f}", from=1-4, to=2-4]
+		\arrow[from=2-3, to=2-4]
+		\arrow["\cong", from=1-3, to=2-3]
+	\end{tikzcd}\]
+	The middle square commutes since $0$ is terminal, while the right square commutes since $C_f\cong0$ is initial. The top row is distinguished by assumption. The bottom row is distinguished by axiom TR2. Then since the middle two vertical arrows are isomorphisms, by \autoref{2-of-3-dist_tri-lemma}, $f$ is an isomorphism as well, as desired.
+\end{proof}
+
+\begin{lemma}\label{cellular_idempotent_splits_cellularly}
+	Let $e:X\to X$ be an idempotent morphism in $\cSH$, so $e\circ e=e$. Then since $\cSH$ is a triangulated category with arbitrary coproducts, this idempotent splits (\autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}), meaning $e$ factors as
+	\[X\xr rY\xr\iota X\]
+	for some object $Y$ and morphisms $r$ and $\iota$ with $r\circ\iota=\id_Y$. Then $Y$ is cellular if $X$ is.
+\end{lemma}
+\begin{proof}
+	It is a general categorical fact that the splitting of an idempotent, if it exists, is unique up to unique isomorphism,\footnote{In particular, given an idempotent $e:X\to X$ which splits as $X\xr rY\xr\iota X$, $r$ and $\iota$ are the coequalizer and equalizer, respectively, of $e$ and $\id_X$.} so by \autoref{cellular_closed_under_iso}, it suffices to show that $e$ has some cellular splitting. In \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}, it is shown that we may take $Y$ to be the homotopy colimit (\autoref{homotopy_colimit_defn}) of the sequence
+	\[X\xr eX\xr eX\xr eX\xr e\cdots,\]
+	so there is a distinguished triangle
+	\[\bigoplus_{i=0}^\infty X\to\bigoplus_{i=0}^\infty X\to Y\to\Sigma\(\bigoplus_{i=0}^\infty X\).\]
+	Since $X$ is cellular, by definition $\bigoplus_{i=0}^\infty X$ is as well. Thus by 2-of-3 for distinguished triangles for cellular objects, $Y$ is cellular as desired.
+\end{proof}
+
+\end{document}

@@ -107,7 +107,10 @@
 \newcommand{\Ab}{\mbf{Ab}}
 \newcommand{\bgCRing}{\mbf{bgCRing}}
 \newcommand{\CRing}{\mbf{CRing}}
-\newcommand{\GrCAlg}[1]{{#1}\text-\mbf{GrCAlg}}
+\newcommand{\AGrCRing}{A\mbf{GrCRing}}
+\newcommand{\GrCAlg}{\mbf{GrCAlg}}
+\newcommand{\AGrCAlg}{A\mbf{GrCAlg}}
+\newcommand{\GrCRing}{\mbf{GrCRing}}
 \newcommand{\CStabRing}[1]{\mbf{CStabRing}_{#1}}
 \newcommand{\GrAb}{\mbf{GrAb}}
 \newcommand{\hoTop}{\mbf{hoTop}}
@@ -279,57 +282,61 @@
 
 \section{Introduction}
 
-\subfile{subfiles/0introduction.tex}
+\subfile{subfiles/intro.tex}
 
-\section{Triangulated categories with sub-Picard grading}\label{section:tri_cat_with_sub-picard_grading}
+\section{Preliminaries}
 
-\subfile{subfiles/1tri_cat_w_subp_grading.tex}
+\subfile{subfiles/prelim.tex}
+
+\section{Cellular objects in \texorpdfstring{$\cSH$}{SH}}
+
+\subfile{subfiles/cellular.tex}
+
+\section{Monoid objects in \texorpdfstring{$\cSH$}{SH}}
+
+\subfile{subfiles/monoid_SH.tex}
+
+\section{Some important theorems in \texorpdfstring{$\cSH$}{SH}}
+
+\subfile{subfiles/important.tex}
+
+\section{The dual \texorpdfstring{$E$}{E}-Steenrod algebra}\label{section:dual_E-Steenrod_algebra}
+
+\subfile{subfiles/steenrod.tex}
 
 \section{The Adams spectral sequence}
 
-\subfile{subfiles/2adams.tex}
+\subfile{subfiles/adams.tex}
 
-\section{The \texorpdfstring{$E_1$}{E1} page}
+\section{The classical Adams spectral sequence}
 
-\subfile{subfiles/E1.tex}
+\subfile{subfiles/cass.tex}
 
-\section{The \texorpdfstring{$E_2$}{E2} page}
+\section{The motivic Adams spectral sequence}
 
-\subfile{subfiles/E2.tex}
-
-\section{Convergence of the Adams spectral sequence}
-
-\subfile{subfiles/convergence.tex}
-
-\section{The classical Adams spectral sequence}\label{classical}
-
-\subfile{subfiles/3classical.tex}
-
-\section{The motivic Adams spectral sequence}\label{motivic}
-
-\subfile{subfiles/4motivic.tex}
+\subfile{subfiles/mass.tex}
 
 \appendix
 
 \section{Triangulated categories}\label{triangulated}
 
-\subfile{subfiles/5triangulated.tex}
+\subfile{subfiles/triangulated.tex}
 
-\section{Spectral sequences}\label{spectral_sequences}
+\section{\texorpdfstring{$A$}{A}-graded objects}\label{graded_stuff}
 
-\subfile{subfiles/6spectralseqs.tex}
-
-\section{\texorpdfstring{$A$}{A}-graded abelian groups, rings, and modules}\label{graded_stuff}
-
-\subfile{subfiles/7grading.tex}
+\subfile{subfiles/grading.tex}
 
 \section{Monoid objects}\label{monoid_objects}
 
-\subfile{subfiles/8monoid.tex}
+\subfile{subfiles/monoid.tex}
 
 \section{Hopf algebroids}\label{hopf_algebroids}
 
-\subfile{subfiles/9hopf.tex}
+\subfile{subfiles/hopf.tex}
+
+\section{Spectral sequences}\label{spectral_sequences}
+
+\subfile{subfiles/spectralseqs.tex}
 
 \printbibliography
 
