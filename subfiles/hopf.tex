@@ -1,18 +1,21 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
+In this appendix, we will define the notion of \emph{$A$-graded anticommutative Hopf algebroids} (\autoref{hopf_algebroid_defn}) over an $A$-graded anticommutative ring $R$ (\autoref{A-graded_anticommutative_ring_defn}), and left comodules over them (\autoref{left_comodule_defn}).
 
-\subsection{\texorpdfstring{$A$}{A}-graded commutative Hopf algebroids over \texorpdfstring{$R$}{R}}
+\subsection{\texorpdfstring{$A$}{A}-graded anticommutative Hopf algebroids over \texorpdfstring{$R$}{R}}
+
+Given an $A$-graded anticommutative ring $R$, we will define an $A$-graded anticommutative Hopf algebroid over $R$ to be a co-groupoid object in $R\text-\GCA^{A}$, i.e., a groupoid object in $(R\text-\GCA^{A})^\op$. First, recall the definition of a \emph{groupoid object} in a category with pullbacks:
 
 \begin{definition}
-	Let $\cC$ be a category admitting pullbacks. A \emph{groupoid object} in $\cC$ consists of a pair of objects $(M,O)$ together with five morphisms
+	Let $\cC$ be a category with pullbacks. A \emph{groupoid object} in $\cC$ consists of a pair of objects $(M,O)$ together with five morphisms
 	\begin{enumerate}
 		\item \emph{Source and target}: $s,t:M\to O$,
 		\item \emph{Identity}: $e:O\to M$,
 		\item \emph{Composition}: $c:M\times_{O}M\to M$,
 		\item \emph{Inverse}: $i:M\to M$
 	\end{enumerate}
-	Explicitly, $M\times_OM$ fits into the following pullback diagram:
+	Where $M\times_OM$ will always refer to the object which into the following pullback diagram in $\cC$:
 	\[\begin{tikzcd}
 		{M\times_OM} & M \\
 		M & O
@@ -22,8 +25,7 @@
 		\arrow["t", from=1-2, to=2-2]
 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 	\end{tikzcd}\]
-	so if we're working with sets, the composition map sends a pair $(g,f)$ such that the codomain of $f$ is the domain of $g$ to $g\circ f$.
-	These data must satisfy the following diagrams:
+	For example, if we're working in $\cC=\Set$, we should think of $M$ as a set of morphisms, and $O$ as a set of objects. The functions $s$ and $t$ take a morphism to their domain and codomain, respectively, and $M\times_OM$ is the collection of pairs of morphisms $(g,f)\in M\times M$ such that $t(f)=s(g)$, and the composition map $c:M\times_OM\to M$ takes such a pair to the element $g\circ f\in M$. We think of the identity $e:O\to M$ as taking some object $x\in O$ to the identity morphism $e(x)=\id_x\in M$ on $x$, and the inverse map $i:M\to M$ takes a morphism $f$ to its inverse $f^{-1}$. These data are required to make the following diagrams commute:
 	\begin{enumerate}
 		\item Composition works correctly:
 		\[\begin{tikzcd}
@@ -43,10 +45,10 @@
 			\arrow["{p_2}", from=1-6, to=1-7]
 			\arrow["s", from=1-7, to=2-7]
 		\end{tikzcd}\]
-		The first diagram says that the codomain of $g\circ f$ is the codomain of $g$. The second diagram says that the domain and codomain of the identity on some object $x$ is $x$. The third diagram says that the domain of $g\circ f$ is the domain of $f$.
+		Expressed in terms of sets, the first diagram says that the target of $g\circ f$ is the target of $g$. The second diagram says that the domain and codomain of the identity on some object $x$ is $x$. The third diagram says that the domain of $g\circ f$ is the domain of $f$.
 		\item Associativity of composition: Write $M\times_O(M\times_OM)$ and $(M\times_OM)\times_OM$ for the pullbacks of $(s,t\circ c)$ and $(s\circ c,t)$, respectively, so we have commuting diagrams
 		% https://q.uiver.app/#q=WzAsMTQsWzQsMCwiTVxcdGltZXNfTyhNXFx0aW1lc19PTSkiXSxbNiwwLCJNXFx0aW1lc19PTSJdLFs1LDEsIk1cXHRpbWVzX09NIl0sWzYsMSwiTSJdLFs2LDIsIk8iXSxbNSwyLCJNIl0sWzQsMiwiTSJdLFswLDAsIihNXFx0aW1lc19PTSlcXHRpbWVzX09NIl0sWzEsMSwiTVxcdGltZXNfT00iXSxbMCwyLCJNXFx0aW1lc19PTSJdLFsxLDIsIk0iXSxbMiwyLCJPIl0sWzIsMSwiTSJdLFsyLDAsIk0iXSxbMCwxLCJwXzInJyJdLFswLDIsIk1cXHRpbWVzIGMiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMyw0LCJ0Il0sWzIsNSwicF8xIiwyXSxbNSw0LCJzIl0sWzIsMywicF8yIl0sWzEsMywiYyJdLFswLDYsInBfMScnIiwyXSxbNiw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDgsImNcXHRpbWVzIE0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNyw5LCJwXzEnIiwyXSxbOSwxMCwiYyJdLFsxMCwxMSwicyJdLFs4LDEwLCJwXzEiLDJdLFs4LDEyLCJwXzIiXSxbMTIsMTEsInQiXSxbNywxMywicF8yJyJdLFsxMywxMiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
-		\[\begin{tikzcd}
+		\[\begin{tikzcd}[column sep=small]
 			{(M\times_OM)\times_OM} && M && {M\times_O(M\times_OM)} && {M\times_OM} \\
 			& {M\times_OM} & M &&& {M\times_OM} & M \\
 			{M\times_OM} & M & O && M & M & O
@@ -83,9 +85,9 @@
 			\arrow["{p_1''}"', curve={height=24pt}, from=1-1, to=3-2]
 			\arrow["{p_1\circ p_2''}", curve={height=-24pt}, from=1-1, to=2-3]
 		\end{tikzcd}\]
-		Now note that again assuming composition works correctly, so $s\circ c=s\circ p_2$, we have 
-		\[s\circ c\circ (M\times p_1)=s\circ p_2\circ(M\times p_1)=s\circ p_1\circ p_2''=t\circ p_2\circ p_2'',\] 
-		so that by the unviersal property of the pullback we get a map $a:M\times_O(M\times_OM)\to (M\times_OM)\times_OM$ like so:
+		Now note that again assuming the diagrams above in $(1)$ commute, we have $s\circ c=s\circ p_2$, so that
+		\[s\circ c\circ (M\times p_1)=s\circ p_2\circ(M\times p_1)=s\circ p_1\circ p_2''=t\circ p_2\circ p_2''.\] 
+		Then by the unviersal property of the pullback we get a map $a:M\times_O(M\times_OM)\to (M\times_OM)\times_OM$ like so:
 		% https://q.uiver.app/#q=WzAsNyxbMCwwLCJNXFx0aW1lc19PKE1cXHRpbWVzX09NKSJdLFsxLDEsIihNXFx0aW1lc19PTSlcXHRpbWVzX09NIl0sWzEsMywiTVxcdGltZXNfT00iXSxbMiwzLCJNIl0sWzMsMywiTyJdLFszLDIsIk0iXSxbMywxLCJNIl0sWzEsMiwicF8xJyIsMl0sWzIsMywiYyJdLFswLDEsImEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCJNXFx0aW1lcyBwXzEiLDIseyJjdXJ2ZSI6NH1dLFszLDQsInMiXSxbNSw0LCJ0Il0sWzEsNiwicF8yJyJdLFs2LDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNiwicF8yXFxjaXJjIHBfMicnIiwwLHsiY3VydmUiOi00fV1d
 		\[\begin{tikzcd}
 			{M\times_O(M\times_OM)} \\
@@ -102,7 +104,7 @@
 			\arrow[Rightarrow, no head, from=2-4, to=3-4]
 			\arrow["{p_2\circ p_2''}", curve={height=-24pt}, from=1-1, to=2-4]
 		\end{tikzcd}\]
-		Then we require that the following diagram commutes:
+		Exercise: Show that this map $a$ is an isomorphism. Then we require that the following diagram commutes:
 		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJNXFx0aW1lc19PKE1cXHRpbWVzX09NKSJdLFsyLDAsIihNXFx0aW1lc19PTSlcXHRpbWVzX09NIl0sWzAsMSwiTVxcdGltZXNfT00iXSxbMSwxLCJNIl0sWzIsMSwiTVxcdGltZXNfT00iXSxbMCwxLCJhIl0sWzAsMiwiTVxcdGltZXMgYyIsMl0sWzIsMywiYyJdLFsxLDQsImNcXHRpbWVzIE0iXSxbNCwzLCJjIiwyXV0=
 		\[\begin{tikzcd}
 			{M\times_O(M\times_OM)} && {(M\times_OM)\times_OM} \\
@@ -113,7 +115,7 @@
 			\arrow["{c\times M}", from=1-3, to=2-3]
 			\arrow["c"', from=2-3, to=2-2]
 		\end{tikzcd}\]
-		This diagram says $h\circ(g\circ f)=(h\circ g)\circ f$.
+		Expressed in terms of sets, this diagram says $h\circ(g\circ f)=(h\circ g)\circ f$.
 		\item Unitality of composition: Given the maps $(\id_M,e\circ t),(e\circ s,\id_M):M\to M\times_OM$ defined by the universal property of $M\times_OM$:
 		\[\begin{tikzcd}
 			M &&& M \\
@@ -148,7 +150,7 @@
 			\arrow["{(\id_M,e\circ s)}"', from=1-1, to=3-1]
 			\arrow["c"', from=3-1, to=3-3]
 		\end{tikzcd}\]
-		This diagram says that given $f:x\to y$ in $M$, that $f\circ\id_x=f$ and $\id_y\circ f=f$.
+		Expressed in terms of sets, this diagram says that given $f\in M$ with $s(f)=x$ and $t(f)=y$, that $f\circ\id_x=f$ and $\id_y\circ f=f$.
 		\item Inverse: The following diagrams must commute:
 		\[\begin{tikzcd}
 			& M & M & {M\times_OM} & M && M \\
@@ -189,12 +191,14 @@
 			\arrow["i", curve={height=-18pt}, from=1-1, to=2-3]
 			\arrow[curve={height=18pt}, Rightarrow, no head, from=1-1, to=3-2]
 		\end{tikzcd}\]
-		Given $f:x\to y$ in $M$, the first diagram says that ${(f^{-1})}^{-1}=f$. The second says that $f\circ f^{-1}=\id_y$ and $f^{-1}\circ f=\id_x$. The last diagram says that the domain and codomain of $f^{-1}$ are $y$ and $x$, respectively.
+		Expressed in terms of sets, given $f\in M$ with $s(f)=x$ and $t(f)=y$, the first diagram says that ${(f^{-1})}^{-1}=f$, the second says that $f\circ f^{-1}=\id_y$ and $f^{-1}\circ f=\id_x$, and the last diagram says that the domain and codomain of $f^{-1}$ are $y$ and $x$, respectively.
 	\end{enumerate}
 \end{definition}
 
+It can be seen that groupoid objects in $\cC=\Set$ are precisely (small) groupoids. Now, we can state and unravel the definition of a Hopf algebroid:
+
 \begin{definition}\label{hopf_algebroid_defn}
-	Given an $A$-graded anticommutative ring $(R,\theta)$, an \emph{$A$-graded anticommutative Hopf algebroid over $R$} is a co-groupoid object in $R\text-A\GrCAlg{R}$, i.e., a groupoid object in ${(R\text-A\GrCAlg)}^\op$. Explicitly, an $A$-graded anticommutative Hopf algebroid over $E$ is a pair $(B,\Gamma)$ of objects in $R\text-A\GrCAlg$ along with morphisms
+	Given an $A$-graded anticommutative ring $R$ (\autoref{A-graded_anticommutative_ring_defn}), an \emph{$A$-graded anticommutative Hopf algebroid over $R$} is a co-groupoid object in $R\text-\GCA^{A}$, i.e., a groupoid object in ${(R\text-A\GrCAlg)}^\op$. Explicitly, an $A$-graded anticommutative Hopf algebroid over $E$ is a pair $(\Gamma,B)$ of objects in $R\text-A\GrCAlg$ along with morphisms
 	\begin{enumerate}
 		\item \emph{left unit}: $\eta_L:B\to\Gamma$ (corresponding to $t$),
 		\item \emph{right unit}: $\eta_R:B\to\Gamma$ (corresponding to $s$),
@@ -202,7 +206,7 @@
 		\item \emph{counit}: $\epsilon:\Gamma\to B$ (corresponding to $e$),
 		\item \emph{conjugation}: $c:\Gamma\to\Gamma$ (corresponding to $i$),
 	\end{enumerate}
-	where here $\Gamma$ may be viewed as a $B$-bimodule with left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$, so we may form the tensor product of bimodules $\Gamma\otimes_B\Gamma$, which further may be given the structure of an $A$-graded anticommutative $R$-algebra (by \autoref{B-tensor_product_in_R-GrCAlg}), and fits into the following pushout diagram in $R\text-A\GrCAlg$ (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}):
+	where here $\Gamma$ may be viewed as a $B$-bimodule with left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$, so we may form the tensor product of bimodules $\Gamma\otimes_B\Gamma$, which further may be given the structure of an $A$-graded anticommutative $R$-algebra (by \autoref{B-tensor_product_in_R-GrCAlg}), and fits into the following pushout diagram in $R\text-\GCA^{A}g$ (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}):
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJCIl0sWzAsMSwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFsxLDAsIlxcR2FtbWEiXSxbMCwxLCJcXGV0YV9SIiwyXSxbMSwyLCJnXFxtYXBzdG8gZ1xcb3RpbWVzIDEiLDJdLFswLDMsIlxcZXRhX0wiXSxbMywyLCJnXFxtYXBzdG8gMVxcb3RpbWVzIGciXV0=
 	\[\begin{tikzcd}
 		B & \Gamma \\
@@ -212,9 +216,9 @@
 		\arrow["{\eta_L}", from=1-1, to=1-2]
 		\arrow["{g\mapsto 1\otimes g}", from=1-2, to=2-2]
 	\end{tikzcd}\]
-	These data must satisfy the following
+	These data must make the following diagrams commute:
 	\begin{enumerate}
-		\item The following diagrams must commute:
+		\item (Composition works correctly)
 		% https://q.uiver.app/#q=WzAsMTIsWzgsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzcsMCwiQiJdLFs4LDAsIlxcR2FtbWEiXSxbNywxLCJcXEdhbW1hIl0sWzQsMSwiQiJdLFs0LDAsIkIiXSxbNSwxLCJcXEdhbW1hIl0sWzMsMSwiXFxHYW1tYSJdLFswLDAsIkIiXSxbMCwxLCJcXEdhbW1hIl0sWzEsMSwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzEsMCwiXFxHYW1tYSJdLFs0LDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsOSwiXFxldGFfTCIsMl0sWzksMTAsImdcXG1hcHN0byBnXFxvdGltZXMgMSIsMl0sWzgsMTEsIlxcZXRhX0wiXSxbMTEsMTAsIlxcUHNpIl0sWzUsNywiXFxldGFfUiIsMl0sWzcsNCwiXFxlcHNpbG9uIiwyXSxbNSw2LCJcXGV0YV9MIl0sWzYsNCwiXFxlcHNpbG9uIl0sWzEsMiwiXFxldGFfUiJdLFsyLDAsImdcXG1hcHN0bzFcXG90aW1lcyBnIl0sWzEsMywiXFxldGFfUiIsMl0sWzMsMCwiXFxQc2kiXV0=
 		\[\begin{tikzcd}
 			B & \Gamma &&& B &&& B & \Gamma \\
@@ -234,7 +238,7 @@
 			\arrow["\Psi", from=2-8, to=2-9]
 		\end{tikzcd}\]
 		\item (Coassociativity) The following diagram must commute
-		% https://q.uiver.app/#q=WzAsNSxbMiwwLCJcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEiXSxbMSwwLCJcXEdhbW1hIl0sWzAsMCwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzAsMSwiKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CXFxHYW1tYSJdLFsyLDEsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSkiXSxbMSwyLCJcXFBzaSIsMl0sWzIsMywiXFxQc2lcXG90aW1lc19CXFxHYW1tYSIsMl0sWzAsNCwiXFxHYW1tYVxcb3RpbWVzX0JcXFBzaSJdLFsxLDAsIlxcUHNpIl0sWzMsNF1d
+		% https://q.uiver.app/#q=WzAsNSxbMiwwLCJcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEiXSxbMSwwLCJcXEdhbW1hIl0sWzAsMCwiXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hIl0sWzAsMSwiKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CXFxHYW1tYSJdLFsyLDEsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSkiXSxbMSwyLCJcXFBzaSIsMl0sWzIsMywiXFxQc2lcXG90aW1lc19CXFxHYW1tYSIsMl0sWzAsNCwiXFxHYW1tYVxcb3RpbWVzX0JcXFBzaSJdLFsxLDAsIlxcUHNpIl0sWzMsNCwiXFxjb25nIl1d
 		\[\begin{tikzcd}
 			{\Gamma\otimes_B\Gamma} & \Gamma & {\Gamma\otimes_B\Gamma} \\
 			{(\Gamma\otimes_B\Gamma)\otimes_B\Gamma} && {\Gamma\otimes_B(\Gamma\otimes_B\Gamma)}
@@ -242,34 +246,27 @@
 			\arrow["{\Psi\otimes_B\Gamma}"', from=1-1, to=2-1]
 			\arrow["{\Gamma\otimes_B\Psi}", from=1-3, to=2-3]
 			\arrow["\Psi", from=1-2, to=1-3]
-			\arrow[from=2-1, to=2-3]
+			\arrow["\cong", from=2-1, to=2-3]
 		\end{tikzcd}\]
-		where the bottom arrow sends $(g\otimes g')\otimes g''$ to $g\otimes(g'\otimes g'')$, the left vertical arrow sends $g\otimes g'$ to $\Psi(g)\otimes g$, and the right vertical arrow sends $g\otimes g'$ to $g\otimes\Psi(g')$ 
-%		% https://q.uiver.app/#q=WzAsMTQsWzIsMiwiXFxHYW1tYVxcb3RpbWVzX0IoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKSJdLFsyLDAsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFsxLDAsIlxcR2FtbWEiXSxbMCwwLCJCIl0sWzAsMiwiXFxHYW1tYSJdLFswLDEsIlxcR2FtbWEiXSxbMSwxLCJcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEiXSxbNCwwLCJCIl0sWzUsMCwiXFxHYW1tYSJdLFs2LDAsIlxcR2FtbWEiXSxbNiwyLCIoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JcXEdhbW1hIl0sWzQsMSwiXFxHYW1tYSAiXSxbNCwyLCJcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEiXSxbNSwxLCJcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEiXSxbMSwwLCJ4XFxtYXBzdG8gMVxcb3RpbWVzIHgiXSxbMiwxLCJcXFBzaSJdLFszLDIsIlxcZXRhX0wiXSxbNCwwLCJnXFxtYXBzdG8gZ1xcb3RpbWVzIDEiLDJdLFs1LDQsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsNSwiXFxldGFfUiIsMl0sWzIsNiwiZ1xcbWFwc3RvMVxcb3RpbWVzIGciXSxbNSw2LCJnXFxtYXBzdG8gZ1xcb3RpbWVzIDEiLDJdLFs2LDAsIlxcR2FtbWFcXG90aW1lc1xcUHNpIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsOCwiXFxldGFfTCJdLFs4LDksIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzksMTAsImdcXG1hcHN0byAxXFxvdGltZXMgZyJdLFs3LDExLCJcXGV0YV9SIiwyXSxbMTEsMTIsIlxcUHNpIiwyXSxbMTIsMTAsInhcXG1hcHN0byB4XFxvdGltZXMgMSIsMl0sWzExLDEzLCJnXFxtYXBzdG8gZ1xcb3RpbWVzIDEiLDJdLFs4LDEzLCJnXFxtYXBzdG8xXFxvdGltZXMgZyJdLFsxMywxMCwiXFxQc2lcXG90aW1lc1xcR2FtbWEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
-%		\[\begin{tikzcd}
-%			B & \Gamma & {\Gamma\otimes_B\Gamma} && B & \Gamma & \Gamma \\
-%			\Gamma & {\Gamma\otimes_B\Gamma} &&& {\Gamma } & {\Gamma\otimes_B\Gamma} \\
-%			\Gamma && {\Gamma\otimes_B(\Gamma\otimes_B\Gamma)} && {\Gamma\otimes_B\Gamma} && {(\Gamma\otimes_B\Gamma)\otimes_B\Gamma}
-%			\arrow["{x\mapsto 1\otimes x}", from=1-3, to=3-3]
-%			\arrow["\Psi", from=1-2, to=1-3]
-%			\arrow["{\eta_L}", from=1-1, to=1-2]
-%			\arrow["{g\mapsto g\otimes 1}"', from=3-1, to=3-3]
-%			\arrow[Rightarrow, no head, from=2-1, to=3-1]
-%			\arrow["{\eta_R}"', from=1-1, to=2-1]
-%			\arrow["{g\mapsto1\otimes g}", from=1-2, to=2-2]
-%			\arrow["{g\mapsto g\otimes 1}"', from=2-1, to=2-2]
-%			\arrow["\Gamma\otimes\Psi"{description}, dashed, from=2-2, to=3-3]
-%			\arrow["{\eta_L}", from=1-5, to=1-6]
-%			\arrow[Rightarrow, no head, from=1-6, to=1-7]
-%			\arrow["{g\mapsto 1\otimes g}", from=1-7, to=3-7]
-%			\arrow["{\eta_R}"', from=1-5, to=2-5]
-%			\arrow["\Psi"', from=2-5, to=3-5]
-%			\arrow["{x\mapsto x\otimes 1}"', from=3-5, to=3-7]
-%			\arrow["{g\mapsto g\otimes 1}"', from=2-5, to=2-6]
-%			\arrow["{g\mapsto1\otimes g}", from=1-6, to=2-6]
-%			\arrow["\Psi\otimes\Gamma"{description}, dashed, from=2-6, to=3-7]
-%		\end{tikzcd}\]
-		\item The following diagram must commute:
+		where $(\Gamma\otimes_B\Gamma)\otimes_B\Gamma$ and $\Gamma\otimes_B(\Gamma\otimes_B\Gamma)$ denote the rings which fit into the following pushout diagrams in $R\text-\GCA^{A}$:
+		% https://q.uiver.app/#q=WzAsMTAsWzIsMiwiKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CXFxHYW1tYSJdLFswLDAsIkIiXSxbMiwwLCJcXEdhbW1hIl0sWzAsMSwiXFxHYW1tYSJdLFswLDIsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFs0LDAsIkIiXSxbNCwyLCJcXEdhbW1hIl0sWzUsMCwiXFxHYW1tYSJdLFs2LDAsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFs2LDIsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSkiXSxbMiwwLCJnXFxtYXBzdG8oMVxcb3RpbWVzIDEpXFxvdGltZXMgZyJdLFsxLDMsIlxcZXRhX1IiLDJdLFszLDQsIlxcUHNpIiwyXSxbNCwwLCJnXFxvdGltZXMgZydcXG1hcHN0byhnXFxvdGltZXMgZycpXFxvdGltZXMgMSIsMl0sWzEsMiwiXFxldGFfTCJdLFs1LDYsIlxcZXRhX1IiLDJdLFs1LDcsIlxcZXRhX0wiXSxbNyw4LCJcXFBzaSJdLFs4LDksIihnXFxvdGltZXMgZycpXFxtYXBzdG8gMVxcb3RpbWVzKGdcXG90aW1lcyBnJykiXSxbNiw5LCJnXFxtYXBzdG8gZ1xcb3RpbWVzKDFcXG90aW1lcyAxKSIsMl1d
+		\[\begin{tikzcd}[column sep=scriptsize]
+			B && \Gamma && B & \Gamma & {\Gamma\otimes_B\Gamma} \\
+			\Gamma \\
+			{\Gamma\otimes_B\Gamma} && {(\Gamma\otimes_B\Gamma)\otimes_B\Gamma} && \Gamma && {\Gamma\otimes_B(\Gamma\otimes_B\Gamma)}
+			\arrow["{g\mapsto(1\otimes 1)\otimes g}", from=1-3, to=3-3]
+			\arrow["{\eta_R}"', from=1-1, to=2-1]
+			\arrow["\Psi"', from=2-1, to=3-1]
+			\arrow["{g\otimes g'\mapsto(g\otimes g')\otimes 1}"', from=3-1, to=3-3]
+			\arrow["{\eta_L}", from=1-1, to=1-3]
+			\arrow["{\eta_R}"', from=1-5, to=3-5]
+			\arrow["{\eta_L}", from=1-5, to=1-6]
+			\arrow["\Psi", from=1-6, to=1-7]
+			\arrow["{(g\otimes g')\mapsto 1\otimes(g\otimes g')}", from=1-7, to=3-7]
+			\arrow["{g\mapsto g\otimes(1\otimes 1)}"', from=3-5, to=3-7]
+		\end{tikzcd}\]
+		and the isomorphism $(\Gamma\otimes_B\Gamma)\otimes_B\Gamma\to\Gamma\otimes_B(\Gamma\otimes_B\Gamma)$ sends $(g\otimes g')\otimes g''$ to $g\otimes(g'\otimes g'')$, the left vertical arrow $\Psi\otimes\Gamma$ sends $g\otimes g'$ to $\Psi(g)\otimes g$, and the right vertical arrow $\Gamma\otimes\Psi$ sends $g\otimes g'$ to $g\otimes\Psi(g')$ .
+		\item (Co-unitality):
 		% https://q.uiver.app/#q=WzAsNCxbMiwyLCJcXEdhbW1hIl0sWzAsMCwiXFxHYW1tYSJdLFsyLDAsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDIsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFswLDEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsMCwiKFxcZXRhX0xcXGNpcmNcXGVwc2lsb24pXFxjZG90XFxpZF9cXEdhbW1hIl0sWzEsMiwiXFxQc2kiXSxbMywwLCJcXGlkX1xcR2FtbWFcXGNkb3QoXFxldGFfUlxcY2lyY1xcZXBzaWxvbikiLDJdLFsxLDMsIlxcUHNpIiwyXV0=
 		\[\begin{tikzcd}
 			\Gamma && {\Gamma\otimes_B\Gamma} \\
@@ -282,7 +279,7 @@
 			\arrow["\Psi"', from=1-1, to=3-1]
 		\end{tikzcd}\]
 		where the right vertical arrow sends $g\otimes g'$ to $\eta_L(\epsilon(g))g'$ and the bottom horizontal arrow sends $g\otimes g'$ to $g\eta_R(\epsilon(g'))$.
-		\item The following diagrams must commute:
+		\item (Convolution):
 		% https://q.uiver.app/#q=WzAsMTMsWzEsMCwiXFxHYW1tYSJdLFsxLDEsIlxcR2FtbWEiXSxbMCwxLCJcXEdhbW1hIl0sWzMsMSwiXFxHYW1tYSJdLFs0LDEsIlxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSJdLFs0LDAsIlxcR2FtbWEiXSxbMywwLCJCIl0sWzUsMCwiQiJdLFs1LDEsIlxcR2FtbWEiXSxbOCwxLCJcXEdhbW1hIl0sWzgsMCwiXFxHYW1tYSJdLFs3LDAsIkIiXSxbOSwwLCJCIl0sWzAsMSwiYyJdLFsxLDIsImMiXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcaWRfXFxHYW1tYVxcY2RvdCBjIl0sWzUsNiwiXFxlcHNpbG9uIiwyXSxbNiwzLCJcXGV0YV9MIiwyXSxbNSw0LCJpIiwyXSxbNSw3LCJcXGVwc2lsb24iXSxbNyw4LCJcXGV0YV9SIl0sWzQsOCwiY1xcY2RvdFxcaWRfXFxHYW1tYSIsMl0sWzExLDEwLCJcXGV0YV9MIl0sWzEyLDEwLCJcXGV0YV9SIiwyXSxbMTAsOSwiYyIsMl0sWzExLDksIlxcZXRhX1IiLDJdLFsxMiw5LCJcXGV0YV9MIl1d
 		\[\begin{tikzcd}
 			& \Gamma && B & \Gamma & B && B & \Gamma & B \\
@@ -307,8 +304,10 @@
 	\end{enumerate}
 \end{definition}
 
+The remainder of this subsection is devoted to proving some technical lemmas about $A$-graded anticommutative Hopf algebroids.
+
 \begin{proposition}\label{G_ox_B_G_has_one_interpretation_as_B-bimodule}
-	Suppose we have an $A$-graded anticommutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. Recall in \autoref{hopf_algebroid_defn} we considered $\Gamma\otimes_B\Gamma$ to be the $A$-graded $R$-commutative ring whose underlying abelian group was given by the tensor product of $B$-bimodules, where $\Gamma$ has left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$. Thus $\Gamma\otimes_B\Gamma$ is canonically a $B$-bimodule, as it is a tensor product of $B$-bimodules. Then the canonical left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ coincides with that induced by the ring homomorphism $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$).
+	Suppose we have an $A$-graded anticommutative Hopf algebroid $(\Gamma,B)$ over $(R,\theta)$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$ (\autoref{hopf_algebroid_defn}). Recall in the definition, we considered $\Gamma\otimes_B\Gamma$ to be the $A$-graded $R$-commutative ring whose underlying abelian group was given by the tensor product of $B$-bimodules, where $\Gamma$ has left $B$-module structure induced by $\eta_L$ and right $B$-module structure induced by $\eta_R$. Thus $\Gamma\otimes_B\Gamma$ is canonically a $B$-bimodule, as it is a tensor product of $B$-bimodules. Then the canonical left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ coincides with that induced by the ring homomorphism $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$).
 \end{proposition}
 \begin{proof}
 	First we show the left module structures coincide. By additivity, in order to show the module structures coincide, it suffices to show that given a homogeneous pure tensor $g\otimes g'$ in $\Gamma\otimes_B\Gamma$ and some $b\in B$ that $\Psi(\eta_L(b))\cdot(g\otimes g')=(\eta_L(b)\cdot g)\otimes g'$, where $\cdot$ on the left denotes the product in $\Gamma\otimes_B\Gamma$ and the $\cdot$ on the right denotes the product in $\Gamma$. By the axioms for a Hopf algebroid, we have that $\Psi(\eta_L(b))=\eta_L(b)\otimes 1$. Thus by how the product in $\Gamma\otimes_B\Gamma$ is defined (\autoref{B-tensor_product_in_R-GrCAlg}), we have that
@@ -317,28 +316,28 @@
 \end{proof}
 
 \begin{remark}
-	By the above proposition, given an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$, there is no ambiguity when discussing the objects $\Gamma\otimes_B(\Gamma\otimes_B\Gamma)$ and $(\Gamma\otimes_B\Gamma)\otimes_B\Gamma$ --- they may both be considered as the threefold tensor product of the $B$-bimodule $\Gamma$ with itself. In particular, we have a canonical isomorphism of $B$-bimodules
+	By the above proposition, given an $A$-graded commutative Hopf algebroid $(\Gamma,B)$ over $R$, there is no ambiguity when discussing the objects $\Gamma\otimes_B(\Gamma\otimes_B\Gamma)$ and $(\Gamma\otimes_B\Gamma)\otimes_B\Gamma$ --- they may both be considered as the threefold tensor product of the $B$-bimodule $\Gamma$ with itself. In particular, we have a canonical isomorphism of $B$-bimodules
 	\[(\Gamma\otimes_B\Gamma)\otimes_B\Gamma\to\Gamma\otimes_B(\Gamma\otimes_B\Gamma)\]
 	sending $(g\otimes g')\otimes g''$ to $g\otimes(g'\otimes g'')$, and this is precisely the isomorphism in the coassociativity diagram in the definition of a Hopf algebroid (\autoref{hopf_algebroid_defn}).
 \end{remark}
 
-\begin{proposition}
-	Suppose we have an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. Then $\eta_L:B\to\Gamma$ is a homomorphism of left $B$-modules, $\eta_R:B\to\Gamma$ is a homomorphism of right $B$-modules, and $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$ and $\epsilon:\Gamma\to B$ are homomorphisms of $B$-bimodules.
+\begin{proposition}\label{hopf_algebroid_structure_maps_are_module_homos}
+	Suppose we have an $A$-graded commutative Hopf algebroid $(\Gamma,B)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. Then $\eta_L:B\to\Gamma$ is a homomorphism of left $B$-modules, $\eta_R:B\to\Gamma$ is a homomorphism of right $B$-modules, and $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$ and $\epsilon:\Gamma\to B$ are homomorphisms of $B$-bimodules.
 \end{proposition}
 \begin{proof}
 	Since the left (resp.\ right) $B$-module structure on $\Gamma$ is induced by $\eta_L$ (resp.\ $\eta_R$), the map $\eta_L$ (resp.\ $\eta_R$) is a homomorphism of left (resp.\ right) $B$-modules by definition.
 
-	Next, we want to show $\Psi$ is a homomorphism of $B$-bimodules. In \autoref{eta_L_left_module/eta_R_right_module_coincide_appendix}, we showed that the left (resp.\ right) $B$-module structure on $\Gamma$ is that induced by $\eta_L$ (resp.\ $\eta_R$), and in \autoref{G_ox_B_G_has_one_interpretation_as_B-bimodule}, we showed that the left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ is that induced by $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$), so that by definition $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$ is a homomorphism of left (resp.\ right) $B$-modules.
+	Next, we want to show $\Psi$ is a homomorphism of $B$-bimodules. The left (resp.\ right) $B$-module structure on $\Gamma$ is that induced by $\eta_L$ (resp.\ $\eta_R$), and in \autoref{G_ox_B_G_has_one_interpretation_as_B-bimodule}, we showed that the left (resp.\ right) $B$-module structure on $\Gamma\otimes_B\Gamma$ is that induced by $\Psi\circ\eta_L$ (resp.\ $\Psi\circ\eta_R$), so that by definition $\Psi:\Gamma\to\Gamma\otimes_B\Gamma$ is a homomorphism of left (resp.\ right) $B$-modules.
 
 	Lastly, we claim that $\epsilon:\Gamma\to B$ is a homomorphism of $B$-bimodules. We need to show that given $g\in\Gamma$ and $b,b'\in B$ that $\epsilon(\eta_L(b)g\eta_R(g'))=b\epsilon(g)b'$. This follows from the fact that $\epsilon$ is a ring homomorphism satisfying $\epsilon\circ\eta_L=\epsilon\circ\eta_R=\id_B$. 
 \end{proof}
 
 \subsection{Comodules over a Hopf algebroid}
 
-In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. We will always view $\Gamma$ with its \emph{canonical} $B$-bimodule structure, with left $B$-module structure induced by $\eta_L$, and right $B$-module structure induced by $\eta_R$. In particular, any tensor product over $B$ involving $\Gamma$ will always refer to $\Gamma$ with this bimodule structure.
+In what follows, fix an $A$-graded anticommutative ring $(R,\theta)$ and an $A$-graded anticommutative Hopf algebroid $(\Gamma,B)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. We will always view $\Gamma$ with its \emph{canonical} $B$-bimodule structure, with left $B$-module structure induced by $\eta_L$, and right $B$-module structure induced by $\eta_R$. In particular, any tensor product over $B$ involving $\Gamma$ will always refer to $\Gamma$ with this bimodule structure.
 
 \begin{definition}\label{left_comodule_defn}
-	A \emph{left comodule over $\Gamma$} is a pair $(N,\Psi_N)$, where $N$ is a left $A$-graded $B$-module and $\Psi_N:N\to\Gamma\otimes_BN$ is an $A$-graded homomorphism of left $A$-graded $B$-modules (where here we view $\Gamma$ as a $B$-bimodule with its left module structure induced by $\eta_L$, and its right module structure induced by $\eta_R$). These data are required to make the following diagrams commute
+	A \emph{left comodule over $\Gamma$} is a pair $(N,\Psi_N)$, where $N$ is a left $A$-graded $B$-module and $\Psi_N:N\to\Gamma\otimes_BN$ is an $A$-graded homomorphism of left $A$-graded $B$-modules. These data are required to make the following diagrams commute
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJOIl0sWzEsMCwiXFxHYW1tYVxcb3RpbWVzX0JOIl0sWzEsMSwiQlxcb3RpbWVzX0JOIl0sWzQsMCwiTiJdLFszLDAsIlxcR2FtbWFcXG90aW1lc19CTiJdLFszLDEsIihcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEpXFxvdGltZXNfQk4iXSxbNSwwLCJcXEdhbW1hXFxvdGltZXNfQk4iXSxbNSwxLCJcXEdhbW1hXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQk4pIl0sWzAsMSwiXFxQc2lfTiJdLFsxLDIsIlxcZXBzaWxvblxcb3RpbWVzIE4iXSxbMCwyLCJcXGNvbmciLDJdLFszLDQsIlxcUHNpX04iLDJdLFs0LDUsIlxcUHNpXFxvdGltZXMgTiIsMl0sWzMsNiwiXFxQc2lfTiJdLFs2LDcsIlxcR2FtbWFcXG90aW1lc1xcUHNpX04iXSxbNSw3LCJcXGNvbmciXV0=
 	\[\begin{tikzcd}
 		N & {\Gamma\otimes_BN} && {\Gamma\otimes_BN} & N & {\Gamma\otimes_BN} \\
@@ -370,27 +369,7 @@ In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over 
 	In particular, we simply write $\Hom_{\Gamma\text-\CoMod^A}(N_1,N_2)$ or $\Hom_{\Gamma}(N_1,N_2)$ for the set of strictly degree preserving (degree $0$) $A$-graded left $\Gamma$-comodule homomorphisms from $(N_1,\Psi_{N_1})$ to $(N_2,\Psi_{N_2})$.
 \end{definition}
 
-\begin{proposition}\label{comodule_co-free_adjunction}
-	The forgetful functor $\Gamma\text-\CoMod^A\to B\text-\Mod^A$ (where here $B\text-\Mod^A$ is the category of $A$-graded left $B$-modules and $A$-graded module homomorphisms between them) has a right adjoint $\Gamma\otimes_B-:B\text-\Mod^A\to\Gamma\text-\CoMod^A$ called the \emph{co-free construction}, where the co-free left $A$-graded $\Gamma$-comodule on a left $A$-graded $B$-module $M$ is the $B$-module $\Gamma\otimes_BM$ equipped with the coaction
-	\[\Psi_{\Gamma\otimes_BM}:\Gamma\otimes_BM\xr{\Psi\otimes_BM}(\Gamma\otimes_B\Gamma)\otimes_BM\xr\cong\Gamma\otimes_B(\Gamma\otimes_BM).\]
-
-	In particular, for all objects $(N,\Psi_N)$ in $\Gamma\text-\CoMod^A$ and $M$ in $B\text-\Mod^A$, we have isomorphisms of $A$-graded abelian groups 
-	\[\Hom_{B\text-\Mod^A}^*(N,M)\cong\Hom_{\Gamma\text-\CoMod^A}^*(N,\Gamma\otimes_BM)\]
-	via the identifications
-	\[\Hom_{\Gamma\text-\CoMod^A}^a(N_*,N_*')=\Hom_{\Gamma\text-\CoMod^A}(N_{*-a},N_{*}')\]
-	and
-	\[\Hom_{B\text-\Mod^A}^a(M_*,M_*')=\Hom_{B\text-\Mod^A}(M_{*-a},M_{*}').\]
-
-	Explicitly, given some $(N,\Psi_N)$ in $\Gamma\text-\CoMod$ and some $M$ in $B\text-\Mod^A$, the counit and unit of this adjunction are given by
-	\[\eta_{(N,\Psi_N)}:N\xr{\Psi_N}\Gamma\otimes_BN\]
-	and
-	\[\vare_M:\Gamma\otimes_BM\xr{\epsilon\otimes_BM}B\otimes_BM\xr\cong M.\]
-\end{proposition}
-\begin{proof}
-	\todo{todo}
-\end{proof}
-
-\begin{proposition}
+\begin{proposition}\label{G-CoMod^A_is_additive}
 	The category $\Gamma\text-\CoMod^A$ is an additive category.
 \end{proposition}
 \begin{proof}
@@ -401,13 +380,13 @@ In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over 
 		&=((\Gamma\otimes_Bf)+(\Gamma\otimes_Bg))\circ\Psi_{N_1} \\
 		&=(\Gamma\otimes_B(f+g))\circ\Psi_{N_1},
 	\end{align*}
-	where the first equality follows since $\Psi_{N_2}$ is a homomorphism of modules, the second follows since $f$ and $g$ are left $\Gamma$-comodule homomorphisms, the third follows since $\Psi_{N_1}$ is a homomorphism of modules, and the last equality follows by definition of the tensor product of modules. Hence $f+g$ is indeed an $A$-graded left $\Gamma$-comodule homomorphism, as desired. Now, we also claim $-f$ is an $A$-graded left $\Gamma$-comodule homomorphism. To that end, note that
+	where the first equality follows since $\Psi_{N_2}$ is a homomorphism, the second follows since $f$ and $g$ are left $\Gamma$-comodule homomorphisms, the third follows since $\Psi_{N_1}$ is a homomorphism, and the last equality follows by definition of the tensor product of modules. Hence $f+g$ is indeed an $A$-graded left $\Gamma$-comodule homomorphism, as desired. Now, we also claim $-f$ is an $A$-graded left $\Gamma$-comodule homomorphism. To that end, note that
 	\[\Psi_{N_2}\circ(-f)=-\Psi_{N_2}\circ f=-(\Gamma\otimes_Bf)\circ\Psi_{N_1}=(\Gamma\otimes_B(-f))\circ\Psi_{N_1},\]
-	where the first equality follows since $\Psi_{N_2}$ is a module homomorphism, the second follows since $f$ is an $A$-graded left $\Gamma$-comodule homomorphism, and the third equality follows by definition of the tensor product.
+	where the first equality follows since $\Psi_{N_2}$ is a homomorphism, the second follows since $f$ is an $A$-graded left $\Gamma$-comodule homomorphism, and the third equality follows by definition of the tensor product.
 
 	Thus, we've shown that the hom-sets in $\Gamma\text-\CoMod^A$ are abelian groups, and composition is clearly bilinear, so that $\Gamma\text-\CoMod^A$ is indeed $\Ab$-enriched.
 
-	Now, in order to show $\Gamma\text-\CoMod^A$ is additive, it suffices to show that it contains a zero object and has binary coproducts. First, note that the zero left $B$-module is clearly an $A$-graded left $\Gamma$-comodule with structure map the unique map $0\to\Gamma\otimes_B0\cong 0$, and that given any other $A$-graded left $\Gamma$-comodule $(N,\Psi_N)$, the unique homomorphisms of left $B$-modules $0\to N$ and $N\to 0$ are left comodule homomorphisms.
+	Now, in order to show $\Gamma\text-\CoMod^A$ is additive, it suffices to show that it contains a zero object and has binary coproducts. First of all, it is straightforward to check that the zero left $B$-module is clearly an $A$-graded left $\Gamma$-comodule with structure map the unique map $0\to\Gamma\otimes_B0\cong 0$, and that given any other $A$-graded left $\Gamma$-comodule $(N,\Psi_N)$, the unique homomorphisms of left $B$-modules $0\to N$ and $N\to 0$ are left comodule homomorphisms.
 
 	Now, suppose we have two $A$-graded left $\Gamma$-comodules $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$. First, we claim their direct sum as left $B$-modules $N_1\oplus N_2$ is canonically an $A$-graded left $\Gamma$-comodule. We know that $N_1\oplus N_2$ is an $A$-graded left $B$-module by \autoref{product_of_A_graded}, and we can define the structure map
 	\[\Psi_{N_1\oplus N_2}:N_1\oplus N_2\xr{\Psi_{N_1}\oplus\Psi_{N_2}}(\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2)\cong\Gamma\otimes_B(N_1\oplus N_2),\]
@@ -415,8 +394,28 @@ In what follows, fix an $A$-graded commutative Hopf algebroid $(B,\Gamma)$ over 
 	\todo{finish}
 \end{proof}
 
-\begin{proposition}
-	Suppose that $\Gamma$ is flat as a right $B$-module (with its canonical right $B$-module structure induced by $\eta_R$). Then the category $\Gamma\text-\CoMod^A$ is an abelian category. 
+\begin{proposition}\label{comodule_co-free_adjunction}
+	The forgetful functor $\Gamma\text-\CoMod^A\to B\text-\Mod^A$ (where here $B\text-\Mod^A$ is the category of $A$-graded left $B$-modules and degree-preserving module homomorphisms between them) has a right adjoint $\Gamma\otimes_B-:B\text-\Mod^A\to\Gamma\text-\CoMod^A$ called the \emph{co-free construction}, where the co-free left $A$-graded $\Gamma$-comodule on a left $A$-graded $B$-module $M$ is the $B$-module $\Gamma\otimes_BM$ equipped with the coaction
+	\[\Psi_{\Gamma\otimes_BM}:\Gamma\otimes_BM\xr{\Psi\otimes_BM}(\Gamma\otimes_B\Gamma)\otimes_BM\xr\cong\Gamma\otimes_B(\Gamma\otimes_BM).\]
+
+%	In particular, for all objects $(N,\Psi_N)$ in $\Gamma\text-\CoMod^A$ and $M$ in $B\text-\Mod^A$, we have isomorphisms of $A$-graded abelian groups 
+%	\[\Hom_{B\text-\Mod^A}^*(N,M)\cong\Hom_{\Gamma\text-\CoMod^A}^*(N,\Gamma\otimes_BM)\]
+%	via the identifications
+%	\[\Hom_{\Gamma\text-\CoMod^A}^a(N_*,N_*')=\Hom_{\Gamma\text-\CoMod^A}(N_{*-a},N_{*}')\]
+%	and
+%	\[\Hom_{B\text-\Mod^A}^a(M_*,M_*')=\Hom_{B\text-\Mod^A}(M_{*-a},M_{*}').\]
+%
+	Explicitly, given some $(N,\Psi_N)$ in $\Gamma\text-\CoMod$ and some $M$ in $B\text-\Mod^A$, the counit and unit of this adjunction are given by
+	\[\eta_{(N,\Psi_N)}:N\xr{\Psi_N}\Gamma\otimes_BN\]
+	and
+	\[\vare_M:\Gamma\otimes_BM\xr{\epsilon\otimes_BM}B\otimes_BM\xr\cong M.\]
+\end{proposition}
+\begin{proof}
+	\todo{todo}
+\end{proof}
+
+\begin{proposition}\label{G-CoMod^A_is_abelian_if_eta_R_flat}
+	Suppose that $\Gamma$ is flat as a right $B$-module, i.e., suppose $\eta_R:B\to\Gamma$ is a flat ring homomorphism. Then the category $\Gamma\text-\CoMod^A$ is an abelian category. 
 \end{proposition}
 \begin{proof}
 	\todo{finish}

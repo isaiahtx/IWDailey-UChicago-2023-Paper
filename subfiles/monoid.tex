@@ -66,13 +66,6 @@ In this appendix, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with le
     \todo{todo}
 \end{proof}
 
-\begin{lemma}\label{e_and_mu_are_monoid_homos}
-    Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then the maps $e:S\to E$ and $\mu:E\otimes E\to E$ are monoid object homomorphisms (where here $S$ and $E\otimes E$ are considered to be monoid objects by \autoref{unit_is_monoid} and \autoref{product_of_monoids_is_monoid}, respectively).
-\end{lemma}
-\begin{proof}
-    \todo{todo}
-\end{proof}
-
 \begin{lemma}\label{product_of_3+_monoids_no_ambiguity}
 	Given monoid objects $(E_i,\mu_i,e_i)$ for $i=1,2,3$ in a symmetric monoidal category $\cC$, the associator $(E_1\otimes E_2)\otimes E_3\xr\cong E_1\otimes(E_2\otimes E_3)$ is an isomorphism of monoid objects. In other words, up to associativity, given a collection of monoid objects $E_1,\ldots,E_n$ in $\cC$, there is no ambiguity when talking about their tensor product $E_1\otimes\cdots\otimes E_n$ as a monoid object.
 \end{lemma}
@@ -100,6 +93,13 @@ In this appendix, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with le
 		\arrow["{\mu_1\otimes \mu_2\otimes \mu_3}"{description}, from=3-2, to=4-3]
 	\end{tikzcd}\]
 	The top pentagonal region commutes by coherence for the $\tau$'s in a symmetric monoidal category. The bottom triangle commutes by definition. The remaining four triangles commute by functoriality of $-\otimes-$. On the left is the product for $E_1\otimes(E_2\otimes E_3)$, while on the right is the product for $(E_1\otimes E_2)\otimes E_3$. Thus they are equal up to associativity, as desired.
+\end{proof}
+
+\begin{lemma}\label{e_and_mu_are_monoid_homos}
+    Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then the maps $e:S\to E$ and $\mu:E\otimes E\to E$ are monoid object homomorphisms (where here $S$ and $E\otimes E$ are considered to be monoid objects by \autoref{unit_is_monoid} and \autoref{product_of_monoids_is_monoid}, respectively).
+\end{lemma}
+\begin{proof}
+    \todo{todo}
 \end{proof}
 
 \begin{lemma}\label{E_ox_f,f_ox_E_are_monoid_homos}

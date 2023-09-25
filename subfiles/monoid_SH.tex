@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-\subsection{Monoid objects in \texorpdfstring{$\cSH$}{SH} and their associated rings}
+\subsection{Monoid objects in \texorpdfstring{$\cSH$}{SH} and their associated rings}\label{subsection:monoid_objects_in_SH}
 
 For a review of monoid objects in a symmetric monoidal category, see \Cref{monoid_objects_subsection}\todo{fix ref}. The most important example of a monoid object in $\cSH$ is the unit $S$, which has multiplication map $\phi_{0,0}^{-1}=\lambda_S=\rho_S:S\otimes S\to S$ and unit map $\id_S:S\to S$.
 
@@ -320,15 +320,15 @@ A natural question that arises is: In what sense is $\pi_*(E)$ ``graded commutat
         \item for all homogeneous $x$ and $y$ in $R$,
         \[x\cdot y=y\cdot x\cdot\theta_{|x|,|y|}.\]
     \end{itemize}
-    Given two $A$-graded anticommutative rings $(R,\theta)$ and $(R',\theta')$, an $A$-graded ring homomorphism $f:R\to R'$ is a homomorphism of $A$-graded anticommutative rings if it satisfies $f\circ\theta=\theta'$. We write $\GrCRing(A)$ for the resulting category.
+    Given two $A$-graded anticommutative rings $(R,\theta)$ and $(R',\theta')$, an $A$-graded ring homomorphism $f:R\to R'$ is a homomorphism of $A$-graded anticommutative rings if it satisfies $f\circ\theta=\theta'$. We write $\GrCRing^{A}$ for the resulting category.
 \end{definition}
 
-An interesting fact is that the initial object in the category $\GrCRing(A)$ is the group algebra $\bZ[A\wedge A]$ on the exterior square $A\wedge A$, viewed as an $A$-graded ring concentrated in degree $0$, and where $\theta_{a,b}$ corresponds to the element $a\wedge b$.\todo{is this actually true?}
+In fact, the above definition will be entirely motivated by the work we do here. An interesting fact is that the initial object in the category $\GrCRing^{A}$ is the group algebra $\bZ[A\wedge A]$ on the exterior square $A\wedge A$, viewed as an $A$-graded ring concentrated in degree $0$, and where $\theta_{a,b}$ corresponds to the element $a\wedge b$.\todo{is this actually true?}
 
 In fact, we will show that not only is $\pi_*(E)$ an $A$-graded anticommutative ring, but it is an $A$-graded anticommutative algebra over the stable homotopy ring $\pi_*(S)$, defined as follows:
 
 \begin{definition}\label{R-GrCAlg_defn}
-	Given an $A$-graded anticommutative ring $(R,\theta)$ (\autoref{A-graded_anticommutative_ring_defn}), we write $R\text-\GrCAlg(A)$ to denote the slice category $\GrCRing(A)/(R,\theta)$. Explicitly:
+	Given an $A$-graded anticommutative ring $(R,\theta)$ (\autoref{A-graded_anticommutative_ring_defn}), we write $R\text-\GCA^{A}$ to denote the slice category $\GrCRing^{A}/(R,\theta)$. Explicitly:
     \begin{itemize}
 		\item The objects are pairs $(S,\varphi)$ called \emph{$A$-graded anticommutative $R$-algebras}, where $S$ is an $A$-graded ring and $\varphi:R\to S$ is an $A$-graded ring homomorphism such that for all $x\in S_a$ and $y\in S_b$, we have
 		\[x\cdot y=y\cdot x\cdot\varphi(\theta_{a,b}),\]
@@ -336,13 +336,13 @@ In fact, we will show that not only is $\pi_*(E)$ an $A$-graded anticommutative 
 	\end{itemize}
 \end{definition}
 
-Note that our notation for the category $R\text-\GrCAlg(A)$ is somewhat deficient, as there may be multiple choices of families of units $\theta_{a,b}\in R_0$ satisfying the required properties which give rise to strictly different categories, as the following example illustrates. The following example exhibits this issue. 
+Note that our notation for the category $R\text-\GCA^{A}$ is somewhat deficient, as there may be multiple choices of families of units $\theta_{a,b}\in R_0$ satisfying the required properties which give rise to strictly different categories, as the following example illustrates. The following example exhibits this issue. 
 
 \begin{example}
-	Consider $R=\bZ$ as a ring graded over $A=\bZ$ concentrated in degree $0$, and let $\theta_{n,m}:=(-1)^{n\cdot m}$ for all $n,m\in\bZ$, then $R\text-\GrCAlg(A)$ is simply the standard category of graded anticommutative rings, i.e., $\bZ$-graded rings $R$ such that for all homogeneous $x,y\in R$, $x\cdot y=y\cdot x\cdot(-1)^{|x||y|}$. On the other hand, if we instead define $\theta_{n,m}=1$ for all $n,m\in\bZ$, then the resulting category $R\text-\GrCAlg(A)$ becomes the category of strictly commutative $\bZ$-graded rings.
+	Consider $R=\bZ$ as a ring graded over $A=\bZ$ concentrated in degree $0$, and let $\theta_{n,m}:=(-1)^{n\cdot m}$ for all $n,m\in\bZ$, then $R\text-\GCA^{A}$ is simply the standard category of graded anticommutative rings, i.e., $\bZ$-graded rings $R$ such that for all homogeneous $x,y\in R$, $x\cdot y=y\cdot x\cdot(-1)^{|x||y|}$. On the other hand, if we instead define $\theta_{n,m}=1$ for all $n,m\in\bZ$, then the resulting category $R\text-\GCA^{A}$ becomes the category of strictly commutative $\bZ$-graded rings.
 \end{example}
 
-Like the standard category of $\bZ$-graded anticommutative rings, it turns out that the category $R\text-\GrCAlg(A)$ has many nice properties, some of which are detailed in \Cref{subsection:A-graded_anticommutative_rings_properties}. In particular, we show that $R\text-\GrCAlg(A)$ has finite coproducts and pushouts, and as in the standard category of (graded anti)commutative rings, they are formed by taking the underlying tensor product of bimodules and endowing it with a (graded anti)commutative multiplication.
+Like the standard category of $\bZ$-graded anticommutative rings, it turns out that the category $R\text-\GCA^{A}$ has many nice properties, some of which are detailed in \Cref{subsection:A-graded_anticommutative_rings_properties}. In particular, we show that $R\text-\GCA^{A}$ has finite coproducts and pushouts, and as in the standard category of (graded anti)commutative rings, they are formed by taking the underlying tensor product of bimodules and endowing it with a (graded anti)commutative multiplication.
 
 The rest of this subsection will be devoted to proving that for each commutative monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is an $A$-graded anticommutative algebra over the $A$-graded anticommutative ring $\pi_*(S)$.
 
@@ -601,7 +601,7 @@ Thus, the stable homotopy ring $\pi_*(S)$ is an $A$-graded anticommutative ring,
 
 \begin{proposition}\label{pi_*:CMon_SH-->pi_*(S)-GrCAlg}
     The assignment $(E,\mu,e)\mapsto(\pi_*(E),\pi_*(e))$ yields a functor 
-    \[\pi_*:\CMon_\cSH\to\pi_*(S)\text-\GrCAlg(A)\]
+    \[\pi_*:\CMon_\cSH\to\pi_*(S)\text-\GCA^{A}\]
     from the category of commutative monoid objects in $\cSH$ (\autoref{Mon_C,CMon_C}) to the category of $A$-graded anticommutative $\pi_*(S)$-algebras (\autoref{R-GrCAlg_defn}).
 \end{proposition}
 \begin{proof}
