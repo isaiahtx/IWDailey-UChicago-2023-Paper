@@ -105,10 +105,10 @@ Now, before proving the K\"unneth map is an isomorphism under the conditions giv
 		\arrow["{t_a^W}", from=3-1, to=3-3]
 		\arrow[Rightarrow, no head, from=3-3, to=2-3]
 	\end{tikzcd}\]
-	where the maps $t_a$ are constructed and proven to be $A$-graded isomorphisms of abelian groups in \autoref{E_homology_suspension_iso_t^a's_appendix}.
+	where the maps $t_a$ are constructed and proven to be $A$-graded isomorphisms of abelian groups in \autoref{E_homology_suspension_iso_t^a's}.
 \end{lemma}
 \begin{proof}
-	Note that in \autoref{E_homology_suspension_iso_t^a's_appendix}, it is shown that $t_a^W:E_*(\Sigma^aW)\to E_{*-a}(W)$ is not just an $A$-graded isomorphism of abelian groups, but it is furthermore a left $\pi_*(E)$-module isomorphism. Thus, the top arrow in the above diagram is well-defined. Since all the arrows involved are $A$-graded homomorphisms, in order to show the diagram commutes it suffices to chase a pure homogeneous tensor around, as they generate the top left object. To that end, let $x:S^b\to Z\otimes E$ in $Z_*(E)$ and $y:S^c\to E\otimes S^a\otimes W$ in $E_*(\Sigma^aW)$, and consider the following diagram exhibiting the two ways to chase $x\otimes y$ around:
+	Note that in \autoref{E_homology_suspension_iso_t^a's}, it is shown that $t_a^W:E_*(\Sigma^aW)\to E_{*-a}(W)$ is not just an $A$-graded isomorphism of abelian groups, but it is furthermore a left $\pi_*(E)$-module isomorphism. Thus, the top arrow in the above diagram is well-defined. Since all the arrows involved are $A$-graded homomorphisms, in order to show the diagram commutes it suffices to chase a pure homogeneous tensor around, as they generate the top left object. To that end, let $x:S^b\to Z\otimes E$ in $Z_*(E)$ and $y:S^c\to E\otimes S^a\otimes W$ in $E_*(\Sigma^aW)$, and consider the following diagram exhibiting the two ways to chase $x\otimes y$ around:
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJTXntiK2MtYX0iXSxbMCwyLCJTXmJcXG90aW1lcyBTXmNcXG90aW1lcyBTXnstYX0iXSxbMiwyLCJaXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBXXFxvdGltZXMgU157LWF9Il0sWzIsMCwiWlxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgV1xcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSJdLFs0LDAsIlpcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFciXSxbNCwyLCJaXFxvdGltZXMgRVxcb3RpbWVzIFciXSxbMiw0LCJaXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFdcXG90aW1lcyBTXnstYX0iXSxbNCw0LCJaXFxvdGltZXMgRVxcb3RpbWVzIFdcXG90aW1lcyBTXmFcXG90aW1lcyBTXnstYX0iXSxbMCwxLCJcXHBoaSJdLFsxLDIsInhcXG90aW1lcyB5XFxvdGltZXMgU157LWF9Il0sWzIsMywiWlxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBTXnstYX0iXSxbMyw0LCJaXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBXXFxvdGltZXMgXFxwaGlfe2EsLWF9XnstMX0iXSxbNCw1LCJaXFxvdGltZXMgXFxtdVxcb3RpbWVzIFciXSxbMiw2LCJaXFxvdGltZXMgXFxtdVxcb3RpbWVzIFNeYVxcb3RpbWVzIFdcXG90aW1lcyBTXnstYX0iLDJdLFs2LDcsIlpcXG90aW1lcyBFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBTXnstYX0iLDJdLFs3LDUsIlpcXG90aW1lcyBFXFxvdGltZXMgV1xcb3RpbWVzIFxccGhpX3thLC1hfV57LTF9IiwyXSxbMyw3LCJaXFxvdGltZXMgXFxtdVxcb3RpbWVzIFdcXG90aW1lcyBTXmFcXG90aW1lcyBTXnstYX0iXV0=
 	\[\begin{tikzcd}
 		{S^{b+c-a}} && {Z\otimes E\otimes E\otimes W\otimes S^a\otimes S^{-a}} && {Z\otimes E\otimes E\otimes W} \\
@@ -735,7 +735,7 @@ Now, before we prove our next theorem (an analog of the universal coefficient th
 
 Finally, we have the ingredients required to state and prove the following universal coefficient theorem:
 
-\begin{theorem}
+\begin{theorem}\label{theorem:UCT}
     Let $(E,\mu,e)$ be a monoid object and let $X$ and $Y$ be objects in $\cSH$. Then if $E$ and $X$ are cellular and $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module}), then the map
     \[[X,E\otimes Y]\to\Hom_{\pi_*(E)}(E_*(X),E_*(Y)),\qquad[X\xr fE\otimes Y]\mapsto [\pi_*(\mu\otimes Y)\circ \pi_*(E\otimes f)]\]
     is an isomorphism, and extends to an $A$-graded isomorphism
@@ -846,7 +846,7 @@ i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of
 		\arrow["{\pi_*(-)}", from=2-2, to=3-2]
 		\arrow["{{({(t_X^a)}^{-1})}^*}", from=3-2, to=4-2]
 	\end{tikzcd}\]
-	where the first isomorphism is the free-forgetful adjunction for $E$-modules (\autoref{free_forgetful_E-Mod}), the second map is that induced by the functor $\pi_*$ constructed in \autoref{E-module_N_implies_pi*N_is_pi*E_module}, and the third map is induced by the $A$-graded isomorphism of left $\pi_*(E)$-modules $(t_X^a)^{-1}:E_{*-a}(X)\to E_*(\Sigma^aX)$ from \autoref{E_homology_suspension_iso_t^a's_appendix}. By unravelling definitions, is straightforward to see that under the identification $[X,N]\cong [X,N]_0$, the map $U_0:[X,N]_0\to\Hom^0_{\pi_*(E)}(E_*(X),\pi_*(N))$ coincides with the assignment
+	where the first isomorphism is the free-forgetful adjunction for $E$-modules (\autoref{free_forgetful_E-Mod}), the second map is that induced by the functor $\pi_*$ constructed in \autoref{E-module_N_implies_pi*N_is_pi*E_module}, and the third map is induced by the $A$-graded isomorphism of left $\pi_*(E)$-modules $(t_X^a)^{-1}:E_{*-a}(X)\to E_*(\Sigma^aX)$ from \autoref{E_homology_suspension_iso_t^a's}. By unravelling definitions, is straightforward to see that under the identification $[X,N]\cong [X,N]_0$, the map $U_0:[X,N]_0\to\Hom^0_{\pi_*(E)}(E_*(X),\pi_*(N))$ coincides with the assignment
 	\[[X,N]\to\Hom_{\pi_*(E)}(E_*(X),\pi_*(N))\qquad[X\xr fN]\mapsto[\pi_*(\kappa)\circ\pi_*(E\otimes f)].\]
 	Furthermore, note we have isomorphisms in $E\text-\Mod$
 	\[E\otimes\Sigma^aX=E\otimes S^a\otimes X\cong S^a\otimes E\otimes X\]

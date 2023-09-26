@@ -66,13 +66,316 @@ which is a $\bZ\times A$-graded abelian group.
 
 The differential $d_r:E_r\to E_r$ is a map of $\bZ\times A$-degree $(r,\1)$, and is constructed as follows: an element of $E_r^s=Z_r^s/B_r^s$ is a coset represented by some $x\in Z_r^s$, so that $\partial_s(x)=i^{(r-1)}(y)$ for some $y\in{[X,Y_{s+r}]}_*$. Then we define $d_r([x])$ to be the coset $[j_{s+r}(y)]$ in $Z_r^{s+r}/B_r^{s+r}$. 
 
-In the case $r=1$, since $B_1^s=0$ and $Z_1^s={[X,W_s]}_*$, we have that $E_1^s={[X,W_s]}_*$, and given some $x\in E_1^s=[X,W_s]_*$, the differential $d_1$ is given by $d_1(x)=j_{s+1}(\partial_s(x))$, so that $d_1=j\circ\partial$.
+In the case $r=1$, since $B_1^s=0$ and $Z_1^s={[X,W_s]}_*$, we have that $E_1^s={[X,W_s]}_*$, and given some $x\in E_1^s=[X,W_s]_*$, the differential $d_1$ is given by $d_1(x)=j_{s+1}(\partial_s(x))$, so that $d_1=j\circ\partial$. Furthermore, since the unrolled exact couple which yields the spectral sequence vanishes on its negative terms, we hav that $E_r^{s,a}(X,Y)=0$ for $s<0$.
 
-In \Cref{Unrolled_exact_couples_and_their_associated_SSeqs}, it is shown in explicit detail that all of these definitions make sense and are well-defined. In particular, it is shown that the differentials are well-defined $A$-graded homomorphisms, that $d_r\circ d_r=0$, and that
+In \Cref{subsection:unrolled_exact_couples}, it is shown in explicit detail that all of these definitions make sense and are well-defined. In particular, it is shown that the differentials are well-defined $A$-graded homomorphisms, that $d_r\circ d_r=0$, and that
 \[\ker d_r^s/\imm d_r^s=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\] 
 
-\subsection{The \texorpdfstring{$E_1$}{E1} page}
+\subsection{Homological (co)algebra}
+
+We have constructed the spectral sequence, but we have not yet actually shown why it is useful in any sense. The goal of this subsection will be to review some homological (co)algebra, which will be necessary for the characterization we give of the $E_2$ page of the spectral sequence in the subsequent section. In this section, we do not provide any proofs, rather we simply outline the basic theory. The primary reference for this section will be the nLab page on derived functors in homological algebra (\cite{nlab:derived_functor_in_homological_algebra}).
+
+Recall that given abelian categories $\cA$ and $\cB$, given an additive functor $F:\cA\to\cB$, if $F$ is left exact and $\cA$ has enough injectives, we may form the \emph{right derived functors} $R^nF:\cA\to\cB$ of $F$, for $n\in\bN$. Given an object $A$ in $\cA$, we may compute $R^nF(A)$ to be the object (defined only up to isomorphism) which is obtained as follows: First, fix an injective resolution $i:A\to I^*$ of $A$, i.e., the data of a long exact sequence
+\[0\xr{\phantom{d^2}}A\xr{i}I^0\xr{d^0}I^1\xr{d^1}I^2\xr{d^2}I^3\xr{\phantom{d^2}}\cdots\]
+where each $I^n$ is an injective object in $\cA$. Such a sequence is guaranteed to exist since $\cA$ has enough injectives. Then we define $R^nF(A)$ to be the $n^\text{th}$ cohomology group $H^n(F(I^*))$ of the sequence
+\[0\xr{\phantom{F(d^2)}}F(I^0)\xr{F(d^0)}F(I^1)\xr{F(d^1)}F(I^2)\xr{F(d^2)}F(I^3)\xr{\phantom{F(d^2)}}\cdots.\]
+It is a standard result that this definition of $R^nF(A)$ does not depend on the choice of injective resolution $i:A\to I^*$. 
+
+\begin{definition}\label{defn:Ext}
+	Given an abelian category $\cA$ with enough injectives and an object $A$ in $\cA$, we denote the right derived functors of the left exact functor $\Hom_\cA(A,-):\cA\to\Ab$ by
+	\[R^n\Hom_\cA(A,-):=\Ext^n_\cA(A,-).\]
+\end{definition}
+
+\begin{remark}
+	It is not uncommon to instead define $\Ext^n_\cA(-,A)$ to be the right derived functor of the functor $\Hom_\cA(-,A):\cA^\op\to\Ab$, in which case we may compute $\Ext^n_\cA(B,A)$ by means of \emph{projective} resolutions of $A$ in $\cA$. It is a standard result that these definitions of $\Ext^n_\cA(A,B)$ coincide.
+\end{remark}
+
+In \Cref{subsection_appendix:comodules}, we will show that the category of $A$-graded left comodules over a Hopf algebroid $(\Gamma,B)$ is abelian and has enough injectives if the structure map $\eta_R:B\to\Gamma$ is a flat ring map. In particular, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$, this means that we may define the $\Ext$ functors in the category $E_*(E)\text-\CoMod^A$. In particular, given $N$ and $M$ in $E_*(E)\text-\CoMod^A$, we may extend the $\Ext$ groups $\Ext^n_\Gamma(M,N)$ to $A$-graded abelian groups $\Ext^{n,*}_\Gamma(M,N)$ defined by
+\[\Ext^{n,a}_\Gamma(M_*,N_*):=R^n\Hom^a_\Gamma(M_*,N_*)=R^n\Hom_\Gamma(M_{*-a},N_*)=R^n\Hom_\Gamma(M_*,N_{*+a}).\]
+
+Now, the first result we will state is that in order to compute the values of the right derived functors $R^nF(A)$, we do not need to consider strictly injective resolutions of $A$, rather, we may consider more generally ``$F$-acyclic resolutions''. First, we define $F$-acyclic objects:
+
+\begin{definition}[{\cite[Definition 3.8]{nlab:derived_functor_in_homological_algebra}}]\label{defn:acyclic_object}
+	Let $F:\cA\to\cB$ be a left or right exact additive functor between abelian categories, and suppose $\cA$ has enough injectives. An object $A$ in $\cA$ is called an \emph{$F$-acyclic object} if $R^nF(A)=0$ for all $n>0$.
+\end{definition}
+
+In \Cref{subsection_appendix:comodules}, we will show given a Hopf algebroid $(\Gamma,B)$ such that the structure map $\eta_R:B\to\Gamma$ is a flat ring homomorphism, that co-free left $\Gamma$-comodules (\autoref{comodule_co-free_adjunction}) are $F$-acyclic objects for $F=\Hom_\Gamma(N,-)$ when $N$'s underlying $A$-graded $B$-module is graded projective. 
+
+\begin{definition}\label{defn:acyclic_resolution}
+	Let $F:\cA\to\cB$ be a left exact additive functor between abelian categories, and suppose $\cA$ has enough injectives. Then given an object $A$ in $\cA$, an \emph{$F$-acyclic resolution} $i:A\to I_F^*$ is the data of a long exact sequence in $\cA$
+	\[0\xr{\phantom{d^2}}A\xr iI_F^0\xr{d^0}I_F^1\xr{d^1}I_F^2\xr{d^2}I_F^3\xr{\phantom{d^2}}\cdots\]
+	such that each $I_F^n$ is an $F$-acyclic object in $\cA$.
+\end{definition}
+
+The reasons that $F$-acyclic objects are useful is that they allow you to compute the right derived functors of $F$ without having to use strictly injective resolutions:
+
+\begin{proposition}[{\cite[Theorem 3.15]{nlab:derived_functor_in_homological_algebra}}]\label{acyclic_resolution_computes_R^nF}
+	Let $F:\cA\to\cB$ be a left exact additive functor between abelian categories. Then for each object $A$ in $\cA$, given an $F$-acyclic resolution $i:A\to I_F^*$ of $A$, for each $n\in\bN$ there is a canonical isomorphism
+	\[R^nF(A)\cong H^n(F(I_F^*))\]
+	between the $n^\text{th}$ right derived functor of $F$ evaluated on $A$ and the cohomology of the sequence obtained by applying $F$ to $I_F^*$.
+\end{proposition}
 
 \subsection{The \texorpdfstring{$E_2$}{E2} page}
+
+Now, we can finally characterize the $E_2$ page of the spectral sequence. The goal of this subsection will be to prove the following theorem:
+
+\begin{theorem}
+	Let $(E,\mu,e)$ be a commutative monoid object, and $X$ and $Y$ objects in $\cSH$. Suppose further that:\begin{itemize}
+		\item $E$ is flat (\autoref{flat}) and cellular (\autoref{cellular}),
+		\item $X$ is cellular and $E_*(X)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module}),
+		\item $Y$ is cellular.
+	\end{itemize}
+	Then the non-vanishing entries of the second page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$ (\autoref{ASS}) are the $\Ext$ groups of $A$-graded left comodules over the anticommutative Hopf algebroid structure on the dual $E$-Steenrod algebra (\autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}), i.e., we have the following isomorphisms for all $s\in\bN$ and $a\in A$:
+	\[E_2^{s,a}(X,Y)\cong\Ext_{E_*(E)}^{s,a+\mbf s}(E_*(X),E_*(Y)):=\Ext_{E_*(E)}^s(E_{*}(X),E_{*+a+\mbf s}(Y)).\]
+\end{theorem}
+\begin{proof}
+	By \autoref{E_1_page_line_resolution_identification} below, for each $s\in\bN$ and $a\in A$, $E_2^{s,a}(X,Y)$ is the $s^\text{th}$ cohomology group of the cochain complex obtained by applying $F:=\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),-)$ to the complex
+	\[0\xr{\phantom{E_*(\delta_3)}}E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\xr{E_*(\delta_2)}E_*(\Sigma^3W_3)\xr{\phantom{E_*(\delta_3)}}\cdots.\]
+	Furthermore, by \autoref{E_*W_s's_acyclic_resolution_of_E_*Y}, this complex is an $F$-acyclic resolution of $E_*(Y)$. Thus, since the category of $E_*(E)$-comodules is an abelian category with enough injectives (\autoref{G-CoMod^A_is_abelian_if_eta_R_flat_and_has_enough_injectives}), we have by \autoref{acyclic_resolution_computes_R^nF} that
+	\[E_2^{s,a}(X,Y)\cong R^s\Hom^{a+\mbf s}_{E_*(E)}(E_*(X),E_*(Y))=\Ext^{s,a+\mbf s}(E_*(X),E_*(Y)),\]
+	as desired.
+\end{proof}
+
+We leave it to the reader to unravel what the differential $d_2$ corresponds to under this identification.
+
+\begin{definition}\label{nu^n_isos}
+	Given some (nonnegative integer) $n\in\bN$, define natural isomorphisms $\nu^n_X:\Sigma^\n X\to\Sigma^nX$ inductively, by setting $\nu^0_X:=\lambda_X$, $\nu^1_X:=\nu_X^{-1}$, and supposing $\nu^{n-1}_X$ has been defined for some $n>1$, define $\nu^n_X$ to be the composition
+	\[\nu^n_X:\Sigma^\n X=S^\n\otimes X\xr{\phi_{\n-\1,\1}\otimes X}S^{\n-\1}\otimes S^\1\otimes X\xr{S^{\n-\1}\otimes\nu_X^{-1}}S^{\n-\1}\Sigma X\xr{\nu_{\Sigma X}^{\n-\1}}\Sigma^{n}X.\]
+	By induction, naturality of $\nu$, and functoriality of $-\otimes-$, these isomorphisms are clearly natural in $X$. 
+\end{definition}
+
+\begin{lemma}\label{W_s_cellular_if_E_and_Y_are}
+	Let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ objects in $\cSH$. Further suppose $E$ and $Y$ are cellular. Then for all $s\in\bZ$, the objects $Y_s$ and $W_s$ from \autoref{ASS} are cellular.
+\end{lemma}
+\begin{proof}
+	Unravelling definitions, for $s<0$, $W_s=0$ and $Y_s=Y$, which are both cellular.\footnote{$0$ is cellular because it is the cofiber of the identity on $S$ by axiom TR1 for a triangulated category (\autoref{triangulated_defn}), i.e., there is a distinguished triangle $S\to S\to 0\to\Sigma S$.} For $s\geq0$, we have $W_s=E\otimes Y_s$, so that by cellularity of $E$ and \autoref{cellular_closed_under_tensor}, it suffices to show that $Y_s$ is cellular for $s\geq0$. We know $Y_0=Y$ is cellular by definition. For $s>0$, $Y_s$ is the tensor product $\ol E^s\otimes Y$, where $\ol E$ fits into the distinguished triangle
+	\[\ol E\to S\xr eE\to\Sigma\ol E.\]
+	By the definition of cellularity, $\ol E$ is cellular since $S$ and $E$ are. Thus, by the aforementioned lemma, $\ol E^s\otimes Y$ is cellular by \autoref{cellular_closed_under_tensor}, as it is a tensor product of cellular objects in $\cSH$.
+\end{proof}
+
+\begin{lemma}\label{E_*W_s's_acyclic_resolution_of_E_*Y}
+	Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object and $X$ and $Y$ cellular objects in $\cSH$, and define $Y_s$, $W_s$ as in \autoref{ASS}. In particular, for each $s\in\bZ$, we have distinguished triangles
+	\[Y_{s+1}\xr{i_s}Y_s\xr{j_s}W_s\xr{k_s}\Sigma Y_{s+1}.\]
+	Then if $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module}) then the sequence
+	\[0\to E_*(Y)\xr{E_*(j_0)}E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\xr{E_*(\delta_2)}E_*(\Sigma^3W_3)\to\cdots\]
+	is an $F$-acyclic resolution (\autoref{defn:acyclic_resolution}) of $E_*(Y)$ in $E_*(E)\text-\CoMod^A$ for 
+	\[F=\Hom_{E_*(E)}^a(E_*(X),-)\]
+	for all $a\in A$, where $\delta_s$ is the composition
+	\[\Sigma^sW_s\xr{\Sigma^sk_s}\Sigma^{s+1}Y_{s+1}\xr{\Sigma^{s+1}j_{s+1}}\Sigma^{s+1}W_{s+1}.\]
+\end{lemma}
+\begin{proof}
+	By \autoref{W_s_cellular_if_E_and_Y_are}, each $W_s$ is cellular, so that furthermore $\Sigma^sW_s\cong S^{\mbf s}\otimes W_s$ is cellular for each $s\geq0$, by \autoref{cellular_closed_under_tensor}. Thus, the sequence does indeed live in $E_*(E)\text-\CoMod^A$, as desired. Next, we claim that $E_*(\Sigma^sW_s)$ is an $F$-acyclic object for each $s\geq0$, i.e., that 
+	\[\Ext_{E_*(E)}^{n,a}(E_{*}(X),E_*(\Sigma^sW_s))=\Ext_{E_*(E)}^n(E_*(X),E_{*+a}(\Sigma^sW_s))=0\] 
+	for all $n>0$, $s\geq0$, and $a\in A$. Note that we have an $A$-graded isomorphism of left $E_*(E)$-comodules:
+	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfeyorYX0oXFxTaWdtYV5zWV9zKSJdLFsxLDAsIkVfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9RV97KithfShcXFNpZ21hXnNZX3MpIl0sWzEsMSwiRV8qKEVcXG90aW1lcyBcXFNpZ21hXnNZX3MpIl0sWzEsMiwiRV8qKEVcXG90aW1lcyBTXlxcbWF0aGJmIHNcXG90aW1lcyBZX3MpIl0sWzEsMywiRV8qKFNee1xcbWF0aGJmIHN9XFxvdGltZXMgRVxcb3RpbWVzIFlfcykiXSxbMSw0LCJFXyooXFxTaWdtYV5zKEVcXG90aW1lcyBZX3MpKSJdLFsyLDQsIkVfKihcXFNpZ21hXnNXX3MpIl0sWzAsMSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCJcXFBoaV97RSxcXFNpZ21hXnNZX3N9Il0sWzIsMywiRV8qKEVcXG90aW1lc3soXFxudV5zX3tZX3N9KX1eey0xfSkiXSxbMyw0LCJFXyooXFx0YXVcXG90aW1lcyBZX3MpIl0sWzQsNSwiRV8qKFxcbnVec197RVxcb3RpbWVzIFlfc30pIl0sWzUsNiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		{E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)} & {E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)} \\
+		& {E_*(E\otimes \Sigma^sY_s)} \\
+		& {E_*(E\otimes S^\mathbf s\otimes Y_s)} \\
+		& {E_*(S^{\mathbf s}\otimes E\otimes Y_s)} \\
+		& {E_*(\Sigma^s(E\otimes Y_s))} & {E_*(\Sigma^sW_s)}
+		\arrow[Rightarrow, no head, from=1-1, to=1-2]
+		\arrow["{\Phi_{E,\Sigma^sY_s}}", from=1-2, to=2-2]
+		\arrow["{E_*(E\otimes{(\nu^s_{Y_s})}^{-1})}", from=2-2, to=3-2]
+		\arrow["{E_*(\tau\otimes Y_s)}", from=3-2, to=4-2]
+		\arrow["{E_*(\nu^s_{E\otimes Y_s})}", from=4-2, to=5-2]
+		\arrow[Rightarrow, no head, from=5-2, to=5-3]
+	\end{tikzcd}\]
+	where $\Phi_{E,\Sigma^sY}$ is an $A$-graded isomorphism of abelian groups by \autoref{Kunneth_map_iso}, and furthermore an isomorphism of $E_*(E)$-comodules by \autoref{Phi_E,X_is_comodule_homo}. Every other arrow is an isomorphism of $E_*(E)$-comodules by functoriality of $E_*(-):\cSH\text-\Cell\to E_*(E)\text-\CoMod^A$. Thus, since $E_*(\Sigma^sW_s)$ is isomorphic to $E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)$ in $E_*(E)\text-\CoMod^A$, and in particular since $\Ext^{n}_{E_*(E)}(E_*(X),-)$ is a functor, we have
+	\[\Ext^{n}_{E_*(E)}(E_*(X),E_{*+a}(\Sigma^sW_s))\cong\Ext^{n}_{E_*(E)}(E_*(X),E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)).\]
+	Yet, $E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)$ is a co-free $E_*(E)$-comodule, in which case since $E_*(X)$ is graded projective as an object in $\pi_*(E)\text-\Mod^A$, we have that 
+	\[\Ext^{n,a}_{E_*(E)}(E_*(X),E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s))=0,\]
+	by \autoref{co-free_comodules_are_hom(P,-)-acyclic}.
+
+	Finally, it remains to show that the sequence is exact. To that end, first note that by induction on axiom TR4 for a triangulated category and the fact that distinguished triangles are exact (\autoref{distinguished_tri_is_exact}), the following sequence in $\cSH$ is exact (since a sequence clearly remains exact even after changing the signs of its maps):
+	\[\Sigma^sY_s\xr{\Sigma^sj_s}\Sigma^sW_s\xr{\Sigma^sk_s}\Sigma^{s+1}Y_{s+1}\xr{\Sigma^{s+1}i_{s}}\Sigma^{s+1}Y_s\xr{\Sigma^{s+1}j_s}\Sigma^{s+1}W_s\]
+	(see \autoref{defn_exact} for the definition of an exact triangle in an additive category). Furthermore, since $\cSH$ is tensor triangulated, the sequence remains exact after applying $E\otimes-$ (see \autoref{LES_remains_exact_after_tensor} for details), so that taking $E$-homology yields the following exact sequence of homology groups:
+	\[E_*(\Sigma^sY_s)\xr{E_*(\Sigma^sj_s)}E_*(\Sigma^sW_s)\xr{E_*(\Sigma^s k_s)}E_*(\Sigma^{s+1}Y_{s+1})\xr{E_*(\Sigma^{s+1}i_s)}E_*(\Sigma^{s+1}Y_s)\xr{E_*(\Sigma^{s+1}j_s)}E_*(\Sigma^{s+1}W_s).\]
+	Now, we claim that $E_*(\Sigma^sj_s)$ and $E_*(\Sigma^{s+1}j_s)$ are split monomorphisms, which by exactness will imply that the first arrow is injective and $E_*(\Sigma^{s+1}i_s)=0$, so that the above exact sequence will split as
+	\[0\to E_*(\Sigma^sY_s)\xr{E_*(\Sigma^sj_s)}E_*(\Sigma^sW_s)\xr{E_*(\Sigma^sk_s)}E_*(\Sigma^{s+1}Y_{s+1})\to0.\]
+	Note that for all $t\in\bN$ and objects $X$ in $\cSH$, we have natural isomorphisms
+	\[E_*(\Sigma^tX)=\pi_*(E\otimes\Sigma^t(X))\xr{\pi_*(E\otimes{(\nu^t_X)}^{-1})}\pi_*(E\otimes S^\mbf t\otimes X)\xr{\pi_*(\tau\otimes X)}\pi_*(S^\mbf t\otimes E\otimes X).\]
+	Thus, in order to show that $E_*(\Sigma^tj_s)$ is a split monomorphism, it suffices to show that $\pi_*(S^\mbf t\otimes E\otimes j_s)$ is a split monomorphism. Furthermore, since every functor preserves split monos, it further suffices to show that $E\otimes j_s$ is a split monomorphism in order to show that $\pi_*(S^\mbf t\otimes E\otimes j_s)$ is. To that end, first recall that $j_s$ is constructed by applying $-\otimes Y_s$ to the distinguished triangle
+	\[\ol E\to S\xr eE\to\Sigma\ol E,\]
+	so that $j_s=e\otimes Y_s:Y_s\to E\otimes Y_s=W_s$. By unitality of $\mu$, we have that $E\otimes j_s$ a left inverse $\mu\otimes W_s$, i.e., $\id_{E\otimes Y_s}$ factors as 
+	\[\id_{E\otimes Y_s}:E\otimes Y_s\xr{E\otimes j_s=E\otimes e\otimes Y_s}E\otimes E\otimes Y_s\xr{\mu\otimes Y_s}E\otimes Y_s.\]
+	Thus, $E\otimes j_s$ is indeed a split monomorphism, so that $E_*(\Sigma^tj_s)$ is injective for all $t\geq0$, as desired. Thus for all $s\geq0$ we have short exact sequences
+	\[0\to E_*(\Sigma^sY_s)\xr{E_*(\Sigma^sj_s)}E_*(\Sigma^sW_s)\xr{E_*(\Sigma^sk_s)}E_*(\Sigma^{s+1}Y_{s+1})\to0.\]
+	Finally, we may splice these short exact sequences together to yield the long exact sequence:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzIsMCwiRV8qKFkpIl0sWzQsMCwiRV8qKFdfMCkiXSxbNiwwLCJFXyooXFxTaWdtYSBXXzEpIl0sWzgsMCwiRV8qKFxcU2lnbWFeMldfMikiXSxbMTAsMCwiXFxjZG90cyJdLFs1LDEsIkVfKihcXFNpZ21hIFlfMSkiXSxbNywxLCJFXyooXFxTaWdtYV4yWV8yKSJdLFswLDFdLFsxLDIsIkVfKihqXzApIl0sWzIsMywiRV8qKFxcZGVsdGFfMCkiXSxbMyw0LCJFXyooXFxkZWx0YV8xKSJdLFs0LDVdLFsyLDYsIkVfKihrXzApIiwxXSxbNiwzLCJFXyooXFxTaWdtYSBqXzEpIiwxXSxbMyw3LCJFXyooXFxTaWdtYSBrXzEpIiwxXSxbNyw0LCJFXyooXFxTaWdtYV4yal8yKSIsMV1d
+	\[\begin{tikzcd}[column sep=tiny]
+		0 && {E_*(Y)} && {E_*(W_0)} && {E_*(\Sigma W_1)} && {E_*(\Sigma^2W_2)} && \cdots \\
+		&&&&& {E_*(\Sigma Y_1)} && {E_*(\Sigma^2Y_2)}
+		\arrow[from=1-1, to=1-3]
+		\arrow["{E_*(j_0)}", from=1-3, to=1-5]
+		\arrow["{E_*(\delta_0)}", from=1-5, to=1-7]
+		\arrow["{E_*(\delta_1)}", from=1-7, to=1-9]
+		\arrow[from=1-9, to=1-11]
+		\arrow["{E_*(k_0)}"{description}, from=1-5, to=2-6]
+		\arrow["{E_*(\Sigma j_1)}"{description}, from=2-6, to=1-7]
+		\arrow["{E_*(\Sigma k_1)}"{description}, from=1-7, to=2-8]
+		\arrow["{E_*(\Sigma^2j_2)}"{description}, from=2-8, to=1-9]
+	\end{tikzcd}\]
+	Hence, we have shown the sequence is exact, as desired.
+\end{proof}
+
+\begin{lemma}\label{X,EY_iso_Hom(E_*X,E_*EY)}
+	Let $(E,\mu,e)$ be a commutative monoid object, and $X$ and $Y$ objects in $\cSH$. Suppose further that:\begin{itemize}
+		\item $E$ is flat (\autoref{flat}) and cellular (\autoref{cellular}),
+		\item $X$ is cellular and $E_*(X)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module}), and
+		\item $Y$ is cellular.
+	\end{itemize}
+	Then the assignment
+	\[E_*(-):{[X,E\otimes Y]}\to\Hom_{E_*(E)}(E_*(X),E_*(E\otimes Y)),\qquad f\mapsto E_*(f)\]
+	induced by the functor $E_*(-):\cSH\text-\Cell\to E_*(E)\text-\CoMod^A$ is an isomorphism of abelian groups.
+\end{lemma}
+\begin{proof}
+	Since $X$ is cellular, by \autoref{E_*_functor_from_SH_to_E*E-comodules} we have that $E_*(X)$ is canonically an $A$-graded left $E_*(E)$-comodule. Similarly, since $E$ and $Y$ are cellular, we know that $E\otimes Y$ is cellular, so that $E_*(E\otimes Y)$ is also canonically an $E_*(E)$-comodule. Thus, we have a well-defined assignment
+	\[[X,E\otimes Y]\xr{E_*(-)}\Hom_{E_*(E)}(E_*(X),E_*(E\otimes Y)).\]
+	To see this arrow is an isomorphism, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJbWCxFXFxvdGltZXMgWV0iXSxbMiwwLCJcXG1hdGhybXtIb219X3tFXyooRSl9KEVfKihYKSxFXyooRVxcb3RpbWVzIFkpKSJdLFsyLDIsIlxcbWF0aHJte0hvbX1fe0VfKihFKX0oRV8qKFgpLEVfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9IEVfKihZKSkiXSxbMCwyLCJcXG1hdGhybXtIb219X3tcXHBpXyooRSl9KEVfKihYKSxFXyooWSkpIl0sWzAsMSwiRV8qKC0pIl0sWzIsMSwieyhcXFBoaV97RSxZfSl9XyoiLDJdLFswLDMsIlxccGlfKihcXG11XFxvdGltZXMgWSlcXGNpcmMgRV8qKC0pIiwyXSxbMSwzLCJcXHBpXyooXFxtdVxcb3RpbWVzIFkpXFxjaXJjKC0pIiwxXSxbMiwzLCJcXHRleHR7YWRqfSIsMl1d
+	\[\begin{tikzcd}
+		{[X,E\otimes Y]} && {\mathrm{Hom}_{E_*(E)}(E_*(X),E_*(E\otimes Y))} \\
+		\\
+		{\mathrm{Hom}_{\pi_*(E)}(E_*(X),E_*(Y))} && {\mathrm{Hom}_{E_*(E)}(E_*(X),E_*(E)\otimes_{\pi_*(E)} E_*(Y))}
+		\arrow["{E_*(-)}", from=1-1, to=1-3]
+		\arrow["{{(\Phi_{E,Y})}_*}"', from=3-3, to=1-3]
+		\arrow["{\pi_*(\mu\otimes Y)\circ E_*(-)}"', from=1-1, to=3-1]
+		\arrow["{\pi_*(\mu\otimes Y)\circ(-)}"{description}, from=1-3, to=3-1]
+		\arrow["{\text{adj}}"', from=3-3, to=3-1]
+	\end{tikzcd}\]
+	We know the left vertical map is an isomorphism by \autoref{theorem:UCT}, and the bottom horizontal isomorphism is the forgetful-cofree adjunction (\autoref{comodule_co-free_adjunction}) for $A$-graded left comodules over the dual $E$-Steenrod algebra. The right vertical arrow is a well-defined isomorphism, as $\Phi_{E,Y}$ is a homomorphism of $A$-graded left $E_*(E)$-comodules (\autoref{Phi_E,X_is_comodule_homo}), and in fact it is an isomorphism by \autoref{Kunneth_map_iso}, since $E_*(E)$ is flat and $Y$ is cellular. Thus in order to see the top arrow is an isomorphism, it suffices to show that the diagram commutes. The left triangle clearly commutes; to see the right triangle commutes, recall that by how the how forgetful-cofree adjunction for left comodules over a Hopf algebroid is defined, that the bottom vertical arrow sends an $A$-graded homomorphism of left $E_*(E)$-comodules $\psi:E_{*}(X)\to E_*(E)\otimes_{\pi_*(E)}E_*(Y)$ to the composition
+	\[E_{*}(X)\xr\psi E_*(E)\otimes_{\pi_*(E)}E_*(Y)\xr{\pi_*(\mu)\otimes E_*(Y)}\pi_*(E)\otimes_{\pi_*(E)}E_*(Y)\xr\cong E_*(Y).\]
+	Thus, in order to show that this composition equals $\pi_*(\mu\otimes Y)\circ\Phi_{E,Y}\circ\psi$, it suffices to show the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihZKSJdLFsyLDAsIlxccGlfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9RV8qKFkpIl0sWzIsMiwiRV8qKFkpIl0sWzAsMiwiRV8qKEVcXG90aW1lcyBZKSJdLFswLDEsIlxccGlfKihcXG11KVxcb3RpbWVzIEVfKihZKSJdLFsxLDIsIlxcY29uZyJdLFswLDMsIlxcUGhpX3tFLFl9IiwyXSxbMywyLCJcXHBpXyooXFxtdVxcb3RpbWVzIFkpIl1d
+	\[\begin{tikzcd}
+		{E_*(E)\otimes_{\pi_*(E)}E_*(Y)} && {\pi_*(E)\otimes_{\pi_*(E)}E_*(Y)} \\
+		\\
+		{E_*(E\otimes Y)} && {E_*(Y)}
+		\arrow["{\pi_*(\mu)\otimes E_*(Y)}", from=1-1, to=1-3]
+		\arrow["\cong", from=1-3, to=3-3]
+		\arrow["{\Phi_{E,Y}}"', from=1-1, to=3-1]
+		\arrow["{\pi_*(\mu\otimes Y)}", from=3-1, to=3-3]
+	\end{tikzcd}\]
+	Since all the arrows here are homomorphisms of abelian groups, in order to show the diagram commutes, it suffices to chase pure homogeneous tensors around. To that end, let $x:S^a\to E\otimes E$ and $y:S^b\to E\otimes Y$, and consider the following diagram exhibiting the two ways to chase $x\otimes y$ around:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15hXFxvdGltZXMgU15iIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFszLDEsIkVcXG90aW1lcyBZIl0sWzIsMSwiRVxcb3RpbWVzIEVcXG90aW1lcyBZIl0sWzAsMSwiXFxwaGlfe2EsYn0iXSxbMSwyLCJ4XFxvdGltZXMgeSJdLFsyLDMsIlxcbXVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFszLDQsIlxcbXVcXG90aW1lcyBZIl0sWzIsNSwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBZIiwyXSxbNSw0LCJcXG11XFxvdGltZXMgWSJdXQ==
+	\[\begin{tikzcd}
+		{S^{a+b}} & {S^a\otimes S^b} & {E\otimes E\otimes E\otimes Y} & {E\otimes E\otimes Y} \\
+		&& {E\otimes E\otimes Y} & {E\otimes Y}
+		\arrow["{\phi_{a,b}}", from=1-1, to=1-2]
+		\arrow["{x\otimes y}", from=1-2, to=1-3]
+		\arrow["{\mu\otimes E\otimes Y}", from=1-3, to=1-4]
+		\arrow["{\mu\otimes Y}", from=1-4, to=2-4]
+		\arrow["{E\otimes \mu\otimes Y}"', from=1-3, to=2-3]
+		\arrow["{\mu\otimes Y}", from=2-3, to=2-4]
+	\end{tikzcd}\]
+	The diagram commutes by associtiavity of $\mu$. Thus, we have indeed show that
+	\[E_*(-):[X,E\otimes Y]\to\Hom_{E_*(E)}(E_*(X),E_*(Y))\]
+	is an isomorphism of abelian groups.
+\end{proof}
+
+\begin{proposition}\label{E_1_page_line_resolution_identification}
+	Let $(E,\mu,e)$ be a commutative monoid object, and $X$ and $Y$ objects in $\cSH$. Suppose further that:\begin{itemize}
+		\item $E$ is flat (\autoref{flat}) and cellular (\autoref{cellular}),
+		\item $X$ is cellular, and $E_*(X)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module}), and
+		\item $Y$ is cellular.
+	\end{itemize}
+	Then for all $s\in\bZ$ and $a\in A$, the line in the first page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$
+	\[0\to E_1^{0,a+\mbf s}(X,Y)\xr{d_1}E_1^{1,a+\mbf s-\1}(X,Y)\xr{d_1}E_1^{2,a+\mbf s-\mbf 2}(X,Y)\to\cdots\to E_1^{s,a}(X,Y)\to\cdots\]
+	is isomorphic to the complex obtained by applying $\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),-)$ to the complex of $A$-graded left $E_*(E)$-comodules
+	\[0\to E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\to\cdots\to E_*(\Sigma^sW_s)\to\cdots\]
+	from \autoref{E_*W_s's_acyclic_resolution_of_E_*Y}.
+\end{proposition}
+\begin{proof}
+	Now, note that by \autoref{W_s_cellular_if_E_and_Y_are}, since $E$ and $Y$ are cellular, $W_t$ is as well for each $t\in\bN$. Furthermore, for $t>0$, we have isomorphisms
+	\[S^{\mbf t}\otimes W_t\xr{\nu^t_{W_t}}\Sigma^tW_t,\]
+	and by \autoref{cellular_closed_under_tensor}, the object $S^{\mbf t}\otimes W_t$ is cellular since $S^{\mbf t}$ and $W_t$ are. Hence, by \autoref{E_*_functor_from_SH_to_E*E-comodules}, the complex
+	\[0\to E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\to\cdots\to E_*(\Sigma^sW_s)\to\cdots\]
+	actually lives in $E_*(E)\text-\CoMod^A$, as desired. Now, let $t\in\bN$, and consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTMsWzAsMCwie1tYLFdfdF19X3thK1xcbWJmIHMtXFxtYmYgdH0iXSxbMCw0LCJ7W1gsV197dCsxfV19X3thK1xcbWJmIHMtXFxtYmYgdC1cXDF9Il0sWzEsMCwie1tYLFxcU2lnbWFee1xcbWJmIHR9V190XX1fe2ErXFxtYmYgc30iXSxbMSw0LCJ7W1gsXFxTaWdtYV57XFxtYmYgdCtcXDF9V197dCsxfV19X3thK1xcbWJmIHN9Il0sWzIsMCwie1tYLFxcU2lnbWFedFdfdF19X3thK1xcbWJmIHN9Il0sWzIsNCwie1tYLFxcU2lnbWFee3QrMX1XX3t0KzF9XX1fe2ErXFxtYmYgc30iXSxbMCwxLCJ7W1gsXFxTaWdtYSBZX3t0KzF9XX1fe2ErXFxtYmYgcy1cXG1iZiB0fSJdLFswLDIsIntbWCxcXFNpZ21hXlxcMSBZX3t0KzF9XX1fe2ErXFxtYmYgcy1cXG1iZiB0fSJdLFswLDMsIntbWCxZX3t0KzF9XX1fe2ErXFxtYmYgcy1cXG1iZiB0LVxcMX0iXSxbMSwxLCJ7W1gsXFxTaWdtYV57XFxtYmYgdH1cXFNpZ21hIFlfe3QrMX1dfV97YStcXG1iZiBzfSJdLFsxLDIsIntbWCxcXFNpZ21hXntcXG1iZiB0fVxcU2lnbWFeXFwxIFlfe3QrMX1dfV97YStcXG1iZiBzfSJdLFsxLDMsIntbWCxcXFNpZ21hXntcXG1iZiB0K1xcMX0gWV97dCsxfV19X3thK1xcbWJmIHN9Il0sWzIsMiwie1tYLFxcU2lnbWFee3QrMX1ZX3t0KzF9XX1fe2ErXFxtYmYgc30iXSxbMiwwLCJzXntcXG1iZiB0fV97WCxXX3R9IiwyXSxbMywxLCJzXntcXG1iZiB0K1xcMX1fe1gsV197dCsxfX0iLDJdLFsyLDQsInsoXFxudV50X3tXX3R9KX1fKiJdLFszLDUsInsoXFxudV57dCsxfV97V197dCsxfX0pfV8qIl0sWzAsNiwieyhrX3QpfV8qIiwyXSxbNiw3LCJ7KFxcbnVfe1lfe3QrMX19KX1fKiIsMl0sWzcsOCwic15cXDFfe1gsWV97dCsxfX0iLDJdLFs4LDEsInsoal97dCsxfSl9XyoiLDJdLFsyLDksInsoXFxTaWdtYV57XFxtYmYgdH1rX3QpfV8qIiwxXSxbOSwxMCwieyhcXFNpZ21hXntcXG1iZiB0fVxcbnVfe1lfe3QrMX19KX1fKiIsMV0sWzEwLDcsInNee1xcbWJmIHR9X3tYLFxcU2lnbWFeXFwxWV97dCsxfX0iLDJdLFs5LDYsInNee1xcbWJmIHR9X3tYLFxcU2lnbWEgWV97dCsxfX0iLDJdLFsxMSwxMCwieyhcXHBoaV97XFxtYmYgdCxcXDF9XFxvdGltZXMgWV97dCsxfSl9XyoiLDFdLFsxMSw4LCJzXntcXG1iZiB0KzF9X3tYLFlfe3QrMX19IiwyXSxbMTEsMywieyhcXFNpZ21hXntcXG1iZiB0K1xcMX1qX3t0KzF9KX1fKiIsMV0sWzQsMTIsInsoXFxTaWdtYV50IGtfdCl9XyoiLDFdLFsxMiw1LCJ7KFxcU2lnbWFee3QrMX0gal97dCsxfSl9XyoiLDFdLFsxMSwxMiwieyhcXG51Xnt0KzF9X3tZX3t0KzF9fSl9XyoiLDJdLFs5LDEyLCJ7KFxcbnVee3R9X3tcXFNpZ21hIFlfe3QrMX19KX1fKiJdLFs0LDUsInsoXFxkZWx0YV90KX1fKiIsMCx7Im9mZnNldCI6LTUsImN1cnZlIjotNX1dXQ==
+	\[\begin{tikzcd}
+		{{[X,W_t]}_{a+\mbf s-\mbf t}} & {{[X,\Sigma^{\mbf t}W_t]}_{a+\mbf s}} & {{[X,\Sigma^tW_t]}_{a+\mbf s}} \\
+		{{[X,\Sigma Y_{t+1}]}_{a+\mbf s-\mbf t}} & {{[X,\Sigma^{\mbf t}\Sigma Y_{t+1}]}_{a+\mbf s}} \\
+		{{[X,\Sigma^\1 Y_{t+1}]}_{a+\mbf s-\mbf t}} & {{[X,\Sigma^{\mbf t}\Sigma^\1 Y_{t+1}]}_{a+\mbf s}} & {{[X,\Sigma^{t+1}Y_{t+1}]}_{a+\mbf s}} \\
+		{{[X,Y_{t+1}]}_{a+\mbf s-\mbf t-\1}} & {{[X,\Sigma^{\mbf t+\1} Y_{t+1}]}_{a+\mbf s}} \\
+		{{[X,W_{t+1}]}_{a+\mbf s-\mbf t-\1}} & {{[X,\Sigma^{\mbf t+\1}W_{t+1}]}_{a+\mbf s}} & {{[X,\Sigma^{t+1}W_{t+1}]}_{a+\mbf s}}
+		\arrow["{s^{\mbf t}_{X,W_t}}"', from=1-2, to=1-1]
+		\arrow["{s^{\mbf t+\1}_{X,W_{t+1}}}"', from=5-2, to=5-1]
+		\arrow["{{(\nu^t_{W_t})}_*}", from=1-2, to=1-3]
+		\arrow["{{(\nu^{t+1}_{W_{t+1}})}_*}", from=5-2, to=5-3]
+		\arrow["{{(k_t)}_*}"', from=1-1, to=2-1]
+		\arrow["{{(\nu_{Y_{t+1}})}_*}"', from=2-1, to=3-1]
+		\arrow["{s^\1_{X,Y_{t+1}}}"', from=3-1, to=4-1]
+		\arrow["{{(j_{t+1})}_*}"', from=4-1, to=5-1]
+		\arrow["{{(\Sigma^{\mbf t}k_t)}_*}"{description}, from=1-2, to=2-2]
+		\arrow["{{(\Sigma^{\mbf t}\nu_{Y_{t+1}})}_*}"{description}, from=2-2, to=3-2]
+		\arrow["{s^{\mbf t}_{X,\Sigma^\1Y_{t+1}}}"', from=3-2, to=3-1]
+		\arrow["{s^{\mbf t}_{X,\Sigma Y_{t+1}}}"', from=2-2, to=2-1]
+		\arrow["{{(\phi_{\mbf t,\1}\otimes Y_{t+1})}_*}"{description}, from=4-2, to=3-2]
+		\arrow["{s^{\mbf t+1}_{X,Y_{t+1}}}"', from=4-2, to=4-1]
+		\arrow["{{(\Sigma^{\mbf t+\1}j_{t+1})}_*}"{description}, from=4-2, to=5-2]
+		\arrow["{{(\Sigma^t k_t)}_*}"{description}, from=1-3, to=3-3]
+		\arrow["{{(\Sigma^{t+1} j_{t+1})}_*}"{description}, from=3-3, to=5-3]
+		\arrow["{{(\nu^{t+1}_{Y_{t+1}})}_*}"', from=4-2, to=3-3]
+		\arrow["{{(\nu^{t}_{\Sigma Y_{t+1}})}_*}", from=2-2, to=3-3]
+		\arrow["{{(\delta_t)}_*}", shift left=5, curve={height=-40pt}, from=1-3, to=5-3]
+	\end{tikzcd}\]
+	where here the $s^a_{X,Y}:{[X,\Sigma^aY]}_*\cong{[X,Y]}_{*-a}$'s are the natural isomorphisms from \autoref{s^a_isos}. By unravelling definitions, we have the top left object is $E_1^{t,a+\mbf s-\mbf t}(X,Y)$ and the bottom left object is $E_1^{t+1,a+\mbf s-\mbf t-\1}$, and the vertical left composition in the above diagram is the differential $d_1$ between them. The first, second, and fourth rectangles from the top on the left rectangle commute by naturality of the $s^a$'s. Furthermore, a simple diagram chase and coherence of the $\phi$'s (\autoref{unique_comp_Sas}) yields that the third rectangle on the left commutes. The trapezoids on the right commute by naturality of $\nu^t$ and $\nu^{t+1}$. Finally, the middle right triangle commutes by how we defined $\nu^{t+1}$ in terms of $\nu^t$. 
+	
+	Now, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiRV8xXnt0LGErXFxtYmYgcy1cXG1iZiB0fShYLFkpIl0sWzIsMCwiRV8xXnt0KzEsYStcXG1iZiBzLVxcbWJmIHQtXFwxfShYLFkpIl0sWzAsMSwie1tYLFxcU2lnbWFee1xcbWJmIHR9V190XX1fe2ErXFxtYmYgc30iXSxbMiwxLCJ7W1gsXFxTaWdtYV57XFxtYmYgdCtcXDF9V197dCsxfV19X3thK1xcbWJmIHN9Il0sWzAsMiwie1tYLFxcU2lnbWFedFdfdF19X3thK1xcbWJmIHN9Il0sWzIsMiwie1tYLFxcU2lnbWFee3QrMX1XX3t0KzF9XX1fe2ErXFxtYmYgc30iXSxbMCwzLCJcXEhvbV97RV8qKEUpfShFXyooXFxTaWdtYV57YStcXG1iZiBzfVgpLEVfKihcXFNpZ21hXnRXX3QpKSJdLFsyLDMsIlxcSG9tX3tFXyooRSl9KEVfKihcXFNpZ21hXnthK1xcbWJmIHN9WCksRV8qKFxcU2lnbWFee3QrMX1XX3t0KzF9KSkiXSxbMCw0LCJcXEhvbV97RV8qKEUpfV57YStcXG1iZiBzfShFXyooWCksRV8qKFxcU2lnbWFedFdfdCkpIl0sWzIsNCwiXFxIb21fe0VfKihFKX1ee2ErXFxtYmYgc30oRV8qKFgpLEVfKihcXFNpZ21hXnt0KzF9V197dCsxfSkpIl0sWzAsMiwieyhzXntcXG1iZiB0fV97WCxXX3R9KX1eey0xfSIsMl0sWzEsMywieyhzXntcXG1iZiB0K1xcMX1fe1gsV197dCsxfX0pfV57LTF9Il0sWzIsNCwieyhcXG51XnRfe1dfdH0pfV8qIiwyXSxbMyw1LCJ7KFxcbnVee3QrMX1fe1dfe3QrMX19KX1fKiJdLFs0LDUsInsoXFxkZWx0YV90KX1fKiJdLFswLDEsImRfMSJdLFs0LDYsIkVfKigtKSIsMl0sWzYsNywiRV8qKFxcZGVsdGFfdCkiXSxbNSw3LCJFXyooLSkiXSxbNiw4LCJ7KHsodF57YStcXG1iZiBzfV9YKX1eey0xfSl9XioiLDJdLFs4LDksIkVfKihcXGRlbHRhX3QpIl0sWzcsOSwieyh7KHRee2ErXFxtYmYgc31fWCl9XnstMX0pfV4qIl1d
+	\[\begin{tikzcd}
+		{E_1^{t,a+\mbf s-\mbf t}(X,Y)} && {E_1^{t+1,a+\mbf s-\mbf t-\1}(X,Y)} \\
+		{{[X,\Sigma^{\mbf t}W_t]}_{a+\mbf s}} && {{[X,\Sigma^{\mbf t+\1}W_{t+1}]}_{a+\mbf s}} \\
+		{{[X,\Sigma^tW_t]}_{a+\mbf s}} && {{[X,\Sigma^{t+1}W_{t+1}]}_{a+\mbf s}} \\
+		{\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(\Sigma^tW_t))} && {\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(\Sigma^{t+1}W_{t+1}))} \\
+		{\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\Sigma^tW_t))} && {\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\Sigma^{t+1}W_{t+1}))}
+		\arrow["{{(s^{\mbf t}_{X,W_t})}^{-1}}"', from=1-1, to=2-1]
+		\arrow["{{(s^{\mbf t+\1}_{X,W_{t+1}})}^{-1}}", from=1-3, to=2-3]
+		\arrow["{{(\nu^t_{W_t})}_*}"', from=2-1, to=3-1]
+		\arrow["{{(\nu^{t+1}_{W_{t+1}})}_*}", from=2-3, to=3-3]
+		\arrow["{{(\delta_t)}_*}", from=3-1, to=3-3]
+		\arrow["{d_1}", from=1-1, to=1-3]
+		\arrow["{E_*(-)}"', from=3-1, to=4-1]
+		\arrow["{E_*(\delta_t)}", from=4-1, to=4-3]
+		\arrow["{E_*(-)}", from=3-3, to=4-3]
+		\arrow["{{({(t^{a+\mbf s}_X)}^{-1})}^*}"', from=4-1, to=5-1]
+		\arrow["{E_*(\delta_t)}", from=5-1, to=5-3]
+		\arrow["{{({(t^{a+\mbf s}_X)}^{-1})}^*}", from=4-3, to=5-3]
+	\end{tikzcd}\]
+	where here the maps $t^{a+\mbf s}_X:E_*(\Sigma^a)\to E_{*-a}(X)$ are the $E_*(E)$-comodule isomorphisms from \autoref{t^a_isos_are_E_*E-comodule_isos}. We have just shown the top region commutes. Furthermore, since $X$ and $\Sigma^tW_t$ are cellular for all $t\in\bN$, the arrows labelled $E_*(-)$ are well-defined, and they clearly make the middle rectangle commute (a simple diagram chase suffices). The bottom rectangle also clearly commutes, Thus, it suffices to show that the maps labelled $E_*(-)$ are isomorphisms. To that end, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXEhvbV97RV8qKEUpfShFXyooXFxTaWdtYV57YStcXG1iZiBzfVgpLEVfKihcXFNpZ21hXnRXX3QpKSJdLFswLDIsIntbWCxFXFxvdGltZXNcXFNpZ21hXntcXG1iZiB0fVlfdF19X3thK1xcbWJmIHN9Il0sWzEsMiwiXFxIb21fe0VfKihFKX0oRV8qKFxcU2lnbWFee2ErXFxtYmYgc31YKSxFXyooRVxcb3RpbWVzIFxcU2lnbWFee1xcbWJmIHR9WV90KSkiXSxbMCwwLCJ7W1gsXFxTaWdtYV57dH1XX3RdfV97YStcXG1iZiBzfSJdLFsxLDIsIkVfKigtKSJdLFszLDEsImZfKiIsMl0sWzAsMiwie0VfKihmKX1fKiJdLFszLDAsIkVfKigtKSJdXQ==
+	\[\begin{tikzcd}
+		{{[X,\Sigma^{t}W_t]}_{a+\mbf s}} & {\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(\Sigma^tW_t))} \\
+		\\
+		{{[X,E\otimes\Sigma^{\mbf t}Y_t]}_{a+\mbf s}} & {\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(E\otimes \Sigma^{\mbf t}Y_t))}
+		\arrow["{E_*(-)}", from=3-1, to=3-2]
+		\arrow["{f_*}"', from=1-1, to=3-1]
+		\arrow["{{E_*(f)}_*}", from=1-2, to=3-2]
+		\arrow["{E_*(-)}", from=1-1, to=1-2]
+	\end{tikzcd}\]
+	where here $f:\Sigma^tW_t\to E\otimes \Sigma^{\mbf t}Y_t$ is the isomorphism
+	\[\Sigma^tW_t\xr{\nu^t_W}\Sigma^{\mbf t}W_t=S^{\mbf t}\otimes E\otimes Y_t\xr{\tau\otimes Y_t}E\otimes S^{\mbf t}\otimes Y_t=E\otimes\Sigma^{\mbf t}Y_t.\]
+	The bottom horizontal arrow is an isomorphism by \autoref{X,EY_iso_Hom(E_*X,E_*EY)}. Thus, the top horizontal arrow is an isomorphism, as desired. Showing
+	\[E_*(-):{[X,\Sigma^{t+1}W_{t+1}]}_{a+\mbf s}\to\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(\Sigma^{t+1}W_{t+1}))\]
+	is an isomorphism is entirely analagous. Thus, for each $t\in\bN$, we have constructed isomorphisms
+	\[E^{t,a+\mbf s-\mbf t}(X,Y)\xr\cong\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\Sigma^tW_t))\]
+	such that the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXnt0LGErXFxtYmYgcy1cXG1iZiB0fShYLFkpIl0sWzQsMCwiRV57dCsxLGErXFxtYmYgcy1cXG1iZiB0LVxcMX0oWCxZKSJdLFswLDIsIlxcSG9tX3tFXyooRSl9XnthK1xcbWJmIHN9KEVfKihYKSxFXyooXFxTaWdtYV50V190KSkiXSxbNCwyLCJcXEhvbV97RV8qKEUpfV57YStcXG1iZiBzfShFXyooWCksRV8qKFxcU2lnbWFee3QrMX1XX3t0KzF9KSkiXSxbMCwxLCJkXzEiXSxbMCwyLCJcXGNvbmciLDJdLFsyLDMsIlxcSG9tX3tFXyooRSl9XnthK1xcbWJmIHN9KEVfKihYKSxFXyooXFxkZWx0YV90KSkiXSxbMSwzLCJcXGNvbmciXV0=
+	\[\begin{tikzcd}
+		{E^{t,a+\mbf s-\mbf t}(X,Y)} &&&& {E^{t+1,a+\mbf s-\mbf t-\1}(X,Y)} \\
+		\\
+		{\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\Sigma^tW_t))} &&&& {\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\Sigma^{t+1}W_{t+1}))}
+		\arrow["{d_1}", from=1-1, to=1-5]
+		\arrow["\cong"', from=1-1, to=3-1]
+		\arrow["{\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\delta_t))}", from=3-1, to=3-5]
+		\arrow["\cong", from=1-5, to=3-5]
+	\end{tikzcd}\]
+	Hence, we have proven the desired result.
+\end{proof}
+
+\subsection{Convergence of the spectral sequence}
+
+Now that we have constructed the spectral sequence and characterized its $E_2$ pages, we would like to explain in exactly what sense the $E$-Adams sepctral sequence converges to the groups ${[X,Y]}_*$.
 
 \end{document}

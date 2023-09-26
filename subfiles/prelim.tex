@@ -3,7 +3,7 @@
 
 \subsection{Triangulated categories with sub-Picard grading}
 
-In order to construct an abstract version of the Adams spectral sequence, we need to work in some axiomatic version of a stable homotopy category $\cSH$ which acts like the familiar classical stable homotopy category $\hoSp$ (\Cref{classical}) or the motivic stable homotopy category $\SH\scS$ over some base scheme $\scS$ (\Cref{motivic}). This setting will be a category which is:
+In order to construct an abstract version of the Adams spectral sequence, we need to work in some axiomatic version of a stable homotopy category $\cSH$ which acts like the familiar classical stable homotopy category $\hoSp$ (\Cref{section:CASS}) or the motivic stable homotopy category $\SH\scS$ over some base scheme $\scS$ (\Cref{section:MASS}). This setting will be a category which is:
 \begin{enumerate}
 	\item Symmetric monoidal closed
 	\item Triangulated
@@ -215,6 +215,52 @@ A nice result is that in $\cSH$, (co)fiber sequences (distinguished triangles) g
 		\arrow["{g_*}", from=1-2, to=2-2]
 		\arrow["\partial", from=2-2, to=1-1]
 	\end{tikzcd}\qedhere\]
+\end{proof}
+
+Similarly, we have homology long exact sequences:
+
+\begin{proposition}\label{homology_LES}
+	Suppose we are given a distinguished triangle
+	\[X\xr fY\xr gZ\xr h\Sigma X\]
+	and an object $E$ in $\cSH$. Then there exists a ``connecting homomorphism'' of degree $-\1$
+	\[\partial:E_*(Z)\to E_{*-1}(X)\]
+	such that the following triangle is exact at each vertex:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXyooWCkiXSxbMSwwLCJFXyooWSkiXSxbMSwxLCJFXyooWikiXSxbMCwxLCJFXyooZikiXSxbMSwyLCJFXyooZykiXSxbMiwwLCJcXHBhcnRpYWwiXV0=
+	\[\begin{tikzcd}
+		{E_*(X)} & {E_*(Y)} \\
+		& {E_*(Z)}
+		\arrow["{E_*(f)}", from=1-1, to=1-2]
+		\arrow["{E_*(g)}", from=1-2, to=2-2]
+		\arrow["\partial", from=2-2, to=1-1]
+	\end{tikzcd}\]
+	Furthermore, if $(E,\mu,e)$ is a monoid object in $\cSH$, then $\partial$ is a homomorphism of left $\pi_*(E)$-modules.
+\end{proposition}
+\begin{proof}
+	By axiom TR4 for a triangulated category, axiom TT3 for a tensor triangulated category, and the fact that distinguished triangles are exact (\autoref{distinguished_tri_is_exact}), we have that the following sequence in $\cSH$ is exact:
+	\[E\otimes X\xr{E\otimes f}E\otimes Y\xr{E\otimes g}E\otimes Z\xr{E\otimes h}E\otimes\Sigma X\xr{E\otimes \Sigma f}E\otimes\Sigma Y.\]
+	Thus, we may apply the functor $\pi_*(-)=[S^*,-]$ to get a long exact sequence which fits into the top row in the following diagram:
+	% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiRV8qKFgpIl0sWzEsMCwiRV8qKFkpIl0sWzIsMCwiRV8qKFopIl0sWzMsMCwiRV8qKFxcU2lnbWEgWCkiXSxbNCwwLCJFXyooXFxTaWdtYSBZKSJdLFszLDEsIkVfKihcXFNpZ21hXlxcMVgpIl0sWzQsMSwiRV8qKFxcU2lnbWFeXFwxWSkiXSxbMywyLCJFX3sqLVxcMX0oWCkiXSxbNCwyLCJFX3sqLVxcMX0oWSkiXSxbMiwyLCJFXyooWikiXSxbMCwyLCJFXyooWCkiXSxbMSwyLCJFXyooWSkiXSxbMCwxLCJFXyooZikiXSxbMSwyLCJFXyooZykiXSxbMiwzLCJFXyooaCkiXSxbMyw0LCJFXyooXFxTaWdtYSBmKSJdLFszLDUsIkVfKihcXG51X1gpIiwyXSxbNSw2LCJFXyooXFxTaWdtYV5cXDFmKSJdLFs0LDYsIkVfKihcXG51X1kpIl0sWzUsNywidF5cXDFfWCIsMl0sWzYsOCwidF5cXDFfWSJdLFs3LDgsIkVfeyotXFwxfShmKSJdLFsyLDksIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMTAsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMTEsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEwLDExLCJFXyooZikiXSxbMTEsOSwiRV8qKGcpIl0sWzksNywiRV8qKGgpIl1d
+	\[\begin{tikzcd}
+		{E_*(X)} & {E_*(Y)} & {E_*(Z)} & {E_*(\Sigma X)} & {E_*(\Sigma Y)} \\
+		&&& {E_*(\Sigma^\1X)} & {E_*(\Sigma^\1Y)} \\
+		{E_*(X)} & {E_*(Y)} & {E_*(Z)} & {E_{*-\1}(X)} & {E_{*-\1}(Y)}
+		\arrow["{E_*(f)}", from=1-1, to=1-2]
+		\arrow["{E_*(g)}", from=1-2, to=1-3]
+		\arrow["{E_*(h)}", from=1-3, to=1-4]
+		\arrow["{E_*(\Sigma f)}", from=1-4, to=1-5]
+		\arrow["{E_*(\nu_X)}"', from=1-4, to=2-4]
+		\arrow["{E_*(\Sigma^\1f)}", from=2-4, to=2-5]
+		\arrow["{E_*(\nu_Y)}", from=1-5, to=2-5]
+		\arrow["{t^\1_X}"', from=2-4, to=3-4]
+		\arrow["{t^\1_Y}", from=2-5, to=3-5]
+		\arrow["{E_{*-\1}(f)}", from=3-4, to=3-5]
+		\arrow[Rightarrow, no head, from=1-3, to=3-3]
+		\arrow[Rightarrow, no head, from=1-1, to=3-1]
+		\arrow[Rightarrow, no head, from=1-2, to=3-2]
+		\arrow["{E_*(f)}", from=3-1, to=3-2]
+		\arrow["{E_*(g)}", from=3-2, to=3-3]
+		\arrow["{E_*(h)}", from=3-3, to=3-4]
+	\end{tikzcd}\]
 \end{proof}
 
 \end{document}

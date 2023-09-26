@@ -332,7 +332,7 @@ The remainder of this subsection is devoted to proving some technical lemmas abo
 	Lastly, we claim that $\epsilon:\Gamma\to B$ is a homomorphism of $B$-bimodules. We need to show that given $g\in\Gamma$ and $b,b'\in B$ that $\epsilon(\eta_L(b)g\eta_R(g'))=b\epsilon(g)b'$. This follows from the fact that $\epsilon$ is a ring homomorphism satisfying $\epsilon\circ\eta_L=\epsilon\circ\eta_R=\id_B$. 
 \end{proof}
 
-\subsection{Comodules over a Hopf algebroid}
+\subsection{Comodules over a Hopf algebroid}\label{subsection_appendix:comodules}
 
 In what follows, fix an $A$-graded anticommutative ring $(R,\theta)$ and an $A$-graded anticommutative Hopf algebroid $(\Gamma,B)$ over $R$ with structure maps $\eta_L$, $\eta_R$, $\Psi$, $\epsilon$, and $c$. We will always view $\Gamma$ with its \emph{canonical} $B$-bimodule structure, with left $B$-module structure induced by $\eta_L$, and right $B$-module structure induced by $\eta_R$. In particular, any tensor product over $B$ involving $\Gamma$ will always refer to $\Gamma$ with this bimodule structure.
 
@@ -414,11 +414,22 @@ In what follows, fix an $A$-graded anticommutative ring $(R,\theta)$ and an $A$-
 	\todo{todo}
 \end{proof}
 
-\begin{proposition}\label{G-CoMod^A_is_abelian_if_eta_R_flat}
-	Suppose that $\Gamma$ is flat as a right $B$-module, i.e., suppose $\eta_R:B\to\Gamma$ is a flat ring homomorphism. Then the category $\Gamma\text-\CoMod^A$ is an abelian category. 
+\begin{proposition}\label{G-CoMod^A_is_abelian_if_eta_R_flat_and_has_enough_injectives}
+	Suppose that $\Gamma$ is flat as a right $B$-module, i.e., suppose $\eta_R:B\to\Gamma$ is a flat ring homomorphism. Then the category $\Gamma\text-\CoMod^A$ is an abelian category and has enough injectives.
 \end{proposition}
 \begin{proof}
 	\todo{finish}
+\end{proof}
+
+\begin{proposition}[{\cite[Lemma 3.5]{nlab:introduction_to_the_adams_spectral_sequence}}]\label{co-free_comodules_are_hom(P,-)-acyclic}
+	Suppose that $\Gamma$ is flat as a right $B$-module, i.e., suppose $\eta_R:B\to\Gamma$ is a flat ring homomorphism. Let $P$ be an $A$-graded left $\Gamma$-comodule in $\Gamma\text-\CoMod^A$ such that the underlying $A$-graded $B$-module is a graded projective module. Then every co-free module (\autoref{comodule_co-free_adjunction}) is an $F$-acyclic object (\autoref{defn:acyclic_object}) for the covariant hom functor $\Hom_\Gamma(P,-)$.
+\end{proposition}
+\begin{proof}
+	We need to show that $\Ext^n_\Gamma(N,\Gamma\otimes_BM)$ vanishes for all $A$-graded $B$-modules $M$. First of all, let $i:M\to I^*$ be an injective resolution of $M$ in $B\text-\Mod^A$, so we have an exact sequence of $A$-graded $B$-modules
+	\[0\xr{\phantom{d^2}} M\xr iI^0\xr{d^0}I^1\xr{d^1}I^2\xr{d^2}I^3\xr{\phantom{d^3}}\cdots.\]
+	Then $\Gamma$ is flat as a right $B$-module, the sequence remains exact after we tensor it with $\Gamma$ on the left. Furthermore, it is a general categorical fact that right adjoints between abelian catgories preserve injective objects. Thus $\Gamma\otimes i:\Gamma\otimes_BM\to\Gamma\otimes_BI^*$ is an injective resolution in $\Gamma\text-\CoMod^A$. Then for $n>0$, we have
+	\[\Ext^n_\Gamma(N,\Gamma\otimes_BM)\cong H^n(\Hom_\Gamma(N,\Gamma\otimes_B I^*))\cong H^n(\Hom_B(N,I^*))\cong0,\]
+	where the first isomorphism follows by the forgetful-cofree adjunction for comodules over a Hopf algebroid (\autoref{comodule_co-free_adjunction}), and the final isomorphism follows by the fact that $N$ is a graded projective module, i.e., a projective object in the abelian category $B\text-\Mod^A$, so that $\Hom_B(N,-)$ is an exact functor.
 \end{proof}
 
 \end{document}

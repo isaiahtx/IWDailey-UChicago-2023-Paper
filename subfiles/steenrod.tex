@@ -15,7 +15,7 @@ First, recall that given a monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is ca
         \item $E\otimes E\xr\mu E$, and
         \item $E\otimes E\xr{\tau_{E,E}}E\otimes E$
     \end{enumerate}
-    are homomorphisms of monoid objects in $\cSH$ (where here $E\otimes E$ and $E\otimes E\otimes E$ are considered as monoid objects in $\cSH$ by \autoref{product_of_monoids_is_monoid} and \autoref{product_of_3+_monoids_no_ambiguity}, respectively), so that by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}, under $\pi_*$ they induce morphisms in $\pi_*(S)\text-\GCA^{A}$:
+    are homomorphisms of monoid objects in $\cSH$ (where here $E\otimes E$ and $E\otimes E\otimes E$ are considered as monoid objects in $\cSH$ by \autoref{product_of_monoids_is_monoid} and \autoref{product_of_3+_monoids_no_ambiguity}, respectively), so that by \autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}, under $\pi_*$ they induce morphisms in $\pi_*(S)\text-\GCA^{A}$:
     \begin{enumerate}
         \item $\eta_L:\pi_*(E)\to E_*(E)$,
         \item $\eta_R:\pi_*(E)\to E_*(E)$,
@@ -58,7 +58,7 @@ First, recall that given a monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is ca
 Recall a that given a homomorphism of rings $f:R\to R'$, $R'$ canonically becomes an $R$-bimodule with left action $r\cdot x:=f(r)x$ and right action $x\cdot r:=xf(r)$. In particular, the ring homomorphisms $\eta_L:\pi_*(E)\to E_*(E)$ and $\eta_R:\pi_*(E)\to E_*(E)$ endow $E_*(E)$ with the structure of a bimodule over $\pi_*(E)$. Naturally, one may ask in what sense these bimodule structures coincide with the canonical one (from \autoref{module}). The following lemma tells us that the canonical $\pi_*(E)$-bimodule structure on $E_*(E)$ is that with left action induced by $\eta_L$ and right action induced by $\eta_R$:
 
 \begin{lemma}\label{eta_L_left_module/eta_R_right_module_coincide}
-    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the left (resp.\ right) $\pi_*(E)$-module structure induced on $E_*(E)$ by the ring homomorphism $\eta_L$ (resp.\ $\eta_R$) coincides with the canonical left (resp.\ right) $\pi_*(E)$-module structure on $E_*(E)$ given in \autoref{module_main}.
+    Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$. Then the left (resp.\ right) $\pi_*(E)$-module structure induced on $E_*(E)$ by the ring homomorphism $\eta_L$ (resp.\ $\eta_R$) coincides with the canonical left (resp.\ right) $\pi_*(E)$-module structure on $E_*(E)$ given in \autoref{module}.
 \end{lemma}
 \begin{proof}
     What's going on here is a bit subtle, so we're going to be really explicit. In \autoref{module}, it was shown that $E_*(E)$ is a left $\pi_*(E)$-module via the assignment
@@ -92,7 +92,7 @@ Recall a that given a homomorphism of rings $f:R\to R'$, $R'$ canonically become
         \arrow["{\mu\otimes E}"{description}, from=4-4, to=6-5]
         \arrow[Rightarrow, no head, from=4-2, to=4-3]
     \end{tikzcd}\]
-    Here we've numbered the $E$'s to make it clear what's going on. The bottom composition is $\eta_L(r)x$, while the top composition is the canonical left action of $r$ on $x$ given in \autoref{module_main}. The leftmost triangle commutes by unitality of $\mu$. The triangle to the right of that commutes by commutativity of $\mu$. The triangle to the right of that commutes by unitality of $\mu$, as does the next triangle. The remaining triangle on the right commutes by functoriality of $-\otimes-$. Finally, the top region commutes by definition. Thus, we've shown that the left $\pi_*(E)$-module structure induced on $E_*(E)$ by $\eta_L$ is in fact the canonical one. 
+    Here we've numbered the $E$'s to make it clear what's going on. The bottom composition is $\eta_L(r)x$, while the top composition is the canonical left action of $r$ on $x$ given in \autoref{module}. The leftmost triangle commutes by unitality of $\mu$. The triangle to the right of that commutes by commutativity of $\mu$. The triangle to the right of that commutes by unitality of $\mu$, as does the next triangle. The remaining triangle on the right commutes by functoriality of $-\otimes-$. Finally, the top region commutes by definition. Thus, we've shown that the left $\pi_*(E)$-module structure induced on $E_*(E)$ by $\eta_L$ is in fact the canonical one. 
     On the other hand, showing that the right $\pi_*(E)$-module structure induced on $E_*(E)$ by $\eta_R$ is the canonical one is entirely analagous, and we leave it as an exercise for the reader.
 %
 %    On the other hand, we'd like to show that the right $\pi_*(E)$-module structure induced by $\eta_R$ on $E_*(E)$ is the canonical one. By the same arguments as above, it suffices to show the action maps agree for homogeneous elements $x:S^a\to E\otimes E$ in $E_*(E)$ and $r:S^b\to E$ in $\pi_*(E)$. Indeed, given such elements, consider the following diagram, where again we've passed to a symmetric strict monoidal category:
@@ -120,7 +120,7 @@ Recall a that given a homomorphism of rings $f:R\to R'$, $R'$ canonically become
 %        \arrow["{\mu\otimes E\otimes E}"', from=6-3, to=4-4]
 %        \arrow["{E\otimes \mu\otimes E}", from=6-3, to=4-2]
 %    \end{tikzcd}\]
-%    Again we've numbered the $E$'s to make it clear what's going on. The bottom composition is $x\eta_R(r)$, while the top composition the canonical right action of $r$ on $x$ given in \autoref{module_main}. The leftmost triangle commutes by unitality of $\mu$. The triangle to the right of that commutes by commutativity of $\mu$. The triangle to the right of that commutes by unitality of $\mu$, as does the next triangle. The remaining triangle on the right commutes by functoriality of $-\otimes-$. Finally, the top region commutes by definition. Thus, we've shown that the right $\pi_*(E)$-module structure induced on $E_*(E)$ by $\eta_R$ is in fact the canonical one, as desired.
+%    Again we've numbered the $E$'s to make it clear what's going on. The bottom composition is $x\eta_R(r)$, while the top composition the canonical right action of $r$ on $x$ given in \autoref{module}. The leftmost triangle commutes by unitality of $\mu$. The triangle to the right of that commutes by commutativity of $\mu$. The triangle to the right of that commutes by unitality of $\mu$, as does the next triangle. The remaining triangle on the right commutes by functoriality of $-\otimes-$. Finally, the top region commutes by definition. Thus, we've shown that the right $\pi_*(E)$-module structure induced on $E_*(E)$ by $\eta_R$ is in fact the canonical one, as desired.
 \end{proof}
 
 Recall (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}) that the pushout of two morphisms $f:B\to C$ and $g:B\to D$ in $R\text-\GCA^{A}$ is obtained by taking the tensor product of $B$-modules $C\otimes_BD$, where $C$ has right $B$-module action induced by $f$, and $D$ has left $B$-module action induced by $g$, and giving it an anticommutative product which makes $C\otimes_BD$ a ring. Thus, by the above lemma, we may view the tensor product of bimodules $E_*(E)\otimes_{\pi_*(E)}E_*(E)$ (where $E_*(E)$ is considered with its canonical $\pi_*(E)$-bimodule structure from \autoref{module}) as not just an $A$-graded abelian group or a $\pi_*(E)$-bimodule, but as an $A$-graded anticommutative $\pi_*(S)$-algebra:
@@ -130,7 +130,7 @@ Recall (\autoref{R-GrCAlg_has_pushouts_and_binary_coproducts}) that the pushout 
 	commutative monoid object $(E,\mu,e)$ in $\cSH$, the domain of the %isomorphism 
 	homomorphism
     \[\Phi_{E,E}:E_*(E)\otimes_{\pi_*(E)}E_*(E)\to E_*(E\otimes E)\]
-    constructed in \autoref{Kunneth_map_iso_main} is canonically an $A$-graded $\pi_*(S)$-ring, and sits in the following pushout diagram in $\pi_*(S)\text-\GCA^{A}$:
+    constructed in \autoref{Kunneth_map_iso} is canonically an $A$-graded $\pi_*(S)$-ring, and sits in the following pushout diagram in $\pi_*(S)\text-\GCA^{A}$:
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBpXyooRSkiXSxbMSwwLCJFXyooRSkiXSxbMCwxLCJFXyooRSkiXSxbMSwxLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihFKSJdLFswLDEsIlxcZXRhX0wiXSxbMCwyLCJcXGV0YV9SIiwyXSxbMiwzLCJ4XFxtYXBzdG8geFxcb3RpbWVzIDEiLDJdLFsxLDMsInhcXG1hcHN0bzFcXG90aW1lcyB4Il1d
     \[\begin{tikzcd}
         {\pi_*(E)} & {E_*(E)} \\
@@ -167,7 +167,7 @@ Furthermore, with respect to this ring structure, $\Phi_{E,E}$ is a homomorphism
 		\arrow["{E\otimes E\otimes e}"', from=2-1, to=2-2]
 		\arrow["{e\otimes E\otimes e}"{description}, from=1-1, to=2-2]
 	\end{tikzcd}\]
-	where the outer arrows are monoid object homomorphisms, thus, we may apply $\pi_*$, which yields the following commutative diagram in $\pi_*(S)\text-\GCA^{A}$ (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_appendix}):
+	where the outer arrows are monoid object homomorphisms, thus, we may apply $\pi_*$, which yields the following commutative diagram in $\pi_*(S)\text-\GCA^{A}$ (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}):
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBpXyooRSkiXSxbMSwwLCJFXyooRSkiXSxbMCwxLCJFXyooRSkiXSxbMSwxLCJFXyooRVxcb3RpbWVzIEUpIl0sWzAsMSwiXFxldGFfTCJdLFswLDIsIlxcZXRhX1IiLDJdLFsxLDMsIlxccGlfKihmKSJdLFsyLDMsIlxccGlfKihnKSIsMl1d
 	\[\begin{tikzcd}
 		{\pi_*(E)} & {E_*(E)} \\
@@ -228,8 +228,8 @@ Finally, we can package all of this information into an object called the \emph{
 \begin{definition}\label{dual_E-Steenrod_algebra_defn}
     Let $(E,\mu,e)$ be a \emph{commutative} monoid object in $\cSH$ which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the \emph{dual $E$-Steenrod algebra} is the pair of $A$-graded abelian groups $(E_*(E),\pi_*(E))$ equipped with the following structure:\begin{enumerate}[label={\arabic*.}]
         \item The $A$-graded $\pi_*(S)$-commutative ring structure on $\pi_*(E)$
-        induced from $E$ being a commutative monoid object in $\cSH$ (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}).
-        \item The $A$-graded $\pi_*(S)$-commutative ring structure on $E_*(E)$ induced from the fact that $E\otimes E$ is canonically a commutative monoid object in $\cSH$ (\autoref{product_of_monoids_is_monoid}), so that also $E_*(E)=\pi_*(E\otimes E)$ is an $A$-graded $\pi_*(S)$-commutative ring (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg_main}).
+        induced from $E$ being a commutative monoid object in $\cSH$ (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}).
+        \item The $A$-graded $\pi_*(S)$-commutative ring structure on $E_*(E)$ induced from the fact that $E\otimes E$ is canonically a commutative monoid object in $\cSH$ (\autoref{product_of_monoids_is_monoid}), so that also $E_*(E)=\pi_*(E\otimes E)$ is an $A$-graded $\pi_*(S)$-commutative ring (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}).
         \item The homomorphisms of $A$-graded $\pi_*(S)$-commutative rings
         \[\eta_L:\pi_*(E)\to E_*(E)\]
         and
@@ -244,7 +244,7 @@ Finally, we can package all of this information into an object called the \emph{
         \[E_*(E)\xr{h}E_*(E\otimes E)\xr{\Phi_{E,E}^{-1}}E_*(E)\otimes_{\pi_*(E)}E_*(E),\]
         where $h$ is a homomorphism of $A$-graded $\pi_*(S)$-commutative rings induced under $\pi_*$ by the monoid object homomorphism
         \[E\otimes E\xr\cong E\otimes S\otimes E\xr{E\otimes e\otimes E}E\otimes E\otimes E,\]
-        and $\Phi_{E,E}$ is morphism constructed in \autoref{Kunneth_map}, which is proven to be an isomorphism in \autoref{Kunneth_map_iso}, and furthermore an isomorphism in $\pi_*(S)\text-\GCA^{A}$ by \autoref{Phi_E_is_homo_of_A-graded_pi_*S-commutative_rings_main}.
+        and $\Phi_{E,E}$ is morphism constructed in \autoref{Kunneth_map}, which is proven to be an isomorphism in \autoref{Kunneth_map_iso}, and furthermore an isomorphism in $\pi_*(S)\text-\GCA^{A}$ by \autoref{Phi_E_is_homo_of_A-graded_anticommutative_pi_*S-algs}.
         \item The homomorphism of $A$-graded $\pi_*(S)$-commutative rings
         \[\epsilon:E_*(E)\to\pi_*(E)\]
         induced under $\pi_*$ by the monoid object homomorphism
@@ -281,7 +281,7 @@ Above, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$
 		\arrow["{\Phi_{E,E}}"{description}, from=3-3, to=2-2]
 		\arrow["\Psi", from=1-3, to=3-3]
 	\end{tikzcd}\]
-	The right region commutes by how $\Psi$ is defined (\autoref{(E,mu,e):Psi_defn_appendix}), and $\Phi_{E,E}$ is an isomorphism, so it suffices to show the left region commutes. To that end, consider the following diagram:
+	The right region commutes by how $\Psi$ is defined, and $\Phi_{E,E}$ is an isomorphism, so it suffices to show the left region commutes. To that end, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXmEiXSxbMSwwLCJFIl0sWzIsMCwiRVxcb3RpbWVzIEUiXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMCwxLCJTXFxvdGltZXMgU15hIl0sWzAsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzAsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFswLDEsIngiXSxbMSwyLCJlXFxvdGltZXMgRSJdLFsyLDMsIkVcXG90aW1lcyBlXFxvdGltZXMgRSJdLFswLDQsIlxccGhpX3swLGF9PVxcbGFtYmRhX3tTXmF9XnstMX0iLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImVcXG90aW1lcyBlXFxvdGltZXMgeCIsMl0sWzUsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBlXFxvdGltZXMgRSIsMl0sWzYsMywiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBFIiwyXSxbNSwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDMsImVcXG90aW1lcyBlXFxvdGltZXMgeCIsMV1d
 	\[\begin{tikzcd}
 		{S^a} & E & {E\otimes E} \\
@@ -332,10 +332,11 @@ Above, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$
 
 \subsection{Comodules over the dual \texorpdfstring{$E$}{E}-Steenrod algebra}
 
-\begin{proposition}\label{E_*_functor_from_SH_to_E*E-comodules}
-    Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then $E_*(-)$ is a functor from $\cSH$ to the category $E_*(E)\text-\CoMod$ of left $A$-graded comodules (\autoref{left_comodule_defn}) over the dual $E$-Steenrod algebra, which is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$, by \autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}.
 
-    In particular, given an object $X$ in $\cSH$, we are viewing $E_*(X)$ with its canonical left $\pi_*(E)$-module structure (\autoref{module_main}), and the action map 
+\begin{proposition}\label{E_*_functor_from_SH_to_E*E-comodules}
+    Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then $E_*(-)$ is an additive functor from the full subcategory $\cSH\text-\Cell$ of cellular objects in $\cSH$ to the category $E_*(E)\text-\CoMod^A$ of left $A$-graded comodules (\autoref{left_comodule_defn}) over the dual $E$-Steenrod algebra, which is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$, by \autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}.
+
+    In particular, given an object $X$ in $\cSH\text-\Cell_E$, we are viewing $E_*(X)$ with its canonical left $\pi_*(E)$-module structure (\autoref{module}), and the action map 
     \[\Psi_X:E_*(X)\to E_*(E)\otimes_{\pi_*(E)}E_*(X)\]
     is given by the composition
     \[\Psi_X:E_*(X)\xr{E_*(e\otimes X)}E_*(E\otimes X)\xr{\Phi_{E,X}^{-1}}E_*(E)\otimes_{\pi_*(E)}E_*(X).\]
@@ -347,8 +348,17 @@ Above, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$
 \begin{proposition}\label{Phi_E,X_is_comodule_homo}
     Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then given an object $X$ in $\cSH$, the map
     \[\Phi_{E,X}:E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
-    constructed in \autoref{Kunneth_map_construction_main} is a homomorphism of $A$-graded left $\Gamma$-comodules, where here by \autoref{comodule_co-free_adjunction} we are viewing $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ as the co-free $E_*(E)$-comodule on $E_*(X)$ with its canonical $A$-graded left $\pi_*(E)$-module structure (from \autoref{module_main}).
+    constructed in \autoref{Kunneth_map} is a homomorphism of $A$-graded left $\Gamma$-comodules, where here by \autoref{comodule_co-free_adjunction} we are viewing $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ as the co-free $E_*(E)$-comodule on $E_*(X)$ with its canonical $A$-graded left $\pi_*(E)$-module structure (from \autoref{module}).
 \end{proposition}
+\begin{proof}
+	\todo{TODO}
+\end{proof}
+
+\begin{lemma}\label{t^a_isos_are_E_*E-comodule_isos}
+	Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then the isomorphism
+	\[t^a_X:E_*(\Sigma^aX)\to E_{*-a}(X)\]
+	from \autoref{E_homology_suspension_iso_t^a's} is an $A$-graded isomorphism of left $E_*(E)$-comodules.
+\end{lemma}
 \begin{proof}
 	\todo{TODO}
 \end{proof}
