@@ -13,6 +13,43 @@ In what follows, we fix an abelian group $A$. We will freely use the theory and 
 
 Typically we call a $\bZ^2$-graded spectral sequence a \emph{bigraded} spectral sequence, and a $\bZ^3$-graded spectral sequence is a \emph{trigraded} spectral sequence.
 
+\begin{definition}\label{defn:sseq_homomorphism}
+    Let $(E_r,d_r)$ and $(E_r',d_r')$ be $A$-graded spectral sequences defined for $r\geq r_0$, then a homomorphism of spectral sequences $f:(E_r,d_r)\to(E_r',d_r')$ is the data of a collection $A$-graded homomorphisms $f_r:E_r\to E_r'$, all of the same (possibly nonzero) degree, such that for all $r\geq r_0$, the following two diagrams commute.
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJFX3IiXSxbMSwwLCJFX3InIl0sWzEsMSwiRV9yJyJdLFswLDEsIkVfciJdLFszLDAsIlxca2VyIGRfciJdLFs0LDAsIlxca2VyIGRfciciXSxbNCwxLCJFX3tyKzF9JyJdLFszLDEsIkVfe3IrMX0iXSxbMCwxLCJmX3IiXSxbMSwyLCJkX3InIl0sWzAsMywiZF9yIiwyXSxbMywyLCJmX3IiXSxbNCw1LCJmX3IiXSxbNSw2LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw3LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNyw2LCJmX3tyKzF9Il1d
+    \[\begin{tikzcd}
+        {E_r} & {E_r'} && {\ker d_r} & {\ker d_r'} \\
+        {E_r} & {E_r'} && {E_{r+1}} & {E_{r+1}'}
+        \arrow["{f_r}", from=1-1, to=1-2]
+        \arrow["{d_r'}", from=1-2, to=2-2]
+        \arrow["{d_r}"', from=1-1, to=2-1]
+        \arrow["{f_r}", from=2-1, to=2-2]
+        \arrow["{f_r}", from=1-4, to=1-5]
+        \arrow[two heads, from=1-5, to=2-5]
+        \arrow[two heads, from=1-4, to=2-4]
+        \arrow["{f_{r+1}}", from=2-4, to=2-5]
+    \end{tikzcd}\]
+    (Commutativity of the first diagram guarantees the top arrow in the second diagram is well-defined.)
+\end{definition}
+
+\begin{proposition}
+    Let $f:(E_r,d_r)\to(E_r',d_r')$ be a homomorphism of $A$-graded spectral sequences. Then if $f_r:E_r\to E_r'$ is an isomorphism for some $r\geq r_0$, then $f_{r'}$ is an isomorphism for all $r'>r$.
+\end{proposition}
+\begin{proof}
+    By induction, it suffices to show that if $f_r:E_r\to E_r'$ is an isomorphism, then so is $f_{r+1}:E_{r+1}\to E_{r+1}'$. First of all, we know the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGtlciBkX3IiXSxbMSwwLCJcXGtlciBkX3InIl0sWzEsMSwiRV97cisxfSciXSxbMCwxLCJFX3tyKzF9Il0sWzAsMSwiZl9yIl0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMywiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiZl97cisxfSJdXQ==
+    \[\begin{tikzcd}
+        {\ker d_r} & {\ker d_r'} \\
+        {E_{r+1}} & {E_{r+1}'}
+        \arrow["{f_r}", from=1-1, to=1-2]
+        \arrow[two heads, from=1-2, to=2-2]
+        \arrow[two heads, from=1-1, to=2-1]
+        \arrow["{f_{r+1}}", from=2-1, to=2-2]
+    \end{tikzcd}\]
+    Since the left, top, and right arrows are surjective, it follows the bottom arrow must be surjective as well. Now, we claim that $f_{r+1}$ is injective. Without loss of generality, we will assume that the isomorhpism $E_{r+1}\cong\ker d_r/\imm d_r$ is an equality. Now let $x\in\ker d_r$ such that $f_{r+1}([x])=0$, then by commutativity of the above diagram, we have that $0=f_{r+1}([x])=[f_r(x)]$ in $E_{r+1}'$, so that $f_r(x)\in\imm d_r'$, meaning $f_r(x)=d_r'(y)$ for some $y\in E_r'$. Then since $f_r$ is an isomorphism, we have $x=f_r^{-1}(d_r'(y))$. Furthermore, since $f$ is a homomorphism of spectral sequences, we know that $f_r^{-1}\circ d_r'=d_r\circ f_r^{-1}$, hence
+    \[x=d_r(f_r^{-1}(y))\in\imm d_r,\]
+    so that $[x]$ was $0$ in $E_{r}$ to begin with. Hence, $f_{r+1}$ is an isomorphism, as desired.
+\end{proof}
+
 \subsection{Unrolled exact couples and their associated spectral sequences}\label{subsection:unrolled_exact_couples}
 
 For our purposes, we will only care about spectral sequences which arise from \emph{$A$-graded unrolled exact couples}. In what follows, we follow \cite{Boardman_1999}, with minor modifications for our setting, in which everything is $A$-graded.
@@ -39,6 +76,25 @@ For our purposes, we will only care about spectral sequences which arise from \e
     in which each triangle $D^{s+1}\xr iD^s\xr jE_s\xr kD^{s+1}$ is an exact sequence. We require that each occurrence of $i$ (resp.\ $j$, $k$) is of the same degree. In other words, an unrolled exact couple can be described as a tuple $(D,E;i,j,k)$ of $\bZ\times A$-graded abelian groups and $\bZ\times A$-graded maps $i:D\to D$, $j:D\to E$, and $k:E\to D$, such that the $\bZ$-degrees of $i$, $j$, and $k$ are $-1$, $0$, and $1$, respectively. Usually $i$ and one of $j$ or $k$ will be of $A$-degree $0$.
 \end{definition}
 
+\begin{definition}\label{defn:unrolled_exact_couple_homo}
+    Given two $A$-graded unrolled exact couples $(D,E;i,j,k)$ and $(D',E';i',j',k')$, a \emph{homomorphism of $A$-graded unrolled exact couples} $(f,g)$ is the data of $\bZ\times A$-graded maps $f:D\to D'$ and $g:E\to E'$ (of $\bZ$-degree zero, although possibly of nonzero $A$-degree) such that the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJEIl0sWzAsMSwiRCciXSxbMSwwLCJEIl0sWzEsMSwiRCciXSxbMiwwLCJFIl0sWzMsMCwiRCJdLFsyLDEsIkUnIl0sWzMsMSwiRCciXSxbMCwxLCJmIiwyXSxbMCwyLCJpIl0sWzIsMywiZiJdLFsxLDMsImknIl0sWzIsNCwiaiJdLFs0LDUsImsiXSxbMyw2LCJqJyJdLFs2LDcsImsnIl0sWzQsNiwiZyJdLFs1LDcsImYiXV0=
+    \[\begin{tikzcd}
+        D & D & E & D \\
+        {D'} & {D'} & {E'} & {D'}
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["i", from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=2-2]
+        \arrow["{i'}", from=2-1, to=2-2]
+        \arrow["j", from=1-2, to=1-3]
+        \arrow["k", from=1-3, to=1-4]
+        \arrow["{j'}", from=2-2, to=2-3]
+        \arrow["{k'}", from=2-3, to=2-4]
+        \arrow["g", from=1-3, to=2-3]
+        \arrow["f", from=1-4, to=2-4]
+    \end{tikzcd}\]
+\end{definition}
+
 Given an $A$-graded unrolled exact couple $(D,E;i,j,k)$, we may define an associated $\bZ\times A$-graded spectral sequence as follows: Given some $s\in\bZ$ and some $r\geq1$, we first define the following subgroups of $E_s$:
 \[Z_r^s:= k^{-1}(\imm[i^{r-1}:D^{s+r}\to D^{s+1}])\qquad\text{and}\qquad B_r^s:=j(\ker[i^{r-1}:D^s\to D^{s-r+1}])\]
 where we adopt the convention that $i^{0}$ is simply the identity. These are furthermore $A$-graded subgrous of $E_s$ (by \autoref{image_and_kernel_of_A_graded_map_is_A_graded} and \autoref{preimage_of_A_graded_is_A_graded}). In this way, for each $s\in\bZ$, we get an infinite sequence of $A$-graded subgroups:
@@ -51,7 +107,7 @@ where given some $e\in Z^s_r=k^{-1}(\imm i^{r-1})$, the first arrow takes a clas
 \[k(j(d))=0\in\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}],\] 
 so that 
 \[j(d)\in k^{-1}(\imm[i^{r-1}:D^{s+2r}\to D^{s+r+1}])= Z^{s+r}_r,\] 
-as desired, so that given $d\in D^{s+r}$, $j(d)in Z_r^{s+r}$, so it makes sense to discuss the class $[j(d)]\in Z_r^{s+r}/B_r^{s+r}=E_r^{s+r}$. Secondly, if $i^{r-1}(d)=i^{r-1}(d')$ for some $d,d'\in D^{s+r}$, then
+as desired, so that given $d\in D^{s+r}$, $j(d)\in Z_r^{s+r}$, so it makes sense to discuss the class $[j(d)]\in Z_r^{s+r}/B_r^{s+r}=E_r^{s+r}$. Secondly, if $i^{r-1}(d)=i^{r-1}(d')$ for some $d,d'\in D^{s+r}$, then
 \[j(d)-j(d')=j(d-d')\in j(\ker[i^{r-1}:D^{s+r}\to D^{s+1}])=B^{s+r}_r,\]
 so that $[j(d)]=[j(d')]$ in $E_r^{s+r}$, as desired. It is straightforward to check that these maps are also $A$-graded homomorphisms, so that by unravelling definitions $d_r^s$ is an $A$-graded homomorphism of degree $\deg k-(r-1)\cdot\deg i+\deg j$ (so that in the standard case $\deg i=0$, $d_r^s$ simply has degree $\deg k+\deg j$).
 
@@ -69,7 +125,7 @@ since $i\circ k=0$. Hence we've shown $\imm d_r^{s-r}\sseq B^s_{r+1}/B^s_r$. Con
 \[i^r(d)=0\implies i^{r-1}(d)\in\ker i=\imm k,\]
 so there exists some $e\in E^{s-r}$ such that $k(e)=i^{r-1}(d)$, so $e\in Z^{s-r}_r$. Unravelling definitions, it follows that $d_r^{s-r}([e])=[j(d)]$, so $[j(d)]$ is indeed in the image of $d_r^{s-r}$, as desired.
 
-To recap, we have constructed for each $s\in\bZ$ and $r\geq1$ an $A$-graded abelian group $E_r^s$ along with differentials $d_r^s:E_r^s\to E_r^{s+r}$. Furthermore, if we take homology in the middle term of the following sequence
+To recap, we have constructed for each $s\in\bZ$ and $r\geq1$ an $A$-graded abelian group $E_r^s$ along with differentials $d_r^s:E_r^s\to E_r^{s+r}$ which satisfy $d_r^{s+r}\circ d_r^s=0$. Furthermore, if we take homology in the middle term of the following sequence
 \[E_r^{s-r}\xr{d_r^{s-r}}E_r^s\xr{d_r^s}E^{s+r}_r,\]
 we get
 \[\ker d_r^s/\imm d_r^{s-r}=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\]
@@ -81,6 +137,105 @@ Thus, we get a spectral sequence:
     are those constructed above, which have $\bZ\times A$-degree $(r,\deg j-(r-1)\cdot\deg i+\deg k)$.
 \end{proposition}
 
+\begin{proposition}\label{UEC_homo_induces_SSeq_homo}
+    Let $(f,g):(D,E;i,j,k)\to(D',E';i',j',k')$ be a homomorphism of $A$-graded unrolled exact couples (\autoref{defn:unrolled_exact_couple_homo}). Then there is an induced homomorphism of $\bZ\times A$-graded spectral sequences (\autoref{defn:sseq_homomorphism}) $\wt g:(E_r,d_r)\to(E_r',d_r')$ between their associated spectral sequences. Furthermore, if $g:E\to E'$ is an isomorphism, then $\wt g:E_r\to E_r'$ is an isomorphism for all $r\geq1$.
+\end{proposition}
+\begin{proof}
+    To start, we define the maps $\wt g_r:E_r\to E_r'$. Recall that $E_r:=Z_r/B_r$, where $B_r\sseq Z_r\sseq E$. Similarly $E_r':=Z_r'/B_r'$. We claim that for all $r\geq1$, $g$ yields a well-defined map $Z_r/B_r\to Z_r'/B_r'$. To that end, it suffices to show that $g(Z_r)\sseq Z_r'$ and $B_r$ is contained in the kernel of the composition
+    \[Z_r\xr gZ_r'\onto Z_r'/B_r'=E_r'.\]
+    First, let $x\in Z_r$, so $k(x)=i^{r-1}(d)$ for some $d\in D$. Then we'd like to show that $g(x)\in Z_r'$, i.e., that there exists some $d'\in D'$ such that $k'(g(x))={(i')}^{r-1}(d')$. Indeed, since $(f,g)$ is a homomorphism of unrolled exact couples, we have that
+    \[k'(g(x))=f(k(x))=f(i^{r-1}(d))={(i')}^{r-1}(f(d)),\]
+    as desired. Now, let $x\in B_r$, so that $x=j(d)$ for some $d\in D$ such that $i^{r-1}(d)=0$. Then we'd like to show that $g(x)\in B_r'$, i.e., that $g(x)=j'(d')$ for some $d'\in D'$ such that ${(i)}^{r-1}(d')=0$. To that end, note
+    \[g(x)=g(j(d))=j'(f(d)),\qquad\text{and}\qquad{(i')}^{r-1}(f(d))=f(i^{r-1}(d))=f(0)=0,\]
+    so that indeed $g(x)\in B_r'$ as desired. Thus, for each $r\geq1$ we have shown $g$ yields a well-defined assignment $\wt g_r:Z_r/B_r\to Z_r'/B_r'$ defined by $\wt g_r([x])=[g(x)]$. They are furthermore clearly $A$-graded since $g$ is. Now, it remains to show these maps $\wt g_r$ actually make a homomorphism of spectral sequences, i.e., that the following diagrams commute for all $r\geq1$:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJFX3IiXSxbMSwwLCJFX3InIl0sWzEsMSwiRV9yJyJdLFswLDEsIkVfciJdLFszLDAsIlxca2VyIGRfe3J9Il0sWzQsMCwiXFxrZXIgZF97cn0nIl0sWzQsMSwiRV97cisxfSciXSxbMywxLCJFX3tyKzF9Il0sWzAsMSwiXFx3dCBnX3IiXSxbMSwyLCJkX3InIl0sWzAsMywiZF9yIiwyXSxbMywyLCJcXHd0IGdfciJdLFs0LDUsIlxcd3QgZ197cn0iXSxbNSw2LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw3LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNyw2LCJcXHd0IGdfe3IrMX0iXV0=
+    \[\begin{tikzcd}
+        {E_r} & {E_r'} && {\ker d_{r}} & {\ker d_{r}'} \\
+        {E_r} & {E_r'} && {E_{r+1}} & {E_{r+1}'}
+        \arrow["{\wt g_r}", from=1-1, to=1-2]
+        \arrow["{d_r'}", from=1-2, to=2-2]
+        \arrow["{d_r}"', from=1-1, to=2-1]
+        \arrow["{\wt g_r}", from=2-1, to=2-2]
+        \arrow["{\wt g_{r}}", from=1-4, to=1-5]
+        \arrow[two heads, from=1-5, to=2-5]
+        \arrow[two heads, from=1-4, to=2-4]
+        \arrow["{\wt g_{r+1}}", from=2-4, to=2-5]
+    \end{tikzcd}\]
+    To see the first diagram commutes, let $x\in Z_r$, so $k(x)=i^{r-1}(d)$ for some $d\in D$, then we'd like to show $d_r'(\wt g_r([x]))=\wt g_r(d_r([x]))$. By what we have shown above, we know that $k'(g(x))={(i')}^{r-1}(f(d))$, so that unravelling definitions we have
+    \[d_r'(\wt g_r([x]))=d_r'([g(x)])=[j'({(i')}^{-(r-1)}(k'(g(x))))]=[j'(f(d))]\]
+    and
+    \[\wt g_r(d_r(x))=[g(j(d))]=[j'(f(d))],\]
+    so the diagram does commute as desired. On the other hand, in order to see the second diagram commutes, let $x\in Z_{r+1}$, so that by our above work $[x]\in Z_{r+1}/B_r$ is precisely an element of $\ker d_r$ (and conversely every element of $\ker d_r$ is of this form). Write $p_r$ and $p_r'$ for the projection maps $\ker d_r\onto E_{r+1}$ and $\ker d_r'\onto E_{r+1}'$. Unravelling definitions, $p_r$ takes $[x]\in Z_{r+1}/B_r$ to $[x]\in Z_{r+1}/B_{r+1}=E_{r+1}$, and $p_r'$ is defined similarly. Then we'd like to show that $\wt g_{r+1}(p_r([x]))=p_r'(\wt g_r([x]))$. This is clear, as
+    \[\wt g_{r+1}(p_r([x]))=\wt g_{r+1}([x])=[g(x)]\]
+    while
+    \[p_r'(\wt g_r([x]))=p_r'([g(x)])=[g(x)],\]
+    as desired. Thus, indeed $\wt g$ is a homomorphism of spectral sequences, as desired.
+\end{proof}
+
 \subsection{Convergence of spectral sequences}
+
+In what follows, we fixed an $A$-graded unrolled exact couple $(D,E;i,j,k)$ and its associated $\bZ\times A$-graded spectral sequence $(E_r,d_r)$ constructed above. In this subsection, we will outline what it means for this spectral sequence to converge to some \emph{target} group. We will be following \cite[\S1--7]{Boardman_1999}.
+
+For $s\in\bZ$ and $r\geq 1$, let $Z^s_r$ and $B^s_r$ denote the $A$-graded subgroups of $E_s$ defined above, which for each $s\in\bZ$ satisfy
+\[0= B_1^s\sseq B_2^s\sseq B_3^s\sseq\cdots\sseq\imm j=\ker k\sseq \cdots\sseq Z_3^s\sseq Z_2^s\sseq Z_1^s=E^s.\]
+For each $s\in\bZ$, we may further introduce the $A$-graded groups:
+\begin{align*}
+    Z^s_\infty&:=\bigcap_{r=1}^\infty Z^s_r=\lim_r Z_r^s,&&\text{the group of \textit{infinite cycles}}; \\
+    B^s_\infty&:=\bigcup_{r=1}^\infty B^s_r=\colim_r B_r^s,&&\text{the group of \textit{infinite boundaries}}; \\
+    E_\infty^s&:=Z^s_\infty/B^s_\infty\cong(Z^s_\infty/B^s_m)/(B^s_\infty/B^s_m),&&\text{which form the \emph{$E_\infty$-term}}; \\
+    RE_\infty^s&:=R\lim_rZ^s_r\cong R\lim_r(Z^s_r/B^s_m),&&\text{which form the \emph{derived $E_\infty$-term}}.
+\end{align*}
+here the isomorphisms in the second and third lines above are given by \cite[Proposition 2.4]{Boardman_1999}.
+
+\begin{definition}[{\cite[Definition 5.2]{Boardman_1999}}]
+    Given an $A$-graded target group $G$ with decreasing filtration ${(F^sG)}_{s\in\bZ}$, we say the spectral sequence:\begin{enumerate}[label=(\roman*)]
+        \item \emph{converges weakly to $G$} if $F^{-\infty}=G$ and we have isomorphisms $E^s_\infty\cong F^sG/F^{s+1}$ for all $s\in\bZ$;
+        \item \emph{converges to $G$} if (i) holds and $F^\infty=0$;
+        \item \emph{converges strongly to $G$} if (i) holds and $F^\infty=RF^\infty=0$.
+    \end{enumerate}
+\end{definition}
+
+%\begin{proposition}
+%    Suppose for each $s\in\bZ$ we have an arrow $i_s:Y_{s+1}\to Y_{s}$ in $\cSH$. Then for $s\in\bZ$, let $C_s$ denote the cofiber of $i_s$ and let $F_s(=\Omega C_s)$ denote the fiber of $i_s$, so we have distinguished triangles
+%    \[Y_{s+1}\xr{i_s}Y_s\xr{j_s}C_s\xr{k_s}\Sigma Y_{s+1}\]
+%    and
+%    \[\Omega C_s\xr{\Omega k_s}Y_{s+1}\xr{i_s}Y_s\xr{j_s}\Sigma\Omega C_s.\]
+%    Then we may splice these together which yields two sequences in $\cSH$:
+%    % https://q.uiver.app/#q=WzAsMTAsWzIsMCwiWV97cysxfSJdLFszLDAsIllfe3N9ICJdLFs0LDAsIllfe3MtMX0iXSxbNSwwLCJcXGNkb3RzIl0sWzEsMCwiWV97cysyfSJdLFswLDAsIlxcY2RvdHMiXSxbNCwxLCJDX3tzLTF9Il0sWzMsMSwiQ19zIl0sWzIsMSwiQ197cysxfSJdLFsxLDEsIkNfe3MrMn0iXSxbMCwxLCJpX3MiXSxbMSwyLCJpX3tzLTF9Il0sWzIsM10sWzQsMCwiaV97cysxfSJdLFs1LDRdLFsyLDYsImpfe3MtMX0iLDFdLFsxLDcsImpfe3N9IiwxXSxbMCw4LCJqX3tzKzF9IiwxXSxbNCw5LCJqX3tzKzJ9IiwxXSxbOCw0LCJrX3tzKzF9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsMCwia19zIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsMSwia197cy0xfSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+%    \[\begin{tikzcd}
+%        \cdots & {Y_{s+2}} & {Y_{s+1}} & {Y_{s} } & {Y_{s-1}} & \cdots \\
+%        & {C_{s+2}} & {C_{s+1}} & {C_s} & {C_{s-1}}
+%        \arrow["{i_s}", from=1-3, to=1-4]
+%        \arrow["{i_{s-1}}", from=1-4, to=1-5]
+%        \arrow[from=1-5, to=1-6]
+%        \arrow["{i_{s+1}}", from=1-2, to=1-3]
+%        \arrow[from=1-1, to=1-2]
+%        \arrow["{j_{s-1}}"{description}, from=1-5, to=2-5]
+%        \arrow["{j_{s}}"{description}, from=1-4, to=2-4]
+%        \arrow["{j_{s+1}}"{description}, from=1-3, to=2-3]
+%        \arrow["{j_{s+2}}"{description}, from=1-2, to=2-2]
+%        \arrow["{k_{s+1}}"{description}, dashed, from=2-3, to=1-2]
+%        \arrow["{k_s}"{description}, dashed, from=2-4, to=1-3]
+%        \arrow["{k_{s-1}}"{description}, dashed, from=2-5, to=1-4]
+%    \end{tikzcd}\]
+%    and
+%    % https://q.uiver.app/#q=WzAsMTAsWzIsMSwiWV97cysxfSJdLFszLDEsIllfe3N9ICJdLFs0LDEsIllfe3MtMX0iXSxbNSwxLCJcXGNkb3RzIl0sWzEsMSwiWV97cysyfSJdLFswLDEsIlxcY2RvdHMiXSxbMSwwLCJcXE9tZWdhIENfe3MrMX0iXSxbMiwwLCJcXE9tZWdhIENfe3N9Il0sWzMsMCwiXFxPbWVnYSBDX3tzLTF9Il0sWzQsMCwiXFxPbWVnYSBDX3tzLTJ9Il0sWzAsMSwiaV9zIiwyXSxbMSwyLCJpX3tzLTF9IiwyXSxbMiwzXSxbNCwwLCJpX3tzKzF9IiwyXSxbNSw0XSxbNiw0LCJcXE9tZWdhIGtfe3MrMX0iLDFdLFs3LDAsIlxcT21lZ2Ega19zIiwxXSxbOCwxLCJcXE9tZWdhIGtfe3MtMX0iLDFdLFs5LDIsIlxcT21lZ2Ega197cy0yfSIsMV0sWzEsNywial9zIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsOCwial97cy0xfSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDYsImpfe3MrMX0iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+%    \[\begin{tikzcd}
+%        & {\Omega C_{s+1}} & {\Omega C_{s}} & {\Omega C_{s-1}} & {\Omega C_{s-2}} \\
+%        \cdots & {Y_{s+2}} & {Y_{s+1}} & {Y_{s} } & {Y_{s-1}} & \cdots
+%        \arrow["{i_s}"', from=2-3, to=2-4]
+%        \arrow["{i_{s-1}}"', from=2-4, to=2-5]
+%        \arrow[from=2-5, to=2-6]
+%        \arrow["{i_{s+1}}"', from=2-2, to=2-3]
+%        \arrow[from=2-1, to=2-2]
+%        \arrow["{\Omega k_{s+1}}"{description}, from=1-2, to=2-2]
+%        \arrow["{\Omega k_s}"{description}, from=1-3, to=2-3]
+%        \arrow["{\Omega k_{s-1}}"{description}, from=1-4, to=2-4]
+%        \arrow["{\Omega k_{s-2}}"{description}, from=1-5, to=2-5]
+%        \arrow["{j_s}"{description}, dashed, from=2-4, to=1-3]
+%        \arrow["{j_{s-1}}"{description}, dashed, from=2-5, to=1-4]
+%        \arrow["{j_{s+1}}"{description}, dashed, from=2-3, to=1-2]
+%    \end{tikzcd}\]
+%\end{proposition}
 
 \end{document}

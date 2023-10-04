@@ -1,0 +1,43 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\subsection{Homological (co)algebra}
+
+The primary reference for this section will be the nLab page on derived functors in homological algebra (\cite{nlab:derived_functor_in_homological_algebra}).
+
+Recall that given abelian categories $\cA$ and $\cB$, given an additive functor $F:\cA\to\cB$, if $F$ is left exact and $\cA$ has enough injectives, we may form the \emph{right derived functors} $R^nF:\cA\to\cB$ of $F$, for $n\in\bN$. Given an object $A$ in $\cA$, we may compute $R^nF(A)$ to be the object (defined only up to isomorphism) which is obtained as follows: First, fix an injective resolution $i:A\to I^*$ of $A$, i.e., the data of a long exact sequence
+\[0\xr{\phantom{d^2}}A\xr{i}I^0\xr{d^0}I^1\xr{d^1}I^2\xr{d^2}I^3\xr{\phantom{d^2}}\cdots\]
+where each $I^n$ is an injective object in $\cA$. Such a sequence is guaranteed to exist since $\cA$ has enough injectives. Then we define $R^nF(A)$ to be the $n^\text{th}$ cohomology group $H^n(F(I^*))$ of the sequence
+\[0\xr{\phantom{F(d^2)}}F(I^0)\xr{F(d^0)}F(I^1)\xr{F(d^1)}F(I^2)\xr{F(d^2)}F(I^3)\xr{\phantom{F(d^2)}}\cdots.\]
+It is a standard result that this definition of $R^nF(A)$ does not depend on the choice of injective resolution $i:A\to I^*$. 
+
+\begin{definition}\label{defn:Ext}
+	Given an abelian category $\cA$ with enough injectives and an object $A$ in $\cA$, we denote the right derived functors of the left exact functor $\Hom_\cA(A,-):\cA\to\Ab$ by
+	\[R^n\Hom_\cA(A,-):=\Ext^n_\cA(A,-).\]
+\end{definition}
+
+\begin{remark}
+	It is not uncommon to instead define $\Ext^n_\cA(-,A)$ to be the right derived functor of the functor $\Hom_\cA(-,A):\cA^\op\to\Ab$, in which case we may compute $\Ext^n_\cA(B,A)$ by means of \emph{projective} resolutions of $A$ in $\cA$. It is a standard result that these definitions of $\Ext^n_\cA(A,B)$ coincide.
+\end{remark}
+
+Now, the first result we will state is that in order to compute the values of the right derived functors $R^nF(A)$, we do not need to consider strictly injective resolutions of $A$, rather, we may consider more generally ``$F$-acyclic resolutions''. First, we define $F$-acyclic objects:
+
+\begin{definition}[{\cite[Definition 3.8]{nlab:derived_functor_in_homological_algebra}}]\label{defn:acyclic_object}
+	Let $F:\cA\to\cB$ be a left or right exact additive functor between abelian categories, and suppose $\cA$ has enough injectives. An object $A$ in $\cA$ is called an \emph{$F$-acyclic object} if $R^nF(A)=0$ for all $n>0$.
+\end{definition}
+
+\begin{definition}\label{defn:acyclic_resolution}
+	Let $F:\cA\to\cB$ be a left exact additive functor between abelian categories, and suppose $\cA$ has enough injectives. Then given an object $A$ in $\cA$, an \emph{$F$-acyclic resolution} $i:A\to I_F^*$ is the data of a long exact sequence in $\cA$
+	\[0\xr{\phantom{d^2}}A\xr iI_F^0\xr{d^0}I_F^1\xr{d^1}I_F^2\xr{d^2}I_F^3\xr{\phantom{d^2}}\cdots\]
+	such that each $I_F^n$ is an $F$-acyclic object in $\cA$.
+\end{definition}
+
+The reasons that $F$-acyclic objects are useful is that they allow you to compute the right derived functors of $F$ without having to use strictly injective resolutions:
+
+\begin{proposition}[{\cite[Theorem 3.15]{nlab:derived_functor_in_homological_algebra}}]\label{acyclic_resolution_computes_R^nF}
+	Let $F:\cA\to\cB$ be a left exact additive functor between abelian categories. Then for each object $A$ in $\cA$, given an $F$-acyclic resolution $i:A\to I_F^*$ of $A$, for each $n\in\bN$ there is a canonical isomorphism
+	\[R^nF(A)\cong H^n(F(I_F^*))\]
+	between the $n^\text{th}$ right derived functor of $F$ evaluated on $A$ and the cohomology of the sequence obtained by applying $F$ to $I_F^*$.
+\end{proposition}
+
+\end{document}

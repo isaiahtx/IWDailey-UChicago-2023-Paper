@@ -63,7 +63,7 @@ In this appendix, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with le
 	(where here we are suppressing the associators from the notation). If in addition $(E_1,\mu_1,e_1)$ and $(E_2,\mu_2,e_2)$ are \emph{commutative} monoid objects, then $(E_1\otimes E_2,\mu,e)$ is as well.
 \end{lemma}
 \begin{proof}
-    \todo{todo}
+	Due to the size of the diagrams involved, we leave this as an exercise for the reader. It is entirely straightforward.
 \end{proof}
 
 \begin{lemma}\label{product_of_3+_monoids_no_ambiguity}
@@ -96,10 +96,65 @@ In this appendix, we fix a symmetric monoidal category $(\cC,\otimes,S)$ with le
 \end{proof}
 
 \begin{lemma}\label{e_and_mu_are_monoid_homos}
-    Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then the maps $e:S\to E$ and $\mu:E\otimes E\to E$ are monoid object homomorphisms (where here $S$ and $E\otimes E$ are considered to be monoid objects by \autoref{unit_is_monoid} and \autoref{product_of_monoids_is_monoid}, respectively).
+    Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then the map $e:S\to E$ is a monoid homomorphism. Furthermore, if $E$ is a \emph{commutative} monoid object, then $\mu:E\otimes E\to E$ is also a monoid object homomorphism. (Here $S$ and $E\otimes E$ are considered to be monoid objects by \autoref{unit_is_monoid} and \autoref{product_of_monoids_is_monoid}, respectively.)
 \end{lemma}
 \begin{proof}
-    \todo{todo}
+	To see $e$ is a monoid homomorphism, consider the following diagrams:
+	% https://q.uiver.app/#q=WzAsOCxbMywwLCJTXFxvdGltZXMgUyJdLFs1LDAsIkVcXG90aW1lcyBFIl0sWzUsMiwiRSJdLFs0LDEsIlNcXG90aW1lcyBFIl0sWzMsMiwiUyJdLFsxLDAsIlMiXSxbMCwyLCJTIl0sWzIsMiwiRSJdLFswLDEsImVcXG90aW1lcyBlIl0sWzEsMiwiXFxtdSJdLFswLDMsIlNcXG90aW1lcyBlIiwxXSxbMCw0LCJcXHJob19TPVxcbGFtYmRhX1MiLDJdLFszLDEsImVcXG90aW1lcyBFIiwxXSxbMywyLCJcXGxhbWJkYV9FIl0sWzQsMiwiZSIsMl0sWzUsNiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiw3LCJlIl0sWzUsNywiZSJdXQ==
+	\[\begin{tikzcd}
+		& S && {S\otimes S} && {E\otimes E} \\
+		&&&& {S\otimes E} \\
+		S && E & S && E
+		\arrow["{e\otimes e}", from=1-4, to=1-6]
+		\arrow["\mu", from=1-6, to=3-6]
+		\arrow["{S\otimes e}"{description}, from=1-4, to=2-5]
+		\arrow["{\rho_S=\lambda_S}"', from=1-4, to=3-4]
+		\arrow["{e\otimes E}"{description}, from=2-5, to=1-6]
+		\arrow["{\lambda_E}", from=2-5, to=3-6]
+		\arrow["e"', from=3-4, to=3-6]
+		\arrow[Rightarrow, no head, from=1-2, to=3-1]
+		\arrow["e", from=3-1, to=3-3]
+		\arrow["e", from=1-2, to=3-3]
+	\end{tikzcd}\]
+	The left diagram commutes by definition. The top region in the right diagram commutes by functoriality of $-\otimes-$. The right region commutes by unitality of $\mu$. The left region commutes by naturality of $\lambda$. Thus, indeed $e:S\to E$ is a monoid object homomorphism.
+
+	Now, to see $\mu$ is a monoid object homomorphism when $(E,\mu,e)$ is a commutative monoid object, first consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMSwwLCJTIl0sWzAsMiwiRVxcb3RpbWVzIEUgIl0sWzIsMiwiRSJdLFsxLDEsIkUiXSxbMCwxLCJlXFxvdGltZXMgZSIsMl0sWzEsMiwiXFxtdSIsMl0sWzAsMiwiZSJdLFswLDMsImUiLDFdLFszLDEsIkVcXG90aW1lcyBlIl0sWzMsMiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		& S \\
+		& E \\
+		{E\otimes E } && E
+		\arrow["{e\otimes e}"', from=1-2, to=3-1]
+		\arrow["\mu"', from=3-1, to=3-3]
+		\arrow["e", from=1-2, to=3-3]
+		\arrow["e"{description}, from=1-2, to=2-2]
+		\arrow["{E\otimes e}", from=2-2, to=3-1]
+		\arrow[Rightarrow, no head, from=2-2, to=3-3]
+	\end{tikzcd}\]
+	The left region commutes by functoriality of $-\otimes-$, the right region commutes by definition, and the bottom region commutes by unitality of $\mu$. Now, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJFXzFcXG90aW1lcyBFXzJcXG90aW1lcyBFXzNcXG90aW1lcyBFXzQiXSxbMywwLCJFX3sxMn1cXG90aW1lcyBFX3szNH0iXSxbMywzLCJFX3sxMjM0fSJdLFswLDIsIkVfMVxcb3RpbWVzIEVfM1xcb3RpbWVzIEVfMlxcb3RpbWVzIEVfNCJdLFswLDMsIkVfezEzfVxcb3RpbWVzIEVfezI0fSJdLFsxLDEsIkVfMVxcb3RpbWVzIEVfezIzfVxcb3RpbWVzIEVfNCJdLFsyLDIsIkVfezEyM31cXG90aW1lcyBFXzQiXSxbMiwxLCJFX3sxMn1cXG90aW1lcyBFXzNcXG90aW1lcyBFXzQiXSxbMSwyLCJFX3sxM31cXG90aW1lcyBFXzJcXG90aW1lcyBFXzQiXSxbMCwxLCJcXG11XFxvdGltZXNcXG11Il0sWzEsMiwiXFxtdSJdLFswLDMsIkVcXG90aW1lc1xcdGF1XFxvdGltZXMgRSIsMl0sWzMsNCwiXFxtdVxcb3RpbWVzIFxcbXUiLDJdLFs0LDIsIlxcbXUiXSxbMyw1LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIEUiLDFdLFswLDUsIkVcXG90aW1lc1xcbXVcXG90aW1lcyBFIiwyXSxbNSw2LCJcXG11XFxvdGltZXMgRSIsMV0sWzYsMiwiXFxtdSJdLFswLDcsIlxcbXVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFs3LDEsIkVcXG90aW1lcyBcXG11IiwxXSxbNyw2LCJcXG11XFxvdGltZXMgRSIsMV0sWzMsOCwiXFxtdVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzgsNCwiRVxcb3RpbWVzIFxcbXUiLDFdLFs4LDYsIlxcbXVcXG90aW1lcyBFIiwyXV0=
+	\[\begin{tikzcd}
+		{E_1\otimes E_2\otimes E_3\otimes E_4} &&& {E_{12}\otimes E_{34}} \\
+		& {E_1\otimes E_{23}\otimes E_4} & {E_{12}\otimes E_3\otimes E_4} \\
+		{E_1\otimes E_3\otimes E_2\otimes E_4} & {E_{13}\otimes E_2\otimes E_4} & {E_{123}\otimes E_4} \\
+		{E_{13}\otimes E_{24}} &&& {E_{1234}}
+		\arrow["\mu\otimes\mu", from=1-1, to=1-4]
+		\arrow["\mu", from=1-4, to=4-4]
+		\arrow["{E\otimes\tau\otimes E}"', from=1-1, to=3-1]
+		\arrow["{\mu\otimes \mu}"', from=3-1, to=4-1]
+		\arrow["\mu", from=4-1, to=4-4]
+		\arrow["{E\otimes \mu\otimes E}"{description}, from=3-1, to=2-2]
+		\arrow["{E\otimes\mu\otimes E}"', from=1-1, to=2-2]
+		\arrow["{\mu\otimes E}"{description}, from=2-2, to=3-3]
+		\arrow["\mu", from=3-3, to=4-4]
+		\arrow["{\mu\otimes E\otimes E}", from=1-1, to=2-3]
+		\arrow["{E\otimes \mu}"{description}, from=2-3, to=1-4]
+		\arrow["{\mu\otimes E}"{description}, from=2-3, to=3-3]
+		\arrow["{\mu\otimes E\otimes E}", from=3-1, to=3-2]
+		\arrow["{E\otimes \mu}"{description}, from=3-2, to=4-1]
+		\arrow["{\mu\otimes E}"', from=3-2, to=3-3]
+	\end{tikzcd}\]
+	Here we have numbered the $E$'s to make it clearer what's going on. The top and bottom left regions commute by functoriality of $-\otimes-$. The top left region commutes by commutativity of $\mu$. Every other region commutes by associativity of $\mu$. Thus, we've shown $\mu$ is a monoid object homomorphism, as desired.
 \end{proof}
 
 \begin{lemma}\label{E_ox_f,f_ox_E_are_monoid_homos}

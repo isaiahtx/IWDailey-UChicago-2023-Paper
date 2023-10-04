@@ -5,7 +5,7 @@ So far, we have already identified a good amount of structure on the objects $\p
 
 \subsection{A K\"unneth isomorphism}
 
-The goal of this subsection will be to prove the following theorem, which, given a monoid object $(E,\mu,e)$ and objects $Z$ and $W$ in $\cSH$, relates the $Z$-homology of $E$ with the $E$-homology of $W$ to $\pi_*(Z\otimes E\otimes W)$:
+The goal of this subsection will be to prove the following theorem, which, given a monoid object $(E,\mu,e)$ and objects $Z$ and $W$ in $\cSH$, relates the $Z$-homology of $E$ and the $E$-homology of $W$ to $\pi_*(Z\otimes E\otimes W)$:
 
 \begin{theorem}[The K\"unneth isomorphism]\label{Kunneth_theorem}
     Let $(E,\mu,e)$ be a monoid object and $Z$ and $W$ objects in $\cSH$. Then if\begin{itemize}
@@ -176,7 +176,7 @@ Now, before proving the K\"unneth map is an isomorphism under the conditions giv
 		\arrow["{\phi_{-a,a}^{-1}\otimes Z\otimes E\otimes E\otimes W}"', from=1-3, to=2-3]
 		\arrow["{Z\otimes \mu\otimes W}", from=2-3, to=2-4]
 	\end{tikzcd}\]
-	The diagram clearly commutes by functoriality of $-\otimes-$, so that indeed diagram (\ref{Phi_Sigma^aZ,W_diagram}) commutes, so that $\Phi_{\Sigma^aZ,W}$ is indeed an isomorphism as desired. 
+	The diagram commutes by functoriality of $-\otimes-$, so that diagram (\ref{Phi_Sigma^aZ,W_diagram}) commutes, meaning $\Phi_{\Sigma^aZ,W}$ is an isomorphism as desired. 
 
 	Now, it remains to show that $\Phi_{Z,\Sigma W}$ and $\Phi_{\Sigma Z,W}$ are isomorphisms. To that end, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHBpXyooWlxcb3RpbWVzIEUpXFxvdGltZXNfe1xccGlfKihFKX1cXHBpXyooRVxcb3RpbWVzIFxcU2lnbWEgVykiXSxbMCwyLCJcXHBpXyooWlxcb3RpbWVzIEUpXFxvdGltZXNfe1xccGlfKihFKX1cXHBpXyooRVxcb3RpbWVzXFxTaWdtYV5cXDFXKSJdLFsxLDIsIlxccGlfKihaXFxvdGltZXMgRVxcb3RpbWVzXFxTaWdtYV5cXDFXKSJdLFsxLDAsIlxccGlfKihaXFxvdGltZXMgRVxcb3RpbWVzXFxTaWdtYSBXKSJdLFswLDEsIlxccGlfKihaXFxvdGltZXMgRSlcXG90aW1lc197XFxwaV8qKEUpfVxccGlfKihFXFxvdGltZXNcXG51X1cpIiwyXSxbMSwyLCJcXFBoaV97WixcXFNpZ21hXlxcMVd9IiwyXSxbMCwzLCJcXFBoaV97WixcXFNpZ21hIFd9Il0sWzMsMiwiXFxwaV8qKFpcXG90aW1lcyBFXFxvdGltZXMgXFxudV9XKSJdXQ==
@@ -700,7 +700,25 @@ Now, before we prove our next theorem (an analog of the universal coefficient th
 	Then this isomorphism is an $E$-module homomorphism.
 \end{lemma}
 \begin{proof}
-	\todo{TODO}
+	Consider the following diagram:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFXFxvdGltZXMgU15hXFxvdGltZXNcXGJpZ29wbHVzX2lOX2kiXSxbMiwwLCJFXFxvdGltZXNcXGJpZ29wbHVzX2koU15hXFxvdGltZXMgTl9pKSJdLFswLDEsIlNeYVxcb3RpbWVzIEVcXG90aW1lc1xcYmlnb3BsdXNfaU5faSJdLFswLDIsIlNeYVxcb3RpbWVzXFxiaWdvcGx1c19pKEVcXG90aW1lcyBOX2kpIl0sWzAsMywiU15hXFxvdGltZXNcXGJpZ29wbHVzX2lOX2kiXSxbMiwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNeYVxcb3RpbWVzIE5faSkiXSxbMiwyLCJcXGJpZ29wbHVzX2koU15hXFxvdGltZXMgRVxcb3RpbWVzIE5faSkiXSxbMiwzLCJcXGJpZ29wbHVzX2koU15hXFxvdGltZXMgTl9pKSJdLFswLDEsIkVcXG90aW1lc1xcY29uZyJdLFswLDIsIlxcdGF1XFxvdGltZXNcXGJpZ29wbHVzX2lOX2kiLDJdLFsyLDMsIlNeYVxcb3RpbWVzXFxjb25nIiwyXSxbMyw0LCJTXmFcXG90aW1lc1xcYmlnb3BsdXNfaVxca2FwcGFfaSIsMl0sWzEsNSwiXFxjb25nIl0sWzUsNiwiXFxiaWdvcGx1c19pKFxcdGF1XFxvdGltZXMgTl9pKSJdLFs2LDcsIlxcYmlnb3BsdXNfaShTXmFcXG90aW1lc1xca2FwcGFfaSkiXSxbNCw3LCJcXGNvbmciXSxbMyw2LCJcXGNvbmciXSxbMCw1LCJcXGNvbmciLDFdXQ==
+	\[\begin{tikzcd}
+		{E\otimes S^a\otimes\bigoplus_iN_i} && {E\otimes\bigoplus_i(S^a\otimes N_i)} \\
+		{S^a\otimes E\otimes\bigoplus_iN_i} && {\bigoplus_i(E\otimes S^a\otimes N_i)} \\
+		{S^a\otimes\bigoplus_i(E\otimes N_i)} && {\bigoplus_i(S^a\otimes E\otimes N_i)} \\
+		{S^a\otimes\bigoplus_iN_i} && {\bigoplus_i(S^a\otimes N_i)}
+		\arrow["E\otimes\cong", from=1-1, to=1-3]
+		\arrow["{\tau\otimes\bigoplus_iN_i}"', from=1-1, to=2-1]
+		\arrow["{S^a\otimes\cong}"', from=2-1, to=3-1]
+		\arrow["{S^a\otimes\bigoplus_i\kappa_i}"', from=3-1, to=4-1]
+		\arrow["\cong", from=1-3, to=2-3]
+		\arrow["{\bigoplus_i(\tau\otimes N_i)}", from=2-3, to=3-3]
+		\arrow["{\bigoplus_i(S^a\otimes\kappa_i)}", from=3-3, to=4-3]
+		\arrow["\cong", from=4-1, to=4-3]
+		\arrow["\cong", from=3-1, to=3-3]
+		\arrow["\cong"{description}, from=1-1, to=2-3]
+	\end{tikzcd}\]
+	The top region comutes by additivity of $E\otimes-$. The bottom two region commute by naturality of the additivity isomorphisms for $-\otimes-$.
 \end{proof}
 
 %\begin{lemma}\label{q^a_N_isos}

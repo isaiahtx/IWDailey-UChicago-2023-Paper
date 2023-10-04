@@ -366,7 +366,7 @@ In what follows, fix an $A$-graded anticommutative ring $(R,\theta)$ and an $A$-
 
 	We write $\Gamma\text-\CoMod^A$ for the resulting category of left $A$-graded comodules over $\Gamma$. In the above definition, we required $A$-graded left $\Gamma$-comodule homomorphisms to strictly preserve the grading, but we could have instead considered left $\Gamma$-comodule homomorphisms which are of degree $d$ for some $d\in A$, or equivalently, the set of degree zero $A$-graded $\Gamma$-comodule homomorphisms from $N_1$ to the shifted comodule ${(N_2)}_{*+d}$. We denote the hom-set of degree-$d$ $A$-graded left $\Gamma$-comodule homomorphisms from $(N_1,\Psi_{N_1})$ to $(N_2,\Psi_{N_2})$ by
 	\[\Hom_{\Gamma\text-\CoMod^A}^d(N_1,N_2)\qquad\text{or usually just}\qquad\Hom_{\Gamma}^d(N_1,N_2).\]
-	In particular, we simply write $\Hom_{\Gamma\text-\CoMod^A}(N_1,N_2)$ or $\Hom_{\Gamma}(N_1,N_2)$ for the set of strictly degree preserving (degree $0$) $A$-graded left $\Gamma$-comodule homomorphisms from $(N_1,\Psi_{N_1})$ to $(N_2,\Psi_{N_2})$.
+	In particular, write $\Hom_{\Gamma\text-\CoMod^A}(N_1,N_2)$ or just $\Hom_{\Gamma}(N_1,N_2)$ to mean the set of strictly degree preserving (degree $0$) $A$-graded left $\Gamma$-comodule homomorphisms from $(N_1,\Psi_{N_1})$ to $(N_2,\Psi_{N_2})$.
 \end{definition}
 
 \begin{proposition}\label{G-CoMod^A_is_additive}
@@ -390,14 +390,53 @@ In what follows, fix an $A$-graded anticommutative ring $(R,\theta)$ and an $A$-
 
 	Now, suppose we have two $A$-graded left $\Gamma$-comodules $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$. First, we claim their direct sum as left $B$-modules $N_1\oplus N_2$ is canonically an $A$-graded left $\Gamma$-comodule. We know that $N_1\oplus N_2$ is an $A$-graded left $B$-module by \autoref{product_of_A_graded}, and we can define the structure map
 	\[\Psi_{N_1\oplus N_2}:N_1\oplus N_2\xr{\Psi_{N_1}\oplus\Psi_{N_2}}(\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2)\cong\Gamma\otimes_B(N_1\oplus N_2),\]
-	where the final isomorphism is the canonical one sending $(g_1\otimes n_1)\oplus(g_2\otimes n_2)$ to $(g_1\otimes n_1)+(g_2\otimes n_2)$. Then
-	\todo{finish}
+	where the final isomorphism is the canonical one sending $(g_1\otimes n_1)\oplus(g_2\otimes n_2)$ to $(g_1\otimes n_1)+(g_2\otimes n_2)$. Then to see this is in fact a left $\Gamma$-comodule, first consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJOXzFcXG9wbHVzIE5fMiJdLFsyLDAsIihcXEdhbW1hXFxvdGltZXNfQk5fMSlcXG9wbHVzKFxcR2FtbWFcXG90aW1lc19CTl8yKSJdLFszLDAsIlxcR2FtbWFcXG90aW1lc19CKE5fMVxcb3BsdXMgTl8yKSJdLFszLDQsIkJcXG90aW1lc19CKE5fMVxcb3BsdXMgTl8yKSJdLFsyLDEsIihCXFxvdGltZXNfQk5fMSlcXG9wbHVzKEJcXG90aW1lc19CTl8yKSJdLFswLDEsIlxcUHNpX3tOXzF9XFxvcGx1c1xcUHNpX3tOXzJ9Il0sWzEsMiwiXFxjb25nIl0sWzIsMywiXFxlcHNpbG9uXFxvdGltZXMoTl8xXFxvcGx1cyBOXzIpIl0sWzAsMywiIiwwLHsiY3VydmUiOjN9XSxbMSw0LCIoXFxlcHNpbG9uXFxvdGltZXMgTl8xKVxcb3BsdXMoXFxlcHNpbG9uXFxvdGltZXMgTl8yKSIsMV0sWzAsNCwiXFxjb25nIiwxXSxbNCwzLCJcXGNvbmciLDFdXQ==
+	\[\begin{tikzcd}
+		{N_1\oplus N_2} && {(\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2)} & {\Gamma\otimes_B(N_1\oplus N_2)} \\
+		&& {(B\otimes_BN_1)\oplus(B\otimes_BN_2)} \\
+		\\
+		\\
+		&&& {B\otimes_B(N_1\oplus N_2)}
+		\arrow["{\Psi_{N_1}\oplus\Psi_{N_2}}", from=1-1, to=1-3]
+		\arrow["\cong", from=1-3, to=1-4]
+		\arrow["{\epsilon\otimes(N_1\oplus N_2)}", from=1-4, to=5-4]
+		\arrow[curve={height=18pt}, from=1-1, to=5-4]
+		\arrow["{(\epsilon\otimes N_1)\oplus(\epsilon\otimes N_2)}"{description}, from=1-3, to=2-3]
+		\arrow["\cong"{description}, from=1-1, to=2-3]
+		\arrow["\cong"{description}, from=2-3, to=5-4]
+	\end{tikzcd}\]
+	A simple diagram chase yields the left and rightmost regions commute. The top left region commutes since $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$ are left $\Gamma$-comodules. Now, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTAsWzAsNCwiXFxHYW1tYVxcb3RpbWVzX0IoTl8xXFxvcGx1cyBOXzIpIl0sWzAsMiwiTl8xXFxvcGx1cyBOXzIiXSxbMCwzLCIoXFxHYW1tYVxcb3RpbWVzX0JOXzEpXFxvcGx1cyhcXEdhbW1hXFxvdGltZXNfQk5fMikiXSxbMiw0LCIoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0IoTl8xXFxvcGx1cyBOXzIpIl0sWzIsMCwiXFxHYW1tYVxcb3RpbWVzX0IoXFxHYW1tYVxcb3RpbWVzX0IoTl8xXFxvcGx1cyBOXzIpKSJdLFswLDEsIihcXEdhbW1hXFxvdGltZXNfQk5fMSlcXG9wbHVzKFxcR2FtbWFcXG90aW1lc19CTl8yKSJdLFswLDAsIlxcR2FtbWFcXG90aW1lc19CKE5fMVxcb3BsdXMgTl8yKSJdLFsxLDAsIlxcR2FtbWFcXG90aW1lc19CKChcXEdhbW1hXFxvdGltZXNfQk5fMSlcXG9wbHVzKFxcR2FtbWFcXG90aW1lc19CTl8yKSkiXSxbMSwxLCIoXFxHYW1tYVxcb3RpbWVzX0IoXFxHYW1tYVxcb3RpbWVzX0JOXzEpKVxcb3BsdXMoXFxHYW1tYVxcb3RpbWVzX0IoXFxHYW1tYVxcb3RpbWVzX0JOXzIpKSJdLFsxLDMsIigoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JOXzEpXFxvcGx1cygoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JOXzIpIl0sWzEsMiwiXFxQc2lfe05fMX1cXG9wbHVzXFxQc2lfe05fMn0iLDJdLFsyLDAsIlxcY29uZyIsMl0sWzAsMywiXFxQc2lcXG90aW1lcyhOXzFcXG9wbHVzIE5fMikiLDJdLFszLDQsIlxcY29uZyIsMl0sWzEsNSwiXFxQc2lfe05fMX1cXG9wbHVzXFxQc2lfe05fMn0iXSxbNSw2LCJcXGNvbmciXSxbNiw3LCJcXEdhbW1hXFxvdGltZXNfQihcXFBzaV97Tl8xfVxcb3BsdXNcXFBzaV97Tl8yfSkiXSxbNyw0LCJcXEdhbW1hXFxvdGltZXNfQlxcY29uZyJdLFs1LDgsIihcXEdhbW1hXFxvdGltZXNcXFBzaV97Tl8xfSlcXG9wbHVzKFxcR2FtbWFcXG90aW1lc1xcUHNpX3tOXzJ9KSJdLFs4LDksIlxcY29uZ1xcb3BsdXNcXGNvbmciXSxbOSwzLCJcXGNvbmciLDJdLFsyLDksIihcXFBzaVxcb3RpbWVzIE5fMSlcXG9wbHVzKFxcUHNpXFxvdGltZXMgTl8yKSJdLFs4LDcsIlxcY29uZyIsMl1d
+	\[\begin{tikzcd}[column sep=small]
+		{\Gamma\otimes_B(N_1\oplus N_2)} & {\Gamma\otimes_B((\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2))} & {\Gamma\otimes_B(\Gamma\otimes_B(N_1\oplus N_2))} \\
+		{(\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2)} & {(\Gamma\otimes_B(\Gamma\otimes_BN_1))\oplus(\Gamma\otimes_B(\Gamma\otimes_BN_2))} \\
+		{N_1\oplus N_2} \\
+		{(\Gamma\otimes_BN_1)\oplus(\Gamma\otimes_BN_2)} & {((\Gamma\otimes_B\Gamma)\otimes_BN_1)\oplus((\Gamma\otimes_B\Gamma)\otimes_BN_2)} \\
+		{\Gamma\otimes_B(N_1\oplus N_2)} && {(\Gamma\otimes_B\Gamma)\otimes_B(N_1\oplus N_2)}
+		\arrow["{\Psi_{N_1}\oplus\Psi_{N_2}}"', from=3-1, to=4-1]
+		\arrow["\cong"', from=4-1, to=5-1]
+		\arrow["{\Psi\otimes(N_1\oplus N_2)}"', from=5-1, to=5-3]
+		\arrow["\cong"', from=5-3, to=1-3]
+		\arrow["{\Psi_{N_1}\oplus\Psi_{N_2}}", from=3-1, to=2-1]
+		\arrow["\cong", from=2-1, to=1-1]
+		\arrow["{\Gamma\otimes_B(\Psi_{N_1}\oplus\Psi_{N_2})}", from=1-1, to=1-2]
+		\arrow["{\Gamma\otimes_B\cong}", from=1-2, to=1-3]
+		\arrow["{(\Gamma\otimes\Psi_{N_1})\oplus(\Gamma\otimes\Psi_{N_2})}", from=2-1, to=2-2]
+		\arrow["\cong\oplus\cong", from=2-2, to=4-2]
+		\arrow["\cong"', from=4-2, to=5-3]
+		\arrow["{(\Psi\otimes N_1)\oplus(\Psi\otimes N_2)}", from=4-1, to=4-2]
+		\arrow["\cong"', from=2-2, to=1-2]
+	\end{tikzcd}\]
+	The middle left region commutes since $(N_1,\Psi_{N_1})$ and $(N_2,\Psi_{N_2})$ are left $\Gamma$-comodules. Each other region in the diagram can be seen to commute by a straightforward diagram chase.
+
+	Thus, we have shown that $N_1\oplus N_2$ is indeed canonically an $A$-graded left $\Gamma$-comodule. Then it remains to show that the canonical inclusions $\iota_i:N_i\into N_1\oplus N_2$ are $\Gamma$-comodule homomorphisms for $i=1,2$, and that given $\Gamma$-comodule homomorphisms $(N_1,\Psi_{N_1})\to (N,\Psi_N)$ and $(N_2,\Psi_{N_2})\to(N,\Psi_N)$, that the map $N_1\oplus N_2\to N$ induced by the universal property of the coproduct in $B\text-\Mod^A$ is a $\Gamma$-comodule homomorphism. This is all entirely straightforward to check by doing a few simple diagram chases.
 \end{proof}
 
 \begin{proposition}\label{comodule_co-free_adjunction}
 	The forgetful functor $\Gamma\text-\CoMod^A\to B\text-\Mod^A$ (where here $B\text-\Mod^A$ is the category of $A$-graded left $B$-modules and degree-preserving module homomorphisms between them) has a right adjoint $\Gamma\otimes_B-:B\text-\Mod^A\to\Gamma\text-\CoMod^A$ called the \emph{co-free construction}, where the co-free left $A$-graded $\Gamma$-comodule on a left $A$-graded $B$-module $M$ is the $B$-module $\Gamma\otimes_BM$ equipped with the coaction
 	\[\Psi_{\Gamma\otimes_BM}:\Gamma\otimes_BM\xr{\Psi\otimes_BM}(\Gamma\otimes_B\Gamma)\otimes_BM\xr\cong\Gamma\otimes_B(\Gamma\otimes_BM).\]
-
+%
 %	In particular, for all objects $(N,\Psi_N)$ in $\Gamma\text-\CoMod^A$ and $M$ in $B\text-\Mod^A$, we have isomorphisms of $A$-graded abelian groups 
 %	\[\Hom_{B\text-\Mod^A}^*(N,M)\cong\Hom_{\Gamma\text-\CoMod^A}^*(N,\Gamma\otimes_BM)\]
 %	via the identifications
@@ -411,14 +450,114 @@ In what follows, fix an $A$-graded anticommutative ring $(R,\theta)$ and an $A$-
 	\[\vare_M:\Gamma\otimes_BM\xr{\epsilon\otimes_BM}B\otimes_BM\xr\cong M.\]
 \end{proposition}
 \begin{proof}
-	\todo{todo}
-\end{proof}
+	First, we need to show that given a left $A$-graded $B$-module that the given map $\Psi_{\Gamma\otimes_BM}:\Gamma\otimes_BM\to\Gamma\otimes_B(\Gamma\otimes_BM)$ endows $B$ with the structure of a left $\Gamma$-comodule. To that end, first consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXEdhbW1hXFxvdGltZXNfQk0iXSxbNCw0LCJCXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQk0pIl0sWzIsMCwiKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CTSJdLFs0LDAsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CTSkiXSxbMiwyLCJcXEdhbW1hXFxvdGltZXNfQk0iXSxbMywyLCIoQlxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JNIl0sWzAsMiwiXFxQc2lcXG90aW1lcyBNIl0sWzIsMywiXFxjb25nIl0sWzMsMSwiXFxlcHNpbG9uXFxvdGltZXMoXFxHYW1tYVxcb3RpbWVzIE0pIl0sWzIsNCwiKChcXGV0YV9MXFxjaXJjXFxlcHNpbG9uKVxcY2RvdFxcaWRfXFxHYW1tYSlcXG90aW1lcyBNIiwxXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDEsIlxcY29uZyIsMl0sWzUsMSwiXFxjb25nIiwxXSxbNSw0LCJcXGV0YV9MXFxjZG90XFxpZF9cXEdhbW1hIiwyXSxbMiw1LCIoXFxlcHNpbG9uXFxvdGltZXNcXEdhbW1hKVxcb3RpbWVzIE0iXV0=
+	\[\begin{tikzcd}
+		{\Gamma\otimes_BM} && {(\Gamma\otimes_B\Gamma)\otimes_BM} && {\Gamma\otimes_B(\Gamma\otimes_BM)} \\
+		\\
+		&& {\Gamma\otimes_BM} & {(B\otimes_B\Gamma)\otimes_BM} \\
+		\\
+		&&&& {B\otimes_B(\Gamma\otimes_BM)}
+		\arrow["{\Psi\otimes M}", from=1-1, to=1-3]
+		\arrow["\cong", from=1-3, to=1-5]
+		\arrow["{\epsilon\otimes(\Gamma\otimes M)}", from=1-5, to=5-5]
+		\arrow["{((\eta_L\circ\epsilon)\cdot\id_\Gamma)\otimes M}"{description}, from=1-3, to=3-3]
+		\arrow[Rightarrow, no head, from=1-1, to=3-3]
+		\arrow["\cong"', from=3-3, to=5-5]
+		\arrow["\cong"{description}, from=3-4, to=5-5]
+		\arrow["{\eta_L\cdot\id_\Gamma}"', from=3-4, to=3-3]
+		\arrow["{(\epsilon\otimes\Gamma)\otimes M}", from=1-3, to=3-4]
+	\end{tikzcd}\]
+	The top left region commutes by the co-unitality axiom for a Hopf algebroid. A simple diagram chase yields commutativity of every other diagram (in particular, the bottom region commutes since the left $B$-module structure on $\Gamma$ is that induced by $\eta_L$). Now, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsMTAsWzAsMiwiXFxHYW1tYVxcb3RpbWVzX0JNIl0sWzAsMSwiKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CTSJdLFswLDAsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CTSkiXSxbMCwzLCIoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JNIl0sWzAsNCwiXFxHYW1tYVxcb3RpbWVzX0IoXFxHYW1tYVxcb3RpbWVzX0JNKSJdLFsxLDQsIihcXEdhbW1hXFxvdGltZXNfQlxcR2FtbWEpXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQk0pIl0sWzIsNCwiXFxHYW1tYVxcb3RpbWVzX0IoKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSlcXG90aW1lc19CTSkiXSxbMiwwLCJcXEdhbW1hXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQihcXEdhbW1hXFxvdGltZXNfQk0pKSJdLFsxLDMsIigoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JNIl0sWzEsMSwiKFxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CXFxHYW1tYSkpXFxvdGltZXNfQk0iXSxbMCwxLCJcXFBzaVxcb3RpbWVzIE0iXSxbMSwyLCJcXGNvbmciXSxbMCwzLCJcXFBzaVxcb3RpbWVzIE0iLDJdLFszLDQsIlxcY29uZyIsMl0sWzQsNSwiXFxQc2lcXG90aW1lcyhcXEdhbW1hXFxvdGltZXMgTSkiXSxbNSw2LCJcXGNvbmciXSxbMiw3LCJcXEdhbW1hXFxvdGltZXMoXFxQc2lcXG90aW1lcyBNKSJdLFs3LDYsIlxcR2FtbWFcXG90aW1lc1xcY29uZyJdLFs1LDgsIlxcY29uZyJdLFs4LDksIlxcY29uZyIsMl0sWzMsOCwiKFxcUHNpXFxvdGltZXNcXEdhbW1hKVxcb3RpbWVzIE0iXSxbMSw5LCIoXFxHYW1tYVxcb3RpbWVzXFxQc2kpXFxvdGltZXMgTSJdLFs5LDcsIlxcY29uZyIsMV1d
+	\[\begin{tikzcd}
+		{\Gamma\otimes_B(\Gamma\otimes_BM)} && {\Gamma\otimes_B(\Gamma\otimes_B(\Gamma\otimes_BM))} \\
+		{(\Gamma\otimes_B\Gamma)\otimes_BM} & {(\Gamma\otimes_B(\Gamma\otimes_B\Gamma))\otimes_BM} \\
+		{\Gamma\otimes_BM} \\
+		{(\Gamma\otimes_B\Gamma)\otimes_BM} & {((\Gamma\otimes_B\Gamma)\otimes_B\Gamma)\otimes_BM} \\
+		{\Gamma\otimes_B(\Gamma\otimes_BM)} & {(\Gamma\otimes_B\Gamma)\otimes_B(\Gamma\otimes_BM)} & {\Gamma\otimes_B((\Gamma\otimes_B\Gamma)\otimes_BM)}
+		\arrow["{\Psi\otimes M}", from=3-1, to=2-1]
+		\arrow["\cong", from=2-1, to=1-1]
+		\arrow["{\Psi\otimes M}"', from=3-1, to=4-1]
+		\arrow["\cong"', from=4-1, to=5-1]
+		\arrow["{\Psi\otimes(\Gamma\otimes M)}", from=5-1, to=5-2]
+		\arrow["\cong", from=5-2, to=5-3]
+		\arrow["{\Gamma\otimes(\Psi\otimes M)}", from=1-1, to=1-3]
+		\arrow["\Gamma\otimes\cong", from=1-3, to=5-3]
+		\arrow["\cong", from=5-2, to=4-2]
+		\arrow["\cong"', from=4-2, to=2-2]
+		\arrow["{(\Psi\otimes\Gamma)\otimes M}", from=4-1, to=4-2]
+		\arrow["{(\Gamma\otimes\Psi)\otimes M}", from=2-1, to=2-2]
+		\arrow["\cong"{description}, from=2-2, to=1-3]
+	\end{tikzcd}\]
+	The left region commutes since $\Psi$ is co-associative. A simple diagram chase yields the commutativity of every other diagram. Thus, we have indeed shown that $(\Gamma\otimes_BM,\Psi_{\Gamma\otimes_BM})$ is an $A$-graded left $\Gamma$-comodule, as desired.
+
+	Now, we need to show that $\eta$ and $\vare$ are natural transformations which satisy the zig-zag identities. The maps $\eta$ is clearly natural by how morphisms in $\Gamma\text-\CoMod^A$ are defined. It is also clear that $\vare$ is natural by functoriality of $-\otimes_B-$. Thus, it remains to show the following two diagrams commute for all $M$ in $B\text-\Mod^A$ and $(N,\Psi_N)$ in $\Gamma\text-\CoMod^A$:
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJOIl0sWzEsMCwiXFxHYW1tYVxcb3RpbWVzX0JOIl0sWzEsMSwiTiJdLFszLDAsIlxcR2FtbWFcXG90aW1lc19CKFxcR2FtbWFcXG90aW1lc19CTSkiXSxbNCwwLCJcXEdhbW1hXFxvdGltZXNfQk0iXSxbMywxLCJcXEdhbW1hXFxvdGltZXNfQk0iXSxbMCwxLCJcXGV0YV97KE4sXFxQc2lfTil9Il0sWzEsMiwiXFx2YXJlX04iXSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDUsIlxcR2FtbWFcXG90aW1lc19CXFx2YXJlX00iLDJdLFs0LDUsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsMywiXFxldGFfeyhcXEdhbW1hXFxvdGltZXNfQk0sXFxQc2lfe1xcR2FtbWFcXG90aW1lc19CTX0pfSIsMl1d
+	\[\begin{tikzcd}
+		N & {\Gamma\otimes_BN} && {\Gamma\otimes_B(\Gamma\otimes_BM)} & {\Gamma\otimes_BM} \\
+		& N && {\Gamma\otimes_BM}
+		\arrow["{\eta_{(N,\Psi_N)}}", from=1-1, to=1-2]
+		\arrow["{\vare_N}", from=1-2, to=2-2]
+		\arrow[Rightarrow, no head, from=1-1, to=2-2]
+		\arrow["{\Gamma\otimes_B\vare_M}"', from=1-4, to=2-4]
+		\arrow[Rightarrow, no head, from=1-5, to=2-4]
+		\arrow["{\eta_{(\Gamma\otimes_BM,\Psi_{\Gamma\otimes_BM})}}"', from=1-5, to=1-4]
+	\end{tikzcd}\]
+	Unravelling definitions, the left diagram becomes:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOIl0sWzIsMCwiXFxHYW1tYVxcb3RpbWVzX0JOIl0sWzIsMSwiQlxcb3RpbWVzX0JOIl0sWzIsMiwiTiJdLFswLDEsIlxcUHNpX04iXSxbMSwyLCJcXGVwc2lsb25cXG90aW1lc19CTiJdLFsyLDMsIlxcY29uZyJdLFswLDMsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMiwiXFxjb25nIiwxXV0=
+	\[\begin{tikzcd}
+		N && {\Gamma\otimes_BN} \\
+		&& {B\otimes_BN} \\
+		&& N
+		\arrow["{\Psi_N}", from=1-1, to=1-3]
+		\arrow["{\epsilon\otimes_BN}", from=1-3, to=2-3]
+		\arrow["\cong", from=2-3, to=3-3]
+		\arrow[Rightarrow, no head, from=1-1, to=3-3]
+		\arrow["\cong"{description}, from=1-1, to=2-3]
+	\end{tikzcd}\]
+	This commutes since $(N,\Psi_N)$ is a left $\Gamma$-comodule. On the other hand, the right diagram becomes:
+	% https://q.uiver.app/#q=WzAsNyxbMywwLCJcXEdhbW1hXFxvdGltZXNfQk0iXSxbMSwwLCIoXFxHYW1tYVxcb3RpbWVzX0JcXEdhbW1hKVxcb3RpbWVzX0JNIl0sWzAsMCwiXFxHYW1tYVxcb3RpbWVzX0IoXFxHYW1tYVxcb3RpbWVzX0JNKSJdLFswLDEsIlxcR2FtbWFcXG90aW1lc19CKEJcXG90aW1lc19CIE0pIl0sWzAsMiwiXFxHYW1tYVxcb3RpbWVzX0JNIl0sWzMsMiwiXFxHYW1tYVxcb3RpbWVzX0JNIl0sWzEsMSwiKFxcR2FtbWFcXG90aW1lc19CQilcXG90aW1lc19CTSJdLFswLDEsIlxcUHNpXFxvdGltZXMgTSIsMl0sWzEsMiwiXFxjb25nIiwyXSxbMiwzLCJcXEdhbW1hXFxvdGltZXMoXFxlcHNpbG9uXFxvdGltZXMgTSkiLDJdLFszLDQsIlxcR2FtbWFcXG90aW1lc1xcY29uZyIsMl0sWzAsNSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw0LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDYsIihcXEdhbW1hXFxvdGltZXNfQlxcZXBzaWxvbilcXG90aW1lcyBNIiwyXSxbNiwzLCJcXGNvbmciLDJdLFs2LDQsIihcXGlkX1xcR2FtbWFcXGNkb3RcXGV0YV9SKVxcb3RpbWVzIE0iLDFdLFsxLDUsIihcXGlkX1xcR2FtbWFcXGNkb3QoXFxldGFfUlxcY2lyY1xcZXBzaWxvbikpXFxvdGltZXMgTSIsMV1d
+	\[\begin{tikzcd}
+		{\Gamma\otimes_B(\Gamma\otimes_BM)} & {(\Gamma\otimes_B\Gamma)\otimes_BM} && {\Gamma\otimes_BM} \\
+		{\Gamma\otimes_B(B\otimes_B M)} & {(\Gamma\otimes_BB)\otimes_BM} \\
+		{\Gamma\otimes_BM} &&& {\Gamma\otimes_BM}
+		\arrow["{\Psi\otimes M}"', from=1-4, to=1-2]
+		\arrow["\cong"', from=1-2, to=1-1]
+		\arrow["{\Gamma\otimes(\epsilon\otimes M)}"', from=1-1, to=2-1]
+		\arrow["\Gamma\otimes\cong"', from=2-1, to=3-1]
+		\arrow[Rightarrow, no head, from=1-4, to=3-4]
+		\arrow[Rightarrow, no head, from=3-4, to=3-1]
+		\arrow["{(\Gamma\otimes_B\epsilon)\otimes M}"', from=1-2, to=2-2]
+		\arrow["\cong"', from=2-2, to=2-1]
+		\arrow["{(\id_\Gamma\cdot\eta_R)\otimes M}"{description}, from=2-2, to=3-1]
+		\arrow["{(\id_\Gamma\cdot(\eta_R\circ\epsilon))\otimes M}"{description}, from=1-2, to=3-4]
+	\end{tikzcd}\]
+	The rightmost region commutes by co-unitality of $\Psi$, while a simple diagram chase yields commutativity of the remaining regions (in particular, the bottom let region commutes because the right $B$-module structure on $\Gamma$ is induced by $\eta_R$). 
+\end{proof}	
 
 \begin{proposition}\label{G-CoMod^A_is_abelian_if_eta_R_flat_and_has_enough_injectives}
 	Suppose that $\Gamma$ is flat as a right $B$-module, i.e., suppose $\eta_R:B\to\Gamma$ is a flat ring homomorphism. Then the category $\Gamma\text-\CoMod^A$ is an abelian category and has enough injectives.
 \end{proposition}
 \begin{proof}
-	\todo{finish}
+	In \autoref{G-CoMod^A_is_additive}, we showed that $\Gamma\text-\CoMod^A$ is an additive category, so it remains to show that it has all kernels and cokernels, and that for all morphisms $f$ in $\Gamma\text-\CoMod^A$ that the comparison morphism 
+	\[\coker(\ker f)\to\ker(\coker f)\]
+	is an isomorphism. First, let $f:(N_1,\Psi_{N_1})\to (N_2,\Psi_{N_2})$ be a morphism in $\Gamma\text-\CoMod^A$, and consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNixbMSwwLCJOXzEiXSxbMiwwLCJOXzIiXSxbMiwxLCJcXEdhbW1hXFxvdGltZXNfQk5fMiJdLFsxLDEsIlxcR2FtbWFcXG90aW1lc19CTl8xIl0sWzAsMCwiXFxrZXIgZiJdLFswLDEsIlxcR2FtbWFcXG90aW1lc19CXFxrZXIgZiJdLFswLDEsImYiXSxbMSwyLCJcXFBzaV97Tl8yfSJdLFswLDMsIlxcUHNpX3tOXzF9IiwyXSxbMywyLCJcXEdhbW1hXFxvdGltZXMgZiIsMl0sWzQsMCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{\ker f} & {N_1} & {N_2} \\
+		{\Gamma\otimes_B\ker f} & {\Gamma\otimes_BN_1} & {\Gamma\otimes_BN_2}
+		\arrow["f", from=1-2, to=1-3]
+		\arrow["{\Psi_{N_2}}", from=1-3, to=2-3]
+		\arrow["{\Psi_{N_1}}"', from=1-2, to=2-2]
+		\arrow["{\Gamma\otimes f}"', from=2-2, to=2-3]
+		\arrow[hook, from=1-1, to=1-2]
+		\arrow[dashed, from=1-1, to=2-1]
+		\arrow[hook, from=2-1, to=2-2]
+	\end{tikzcd}\]
+	By the assumption that $\Gamma$ is flat as a right $B$-module, we have that $\Gamma\otimes_B-$ is exact, so that in particular it preserves kernels, meaning $\Gamma\otimes_B\ker f=\ker(\Gamma\otimes_Bf)$. This gives the bottom left horizontal arrow. Then by the universal property of the kernel in $B\text-\Mod^A$ and the fact that the right square commutes, we get the vertical dashed arrow which makes the left square commute, as desired, and that $\ker f$ with this structure map is indeed the kernel of $f$ in $\Gamma\text-\CoMod$. Showing that this structure map makes the two diagrams in \autoref{left_comodule_defn} commute is an exercise in diagram chasing and applying universal properties. Now, showing that the cokernel of $f$ belongs to $\Gamma\text-\CoMod^A$ is formally dual. Finally, it follows from construction that the comparison morphism
+	\[\coker(\ker f)\to\ker(\coker f)\]
+	formed in $\Gamma\text-\CoMod^A$ is precisely the comparison morphism in $B\text-\Mod$, which is an isomorphism, and thus clearly an isomorphism in $\Gamma\text-\CoMod^A$ as well. Thus $\Gamma\text-\CoMod^A$ is indeed abelian, as desired.
 \end{proof}
 
 \begin{proposition}[{\cite[Lemma 3.5]{nlab:introduction_to_the_adams_spectral_sequence}}]\label{co-free_comodules_are_hom(P,-)-acyclic}

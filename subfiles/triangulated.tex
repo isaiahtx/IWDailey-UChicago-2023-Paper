@@ -60,9 +60,11 @@
         \[Y\xrightarrow gZ\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y\]
         is distinguished.
         \item (Octahedral axiom) Given three distinguished triangles
-        \[X\xrightarrow fY\xrightarrow h Y/X\to\Sigma X\]
-        \[Y\xrightarrow gZ\xrightarrow k Z/Y\to\Sigma Y\]
-        \[X\xrightarrow{g\circ f}Z\xrightarrow lZ/X\to\Sigma X\]
+        \begin{gather*}
+            X\xrightarrow fY\xrightarrow h Y/X\to\Sigma X \\
+            Y\xrightarrow gZ\xrightarrow k Z/Y\to\Sigma Y \\
+            X\xrightarrow{g\circ f}Z\xrightarrow lZ/X\to\Sigma X
+        \end{gather*}
         there exists a distinguished triangle
         \[Y/X\xrightarrow uZ/X\xrightarrow vZ/Y\xrightarrow w\Sigma(Y/X)\]
         such that the following diagram commutes
@@ -346,16 +348,19 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
 \begin{definition}[{\cite[Definition 1.6.4]{Neeman_2001}}]\label{homotopy_colimit_defn}
     Assume that $\cC$ has countable coproducts. Let
     \[X_0\xr{j_1}X_1\xr{j_2} X_2\xr{j_3}X_3\to\cdots\]
-    be a sequence of objects and morphisms in $\cC$. The \emph{homotopy colimit} of the sequence, denoted $\holim X_i$, is by definition given, up to non-canonical isomorphism, as the cofiber of the map
+    be a sequence of objects and morphisms in $\cC$. The \emph{homotopy colimit} of the sequence, denoted $\hocolim X_i$, is given (up to non-canonical isomorphism) as the cofiber of the map
     \[\coprod_{i=0}^\infty X_i\xr{1-\text{shift}}\coprod_{i=0}^\infty X_i,\]
-    where the shift map $\coprod_{i=0}^\infty X_i\xr{\text{shift}}\coprod_{i=0}^\infty X_i$ is understood to be the direct sum of $j_{i+1}:X_i\to X_{i+1}$. In other words, the map $1-\text{shift}$ is the infinite matrix
-    \[\begin{bmatrix}
-        \id_{X_0} & 0 & 0 & 0 & \cdots \\
-        -j_1 & \id_{X_1} & 0 & 0 & \cdots \\
-        0 & -j_2 & \id_{X_2} & 0 & \cdots \\
-        0 & 0 & -j_3 & \id_{X_3} & \cdots \\
-        \vdots & \vdots & \vdots & \vdots & \ddots
-    \end{bmatrix}\]
+    where the shift map $\coprod_{i=0}^\infty X_i\xr{\text{shift}}\coprod_{i=0}^\infty X_i$ is understood to be the direct sum of $j_{i+1}:X_i\to X_{i+1}$, i.e., by the universal property of the coproduct, it is induced by the maps
+    \[X_s\xr{j_{s+1}}X_{s+1}\into\coprod_{i=0}^\infty X_i.\]
+\end{definition}
+
+\begin{definition}\label{homotopy_limit_defn}
+    Assume that $\cC$ has countable products, and let
+    \[\cdots\to X_3\xr{j_3}X_2\xr{j_2}X_1\xr{j_1}X_0\]
+    be a sequence of objects and morphisms in $\cC$. The \emph{homotopy limit} of the sequence, denoted $\holim X_i$, is given (up to non-canonical isomorphism) as the fiber of the map
+    \[\prod_{i=0}^\infty X_i\xr{1-\text{shift}}\prod_{i=0}^\infty,\]
+    where the shift map $\prod_{i=0}^\infty X_i\xr{\text{shift}}\prod_{i=0}^\infty X_i$ is understood to be the product of $j_i:X_i\to X_{i-1}$, i.e., by the universal property of the product, it is induced by the maps
+    \[\prod_{i=0}^\infty X_i\onto X_{s+1}\xr{j_{s+1}}X_s.\]
 \end{definition}
 
 \begin{proposition}[{\cite[Proposition 1.6.8]{Neeman_2001}}]\label{idempotent_splits_in_tri_cat_with_countable_coproducts}
@@ -366,7 +371,6 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
 \end{proposition}
 \begin{proof}
     See~\cite[Proposition 1.6.8]{Neeman_2001}.
-    \todo{write proof down?}
 \end{proof}
 
 \subsection{Adjointly triangulated categories}

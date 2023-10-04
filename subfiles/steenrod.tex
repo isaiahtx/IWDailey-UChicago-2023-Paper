@@ -25,7 +25,7 @@ First, recall that given a monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is ca
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    It is a general fact that the unit and multiplication maps $e:S\to E$ and $\mu:E\otimes E\to E$ for a monoid are monoid homomorphisms (\autoref{e_and_mu_are_monoid_homos}), so that furthermore the maps $E\otimes e$, and $e\otimes E$ from $E$ to $E\otimes E$ are monoid homomorphisms, by \autoref{E_ox_f,f_ox_E_are_monoid_homos}. Similarly, $E\otimes e\otimes E:E\otimes E\to E\otimes E\otimes E$ is a monoid homomorphism. Thus, it remains to show that $\tau_{E,E}:E\otimes E\to E\otimes E$ is a monoid homomorphism. First, consider the following diagram:
+    It is a general fact that the unit and multiplication maps $e:S\to E$ and $\mu:E\otimes E\to E$ for a monoid are monoid homomorphisms when $(E,\mu,e)$ is a commutative monoid object (\autoref{e_and_mu_are_monoid_homos}), so that the maps $E\otimes e$, and $e\otimes E$ from $E$ to $E\otimes E$ are monoid homomorphisms, by \autoref{E_ox_f,f_ox_E_are_monoid_homos}. Similarly, $E\otimes e\otimes E:E\otimes E\to E\otimes E\otimes E$ is a monoid homomorphism. Thus, it remains to show that $\tau_{E,E}:E\otimes E\to E\otimes E$ is a monoid homomorphism. First, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJFXzFcXG90aW1lcyBFXzJcXG90aW1lcyBFXzNcXG90aW1lcyBFXzQiXSxbMSwwLCJFXzJcXG90aW1lcyBFXzFcXG90aW1lcyBFXzRcXG90aW1lcyBFXzMiXSxbMCwxLCJFXzFcXG90aW1lcyBFXzNcXG90aW1lcyBFXzJcXG90aW1lcyBFXzQiXSxbMCwyLCJFX3sxLDN9XFxvdGltZXMgRV97Miw0fSJdLFsxLDIsIkVfezIsNH1cXG90aW1lcyBFX3sxLDN9Il0sWzEsMSwiRV8yXFxvdGltZXMgRV80XFxvdGltZXMgRV8xXFxvdGltZXMgRV8zIl0sWzAsMSwiXFx0YXVcXG90aW1lcyBcXHRhdSJdLFswLDIsIkVcXG90aW1lcyBcXHRhdVxcb3RpbWVzIEUiLDJdLFsyLDMsIlxcbXVcXG90aW1lcyBcXG11IiwyXSxbMyw0LCJcXHRhdSIsMl0sWzEsNSwiRVxcb3RpbWVzIFxcdGF1XFxvdGltZXMgRSJdLFs1LDQsIlxcbXVcXG90aW1lcyBcXG11Il0sWzIsNSwiXFx0YXVfe0VcXG90aW1lcyBFLEVcXG90aW1lcyBFfSJdXQ==
 	\[\begin{tikzcd}
 		{E_1\otimes E_2\otimes E_3\otimes E_4} & {E_2\otimes E_1\otimes E_4\otimes E_3} \\
@@ -266,68 +266,7 @@ Above, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$
     Let $(E,\mu,e)$ be a commutative monoid object in $\cSH$ which is flat (\autoref{flat}) and cellular (\autoref{cellular}). Then the dual $E$-Steenrod algebra $(E_*(E),\pi_*(E))$ with the structure maps $(\eta_L,\eta_R,\Psi,\epsilon,c)$ from \autoref{dual_E-Steenrod_algebra_defn} is an $A$-graded anticommutative Hopf algebroid over $\pi_*(S)$ (\autoref{hopf_algebroid_defn}), i.e., a co-groupoid object in the category $\pi_*(S)\text-\GCA^{A}$.
 \end{proposition}
 \begin{proof}
-	We need to show all the diagrams in \autoref{hopf_algebroid_defn} commute. Since we are dealing with $A$-graded homomorphisms, when showing these diagrams commute, it always suffices to chase homogeneous elements around. To that end, we fix homogeneous elements $x:S^a\to E$ in $\pi_*(E)$ and $y:S^b\to E\otimes E$ in $E_*(E\otimes E)$ now.
-
-	First, we wish to show the outside of the following diagram commutes:
-	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHBpXyooRSkiXSxbMiwwLCJFXyooRSkiXSxbMCwyLCJFXyooRSkiXSxbMiwyLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihFKSJdLFsxLDEsIkVfKihFXFxvdGltZXMgRSkiXSxbMCwxLCJcXGV0YV9SIl0sWzAsMiwiXFxldGFfUiIsMl0sWzIsMywieFxcbWFwc3RvMVxcb3RpbWVzIHgiLDJdLFsxLDQsIlxccGlfKihFXFxvdGltZXMgZVxcb3RpbWVzIEUpIiwxXSxbMyw0LCJcXFBoaV97RSxFfSIsMV0sWzEsMywiXFxQc2kiXV0=
-	\[\begin{tikzcd}
-		{\pi_*(E)} && {E_*(E)} \\
-		& {E_*(E\otimes E)} \\
-		{E_*(E)} && {E_*(E)\otimes_{\pi_*(E)}E_*(E)}
-		\arrow["{\eta_R}", from=1-1, to=1-3]
-		\arrow["{\eta_R}"', from=1-1, to=3-1]
-		\arrow["{x\mapsto1\otimes x}"', from=3-1, to=3-3]
-		\arrow["{\pi_*(E\otimes e\otimes E)}"{description}, from=1-3, to=2-2]
-		\arrow["{\Phi_{E,E}}"{description}, from=3-3, to=2-2]
-		\arrow["\Psi", from=1-3, to=3-3]
-	\end{tikzcd}\]
-	The right region commutes by how $\Psi$ is defined, and $\Phi_{E,E}$ is an isomorphism, so it suffices to show the left region commutes. To that end, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXmEiXSxbMSwwLCJFIl0sWzIsMCwiRVxcb3RpbWVzIEUiXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEUiXSxbMCwxLCJTXFxvdGltZXMgU15hIl0sWzAsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBFIl0sWzAsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgRSJdLFswLDEsIngiXSxbMSwyLCJlXFxvdGltZXMgRSJdLFsyLDMsIkVcXG90aW1lcyBlXFxvdGltZXMgRSJdLFswLDQsIlxccGhpX3swLGF9PVxcbGFtYmRhX3tTXmF9XnstMX0iLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImVcXG90aW1lcyBlXFxvdGltZXMgeCIsMl0sWzUsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBlXFxvdGltZXMgRSIsMl0sWzYsMywiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBFIiwyXSxbNSwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDMsImVcXG90aW1lcyBlXFxvdGltZXMgeCIsMV1d
-	\[\begin{tikzcd}
-		{S^a} & E & {E\otimes E} \\
-		{S\otimes S^a} \\
-		{E\otimes E\otimes E} \\
-		{E\otimes E\otimes E\otimes E} && {E\otimes E\otimes E}
-		\arrow["x", from=1-1, to=1-2]
-		\arrow["{e\otimes E}", from=1-2, to=1-3]
-		\arrow["{E\otimes e\otimes E}", from=1-3, to=4-3]
-		\arrow["{\phi_{0,a}=\lambda_{S^a}^{-1}}"', Rightarrow, no head, from=1-1, to=2-1]
-		\arrow["{e\otimes e\otimes x}"', from=2-1, to=3-1]
-		\arrow["{E\otimes E\otimes e\otimes E}"', from=3-1, to=4-1]
-		\arrow["{E\otimes \mu\otimes E}"', from=4-1, to=4-3]
-		\arrow[Rightarrow, no head, from=3-1, to=4-3]
-		\arrow["{e\otimes e\otimes x}"{description}, from=1-1, to=4-3]
-	\end{tikzcd}\]
-	The top composition is $\pi_*(E\otimes e\otimes E)(\eta_R(x))$, while the bottom composition is $\Phi_{E,E}(1\otimes\eta_R(x))$. The top right region commutes by functoriality of $-\otimes-$. The bottom left triangle commutes by unitality of $\mu$. Finally, the middle triangle commutes by definition.
-
-	Now, we wish to show the following diagram commutes
-	% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHBpXyooRSkiXSxbMSwxLCJcXHBpXyooRSkiXSxbMiwwLCJFXyooRSkiXSxbMCwwLCJFXyooRSkiXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDIsIlxcZXRhX1IiXSxbMCwzLCJcXGV0YV9MIiwyXSxbMywxLCJcXGVwc2lsb24iLDJdLFsyLDEsIlxcZXBzaWxvbiJdXQ==
-	\[\begin{tikzcd}
-		{E_*(E)} & {\pi_*(E)} & {E_*(E)} \\
-		& {\pi_*(E)}
-		\arrow[Rightarrow, no head, from=1-2, to=2-2]
-		\arrow["{\eta_R}", from=1-2, to=1-3]
-		\arrow["{\eta_L}"', from=1-2, to=1-1]
-		\arrow["\epsilon"', from=1-1, to=2-2]
-		\arrow["\epsilon", from=1-3, to=2-2]
-	\end{tikzcd}\]
-	Unravelling how $\eta_L$, $\eta_R$, and $\epsilon$ are defined, this is the diagram obtained by applying $\pi_*$ to the following diagram:
-	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXFxvdGltZXMgRSJdLFsxLDAsIkUiXSxbMiwwLCJFXFxvdGltZXMgRSJdLFsxLDEsIkUiXSxbMSwyLCJlXFxvdGltZXMgRSJdLFsyLDMsIlxcbXUiXSxbMCwzLCJcXG11IiwyXSxbMSwwLCJFXFxvdGltZXMgZSIsMl0sWzEsMywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
-	\[\begin{tikzcd}
-		{E\otimes E} & E & {E\otimes E} \\
-		& E
-		\arrow["{e\otimes E}", from=1-2, to=1-3]
-		\arrow["\mu", from=1-3, to=2-2]
-		\arrow["\mu"', from=1-1, to=2-2]
-		\arrow["{E\otimes e}"', from=1-2, to=1-1]
-		\arrow[Rightarrow, no head, from=1-2, to=2-2]
-	\end{tikzcd}\]
-	This commutes by unitality of $\mu$.
-
-	Showing that the third diagram in item (1) in \autoref{hopf_algebroid_defn} is entirely analagous to how we showed the first diagram commutes.
-
-	Now, we'd like to show the following diagram commutes:
-	\todo{finish proof, add reference to that old Adams book}
+	All that needs to be done is to show all the diagrams in \autoref{hopf_algebroid_defn} commute. This is nearly all entirely straightforward, the only difficulty that arises is showing the co-associativity diagram holds. The argument is sketched in the case $\cSH$ is the classical stable homotopy category in sufficent detail in Lecture 3 of the article \cite{Adams_69} by Adams. The argument given there works essentially the exact same way here in our more general setting.
 \end{proof}
 
 \subsection{Comodules over the dual \texorpdfstring{$E$}{E}-Steenrod algebra}
@@ -336,22 +275,59 @@ Above, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$
 \begin{proposition}\label{E_*_functor_from_SH_to_E*E-comodules}
     Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then $E_*(-)$ is an additive functor from the full subcategory $\cSH\text-\Cell$ of cellular objects in $\cSH$ to the category $E_*(E)\text-\CoMod^A$ of left $A$-graded comodules (\autoref{left_comodule_defn}) over the dual $E$-Steenrod algebra, which is an $A$-graded commutative Hopf algebroid over $\pi_*(S)$, by \autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}.
 
-    In particular, given an object $X$ in $\cSH\text-\Cell_E$, we are viewing $E_*(X)$ with its canonical left $\pi_*(E)$-module structure (\autoref{module}), and the action map 
+    In particular, given an object $X$ in $\cSH\text-\Cell$, we are viewing $E_*(X)$ with its canonical left $\pi_*(E)$-module structure (\autoref{module}), and the action map 
     \[\Psi_X:E_*(X)\to E_*(E)\otimes_{\pi_*(E)}E_*(X)\]
     is given by the composition
     \[\Psi_X:E_*(X)\xr{E_*(e\otimes X)}E_*(E\otimes X)\xr{\Phi_{E,X}^{-1}}E_*(E)\otimes_{\pi_*(E)}E_*(X).\]
 \end{proposition}
 \begin{proof}
-	\todo{TODO}
+    Again, we refer the reader to Lecture 3 in \cite{Adams_69}.
 \end{proof}
 
 \begin{proposition}\label{Phi_E,X_is_comodule_homo}
     Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object in $\cSH$. Then given an object $X$ in $\cSH$, the map
     \[\Phi_{E,X}:E_*(E)\otimes_{\pi_*(E)}E_*(X)\to E_*(E\otimes X)\]
-    constructed in \autoref{Kunneth_map} is a homomorphism of $A$-graded left $\Gamma$-comodules, where here by \autoref{comodule_co-free_adjunction} we are viewing $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ as the co-free $E_*(E)$-comodule on $E_*(X)$ with its canonical $A$-graded left $\pi_*(E)$-module structure (from \autoref{module}).
+    constructed in \autoref{Kunneth_map} is a homomorphism of $A$-graded left $\Gamma$-comodules, where here by \autoref{comodule_co-free_adjunction} we are viewing $E_*(E)\otimes_{\pi_*(E)}E_*(X)$ as the co-free $E_*(E)$-comodule on $E_*(X)$ with its canonical $A$-graded left $\pi_*(E)$-module structure (from \autoref{module}), and $E_*(E\otimes X)$ with its canonical left $E_*(E)$-comodule structure from \autoref{E_*_functor_from_SH_to_E*E-comodules}.
 \end{proposition}
 \begin{proof}
-	\todo{TODO}
+    Consider the following diagram:
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihYKSJdLFswLDYsIkVfKihFXFxvdGltZXMgWCkiXSxbMiwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfShFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihYKSkiXSxbMiw2LCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihFXFxvdGltZXMgWCkiXSxbMSw1LCJFXyooRVxcb3RpbWVzIEVcXG90aW1lcyBYKSJdLFsxLDIsIkVfKihFXFxvdGltZXMgRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihYKSJdLFsxLDEsIihFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihFKSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihYKSJdLFsxLDMsIihFXFxvdGltZXMgRSlfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9RV8qKFgpIl0sWzEsNCwiXFxwaV8qKEVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgpIl0sWzAsMSwiXFxQaGlfe0UsWH0iLDJdLFswLDIsIlxcUHNpX3tFXyooRSlcXG90aW1lcyBFXyooWCl9Il0sWzIsMywiRV8qKEUpXFxvdGltZXNcXFBoaV97RSxYfSJdLFsxLDMsIlxcUHNpX3tFXFxvdGltZXMgWH0iXSxbMSw0LCJFXyooZVxcb3RpbWVzIEVcXG90aW1lcyBYKSJdLFszLDQsIlxcUGhpX3tFLEVcXG90aW1lcyBYfSIsMl0sWzAsNSwiRV8qKGVcXG90aW1lcyBFKSIsMix7ImN1cnZlIjozfV0sWzYsNSwiXFxQaGlfe0UsRX1cXG90aW1lcyBFXyooWCkiXSxbNiwyLCJcXGNvbmciLDJdLFs1LDcsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsOCwiXFxQaGlfe0UsWH0iXSxbOCw0LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    \[\begin{tikzcd}[column sep=tiny]
+        {E_*(E)\otimes_{\pi_*(E)}E_*(X)} && {E_*(E)\otimes_{\pi_*(E)}(E_*(E)\otimes_{\pi_*(E)}E_*(X))} \\
+        & {(E_*(E)\otimes_{\pi_*(E)}E_*(E))\otimes_{\pi_*(E)}E_*(X)} \\
+        & {E_*(E\otimes E)\otimes_{\pi_*(E)}E_*(X)} \\
+        & {(E\otimes E)_*(E)\otimes_{\pi_*(E)}E_*(X)} \\
+        & {\pi_*(E\otimes E\otimes E\otimes X)} \\
+        & {E_*(E\otimes E\otimes X)} \\
+        {E_*(E\otimes X)} && {E_*(E)\otimes_{\pi_*(E)}E_*(E\otimes X)}
+        \arrow["{\Phi_{E,X}}"', from=1-1, to=7-1]
+        \arrow["{\Psi_{E_*(E)\otimes E_*(X)}}", from=1-1, to=1-3]
+        \arrow["{E_*(E)\otimes\Phi_{E,X}}", from=1-3, to=7-3]
+        \arrow["{\Psi_{E\otimes X}}", from=7-1, to=7-3]
+        \arrow["{E_*(e\otimes E\otimes X)}", from=7-1, to=6-2]
+        \arrow["{\Phi_{E,E\otimes X}}"', from=7-3, to=6-2]
+        \arrow["{E_*(e\otimes E)}"', curve={height=18pt}, from=1-1, to=3-2]
+        \arrow["{\Phi_{E,E}\otimes E_*(X)}", from=2-2, to=3-2]
+        \arrow["\cong"', from=2-2, to=1-3]
+        \arrow[Rightarrow, no head, from=3-2, to=4-2]
+        \arrow["{\Phi_{E,X}}", from=4-2, to=5-2]
+        \arrow[Rightarrow, no head, from=5-2, to=6-2]
+    \end{tikzcd}\]
+    The top and bottom regions commute by definition. The left region commutes by naturality of $\Phi_{E,X}$. Thus, it remains to show the rightmost region commutes. To that end, since all the arrows involved are homomorphisms, it suffices to chase a homogeneous pure tensor around. Let $x:S^a\to E\otimes E$, $y:S^b\to E\otimes E$, and $z:S^c\to E\otimes X$, and consider the following diagram:
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnthK2IrY30iXSxbMCwxLCJTXmFcXG90aW1lcyBTXmJcXG90aW1lcyBTXmMiXSxbMCwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMiwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsyLDMsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMCwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFswLDEsIlxccGhpIiwyXSxbMSwyLCJ4XFxvdGltZXMgeVxcb3RpbWVzIHoiLDJdLFsyLDMsIkVcXG90aW1lcyBcXG11XFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBcXG11XFxvdGltZXMgWCJdLFsyLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBYIiwyXSxbNSw0LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIEVcXG90aW1lcyBYIl1d
+    \[\begin{tikzcd}
+        {S^{a+b+c}} \\
+        {S^a\otimes S^b\otimes S^c} \\
+        {E\otimes E\otimes E\otimes E\otimes E\otimes X} && {E\otimes E\otimes E\otimes E\otimes X} \\
+        {E\otimes E\otimes E\otimes E\otimes X} && {E\otimes E\otimes E\otimes X}
+        \arrow["\phi"', from=1-1, to=2-1]
+        \arrow["{x\otimes y\otimes z}"', from=2-1, to=3-1]
+        \arrow["{E\otimes \mu\otimes E\otimes E\otimes X}", from=3-1, to=3-3]
+        \arrow["{E\otimes E\otimes \mu\otimes X}", from=3-3, to=4-3]
+        \arrow["{E\otimes E\otimes E\otimes \mu\otimes X}"', from=3-1, to=4-1]
+        \arrow["{E\otimes \mu\otimes E\otimes X}", from=4-1, to=4-3]
+    \end{tikzcd}\]
+    The two compositions are the two results of chasing $(x\otimes y)\otimes z$ around the rightmost region in the above diagram. It clearly commutes by functoriality of $-\otimes-$. Hence, indeed we have that $\Phi_{E,X}$ is a homomorphism of left $E_*(E)$-comodules, as desired.
 \end{proof}
 
 \begin{lemma}\label{t^a_isos_are_E_*E-comodule_isos}
@@ -360,7 +336,66 @@ Above, given a flat and cellular commutative monoid object $(E,\mu,e)$ in $\cSH$
 	from \autoref{E_homology_suspension_iso_t^a's} is an $A$-graded isomorphism of left $E_*(E)$-comodules.
 \end{lemma}
 \begin{proof}
-	\todo{TODO}
+    We know that $t^a_X:E_*(\Sigma^aX)\to E_{*-a}(X)$ is already an $A$-graded isomorphism of left $\pi_*(E)$-modules, so clearly it simply suffices to show that $t^a_X$ is a homomorphism of left $E_*(E)$-comodules. To that end, consider the following diagram:
+    % https://q.uiver.app/#q=WzAsNyxbMCwwLCJFXyooXFxTaWdtYV5hWCkiXSxbMCw0LCJFX3sqLWF9KFgpIl0sWzMsMCwiRV8qKEUpXFxvdGltZXNfe1xccGlfKihFKX0gRV8qKFxcU2lnbWFeYVgpIl0sWzIsMSwiRV8qKEVcXG90aW1lc1xcU2lnbWFeYVgpIl0sWzIsMywiRV97Ki1hfShFXFxvdGltZXMgWCkiXSxbMyw0LCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfeyotYX0oWCkiXSxbMiwyLCJFXyooXFxTaWdtYV5hKEVcXG90aW1lcyBYKSkiXSxbMCwxLCJ0XmFfWCIsMl0sWzAsMiwiXFxQc2lfe1xcU2lnbWFeYVh9Il0sWzAsMywiRV8qKGVcXG90aW1lc1xcU2lnbWFeYVgpIiwxXSxbMiwzLCJcXFBoaV97RSxcXFNpZ21hXmFYfSIsMV0sWzEsNCwiRV97Ki1hfShlXFxvdGltZXMgWCkiLDFdLFs1LDQsIlxcUGhpX3tFLFh9IiwxXSxbMSw1LCJcXFBzaV9YIiwyXSxbMiw1LCJFXyooRSlcXG90aW1lcyB0XmFfWCJdLFszLDYsIkVfKihcXHRhdV97RSxTXmF9XFxvdGltZXMgWCkiLDFdLFs2LDQsInReYV97RVxcb3RpbWVzIFh9IiwxXV0=
+    \begin{equation}\label{eww_t^a_comodule_diagram}\begin{tikzcd}
+        {E_*(\Sigma^aX)} &&& {E_*(E)\otimes_{\pi_*(E)} E_*(\Sigma^aX)} \\
+        && {E_*(E\otimes\Sigma^aX)} \\
+        && {E_*(\Sigma^a(E\otimes X))} \\
+        && {E_{*-a}(E\otimes X)} \\
+        {E_{*-a}(X)} &&& {E_*(E)\otimes_{\pi_*(E)}E_{*-a}(X)}
+        \arrow["{t^a_X}"', from=1-1, to=5-1]
+        \arrow["{\Psi_{\Sigma^aX}}", from=1-1, to=1-4]
+        \arrow["{E_*(e\otimes\Sigma^aX)}"{description}, from=1-1, to=2-3]
+        \arrow["{\Phi_{E,\Sigma^aX}}"{description}, from=1-4, to=2-3]
+        \arrow["{E_{*-a}(e\otimes X)}"{description}, from=5-1, to=4-3]
+        \arrow["{\Phi_{E,X}}"{description}, from=5-4, to=4-3]
+        \arrow["{\Psi_X}"', from=5-1, to=5-4]
+        \arrow["{E_*(E)\otimes t^a_X}", from=1-4, to=5-4]
+        \arrow["{E_*(\tau_{E,S^a}\otimes X)}"{description}, from=2-3, to=3-3]
+        \arrow["{t^a_{E\otimes X}}"{description}, from=3-3, to=4-3]
+    \end{tikzcd}\end{equation}
+    The top and bottom regions commute by definition. To see the left and right regions commute, we'll do a diagram chase of homogeneous elements. First of all, let $x:S^b\to E\otimes S^a\otimes X$ in $E_*(\Sigma^aX)$, and consider the following diagram exhibiting the two ways to chase $x$ around the leftmost region:
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJTXntiLWF9Il0sWzAsMSwiU15iXFxvdGltZXMgU157LWF9Il0sWzAsMiwiRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFhcXG90aW1lcyBTXnstYX0iXSxbMSwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIFNeYVxcb3RpbWVzIFhcXG90aW1lcyBTXnstYX0iXSxbMiwyLCJFXFxvdGltZXMgU15hXFxvdGltZXMgRVxcb3RpbWVzIFhcXG90aW1lcyBTXnstYX0iXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIFhcXG90aW1lcyBTXmFcXG90aW1lcyBTXnstYX0iXSxbMiw0LCJFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMCw0LCJFXFxvdGltZXMgWFxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSJdLFsxLDQsIkVcXG90aW1lcyBYIl0sWzAsMSwiXFxwaGlfe2IsLWF9IiwyXSxbMSwyLCJ4XFxvdGltZXMgU157LWF9IiwyXSxbMiwzLCJFXFxvdGltZXMgZVxcb3RpbWVzIFNeYVxcb3RpbWVzIFhcXG90aW1lcyBTXnstYX0iXSxbMyw0LCJFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBYXFxvdGltZXMgU157LWF9Il0sWzQsNSwiRVxcb3RpbWVzIFxcdGF1X3tTXmEsRVxcb3RpbWVzIFh9XFxvdGltZXMgU157LWF9Il0sWzUsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBYXFxvdGltZXMgXFxwaGlfe2EsLWF9XnstMX0iXSxbMiw3LCJFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBTXnstYX0iLDJdLFszLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBTXnstYX0iLDFdLFs3LDUsIkVcXG90aW1lcyBlXFxvdGltZXMgWFxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSIsMV0sWzcsOCwiRVxcb3RpbWVzIFhcXG90aW1lcyBcXHBoaV97YSwtYX1eey0xfSIsMl0sWzgsNiwiRVxcb3RpbWVzIGVcXG90aW1lcyBYIiwyXV0=
+    \[\begin{tikzcd}
+        {S^{b-a}} \\
+        {S^b\otimes S^{-a}} \\
+        {E\otimes S^a\otimes X\otimes S^{-a}} & {E\otimes E\otimes S^a\otimes X\otimes S^{-a}} & {E\otimes S^a\otimes E\otimes X\otimes S^{-a}} \\
+        && {E\otimes E\otimes X\otimes S^a\otimes S^{-a}} \\
+        {E\otimes X\otimes S^a\otimes S^{-a}} & {E\otimes X} & {E\otimes E\otimes X}
+        \arrow["{\phi_{b,-a}}"', from=1-1, to=2-1]
+        \arrow["{x\otimes S^{-a}}"', from=2-1, to=3-1]
+        \arrow["{E\otimes e\otimes S^a\otimes X\otimes S^{-a}}", from=3-1, to=3-2]
+        \arrow["{E\otimes \tau\otimes X\otimes S^{-a}}", from=3-2, to=3-3]
+        \arrow["{E\otimes \tau_{S^a,E\otimes X}\otimes S^{-a}}", from=3-3, to=4-3]
+        \arrow["{E\otimes E\otimes X\otimes \phi_{a,-a}^{-1}}", from=4-3, to=5-3]
+        \arrow["{E\otimes \tau\otimes S^{-a}}"', from=3-1, to=5-1]
+        \arrow["{E\otimes E\otimes \tau\otimes S^{-a}}"{description}, from=3-2, to=4-3]
+        \arrow["{E\otimes e\otimes X\otimes S^a\otimes S^{-a}}"{description}, from=5-1, to=4-3]
+        \arrow["{E\otimes X\otimes \phi_{a,-a}^{-1}}"', from=5-1, to=5-2]
+        \arrow["{E\otimes e\otimes X}"', from=5-2, to=5-3]
+    \end{tikzcd}\]
+    The top right region commutes by coherence for the symmetries, while the other two regions commute by functoriality of $-\otimes-$. Thus, it remains to show the rightmost region in diagram (\ref{eww_t^a_comodule_diagram}) commutes. To that end, let $x:S^b\to E\otimes E$ in $E_*(E)$ and $y:S^c\to E\otimes S^a\otimes X$ in $E_*(\Sigma^aX)$, and consider the following diagram, which exhibits the two ways to chase $x\otimes y$ around the rightmost region of diagram (\ref{eww_t^a_comodule_diagram}):
+    % https://q.uiver.app/#q=WzAsOSxbMCwwLCJTXntiK2MtYX0iXSxbMCwxLCJTXmJcXG90aW1lcyBTXmNcXG90aW1lcyBTXnstYX0iXSxbMCwyLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYXFxvdGltZXMgU157LWF9Il0sWzEsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBTXmFcXG90aW1lcyBYXFxvdGltZXMgU157LWF9Il0sWzIsMiwiRVxcb3RpbWVzIFNeYVxcb3RpbWVzIEVcXG90aW1lcyBYXFxvdGltZXMgU157LWF9Il0sWzIsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBYXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9Il0sWzIsNCwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzAsMywiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWFxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSJdLFswLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgRVxcb3RpbWVzIFgiXSxbMCwxLCJcXHBoaSJdLFsxLDIsInhcXG90aW1lcyB5XFxvdGltZXMgU157LWF9Il0sWzIsMywiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBTXmFcXG90aW1lcyBYXFxvdGltZXMgU157LWF9Il0sWzMsNCwiRVxcb3RpbWVzIFxcdGF1XFxvdGltZXMgWFxcb3RpbWVzIFNeey1hfSJdLFs0LDUsIkVcXG90aW1lc1xcdGF1X3tTXmEsRVxcb3RpbWVzIFh9U157LWF9Il0sWzUsNiwiRVxcb3RpbWVzIEVcXG90aW1lcyBYXFxvdGltZXMgXFxwaGlfe2EsLWF9XnstMX0iXSxbMiw3LCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBcXHRhdVxcb3RpbWVzIFNeey1hfSIsMl0sWzcsOCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWFxcb3RpbWVzIFxccGhpX3thLC1hfV57LTF9IiwyXSxbOCw2LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFgiXSxbNyw1LCJFXFxvdGltZXMgXFxtdVxcb3RpbWVzIFhcXG90aW1lcyBTXmFcXG90aW1lcyBTXnstYX0iLDFdLFszLDUsIkVcXG90aW1lcyBFXFxvdGltZXMgXFx0YXVcXG90aW1lcyBTXnstYX0iLDFdXQ==
+    \[\begin{tikzcd}
+        {S^{b+c-a}} \\
+        {S^b\otimes S^c\otimes S^{-a}} \\
+        {E\otimes E\otimes E\otimes S^a\otimes X\otimes S^{-a}} & {E\otimes E\otimes S^a\otimes X\otimes S^{-a}} & {E\otimes S^a\otimes E\otimes X\otimes S^{-a}} \\
+        {E\otimes E\otimes E\otimes X\otimes S^a\otimes S^{-a}} && {E\otimes E\otimes X\otimes S^a\otimes S^{-a}} \\
+        {E\otimes E\otimes E\otimes X} && {E\otimes E\otimes X}
+        \arrow["\phi", from=1-1, to=2-1]
+        \arrow["{x\otimes y\otimes S^{-a}}", from=2-1, to=3-1]
+        \arrow["{E\otimes \mu\otimes S^a\otimes X\otimes S^{-a}}", from=3-1, to=3-2]
+        \arrow["{E\otimes \tau\otimes X\otimes S^{-a}}", from=3-2, to=3-3]
+        \arrow["{E\otimes\tau_{S^a,E\otimes X}S^{-a}}", from=3-3, to=4-3]
+        \arrow["{E\otimes E\otimes X\otimes \phi_{a,-a}^{-1}}", from=4-3, to=5-3]
+        \arrow["{E\otimes E\otimes E\otimes \tau\otimes S^{-a}}"', from=3-1, to=4-1]
+        \arrow["{E\otimes E\otimes E\otimes X\otimes \phi_{a,-a}^{-1}}"', from=4-1, to=5-1]
+        \arrow["{E\otimes \mu\otimes X}", from=5-1, to=5-3]
+        \arrow["{E\otimes \mu\otimes X\otimes S^a\otimes S^{-a}}"{description}, from=4-1, to=4-3]
+        \arrow["{E\otimes E\otimes \tau\otimes S^{-a}}"{description}, from=3-2, to=4-3]
+    \end{tikzcd}\]
+    The top right region commutes by coherence for the symmetries. The remaining two regions commute by functoriality of $-\otimes-$. Thus, indeed we have that diagram (\ref{eww_t^a_comodule_diagram}) commutes, so $t^a_X$ is a homomorphism of left $E_*(E)$-comodules, as desired.
 \end{proof}
 
 \end{document}
