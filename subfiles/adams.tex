@@ -1,42 +1,42 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
+In the section that follows, let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ be objects in $\cSH$.
+
 \subsection{Construction of the spectral sequence}
 
-In the sections that follow, let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ be objects in $\cSH$.
-
-\begin{definition}[{\cite[Definition 11.3.1]{Rognes_SSeq}}]\label{defn:E-Adams_resolution}
-	An \emph{$E$-Adams resolution of $Y$} $(Y_s,W_s;i,j,k)$ is a diagram of the form
-	% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiXFxjZG90cyJdLFsxLDAsIllfe3MrMX0iXSxbMiwwLCJZX3MiXSxbMywwLCJcXGNkb3RzIl0sWzQsMCwiWV8yIl0sWzUsMCwiWV8xIl0sWzYsMCwiWV8wIl0sWzYsMSwiV18wIl0sWzUsMSwiWV8xIl0sWzIsMSwiV19zIl0sWzEsMSwiV197cysxfSJdLFswLDFdLFsxLDIsImlfcyJdLFsyLDNdLFszLDRdLFs0LDUsImlfMSJdLFs1LDYsImlfMCJdLFs2LDcsImpfMCJdLFs1LDgsImpfMSJdLFsyLDksImpfcyJdLFsxLDEwLCJqX3tzKzF9IiwyXSxbNyw1LCJrXzAiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOCw0LCJrXzEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOSwxLCJrX3MiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
-	\[\begin{tikzcd}
-		\cdots & {Y_{s+1}} & {Y_s} & \cdots & {Y_2} & {Y_1} & {Y_0} \\
-		& {W_{s+1}} & {W_s} &&& {Y_1} & {W_0}
-		\arrow[from=1-1, to=1-2]
-		\arrow["{i_s}", from=1-2, to=1-3]
-		\arrow[from=1-3, to=1-4]
-		\arrow[from=1-4, to=1-5]
-		\arrow["{i_1}", from=1-5, to=1-6]
-		\arrow["{i_0}", from=1-6, to=1-7]
-		\arrow["{j_0}", from=1-7, to=2-7]
-		\arrow["{j_1}", from=1-6, to=2-6]
-		\arrow["{j_s}", from=1-3, to=2-3]
-		\arrow["{j_{s+1}}"', from=1-2, to=2-2]
-		\arrow["{k_0}"{description}, dashed, from=2-7, to=1-6]
-		\arrow["{k_1}"{description}, dashed, from=2-6, to=1-5]
-		\arrow["{k_s}"{description}, dashed, from=2-3, to=1-2]
-	\end{tikzcd}\]
-	such that the dashed arrows really stand for (degree $-\1$) maps $k_s:W_s\to \Sigma Y_{s+1}$, and
-	\begin{enumerate}
-		\item There is an isomorphism $Y_0\cong Y$;
-		\item for each $s$, the sequence
-		\[Y_{s+1}\xr{i_s}Y_s\xr{j_s}W_s\xr{k_s}\Sigma Y_{s+1}\]
-		is a distinguished triangle;
-		\item $W_{s}$ is isomorphic to $E\otimes T_{s}$ for some object $T_{s}$ in $\cSH$;
-		\item $E_*(i_s):E_*(Y_{s+1})\to E_*(Y_s)$ is zero.
-	\end{enumerate}
-\end{definition}
-
-It turns out that every object $Y$ in $\cSH$ admits a \emph{canonical} $E$-Adams resolution:
+%\begin{definition}[{\cite[Definition 11.3.1]{Rognes_SSeq}}]\label{defn:E-Adams_resolution}
+%	An \emph{$E$-Adams resolution of $Y$} $(Y_s,W_s;i,j,k)$ is a diagram of the form
+%	% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiXFxjZG90cyJdLFsxLDAsIllfe3MrMX0iXSxbMiwwLCJZX3MiXSxbMywwLCJcXGNkb3RzIl0sWzQsMCwiWV8yIl0sWzUsMCwiWV8xIl0sWzYsMCwiWV8wIl0sWzYsMSwiV18wIl0sWzUsMSwiWV8xIl0sWzIsMSwiV19zIl0sWzEsMSwiV197cysxfSJdLFswLDFdLFsxLDIsImlfcyJdLFsyLDNdLFszLDRdLFs0LDUsImlfMSJdLFs1LDYsImlfMCJdLFs2LDcsImpfMCJdLFs1LDgsImpfMSJdLFsyLDksImpfcyJdLFsxLDEwLCJqX3tzKzF9IiwyXSxbNyw1LCJrXzAiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOCw0LCJrXzEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOSwxLCJrX3MiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+%	\[\begin{tikzcd}
+%		\cdots & {Y_{s+1}} & {Y_s} & \cdots & {Y_2} & {Y_1} & {Y_0} \\
+%		& {W_{s+1}} & {W_s} &&& {Y_1} & {W_0}
+%		\arrow[from=1-1, to=1-2]
+%		\arrow["{i_s}", from=1-2, to=1-3]
+%		\arrow[from=1-3, to=1-4]
+%		\arrow[from=1-4, to=1-5]
+%		\arrow["{i_1}", from=1-5, to=1-6]
+%		\arrow["{i_0}", from=1-6, to=1-7]
+%		\arrow["{j_0}", from=1-7, to=2-7]
+%		\arrow["{j_1}", from=1-6, to=2-6]
+%		\arrow["{j_s}", from=1-3, to=2-3]
+%		\arrow["{j_{s+1}}"', from=1-2, to=2-2]
+%		\arrow["{k_0}"{description}, dashed, from=2-7, to=1-6]
+%		\arrow["{k_1}"{description}, dashed, from=2-6, to=1-5]
+%		\arrow["{k_s}"{description}, dashed, from=2-3, to=1-2]
+%	\end{tikzcd}\]
+%	such that the dashed arrows really stand for (degree $-\1$) maps $k_s:W_s\to \Sigma Y_{s+1}$, and
+%	\begin{enumerate}
+%		\item There is an isomorphism $Y_0\cong Y$;
+%		\item for each $s$, the sequence
+%		\[Y_{s+1}\xr{i_s}Y_s\xr{j_s}W_s\xr{k_s}\Sigma Y_{s+1}\]
+%		is a distinguished triangle;
+%		\item $W_{s}$ is isomorphic to $E\otimes T_{s}$ for some object $T_{s}$ in $\cSH$;
+%		\item $E_*(i_s):E_*(Y_{s+1})\to E_*(Y_s)$ is zero.
+%	\end{enumerate}
+%\end{definition}
+%
+%It turns out that every object $Y$ in $\cSH$ admits a \emph{canonical} $E$-Adams resolution:
 
 \begin{definition}\label{defn:canonical_E-Adams_resolution}
 	Let $\ol E$ be the fiber of the unit map $e:S\to E$ (\autoref{fiber}). Let $Y_0:=Y$ and $W_0:=E\otimes Y$. For $s>0$, define
@@ -45,7 +45,7 @@ It turns out that every object $Y$ in $\cSH$ admits a \emph{canonical} $E$-Adams
 	\[Y_{s+1}\xrightarrow{i_s}Y_s\xrightarrow{j_s} W_s\xrightarrow{k_s}\Sigma Y_{s+1}\]
 	obtained by applying $-\otimes Y_s$ to the fiber sequence
 	\[\ol E\to S\xrightarrow eE\to\Sigma\ol E.\]
-	We can splice these sequences together to get the \emph{canonical Adams-resolution of $Y$}:
+	We can splice these sequences together to get the following diagram, which is called \emph{the canonical Adams-resolution of $Y$}:
 	% https://q.uiver.app/#q=WzAsOSxbMSwwLCJZXzMiXSxbMiwwLCJZXzIiXSxbMywwLCJZXzEiXSxbNCwwLCJZXzA9WSJdLFswLDAsIlxcY2RvdHMiXSxbMSwxLCJXXzMiXSxbMiwxLCJXXzIiXSxbMywxLCJXXzEiXSxbNCwxLCJXXzAiXSxbMCwxLCJpXzIiXSxbMSwyLCJpXzEiXSxbMiwzLCJpXzAiXSxbNCwwXSxbMCw1LCJqXzMiXSxbMSw2LCJqXzIiXSxbMiw3LCJqXzEiXSxbMyw4LCJqXzAiXSxbNiwwLCJrXzIiLDAseyJsYWJlbF9wb3NpdGlvbiI6MzAsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs3LDEsImtfMSIsMCx7ImxhYmVsX3Bvc2l0aW9uIjozMCwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsMiwia18wIiwwLHsibGFiZWxfcG9zaXRpb24iOjMwLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 	\[\begin{tikzcd}
 		\cdots & {Y_3} & {Y_2} & {Y_1} & {Y_0=Y} \\
@@ -62,25 +62,26 @@ It turns out that every object $Y$ in $\cSH$ admits a \emph{canonical} $E$-Adams
 		\arrow["{k_1}"{pos=0.3}, dashed, from=2-4, to=1-3]
 		\arrow["{k_0}"{pos=0.3}, dashed, from=2-5, to=1-4]
 	\end{tikzcd}\]
+	Here we are using dashed arrows to denote the (degree $-\1$) maps $k_s:W_s\to\Sigma Y_{s+1}$, in particular, the above diagram does not commute in any sense.
 \end{definition}
 
-\begin{proposition}\label{canonical_E-Adams_resolution_is_an_Adams_resolution}
-	The ``canonical $E$-Adams resolution of $Y$'' from \autoref{defn:canonical_E-Adams_resolution} is in fact an $E$-Adams resolution of $Y$, in the sense of \autoref{defn:E-Adams_resolution}
-\end{proposition}
+\begin{lemma}\label{canonical_E-Adams_resolution_is_an_Adams_resolution}
+	The maps $i_s:Y_{s+1}\to Y_s$ from the canonical $E$-Adams resolution of $Y$ (\autoref{canonical_E-Adams_resolution_is_an_Adams_resolution}) vanish in $E$-homology, i.e., $E_*(i_s)$ is the zero map.
+\end{lemma}
 \begin{proof}
-	By construction, the only thing we need to check is that $E_*(i_s):E_*(Y_{s+1})\to E_*(Y_s)$ is zero. First, note that since 
+	First, note that since 
 	\[Y_{s+1}\xr{i_s}Y_s\xr{j_s} W_s\xr{k_s}\Sigma Y_{s+1}\]
 	is a distinguished triangle and $\cSH$ is tensor triangulated, there is a distinguished triangle of the form
 	\[E\otimes Y_{s+1}\xr{E\otimes i_s}E\otimes Y_s\xr{E\otimes j_s}E\otimes W_s\to\Sigma(E\otimes Y_{s+1}).\]
 	Thus, applying $\pi_*(-)\cong{[S,-]}_*$ to the triangle yields that the following sequence is exact (see \autoref{distinguished_tri_is_exact} for details):
 	\[E_*(Y_{s+1})\xr{E_*(i_s)}E_*(Y_s)\xr{E_*(j_s)}E_*(W_s).\]
-	Now, it is straightforward to verify by how it is constructed that $j_s$ is the map $e\otimes Y_s:Y_s\to E\otimes Y_s=W_s$. Thus, by unitality of $\mu$, we have that $E\otimes j_s:E\otimes Y_s\to E\otimes W_s$ is a split monomorphism, with right inverse $\mu\otimes Y_s:E\otimes W_s=E\otimes E\otimes Y_s\to E\otimes Y_s$. Then since any functor preserves split monomorphisms, it follows that $E_*(j_s)=\pi_*(E\otimes j_s)$ is likewise a split monomorphism, so that in particular $E_*(j_s)$ is injective. Thus $\imm E_*(i_s)=\ker E_*(j_s)=0$, so that $i_s$ is indeed the zero map, as desired.
+	Now, it is straightforward to verify by construction that $j_s$ is the map $e\otimes Y_s:Y_s\to E\otimes Y_s=W_s$. Thus, by unitality of $\mu$, we have that $E\otimes j_s:E\otimes Y_s\to E\otimes W_s$ is a split monomorphism, with right inverse $\mu\otimes Y_s:E\otimes W_s=E\otimes E\otimes Y_s\to E\otimes Y_s$. Then since any functor preserves split monomorphisms, it follows that $E_*(j_s)=\pi_*(E\otimes j_s)$ is likewise a split monomorphism, so that in particular $E_*(j_s)$ is injective. Thus $\imm E_*(i_s)=\ker E_*(j_s)=0$, so that $i_s$ is indeed the zero map, as desired.
 \end{proof}
 
-Now, by applying ${[X,-]}_*$ to an $E$-Adams resolution of $Y$, we get an associated unrolled exact couple, and thus a spectral sequence:
+Now, by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution of $Y$, we get an associated unrolled exact couple, and thus a spectral sequence:
 
 \begin{definition}\label{ASS}
-	Suppose we have an $E$-Adams resolution of $Y$ (\autoref{defn:E-Adams_resolution}):
+	Consider the canonical $E$-Adams resolution of $Y$ from \autoref{canonical_E-Adams_resolution_is_an_Adams_resolution}:
 	% https://q.uiver.app/#q=WzAsOSxbMSwwLCJZXzMiXSxbMiwwLCJZXzIiXSxbMywwLCJZXzEiXSxbNCwwLCJZXzA9WSJdLFswLDAsIlxcY2RvdHMiXSxbMSwxLCJXXzMiXSxbMiwxLCJXXzIiXSxbMywxLCJXXzEiXSxbNCwxLCJXXzAiXSxbMCwxLCJpXzIiXSxbMSwyLCJpXzEiXSxbMiwzLCJpXzAiXSxbNCwwXSxbMCw1LCJqXzMiXSxbMSw2LCJqXzIiXSxbMiw3LCJqXzEiXSxbMyw4LCJqXzAiXSxbNiwwLCJrXzIiLDAseyJsYWJlbF9wb3NpdGlvbiI6MzAsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs3LDEsImtfMSIsMCx7ImxhYmVsX3Bvc2l0aW9uIjozMCwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsMiwia18wIiwwLHsibGFiZWxfcG9zaXRpb24iOjMwLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 	\[\begin{tikzcd}
 		\cdots & {Y_3} & {Y_2} & {Y_1} & {Y_0=Y} \\
@@ -139,45 +140,45 @@ In the case $r=1$, since $B_1^s=0$ and $Z_1^s={[X,W_s]}_*$, we have that $E_1^s=
 In \Cref{subsection:unrolled_exact_couples}, it is shown in explicit detail that all of these definitions make sense and are well-defined. In particular, it is shown that the differentials are well-defined $A$-graded homomorphisms, that $d_r\circ d_r=0$, and that
 \[\ker d_r^s/\imm d_r^s=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\]
 
-Note, we have called the above spectral sequence \emph{the} $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$, even though it was constructed in terms of an $E$-Adams resolution for $Y$. We would like to show that, from the $E_2$-page onwards, that this spectral sequence is independent (up to isomorphism) of the chosen $E$-Adams resolution of $Y$. To start, we prove the following proposition:
-
-\begin{proposition}{\cite[Proposition 11.4.1]{Rognes_SSeq}}\label{arrow_induces_homo_of_Adams_resolutions}
-	Suppose we have $E$-Adams resolutions (\autoref{defn:E-Adams_resolution}) $(Y_s,W_s;i,j,k)$ and $(Y_s',W_s';i',j',k')$ of objects $Y$ and $Y'$ in $\cSH$, respectively. Then any arrow $f:Y\to Y'$ in $\cSH$ induces a homomorphism of unrolled exact couples $(Y_s,W_s;i,j,k)\to(Y_s',W_s';i',j',k')$ (\autoref{defn:sseq_homomorphism}), thus, an induced homomorphism of associated spectral sequences by \autoref{UEC_homo_induces_SSeq_homo}.
-\end{proposition}
-\begin{proof}
-	First we need maps $f_s:Y_s\to Y_s'$ and $g_s:W_s\to W_s'$. To start with, define $f_0$ to be the composition 
-	\[f_0:Y_0\cong Y\xr fY'\cong Y_0'.\] 
-	Now, by induction, supposing $f_0,g_0,f_1,g_1,\ldots,f_{s-2},g_{s-2},f_{s-1}$ have been defined for some $s>0$, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJZX3tzKzF9Il0sWzEsMSwiWV9zIl0sWzIsMSwiV19zIl0sWzMsMSwiXFxTaWdtYSBZX3tzKzF9Il0sWzQsMSwiXFxTaWdtYSBZX3MiXSxbMSwyLCJZX3MnIl0sWzIsMiwiV19zJyJdLFszLDIsIlxcU2lnbWEgWV97cysxfSciXSxbNCwyLCJcXFNpZ21hIFlfcyciXSxbMCwxLCJpX3MiXSxbMSwyLCJqX3MiXSxbMiwzLCJrX3MiXSxbMyw0LCItXFxTaWdtYSBpX3MiXSxbMSw1LCJmX3MiLDJdLFs1LDYsImpfcyciXSxbNiw3LCJrX3MnIl0sWzcsOCwiLVxcU2lnbWEgaV9zJyJdLFs0LDgsIlxcU2lnbWEgZl9zIl0sWzIsNiwiZ19zIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNywiXFxTaWdtYSBmX3tzKzF9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
-	\[\begin{tikzcd}
-		{Y_{s+1}} \\
-		& {Y_s} & {W_s} & {\Sigma Y_{s+1}} & {\Sigma Y_s} \\
-		& {Y_s'} & {W_s'} & {\Sigma Y_{s+1}'} & {\Sigma Y_s'}
-		\arrow["{i_s}", from=1-1, to=2-2]
-		\arrow["{j_s}", from=2-2, to=2-3]
-		\arrow["{k_s}", from=2-3, to=2-4]
-		\arrow["{-\Sigma i_s}", from=2-4, to=2-5]
-		\arrow["{f_s}"', from=2-2, to=3-2]
-		\arrow["{j_s'}", from=3-2, to=3-3]
-		\arrow["{k_s'}", from=3-3, to=3-4]
-		\arrow["{-\Sigma i_s'}", from=3-4, to=3-5]
-		\arrow["{\Sigma f_s}", from=2-5, to=3-5]
-		\arrow["{g_s}", dashed, from=2-3, to=3-3]
-		\arrow["{\Sigma f_{s+1}}", dashed, from=2-4, to=3-4]
-	\end{tikzcd}\]
-	Our goal is to construct the dashed arrows so that the diagram commutes.
-\end{proof}
-
-\begin{proposition}\label{E-iso_induces_iso_of_Adams}
-	Suppose we have $E$-Adams resolutions (\autoref{defn:E-Adams_resolution}) $(Y_s,W_s;i,j,k)$ and $(Y_s',W_s';i',j',k')$ of objects $Y$ and $Y'$ in $\cSH$, respectively. Then given an arrow $f:Y\to Y'$ in $\cSH$ such that $E_*(f):E_*(Y)\to E_*(Y')$ is an isomorphism of $A$-graded abelian groups, the induced homomorphism of spectral sequences $(E_r(X,Y),d_r)\to(E_r(X,Y'),d_r)$ from \autoref{arrow_induces_homo_of_Adams_resolutions} is an isomorphism from the $E_2$-page onwards.
-
-	In particular, the $E$-Adams spectral sequence for ${[X,Y]}_*$, from the $E_2$-page onwards, does not depend on the choice of $E$-Adams resolution for $Y$.
-\end{proposition}
-\begin{proof}
-	\todo{todo}
-\end{proof}
-
-As a result of this proposition, we will simply say ``the $E$-Adams spectral sequence for ${[X,Y]}_*$'' to generally refer to any such spectral sequence induced by any $E$-Adams resolution of $Y$.
+%Note, we have called the above spectral sequence \emph{the} $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$, even though it was constructed in terms of an $E$-Adams resolution for $Y$. We would like to show that, from the $E_2$-page onwards, that this spectral sequence is independent (up to isomorphism) of the chosen $E$-Adams resolution of $Y$. To start, we prove the following proposition:
+%
+%\begin{proposition}{\cite[Proposition 11.4.1]{Rognes_SSeq}}\label{arrow_induces_homo_of_Adams_resolutions}
+%	Suppose we have $E$-Adams resolutions (\autoref{defn:E-Adams_resolution}) $(Y_s,W_s;i,j,k)$ and $(Y_s',W_s';i',j',k')$ of objects $Y$ and $Y'$ in $\cSH$, respectively. Then any arrow $f:Y\to Y'$ in $\cSH$ induces a homomorphism of unrolled exact couples $(Y_s,W_s;i,j,k)\to(Y_s',W_s';i',j',k')$ (\autoref{defn:sseq_homomorphism}), thus, an induced homomorphism of associated spectral sequences by \autoref{UEC_homo_induces_SSeq_homo}.
+%\end{proposition}
+%\begin{proof}
+%	First we need maps $f_s:Y_s\to Y_s'$ and $g_s:W_s\to W_s'$. To start with, define $f_0$ to be the composition 
+%	\[f_0:Y_0\cong Y\xr fY'\cong Y_0'.\] 
+%	Now, by induction, supposing $f_0,g_0,f_1,g_1,\ldots,f_{s-2},g_{s-2},f_{s-1}$ have been defined for some $s>0$, consider the following diagram:
+%	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJZX3tzKzF9Il0sWzEsMSwiWV9zIl0sWzIsMSwiV19zIl0sWzMsMSwiXFxTaWdtYSBZX3tzKzF9Il0sWzQsMSwiXFxTaWdtYSBZX3MiXSxbMSwyLCJZX3MnIl0sWzIsMiwiV19zJyJdLFszLDIsIlxcU2lnbWEgWV97cysxfSciXSxbNCwyLCJcXFNpZ21hIFlfcyciXSxbMCwxLCJpX3MiXSxbMSwyLCJqX3MiXSxbMiwzLCJrX3MiXSxbMyw0LCItXFxTaWdtYSBpX3MiXSxbMSw1LCJmX3MiLDJdLFs1LDYsImpfcyciXSxbNiw3LCJrX3MnIl0sWzcsOCwiLVxcU2lnbWEgaV9zJyJdLFs0LDgsIlxcU2lnbWEgZl9zIl0sWzIsNiwiZ19zIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNywiXFxTaWdtYSBmX3tzKzF9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+%	\[\begin{tikzcd}
+%		{Y_{s+1}} \\
+%		& {Y_s} & {W_s} & {\Sigma Y_{s+1}} & {\Sigma Y_s} \\
+%		& {Y_s'} & {W_s'} & {\Sigma Y_{s+1}'} & {\Sigma Y_s'}
+%		\arrow["{i_s}", from=1-1, to=2-2]
+%		\arrow["{j_s}", from=2-2, to=2-3]
+%		\arrow["{k_s}", from=2-3, to=2-4]
+%		\arrow["{-\Sigma i_s}", from=2-4, to=2-5]
+%		\arrow["{f_s}"', from=2-2, to=3-2]
+%		\arrow["{j_s'}", from=3-2, to=3-3]
+%		\arrow["{k_s'}", from=3-3, to=3-4]
+%		\arrow["{-\Sigma i_s'}", from=3-4, to=3-5]
+%		\arrow["{\Sigma f_s}", from=2-5, to=3-5]
+%		\arrow["{g_s}", dashed, from=2-3, to=3-3]
+%		\arrow["{\Sigma f_{s+1}}", dashed, from=2-4, to=3-4]
+%	\end{tikzcd}\]
+%	Our goal is to construct the dashed arrows so that the diagram commutes.
+%\end{proof}
+%
+%\begin{proposition}\label{E-iso_induces_iso_of_Adams}
+%	Suppose we have $E$-Adams resolutions (\autoref{defn:E-Adams_resolution}) $(Y_s,W_s;i,j,k)$ and $(Y_s',W_s';i',j',k')$ of objects $Y$ and $Y'$ in $\cSH$, respectively. Then given an arrow $f:Y\to Y'$ in $\cSH$ such that $E_*(f):E_*(Y)\to E_*(Y')$ is an isomorphism of $A$-graded abelian groups, the induced homomorphism of spectral sequences $(E_r(X,Y),d_r)\to(E_r(X,Y'),d_r)$ from \autoref{arrow_induces_homo_of_Adams_resolutions} is an isomorphism from the $E_2$-page onwards.
+%
+%	In particular, the $E$-Adams spectral sequence for ${[X,Y]}_*$, from the $E_2$-page onwards, does not depend on the choice of $E$-Adams resolution for $Y$.
+%\end{proposition}
+%\begin{proof}
+%	\todo{todo}
+%\end{proof}
+%
+%As a result of this proposition, we will simply say ``the $E$-Adams spectral sequence for ${[X,Y]}_*$'' to generally refer to any such spectral sequence induced by any $E$-Adams resolution of $Y$.
 
 \subsection{The \texorpdfstring{$E_2$}{E2} page}
 
@@ -193,8 +194,6 @@ Now, we would like to characterize the $E_2$ page of the spectral sequence in te
 	\[E_2^{s,a}(X,Y)\cong\Ext_{E_*(E)}^{s,a+\mbf s}(E_*(X),E_*(Y)):=\Ext_{E_*(E)}^s(E_{*}(X),E_{*+a+\mbf s}(Y)).\]
 \end{theorem}
 \begin{proof}
-	As we have shown above in \autoref{E-iso_induces_iso_of_Adams}, from the $E_2$-page onwards, the $E$-Adams spectral sequence is indepdent of choice of $E$-Adams resolution of $Y$. Thus, in order to characterize the $E_2$ page as desired, we may assume we are working with the canonical $E$-Adams resolution $(Y_s,W_s;i,j,k)$ of $Y$ from \autoref{defn:canonical_E-Adams_resolution}.
-	
 	By \autoref{E_1_page_line_resolution_identification} below, for each $s\in\bN$ and $a\in A$, $E_2^{s,a}(X,Y)$ is isomorphic to the $s^\text{th}$ cohomology group of the cochain complex obtained by applying $F:=\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),-)$ to the complex
 	\[0\xr{\phantom{E_*(\delta_3)}}E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\xr{E_*(\delta_2)}E_*(\Sigma^3W_3)\xr{\phantom{E_*(\delta_3)}}\cdots.\]
 	Furthermore, by \autoref{E_*W_s's_acyclic_resolution_of_E_*Y}, this complex is an $F$-acyclic resolution of $E_*(Y)$ (\autoref{defn:acyclic_resolution}). Thus, since the category of $E_*(E)$-comodules is an abelian category with enough injectives (\autoref{G-CoMod^A_is_abelian_if_eta_R_flat_and_has_enough_injectives}), we have by \autoref{acyclic_resolution_computes_R^nF} that
@@ -202,7 +201,7 @@ Now, we would like to characterize the $E_2$ page of the spectral sequence in te
 	as desired.
 \end{proof}
 
-We leave it to the reader to unravel what the differential $d_2$ corresponds to under this identification.
+We leave it to the reader to unravel what the differential $d_2$ corresponds to under this identification. The remainder of this subsection is devoted to proving \autoref{E_*W_s's_acyclic_resolution_of_E_*Y} and \autoref{E_1_page_line_resolution_identification}.
 
 \begin{definition}\label{nu^n_isos}
 	Given some (nonnegative integer) $n\in\bN$, define natural isomorphisms $\nu^n_X:\Sigma^\n X\to\Sigma^nX$ inductively, by setting $\nu^0_X:=\lambda_X$, $\nu^1_X:=\nu_X^{-1}$, and supposing $\nu^{n-1}_X$ has been defined for some $n>1$, define $\nu^n_X$ to be the composition
@@ -211,16 +210,16 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 \end{definition}
 
 \begin{lemma}\label{W_s_cellular_if_E_and_Y_are}
-	Let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ objects in $\cSH$. Further suppose $E$ and $Y$ are cellular. Then for all $s\in\bZ$, the objects $Y_s$ and $W_s$ from the canonical $E$-Adams resolution of $Y$ (\autoref{defn:canonical_E-Adams_resolution}) are cellular.
+	Suppose $E$ and $Y$ are cellular. Then for all $s\in\bZ$, the objects $Y_s$ and $W_s$ from the canonical $E$-Adams resolution of $Y$ (\autoref{defn:canonical_E-Adams_resolution}) are cellular.
 \end{lemma}
 \begin{proof}
 	Unravelling definitions, for $s<0$, $W_s=0$ and $Y_s=Y$, which are both cellular.\footnote{$0$ is cellular because it is the cofiber of the identity on $S$ by axiom TR1 for a triangulated category (\autoref{triangulated_defn}), i.e., there is a distinguished triangle $S\to S\to 0\to\Sigma S$.} For $s\geq0$, we have $W_s=E\otimes Y_s$, so that by cellularity of $E$ and \autoref{cellular_closed_under_tensor}, it suffices to show that $Y_s$ is cellular for $s\geq0$. We know $Y_0=Y$ is cellular by definition. For $s>0$, $Y_s$ is the tensor product $\ol E^s\otimes Y$, where $\ol E$ fits into the distinguished triangle
 	\[\ol E\to S\xr eE\to\Sigma\ol E.\]
-	By the definition of cellularity, $\ol E$ is cellular since $S$ and $E$ are. Thus, by the aforementioned lemma, $\ol E^s\otimes Y$ is cellular by \autoref{cellular_closed_under_tensor}, as it is a tensor product of cellular objects in $\cSH$.
+	By the definition of cellularity, $\ol E$ is cellular since $S$ and $E$ are. Thus $\ol E^s\otimes Y$ is cellular by \autoref{cellular_closed_under_tensor}, as it is a tensor product of cellular objects in $\cSH$.
 \end{proof}
 
 \begin{lemma}\label{E_*W_s's_acyclic_resolution_of_E_*Y}
-	Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object and $X$ and $Y$ cellular objects in $\cSH$, and define $Y_s$, $W_s$ as in \autoref{defn:canonical_E-Adams_resolution}. In particular, for each $s\in\bZ$, we have distinguished triangles
+	Let $(E,\mu,e)$ be a flat (\autoref{flat}) and cellular (\autoref{cellular}) commutative monoid object and $X$ and $Y$ cellular objects in $\cSH$, and for $s\geq0$ define $Y_s$ and $W_s$ as in \autoref{defn:canonical_E-Adams_resolution}. In particular, for each $s\geq0$, $W_s=E\otimes Y_s$ and we have distinguished triangles
 	\[Y_{s+1}\xr{i_s}Y_s\xr{j_s}W_s\xr{k_s}\Sigma Y_{s+1}.\]
 	Then if $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module}) then the sequence
 	\[0\to E_*(Y)\xr{E_*(j_0)}E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\xr{E_*(\delta_2)}E_*(\Sigma^3W_3)\to\cdots\]
@@ -249,7 +248,7 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 	\end{tikzcd}\]
 	where $\Phi_{E,\Sigma^sY}$ is an $A$-graded isomorphism of abelian groups by \autoref{Kunneth_map_iso}, and furthermore an isomorphism of $E_*(E)$-comodules by \autoref{Phi_E,X_is_comodule_homo}. Every other arrow is an isomorphism of $E_*(E)$-comodules by functoriality of $E_*(-):\cSH\text-\Cell\to E_*(E)\text-\CoMod^A$. Thus, since $E_*(\Sigma^sW_s)$ is isomorphic to $E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)$ in $E_*(E)\text-\CoMod^A$, and in particular since $\Ext^{n}_{E_*(E)}(E_*(X),-)$ is a functor, we have
 	\[\Ext^{n}_{E_*(E)}(E_*(X),E_{*+a}(\Sigma^sW_s))\cong\Ext^{n}_{E_*(E)}(E_*(X),E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)).\]
-	Yet, $E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)$ is a co-free $E_*(E)$-comodule, in which case since $E_*(X)$ is graded projective as an object in $\pi_*(E)\text-\Mod^A$, we have that 
+	Yet, $E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s)$ is a co-free $E_*(E)$-comodule (\autoref{comodule_co-free_adjunction}), in which case since $E_*(X)$ is graded projective as an object in $\pi_*(E)\text-\Mod^A$, we have that 
 	\[\Ext^{n,a}_{E_*(E)}(E_*(X),E_*(E)\otimes_{\pi_*(E)}E_{*+a}(\Sigma^sY_s))=0,\]
 	by \autoref{co-free_comodules_are_hom(P,-)-acyclic}.
 
@@ -263,7 +262,7 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 	\[0\to E_*(\Sigma^sY_s)\xr{E_*(\Sigma^sj_s)}E_*(\Sigma^sW_s)\xr{E_*(\Sigma^sk_s)}E_*(\Sigma^{s+1}Y_{s+1})\to0.\]
 	Then we may splice these sequences together for $s\geq0$ to yield the following diagram:
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiRV8qKFkpIl0sWzIsMCwiRV8qKFdfMCkiXSxbNCwwLCJFXyooXFxTaWdtYSBXXzEpIl0sWzYsMCwiRV8qKFxcU2lnbWFeMldfMikiXSxbNywwLCJcXGNkb3RzIl0sWzMsMSwiRV8qKFxcU2lnbWEgWV8xKSJdLFs1LDEsIkVfKihcXFNpZ21hXjIgWV8yKSJdLFswLDFdLFsxLDIsIkVfKihqXzApIl0sWzIsMywiRV8qKFxcZGVsdGFfMCkiXSxbMyw0LCJFXyooXFxkZWx0YV8xKSJdLFs0LDVdLFsyLDYsIkVfKihrXzApIiwxXSxbNiwzLCJFXyooXFxTaWdtYSBqXzEpIiwxXSxbMyw3LCJFXyooXFxTaWdtYSBrXzEpIiwxXSxbNyw0LCJFXyooXFxTaWdtYV4yal8yKSIsMV1d
-	\[\begin{tikzcd}
+	\[\begin{tikzcd}[column sep=small]
 		0 & {E_*(Y)} & {E_*(W_0)} && {E_*(\Sigma W_1)} && {E_*(\Sigma^2W_2)} & \cdots \\
 		&&& {E_*(\Sigma Y_1)} && {E_*(\Sigma^2 Y_2)}
 		\arrow[from=1-1, to=1-2]
@@ -276,7 +275,7 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 		\arrow["{E_*(\Sigma k_1)}"{description}, from=1-5, to=2-6]
 		\arrow["{E_*(\Sigma^2j_2)}"{description}, from=2-6, to=1-7]
 	\end{tikzcd}\]
-	It follows the top row is exact, as desired.
+	It is straightforward to check the top row is exact by exactness of the short exact sequences, as desired. 
 \end{proof}
 
 \begin{lemma}\label{X,EY_iso_Hom(E_*X,E_*EY)}
@@ -340,7 +339,7 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 		\item $X$ is cellular, and $E_*(X)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module}), and
 		\item $Y$ is cellular.
 	\end{itemize}
-	Then for all $s\in\bZ$ and $a\in A$, the line in the first page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$ associated to the canonical $E$-Adams resolution of $Y$ (\autoref{defn:canonical_E-Adams_resolution})
+	Then for all $s\in\bZ$ and $a\in A$, the line in the first page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$ (\autoref{ASS})
 	\[0\to E_1^{0,a+\mbf s}(X,Y)\xr{d_1}E_1^{1,a+\mbf s-\1}(X,Y)\xr{d_1}E_1^{2,a+\mbf s-\mbf 2}(X,Y)\to\cdots\to E_1^{s,a}(X,Y)\to\cdots\]
 	is isomorphic to the complex obtained by applying $\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),-)$ to the complex of $A$-graded left $E_*(E)$-comodules
 	\[0\to E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\to\cdots\to E_*(\Sigma^sW_s)\to\cdots\]
@@ -438,10 +437,10 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 
 Before we can state and prove some convergence results for the spectral sequence we have constructed above, we outline a bit of the theory of \emph{nilpotent completion} of objects in $\cSH$. Namely, we will outline suitable conditions under which the $E$-Adams spectral sequence for ${[X,Y]}_*$ converges to the homotopy groups ${[X,Y^\wedge_E]}_*$, where $Y^\wedge_E$ is an \emph{$E$-nilpotent completion of $Y$}. The main reference for this section and the next will be \S 5--6 in the paper \cite{Bousfield_79} by Bousfield. First, we state some definitions.
 
-\begin{definition}[{\cite{RGB}}]
+\begin{definition}[{\cite[Definition 2.2.2]{RGB}}]
 	Given an object $Y$ in $\cSH$ and a monoid objedct $(E,\mu,e)$ an \emph{$E$-completion} $\widehat Y$ of $Y$ is an object in $\cSH$ such that:\begin{enumerate}[label=(\alph*)]
-		\item There is a map $Y\to\wh Y$ inducing an isomorphism in $E_*$-homology.
-		\item $\wh Y$ has an $E$-Adams resolution $(\wh Y_s,\wh W_s;i,j,k)$ (\autoref{defn:E-Adams_resolution}) with $\holim\wh Y_s=0$ (see \autoref{homotopy_limit_defn} for the definition of homotopy limits in a triangulated category with products).
+		\item There is a map $Y\to\wh Y$ inducing an isomorphism in $E$-homology.
+		\item The canonical $E$-Adams resolution $(\wh Y_s,\wh W_s;i,j,k)$ of $\wh Y$ (\autoref{defn:canonical_E-Adams_resolution}) satisfies $\holim\wh Y_s=0$ (see \autoref{homotopy_limit_defn} for the definition of homotopy limits in a triangulated category with products).
 	\end{enumerate}
 \end{definition}
 
@@ -450,7 +449,7 @@ Before we can state and prove some convergence results for the spectral sequence
 	\[\ol E\to S\xr eE\to\Sigma\ol E.\]
 	Set $Y_0:=Y$ and $W_0:=Y\otimes E$, and for $s>0$ define $Y_s:= Y\otimes\ol E^s$ and $W_s:=Y_s\otimes E$. Then since $\cSH$ is tensor triangulated, for each $s\geq0$ we may tensor the above sequence with $Y_s$ on the right, which yields the following distinguished triangle
 	\[Y_{s+1}\xr iY_s\xr jW_s\xr k\Sigma Y_{s+1}.\]
-	Then for $s\in\bN$, define $Y/Y^s$ to be the cofiber of $i^{s}:Y_s\to Y_0=Y$ (so in particular we may take $Y/Y_1=E\otimes Y$ and $Y/Y_0=0$), so we have a distinguished triangle
+	Then for $s\geq0$, define $Y/Y^s$ (up to non-canonical isomorphism) to be the cofiber of $i^{s}:Y_s\to Y_0=Y$ (so in particular we may take $Y/Y_1=E\otimes Y$ and $Y/Y_0=0$), so we have a distinguished triangle
 	\[Y_s\xr{i^s}Y\xr bY/Y_s\xr c\Sigma Y_s.\]
 	Then for each $s\geq0$, by the octahedral axiom (axiom TR5) for a triangulated category applied to the triangles
 	\begin{gather*}
