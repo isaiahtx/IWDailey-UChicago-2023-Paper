@@ -91,7 +91,7 @@
     \end{enumerate}
 \end{definition}
 
-It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}). From now on, we fix a triangulated category $(\cC,\Sigma,\cD)$. To start, recall the following definition:
+It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}). From now on, we fix a triangulated category $(\cC,\Sigma,\cD)$. We will denote the hom-group $\cC(X,Y)$ by $[X,Y]$. To start, recall the following definition:
 
 \begin{definition}\label{defn_exact}
     A sequence
@@ -102,6 +102,10 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
     \[[X_n,A]\to[X_{n-1},A]\to\cdots\to[X_2,A]\to[X_1,A]\]
     are exact sequences of abelian groups.
 \end{definition}
+
+It is straightforward to verify that if we have an exact sequence in $\cC$ 
+\[X_1\xr{f_1}X_2\xr{f_2}\to\cdots\to X_n,\]
+then the sequence remains exact if we change the signs of any of the maps involved. We will use this fact often without comment.
 
 \begin{proposition}\label{distinguished_tri_is_exact}
     Every distinguished triangle is an exact sequence (in the sense of \autoref{defn_exact}).
@@ -345,25 +349,72 @@ It turns out that the above definition is actually redundant; TR3 and TR4 follow
 
 \subsection{Homotopy (co)limits in a triangulated category}
 
+In this subsection, we will assume $\cC$ has countable products and coproducts.
+
 \begin{definition}[{\cite[Definition 1.6.4]{Neeman_2001}}]\label{homotopy_colimit_defn}
-    Assume that $\cC$ has countable coproducts. Let
+    Let
     \[X_0\xr{j_1}X_1\xr{j_2} X_2\xr{j_3}X_3\to\cdots\]
     be a sequence of objects and morphisms in $\cC$. The \emph{homotopy colimit} of the sequence, denoted $\hocolim X_i$, is given (up to non-canonical isomorphism) as the cofiber of the map
-    \[\coprod_{i=0}^\infty X_i\xr{1-\text{shift}}\coprod_{i=0}^\infty X_i,\]
-    where the shift map $\coprod_{i=0}^\infty X_i\xr{\text{shift}}\coprod_{i=0}^\infty X_i$ is understood to be the direct sum of $j_{i+1}:X_i\to X_{i+1}$, i.e., by the universal property of the coproduct, it is induced by the maps
-    \[X_s\xr{j_{s+1}}X_{s+1}\into\coprod_{i=0}^\infty X_i.\]
+    \[\bigoplus_{i=0}^\infty X_i\xr{1-\text{shift}}\bigoplus_{i=0}^\infty X_i,\]
+    where the shift map $\bigoplus_{i=0}^\infty X_i\xr{\text{shift}}\bigoplus_{i=0}^\infty X_i$ is understood to be the direct sum of $j_{i+1}:X_i\to X_{i+1}$, i.e., by the universal property of the coproduct, it is induced by the maps
+    \[X_s\xr{j_{s+1}}X_{s+1}\into\bigoplus_{i=0}^\infty X_i.\]
 \end{definition}
+
+Homotopy colimits in general are not colimits, but they do share some properties with the colimit. First of all, note that we have canonical $X_i\to\hocolim X_i$ given as the composition
+\[X_i\into\bigoplus_{i=0}^\infty X_i\to\hocolim X_i\]
+It is straightforward to see 
+
+\begin{proposition}
+    Let
+    \[X_0\xr{j_1}X_1\xr{j_2}X_2\xr{j_3}X_3\to\cdots\]
+    be a sequence of objects and morphisms in $\cC$, and suppose we have a cone under this diagram, i.e., an object $Y$ in $\cC$ along with maps $\eta_s:X_s\to Y$ such that $\eta_{s}\circ j_s=\eta_{s-1}$. Then this cone factors through the homotopy colimit, i.e., there exists a map $\ell:\hocolim X_i\to Y$ such that for all $s\geq0$, the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJYX3MiXSxbMiwwLCJYX3tzKzF9Il0sWzEsMSwiXFxiaWdvcGx1c197aT0wfV5cXGluZnR5IFhfaSJdLFsxLDIsIlxcaG9jb2xpbSBYX2kiXSxbMSwzLCJZIl0sWzAsMSwial97cysxfSJdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMiwzXSxbMyw0LCJcXGVsbCJdLFswLDQsIlxcZXRhX3MiLDIseyJjdXJ2ZSI6M31dLFsxLDQsIlxcZXRhX3tzKzF9IiwwLHsiY3VydmUiOi0zfV1d
+    \[\begin{tikzcd}
+        {X_s} && {X_{s+1}} \\
+        & {\bigoplus_{i=0}^\infty X_i} \\
+        & {\hocolim X_i} \\
+        & Y
+        \arrow["{j_{s+1}}", from=1-1, to=1-3]
+        \arrow[hook, from=1-1, to=2-2]
+        \arrow[hook', from=1-3, to=2-2]
+        \arrow[from=2-2, to=3-2]
+        \arrow["\ell", from=3-2, to=4-2]
+        \arrow["{\eta_s}"', curve={height=18pt}, from=1-1, to=4-2]
+        \arrow["{\eta_{s+1}}", curve={height=-18pt}, from=1-3, to=4-2]
+    \end{tikzcd}\]
+\end{proposition}
+\begin{proof}[Proof sketch]
+    By direction inspection, the leftmost square in the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXGJpZ29wbHVzX3tpPTB9XlxcaW5mdHkgWF9pIl0sWzEsMCwiXFxiaWdvcGx1c197aT0wfV5cXGluZnR5IFhfaSJdLFsyLDAsIlxcaG9jb2xpbSBYX2kiXSxbMSwxLCJZIl0sWzMsMCwiXFxTaWdtYVxcbGVmdChcXGJpZ29wbHVzX3tpPTB9XlxcaW5mdHkgWF9pXFxyaWdodCkiXSxbMCwxLCIwIl0sWzIsMSwiWSJdLFszLDEsIjAiXSxbMCwxLCIxLVxcdGV4dHtzaGlmdH0iXSxbMSwyXSxbMSwzLCJcXGV0YSJdLFsyLDRdLFswLDVdLFs1LDNdLFszLDYsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsN10sWzQsN10sWzIsNiwiXFxlbGwiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \[\begin{tikzcd}
+        {\bigoplus_{i=0}^\infty X_i} & {\bigoplus_{i=0}^\infty X_i} & {\hocolim X_i} & {\Sigma\left(\bigoplus_{i=0}^\infty X_i\right)} \\
+        0 & Y & Y & 0
+        \arrow["{1-\text{shift}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["\eta", from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=2-1, to=2-2]
+        \arrow[Rightarrow, no head, from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=1-4, to=2-4]
+        \arrow["\ell", dashed, from=1-3, to=2-3]
+    \end{tikzcd}\]
+    The top row is distinguished by definition. The bottom row is distinguished, since it may be obtained by shifting the triangle $(\id_Y,0,0)$. Thus we get an induced dashed arrow $\ell:\hocolim X_i\to Y$ which makes the diagram commute, by axiom TR3. By direct inspection it clearly makes the above diagram commute.
+\end{proof}
 
 \begin{definition}\label{homotopy_limit_defn}
     Assume that $\cC$ has countable products, and let
     \[\cdots\to X_3\xr{j_3}X_2\xr{j_2}X_1\xr{j_1}X_0\]
-    be a sequence of objects and morphisms in $\cC$. The \emph{homotopy limit} of the sequence, denoted $\holim X_i$, is given (up to non-canonical isomorphism) as the fiber of the map
+    be a sequence of objects and morphisms in $\cC$. The \emph{homotopy limit} of the sequence, denoted $\holim X_i$, is given (up to non-canonical isomorphism) as the fiber (\autoref{fiber}) of the map
     \[\prod_{i=0}^\infty X_i\xr{1-\text{shift}}\prod_{i=0}^\infty,\]
     where the shift map $\prod_{i=0}^\infty X_i\xr{\text{shift}}\prod_{i=0}^\infty X_i$ is understood to be the product of $j_i:X_i\to X_{i-1}$, i.e., by the universal property of the product, it is induced by the maps
     \[\prod_{i=0}^\infty X_i\onto X_{s+1}\xr{j_{s+1}}X_s.\]
 \end{definition}
 
-\begin{proposition}[{\cite[Proposition 1.6.8]{Neeman_2001}}]\label{idempotent_splits_in_tri_cat_with_countable_coproducts}
+An analagous argument to the one given above yields that $\holim X_i$ satisfies the same properties as the limit of the $X_i$'s, minus uniqueness.
+
+\begin{proposition}\label{idempotent_splits_in_tri_cat_with_countable_coproducts}
     Suppose $\cC$ has countable coproducts, and suppose $e:X\to X$ is an idempotent in $\cC$, so that $e\circ e=e$. Then $e$ splits in $\cC$, i.e., $e$ factors as
     \[X\xr rY\xr \iota X\]
     with $r\circ\iota=\id_Y$ and $\iota\circ r=e$. In particular, we may take $Y$ to be the colimit of

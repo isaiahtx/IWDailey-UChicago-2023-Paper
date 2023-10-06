@@ -435,17 +435,19 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 
 \subsection{Convergence of the spectral sequence}
 
-Before we can state and prove some convergence results for the spectral sequence we have constructed above, we outline a bit of the theory of \emph{nilpotent completion} of objects in $\cSH$. Namely, we will outline suitable conditions under which the $E$-Adams spectral sequence for ${[X,Y]}_*$ converges to the homotopy groups ${[X,Y^\wedge_E]}_*$, where $Y^\wedge_E$ is an \emph{$E$-nilpotent completion of $Y$}. The main reference for this section and the next will be \S 5--6 in the paper \cite{Bousfield_79} by Bousfield. First, we state some definitions.
+In this subsection, we briefly sketch some converge properties of the spectral sequence. For the relevant definitions and theorems, we refer the reader to \cite{Boardman_1999}, all of the work done therewithin carries over entirely to our setting. Of particular relevance are his definitions of convergence of spectral sequences (see Definition 5.2) and conditional convergence of a spectral sequence associated to an unrolled exact coupel (Definition 5.10). We adopt his notation, writing $E_\infty(X,Y)$ and $RE_\infty(X,Y)$ to denote the $E_\infty$-term and the derived $E_\infty$-term of the spectral sequence, respectively.
 
-\begin{definition}[{\cite[Definition 2.2.2]{RGB}}]
-	Given an object $Y$ in $\cSH$ and a monoid objedct $(E,\mu,e)$ an \emph{$E$-completion} $\widehat Y$ of $Y$ is an object in $\cSH$ such that:\begin{enumerate}[label=(\alph*)]
-		\item There is a map $Y\to\wh Y$ inducing an isomorphism in $E$-homology.
-		\item The canonical $E$-Adams resolution $(\wh Y_s,\wh W_s;i,j,k)$ of $\wh Y$ (\autoref{defn:canonical_E-Adams_resolution}) satisfies $\holim\wh Y_s=0$ (see \autoref{homotopy_limit_defn} for the definition of homotopy limits in a triangulated category with products).
-	\end{enumerate}
-\end{definition}
+Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us information which allows us to compute the group ${[X,Y]}_*$. Note that ${[X,Y]}_*$ is the colimit of the unrolled exact couple which determines the spectral sequence, as $Y_s=Y$ for $s<0$. Furthermore, since $E_r^{s,a}(X,Y)=0$ for $s<0$, we may think of the $E$-Adams spectral sequence for ${[X,Y]}_*$ as a \emph{half-plane spectral sequence with entering differentials}, in the sense of \cite[\S7]{Boardman_1999}, where suitable conditions under which the spectral sequence converges to the colimit ${[X,Y]}_*$ are described (see Theorem 7.3 there). In practice, the conditions outlined there are not usually satisfied, namely, in order for the spectral sequence to converge to ${[X,Y]}_*$, we must have that $\lim_s{[X,Y_s]}_*=0$. In practice, there is no reason to believe this would be satisfied. Yet, there is still hope. Following \cite[\S5]{Bousfield_79}, we can instead set up the spectral sequence by means of a tower \emph{under} $Y$. First, we must define the \emph{$E$-nilpotent completion of $Y$}.
+%
+%\begin{definition}[{\cite[Definition 2.2.2]{RGB}}]
+%	Given an object $Y$ in $\cSH$ and a monoid object $(E,\mu,e)$ an \emph{$E$-completion} $\widehat Y$ of $Y$ is an object in $\cSH$ such that:\begin{enumerate}[label=(\alph*)]
+%		\item There is a map $Y\to\wh Y$ inducing an isomorphism in $E$-homology.
+%		\item The canonical $E$-Adams resolution $(\wh Y_s,\wh W_s;i,j,k)$ of $\wh Y$ (\autoref{defn:canonical_E-Adams_resolution}) satisfies $\holim\wh Y_s=0$ (see \autoref{homotopy_limit_defn} for the definition of homotopy limits in a triangulated category with products).
+%	\end{enumerate}
+%\end{definition}
 
 \begin{definition}[{\cite[pgs.\ 272--273]{Bousfield_79}}]\label{defn:nilpotent_completion}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and $Y$ any object. Write $\ol E$ for the homotopy fiber (\autoref{fiber}) of the unit $S\xr eE$, so we have a distinguished triangle
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and $Y$ any object. Write $\ol E$ for the fiber (\autoref{fiber}) of the unit $S\xr eE$, so we have a distinguished triangle
 	\[\ol E\to S\xr eE\to\Sigma\ol E.\]
 	Set $Y_0:=Y$ and $W_0:=Y\otimes E$, and for $s>0$ define $Y_s:= Y\otimes\ol E^s$ and $W_s:=Y_s\otimes E$. Then since $\cSH$ is tensor triangulated, for each $s\geq0$ we may tensor the above sequence with $Y_s$ on the right, which yields the following distinguished triangle
 	\[Y_{s+1}\xr iY_s\xr jW_s\xr k\Sigma Y_{s+1}.\]
@@ -504,6 +506,12 @@ Before we can state and prove some convergence results for the spectral sequence
 	This comes equipped with a map $\alpha:Y\to Y^\wedge_E$. 
 \end{definition}
 
+\begin{remark}
+	In \cite{Bousfield_79}, the $E$-nilpotent completion of $Y$ (\autoref{defn:nilpotent_completion}) is denoted ``$E^\wedge Y$'', while the notation ``$Y^\wedge_E$'' we use here is standard in the modern literature.
+\end{remark}
+
+It turns out that applying ${[X,-]}_*$ to this tower under $Y$ yields an exact couple, the associated spectral sequence of which is precisely the $E$-Adams spectral sequence for ${[X,Y]}_*$.
+
 \begin{proposition}
 	Consider the tower under $Y$ constructed in \autoref{defn:nilpotent_completion}:
 	% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiWSJdLFsxLDAsIlxcY2RvdHMiXSxbMiwwLCJZL1lfMyJdLFszLDAsIlkvWV8yIl0sWzQsMCwiWS9ZXzEiXSxbNSwwLCJZL1lfMCJdLFs2LDAsIjAiXSxbMywxLCJXXzIiXSxbNSwxLCJXXzAiXSxbNCwxLCJXXzEiXSxbMiwxLCJXXzMiXSxbMCwxXSxbMSwyXSxbMiwzLCJxIl0sWzMsNCwicSJdLFs0LDUsInEiXSxbNSw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsInIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNywyLCJwIiwxXSxbNSw4LCJyIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsNCwicCIsMV0sWzQsOSwiciIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs5LDMsInAiLDFdLFsyLDEwLCJyIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
@@ -542,7 +550,7 @@ Before we can state and prove some convergence results for the spectral sequence
 		\arrow["p"{description}, from=2-3, to=1-2]
 		\arrow["\delta", from=1-2, to=2-2]
 	\end{tikzcd}\]
-	Thus by \autoref{SSeq_assoc_to_unrolled_EC}, there is an induced spectral sequence. This spectral sequence is precisely the $E$-Adams spectral sequence for ${[X,Y]}_*$ (\autoref{ASS}) determined by the canonical $E$-Adams resolution of $Y$ (\autoref{defn:canonical_E-Adams_resolution}).
+	Thus by \autoref{SSeq_assoc_to_unrolled_EC}, there is an induced spectral sequence. This spectral sequence is precisely the $E$-Adams spectral sequence for ${[X,Y]}_*$ (\autoref{ASS}).
 \end{proposition}
 \begin{proof}
 	For $s\geq0$, define
@@ -551,7 +559,7 @@ Before we can state and prove some convergence results for the spectral sequence
 	\[f_s:{[X,Y/Y_s]}_*=0\to{[X,Y_s]}_{*-\1}={[X,Y]}_{*-1}.\]
 	For $s\in\bZ$, let
 	\[g_s:=\id_{W_s}:{[X,W_s]}_*\to{[X,W_s]}_*.\]
-	We claim these maps ${(f_s,g_s)}_s$ define a homomorphism of $A$-graded unrolled exact couples (\autoref{defn:unrolled_exact_couple_homo}) between the unrolled exact couple given above and that obtained by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution. To that end, it suffices to show that the following diagram commutes for all $s\in\bZ$: 
+	We claim these maps ${(f_s,g_s)}_s$ define a homomorphism of $A$-graded unrolled exact couples (\autoref{defn:unrolled_exact_couple_homo}) between the unrolled exact couple given above determined by the quotient tower $\{Y/Y_s\}$ under $Y$, and that obtained by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution. To that end, it suffices to show that the following diagram commutes for all $s\in\bZ$: 
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJ7W1gsWS9ZX3NdfV8qIl0sWzEsMCwie1tYLFkvWV97cy0xfV19XyoiXSxbMiwwLCJ7W1gsV197cy0xfV19X3sqLVxcbWF0aGJmMX0iXSxbMywwLCJ7W1gsWS9ZX3NdfV97Ki1cXG1hdGhiZjF9Il0sWzAsMSwie1tYLFlfc119X3sqLVxcMX0iXSxbMSwxLCJ7W1gsWV97cy0xfV19X3sqLVxcMX0iXSxbMiwxLCJ7W1gsV197cy0xfV19X3sqLVxcMX0iXSxbMywxLCJ7W1gsWV9zXX1feyotXFxtYXRoYmYgMn0iXSxbMCwxXSxbMSwyXSxbMiwzXSxbMCw0LCJmX3MiLDJdLFs0LDVdLFs1LDZdLFs2LDddLFsxLDUsImZfe3MtMX0iLDFdLFsyLDYsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsNywiZl9zIl1d
 	\[\begin{tikzcd}
 		{{[X,Y/Y_s]}_*} & {{[X,Y/Y_{s-1}]}_*} & {{[X,W_{s-1}]}_{*-\mathbf1}} & {{[X,Y/Y_s]}_{*-\mathbf1}} \\
@@ -604,21 +612,20 @@ Before we can state and prove some convergence results for the spectral sequence
 	Thus, we have defined a homomorphism of $A$-graded unrolled exact couples, so that by \autoref{UEC_homo_induces_SSeq_homo} it induces a homomorphism of the associated spectral sequences $\wt g$. Further unravelling how this homomorphism of spectral sequences is defined, since the homomorphism of unrolled exact couples is the identity on the ${[X,W_s]}_*$ terms, it follows that the two spectral sequences are strictly equal.
 \end{proof}
 
+By means of this new presentation of the spectral sequence, we may consider the sense in which the spectral sequence converges to the \emph{limit} $\lim_s{[X,Y/Y_s]}_*$ of the tower $\{Y/Y_s\}_s$ under $Y$. First of all, it is standard that since $Y^\wedge_E$ is the homotopy limit of this tower, we have a \emph{Milnor short exact sequence}
+\[0\to\Rlim_s{[X,Y/Y_s]}_{*+1}\to{[X,Y^\wedge_E]}_*\to\lim_s{[X,Y/Y_s]}_*\to 0\]
+(the same argument given in \cite[Theorem 4.9]{Boardman_1999} works, although we warn the reader that Boardmann has a sign error there --- he writes the first term in the short exact sequence with $-1$, when it should be $+1$). Thus, if $\Rlim_s{[X,Y/Y_s]}_*$ vanishes, we get an identification of the limit
+\[\lim_s{[X,Y/Y_s]}_*={[X,Y^\wedge_E]}_*.\]
+By \cite[Theorem 7.4]{Boardman_1999}, this is further satisfied if the derived $E_\infty$-term $RE_\infty(X,Y)$ is zero, in which case the spectral sequence covnerges strongly to the limit ${[X,Y^\wedge_E]}_*$, meaning in particular the natural maps
+\begin{gather*}
+	{[X,Y^\wedge_E]}_*\to\lim_s{[X,Y^\wedge_E]}_*/F^s{[X,Y^\wedge_E]}_* \\
+	F^s{[X,Y^\wedge_E]}_*/F^{s+1}{[X,Y^\wedge_E]}_*\to E_\infty^{s,*}(X,Y)
+\end{gather*}
+are isomorphisms, where here $F^s$ is the decreasing filtration on ${[X,Y^\wedge_E]}_*$ given by
+\[F^s{[X,Y^\wedge_E]}_*:=\ker({[X,Y^\wedge_E]}_*=\lim_s{[X,Y/Y_s]}_*\to{[X,Y/Y_s]}_*).\]
+
 \begin{remark}
-	In \cite{Bousfield_79}, the $E$-nilpotent completion of $Y$ (\autoref{defn:nilpotent_completion}) is denoted ``$E^\wedge Y$'', while the notation ``$Y^\wedge_E$'' we use here is standard in the modern literature.
+	In \cite[\S6]{Bousfield_79}, work is done in the classical setting to analyze the conditions under which the derived page $RE_\infty$ vanishes, and ${[X,Y^\wedge_E]}_*$ tells us information about ${[X,Y]}_*$. Specifically, Bousfield describes some cases under which the canonical map $Y\to Y^\wedge_E$ is an isomorphism. More work should be done to see which of those results transfer over to our setting. In particular, there may be connectivity conditions one can place on $Y$ under which one gets convergence of the spectral sequence.
 \end{remark}
-
-\begin{definition}
-	Let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ two objects in $\cSH$. Then we have an associated $E$-Adams spectral sequence $(E^{*,*}_r(X,Y),d_r)$ (\autoref{ASS}) and $E$-nilpotent completion $Y^\wedge_E$ (\autoref{defn:nilpotent_completion}). Then we may define a decreasing $A$-graded filtration of ${[X,Y^\wedge_E]}_*$ by defining
-	\[F^s{[X,Y^\wedge_E]}_*:=\ker\({(\alpha_s)}_*:{[X,Y^\wedge_E]}_*\to{[X,\ol E_{s-1}\otimes Y]}_*\),\]
-	for $s>0$, where $\alpha_s$ is the composition
-	\[Y_E^\wedge\to\prod_{i=0}^\infty(\ol E_{i}\otimes Y)\onto \ol E_{s-1}\otimes Y\]
-\end{definition}
-
-Note that $F^1{[X,Y^\wedge_E]}_*={[X,E\otimes Y]}_*$. To see this, it suffices to show that $\alpha_1$ is the zero map. To see this, note that by how homotopy limits are constructed in \autoref{homotopy_limit_defn}, we have that the following diagram commutes:
-
-\begin{definition}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$, and $X$ and $Y$ any objects. Then for all
-\end{definition}
 
 \end{document}

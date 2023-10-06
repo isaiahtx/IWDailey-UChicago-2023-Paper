@@ -1,27 +1,21 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
+To start, we give a brief review of the assumed preliminaries. The most important tool we require of the reader is a strong familiarity with category theory, and particularly monoidal categories and symmetric monoidal closed versions thereof. We do not recall the definitions here (mostly so as not to make an already lengthy document any longer), for that we refer the reader to any standard treatment of category theory, for example, Emily Riehl's book \cite{Riehl}, or Mac Lane's book \cite{MacLane1978}. We refer the reader in particular to chapters 7 and 9 of the latter book for a reference on (symmetric closed) monoidal categories. 
+
+When working in monoidal categories, we will always be implicitly using Mac Lane's coherence theorem for monoidal categories, which was originally proven in Mac Lane's paper \cite{MLCoherence}, along with a stronger version of the theorem for symmetric monoidal categories. Versions of these theorems can also be found in Chapters 7 and 9 of \cite{MacLane1978}. These theorems are tedious to rigorously state, and we do not do so here, but their consequences are intuitive. Roughly, they say that there is a strong monoidal equivalence from any monoidal category to a strict monoidal category, where tensoring with the unit, the associators, and the unitors are all the identity. In the symmetric case, the theorem says in addition that in a symmetric monoidal category, any morphisms between two objects given by ``formal composites'' of products of unitors, associators, symmetries, and their inverses is equal if the domain and codomain of the composites have the same underlying permutation (after removing units). In practice, the most immediate consequence of these theorems is that when constructing maps and showing diagrams commute, we will nearly always suppress associators and unitors from the notation, instead taking them to be equalities. Similarly, we will assume that tensoring with the unit is the identity. This style of reasoning is essential to understanding nearly anything written here, and as such we will usually not point out when we are applying the coherence theorems. An example of this is \autoref{Sigma^a,Sigma^-a_adjoint_equiv} below.
+
+Finally, we also assume the reader is familiar with the theory of modules and bimodules over (non-commutative) rings, along with their properties, such as products, direct sums, and tensor products of them. In \autoref{appendix:graded_stuff}, assuming this knowledge, we will develop the theory of \emph{$A$-graded} versions of these notions, as well as some of their properties. For the reader familiar with the standard notion of $\bZ$ or $\bN$-graded rings and modules, this should all be familiar, and they should feel comfortable skipping this appendix entirely.
+
 \subsection{Triangulated categories with sub-Picard grading}
 
-In order to construct an abstract version of the Adams spectral sequence, we need to work in some axiomatic version of a stable homotopy category $\cSH$ which acts like the familiar classical stable homotopy category $\hoSp$ (\Cref{section:CASS}) or the motivic stable homotopy category $\SH\scS$ over some base scheme $\scS$ (\Cref{section:MASS}). This setting will be a category which is:
-\begin{enumerate}
-	\item Symmetric monoidal closed
-	\item Triangulated
-	\item Graded by (some collection of) its invertible objects
-\end{enumerate}
-These data are furthermore required to be compatible.
-
-\begin{definition}\label{defn_compact}
-	Let $\cC$ be an additive category with arbitrary (small) coproducts. Then an object $X$ in $\cC$ is \emph{compact} if, for any collection of objects $Y_i$ in $\cC$ indexed by some (small) set $I$, the canonical map
-	\[\bigoplus_i\cC(X,Y_i)\to\cC(X,\bigoplus_iY_i)\]
-	is an isomorphism of abelian groups. (Explicitly, the above map takes a generator $x\in\cC(X,Y_i)$ to the composition $X\xr xY_i\into\bigoplus_iY_i$.)
-\end{definition}
+In order to construct an abstract version of the Adams spectral sequence, we need to work in some axiomatic version of a stable homotopy category $\cSH$ which acts like the familiar classical stable homotopy category $\hoSp$ (\Cref{section:CASS}) or the motivic stable homotopy category $\SH\scS$ over some base scheme $\scS$ (\Cref{section:MASS}). 
 
 \begin{definition}\label{sub_Picard_grading_defn}
 	Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}), a \emph{sub-Picard grading} on $\cC$ is the following data:
 	\begin{itemize}
 		\item A pointed abelian group $(A,\1)$ along with a homomorphism of pointed groups $h:(A,\1)\to(\Pic\cC,\Sigma S)$, where $\Pic\cC$ is the \emph{Picard group} of isomorphism classes of invertible objects in $\cC$.\footnote{Recall an object $X$ is a symmetric monoidal category is \emph{invertible} if there exists some object $Y$ and an isomorphism $S\cong X\otimes Y$.}
-		\item For each $a\in A$, a chosen representative $S^a$ called the \emph{$a$-sphere} in the isomorphism class $h(a)$ such that each $S^a$ is a compact object (\autoref{defn_compact}) and $S^0=S$.
+		\item For each $a\in A$, a chosen representative $S^a$ called the \emph{$a$-sphere} in the isomorphism class $h(a)$ such that $S^0=S$.
 		\item For each $a,b\in A$, an isomorphism $\phi_{a,b}:S^{a+b}\to S^a\otimes S^b$. This family of isomorphisms is required to be \emph{coherent}, in the following sense:
 		\begin{itemize}
 			\item For all $a\in A$, we must have that $\phi_{a,0}$ coincides with the right unitor $\rho_{S^a}^{-1}:S^{a}\xrightarrow\cong S^a\otimes S$ and $\phi_{0,a}$ coincides the left unitor $\lambda_{S^a}^{-1}:S^a\xrightarrow\cong S\otimes S^a$.
@@ -39,18 +33,34 @@ These data are furthermore required to be compatible.
 	\end{itemize}
 \end{definition}
 
-From now on we fix a monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ with arbitrary (small) (co)products and sub-Picard grading $(A,\1,h,\{S^a\},\{\phi_{a,b}\})$. We also fix an isomorphism $\nu:\Sigma S\xr\cong S^\1$ once and for all. We establish conventions. First, observe the following remark:
+For a review of (tensor) triangulated categories, we refer the reader to \Cref{appendix:triangulated}. We encourage the reader to at least take a look at our definition of a tensor triangulated category (\autoref{tentri}), as there are multiple different collections of axioms for a tensor triangulated category which may be found in the literature. For our purposes, we have chosen a minimal such list for what we need, in particular, we do not impose any sort of inherent graded commutativity condition on the isomorphisms $e_{X,Y}:\Sigma X\otimes Y\xr\cong\Sigma(X\otimes Y)$.
 
 \begin{remark}\label{unique_comp_Sas}
 	Note that by induction the coherence conditions for the $\phi_{a,b}$'s in the above definition say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of products of $\phi_{a,b}$, identities, associators, unitors, and their inverses (but not symmetries).
 \end{remark}
 
-In light of this remark, we will usually simply write $\phi$ or even just $\cong$ for any isomorphism that is built by taking compositions of products of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses. Given 
+In light of this remark, when working in such a category, we will usually simply write $\phi$ or even just $\cong$ for any isomorphism that is built by taking compositions of products of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses. Now, we will fix the category in which we will work for the remainder of this document. First, recall the notion of \emph{compact objects} in a category, which in an additive category may be characterized by the following simplified definition:
+
+\begin{definition}\label{defn_compact}
+	Let $\cC$ be an additive category with arbitrary (set-indexed) coproducts. Then an object $X$ in $\cC$ is \emph{compact} if, for any collection of objects $Y_i$ in $\cC$ indexed by some set $I$, the canonical map
+	\[\bigoplus_i\cC(X,Y_i)\to\cC(X,\bigoplus_iY_i)\]
+	is an isomorphism of abelian groups. (Explicitly, the above map takes a generator $x\in\cC(X,Y_i)$ to the composition $X\xr xY_i\into\bigoplus_iY_i$.)
+\end{definition}
+
+Now that we have this technical definition, we can define the category:
+
+\begin{convention}\label{SH_convention}
+	Fix a monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ with arbitrary (set-indexed) (co)products and sub-Picard grading $(A,\1,h,\{S^a\},\{\phi_{a,b}\})$. Further assume that the object $S^a$ is a compact object (\autoref{defn_compact}) for each $a\in A$. Finally, we suppose an isomorphism $\nu:\Sigma S\xr\cong S^\1$ has been fixed once and for all.
+\end{convention}
+
+For our applications below, we will not actually need the full power of a closed monoidal structure on $\cSH$ --- all we will need is that the monoidal product $-\otimes-$ preserves arbitrary (co)limits in each argument. In practice though, and for all the examples we will discuss here, any such category will usually be monoidal closed, so we keep this assumption.
+
+Now, we would like to establish notational conventions in $\cSH$, which will reinforce our notion of thinking of $\cSH$ as ``a stable homotopy category''. Given
 %\[X_1\otimes(X_2\otimes\cdots(X_{n-1}\otimes X_n)).\]
 %In particular, given 
 an object $X$ and a natural number $n>0$, we write
 \[X^n:=\overbrace{X\otimes\cdots\otimes X}^\text{$n$ times}\qquad\text{and}\qquad X^0:=S.\]
-We denote the associator, symmetry, left unitor, and right unitor isomorphisms in $\cSH$ by
+When we want to be explicit about them, we will denote the associator, symmetry, left unitor, and right unitor isomorphisms in $\cSH$ by
 \[\begin{split}
 	\alpha_{X,Y,Z}:(X\otimes Y)\otimes Z&\xrightarrow\cong X\otimes(Y\otimes Z) \\
 	\lambda_X:S\otimes  X&\xrightarrow\cong X 
@@ -58,11 +68,11 @@ We denote the associator, symmetry, left unitor, and right unitor isomorphisms i
 	\tau_{X,Y}:X\otimes Y &\xrightarrow\cong Y\otimes X\\
 	\rho_X:X\otimes S&\xrightarrow\cong X.
 \end{split}\]
-Often we will drop the subscripts. Furthermore, by the coherence theorem for symmetric monoidal categories (\cite{MLCoherence}), we will often assume $\alpha$, $\rho$, and $\lambda$ are actual equalities. 
+Often we will drop the subscripts. As we discussed above, by the coherence theorem for symmetric monoidal categories, we will nearly always assume $\alpha$, $\rho$, and $\lambda$ are actual equalities, and will suppress them from the notation entirely.
 
 Given some integer $n\in\bZ$, we will write a bold $\n$ to denote the element $n\cdot\1$ in $A$. Note that we can use the isomorphism $\nu:\Sigma S\xr\cong S^\1$ to construct a natural isomorphism $\Sigma\cong S^\1\otimes-$:
 \[\Sigma X\xr{\Sigma\lambda_X^{-1}}\Sigma(S\otimes X)\xr{e_{S,X}^{-1}}\Sigma S\otimes X\xr{\nu\otimes X}S^\1\otimes X,\]
-where $e_{X,Y}:\Sigma X\otimes Y\to\Sigma(X\otimes Y)$ is the isomorphism specified by the fact that $\cSH$ is tensor-triangulated. The first two arrows are natural in $X$ by definition. The last arrow is natural in $X$ by functoriality of $-\otimes-$. By abuse of notation, we will always use $\nu$ to denote this natural isomorphism, rather than the isomorphism $\Sigma S\xr\cong S^\1$.
+where $e_{X,Y}:\Sigma X\otimes Y\to\Sigma(X\otimes Y)$ is the isomorphism specified by the fact that $\cSH$ is tensor-triangulated. The first two arrows are natural in $X$ by definition. The last arrow is natural in $X$ by functoriality of $-\otimes-$. Henceforth, we will always use $\nu$ to denote this natural isomorphism, rather than the isomorphism $\Sigma S\xr\cong S^\1$, which we will never actually need to explicitly use.
 %\todo{is this characterization of $\nu$ and $e$ needed?}Furthermore, under this isomorphism, $e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong \Sigma(X\otimes Y)$ corresponds to the associator, by commutativity of the following diagram:
 %% https://q.uiver.app/#q=WzAsOSxbMywwLCIoU15cXDFcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMywyLCJTXlxcMVxcb3RpbWVzKFhcXG90aW1lcyBZKSJdLFsyLDAsIihcXFNpZ21hIFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMSwwLCJcXFNpZ21hKFNcXG90aW1lcyBYKVxcb3RpbWVzIFkiXSxbMCwwLCJcXFNpZ21hIFhcXG90aW1lcyBZIl0sWzAsMiwiXFxTaWdtYShYXFxvdGltZXMgWSkiXSxbMiwyLCJcXFNpZ21hIFNcXG90aW1lcyAoWFxcb3RpbWVzIFkpIl0sWzEsMiwiXFxTaWdtYShTXFxvdGltZXMgKFhcXG90aW1lcyBZKSkiXSxbMSwxLCJcXFNpZ21hKChTXFxvdGltZXMgWClcXG90aW1lcyBZKSJdLFswLDEsIlxcYWxwaGEiLDJdLFswLDIsIihcXG51XFxvdGltZXMgWClcXG90aW1lcyBZIiwyXSxbMywyLCJlX3tTLFh9XnstMX1cXG90aW1lcyBZIl0sWzQsMywiXFxTaWdtYVxcbGFtYmRhX1heey0xfVxcb3RpbWVzIFkiXSxbNCw1LCJlX3tYLFl9IiwyXSxbNiwxLCJcXG51XFxvdGltZXMgKFhcXG90aW1lcyBZKSIsMl0sWzcsNiwiZV97UyxYXFxvdGltZXMgWX1eey0xfSIsMl0sWzUsNywiXFxTaWdtYVxcbGFtYmRhX3tYXFxvdGltZXMgWX1eey0xfSIsMl0sWzIsNiwiXFxhbHBoYSJdLFszLDgsImVfe1NcXG90aW1lcyBYLFl9Il0sWzgsNywiXFxTaWdtYVxcYWxwaGEiXSxbOCw1LCJcXFNpZ21hKFxcbGFtYmRhX1hcXG90aW1lcyBZKSIsMV1d
 %\[\begin{tikzcd}
@@ -84,20 +94,18 @@ where $e_{X,Y}:\Sigma X\otimes Y\to\Sigma(X\otimes Y)$ is the isomorphism specif
 %\end{tikzcd}\]
 %Commutativity of the left trapezoid is naturality of $e$. The bottom left triangle commutes by coherence for monoidal categories and functoriality of $\Sigma$. Commutativity of the middle square is axiom TT4 for a tensor triangulated category. Finally, the right square commutes by naturality of $\alpha$.
 
-Given some $a\in A$, we define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a}=S^{-a}\otimes-$. We specifically define $\Omega:=\Omega^\1$. We say ``the $a^\text{th}$ suspension of $X$'' to denote $\Sigma^aX$. It turns out that $\Sigma^a$ is an autoequivalence of $\cSH$ for each $a\in A$, and furthermore, $\Omega^a$ and $\Sigma^a$ form an adjoint equivalence of $\cSH$ for all $a$ in $A$:
+Given some $a\in A$, we define functors $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a}=S^{-a}\otimes-$. We specifically define $\Omega:=\Omega^\1$. We say ``the $a^\text{th}$ suspension of $X$'' to denote $\Sigma^aX$. It turns out that $\Sigma^a$ is an autoequivalence of $\cSH$ for each $a\in A$, and furthermore, $\Omega^a$ and $\Sigma^a$ form an adjoint equivalence of $\cSH$ for all $a$ in $A$:
 
 \begin{proposition}\label{Sigma^a,Sigma^-a_adjoint_equiv}
 	For each $a\in A$, the isomorphisms
-	\[\eta^a_X:X\xr{\lambda_X^{-1}}S\otimes X\xr{\phi_{a,-a}\otimes X}(S^{a}\otimes S^{-a})\otimes X\xr\alpha S^a\otimes(S^{-a}\otimes X)=\Sigma^{a}\Omega^a X\]
+	\[\eta^a_X:X\xr{\phi_{a,-a}\otimes X}S^{a}\otimes S^{-a}\otimes X=\Sigma^{a}\Omega^a X\]
 	and 
-	\[\vare^a_X:\Omega^a\Sigma^a X=S^{-a}\otimes(S^a\otimes X)\xrightarrow{\alpha^{-1}}(S^{-a}\otimes S^a)\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}S\otimes X\xrightarrow{\lambda_X}X\]
+	\[\vare^a_X:\Omega^a\Sigma^a X=S^{-a}\otimes S^a\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}X\]
 	are natural in $X$, and furthermore, they are the unit and counit respectively of the adjoint autoequivalence $(\Omega^a,\Sigma^a,\eta^a,\vare^a)$ of $\cSH$. In particular, since $\Sigma\cong\Sigma^\1$, $\Omega:=\Omega^\1$ is a left adjoint for $\Sigma$, so that $(\cSH,\Omega,\Sigma,\eta,\vare,\cD)$ is an \emph{adjointly} triangulated category (\autoref{adjointly_triangulated_defn}), where $\eta$ and $\vare$ are the compositions 
 	\[\eta:\Id_\cSH\xRightarrow{\eta^\1}\Sigma^\1\Omega\xRightarrow{\nu^{-1}\Omega}\Sigma\Omega\qquad\text{and}\qquad\vare:\Omega\Sigma\xRightarrow{\Omega\nu}\Omega\Sigma^\1\xRightarrow{\vare^\1}\Id_\cSH.\]
 \end{proposition}
 \begin{proof}
-	In this proof, we will freely employ the coherence theorem for monoidal categories (see \cite{MLCoherence}), which essentially tells us that we may assume we are working in a strict monoidal category (i.e., that the associators and unitors and are identities). Then $\eta^a_X$ and $\vare^a_X$ become simply the maps
-	\[\eta^a_X:X\xrightarrow{\phi_{a,-a}\otimes X}S^{a}\otimes S^{-a}\otimes X\qquad\text{and}\qquad\vare_X^a:S^{-a}\otimes S^{a}\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}X.\]
-	That these maps are natural in $X$ follows by functoriality of $-\otimes-$. Now, recall that in order to show that these natural isomorphisms form an \emph{adjoint} equivalence, it suffices to show that the natural isomorphisms $\eta^a:\Id_\cSH\Rightarrow\Omega^a\Sigma^a$ and $\vare^a:\Sigma^a\Omega^a\Rightarrow\Id_\cSH$ satisfy one of the two zig-zag identities:
+	That $\eta^a$ and $\vare^a$ are natural in $X$ follows by functoriality of $-\otimes-$. Now, recall that in order to show that these natural isomorphisms form an \emph{adjoint} equivalence, it suffices to show that the natural isomorphisms $\eta^a:\Id_\cSH\Rightarrow\Omega^a\Sigma^a$ and $\vare^a:\Sigma^a\Omega^a\Rightarrow\Id_\cSH$ satisfy one of the two zig-zag identities:
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhXmEiXSxbMSwwLCJcXE9tZWdhXmFcXFNpZ21hXmFcXE9tZWdhXmEiXSxbMSwxLCJcXE9tZWdhXmEiXSxbMiwwLCJcXFNpZ21hXmFcXE9tZWdhXmFcXFNpZ21hXmEiXSxbMywwLCJcXFNpZ21hXmEiXSxbMiwxLCJcXFNpZ21hXmEiXSxbMCwxLCJcXE9tZWdhXmFcXGV0YV5hIl0sWzEsMiwiXFx2YXJlcHNpbG9uXmFcXE9tZWdhXmEiXSxbMyw1LCJcXFNpZ21hXmFcXHZhcmVwc2lsb25eYSIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcZXRhXmFcXFNpZ21hXmEiLDJdXQ==
 	\[\begin{tikzcd}
 		{\Omega^a} & {\Omega^a\Sigma^a\Omega^a} & {\Sigma^a\Omega^a\Sigma^a} & {\Sigma^a} \\
@@ -118,12 +126,13 @@ Given some $a\in A$, we define $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\Sigma^{-a
 		\arrow["{\phi_{-a,a}^{-1}\otimes S^{-a}\otimes X}", from=1-2, to=2-2]
 		\arrow[Rightarrow, no head, from=1-1, to=2-2]
 	\end{tikzcd}\]
-	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s (since $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, and here we are taking the unitors and associators to be equalities), so it does commute, as desired.
+	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s (since $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, and by coherence we are taking the unitors and associators to be equalities), so it does commute, as desired.
 \end{proof}
 
 Given two objects $X$ and $Y$ in $\cSH$, we will denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and the internal hom object by $F(X,Y)$. %In what follows, we write $\Ab^A$ for the category of $A$-graded abelian groups with its canonical self-enrichment.\footnote{Explicitly, given $A$-graded abelian groups $B$ and $C$, we define $\Hom_{\Ab^A}^*(X,Y)$ to be the $A$-graded abelian group by taking $\Hom_{\Ab^A}^a(X,Y)$ to be the abelian groups of degree-preserving abelian group homomorphisms $X_{*+a}\to Y_*$, where $X_{*+a}$ denotes the shifted $A$-graded abelian group.}
-We can extend the abelian group $[X,Y]$ into an $A$-graded abelian group ${[X,Y]}_*$ by defining ${[X,Y]}_a:=[S^a\otimes X,Y]$.
-
+We may extend the abelian group $[X,Y]$ to an $A$-graded abelian group ${[X,Y]}_*$ by defining ${[X,Y]}_a:=[\Sigma^aX,Y]$. It is further possible to extend composition in $\cSH$ to an $A$-graded map
+\[{[Y,Z]}_*\otimes_\bZ{[X,Y]}_*\to{[X,Z]}_*,\]
+but we do not explore this here.
 %\begin{proposition}
 %	Each hom-group $[X,Y]$ in the category $\cSH$ can be extended to an $A$-graded abelian group $[X,Y]_*$ by the rule
 %	\[[X,Y]_a:=[\Sigma^a X,Y].\]
@@ -136,7 +145,6 @@ We can extend the abelian group $[X,Y]$ into an $A$-graded abelian group ${[X,Y]
 %\begin{proof}
 %	We only need to check that composition is bilinear. To that end, 
 %\end{proof}
-
 Given an object $X$ in $\cSH$ and some $a\in A$, we can define the abelian group
 \[\pi_a(X):=[S^a,X],\]
 which we call the \emph{$a^\text{th}$ (stable) homotopy group of $X$}. We write $\pi_*(X)$ for the $A$-graded abelian group $\bigoplus_{a\in A}\pi_a(X)$, so that in particular we have a canonical isomorphism
@@ -145,7 +153,7 @@ Given some other object $E$, we can define the $A$-graded abelian groups $E_*(X)
 \[E_a(X):=\pi_a(E\otimes X)=[S^a,E\otimes X]\qquad\text{and}\qquad E^a(X):=[X,S^a\otimes E].\]
 We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$}, or just $E$-homology, and we refer to $E^*(-)$ as the \emph{cohomology theory represented by $E$}, or just $E$-cohomology.
 
-A nice result is that in $\cSH$, (co)fiber sequences (distinguished triangles) give rise to homotopy long exact sequences. To see this, we first need the following lemma:
+A nice result is that in $\cSH$, (co)fiber sequences (distinguished triangles) give rise to homotopy long exact sequences. Of key importance for this exact sequence (any many applications beyond), we will need now to fix natural isomorphisms $s^a_{X,Y}:{[X,\Sigma^aY]}_*\xr\cong{[X,Y]}_{*-a}$, once and for all:
 
 \begin{definition}\label{s^a_isos}
 	For all $X,Y$ in $\cSH$ and $a\in A$, there are $A$-graded isomorphisms
@@ -164,6 +172,8 @@ A nice result is that in $\cSH$, (co)fiber sequences (distinguished triangles) g
 	\[{[X,\Sigma^aY]}_*=[S^*\otimes X,S^a\otimes Y]\xrightarrow{\text{adj}}[S^{-a}\otimes S^*\otimes X,Y]\xr{{(\phi_{-a,*}\otimes X)}^*}[S^{*-a}\otimes X,Y]=[X,Y]_{*-a},\]
 	where the adjunction is that from \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. The adjunction is natural in $S^*\otimes X$ and $Y$ by definition, so that in particular it is natural in $X$ and $Y$. It is furthermore straightforward to see by functoriality of $-\otimes-$ that the second arrow is natural in both $X$ and $Y$. Thus $s^a_{X,Y}$ is natural in $X$ and $Y$, as desired.
 \end{proof}
+
+Now we may construct the long exact sequence:
 
 \begin{proposition}\label{X,Y*_LES_compact}
 	Suppose we are given a distinguished triangle
@@ -260,7 +270,7 @@ Similarly, we have homology long exact sequences:
 		\arrow["{E_*(f)}", from=3-1, to=3-2]
 		\arrow["{E_*(g)}", from=3-2, to=3-3]
 		\arrow["{E_*(h)}", from=3-3, to=3-4]
-	\end{tikzcd}\]
+	\end{tikzcd}\qedhere\]
 \end{proof}
 
 \end{document}
