@@ -351,7 +351,7 @@ Now, we can finally prove the desired theorem:
 	\end{tikzcd}\]
 	This diagram further commutes by naturality of $\Phi_{Z,-}$. Now, supposing that two of three of $X$, $Y$, and $W$ belong to $\cE$, by  \autoref{Phi_Z,W_iso_implies_Phi_S^aZ,W_and_Phi_Z,S^aW_are_isos}, if $\Phi_{Z,V}$ is an isomorphism for some object $V$ in $\cSH$ then $\Phi_{Z,\Omega V}$ and $\Phi_{Z,\Sigma V}$ are. Thus by the five lemma, it follows that the middle three vertical arrows in the above diagram are necessarily all isomorphisms if any two of them are, so we have shown that $\cE$ is closed under two-of-three for exact triangles, as desired.
 
-	Finally, it remains to show that $\cE$ is closed under arbitrary coproducts. Let $\{W_i\}_{i\in I}$ be a collection of objects in $\cE$ indexed by some (small) set $I$. Then we'd like to show that $W:=\bigoplus_iW_i$ belongs to $\cE$. First of all, note that $-\otimes-$ preserves arbitrary coproducts in each argument, as it has a right adjoint $F(-,-)$. Thus without loss of generality, given any object $X$ in $\cSH$, we may take $\bigoplus_iX\otimes W_i=X\otimes\bigoplus_iW_i$ (as $X\otimes\bigoplus_iW_i$ \emph{is} a coproduct of all the $X\otimes W_i$'s). Now, recall that we have chosen each $S^a$ to be a compact object (\autoref{defn_compact}), so that given any object $X$ and collection of objects $\{Y_i\}_{i\in I}$ in $\cSH$, if $Y:=\bigoplus_{i\in I}Y_i$, then the canonical map
+	Finally, it remains to show that $\cE$ is closed under arbitrary coproducts. Let $\{W_i\}_{i\in I}$ be a collection of objects in $\cE$ indexed by some set $I$. Then we'd like to show that $W:=\bigoplus_iW_i$ belongs to $\cE$. First of all, note that $-\otimes-$ preserves arbitrary coproducts in each argument, as it has a right adjoint $F(-,-)$. Thus without loss of generality, given any object $X$ in $\cSH$, we may take $\bigoplus_iX\otimes W_i=X\otimes\bigoplus_iW_i$ (as $X\otimes\bigoplus_iW_i$ \emph{is} a coproduct of all the $X\otimes W_i$'s). Now, recall that we have chosen each $S^a$ to be a compact object (\autoref{defn_compact}), so that given any object $X$ and collection of objects $\{Y_i\}_{i\in I}$ in $\cSH$, if $Y:=\bigoplus_{i\in I}Y_i$, then the canonical map
 	\[q_{X,Y_i}:\bigoplus_i X_*(Y_i)=\bigoplus_i[S^*,X\otimes Y_i]\to[S^*,\bigoplus_iX\otimes Y_i]=[S^*,X\otimes Y]=X_*(Y)\]
 	is an isomorphism, natural in $Y_i$ for each $i$. Note in particular that $q_{E,W_i}$ is an isomorphism of left $\pi_*(E)$-modules. To see this, first note by additivity of $q_{E,W_i}$, it suffices to check that $q_{E,W_i}(r\cdot x)=r\cdot q_{E,W_i}(x)$ for each homogeneous $r\in\pi_*(E)$ and homogeneous $x\in E_*(W_i)$ for some $i$, as such $x$ generate $\bigoplus_i E_*(W_i)$ by definition. Then given $r:S^a\to E$ and $x:S^b\to E\otimes W_i$, consider the following diagram	
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15hXFxvdGltZXMgU15iIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBXX2kiXSxbMywwLCJFXFxvdGltZXMgXFxiaWdvcGx1c19pKEVcXG90aW1lcyBXX2kpIl0sWzMsMSwiRVxcb3RpbWVzIEVcXG90aW1lcyBXIl0sWzMsMiwiRVxcb3RpbWVzIFciXSxbMiwzLCJFXFxvdGltZXMgV19pIl0sWzMsMywiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBXX2kpIl0sWzAsMSwiXFxwaGlfe2EsYn0iXSxbMSwyLCJ4XFxvdGltZXMgeSJdLFsyLDMsIkVcXG90aW1lcyBcXGlvdGFfe0VcXG90aW1lcyBXX2l9Il0sWzMsNCwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCJcXG11XFxvdGltZXMgV19pIiwyXSxbNiw3LCJcXGlvdGFfe0VcXG90aW1lcyBXX2l9IiwyXSxbNyw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDUsIkVcXG90aW1lcyBcXGlvdGFfe1dfaX0iLDFdLFsyLDQsIkVcXG90aW1lcyBFXFxvdGltZXMgXFxpb3RhX3tXX2l9IiwxXSxbNCw1LCJcXG11XFxvdGltZXMgVyJdXQ==
@@ -482,7 +482,7 @@ Now, we can finally prove the desired theorem:
 Now, before we prove our next theorem (an analog of the universal coefficient theorem in $\cSH$), we need to develop some of the theory of (left) module objects over monoid objects in $\cSH$. For a review of the basic definitions and properties of module objects over monoid objects in symmetric monoidal categories, see \Cref{subsection:modules_over_monoids}. Recall specifically that given a monoid object $(E,\mu,e)$ in $\cSH$, the category $E\text-\Mod$ of (left) $E$-module objects is additive (\autoref{E-Mod,free,forgetful_are_additive}), and the forgetful functor $E\text-\Mod\to\cSH$ preserves arbitrary coproducts and has a right adjoint $\cSH\to E\text-\Mod$ taking an object $X$ in $\cSH$ to the \emph{free $E$-module} $E\otimes X$ (\autoref{free_forgetful_E-Mod}).
 
 \begin{proposition}\label{E-module_N_implies_pi*N_is_pi*E_module}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then the assignment $\pi_*:(N,\kappa)\mapsto\pi_*(N)$ yields an additive functor from $E\text-\Mod$ to the category $\pi_*(E)\text-\Mod^A$ of $A$-graded left $\pi_*(E)$-modules and degree-preserving homomorphisms between them. In particular, if $(N,\kappa)$ is an $E$-module object in $\cSH$, then we view it with its \emph{canonical} $A$-graded left $\pi_*(E)$-module structure given by the graded map
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then the assignment $\pi_*:(N,\kappa)\mapsto\pi_*(N)$ yields an additive functor from $E\text-\Mod$ to the category $\pi_*(E)\text-\Mod^A$ of $A$-graded left $\pi_*(E)$-modules and degree-preserving homomorphisms between them, and in fact, it preserves arbitrary coproducts. In particular, if $(N,\kappa)$ is an $E$-module object in $\cSH$, then we view it with its \emph{canonical} $A$-graded left $\pi_*(E)$-module structure given by the graded map
 	\[\pi_*(E)\times\pi_*(N)\to\pi_*(N)\]
 	sending a class $r:S^a\to E$ and $x:S^b\to N$ to the composition
 	\[r\cdot x:S^{a+b}\xr{\phi_{a,b}} S^a\otimes S^b\xr{r\otimes x}E\otimes N\xr\kappa N.\]
@@ -555,58 +555,34 @@ Now, before we prove our next theorem (an analog of the universal coefficient th
 	\end{tikzcd}\]
 	It commutes by the fact that $f$ is a homomorphism of $E$-module objects. The bottom composition is $\pi_*(f)(r\cdot x)$, while the top composition is $r\cdot \pi_*(f)(x)$, so they are equal, as desired.
  
-	Next we claim this functor is additive. It suffices to show it preserves the zero object and preserves coproducts. To see the former, note that $\pi_*(0)=[S^*,0]=0$ by definition, since $0$ is terminal. To see the latter, we need to show that given $(N,\kappa),(N',\kappa')\in E\text-\Mod$ that $\pi_*(N)\oplus\pi_*(N')\cong\pi_*(N\oplus N')$, and that the following diagram commutes:
-	% https://q.uiver.app/#q=WzAsMyxbMSwxLCJcXHBpXyooTlxcb3BsdXMgTicpIl0sWzAsMCwiXFxwaV8qKE4pIl0sWzAsMSwiXFxwaV8qKE4pXFxvcGx1c1xccGlfKihOJykiXSxbMSwwLCJcXHBpXyooXFxpb3RhX04pIl0sWzIsMCwiXFxjb25nIiwyXSxbMSwyLCJcXGlvdGFfe1xccGlfKihOKX0iLDJdXQ==
+	Next we claim this preserves arbitrary coproducts. First of all, note that $\pi_*(0)=[S^*,0]=0$ by definition, since $0$ is terminal. Now suppose we have a family of objects $(N_i,\kappa_i)\in E\text-\Mod$ then we would like to show that there is an degree-preserving isomorphism of $A$-graded left $\pi_*(E)$-modules $\bigoplus_i\pi_*(N_i)\xr\cong\pi_*(\bigoplus_iN_i)$ such that the following diagram commutes for all $i$:
+	% https://q.uiver.app/#q=WzAsMyxbMSwxLCJcXHBpXyooXFxiaWdvcGx1c19pTl9pKSJdLFswLDAsIlxccGlfKihOX2kpIl0sWzAsMSwiXFxiaWdvcGx1c19pXFxwaV8qKE5faSkiXSxbMSwwLCJcXHBpXyooXFxpb3RhX3tOX2l9KSJdLFsyLDAsIlxcY29uZyJdLFsxLDIsIlxcaW90YV97XFxwaV8qKE5faSl9IiwyXV0=
+	\begin{equation}\label{diagram:pi_*_preserves_arbitrary_coproducts}\begin{tikzcd}
+		{\pi_*(N_i)} \\
+		{\bigoplus_i\pi_*(N_i)} & {\pi_*(\bigoplus_iN_i)}
+		\arrow["{\pi_*(\iota_{N_i})}", from=1-1, to=2-2]
+		\arrow["\cong", from=2-1, to=2-2]
+		\arrow["{\iota_{\pi_*(N_i)}}"', from=1-1, to=2-1]
+	\end{tikzcd}\end{equation}
+	First of all, since each $S^a$ is compact, for all $a\in A$ we have isomorphisms
+	\[\bigoplus_i\pi_a(N_i)=\bigoplus_i[S^a,N_i]\xr\cong[S^a,\bigoplus_iN_i]=\pi_a(\bigoplus_iN_i),\]
+	and these combine together to yield $A$-graded isomorphisms $q_{\{N_i\}}:\bigoplus_i\pi_*(N_i)\xr\cong\pi_*(\bigoplus_iN_i)$. Explicitly unravelling defintions, the above maps send a generator $x:S^a\to N_i$ in $\pi_a(N_i)$ to the class $S^a\xr xN_i\xr{\iota_{N_i}}\bigoplus_iN_i$. To see this isomorphism is further an isomorphism of left $\pi_*(E)$-modules, it suffices to show that given a generator $r:S^a\to E$ in $\pi_*(E)$ and a generator $x:S^b\to N_i$ in $\pi_b(N_i)\leq\bigoplus_i\pi_*(N_i)$, that $r\cdot q_{\{N_i\}}(x)=q_{\{N_i\}}(r\cdot x)$. To that end, consider the following diagram:
+	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15hXFxvdGltZXMgU15iIl0sWzIsMCwiRVxcb3RpbWVzIE5faSJdLFs0LDAsIkVcXG90aW1lc1xcYmlnb3BsdXNfaU5faSJdLFsyLDIsIk5faSJdLFs0LDIsIlxcYmlnb3BsdXNfaU5faSJdLFs0LDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgTl9pKSJdLFswLDEsIlxccGhpX3thLGJ9Il0sWzEsMiwiclxcb3RpbWVzIHgiXSxbMiwzLCJFXFxvdGltZXNcXGlvdGFfe05faX0iXSxbMiw0LCJcXGthcHBhX2kiXSxbNCw1LCJcXGlvdGFfe05faX0iXSxbMyw2LCJcXGNvbmciXSxbNiw1LCJcXGJpZ29wbHVzX2lcXGthcHBhX2kiXV0=
 	\[\begin{tikzcd}
-		{\pi_*(N)} \\
-		{\pi_*(N)\oplus\pi_*(N')} & {\pi_*(N\oplus N')}
-		\arrow["{\pi_*(\iota_N)}", from=1-1, to=2-2]
-		\arrow["\cong"', from=2-1, to=2-2]
-		\arrow["{\iota_{\pi_*(N)}}"', from=1-1, to=2-1]
+		{S^{a+b}} & {S^a\otimes S^b} & {E\otimes N_i} && {E\otimes\bigoplus_iN_i} \\
+		&&&& {\bigoplus_i(E\otimes N_i)} \\
+		&& {N_i} && {\bigoplus_iN_i}
+		\arrow["{\phi_{a,b}}", from=1-1, to=1-2]
+		\arrow["{r\otimes x}", from=1-2, to=1-3]
+		\arrow["{E\otimes\iota_{N_i}}", from=1-3, to=1-5]
+		\arrow["{\kappa_i}", from=1-3, to=3-3]
+		\arrow["{\iota_{N_i}}", from=3-3, to=3-5]
+		\arrow["\cong", from=1-5, to=2-5]
+		\arrow["{\bigoplus_i\kappa_i}", from=2-5, to=3-5]
 	\end{tikzcd}\]
-	Since each $S^a$ is compact, for all $a,b\in A$ we have isomorphisms
-	\[\pi_a(N)\oplus\pi_a(N')=[S^a,N]\oplus[S^a,N']\cong[S^a,N\oplus N']=\pi_a(N\oplus N'),\]
-	and these combine together to yield $A$-graded isomorphisms $\pi_*(N)\oplus\pi_*(N')\xr\cong\pi_*(N\oplus N')$. To see the above diagram commutes, note that since everything is an $A$-graded homomorphism of $A$-graded abelian groups, it suffices to chase homogeneous elements around to show it commutes. Indeed, it is entirely straightforward, by unravelling definitions, that both compositions around the diagram take a generator $x:S^a\to N$ in $\pi_a(N)$ to the composition
-	\[S^a\xr xN\xr{\iota_N}N\oplus N'.\]
-	Thus, we have shown that $\pi_*$ preserves all finite coproducts, so it is additive.
-%	Finally, we claim this functor is lax $A$-graded. To that end, we need to show the given map
-%	\[t^a_{(N,\kappa)}\pi_*(\Sigma^aN)\to\pi_{*-a}(N),\]
-%	is an isomorphism of left $\pi_*(E)$-modules for all $(N,\kappa)$ in $E\text-\Mod$. First, note that by unravelling definitions it factors as
-%	% https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXHBpXyooXFxTaWdtYV5hTikiXSxbMSwwLCJbU14qLFNeYVxcb3RpbWVzIE5dIl0sWzEsMSwiW1NeKlxcb3RpbWVzIFNeey1hfSxTXmFcXG90aW1lcyBOXFxvdGltZXMgU157LWF9XSJdLFsxLDIsIltTXipcXG90aW1lcyBTXnstYX0sTlxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfV0iXSxbMSwzLCJbU14qXFxvdGltZXMgU157LWF9LE5dIl0sWzEsNCwiW1NeeyotYX0sTl0iXSxbMiw0LCJcXHBpX3sqLWF9KE4pIl0sWzAsMSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCItXFxvdGltZXMgU157LWF9Il0sWzIsMywieyhcXHRhdVxcb3RpbWVzIFNeey1hfSl9XyoiXSxbMyw0LCJ7KE5cXG90aW1lcyBcXHBoaV97YSwtYX1eey0xfSl9XyoiXSxbNCw1LCJ7KFxccGhpX3sqLC1hfSl9XioiXSxbNSw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-%	\[\begin{tikzcd}
-%		{\pi_*(\Sigma^aN)} & {[S^*,S^a\otimes N]} \\
-%		& {[S^*\otimes S^{-a},S^a\otimes N\otimes S^{-a}]} \\
-%		& {[S^*\otimes S^{-a},N\otimes S^a\otimes S^{-a}]} \\
-%		& {[S^*\otimes S^{-a},N]} \\
-%		& {[S^{*-a},N]} & {\pi_{*-a}(N)}
-%		\arrow[Rightarrow, no head, from=1-1, to=1-2]
-%		\arrow["{-\otimes S^{-a}}", from=1-2, to=2-2]
-%		\arrow["{{(\tau\otimes S^{-a})}_*}", from=2-2, to=3-2]
-%		\arrow["{{(N\otimes \phi_{a,-a}^{-1})}_*}", from=3-2, to=4-2]
-%		\arrow["{{(\phi_{*,-a})}^*}", from=4-2, to=5-2]
-%		\arrow[Rightarrow, no head, from=5-2, to=5-3]
-%	\end{tikzcd}\]
-%	The first vertical arrow is an isomorphism since $-\otimes S^a$ is an additive equivalence of $\cSH$ (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}), and the other three arrows are given by composing with isomorphisms in an additive category. Thus, we have constructed $A$-graded isomorphisms of abelian groups $\pi_*(\Sigma^aX)\to\pi_{*-a}(X)$. It remains to show that this map is a homomorphism of left $\pi_*(E)$-modules. To that end, let $r:S^b\to E$ in $\pi_*(E)$ and $x:S^c\to S^a\otimes N$ in $\pi_*(\Sigma^aN)$, and consider the following diagram:
-%	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJTXntiK2MtYX0iXSxbMCwxLCJTXmJcXG90aW1lcyBTXmNcXG90aW1lcyBTXnstYX0iXSxbMCwyLCJFXFxvdGltZXMgU15hXFxvdGltZXMgTlxcb3RpbWVzIFNeey1hfSJdLFsxLDIsIkVcXG90aW1lcyBOXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9Il0sWzIsMiwiRU4iXSxbMCw0LCJTXmFcXG90aW1lcyBFXFxvdGltZXMgTlxcb3RpbWVzIFNeey1hfSJdLFsxLDQsIlNeYVxcb3RpbWVzIE5cXG90aW1lcyBTXnstYX0iXSxbMiw0LCJOXFxvdGltZXMgU15hXFxvdGltZXMgU157LWF9Il0sWzIsMywiTiJdLFswLDEsIlxccGhpIiwyXSxbMSwyLCJyXFxvdGltZXMgeFxcb3RpbWVzIFNeey1hfSIsMl0sWzIsMywiRVxcb3RpbWVzIFxcdGF1XFxvdGltZXMgIFNeey1hfSJdLFszLDQsIkVcXG90aW1lcyBOXFxvdGltZXMgXFxwaGlfe2EsLWF9XnstMX0iXSxbMiw1LCJcXHRhdVxcb3RpbWVzICBOXFxvdGltZXMgU157LWF9IiwyXSxbNSw2LCJTXmFcXG90aW1lcyBcXGthcHBhXFxvdGltZXMgIFNeey1hfSJdLFs2LDcsIlxcdGF1XFxvdGltZXMgU157LWF9Il0sWzQsOCwiXFxrYXBwYSJdLFs3LDgsIk5cXG90aW1lcyBcXHBoaV97YSwtYX1ee18xfSIsMV0sWzMsNywiXFxrYXBwYVxcb3RpbWVzIFNeYVxcb3RpbWVzIFNeey1hfSIsMV0sWzUsMywiXFx0YXVfe1NeYSxFXFxvdGltZXMgTn1cXG90aW1lcyBTXnstYX0iLDFdXQ==
-%	\[\begin{tikzcd}
-%		{S^{b+c-a}} \\
-%		{S^b\otimes S^c\otimes S^{-a}} \\
-%		{E\otimes S^a\otimes N\otimes S^{-a}} & {E\otimes N\otimes S^a\otimes S^{-a}} & EN \\
-%		&& N \\
-%		{S^a\otimes E\otimes N\otimes S^{-a}} & {S^a\otimes N\otimes S^{-a}} & {N\otimes S^a\otimes S^{-a}}
-%		\arrow["\phi"', from=1-1, to=2-1]
-%		\arrow["{r\otimes x\otimes S^{-a}}"', from=2-1, to=3-1]
-%		\arrow["{E\otimes \tau\otimes  S^{-a}}", from=3-1, to=3-2]
-%		\arrow["{E\otimes N\otimes \phi_{a,-a}^{-1}}", from=3-2, to=3-3]
-%		\arrow["{\tau\otimes  N\otimes S^{-a}}"', from=3-1, to=5-1]
-%		\arrow["{S^a\otimes \kappa\otimes  S^{-a}}", from=5-1, to=5-2]
-%		\arrow["{\tau\otimes S^{-a}}", from=5-2, to=5-3]
-%		\arrow["\kappa", from=3-3, to=4-3]
-%		\arrow["{N\otimes \phi_{a,-a}^{_1}}"{description}, from=5-3, to=4-3]
-%		\arrow["{\kappa\otimes S^a\otimes S^{-a}}"{description}, from=3-2, to=5-3]
-%		\arrow["{\tau_{S^a,E\otimes N}\otimes S^{-a}}"{description}, from=5-1, to=3-2]
-%	\end{tikzcd}\]
-%	The top composition is $r\cdot t^a_{(N,\kappa)}(x)$, while the bottom composition is $t^a_{(N,\kappa)}(r\cdot x)$. The left triangle commutes by coherence for the symmetries. The bottom triangle commutes by naturality of $\tau$. The right triangle commutes by functoriality of $-\otimes-$. Thus, indeed $\pi_*:E\text-\Mod\to\pi_*(E)\text-\Mod(A)$ is lax $A$-graded, as desired.
+	Unravelling definitions, the top composition is $r\cdot q_{\{N_i\}}(x)$, while the bottom composition is $q_{\{N_i\}}(r\cdot x)$. In \autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}, we showed that $\iota_{N_i}:N_i\into\bigoplus_iN_i$ is an $E$-module object homomorphism, and the right map is precisely the action map for $\bigoplus_iN_i$ as an $E$-module object, so the diagram does indeed commute --- $q_{\{N_i\}}$ is a degree-preserving isomorphism of $A$-graded left $\pi_*(E)$-module objects, as desired. Finally, to see diagram (\ref{diagram:pi_*_preserves_arbitrary_coproducts}) commutes, observe that by unravelling definitions, given a homogeneous element $x:S^a\to N_i$ in $\pi_*(N_i)$, chasing it either way around the diagram yields the composition
+	\[S^a\xr xN_i\xr{\iota_{N_i}}\bigoplus_i N_i,\]
+	so that diagram (\ref{diagram:pi_*_preserves_arbitrary_coproducts}) commutes for generators, and thus commutes entirely, since all the maps involved are homomorphisms.
 \end{proof}
 
 \begin{remark}
@@ -755,7 +731,7 @@ Finally, we have the ingredients required to state and prove the following unive
 
 \begin{theorem}\label{theorem:UCT}
     Let $(E,\mu,e)$ be a monoid object and let $X$ and $Y$ be objects in $\cSH$. Then if $E$ and $X$ are cellular and $E_*(X)$ is a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{module}), then the map
-    \[[X,E\otimes Y]\to\Hom_{\pi_*(E)}(E_*(X),E_*(Y)),\qquad[X\xr fE\otimes Y]\mapsto [\pi_*(\mu\otimes Y)\circ \pi_*(E\otimes f)]\]
+    \[[X,E\otimes Y]\to\Hom_{\pi_*(E)}(E_*(X),E_*(Y)),\qquad[X\xr fE\otimes Y]\mapsto [\pi_*(\mu\otimes Y)\circ E_*(f)]\]
     is an isomorphism, and extends to an $A$-graded isomorphism
     \[{[X,E\otimes Y]}_*\to\Hom^*_{\pi_*(E)}(E_*(X),E_*(Y)).\]
 \end{theorem}
@@ -765,13 +741,33 @@ Finally, we have the ingredients required to state and prove the following unive
 
 In the case that $Y=S$, this theorem becomes the more familiar statement:
 \[E^*(X)\cong[X,E]_{-*}\cong[X,E\otimes S]_{-*}\cong\Hom^{-*}_{\pi_*(E)}(E_*(X),\pi_*(E)),\]
-i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of $X$ when $E_*(X)$ is a graded projective module. Hence why we call it the universal coefficient theorem. The condition that $E_*(X)$ be graded projective is a rather technical one, although thankfully it is often satisfied in practice. For example, if $E\otimes X$ is cellular, then it is satisfied precisely when $E\otimes X$ is a retract of a direct sum of suspensions of copies of $E$ via $E$-module homomorphisms:
+i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of $X$ when $E_*(X)$ is a graded projective module. Hence why we call it the universal coefficient theorem. The condition that $E_*(X)$ be graded projective is a rather technical one, although thankfully it is often satisfied in practice. In the case $\pi_*(E)$ is a field, or more generally a product of fields, every $\pi_*(E)$-module is projective and this is trivially satisified. Alternatively, if the objects $N:=E\otimes X$ and $E$ are cellular, then it is satisfied precisely when $N$ is a retract of a direct sum of suspensions of copies of $E$ via $E$-module homomorphisms:
 
 \begin{proposition}\label{if_pi_*N_graded_proj_then_retract_of_wedge_of_susps}
-	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ an $E$-module object in $\cSH$. Further suppose that $E$ and $N$ are cellular. Then the canonical left $\pi_*(E)$-module structure on $\pi_*(N)$ (from \autoref{E-module_N_implies_pi*N_is_pi*E_module}) is that of a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module if and only if there exists some collection of $a_i\in A$ such that $N$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$.\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself an $E$-module object.}
+	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ an $E$-module object in $\cSH$. If there exists a collection of $a_i\in A$ such that $N$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$,\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself an $E$-module object.} then $\pi_*(N)$ is a graded projective (\autoref{graded_projective_module}) $\pi_*(E)$-module. If $E$ and $N$ are cellular, then the converse holds as well.
 \end{proposition}
 \begin{proof}
-	First suppose that $\pi_*(N)$ is graded projective, and pick some homogeneous generating set $\{x_i\}\sseq\pi_*(N)$. Let $M:=\bigoplus_i(E\otimes S^{|x_i|})$. We have a map
+	First suppose that there exists some collection of $a_i\in A$ such that $N$ is a retract of $M:=\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJOIl0sWzEsMCwiTSJdLFsyLDAsIk4iXSxbMCwxXSxbMSwyXSxbMCwyLCIiLDIseyJjdXJ2ZSI6LTMsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		N & M & N
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-1, to=1-3]
+	\end{tikzcd}\]
+	Then applying $\pi_*(-)$ to the above diagram yields the following diagram of $A$-graded left $\pi_*(E)$-modules:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMCwxXSxbMSwyXSxbMCwyLCIiLDIseyJjdXJ2ZSI6LTMsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		{\pi_*(N)} & {\pi_*(M)} & {\pi_*(N)}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-1, to=1-3]
+	\end{tikzcd}\]
+	Note we have an isomorphism of $A$-graded left $\pi_*(E)$-modules $\pi_*(M)\xr\cong\bigoplus_i\pi_{*-a_i}(E)$ given by the composition
+	\[\pi_*(\bigoplus_i(E\otimes S^{a_i}))\xr\cong\bigoplus_iE_*(S^{a_i})=\bigoplus_iE_*(\Sigma^{a_i}S)\xr{\bigoplus_it^{a_i}_S}\bigoplus_iE_{*-a_i}(S)=\bigoplus_i\pi_{*-a_i}(E),\]
+	where the first isomorphism is because $\pi_*:E\text-\Mod\to\pi_*(E)\text-\Mod^A$ preserves arbitrary coproducts (by \autoref{E-module_N_implies_pi*N_is_pi*E_module}), the maps $t^{a_i}_{S}:E_*(\Sigma^{a_i}S)\xr\cong E_{*-a_i}(S)$ are the degree-preserving isomorphisms of $A$-graded left $\pi_*(E)$-modules from \autoref{t^a_isos_are_E_*E-comodule_isos}, and the equalities follow from the coherence theorem for monoidal categories, which tells us we may assume $S\otimes-=-\otimes S=\mathrm{Id}_{\cSH}$. Hence $\pi_*(N)$ is isomorphic in $\pi_*(E)\text-\Mod^A$ to a free $\pi_*(E)$ module, so that $\pi_*(N)$ is a retract in $\pi_*(E)\text-\Mod^A$ of a free $\pi_*(E)$-module, meaning it is graded projective, as desired.
+
+	On the other hand, suppose that $E$ and $N$ are cellular and $\pi_*(N)$ is graded projective, and pick some homogeneous generating set $\{x_i\}\sseq\pi_*(N)$. Let $M:=\bigoplus_i(E\otimes S^{|x_i|})$. We have a map
 	\[r:M\to N\]
 	induced by the maps
 	\[r_i:E\otimes S^{|x_i|}\xrightarrow{E\otimes x_i}E\otimes N\xr{\kappa} N.\]
@@ -836,7 +832,7 @@ i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of
 	\[\pi_*(\ell\circ\ell)=\pi_*(\ell)\circ\pi_*(\ell)=\pi_*(\ell),\]
 	and again since $\pi_*$ is an isomorphism here, we have that $\ell\circ\ell=\ell$, so that $\ell$ is an idempotent in $\cSH$. By \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}, every idempotent in $\cSH$ splits, meaning $\ell$ factors in $\cSH$ as
 	\[\ell:M\xr{r'}X\xr{\iota'}M\]
-	with $r'\circ \iota'=\id_X$. Since $X$ is a retract of an $E$-module object, and the corresponding idempotent is an $E$-module homomorphism, it follows purely formally that $X$ may be canonically viewed as an $E$-module object, and that $r':M\to X$ and $\iota':X\to M$ are homomorphisms of $E$-module objects (see \autoref{retract_of_module_whose_idempotent_is_module_homomorphism_is_module} for details). Note that since $E$ and each $S^{|x_i|}$ are cellular, $E\otimes S^{|x_i|}$ is cellular for all $i\in I$ (by \autoref{cellular_closed_under_tensor}), so that $M=\bigoplus_i(E\otimes S^{|x_i|})$ is cellular, as by definition an arbitrary coproduct of cellular objects is cellular. Thus by \autoref{cellular_idempotent_splits_cellularly}, $X$ is cellular as well. Now consider the following commutative diagram
+	with $r'\circ \iota'=\id_X$. Since $X$ is a retract of an $E$-module object, and the corresponding idempotent is an $E$-module homomorphism, it follows purely formally that $X$ may be canonically viewed as an $E$-module object, and that $r':M\to X$ and $\iota':X\to M$ are homomorphisms of $E$-module objects (see \autoref{retract_of_module_whose_idempotent_is_module_homomorphism_is_module} for details). Note that since $E$ and each $S^{|x_i|}$ are cellular, $E\otimes S^{|x_i|}$ is cellular for all $i\in I$ (by \autoref{cellular_closed_under_tensor}), so that $M=\bigoplus_i(E\otimes S^{|x_i|})$ is cellular, as by definition an arbitrary coproduct of cellular objects is cellular. Thus since $X$ is a retract of a cellular object in a triangulated category with arbitrary coproducts, it follows that $X$ is cellular as well (see \autoref{cellular_idempotent_splits_cellularly} for details). Now consider the following commutative diagram
 	% https://q.uiver.app/#q=WzAsOSxbMywxLCJcXHBpXyooTSkiXSxbMiwyLCJcXHBpXyooWCkiXSxbNCwwLCJcXHBpXyooTikiXSxbNCwyLCJcXHBpXyooWCkiXSxbNSwxLCJcXHBpXyooTSkiXSxbNiwxLCJcXHBpXyooWCkiXSxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooXFxpb3RhJykiLDJdLFswLDIsIlxccGlfKihyKSJdLFswLDMsIlxccGlfKihyJykiLDJdLFszLDQsIlxccGlfKihcXGlvdGEnKSIsMl0sWzIsNCwiXFxpb3RhIl0sWzQsNSwiXFxwaV8qKHInKSJdLFszLDUsIiIsMSx7ImN1cnZlIjozLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDcsIlxcaW90YSIsMl0sWzcsMSwiXFxwaV8qKHInKSIsMl0sWzcsOCwiXFxwaV8qKHIpIl0sWzgsMCwiXFxpb3RhIl0sWzYsOCwiIiwwLHsiY3VydmUiOi0zLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNywwLCJcXHBpXyooXFxlbGwpIl0sWzAsNCwiXFxwaV8qKFxcZWxsKSJdXQ==
 	\[\begin{tikzcd}
 		&& {\pi_*(N)} && {\pi_*(N)} \\
@@ -873,27 +869,9 @@ i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of
 		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-5]
 	\end{tikzcd}\]
 	and the middle row exhibits $N$ as a retract of $M=\bigoplus_i(E\otimes S^{|x_i|})$, as desired. It remains to show this is a retract in $E\text-\Mod$, i.e., that $r$ and $\iota'\circ p$ are homomorphisms of $E$-module objects. Above we constructed $r$ to be a homomorphism of $E$-modules. We also know that $X$ is an $E$-module object and that $\iota'$ is an $E$-module homomorphism. Thus, it remains to show that $p:N\to X$ is an $E$-module homomorphism. But we know that $p$ is the inverse of $r\circ\iota'$ in $\cSH$, and we know $r$ and $\iota'$ are morphisms in $E\text-\Mod$, so that $p$ is the inverse of $r\circ\iota'$ in $E\text-\Mod$, meaning $p$ is indeed an $E$-module homomorphism as desired.
-
-	On the other hand, suppose that there exists some collection of $a_i\in A$ such that $N$ is a retract of $M:=\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJOIl0sWzEsMCwiTSJdLFsyLDAsIk4iXSxbMCwxLCJcXGlvdGEiLDJdLFsxLDIsInIiLDJdLFswLDIsIiIsMix7ImN1cnZlIjotMywibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
-	\[\begin{tikzcd}
-		N & M & N
-		\arrow["\iota"', from=1-1, to=1-2]
-		\arrow["r"', from=1-2, to=1-3]
-		\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-1, to=1-3]
-	\end{tikzcd}\]
-	Let $M:=\bigoplus_i(E\otimes S^{a_i})$. Then applying $\pi_*(-)$ to the above diagram yields the following diagram of $A$-graded left $\pi_*(E)$-modules:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMCwxLCJcXHBpXyooXFxpb3RhKSIsMl0sWzEsMiwiXFxwaV8qKHIpIiwyXSxbMCwyLCIiLDIseyJjdXJ2ZSI6LTMsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-	\[\begin{tikzcd}
-		{\pi_*(N)} & {\pi_*(M)} & {\pi_*(N)}
-		\arrow["{\pi_*(\iota)}"', from=1-1, to=1-2]
-		\arrow["{\pi_*(r)}"', from=1-2, to=1-3]
-		\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-1, to=1-3]
-	\end{tikzcd}\]
-	Note we have an isomorphism of $A$-graded left $\pi_*(E)$-modules $\pi_*(M)\xr\cong\bigoplus_i\pi_{*-a_i}(E)$ given by the composition
-	\[[S^*,\bigoplus_i(E\otimes S^{a_i})]\xr\cong\bigoplus_i{[S,E\otimes S^{a_i}]}_*\xr{\tau_*}\bigoplus_i{[S,\Sigma^{a_i}E]}_*\xr{\bigoplus_is^{a_i}_{S,E}}\bigoplus_i{[S,E]}_{*-a_i},\]
-	where the first isomorphism is because $\pi_*(-)$ is additive\todo{FINISH}
 \end{proof}
+
+It turns out that the condition that $N$ is a retract of a direct sum of suspensions of $E$ is really the key condition which allows the universal coefficient theorem to go through, as the following two propositions illustrate.
 
 \begin{proposition}\label{pi_*_iso_when_N_retract_of_wedge_of_susps}
 	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ an $E$-module object in $\cSH$. Then given a collection of $a_i\in A$ indexed by some set $I$, if $(N,\kappa)$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$,\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself an $E$-module object.} then for all $E$-module objects $(N',\kappa')$, the functor $\pi_*:E\text-\Mod\to\pi_*(E)\text-\Mod(A)$ (\autoref{E-module_N_implies_pi*N_is_pi*E_module}) induces an isomorphism of abelian groups
@@ -923,11 +901,9 @@ i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of
         \arrow["{\prod_i\mathrm{ev}_1}"', from=5-2, to=5-1]
         \arrow[Rightarrow, no head, from=3-1, to=5-1]
     \end{tikzcd}\]
-	Here the top left vertical isomorphism exibits the universal property of the coproduct in $E\text-\Mod$, and middle left vertical isomorphism below that is the free-forgetful adjunction for $E$-modules (\autoref{free_forgetful_E-Mod}). The bottom horizontal isomorphism is the product of the evaluation-at-$1$ isomorphisms (\autoref{ev_at_1_is_iso}). On the other side, the top right vertical isomorphism is given by the fact that $S^a$ is compact for each $a\in A$, so we have isomorphisms
-	\[\bigoplus_i\pi_*(E\otimes S^{a_i})=\bigoplus_{a\in A}\bigoplus_{i}[S^a,E\otimes S^{a_i}]\cong\bigoplus_{a\in A}[S^a,\bigoplus_{i}(E\otimes S^{a_i})]=\pi_*(\bigoplus_i(E\otimes S^{a_i})),\]
-	where the middle isomorphism takes a generator $x:S^a\xr E\otimes S^{a_i}$ to the composition $S^a\xr xE\otimes S^{a_i}\into\bigoplus_i(E\otimes S^{a_i})$. The middle right vertical isomorphism exhibits the universal property of the coproduct of modules. Finally the bottom right vertical isomorphism is given by the isomorphisms
-	\[\pi_{*-a_i}(E\otimes S^{a_i})=[S^{*-a_i},E\otimes S^{a_i}]\xr{-\otimes S^{a_i}}[S^{*-a_i}\otimes S^{a_i},E\otimes S^{a_i}]\xr{\phi^*}[S^*,E\otimes S^{a_i}]=\pi_*(E\otimes S^{a_i}),\]
-	where $-\otimes S^{a_i}\cong\Sigma^{a_i}$ is an isomorphism by \autoref{Sigma^a,Sigma^-a_adjoint_equiv}. Now, we claim this diagram commutes. This really simply amounts to unravelling definitions, and chasing a homomorphism $f:\bigoplus_i(E\otimes S^{a_i})\to N'$ of $E$-module objects both ways around the diagram yields the composition
+	Here the top left vertical isomorphism exibits the universal property of the coproduct in $E\text-\Mod$, and middle left vertical isomorphism below that is the free-forgetful adjunction for $E$-modules (\autoref{free_forgetful_E-Mod}). The bottom horizontal isomorphism is the product of the evaluation-at-$1$ isomorphisms (\autoref{ev_at_1_is_iso}). On the other side, the top right vertical isomorphism is given by the fact that $\pi_*:E\text-\Mod\to\pi_*(E)\text-\Mod^A$ preserves arbitrary coproducts (by \autoref{E-module_N_implies_pi*N_is_pi*E_module}). The middle right vertical isomorphism exhibits the universal property of the coproduct of modules. Finally the bottom right vertical isomorphism is given by the composition
+	\[\pi_*(E\otimes S^{a_i})=E_*(S^{a_i})=E_*(\Sigma^{a_i}S)\xr{t^{a_i}_S}E_{*-a_i}(S)=\pi_{*-a_i}(E),\]
+	where $t^{a_i}_X$ is the $A$-graded isomorphism of left $\pi_*(E)$-modules from \autoref{t^a_isos_are_E_*E-comodule_isos}, and the second and last equalities follow by the coherence theorem for monoidal categories, which tells us we may assume $S\otimes-$ and $-\otimes S$ are the identity on $\cSH$. Now, we claim this diagram commutes. This really simply amounts to unravelling definitions, and chasing a homomorphism $f:\bigoplus_i(E\otimes S^{a_i})\to N'$ of $E$-module objects both ways around the diagram yields the composition
 	\[\prod_i(S^{a_i}\xr{e\otimes S^{a_i}}E\otimes S^{a_i}\into\bigoplus_i(E\otimes S^{a_i})\xr fN').\]
 	Thus, since the diagram commutes, we have that 
 	\[\pi_*:\Hom_E(\bigoplus_i(E\otimes S^{a_i}),N')\to\Hom_{\pi_*(E)}(\pi_*(\bigoplus_i(E\otimes S^{a_i})),\pi_*(N'))\] is an isomorphism, as desired.
@@ -972,7 +948,7 @@ i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of
 
 \begin{proposition}\label{UCT_for_retract}
 	Let $(E,\mu,e)$ be a monoid object and $X$ an object in $\cSH$. If there is a collection of $a_i\in A$ indexed by some set $I$ such that $E\otimes X$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$,\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself a $E$-module object.} then for all $E$-module objects $(N,\kappa)$, the assignment
-	\[[X,N]\to\Hom_{\pi_*(E)}(E_*(X),\pi_*(N)),\qquad [X\xr fN]\mapsto[\pi_*(\kappa)\circ \pi_*(E\otimes f)]\]
+	\[[X,N]\to\Hom_{\pi_*(E)}(E_*(X),\pi_*(N)),\qquad [X\xr fN]\mapsto[\pi_*(\kappa)\circ E_*(f)]\]
 	is an isomorphism, and further extends to an $A$-graded isomorphism of $A$-graded abelian groups
 	\[[X,N]_*\to\Hom_{\pi_*(E)}^*(E_*(X),\pi_*(N)).\]
 \end{proposition}

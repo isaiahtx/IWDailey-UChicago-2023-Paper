@@ -1,7 +1,9 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-In the section that follows, let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ be objects in $\cSH$.
+Finally, we may construct the spectral sequence. Henceforth, we will assume the reader is familiar with the theory of spectral sequenes arising from unrolled exact couples, along with the notion of (conditional, strong) convergence of such spectral sequences to their (co)limits. The primary reference for these facts will be Boardman's paper \cite{Boardman_1999} on conditionally convergent spectral sequences. When using any results from this reference, we will be sure to provide a proper citation. Note that Boardman works with $\bZ$-graded groups, although everything he does carries through entirely the same with $A$-graded groups.
+
+From now on, let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ be objects in $\cSH$.
 
 \subsection{Construction of the spectral sequence}
 
@@ -62,21 +64,8 @@ In the section that follows, let $(E,\mu,e)$ be a monoid object and $X$ and $Y$ 
 		\arrow["{k_1}"{pos=0.3}, dashed, from=2-4, to=1-3]
 		\arrow["{k_0}"{pos=0.3}, dashed, from=2-5, to=1-4]
 	\end{tikzcd}\]
-	Here we are using dashed arrows to denote the (degree $-\1$) maps $k_s:W_s\to\Sigma Y_{s+1}$, in particular, the above diagram does not commute in any sense.
+	Here we are using dashed arrows to denote the (degree $-\1$) maps $k_s:W_s\to\Sigma Y_{s+1}$. In particular, the above diagram does not commute in any sense.
 \end{definition}
-
-\begin{lemma}\label{canonical_E-Adams_resolution_is_an_Adams_resolution}
-	The maps $i_s:Y_{s+1}\to Y_s$ from the canonical $E$-Adams resolution of $Y$ (\autoref{canonical_E-Adams_resolution_is_an_Adams_resolution}) vanish in $E$-homology, i.e., $E_*(i_s)$ is the zero map.
-\end{lemma}
-\begin{proof}
-	First, note that since 
-	\[Y_{s+1}\xr{i_s}Y_s\xr{j_s} W_s\xr{k_s}\Sigma Y_{s+1}\]
-	is a distinguished triangle and $\cSH$ is tensor triangulated, there is a distinguished triangle of the form
-	\[E\otimes Y_{s+1}\xr{E\otimes i_s}E\otimes Y_s\xr{E\otimes j_s}E\otimes W_s\to\Sigma(E\otimes Y_{s+1}).\]
-	Thus, applying $\pi_*(-)\cong{[S,-]}_*$ to the triangle yields that the following sequence is exact (see \autoref{distinguished_tri_is_exact} for details):
-	\[E_*(Y_{s+1})\xr{E_*(i_s)}E_*(Y_s)\xr{E_*(j_s)}E_*(W_s).\]
-	Now, it is straightforward to verify by construction that $j_s$ is the map $e\otimes Y_s:Y_s\to E\otimes Y_s=W_s$. Thus, by unitality of $\mu$, we have that $E\otimes j_s:E\otimes Y_s\to E\otimes W_s$ is a split monomorphism, with right inverse $\mu\otimes Y_s:E\otimes W_s=E\otimes E\otimes Y_s\to E\otimes Y_s$. Then since any functor preserves split monomorphisms, it follows that $E_*(j_s)=\pi_*(E\otimes j_s)$ is likewise a split monomorphism, so that in particular $E_*(j_s)$ is injective. Thus $\imm E_*(i_s)=\ker E_*(j_s)=0$, so that $i_s$ is indeed the zero map, as desired.
-\end{proof}
 
 Now, by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution of $Y$, we get an associated unrolled exact couple, and thus a spectral sequence:
 
@@ -118,10 +107,10 @@ Now, by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution of $Y$, we ge
 	\end{tikzcd}\]
 	where here we are being abusive and writing $i_s:{[X,Y_{s+1}]}_*\to{[X,Y_{s}]}_*$ and $j_s:{[X,Y_s]}_*\to{[X,W_s]}_*$ to denote the pushforward maps induced by $i_s:Y_{s+1}\to Y_s$ and $j_s:Y_s\to W_s$, respectively. Each $i_s$, $j_s$, and $\partial_s$ are $A$-graded homomorphisms of degrees $0$, $0$, and $-\1$, respectively. 
 
-	By \autoref{SSeq_assoc_to_unrolled_EC}, we may associate a $\bZ\times A$-graded spectral sequence $r\mapsto(E_r^{*,*}(X,Y),d_r)$ to the above $A$-graded unrolled exact couple, where $d_r$ has $\bZ\times A$-degree $(r,-\1)$. We call this spectral sequence the \emph{$E$-Adams spectral sequence for the computation of ${[X,Y]}_*$}.
+	In \cite[\S0]{Boardman_1999}, it is described how we may associate a $\bZ\times A$-graded spectral sequence $r\mapsto(E_r^{*,*}(X,Y),d_r)$ to the above $A$-graded unrolled exact couple, where $d_r$ has $\bZ\times A$-degree $(r,-\1)$. We call this spectral sequence the \emph{$E$-Adams spectral sequence for the computation of ${[X,Y]}_*$}.
 \end{definition}
 
-For those who would rather not lose themselves in the appendix, we give a brief unravelling of how \autoref{SSeq_assoc_to_unrolled_EC} applies to the present situation. Given some $s\in\bZ$ and some $r\geq1$, we may define the following $A$-graded subgroups of ${[X,W_s]}_*$:
+For those who would rather not lose themselves in Boardman's document, we give a brief unravelling of how it applies to the present situation. Given some $s\in\bZ$ and some $r\geq1$, we may define the following $A$-graded subgroups of ${[X,W_s]}_*$:
 \[Z_r^s:=\partial_s^{-1}(\imm[i^{(r-1)}:{[X,Y_{s+r}]}_*\to{[X,Y_{s+1}]}_*])\]
 and
 \[B_r^s:=j_s(\ker[i^{(r-1)}:{[X,Y_s]}_*\to{[X,Y_{s-r+1}]}_*]),\]
@@ -135,10 +124,25 @@ which is a $\bZ\times A$-graded abelian group.
 
 The differential $d_r:E_r\to E_r$ is a map of $\bZ\times A$-degree $(r,\1)$, and is constructed as follows: an element of $E_r^s=Z_r^s/B_r^s$ is a coset represented by some $x\in Z_r^s$, so that $\partial_s(x)=i^{(r-1)}(y)$ for some $y\in{[X,Y_{s+r}]}_*$. Then we define $d_r([x])$ to be the coset $[j_{s+r}(y)]$ in $Z_r^{s+r}/B_r^{s+r}$. 
 
-In the case $r=1$, since $B_1^s=0$ and $Z_1^s={[X,W_s]}_*$, we have that $E_1^s={[X,W_s]}_*$, and given some $x\in E_1^s=[X,W_s]_*$, the differential $d_1$ is given by $d_1(x)=j_{s+1}(\partial_s(x))$, so that $d_1=j\circ\partial$. Furthermore, since the unrolled exact couple which yields the spectral sequence vanishes on its negative terms, we hav that $E_r^{s,a}(X,Y)=0$ for $s<0$.
+In the case $r=1$, since $B_1^s=0$ and $Z_1^s={[X,W_s]}_*$, we have that $E_1^s={[X,W_s]}_*$, and given some $x\in E_1^s=[X,W_s]_*$, the differential $d_1$ is given by $d_1(x)=j_{s+1}(\partial_s(x))$, so that $d_1=j\circ\partial$. Furthermore, since the unrolled exact couple which yields the spectral sequence vanishes on its negative terms, we have that $E_r^{s,a}(X,Y)=0$ for $s<0$. In particular, the $E$-Adams spectral sequence is a \emph{half-plane spectral sequence with entering differentials}, in the sense of \cite[\S7]{Boardman_1999}.
 
-In \Cref{subsection:unrolled_exact_couples}, it is shown in explicit detail that all of these definitions make sense and are well-defined. In particular, it is shown that the differentials are well-defined $A$-graded homomorphisms, that $d_r\circ d_r=0$, and that
+Showing in explicit detail that all of these definitions make sense and are well-defined is relatively straightforward. Furthermore, one may check that that $d_r\circ d_r=0$, and that
 \[\ker d_r^s/\imm d_r^s=\frac{Z_{r+1}^s/B_r^s}{B_{r+1}^s/B_r^s}\cong Z_{r+1}^s/B_{r+1}^s=E_{r+1}^s.\]
+
+Above we constructed the spectral sequence by means of the ``canonical'' $E$-Adams resolution of $Y$, but one may more generally pursue the notion of \emph{$E$-Adams resolutions} of the object $Y$, for which the canonical Adams resolution constructed above will be an example. We do not explore this generality here (although one certainly could); these are useful when one wants to construct an Adams resolution from an algebraic resolution of $E_*(Y)$, or by modifying an Adams resolution for some other object. One may find different notions of what exactly constitutes an Adams resolution in the literature (for example, see \cite[Definition 2.2.1]{RGB} or \cite[Definition 11.3.1]{Rognes_SSeq}), and they will always be defined so that the $E$-Adams spectral sequence for ${[X,Y]}_*$ is independent of the choice of Adams resolution for $Y$, at least from its $E_2$ page onwards. One important condition (or definitional consequence) one will always find for an $E$-Adams resolution is that the $i$'s must vanish in $E$-homology. We can show that the canonical $E$-Adams resolution we have constructed satisfies this property:
+
+\begin{lemma}\label{canonical_E-Adams_resolution_is_an_Adams_resolution}
+	Let $i_s$ and $j_s$ be as in \autoref{defn:canonical_E-Adams_resolution}. Then the maps $j_s:Y_s\to W_s$ induce split monomorphisms $E_*(j_s)$ on $E$-homology, so that in particular the maps $i_s:Y_{s+1}\to Y_s$ vanish in $E$-homology, i.e., $E_*(i_s)$ is the zero map.
+\end{lemma}
+\begin{proof}
+	First, note that since 
+	\[Y_{s+1}\xr{i_s}Y_s\xr{j_s} W_s\xr{k_s}\Sigma Y_{s+1}\]
+	is a distinguished triangle and $\cSH$ is tensor triangulated, there is a distinguished triangle of the form
+	\[E\otimes Y_{s+1}\xr{E\otimes i_s}E\otimes Y_s\xr{E\otimes j_s}E\otimes W_s\to\Sigma(E\otimes Y_{s+1}).\]
+	Thus, applying $\pi_*(-)\cong{[S,-]}_*$ to the triangle yields that the following sequence is exact (see \autoref{distinguished_tri_is_exact} for details):
+	\[E_*(Y_{s+1})\xr{E_*(i_s)}E_*(Y_s)\xr{E_*(j_s)}E_*(W_s).\]
+	Now, it is straightforward to verify by construction that $j_s$ is the map $e\otimes Y_s:Y_s\to E\otimes Y_s=W_s$. Thus, by unitality of $\mu$, we have that $E\otimes j_s:E\otimes Y_s\to E\otimes W_s$ is a split monomorphism, with right inverse $\mu\otimes Y_s:E\otimes W_s=E\otimes E\otimes Y_s\to E\otimes Y_s$. Then since any functor preserves split monomorphisms, it follows that $E_*(j_s)=\pi_*(E\otimes j_s)$ is likewise a split monomorphism, so that in particular $E_*(j_s)$ is injective. Thus $\imm E_*(i_s)=\ker E_*(j_s)=0$, so that $i_s$ is indeed the zero map, as desired.
+\end{proof}
 
 %Note, we have called the above spectral sequence \emph{the} $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$, even though it was constructed in terms of an $E$-Adams resolution for $Y$. We would like to show that, from the $E_2$-page onwards, that this spectral sequence is independent (up to isomorphism) of the chosen $E$-Adams resolution of $Y$. To start, we prove the following proposition:
 %
@@ -190,21 +194,21 @@ Now, we would like to characterize the $E_2$ page of the spectral sequence in te
 		\item $X$ is cellular and $E_*(X)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module}),
 		\item $Y$ is cellular.
 	\end{itemize}
-	Then the non-vanishing entries of the second page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$ (\autoref{ASS}) are the $\Ext$ groups of $A$-graded left comodules over the anticommutative Hopf algebroid structure on the dual $E$-Steenrod algebra (\autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}), i.e., we have the following isomorphisms for all $s\in\bN$ and $a\in A$:
+	Then the non-vanishing entries of the second page of the $E$-Adams spectral sequence for the computation of ${[X,Y]}_*$ (\autoref{ASS}) are the $\Ext$ groups of $A$-graded left comodules over the anticommutative Hopf algebroid structure on the dual $E$-Steenrod algebra (\autoref{dual_E-Steenrod_algebra_is_a_Hopf_algebroid_main}), i.e., we have the following isomorphisms for all $s\geq0$ and $a\in A$:
 	\[E_2^{s,a}(X,Y)\cong\Ext_{E_*(E)}^{s,a+\mbf s}(E_*(X),E_*(Y)):=\Ext_{E_*(E)}^s(E_{*}(X),E_{*+a+\mbf s}(Y)).\]
 \end{theorem}
 \begin{proof}
-	By \autoref{E_1_page_line_resolution_identification} below, for each $s\in\bN$ and $a\in A$, $E_2^{s,a}(X,Y)$ is isomorphic to the $s^\text{th}$ cohomology group of the cochain complex obtained by applying $F:=\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),-)$ to the complex
+	By \autoref{E_1_page_line_resolution_identification} below, for each $s\geq0$ and $a\in A$, $E_2^{s,a}(X,Y)$ is isomorphic to the $s^\text{th}$ cohomology group of the cochain complex obtained by applying $F:=\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),-)$ to the complex
 	\[0\xr{\phantom{E_*(\delta_3)}}E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\xr{E_*(\delta_2)}E_*(\Sigma^3W_3)\xr{\phantom{E_*(\delta_3)}}\cdots.\]
 	Furthermore, by \autoref{E_*W_s's_acyclic_resolution_of_E_*Y}, this complex is an $F$-acyclic resolution of $E_*(Y)$ (\autoref{defn:acyclic_resolution}). Thus, since the category of $E_*(E)$-comodules is an abelian category with enough injectives (\autoref{G-CoMod^A_is_abelian_if_eta_R_flat_and_has_enough_injectives}), we have by \autoref{acyclic_resolution_computes_R^nF} that
 	\[E_2^{s,a}(X,Y)\cong R^s\Hom^{a+\mbf s}_{E_*(E)}(E_*(X),-)(E_*(Y))=\Ext^{s,a+\mbf s}(E_*(X),E_*(Y)),\]
 	as desired.
 \end{proof}
 
-We leave it to the reader to unravel what the differential $d_2$ corresponds to under this identification. The remainder of this subsection is devoted to proving \autoref{E_*W_s's_acyclic_resolution_of_E_*Y} and \autoref{E_1_page_line_resolution_identification}.
+We leave it to the reader to unravel what the differential $d_2$ corresponds to under this identification. The remainder of this subsection is devoted to proving \autoref{E_*W_s's_acyclic_resolution_of_E_*Y} and \autoref{E_1_page_line_resolution_identification}. To start, we establish the following convention:
 
 \begin{definition}\label{nu^n_isos}
-	Given some (nonnegative integer) $n\in\bN$, define natural isomorphisms $\nu^n_X:\Sigma^\n X\to\Sigma^nX$ inductively, by setting $\nu^0_X:=\lambda_X$, $\nu^1_X:=\nu_X^{-1}$, and supposing $\nu^{n-1}_X$ has been defined for some $n>1$, define $\nu^n_X$ to be the composition
+	Given some (nonnegative integer) $n\geq0$, define natural isomorphisms $\nu^n_X:\Sigma^\n X\to\Sigma^nX$ inductively, by setting $\nu^0_X:=\lambda_X$, $\nu^1_X:=\nu_X^{-1}$, and supposing $\nu^{n-1}_X$ has been defined for some $n>1$, define $\nu^n_X$ to be the composition
 	\[\nu^n_X:\Sigma^\n X=S^\n\otimes X\xr{\phi_{\n-\1,\1}\otimes X}S^{\n-\1}\otimes S^\1\otimes X\xr{S^{\n-\1}\otimes\nu_X^{-1}}S^{\n-\1}\Sigma X\xr{\nu_{\Sigma X}^{\n-\1}}\Sigma^{n}X.\]
 	By induction, naturality of $\nu$, and functoriality of $-\otimes-$, these isomorphisms are clearly natural in $X$. 
 \end{definition}
@@ -278,61 +282,6 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 	It is straightforward to check the top row is exact by exactness of the short exact sequences, as desired. 
 \end{proof}
 
-\begin{lemma}\label{X,EY_iso_Hom(E_*X,E_*EY)}
-	Let $(E,\mu,e)$ be a commutative monoid object, and $X$ and $Y$ objects in $\cSH$. Suppose further that:\begin{itemize}
-		\item $E$ is flat (\autoref{flat}) and cellular (\autoref{cellular}),
-		\item $X$ is cellular and $E_*(X)$ is a graded projective left $\pi_*(E)$-module (via \autoref{module}), and
-		\item $Y$ is cellular.
-	\end{itemize}
-	Then the assignment
-	\[E_*(-):{[X,E\otimes Y]}\to\Hom_{E_*(E)}(E_*(X),E_*(E\otimes Y)),\qquad f\mapsto E_*(f)\]
-	induced by the functor $E_*(-):\cSH\text-\Cell\to E_*(E)\text-\CoMod^A$ is an isomorphism of abelian groups.
-\end{lemma}
-\begin{proof}
-	Since $X$ is cellular, by \autoref{E_*_functor_from_SH_to_E*E-comodules} we have that $E_*(X)$ is canonically an $A$-graded left $E_*(E)$-comodule. Similarly, since $E$ and $Y$ are cellular, we know that $E\otimes Y$ is cellular, so that $E_*(E\otimes Y)$ is also canonically an $E_*(E)$-comodule. Thus, we have a well-defined assignment
-	\[[X,E\otimes Y]\xr{E_*(-)}\Hom_{E_*(E)}(E_*(X),E_*(E\otimes Y)).\]
-	To see this arrow is an isomorphism, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJbWCxFXFxvdGltZXMgWV0iXSxbMiwwLCJcXG1hdGhybXtIb219X3tFXyooRSl9KEVfKihYKSxFXyooRVxcb3RpbWVzIFkpKSJdLFsyLDIsIlxcbWF0aHJte0hvbX1fe0VfKihFKX0oRV8qKFgpLEVfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9IEVfKihZKSkiXSxbMCwyLCJcXG1hdGhybXtIb219X3tcXHBpXyooRSl9KEVfKihYKSxFXyooWSkpIl0sWzAsMSwiRV8qKC0pIl0sWzIsMSwieyhcXFBoaV97RSxZfSl9XyoiLDJdLFswLDMsIlxccGlfKihcXG11XFxvdGltZXMgWSlcXGNpcmMgRV8qKC0pIiwyXSxbMSwzLCJcXHBpXyooXFxtdVxcb3RpbWVzIFkpXFxjaXJjKC0pIiwxXSxbMiwzLCJcXHRleHR7YWRqfSIsMl1d
-	\[\begin{tikzcd}
-		{[X,E\otimes Y]} && {\mathrm{Hom}_{E_*(E)}(E_*(X),E_*(E\otimes Y))} \\
-		\\
-		{\mathrm{Hom}_{\pi_*(E)}(E_*(X),E_*(Y))} && {\mathrm{Hom}_{E_*(E)}(E_*(X),E_*(E)\otimes_{\pi_*(E)} E_*(Y))}
-		\arrow["{E_*(-)}", from=1-1, to=1-3]
-		\arrow["{{(\Phi_{E,Y})}_*}"', from=3-3, to=1-3]
-		\arrow["{\pi_*(\mu\otimes Y)\circ E_*(-)}"', from=1-1, to=3-1]
-		\arrow["{\pi_*(\mu\otimes Y)\circ(-)}"{description}, from=1-3, to=3-1]
-		\arrow["{\text{adj}}"', from=3-3, to=3-1]
-	\end{tikzcd}\]
-	We know the left vertical map is an isomorphism by \autoref{theorem:UCT}, and the bottom horizontal isomorphism is the forgetful-cofree adjunction (\autoref{comodule_co-free_adjunction}) for $A$-graded left comodules over the dual $E$-Steenrod algebra. The right vertical arrow is a well-defined isomorphism, as $\Phi_{E,Y}$ is a homomorphism of $A$-graded left $E_*(E)$-comodules (\autoref{Phi_E,X_is_comodule_homo}), and in fact it is an isomorphism by \autoref{Kunneth_map_iso}, since $E_*(E)$ is flat and $Y$ is cellular. Thus in order to see the top arrow is an isomorphism, it suffices to show that the diagram commutes. The left triangle clearly commutes; to see the right triangle commutes, recall that by how the how forgetful-cofree adjunction for left comodules over a Hopf algebroid is defined, that the bottom vertical arrow sends an $A$-graded homomorphism of left $E_*(E)$-comodules $\psi:E_{*}(X)\to E_*(E)\otimes_{\pi_*(E)}E_*(Y)$ to the composition
-	\[E_{*}(X)\xr\psi E_*(E)\otimes_{\pi_*(E)}E_*(Y)\xr{\pi_*(\mu)\otimes E_*(Y)}\pi_*(E)\otimes_{\pi_*(E)}E_*(Y)\xr\cong E_*(Y).\]
-	Thus, in order to show that this composition equals $\pi_*(\mu\otimes Y)\circ\Phi_{E,Y}\circ\psi$, it suffices to show the following diagram commutes:
-	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXyooRSlcXG90aW1lc197XFxwaV8qKEUpfUVfKihZKSJdLFsyLDAsIlxccGlfKihFKVxcb3RpbWVzX3tcXHBpXyooRSl9RV8qKFkpIl0sWzIsMiwiRV8qKFkpIl0sWzAsMiwiRV8qKEVcXG90aW1lcyBZKSJdLFswLDEsIlxccGlfKihcXG11KVxcb3RpbWVzIEVfKihZKSJdLFsxLDIsIlxcY29uZyJdLFswLDMsIlxcUGhpX3tFLFl9IiwyXSxbMywyLCJcXHBpXyooXFxtdVxcb3RpbWVzIFkpIl1d
-	\[\begin{tikzcd}
-		{E_*(E)\otimes_{\pi_*(E)}E_*(Y)} && {\pi_*(E)\otimes_{\pi_*(E)}E_*(Y)} \\
-		\\
-		{E_*(E\otimes Y)} && {E_*(Y)}
-		\arrow["{\pi_*(\mu)\otimes E_*(Y)}", from=1-1, to=1-3]
-		\arrow["\cong", from=1-3, to=3-3]
-		\arrow["{\Phi_{E,Y}}"', from=1-1, to=3-1]
-		\arrow["{\pi_*(\mu\otimes Y)}", from=3-1, to=3-3]
-	\end{tikzcd}\]
-	Since all the arrows here are homomorphisms of abelian groups, in order to show the diagram commutes, it suffices to chase pure homogeneous tensors around. To that end, let $x:S^a\to E\otimes E$ and $y:S^b\to E\otimes Y$, and consider the following diagram exhibiting the two ways to chase $x\otimes y$ around:
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15hXFxvdGltZXMgU15iIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFszLDAsIkVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFszLDEsIkVcXG90aW1lcyBZIl0sWzIsMSwiRVxcb3RpbWVzIEVcXG90aW1lcyBZIl0sWzAsMSwiXFxwaGlfe2EsYn0iXSxbMSwyLCJ4XFxvdGltZXMgeSJdLFsyLDMsIlxcbXVcXG90aW1lcyBFXFxvdGltZXMgWSJdLFszLDQsIlxcbXVcXG90aW1lcyBZIl0sWzIsNSwiRVxcb3RpbWVzIFxcbXVcXG90aW1lcyBZIiwyXSxbNSw0LCJcXG11XFxvdGltZXMgWSJdXQ==
-	\[\begin{tikzcd}
-		{S^{a+b}} & {S^a\otimes S^b} & {E\otimes E\otimes E\otimes Y} & {E\otimes E\otimes Y} \\
-		&& {E\otimes E\otimes Y} & {E\otimes Y}
-		\arrow["{\phi_{a,b}}", from=1-1, to=1-2]
-		\arrow["{x\otimes y}", from=1-2, to=1-3]
-		\arrow["{\mu\otimes E\otimes Y}", from=1-3, to=1-4]
-		\arrow["{\mu\otimes Y}", from=1-4, to=2-4]
-		\arrow["{E\otimes \mu\otimes Y}"', from=1-3, to=2-3]
-		\arrow["{\mu\otimes Y}", from=2-3, to=2-4]
-	\end{tikzcd}\]
-	The diagram commutes by associtiavity of $\mu$. Thus, we have indeed show that
-	\[E_*(-):[X,E\otimes Y]\to\Hom_{E_*(E)}(E_*(X),E_*(Y))\]
-	is an isomorphism of abelian groups.
-\end{proof}
-
 \begin{proposition}\label{E_1_page_line_resolution_identification}
 	Let $(E,\mu,e)$ be a commutative monoid object, and $X$ and $Y$ objects in $\cSH$. Suppose further that:\begin{itemize}
 		\item $E$ is flat (\autoref{flat}) and cellular (\autoref{cellular}),
@@ -346,11 +295,11 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 	from \autoref{E_*W_s's_acyclic_resolution_of_E_*Y}.
 \end{proposition}
 \begin{proof}
-	By \autoref{W_s_cellular_if_E_and_Y_are}, since $E$ and $Y$ are cellular, $W_t$ is as well for each $t\in\bN$. Furthermore, for $t>0$, we have isomorphisms
+	By \autoref{W_s_cellular_if_E_and_Y_are}, since $E$ and $Y$ are cellular, $W_t$ is as well for each $t\geq0$. Furthermore, for $t>0$, we have isomorphisms
 	\[S^{\mbf t}\otimes W_t\xr{\nu^t_{W_t}}\Sigma^tW_t,\]
 	and by \autoref{cellular_closed_under_tensor}, the object $S^{\mbf t}\otimes W_t$ is cellular since $S^{\mbf t}$ and $W_t$ are. Hence, by \autoref{E_*_functor_from_SH_to_E*E-comodules}, the complex
 	\[0\to E_*(W_0)\xr{E_*(\delta_0)}E_*(\Sigma W_1)\xr{E_*(\delta_1)}E_*(\Sigma^2W_2)\to\cdots\to E_*(\Sigma^sW_s)\to\cdots\]
-	actually lives in $E_*(E)\text-\CoMod^A$, as desired. Now, let $t\in\bN$, and consider the following diagram:
+	actually lives in $E_*(E)\text-\CoMod^A$, as desired. Now, let $t\geq0$, and consider the following diagram:
 	% https://q.uiver.app/#q=WzAsMTMsWzAsMCwie1tYLFdfdF19X3thK1xcbWJmIHMtXFxtYmYgdH0iXSxbMCw0LCJ7W1gsV197dCsxfV19X3thK1xcbWJmIHMtXFxtYmYgdC1cXDF9Il0sWzEsMCwie1tYLFxcU2lnbWFee1xcbWJmIHR9V190XX1fe2ErXFxtYmYgc30iXSxbMSw0LCJ7W1gsXFxTaWdtYV57XFxtYmYgdCtcXDF9V197dCsxfV19X3thK1xcbWJmIHN9Il0sWzIsMCwie1tYLFxcU2lnbWFedFdfdF19X3thK1xcbWJmIHN9Il0sWzIsNCwie1tYLFxcU2lnbWFee3QrMX1XX3t0KzF9XX1fe2ErXFxtYmYgc30iXSxbMCwxLCJ7W1gsXFxTaWdtYSBZX3t0KzF9XX1fe2ErXFxtYmYgcy1cXG1iZiB0fSJdLFswLDIsIntbWCxcXFNpZ21hXlxcMSBZX3t0KzF9XX1fe2ErXFxtYmYgcy1cXG1iZiB0fSJdLFswLDMsIntbWCxZX3t0KzF9XX1fe2ErXFxtYmYgcy1cXG1iZiB0LVxcMX0iXSxbMSwxLCJ7W1gsXFxTaWdtYV57XFxtYmYgdH1cXFNpZ21hIFlfe3QrMX1dfV97YStcXG1iZiBzfSJdLFsxLDIsIntbWCxcXFNpZ21hXntcXG1iZiB0fVxcU2lnbWFeXFwxIFlfe3QrMX1dfV97YStcXG1iZiBzfSJdLFsxLDMsIntbWCxcXFNpZ21hXntcXG1iZiB0K1xcMX0gWV97dCsxfV19X3thK1xcbWJmIHN9Il0sWzIsMiwie1tYLFxcU2lnbWFee3QrMX1ZX3t0KzF9XX1fe2ErXFxtYmYgc30iXSxbMiwwLCJzXntcXG1iZiB0fV97WCxXX3R9IiwyXSxbMywxLCJzXntcXG1iZiB0K1xcMX1fe1gsV197dCsxfX0iLDJdLFsyLDQsInsoXFxudV50X3tXX3R9KX1fKiJdLFszLDUsInsoXFxudV57dCsxfV97V197dCsxfX0pfV8qIl0sWzAsNiwieyhrX3QpfV8qIiwyXSxbNiw3LCJ7KFxcbnVfe1lfe3QrMX19KX1fKiIsMl0sWzcsOCwic15cXDFfe1gsWV97dCsxfX0iLDJdLFs4LDEsInsoal97dCsxfSl9XyoiLDJdLFsyLDksInsoXFxTaWdtYV57XFxtYmYgdH1rX3QpfV8qIiwxXSxbOSwxMCwieyhcXFNpZ21hXntcXG1iZiB0fVxcbnVfe1lfe3QrMX19KX1fKiIsMV0sWzEwLDcsInNee1xcbWJmIHR9X3tYLFxcU2lnbWFeXFwxWV97dCsxfX0iLDJdLFs5LDYsInNee1xcbWJmIHR9X3tYLFxcU2lnbWEgWV97dCsxfX0iLDJdLFsxMSwxMCwieyhcXHBoaV97XFxtYmYgdCxcXDF9XFxvdGltZXMgWV97dCsxfSl9XyoiLDFdLFsxMSw4LCJzXntcXG1iZiB0KzF9X3tYLFlfe3QrMX19IiwyXSxbMTEsMywieyhcXFNpZ21hXntcXG1iZiB0K1xcMX1qX3t0KzF9KX1fKiIsMV0sWzQsMTIsInsoXFxTaWdtYV50IGtfdCl9XyoiLDFdLFsxMiw1LCJ7KFxcU2lnbWFee3QrMX0gal97dCsxfSl9XyoiLDFdLFsxMSwxMiwieyhcXG51Xnt0KzF9X3tZX3t0KzF9fSl9XyoiLDJdLFs5LDEyLCJ7KFxcbnVee3R9X3tcXFNpZ21hIFlfe3QrMX19KX1fKiJdLFs0LDUsInsoXFxkZWx0YV90KX1fKiIsMCx7Im9mZnNldCI6LTUsImN1cnZlIjotNX1dXQ==
 	\[\begin{tikzcd}
 		{{[X,W_t]}_{a+\mbf s-\mbf t}} & {{[X,\Sigma^{\mbf t}W_t]}_{a+\mbf s}} & {{[X,\Sigma^tW_t]}_{a+\mbf s}} \\
@@ -402,7 +351,7 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 		\arrow["{E_*(\delta_t)}", from=5-1, to=5-3]
 		\arrow["{{({(t^{a+\mbf s}_X)}^{-1})}^*}", from=4-3, to=5-3]
 	\end{tikzcd}\]
-	where here the maps $t^{a+\mbf s}_X:E_*(\Sigma^a)\to E_{*-a}(X)$ are the $E_*(E)$-comodule isomorphisms from \autoref{t^a_isos_are_E_*E-comodule_isos}. We have just shown the top region commutes. Furthermore, since $X$ and $\Sigma^tW_t$ are cellular for all $t\in\bN$, the arrows labelled $E_*(-)$ are well-defined, and they clearly make the middle rectangle commute (a simple diagram chase suffices). The bottom rectangle also clearly commutes, Thus, it suffices to show that the maps labelled $E_*(-)$ are isomorphisms. To that end, consider the following diagram:
+	where here the maps $t^{a+\mbf s}_X:E_*(\Sigma^a)\to E_{*-a}(X)$ are the $E_*(E)$-comodule isomorphisms from \autoref{t^a_isos_are_E_*E-comodule_isos}. We have just shown the top region commutes. Furthermore, since $X$ and $\Sigma^tW_t$ are cellular for all $t\geq0$, the arrows labelled $E_*(-)$ are well-defined, and they clearly make the middle rectangle commute (a simple diagram chase suffices). The bottom rectangle also clearly commutes, Thus, it suffices to show that the maps labelled $E_*(-)$ are isomorphisms. To that end, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXEhvbV97RV8qKEUpfShFXyooXFxTaWdtYV57YStcXG1iZiBzfVgpLEVfKihcXFNpZ21hXnRXX3QpKSJdLFswLDIsIntbWCxFXFxvdGltZXNcXFNpZ21hXntcXG1iZiB0fVlfdF19X3thK1xcbWJmIHN9Il0sWzEsMiwiXFxIb21fe0VfKihFKX0oRV8qKFxcU2lnbWFee2ErXFxtYmYgc31YKSxFXyooRVxcb3RpbWVzIFxcU2lnbWFee1xcbWJmIHR9WV90KSkiXSxbMCwwLCJ7W1gsXFxTaWdtYV57dH1XX3RdfV97YStcXG1iZiBzfSJdLFsxLDIsIkVfKigtKSJdLFszLDEsImZfKiIsMl0sWzAsMiwie0VfKihmKX1fKiJdLFszLDAsIkVfKigtKSJdXQ==
 	\[\begin{tikzcd}
 		{{[X,\Sigma^{t}W_t]}_{a+\mbf s}} & {\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(\Sigma^tW_t))} \\
@@ -417,7 +366,7 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 	\[\Sigma^tW_t\xr{\nu^t_W}\Sigma^{\mbf t}W_t=S^{\mbf t}\otimes E\otimes Y_t\xr{\tau\otimes Y_t}E\otimes S^{\mbf t}\otimes Y_t=E\otimes\Sigma^{\mbf t}Y_t.\]
 	The bottom horizontal arrow is an isomorphism by \autoref{X,EY_iso_Hom(E_*X,E_*EY)}. Thus, the top horizontal arrow is an isomorphism, as desired. Showing
 	\[E_*(-):{[X,\Sigma^{t+1}W_{t+1}]}_{a+\mbf s}\to\Hom_{E_*(E)}(E_*(\Sigma^{a+\mbf s}X),E_*(\Sigma^{t+1}W_{t+1}))\]
-	is an isomorphism is entirely analagous. Thus, for each $t\in\bN$, we have constructed isomorphisms
+	is an isomorphism is entirely analagous. Thus, for each $t\geq0$, we have constructed isomorphisms
 	\[E^{t,a+\mbf s-\mbf t}(X,Y)\xr\cong\Hom_{E_*(E)}^{a+\mbf s}(E_*(X),E_*(\Sigma^tW_t))\]
 	such that the following diagram commutes:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFXnt0LGErXFxtYmYgcy1cXG1iZiB0fShYLFkpIl0sWzQsMCwiRV57dCsxLGErXFxtYmYgcy1cXG1iZiB0LVxcMX0oWCxZKSJdLFswLDIsIlxcSG9tX3tFXyooRSl9XnthK1xcbWJmIHN9KEVfKihYKSxFXyooXFxTaWdtYV50V190KSkiXSxbNCwyLCJcXEhvbV97RV8qKEUpfV57YStcXG1iZiBzfShFXyooWCksRV8qKFxcU2lnbWFee3QrMX1XX3t0KzF9KSkiXSxbMCwxLCJkXzEiXSxbMCwyLCJcXGNvbmciLDJdLFsyLDMsIlxcSG9tX3tFXyooRSl9XnthK1xcbWJmIHN9KEVfKihYKSxFXyooXFxkZWx0YV90KSkiXSxbMSwzLCJcXGNvbmciXV0=
@@ -435,9 +384,11 @@ We leave it to the reader to unravel what the differential $d_2$ corresponds to 
 
 \subsection{Convergence of the spectral sequence}
 
-In this subsection, we briefly sketch some converge properties of the spectral sequence. For the relevant definitions and theorems, we refer the reader to \cite{Boardman_1999}, all of the work done therewithin carries over entirely to our setting. Of particular relevance are his definitions of convergence of spectral sequences (see Definition 5.2) and conditional convergence of a spectral sequence associated to an unrolled exact coupel (Definition 5.10). We adopt his notation, writing $E_\infty(X,Y)$ and $RE_\infty(X,Y)$ to denote the $E_\infty$-term and the derived $E_\infty$-term of the spectral sequence, respectively.
+In this subsection, we briefly sketch some converge properties of the spectral sequence. Boardman already works quite generally in \cite{Boardman_1999}, so most of this is simply a review of the material contained within. From now on, we assume familiarity with derived limits of ($A$-graded) abelian groups (see Boardman \S1), filtered ($A$-graded) groups (see Boardman \S2), convergence of spectral sequences (Boardman Definition 5.2) and conditional convergence of a spectral sequence associated to an unrolled exact couple (Boardman Definition 5.10). We adopt his notation, writing
+\[E_\infty^s(X,Y):=\(\bigcap_{r=1}^\infty Z_r^s\)/\(\bigcup_{r=1}^\infty B_r^s\)\qquad\text{and}\qquad RE_\infty(X,Y):=\Rlim_rZ_r^s\]
+to denote the $E_\infty$-term and the derived $E_\infty$-term of the spectral sequence, respectively.
 
-Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us information which allows us to compute the group ${[X,Y]}_*$. Note that ${[X,Y]}_*$ is the colimit of the unrolled exact couple which determines the spectral sequence, as $Y_s=Y$ for $s<0$. Furthermore, since $E_r^{s,a}(X,Y)=0$ for $s<0$, we may think of the $E$-Adams spectral sequence for ${[X,Y]}_*$ as a \emph{half-plane spectral sequence with entering differentials}, in the sense of \cite[\S7]{Boardman_1999}, where suitable conditions under which the spectral sequence converges to the colimit ${[X,Y]}_*$ are described (see Theorem 7.3 there). In practice, the conditions outlined there are not usually satisfied, namely, in order for the spectral sequence to converge to ${[X,Y]}_*$, we must have that $\lim_s{[X,Y_s]}_*=0$. In practice, there is no reason to believe this would be satisfied. Yet, there is still hope. Following \cite[\S5]{Bousfield_79}, we can instead set up the spectral sequence by means of a tower \emph{under} $Y$. First, we must define the \emph{$E$-nilpotent completion of $Y$}.
+Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us information which allows us to compute the group ${[X,Y]}_*$. Note that ${[X,Y]}_*$ is the colimit of the unrolled exact couple which determines the spectral sequence, as $Y_s=Y$ for $s<0$. Furthermore, since $(E_r(X,Y),d_r)$ is a half-plane spectral sequence with entering differentials, we may apply the results from \cite[\S7]{Boardman_1999}, where suitable conditions under which the spectral sequence converges to the colimit ${[X,Y]}_*$ are described (in particular, see Theorem 7.3 there). Unfortunately, in practice, the conditions outlined there are not usually satisfied for this spectral sequence, namely, in order for the spectral sequence to converge to ${[X,Y]}_*$, we must have that $\lim_s{[X,Y_s]}_*=0$. There is no reason to believe this would be satisfied, so we must take an alternative approach. Following Section 5 of Bousfield's seminal paper \cite{Bousfield_79}, we can instead set up the spectral sequence by means of a tower \emph{under} $Y$. First, we must define the \emph{$E$-nilpotent completion of $Y$}:
 %
 %\begin{definition}[{\cite[Definition 2.2.2]{RGB}}]
 %	Given an object $Y$ in $\cSH$ and a monoid object $(E,\mu,e)$ an \emph{$E$-completion} $\widehat Y$ of $Y$ is an object in $\cSH$ such that:\begin{enumerate}[label=(\alph*)]
@@ -460,8 +411,8 @@ Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us informati
 		Y_{s+1}\xr{i^{s+1}}Y\xr bY/Y_{s+1}\xr c\Sigma Y_{s+1},
 	\end{gather*}
 	there exists a distinguished triangle
-	\begin{equation}\label{quotient_triangle_Y's}W_s\xr p Y/Y_{s+1}\xr qY/Y_s\xr r\Sigma W_s.\end{equation}
-	is distinguished and the following diagram commutes:
+	\begin{equation}\label{quotient_triangle_Y's}W_s\xr p Y/Y_{s+1}\xr qY/Y_s\xr r\Sigma W_s\end{equation}
+	which makes the following diagram commute:
 	% https://q.uiver.app/#q=WzAsOSxbMCwwLCJZX3tzKzF9Il0sWzIsMCwiWSJdLFs0LDAsIlkvWV9zIl0sWzYsMCwiXFxTaWdtYSBXX3MiXSxbMSwxLCJZX3MiXSxbMywxLCJZL1lfe3MrMX0iXSxbNSwxLCJcXFNpZ21hIFlfcyJdLFsyLDIsIldfcyJdLFs0LDIsIlxcU2lnbWEgWV97cysxfSJdLFswLDEsImlee3MrMX0iXSxbMSwyLCJiIl0sWzIsMywiciJdLFswLDQsImkiLDJdLFs0LDcsImoiLDJdLFs3LDgsImsiXSxbOCw2LCJcXFNpZ21hIGkiLDJdLFs2LDMsIlxcU2lnbWEgaiIsMl0sWzEsNSwiYiIsMl0sWzUsMiwicSIsMl0sWzcsNSwicCJdLFs1LDgsImMiXSxbNCwxLCJpXnMiLDJdLFsyLDYsImMiLDJdXQ==
 	\begin{equation}\label{gross_octa_diagram_Y's}\begin{tikzcd}
 		{Y_{s+1}} && Y && {Y/Y_s} && {\Sigma W_s} \\
@@ -482,7 +433,7 @@ Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us informati
 		\arrow["{i^s}"', from=2-2, to=1-3]
 		\arrow["c"', from=1-5, to=2-6]
 	\end{tikzcd}\end{equation}
-	The triangles from (\ref{quotient_triangle_Y's}) may be spliced together to yield a tower $\{Y/Y_{s}\}_s$ under $Y$:
+	The triangles from (\ref{quotient_triangle_Y's}) for $s\geq0$ may be spliced together to yield a tower $\{Y/Y_{s}\}_s$ under $Y$:
 	% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiWSJdLFsxLDAsIlxcY2RvdHMiXSxbMiwwLCJZL1lfMyJdLFszLDAsIlkvWV8yIl0sWzQsMCwiWS9ZXzEiXSxbNSwwLCJZL1lfMCJdLFs2LDAsIjAiXSxbMywxLCJXXzIiXSxbNSwxLCJXXzAiXSxbNCwxLCJXXzEiXSxbMiwxLCJXXzMiXSxbMCwxXSxbMSwyXSxbMiwzLCJxIl0sWzMsNCwicSJdLFs0LDUsInEiXSxbNSw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsInIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNywyLCJwIiwxXSxbNSw4LCJyIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsNCwicCIsMV0sWzQsOSwiciIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs5LDMsInAiLDFdLFsyLDEwLCJyIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
 	\[\begin{tikzcd}
 		Y & \cdots & {Y/Y_3} & {Y/Y_2} & {Y/Y_1} & {Y/Y_0} & 0 \\
@@ -503,11 +454,11 @@ Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us informati
 	\end{tikzcd}\]
 	where here the dashed arrows are really (degree $-\1$) maps $Y/Y_s\to\Sigma W_s$. The fact that this is a tower under $Y$ follows from diagram (\ref{gross_octa_Y's}), which tells us that $Y\xr b Y/Y_s$ factors as $Y\xr bY/Y_{s+1}\xr qY/Y_s$. We define the \emph{$E$-nilpotent completion of $Y$} to be the object $Y^\wedge_E$ (defined up to non-canonical isomorphism) obtained as the homotopy limit of this tower (\autoref{homotopy_limit_defn}):
 	\[Y^\wedge_E:=\holim_sY_s/Y.\]
-	This comes equipped with a map $\alpha:Y\to Y^\wedge_E$. 
+	Since $Y^\wedge_E$ is the homotopy limit of a tower under $Y$, it comes equipped with a canonical map $Y\to Y^\wedge_E$.
 \end{definition}
 
 \begin{remark}
-	In \cite{Bousfield_79}, the $E$-nilpotent completion of $Y$ (\autoref{defn:nilpotent_completion}) is denoted ``$E^\wedge Y$'', while the notation ``$Y^\wedge_E$'' we use here is standard in the modern literature.
+	In \cite{Bousfield_79}, the $E$-nilpotent completion of $Y$ is denoted ``$E^\wedge Y$'', while the notation ``$Y^\wedge_E$'' we use here is standard in the modern literature.
 \end{remark}
 
 It turns out that applying ${[X,-]}_*$ to this tower under $Y$ yields an exact couple, the associated spectral sequence of which is precisely the $E$-Adams spectral sequence for ${[X,Y]}_*$.
@@ -532,7 +483,7 @@ It turns out that applying ${[X,-]}_*$ to this tower under $Y$ yields an exact c
 		\arrow["p"{description}, from=2-5, to=1-4]
 		\arrow["r", dashed, from=1-3, to=2-3]
 	\end{tikzcd}\]
-	We may extend it to the right by defining $Y/Y_s=W_s=0$ for $s<0$. Then by \autoref{X,Y*_LES_compact}, we may apply the functor ${[X,-]}_*$ which yields the following $A$-graded unrolled exact couple (\autoref{unrolled_exact_couple}):
+	We may extend it to the right by defining $Y/Y_s=W_s=0$ for $s<0$. Then by \autoref{X,Y*_LES_compact}, we may apply the functor ${[X,-]}_*$ which yields the following $A$-graded unrolled exact couple:
 	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIntbWCxZL1lfe3MrMn1dfV8qIl0sWzIsMCwie1tYLFkvWV97cysxfV19XyoiXSxbMywwLCJ7W1gsWS9ZX3tzfV19XyoiXSxbNCwwLCJ7W1gsWS9ZX3tzLTF9XX1fKiJdLFs1LDAsIlxcY2RvdHMiXSxbNCwxLCJ7W1gsV197cy0xfV19XyoiXSxbMywxLCJ7W1gsV197c31dfV8qIl0sWzIsMSwie1tYLFdfe3MrMX1dfV8qIl0sWzEsMSwie1tYLFdfe3MrMn1dfV8qIl0sWzAsMV0sWzEsMiwicSJdLFsyLDMsInEiXSxbMyw0LCJxIl0sWzQsNV0sWzQsNiwiXFxkZWx0YSJdLFs2LDMsInAiLDFdLFszLDcsIlxcZGVsdGEiXSxbNywyLCJwIiwxXSxbMiw4LCJcXGRlbHRhIl0sWzgsMSwicCIsMV0sWzEsOSwiXFxkZWx0YSJdXQ==
 	\[\begin{tikzcd}
 		\cdots & {{[X,Y/Y_{s+2}]}_*} & {{[X,Y/Y_{s+1}]}_*} & {{[X,Y/Y_{s}]}_*} & {{[X,Y/Y_{s-1}]}_*} & \cdots \\
@@ -550,16 +501,16 @@ It turns out that applying ${[X,-]}_*$ to this tower under $Y$ yields an exact c
 		\arrow["p"{description}, from=2-3, to=1-2]
 		\arrow["\delta", from=1-2, to=2-2]
 	\end{tikzcd}\]
-	Thus by \autoref{SSeq_assoc_to_unrolled_EC}, there is an induced spectral sequence. This spectral sequence is precisely the $E$-Adams spectral sequence for ${[X,Y]}_*$ (\autoref{ASS}).
+	Thus by \cite[\S0]{Boardman_1999}, there is an induced spectral sequence. This spectral sequence is precisely the $E$-Adams spectral sequence for ${[X,Y]}_*$ (\autoref{ASS}).
 \end{proposition}
 \begin{proof}
-	For $s\geq0$, define
+	Let $(E'_r(X,Y),d_r')$ denote this new spectral sequence. For $s\geq0$, define
 	\[f_s:{[X,Y/Y_s]}_*\xr{c_*}{[X,\Sigma Y_s]}_*\xr{{(\nu_{Y_s})}_*}{[X,\Sigma^\1Y_s]}_*\xr{s^\1_{X,Y_s}}{[X,Y_s]}_{*-\1},\]
 	and for $s<0$ let it be the unique map
 	\[f_s:{[X,Y/Y_s]}_*=0\to{[X,Y_s]}_{*-\1}={[X,Y]}_{*-1}.\]
 	For $s\in\bZ$, let
 	\[g_s:=\id_{W_s}:{[X,W_s]}_*\to{[X,W_s]}_*.\]
-	We claim these maps ${(f_s,g_s)}_s$ define a homomorphism of $A$-graded unrolled exact couples (\autoref{defn:unrolled_exact_couple_homo}) between the unrolled exact couple given above determined by the quotient tower $\{Y/Y_s\}$ under $Y$, and that obtained by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution. To that end, it suffices to show that the following diagram commutes for all $s\in\bZ$: 
+	We claim these maps ${(f_s,g_s)}_s$ define a homomorphism of $A$-graded unrolled exact couples between the unrolled exact couple given above determined by the quotient tower $\{Y/Y_s\}$ under $Y$, and that obtained by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution, i.e., that the following diagram commutes for all $s\in\bZ$:
 	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJ7W1gsWS9ZX3NdfV8qIl0sWzEsMCwie1tYLFkvWV97cy0xfV19XyoiXSxbMiwwLCJ7W1gsV197cy0xfV19X3sqLVxcbWF0aGJmMX0iXSxbMywwLCJ7W1gsWS9ZX3NdfV97Ki1cXG1hdGhiZjF9Il0sWzAsMSwie1tYLFlfc119X3sqLVxcMX0iXSxbMSwxLCJ7W1gsWV97cy0xfV19X3sqLVxcMX0iXSxbMiwxLCJ7W1gsV197cy0xfV19X3sqLVxcMX0iXSxbMywxLCJ7W1gsWV9zXX1feyotXFxtYXRoYmYgMn0iXSxbMCwxXSxbMSwyXSxbMiwzXSxbMCw0LCJmX3MiLDJdLFs0LDVdLFs1LDZdLFs2LDddLFsxLDUsImZfe3MtMX0iLDFdLFsyLDYsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsNywiZl9zIl1d
 	\[\begin{tikzcd}
 		{{[X,Y/Y_s]}_*} & {{[X,Y/Y_{s-1}]}_*} & {{[X,W_{s-1}]}_{*-\mathbf1}} & {{[X,Y/Y_s]}_{*-\mathbf1}} \\
@@ -609,23 +560,33 @@ It turns out that applying ${[X,-]}_*$ to this tower under $Y$ yields an exact c
 	\end{tikzcd}\]
 	Clearly commutativity of this diagram yields that the given collection of maps define a homomorphism of $A$-graded unrolled exact couples. Each rectangular region commutes by naturality, as does the middle bottom trapezoidal region. The two regions involving $\delta$ and $\partial$ commute by unravelling how the differential is defined in \autoref{X,Y*_LES_compact}. Finally, the remaining two regions commute by commutativity of \autoref{gross_octa_diagram_Y's}.
 
-	Thus, we have defined a homomorphism of $A$-graded unrolled exact couples, so that by \autoref{UEC_homo_induces_SSeq_homo} it induces a homomorphism of the associated spectral sequences $\wt g$. Further unravelling how this homomorphism of spectral sequences is defined, since the homomorphism of unrolled exact couples is the identity on the ${[X,W_s]}_*$ terms, it follows that the two spectral sequences are strictly equal.
+	Thus, we have defined a homomorphism of $A$-graded unrolled exact couples, and it is straightforward to check that therefore the maps $g_s$ lift to well-defined graded homomorphisms $\wt g_r^s:E_r^s(X,Y)\to {E_r^s}'(X,Y)$ for $s\geq0$ sending a class $[x]\in Z_r^s/B_r^s=E_r^s(X,Y)$ to the class $\wt g_r^s([x]):=[g_s(x)]$ in ${Z_r^s}'/{B_r^s}'={E_r^s}'(X,Y)$, which make the following diagrams commute for all $r\geq1$:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFX3IoWCxZKSJdLFsxLDAsIkVfcicoWCxZKSJdLFsxLDEsIkVfcicoWCxZKSJdLFswLDEsIkVfcihYLFkpIl0sWzMsMCwiXFxrZXIgZF9yIl0sWzQsMCwiXFxrZXIgZF9yJyJdLFs0LDEsIkVfe3IrMX0nKFgsWSkiXSxbMywxLCJFX3tyKzF9KFgsWSkiXSxbMCwxLCJcXHd0IGdfciJdLFsxLDIsImRfciciXSxbMCwzLCJkX3IiLDJdLFszLDIsIlxcd3QgZ19yIl0sWzQsNSwiXFx3dCBnX3IiXSxbNSw2LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw3LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNyw2LCJcXHd0IGdfe3IrMX0iXV0=
+	\[\begin{tikzcd}
+		{E_r(X,Y)} & {E_r'(X,Y)} && {\ker d_r} & {\ker d_r'} \\
+		{E_r(X,Y)} & {E_r'(X,Y)} && {E_{r+1}(X,Y)} & {E_{r+1}'(X,Y)}
+		\arrow["{\wt g_r}", from=1-1, to=1-2]
+		\arrow["{d_r'}", from=1-2, to=2-2]
+		\arrow["{d_r}"', from=1-1, to=2-1]
+		\arrow["{\wt g_r}", from=2-1, to=2-2]
+		\arrow["{\wt g_r}", from=1-4, to=1-5]
+		\arrow[two heads, from=1-5, to=2-5]
+		\arrow[two heads, from=1-4, to=2-4]
+		\arrow["{\wt g_{r+1}}", from=2-4, to=2-5]
+	\end{tikzcd}\]
+	(commutativity of the first diagram implies the top arrow in the second diagram is well-defined). Yet we know that each $g_s$ is the identity, so that we shown that $(E_r(X,Y),d_r)=(E_r'(X,Y),d_r')$, as desired.
 \end{proof}
 
-By means of this new presentation of the spectral sequence, we may consider the sense in which the spectral sequence converges to the \emph{limit} $\lim_s{[X,Y/Y_s]}_*$ of the tower $\{Y/Y_s\}_s$ under $Y$. First of all, it is standard that since $Y^\wedge_E$ is the homotopy limit of this tower, we have a \emph{Milnor short exact sequence}
+By means of this new presentation of the spectral sequence, we may consider the sense in which the spectral sequence converges to the \emph{limit} $\lim_s{[X,Y/Y_s]}_*$ of the tower $\{Y/Y_s\}_s$ under $Y$, by means \cite[Theorem 7.4]{Boardman_1999}. First of all, it is standard that since $Y^\wedge_E$ is the homotopy limit of this tower, we have a \emph{Milnor short exact sequence}
 \[0\to\Rlim_s{[X,Y/Y_s]}_{*+1}\to{[X,Y^\wedge_E]}_*\to\lim_s{[X,Y/Y_s]}_*\to 0\]
-(the same argument given in \cite[Theorem 4.9]{Boardman_1999} works, although we warn the reader that Boardmann has a sign error there --- he writes the first term in the short exact sequence with $-1$, when it should be $+1$). Thus, if $\Rlim_s{[X,Y/Y_s]}_*$ vanishes, we get an identification of the limit
+(the same argument given in \cite[Theorem 4.9]{Boardman_1999} works, although we warn the reader that Boardman has a sign error there --- he writes the first term in the short exact sequence with $-1$, when it should be $+1$). Thus, if $\Rlim_s{[X,Y/Y_s]}_*$ vanishes, we get an identification of the limit
 \[\lim_s{[X,Y/Y_s]}_*={[X,Y^\wedge_E]}_*.\]
-By \cite[Theorem 7.4]{Boardman_1999}, this is further satisfied if the derived $E_\infty$-term $RE_\infty(X,Y)$ is zero, in which case the spectral sequence covnerges strongly to the limit ${[X,Y^\wedge_E]}_*$, meaning in particular the natural maps
+By \cite[Theorem 7.4]{Boardman_1999}, this is further satisfied if the derived $E_\infty$-term $RE_\infty(X,Y)$ is zero, in which case the spectral sequence converges strongly to the limit ${[X,Y^\wedge_E]}_*$, meaning in particular the natural maps
 \begin{gather*}
 	{[X,Y^\wedge_E]}_*\to\lim_s{[X,Y^\wedge_E]}_*/F^s{[X,Y^\wedge_E]}_* \\
 	F^s{[X,Y^\wedge_E]}_*/F^{s+1}{[X,Y^\wedge_E]}_*\to E_\infty^{s,*}(X,Y)
 \end{gather*}
 are isomorphisms, where here $F^s$ is the decreasing filtration on ${[X,Y^\wedge_E]}_*$ given by
 \[F^s{[X,Y^\wedge_E]}_*:=\ker({[X,Y^\wedge_E]}_*=\lim_s{[X,Y/Y_s]}_*\to{[X,Y/Y_s]}_*).\]
-
-\begin{remark}
-	In \cite[\S6]{Bousfield_79}, work is done in the classical setting to analyze the conditions under which the derived page $RE_\infty$ vanishes, and ${[X,Y^\wedge_E]}_*$ tells us information about ${[X,Y]}_*$. Specifically, Bousfield describes some cases under which the canonical map $Y\to Y^\wedge_E$ is an isomorphism. More work should be done to see which of those results transfer over to our setting. In particular, there may be connectivity conditions one can place on $Y$ under which one gets convergence of the spectral sequence.
-\end{remark}
 
 \end{document}
