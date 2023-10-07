@@ -1,6 +1,371 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-intro
+\todo{Completely rewrite this entire section its so bad}
+
+One of the key ideas in classical topology is that in order to study ``nice spaces'' like CW complexes or manifolds, we should work with a larger category $\cS$ which has better formal properties, but not as nice of spaces. In topology, there are multiple candidates for this category, such as the category of simplicial sets or the category of compactly generated weak Hausdorff spaces. For our purposes, we will take $\cS=\Set_\bDelta$ to be the category of simplicial sets. In this larger category, we can do homotopy theory. $\bA^1$-homotopy theory, also called motivic homotopy theory, is motivated by applying this philosophy to the field of algebraic geometry.
+
+\subsection{Motivic spaces}
+
+In algebraic geometry, the key objects of study are \emph{varieties}, i.e., smooth finite type schemes over $\Spec k$ for some field $k$. More generally, instead of considering schemes over a field $k$, we can consider smooth finite type schemes over some \emph{base scheme} $\scS$, where a ``base scheme'' is a Noetherian separated scheme of finite Krull dimension. We write $\Sms\scS$ to denote the category of smooth finite type schemes over $\scS$. Often times we will write ``smooth scheme over $\scS$'' or just ``smooth scheme'' to denote an object of $\Sms\scS$. Sadly, like the category of smooth manifolds, the category $\Sms\scS$ does not satisfy many nice formal properties, in particular, it does not have colimits, as there is no way to ``glue'' smooth schemes together. Taking our queue from topology, we should therefore expand the category $\Spc\scS$ to some larger category of ``motivic spaces'' with nice formal properties. This construction is the motivating idea behind $\bA^1$-homotopy theory.
+
+As it turns out, there are lots of ways to define the category of motivic spaces. We will follow the approach outlined in Section $2$ of \cite{WilOst}. We omit many technical details, and emphasize only what we need.
+
+\begin{definition}
+	A \emph{(motivic) space} over $\scS$ is a simplicial presheaf on $\Sms\scS$. The collection of spaces over $\scS$ forms the category
+	\[\Spc\scS:=[(\Sms\scS)^\op,\cS].\]
+\end{definition}
+
+There is already a lot we can do with this definition. Since $\cS$ is complete and cocomplete, it follows purely formally that the category of motivic spaces is as well, so we have achieved our goal of being able to take (co)limits, which may be computed pointwise in $\cS$. Furthermore, the requirement that objects in $\Sms\scS$ be finite type schemes over $\scS$ ensures that $\Sms\scS$ is an essentially small category (\cite{251044}), so that $\Spc\scS$ is cartesian closed\footnote{This follows from the general categorical result that given a small category $\cC$ and a cartesian closed complete category $\cD$, the functor category $[\cC,\cD]$ is itself cartesian closed.}, and we do not have to worry about size issues (the collection of objects in $\Spc\scS$ forms a proper class).
+
+Since $\cS:=[\bDelta^\op,\Set]$, we have an identification\footnote{This follows from the more general fact that given three categories $\cC$, $\cD$, and $\cE$, there is a canonical isomorphism $[\cC,[\cD,\cE]]\cong[\cD,[\cC,\cE]]$.}
+\[\Spc\scS=[(\Sms\scS)^\op,\cS]=[(\Sms\scS)^\op,[\bDelta^\op,\Set]]\cong[\bDelta^\op,[(\Sms\scS)^\op,\Set]].\]
+Hence, we may also think of motivic spaces as simplicial objects in the category of presheaves on $\Sms\scS$. In this way, by composing the Yoneda embedding with the diagonal functor, we have an embedding
+\[h_{(-)}:\Sms\scS\xrightarrow\cY[(\Sms\scS)^\op,\Set]\xrightarrow\Delta[\bDelta^\op,[(\Sms\scS)^\op,\Set]]\cong\Spc\scS\]
+taking a smooth scheme $\scX$ to the simplicial presheaf $h_\scX$ it represents. It is not hard to verify that this functor is fully faithful, since the Yoneda embedding is. Often we will not distinguish between a smooth scheme $\scX$ and its image under this functor. We may also define based spaces:
+\begin{definition}
+	A \emph{based} (motivic) space is an object in the under category
+	\[\Spca\scS:=\Spc S^{\scS/},\]
+	i.e., a based space is a motivic space $X$ along with a morphism (natural transformation) $\scS\to X$.
+\end{definition}
+
+
+This definition is motivated by the observation that $\scS$ is the terminal motivic space. Indeed, note that by definition $\scS$ is the terminal object in $\Sms\scS$, so that given any other smooth scheme $\scU$ over $\scS$, there is a unique morphism $\scU\to\scS$, so that $h_\scS(\scU)\cong\Delta^0$. It follows purely formally that the forgetful functor $\Spca\scS\to\Spc S$ has a left adjoint $(-)_+:\Spc\scS\to\Spca\scS$ taking a motivic space $X$ to the disjoint union $X\amalg\scS$ obtained by freely adjoining a basepoint.
+
+We point out a couple examples of motivic spaces which will be important. In what follows, all products are taken in the category of schemes, not in $\Sms\scS$, so that in particular given any object $\scX$ in $\Sms\scS$, there are canonical isomorphisms $\scX\cong\scX\times\Spec\bZ$, as $\Spec\bZ$ is the terminal scheme. Let $\bA^1$ and $\bG_m$ denote the smooth schemes ${\scS}\times\Spec\bZ[x]$ and ${\scS}\times\Spec\bZ[x,x^{-1}]$, respectively. We may consider $\bA^1$ as canonically based via the composition
+\[{\scS}\cong {\scS}\times\Spec\bZ\to {\scS}\times\Spec\bZ[x]=\bA^1,\]
+where the arrow is given by ${\scS}\times f$, where $f:\Spec\bZ\to\Spec\bZ[x]$ corresponds to the ring morphism $\bZ[x]\to\bZ$ sending $x\mapsto 1$. Similarly, we may view $\bG_m$ as canonically based via the map
+\[{\scS}\cong {\scS}\times\Spec\bZ\to {\scS}\times\Spec\bZ[x,x^{-1}]=\bG_m,\]
+where the arrow is similarly induced by the unique ring morphism $\bZ[x,x^{-1}]\to\bZ$ sending $x\mapsto 1$. 
+
+Note that in the case $\scS=\Spec k$ for some field $k$, we have identifications $\bA^1\cong\bA^1_k=\Spec k[x]$ and $\bG_m\cong\Spec k[x,x^{-1}]\cong\bA^1_k\setminus\{0\}$, which justifies our notation. As we will see, $\bA^1$ will play a role similar to the interval in the homotopy theory of motivic spaces. Thought of as a motivic space, we call $\bG_m$ the ``Tate circle''. It turns out that as a motivic space, $\bG_m$ has many of the same properties that the topological circle $S^1$ has in the category of topological spaces. To see this, consider the case $\scS=\Spec\bC$. We have a ``realization functor'' $\psi:\Sms\bC\to\Top$ taking a scheme $\scX$ to its set of $\bC$-points with the analytic topology. Under this functor, $\bA^1$ and $\bG_m$ are taken to the spaces $\bC$ and $\bC\setminus\{0\}$, respectively. Note that $\bC\setminus\{0\}$ is homotopy equivalent to the circle, which already provides one justification for thinking of $\bG_m$ as a circle.
+
+We can extend the realization functor $\psi:\Sms\bC\to\Top$ to a functor defined on all of $\Spc\bC$:
+\begin{definition}\label{Betti_realization}
+	Define the \emph{Betti realization functor} $\psi:\Spc\bC\to\Top$ to be the left Kan extension of the realization functor $\psi:\Sms\bC\to\Top$ along the simplicial Yoneda embedding $h_{(-)}:\Sms\bC\to\Spc\bC$:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFNtc1xcYkMiXSxbMiwwLCJcXFRvcCJdLFsxLDEsIlxcU3BjXFxiQyJdLFswLDEsIlxccHNpIl0sWzAsMiwiaF97KC0pfSIsMl0sWzIsMSwiXFxwc2kiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+	\[\begin{tikzcd}
+		\Sms\bC && \Top \\
+		& \Spc\bC
+		\arrow["\psi", from=1-1, to=1-3]
+		\arrow["{h_{(-)}}"', from=1-1, to=2-2]
+		\arrow["\psi"', dashed, from=2-2, to=1-3]
+	\end{tikzcd}\]
+	Given a space $X$, we often denote $\psi(X)$ by $X(\bC)$.
+\end{definition}
+Since $\Sms\bC$ is (essentially) small and $\Top$ is (small) cocomplete, it follows that this left Kan extension does in fact exist, and we may compute it via colimits (\cite[Theorem 6.2.1]{Riehl}).
+
+Recall that $\cS_\ast$ is a symmetric monoidal category under the smash product $-\wedge-$. The unit for this monoidal structure is given by $S^0:=\Delta^0\amalg\Delta^0$. This induces a symmetric monoidal structure on the category $\Spca\scS$ of based spaces over $\scS$: 
+
+\begin{proposition}
+	Given two based motivic spaces $X$ and $Y$ over $\scS$, define their \emph{smash product} $X\wedge Y$ to be the simplicial presheaf defined by
+	\[(X\wedge Y)(\scU):=X(\scU)\wedge Y(\scU).\]
+	This smash product endows $\Spca\scS$ with the structure of a symmetric monoidal category, where the unit object is given by $S^{0,0}:=\scS_+=\scS\amalg\scS\cong\Delta^0\amalg\Delta^0$.
+\end{proposition}
+
+
+We have shown that any smooth scheme can be viewed as a motivic space, but it also turns out that any simplicial set $A$ can viewed as a motivic space by considering the constant functor $cA:(\Sms\scS)^\op\to\cS$ on $A$. As we did with objects of $\Sms\scS$, we will usually simply write $A$ to denote the corresponding motivic space $cA$.  Per our earlier reasoning, $\scS$ and $\Delta^0$ are isomorphic as motivic spaces. This observation also yields a functor $\cS_\ast\to\Spca\scS$ taking a based simplicial set $\Delta^0\to A$ to the based motivic space $\scS\cong c\Delta^0\to cA$. It follows that this functor is strongly monoidal, i.e., it preserves the monoidal unit, and given any two based simplicial sets $A$ and $B$ we have $cA\wedge cB\cong c(A\wedge B)$ (in fact, here this isomorhpism is an equality). Furthermore, it is relatively straightforward to check that the functor $\Spca\scS\to\cS_\ast$ given by evaluation at $\scS$ is a right adjoint to $c$.
+
+Interestingly, this functor yields another circle in the category of pointed spaces. We can define the \emph{simplicial circle} to be the constant simplicial presheaf $S^1$ pointed at its $0$-simplex. As it turns out, the simplicial circle $S^1$ really is an entirely distinct space from the Tate circle $\bG_m$. So which is ``the'' circle? As it turns out, the approach taken in motivic homotopy theory is to view them as each equally valid, but different notions, and in fact, we obtain a bigraded family of motivic spheres $S^{p,q}$ in $\Spca\scS$ for $p\geq q\geq 0$ by defining 
+\[S^{p,q}:=(S^1)^{p-q}\wedge\bG_m^{q},\]
+so that $S^{1,0}\cong S^1$, $S^{1,1}\cong\bG_m$, and $S^{0,0}\cong\scS_+\cong S^0$ (recall $\scS_+=h_\scS\amalg h_\scS$ is the monoidal unit in $\Spca\scS$). The reason for this odd grading convention has to do with the theory of \emph{motives}, which we will not explore here.
+
+\subsection{The unstable motivic homotopy category}
+
+So far, we have constructed motivic spaces, and given some examples of how to work with them. Yet, we still have yet to talk about how we can ``do homotopy theory'' in this world. To start with, we will define the \emph{motivic model structure} on $\Spca\scS$. We will define this in stages, by first defining the \emph{projective model structure} on $\Spc\scS$ and then localizing.
+
+\begin{proposition}	
+	There exists a cellular, proper, simplicial monoidal model structure on $\Sms S$ called the \emph{projective model structure} in which\begin{enumerate}
+		\item The (global) weak equivalences are those maps $f:X\to Y$ for which $f(\scU):X(\scU)\to Y(\scU)$ is a weak equivalence of simplicial sets for all $\scU$ in $\Sms\scS$,
+		\item The projective fibrations are those maps $f:X\to Y$ for which $f(\scU):X(\scU)\to Y(\scU)$ is a Kan fibration for all $\scU$ in $\Sms\scS$.
+		\item The projective cofibrations are those maps in $\Spc\scS$ which satisfy the left lifting property against the trivial projective fibrations.
+	\end{enumerate}
+\end{proposition}
+
+Of course, this also endows $\Spca\scS$ with a model structure, which we also call the projective model structure. There exists a Grothendieck topology on $\Spca\scS$ called the \emph{Nisnevich topology}.
+
+\begin{definition}
+	Given a pointed space $X$ in $\Spca\scS$ and some $n\geq0$, the $n^\text{th}$ simplicial homotopy sheaf $\pi_n(X)$ of $X$ is the Nisnevich sheaffification of the presheaf $\scU\mapsto\pi_n(X(\scU))$. Write $W_\text{Nis}$ for the class of maps $f:X\to Y$ in $\Spca\scS$ for which $f_\ast:\pi_n(X)\to\pi_n(Y)$ is an isomorphism of Nisnevich sheaves for all $n\geq0$.
+\end{definition}
+
+\begin{definition}
+	Let $W_{\bA^1}\sseq\mathrm{Mor}(\Spca\scS)$ be the class of maps $\pi_\scX:(\scX\times\bA^1)_+\to\scX_+$ for $\scX$ in $\Sms\scS$. The \emph{motivic model structure} on $\Spca\scS$ is the left Bousfield localization of the projective model structure with respect to $W_\text{Nis}\cup W_{\bA^1}$. This model structure is closed symmetric monoidal, pointed simplicial, left proper, and cellular. From now on, we always write $\Spca\scS$ to mean the model category of pointed spaces equipped with the motivic model structure. The homotopy category of $\Spca\scS$ is the pointed motivic homotopy category $\Ha\scS$. 
+\end{definition}
+
+
+\subsection{The stable motivic homotopy category}
+
+The canonical ring morphism $\bZ[x]\into\bZ[x,x^{-1}]$ induces a map $\bG_m\to\bA^1$. Let $T$ be a cofibrant replacement of the quotient simplicial sheaf $\bA^1/\bG_m$ in the stable model structure on $\Spca\scS$. We call $T$ the \emph{Tate sphere}. A useful fact is that the Tate sphere is equivalent to $S^1\wedge\bG_m$ in the motivic model structure on $\Spca\scS$ (\cite[Lemma 3.2.15]{Morel1999}).
+
+It turns out that the functor $T\wedge -$ on $\Spca\scS$ is a left Quillen functor, and we may invert it to create the category $\Spt\scS$ of $T$-spectra. Explicitly:
+
+\begin{definition}
+	A $T$-spectrum $X$ is a sequence of spaces $\{X_n\}_{n\geq0}$ in $\Spca\scS$ equipped with structure maps $\sigma_n:T\wedge X_n\to X_{n+1}$. A map of $T$-spectra $f:X\to Y$ is a collection of maps $f_n:X_n\to Y_n$ which are compatible with the structure maps in the obvious sense. We write $\Spt\scS$ to denote the category of $T$-spectra and maps between them.
+\end{definition}
+
+\begin{definition}
+	Given a based space $X$ in $\Spca\scS$, we can form its \emph{suspension spectrum} $\Sigma^\infty X$ whose $n^\text{th}$ term is $X\wedge T^n$ and the structure morphisms are the canonical isomorphisms. This yields a functor $\Sigma^\infty:\Spca\scS\to\Spt\scS$, and by composing with $(-)_+:\Spc\scS\to\Spca\scS$, we get a functor $\Sigma^\infty(-)_+:\Spc\scS\to\Spt\scS$.
+\end{definition}
+
+Now, we would like to define the stable model structure on the category of $T$-specra. As we did with motivic spaces, we first start with a different model structure than the one we want, and then localize to obtain the stable model structure.
+
+\begin{proposition}
+	There exists a model structure on $\Spt\scS$ called the \emph{level model structure} in which a map $f:X\to Y$ is a weak equivalence (resp.\ a fibration) if every map $f_n:X_n\to Y_n$ is a weak equivalence (resp.\ a fibration) in the motivic model structure on $\Spca\scS$. The cofibrations are determined as those with the left lifting property against the trivial level fibrations.
+\end{proposition}
+
+\begin{definition}
+	Let $X$ be a $T$-spectrum. For integers $p$ and $q$, the $(p,q)^\text{th}$ stable homotopy sheaf of $X$, written as $\pi_{p,q}(X)$, is the Nisnevich sheafification of the presheaf
+	\[\scU\mapsto\colim_n\Ha\scU(S^{p+2n,q+n},X_n|_\scU)\]
+	(note the terms in this colimit may only be defined for large enough $n$).
+	A map $f:X\to Y$ is a \emph{stable weak equivalence} if for all integers $p$ and $q$ the induced maps $f_\ast:\pi_{p,q}(X)\to\pi_{p,q}(Y)$ are isomorphisms.
+\end{definition}
+
+\begin{definition}
+	The stable model structure on $\Spt\scS$ is the model category where the weak equivalences are the stable weak equivalences and the cofibrations are the cofibrations in the level model structure. The fibrations are those maps with the right lifting property with respect to trivial cofibrations. We write $\SH\scS$ for the homotopy category of $\Spt\scS$ with the stable model structure.
+\end{definition}
+
+As in the case of classical spectra, we run into the unfortunate fact that the smash product does not induce a symmetric monoidal structure on on $\Spt\scS$. One remedy is to use the category $\SptSig S$ of symmetric $T$-spectra. The construction of this category is given by Hovey in \cite{Hov} and Jardine in \cite{Jardine2000}, and it turns out that the smash product can be used to give $\SptSig S$ the structure of a symmetric monoidal category, in fact, a stable symmetric monoidal model category. It is proven in \cite{Hov} that there is a zig-zag of Quillen equivalences from $\SptSig S$ to $\Spt\scS$, hence $\SH\scS$ is equivalent to the homotopy category of $\SptSig S$ as well. In particular, the category $\SH\scS$ is a tensor triangulated category where the shift functor $\Sigma:=\Sigma^\infty S^{1,0}\wedge-$ is given by smashing with the suspension spectrum of $S^{1,0}=S^1\wedge\scS_+\cong S^1$. The monoidal product $-\wedge-$ is induced by the smash product\footnote{Sadly, explicitly constructing the monoidal product on $\SH\scS$ is actually quite difficult.}, and the monoidal unit is given by the \emph{sphere spectrum} $S:=\Sigma^\infty\scS_+\cong\Sigma^\infty S^0$. See the appendix for a review of (tensor) triangulated categories.
+
+Recall earlier we defined the functor $\Sigma^\infty:\Spca\scS\to\Spt\scS$ taking a based space to its suspension spectrum. From now on, we will instead write $\Sigma^\infty$ to refer to the composition
+\[\Spca\scS\xrightarrow{\Sigma^\infty}\Spt\scS\to\SH\scS,\]
+where the second arrow is the canonical functor from a model category to its homotopy category. A useful fact is that $\Sigma^\infty$ is strict monoidal, so that there are isomorphisms 
+\[\Sigma^\infty X\wedge\Sigma^\infty Y\cong\Sigma^\infty(X\wedge Y)\] 
+in $\SH\scS$ for all based spaces $X$ and $Y$, and furthermore, this functor factors through the unstable homotopy category $\Ha\scS$. Hence since $T$ is weakly equivalent to $S^{2,1}=S^{1,0}\wedge S^{1,1}$ in $\Spca\scS$, we have the following isomorphisms in $\SH\scS$:
+\[T\cong S^{2,1}\cong S^{1,0}\wedge S^{1,1}\]
+(here we are being abusive and omitting $\Sigma^\infty$'s for clarity). Almost by construction, $T$ is invertible in $\SH\scS$, in the sense that there exists some object $T^{-1}$ in $\SH\scS$ and an isomorphism $S\cong T^{-1}\wedge T$. Now, define the spectra
+\[S^{-1,0}:=T^{-1}\wedge S^{1,1}\qquad\text{and}\qquad S^{-1,-1}:=T^{-1}\wedge S^{1,0}(\cong\Sigma T).\]
+The notation is justified by the isomorphisms
+\[\xi_1:S\cong T^{-1}\wedge T\cong T^{-1}\wedge S^{1,1}\wedge S^{1,0}=S^{-1,0}\wedge S^{1,0}\]
+and
+\[\xi_2:S\cong T^{-1}\wedge T\cong T^{-1}\wedge S^{1,1}\wedge S^{1,0}\cong T^{-1}\wedge S^{1,0}\wedge S^{1,1}=S^{-1,-1}\wedge S^{1,1}.\]
+In this way, by abuse of notation, we may define $\bZ\times\bZ$--graded family of motivic sphere spectra in $\SH\scS$ by defining
+\[S^{p,q}:=(S^{1,0})^{p-q}\wedge(S^{1,1})^q\]
+for $p,q\in\bZ$ (recall our earlier defined conventions for powers in a monoidal category). It follows purely formally that for all $a,b\in\bZ^2$ there exist ``semi-canonical'' isomorphisms\footnote{Explicitly, these isomorphisms are obtained by forming formal compositions of unitors, associators, and the isomorphisms $\xi_1:S\cong S^{-1,0}\wedge S^{1,0}$ and $\xi_2:S\cong S^{-1,-1}\wedge S^{1,1}$ and their inverses as necessary.}
+\[S^{a,b}\cong S^a\wedge S^b,\]
+and given $p,q\in\bZ$, the functors $S^{p,q}\wedge-$ and $S^{-p,-q}\wedge-$ form an adjoint equivalence of $\SH\scS$. Given a spectrum $X$ in $\SH\scS$, we write $\Sigma^{p,q}$ to denote the functor defined by $\Sigma^{p,q} X:= S^{p,q}\wedge X$. In particular, the shift functor $[1]$ in the triangulated structure on $\SH\scS$ is given by $\Sigma^{1,0}$, and we have canonical isomorphisms $\Sigma^{p,q}S\cong S^{p,q}$. Note that since $\Sigma^\infty:\Spca\scS\to\SH\scS$ is strict monoidal, we have isomorphisms $\Sigma^\infty S^{p,q}\cong S^{p,q}$ for all $p\geq q\geq0$.
+
+Given spectra $X$ and $Y$, we denote the abelian group $\SH\scS(X,Y)$ by $[X,Y]$\footnote{Recall that $\SH\scS$ is triangulated, in particular, it is an additive category.}. We may extend $[X,Y]$ to a $\bZ^2$-graded abelian group $[X,Y]_\aast$ by defining
+\[[X,Y]_{p,q}:=[\Sigma^{p,q}X,Y]=[S^{p,q}\wedge X,Y].\]
+We denote the category of $\bZ\times\bZ$-graded abelian groups by $\Ab^{\bZ^2}$. Given a spectrum $E$, it determines functors $E^\aast:\SH\scS^\op\to\Ab^{\bZ^2}$ and $E_\aast:\SH\scS\to\Ab^{\bZ^2}$, by defining
+\[E^{p,q}(X):=[X,S^{p,q}\wedge E]=[X,E]_{-p,-q}\qquad\text{and}\qquad E_{p,q}(X):=[S^{p,q},E\wedge X]\cong[S,E\wedge X]_{p,q}.\]
+We call the functors $E^\aast$ and $E_\aast$ the \emph{cohomology} and \emph{homology} theories represented by $E$, respectively. One special homology theory is that represented by the sphere spectrum $S$, which we denote by $\pi_\aast$:
+\[\pi_{p,q}(X):=[S^{p,q},X]\cong[S^{p,q},S\wedge X]=S_\aast(X).\]
+Given a spectrum $X$, we refer to the collection of $\pi_{p,q}(X)$'s as the \emph{stable homotopy groups} of $X$.
+
+Note that in what happened above, we could have actually replaced $T\simeq\bA^1/\bG_m$ with any compact In Section A.7 of \cite{PanPimRon}, the Betti realization functor (\autoref{Betti_realization}) is extended to a strong symmetric monoidal functor $\psi:\SH\bC\to\hoSp$ from the motivic stable homotopy category over $\bC$ to the classical stable homotopy category\footnote{Explicitly, in \cite[Theorem A.44]{PanPimRon}, the category $\mathrm{Sp}^\Sigma(\Top,\bC P^1)$ of symmetric $\bC P^1$-spectra in $\Top$ is constructed, and it is shown that there is a zig-zag of Quillen equivalences between $\mathrm{Sp}^\Sigma(\Top,\bC P^1)$ and the usual category of spectra $\mathrm{Sp}^\Sigma(\Top,S^1)$, so they have equivalent homotopy categories. Then applying the Betti realization functor levelwise yields a strict symmetric monoidal functor (Theorem A.45) from the category $\mbf{Sp}_{\bP^1}^\Sigma\boldsymbol(\bC\boldsymbol)$ of motivic symmetric $\bP^1$-spectra to $\mathrm{Sp}^\Sigma(\Top,\bC P^1)$. Finally, in the category $\Spca\bC$ of motivic spaces over $\bC$, we have that $T$ and $\bP^1$ are equivalent, which yields a Quillen equivalence $\mbf{Sp}^\Sigma_{\bP^1}\boldsymbol{(}\bC\boldsymbol{)}\simeq\mbf{Sp}^\Sigma_T\boldsymbol{(}\bC\boldsymbol{)}$ (Theorem A.30). Putting all of this together yields the desired strong symmetric monoidal functor $\SH\bC\to\hoSp$.}. A useful fact, one which somewhat justifies the grading for the motivic spheres, is that $\psi$ takes the $T$-spectrum $S^{p,q}$ to the suspension spectrum $S^p\cong\Sigma^\infty S^p$ of the $p$-sphere in $\hoSp$.
+
+\subsection{Grading}
+First, recall the standard stable homotopy category $\hoSp$, obtained by formally inverting the functor $\Sigma:=S^1\wedge-:\cS_\ast\to\cS_\ast$. It is a tensor triangulated category, where the tensor product is denoted by $-\wedge-$ and called the \emph{smash product}. There exists a strong monoidal functor $\Sigma^\infty:\cS_\ast\to\hoSp$. We omit $\Sigma^\infty$ from the notation, and identify a space $X$ with its suspension spectrum $\Sigma^\infty X$. The unit for the monoidal structure on $\hoSp$ is given by $S:=S^0$. The shift functor is given by $\Sigma:=S^1\wedge-$. In particular, since the shift functor is essentially surjective, it follows that there exists some spectrum $S^{-1}$ in $\hoSp$ and an isomorphism $\xi:S\cong S^{-1}\wedge S^{1}$. It then follows purely formally, using only the fact that $\hoSp$ is a symmetric monoidal category and the isomorphism $\xi:S\cong S^{-1}\wedge S^{1}$, that the functors $\Sigma=S^1\wedge-$ and $\Omega=S^{-1}\wedge-$ form an adjoint equivalence of $\hoSp$. For each integer $n$, we may define
+\[S^n:=(S^1)^n.\]
+In \cite[Theorem 1.6]{Dugger_2014}, it is described how the chosen isomorphism $\xi:S\cong S^{-1}\wedge S^1$ determine canonical isomorphisms
+\[\phi_{p,q}:S^{p+q}\xrightarrow{\cong}S^p\wedge S^q,\]
+where $\phi_{p,q}$ is given simply by composing associators, unitors, and copies of $\xi$ and $\xi^{-1}$. In particular, $\phi_{-1,1}=\xi$, and if $p$ or $q$ is zero then $\phi_{p,q}$ is precisely one of the unitor isomorphisms. As it turns out, these isomorphisms are very nice. For one, they are coherent, so that the obvious pentagonal diagrams commute for all $a,b,c\in\bZ$:
+% https://q.uiver.app/#q=WzAsNSxbMSwwLCJTXnthK2IrY30iXSxbMCwwLCJTXnthK2J9XFx3ZWRnZSBTXmMiXSxbMiwwLCJTXmFcXHdlZGdlIFNee2IrY30iXSxbMiwxLCJTXmFcXHdlZGdlKFNeYlxcd2VkZ2UgU15jKSJdLFswLDEsIihTXmFcXHdlZGdlIFNeYilcXHdlZGdlIFNeYyJdLFswLDEsIlxccGhpX3thK2IsY30iLDJdLFswLDIsIlxccGhpX3thLGIrY30iXSxbMiwzLCJTXmFcXHdlZGdlXFxwaGlfe2IsY30iXSxbMSw0LCJcXHBoaV97YSxifVxcd2VkZ2UgU15jIiwyXSxbNCwzLCJcXGNvbmciXV0=
+\[\begin{tikzcd}
+	{S^{a+b}\wedge S^c} & {S^{a+b+c}} & {S^a\wedge S^{b+c}} \\
+	{(S^a\wedge S^b)\wedge S^c} && {S^a\wedge(S^b\wedge S^c)}
+	\arrow["{\phi_{a+b,c}}"', from=1-2, to=1-1]
+	\arrow["{\phi_{a,b+c}}", from=1-2, to=1-3]
+	\arrow["{S^a\wedge\phi_{b,c}}", from=1-3, to=2-3]
+	\arrow["{\phi_{a,b}\wedge S^c}"', from=1-1, to=2-1]
+	\arrow["\cong", from=2-1, to=2-3]
+\end{tikzcd}\]
+Furthermore, these isomorphisms commute with the symmetric structure of $\hoSp$, like so:
+\begin{proposition}[{\cite[Lemma 7.1.13]{Hovey_1999} or \cite[Lemma 5.9]{nlab:introduction_to_stable_homotopy_theory_--_1-2}}]\label{Hov7.1.13}
+	The following diagram is commutative for arbitrary integers $p$ and $q$
+	% https://q.uiver.app/#q=WzAsNCxbMCwxLCJTXntwK3F9Il0sWzEsMSwiU15xXFx3ZWRnZSBTXnAiXSxbMCwwLCJTXntwK3F9Il0sWzEsMCwiU15wXFx3ZWRnZSBTXnEiXSxbMCwxLCJcXHBoaV97cSxwfSJdLFsyLDMsIlxccGhpX3twLHF9Il0sWzMsMSwiXFx0YXUiXSxbMiwwLCIoLTEpXntwcX0iLDJdXQ==
+	\[\begin{tikzcd}
+		{S^{p+q}} & {S^p\wedge S^q} \\
+		{S^{p+q}} & {S^q\wedge S^p}
+		\arrow["{\phi_{q,p}}", from=2-1, to=2-2]
+		\arrow["{\phi_{p,q}}", from=1-1, to=1-2]
+		\arrow["\tau", from=1-2, to=2-2]
+		\arrow["{(-1)^{pq}}"', from=1-1, to=2-1]
+	\end{tikzcd}\]
+	where here $\tau$ is the symmetry map specified by the symmetric monoidal structure on $\hoSp$, and
+	\[(-1)^{pq}=\begin{cases}
+		\id & pq\equiv0\bmod 2 \\
+		-\id & pq\equiv1\bmod 2.
+	\end{cases}\]
+	(Recall that $\hoSp$ is a triangulated category, and in particular an additive category, so that homsets in $\hoSp$ are abelian groups.)
+\end{proposition}
+
+Recall that a \emph{commutative ring spectrum} is a commutative monoid object in $\hoSp$, that is, a spectrum $E$ along with maps $\mu:E\wedge E\to E$ and $e:S\to E$ such that the following diagrams commute in $\hoSp$:
+% https://q.uiver.app/#q=WzAsMTIsWzIsMSwiRVxcd2VkZ2UoRVxcd2VkZ2UgRSkiXSxbMiwyLCJFXFx3ZWRnZSBFIl0sWzIsMCwiKEVcXHdlZGdlIEUpXFx3ZWRnZSBFIl0sWzMsMiwiRSJdLFszLDAsIkVcXHdlZGdlIEUiXSxbMSwwLCJTXFx3ZWRnZSBFIl0sWzEsMSwiRVxcd2VkZ2UgRSJdLFswLDEsIkUiXSxbMSwyLCJFXFx3ZWRnZSBTIl0sWzQsMCwiRVxcd2VkZ2UgRSJdLFs0LDIsIkVcXHdlZGdlIEUiXSxbNSwxLCJFIl0sWzIsNCwiXFxtdVxcd2VkZ2UgRSJdLFs0LDMsIlxcbXUiXSxbMiwwLCJcXGNvbmciLDJdLFsxLDMsIlxcbXUiXSxbNSw2LCJlXFx3ZWRnZSBFIl0sWzYsNywiXFxtdSIsMl0sWzUsNywiXFxjb25nIiwyXSxbOCw3LCJcXGNvbmciXSxbOCw2LCJFXFx3ZWRnZSBlIiwyXSxbOSwxMCwiXFx0YXUiLDJdLFsxMCwxMSwiXFxtdSIsMl0sWzksMTEsIlxcbXUiXSxbMCwxLCJFXFx3ZWRnZVxcbXUiLDJdXQ==
+\[\begin{tikzcd}
+	& {S\wedge E} & {(E\wedge E)\wedge E} & {E\wedge E} & {E\wedge E} \\
+	E & {E\wedge E} & {E\wedge(E\wedge E)} &&& E \\
+	& {E\wedge S} & {E\wedge E} & E & {E\wedge E}
+	\arrow["{\mu\wedge E}", from=1-3, to=1-4]
+	\arrow["\mu", from=1-4, to=3-4]
+	\arrow["\cong"', from=1-3, to=2-3]
+	\arrow["\mu", from=3-3, to=3-4]
+	\arrow["{e\wedge E}", from=1-2, to=2-2]
+	\arrow["\mu"', from=2-2, to=2-1]
+	\arrow["\cong"', from=1-2, to=2-1]
+	\arrow["\cong", from=3-2, to=2-1]
+	\arrow["{E\wedge e}"', from=3-2, to=2-2]
+	\arrow["\tau"', from=1-5, to=3-5]
+	\arrow["\mu"', from=3-5, to=2-6]
+	\arrow["\mu", from=1-5, to=2-6]
+	\arrow["E\wedge\mu"', from=2-3, to=3-3]
+\end{tikzcd}\]
+We may define the stable homotopy groups of $E$ to be the groups
+\[\pi_n(E):=[S^n,E]\cong[\Sigma^nS,E].\]
+In fact, in this setting, it turns out that the graded abelian group $\pi_\ast(E)$ has the structure of a graded abelian group, where we may define the product
+\[\pi_p(E)\times\pi_q(E)\to\pi_{p+q}(E)\]
+to send a pair $(\alpha,\beta)\in\pi_p(E)\times\pi_q(E)$ to the composition
+\[S^{p+q}\xrightarrow{\phi_{p,q}}S^p\wedge S^q\xrightarrow{\alpha\wedge \beta}E\wedge E\xrightarrow\mu E.\]
+It turns out this map is associative: Given classes $\alpha$, $\beta$, and $\gamma$ in $\pi_a(E)$, $\pi_b(E)$, and $\pi_c(E)$, respectively, consider the following diagram:
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiU157YStiK2N9Il0sWzEsMCwiU157YStifVxcd2VkZ2UgU15jIl0sWzAsMSwiU15hXFx3ZWRnZSBTXntiK2N9Il0sWzIsMCwiKFNeYVxcd2VkZ2UgU15iKVxcd2VkZ2UgU15jIl0sWzEsMSwiU15hXFx3ZWRnZShTXmJcXHdlZGdlIFNeYykiXSxbMiwxLCJFXFx3ZWRnZShFXFx3ZWRnZSBFKSJdLFszLDAsIihFXFx3ZWRnZSBFKVxcd2VkZ2UgRSJdLFs0LDAsIkVcXHdlZGdlIEUiXSxbMywxLCJFXFx3ZWRnZSBFIl0sWzQsMSwiRSJdLFswLDEsIlxccGhpX3thK2IsY30iXSxbMCwyLCJcXHBoaV97YSxiK2N9IiwyXSxbMSwzLCJcXHBoaV97YSxifVxcd2VkZ2UgU15jIl0sWzIsNCwiU15hXFx3ZWRnZVxccGhpX3tiLGN9IiwyXSxbNCw1LCJcXGFscGhhXFx3ZWRnZShcXGJldGFcXHdlZGdlXFxnYW1tYSkiLDJdLFszLDYsIihcXGFscGhhXFx3ZWRnZVxcYmV0YSlcXHdlZGdlXFxnYW1tYSJdLFszLDQsIlxcY29uZyJdLFs2LDUsIlxcY29uZyJdLFs2LDcsIlxcbXVcXHdlZGdlIEUiXSxbNSw4LCJFXFx3ZWRnZVxcbXUiLDJdLFs4LDksIlxcbXUiLDJdLFs3LDksIlxcbXUiXV0=
+\[\begin{tikzcd}
+	{S^{a+b+c}} & {S^{a+b}\wedge S^c} & {(S^a\wedge S^b)\wedge S^c} & {(E\wedge E)\wedge E} & {E\wedge E} \\
+	{S^a\wedge S^{b+c}} & {S^a\wedge(S^b\wedge S^c)} & {E\wedge(E\wedge E)} & {E\wedge E} & E
+	\arrow["{\phi_{a+b,c}}", from=1-1, to=1-2]
+	\arrow["{\phi_{a,b+c}}"', from=1-1, to=2-1]
+	\arrow["{\phi_{a,b}\wedge S^c}", from=1-2, to=1-3]
+	\arrow["{S^a\wedge\phi_{b,c}}"', from=2-1, to=2-2]
+	\arrow["{\alpha\wedge(\beta\wedge\gamma)}"', from=2-2, to=2-3]
+	\arrow["{(\alpha\wedge\beta)\wedge\gamma}", from=1-3, to=1-4]
+	\arrow["\cong", from=1-3, to=2-2]
+	\arrow["\cong", from=1-4, to=2-3]
+	\arrow["{\mu\wedge E}", from=1-4, to=1-5]
+	\arrow["E\wedge\mu"', from=2-3, to=2-4]
+	\arrow["\mu"', from=2-4, to=2-5]
+	\arrow["\mu", from=1-5, to=2-5]
+\end{tikzcd}\]
+Commutativity of the left pentagon is the coherence condition for the $\phi_{p,q}$'s. Commutativity of the middle parallelogram is naturality of the associator isomorphisms. Commutativity of the right pentagon is associativity of $\mu$. The fact that the two outside compositions equal $(\alpha\cdot\beta)\cdot\gamma$ and $\alpha\cdot(\beta\cdot\gamma)$, respectively, follows by functoriality of $-\wedge-$. 
+
+It also turns out that the map $e:S\to E$ is a unit for this multiplication. Given $\alpha\in[S^p,E]$, consider the following diagram:
+% https://q.uiver.app/#q=WzAsOCxbMiwwLCJTXnAiXSxbMiwyLCJFIl0sWzQsMCwiU15wXFx3ZWRnZSBTIl0sWzQsMiwiRVxcd2VkZ2UgRSJdLFswLDAsIlNcXHdlZGdlIFNecCJdLFswLDIsIkVcXHdlZGdlIEUiXSxbMSwxLCJTXFx3ZWRnZSBFIl0sWzMsMSwiRVxcd2VkZ2UgUyJdLFswLDEsIlxcYWxwaGEiXSxbMCwyLCJcXHBoaV57LTF9X3twLDB9PVxcbGFtYmRhX3tTXnB9XnstMX0iXSxbMiwzLCJcXGFscGhhXFx3ZWRnZSBlIl0sWzMsMSwiXFxtdSJdLFswLDQsIlxccGhpX3swLHB9XnstMX09XFxyaG9fe1NecH1eey0xfSIsMl0sWzQsNSwiZVxcd2VkZ2VcXGFscGhhIiwyXSxbNSwxLCJcXG11IiwyXSxbNCw2LCJTXFx3ZWRnZVxcYWxwaGEiXSxbNiwxLCJcXHJob19FIl0sWzIsNywiXFxhbHBoYVxcd2VkZ2UgUyIsMl0sWzcsMSwiXFxsYW1iZGFfRSIsMl0sWzYsNSwiZVxcd2VkZ2UgRSIsMl0sWzcsMywiRVxcd2VkZ2UgZSJdXQ==
+\[\begin{tikzcd}
+	{S\wedge S^p} && {S^p} && {S^p\wedge S} \\
+	& {S\wedge E} && {E\wedge S} \\
+	{E\wedge E} && E && {E\wedge E}
+	\arrow["\alpha", from=1-3, to=3-3]
+	\arrow["{\phi^{-1}_{p,0}=\lambda_{S^p}^{-1}}", from=1-3, to=1-5]
+	\arrow["{\alpha\wedge e}", from=1-5, to=3-5]
+	\arrow["\mu", from=3-5, to=3-3]
+	\arrow["{\phi_{0,p}^{-1}=\rho_{S^p}^{-1}}"', from=1-3, to=1-1]
+	\arrow["e\wedge\alpha"', from=1-1, to=3-1]
+	\arrow["\mu"', from=3-1, to=3-3]
+	\arrow["S\wedge\alpha", from=1-1, to=2-2]
+	\arrow["{\rho_E}", from=2-2, to=3-3]
+	\arrow["{\alpha\wedge S}"', from=1-5, to=2-4]
+	\arrow["{\lambda_E}"', from=2-4, to=3-3]
+	\arrow["{e\wedge E}"', from=2-2, to=3-1]
+	\arrow["{E\wedge e}", from=2-4, to=3-5]
+\end{tikzcd}\]
+Commutativity of the top two large triangles is naturality of the unitor isomorphisms. Commutativity of the right and leftmost triangles functoriality of $-\wedge-$. Commutativity of the bottom triangles is unitality of $\mu$. Hence, we have that $e\cdot\alpha=\alpha=\alpha\cdot e$. 
+
+This composition is also bilinear. Given $\alpha,\alpha'\in\pi_p(E)$ and $\beta,\beta'\in\pi_q(E)$, consider the following diagrams:
+% https://q.uiver.app/#q=WzAsMTgsWzAsMCwiU157cCtxfSJdLFsxLDAsIlNecFxcd2VkZ2UgU15xIl0sWzAsMSwiU157cCtxfVxcb3BsdXMgU157cCtxfSJdLFsxLDEsIihTXnBcXHdlZGdlIFNecSlcXG9wbHVzKFNecFxcd2VkZ2UgU15xKSJdLFsyLDAsIihTXnBcXG9wbHVzIFNecClcXHdlZGdlIFNecSJdLFsyLDEsIihFXFx3ZWRnZSBFKVxcb3BsdXMoRVxcd2VkZ2UgRSkiXSxbMywwLCIoRVxcb3BsdXMgRSlcXHdlZGdlIEUiXSxbMywxLCJFXFx3ZWRnZSBFIl0sWzAsMiwiU157cCtxfSJdLFsxLDIsIlNecFxcd2VkZ2UgU15xIl0sWzIsMiwiU15wXFx3ZWRnZShTXnFcXG9wbHVzIFNecSkiXSxbMywyLCJFXFx3ZWRnZShFXFxvcGx1cyBFKSJdLFszLDMsIkVcXHdlZGdlIEUiXSxbMiwzLCIoRVxcd2VkZ2UgRSlcXG9wbHVzKEVcXHdlZGdlIEUpIl0sWzEsMywiKFNecFxcd2VkZ2UgU15xKVxcb3BsdXMoU15wXFx3ZWRnZSBTXnEpIl0sWzAsMywiU157cCtxfVxcb3BsdXMgU157cCtxfSJdLFs0LDEsIkUiXSxbNCwzLCJFIl0sWzAsMSwiXFxwaGlfe3AscX0iXSxbMCwyLCJcXERlbHRhIiwyXSxbMiwzLCJcXHBoaV97cCxxfVxcb3BsdXNcXHBoaV97cCxxfSIsMl0sWzEsMywiXFxEZWx0YSJdLFsxLDQsIlxcRGVsdGFcXHdlZGdlIFNecSJdLFs0LDMsIlxcY29uZyIsMl0sWzMsNSwiKFxcYWxwaGFcXHdlZGdlXFxiZXRhKVxcb3BsdXMoXFxhbHBoYSdcXHdlZGdlXFxiZXRhKSIsMl0sWzQsNiwiKFxcYWxwaGFcXG9wbHVzXFxhbHBoYScpXFx3ZWRnZVxcYmV0YSJdLFs2LDUsIlxcY29uZyIsMl0sWzUsNywiXFxuYWJsYSIsMl0sWzYsNywiXFxuYWJsYVxcd2VkZ2UgRSJdLFs4LDksIlxccGhpX3twLHF9Il0sWzksMTAsIlxcRGVsdGFcXHdlZGdlIFNecSJdLFsxMCwxMSwiXFxhbHBoYVxcd2VkZ2UoXFxiZXRhXFxvcGx1c1xcYmV0YScpIl0sWzExLDEyLCJcXG5hYmxhXFx3ZWRnZSBFIl0sWzExLDEzLCJcXGNvbmciLDJdLFsxMywxMiwiXFxuYWJsYSIsMl0sWzEwLDE0LCJcXGNvbmciLDJdLFsxNCwxMywiKFxcYWxwaGFcXHdlZGdlXFxiZXRhKVxcb3BsdXMoXFxhbHBoYVxcd2VkZ2VcXGJldGEnKSIsMl0sWzksMTQsIlxcRGVsdGEiXSxbOCwxNSwiXFxEZWx0YSIsMl0sWzE1LDE0LCJcXHBoaV97cCxxfVxcb3BsdXNcXHBoaV97cCxxfSIsMl0sWzcsMTYsIlxcbXUiXSxbMTIsMTcsIlxcbXUiXV0=
+\[\begin{tikzcd}
+	{S^{p+q}} & {S^p\wedge S^q} & {(S^p\oplus S^p)\wedge S^q} & {(E\oplus E)\wedge E} \\
+	{S^{p+q}\oplus S^{p+q}} & {(S^p\wedge S^q)\oplus(S^p\wedge S^q)} & {(E\wedge E)\oplus(E\wedge E)} & {E\wedge E} & E \\
+	{S^{p+q}} & {S^p\wedge S^q} & {S^p\wedge(S^q\oplus S^q)} & {E\wedge(E\oplus E)} \\
+	{S^{p+q}\oplus S^{p+q}} & {(S^p\wedge S^q)\oplus(S^p\wedge S^q)} & {(E\wedge E)\oplus(E\wedge E)} & {E\wedge E} & E
+	\arrow["{\phi_{p,q}}", from=1-1, to=1-2]
+	\arrow["\Delta"', from=1-1, to=2-1]
+	\arrow["{\phi_{p,q}\oplus\phi_{p,q}}"', from=2-1, to=2-2]
+	\arrow["\Delta", from=1-2, to=2-2]
+	\arrow["{\Delta\wedge S^q}", from=1-2, to=1-3]
+	\arrow["\cong"', from=1-3, to=2-2]
+	\arrow["{(\alpha\wedge\beta)\oplus(\alpha'\wedge\beta)}"', from=2-2, to=2-3]
+	\arrow["{(\alpha\oplus\alpha')\wedge\beta}", from=1-3, to=1-4]
+	\arrow["\cong"', from=1-4, to=2-3]
+	\arrow["\nabla"', from=2-3, to=2-4]
+	\arrow["{\nabla\wedge E}", from=1-4, to=2-4]
+	\arrow["{\phi_{p,q}}", from=3-1, to=3-2]
+	\arrow["{\Delta\wedge S^q}", from=3-2, to=3-3]
+	\arrow["{\alpha\wedge(\beta\oplus\beta')}", from=3-3, to=3-4]
+	\arrow["{\nabla\wedge E}", from=3-4, to=4-4]
+	\arrow["\cong"', from=3-4, to=4-3]
+	\arrow["\nabla"', from=4-3, to=4-4]
+	\arrow["\cong"', from=3-3, to=4-2]
+	\arrow["{(\alpha\wedge\beta)\oplus(\alpha\wedge\beta')}"', from=4-2, to=4-3]
+	\arrow["\Delta", from=3-2, to=4-2]
+	\arrow["\Delta"', from=3-1, to=4-1]
+	\arrow["{\phi_{p,q}\oplus\phi_{p,q}}"', from=4-1, to=4-2]
+	\arrow["\mu", from=2-4, to=2-5]
+	\arrow["\mu", from=4-4, to=4-5]
+\end{tikzcd}\]
+The unlabeled isomorphisms are those given by the fact that $-\wedge-$ is additive in each variable (since $\hoSp$ is tensor triangulated). Commutativity of the left squares is naturality of $\Delta_X:X\to X\oplus X$ in an additive category. Commutativity of the rest of the diagram follows again from the fact that $-\wedge-$ is an additive functor in each variable. Hence, by functoriality of $-\wedge-$, these diagrams tell us that $(\alpha+\alpha')\cdot\beta=\alpha\cdot\beta+\alpha'\cdot\beta$ and $\alpha\cdot(\beta+\beta')=\alpha\cdot\beta+\alpha\cdot\beta'$, respectively. 
+
+Finally, we have that this product is graded commutative. Given $\alpha\in\pi_p(E)$ and $\beta\in\pi_q(E)$, consider the following diagram:
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTXntwK3F9Il0sWzAsMiwiU157cCtxfSJdLFsyLDIsIlNecVxcd2VkZ2UgU15wIl0sWzIsMCwiU15wXFx3ZWRnZSBTXnEiXSxbNCwwLCJFXFx3ZWRnZSBFIl0sWzQsMiwiRVxcd2VkZ2UgRSJdLFs2LDEsIkUiXSxbMCwxLCIoLTEpXntwcX0iLDJdLFsxLDIsIlxccGhpX3txLHB9Il0sWzAsMywiXFxwaGlfe3AscX0iXSxbMywyLCJcXHRhdSJdLFszLDQsIlxcYWxwaGFcXHdlZGdlXFxiZXRhIl0sWzIsNSwiXFxiZXRhXFx3ZWRnZVxcYWxwaGEiXSxbNCw1LCJcXHRhdSIsMl0sWzUsNiwiXFxtdSJdLFs0LDYsIlxcbXUiXV0=
+\[\begin{tikzcd}[sep=small]
+	{S^{p+q}} && {S^p\wedge S^q} && {E\wedge E} \\
+	&&&&&& E \\
+	{S^{p+q}} && {S^q\wedge S^p} && {E\wedge E}
+	\arrow["{(-1)^{pq}}"', from=1-1, to=3-1]
+	\arrow["{\phi_{q,p}}", from=3-1, to=3-3]
+	\arrow["{\phi_{p,q}}", from=1-1, to=1-3]
+	\arrow["\tau", from=1-3, to=3-3]
+	\arrow["\alpha\wedge\beta", from=1-3, to=1-5]
+	\arrow["\beta\wedge\alpha", from=3-3, to=3-5]
+	\arrow["\tau"', from=1-5, to=3-5]
+	\arrow["\mu"', from=3-5, to=2-7]
+	\arrow["\mu", from=1-5, to=2-7]
+\end{tikzcd}\]
+Commutativity of the left square is \autoref{Hov7.1.13}. Commutativity of the middle square is naturality of the symmetry isomorphisms. Finally, commutativity of the right triangle is commutativity of $\mu$. Hence by bilinearity of $-\wedge-$, it follows that $\alpha\cdot\beta=(-1)^{pq}\beta\cdot\alpha$, as desired.
+
+To recap, we've shown that if $E$ is a commutative ring spectrum in the stable homotopy category, then $\pi_\ast(E)$ is itself canonically a \emph{graded commutative} ring.
+
+The natural question arises: does the same thing happen in the motivic world? In other words, if we have a monoid object $(E,\mu,e)$ in the motivic stable homotopy category $\SH\scS$, does the $\bZ\times\bZ$-graded abelian group $\pi_\aast(E)$ canonically form a bigraded ring, and furthermore if $E$ is commutative, does the $\pi_\aast(E)$ satisfy any sort of ``bigraded commutativity'' condition? To answer the first question, motivated by the above work in the classical stable homotopy category, we know that to make $\pi_\aast(E)$ a $\bZ^2$-graded ring, we need a family of isomorphisms
+\[\phi_{a,b}:S^{a+b}\xrightarrow{\cong} S^a\wedge S^b\]
+for each $a,b\in\bZ^2$ such that
+\begin{enumerate}
+	\item For every $a,b,c\in\bZ^2$, the following diagram commutes:
+	% https://q.uiver.app/#q=WzAsNSxbMSwwLCJTXnthK2IrY30iXSxbMCwwLCJTXnthK2J9XFx3ZWRnZSBTXmMiXSxbMiwwLCJTXmFcXHdlZGdlIFNee2IrY30iXSxbMiwxLCJTXmFcXHdlZGdlKFNeYlxcd2VkZ2UgU15jKSJdLFswLDEsIihTXmFcXHdlZGdlIFNeYilcXHdlZGdlIFNeYyJdLFswLDEsIlxccGhpX3thK2IsY30iLDJdLFswLDIsIlxccGhpX3thLGIrY30iXSxbMiwzLCJTXmFcXHdlZGdlXFxwaGlfe2IsY30iXSxbMSw0LCJcXHBoaV97YSxifVxcd2VkZ2UgU15jIiwyXSxbNCwzLCJcXGNvbmciXV0=
+	\[\begin{tikzcd}
+		{S^{a+b}\wedge S^c} & {S^{a+b+c}} & {S^a\wedge S^{b+c}} \\
+		{(S^a\wedge S^b)\wedge S^c} && {S^a\wedge(S^b\wedge S^c)}
+		\arrow["{\phi_{a+b,c}}"', from=1-2, to=1-1]
+		\arrow["{\phi_{a,b+c}}", from=1-2, to=1-3]
+		\arrow["{S^a\wedge\phi_{b,c}}", from=1-3, to=2-3]
+		\arrow["{\phi_{a,b}\wedge S^c}"', from=1-1, to=2-1]
+		\arrow["\cong", from=2-1, to=2-3]
+	\end{tikzcd}\]
+	\item For every $a\in\bZ^2$, the isomorphisms $\phi_{(0,0),a}$ and $\phi_{a,(0,0)}$ coincide with the unital isomorphisms in $\SH\scS$.
+\end{enumerate}
+We call such a family of isomorphisms $\{\phi_{a,b}\}_{a,b\in\bZ^2}$ \textbf{coherent}. Once we have a coherent family, the exact same arguments given above for monoid objects in the classical stable homotopy category endow $\pi_\aast(E)$ with the structure of a $\bZ^2$-graded ring. So can we find such a family? Recall that we have defined the $S^{a,b}$ as wedges of the ``motivic circles'' $S^{1,0}$, $S^{1,1}$, and their inverses $S^{-1,0}$ and $S^{-1,-1}$. Furthermore, by \cite[Theorem 1.13]{Dugger_2014}, we know that the isomorphisms $\xi_1:S\cong S^{-1,0}\wedge S^{1,0}$ and $\xi_2:S\cong S^{-1,-1}\wedge S^{1,1}$ give rise to a canonical coherent family $\{\phi_{a,b}\}_{a,b\in\bZ^2}$ obtained by forming formal compositions of copies of associators, unitors, $\xi_1$ and $\xi_2$, and their inverses.
+
+So, we have successfully answered our first question in the affirmative. What about the second question? As it turns out, bigraded commutativity turns out to be very subtle, but the answer is yes. First, it turns out that the functor $\bG_m\wedge-:\SH\scS\to\SH\scS$ is an equivalence\todo{cite}. In what follows, let $\epsilon\in[S,S]\cong[\bG_m,\bG_m]$ correspond to the endomorphism of
+\[\bG_m=\scS\times\Spec\bZ[x,x^{-1}]\]
+induced by the ring morphism $\Spec\bZ[x,x^{-1}]\to\Spec\bZ[x,x^{-1}]$ sending $x\mapsto x^{-1}$. In particular, note that $\epsilon\circ\epsilon=\id_S$ in $\SH\scS$. Then the coherent family $\{\phi_{a,b}\}_{a,b\in\bZ^2}$ induces the following bigraded commutativity condition:
+
+\begin{proposition}\label{bad_product}
+	Given a commutative ring spectrum $E$ in $\SH\scS$ with unit $e\in[S,E]\cong\pi_{0,0}(E)$, the bigraded ring $\pi_\aast(E)$ is ``bigraded commutative'', in the sense that when $\alpha\in\pi_{a_1,a_2}(E)$ and $\beta\in\pi_{b_1,b_2}(E)$, under the product determined by the coherent family $\{\phi_{a,b}\}_{a,b\in\bZ^2}$ described above given by \cite[Theorem 1.13]{Dugger_2014}, we have that
+	\[\alpha\cdot\beta=\beta\cdot\alpha\cdot(-e)^{(a_1-a_2)(b_1-b_2)}\cdot(e\epsilon)^{a_2b_2}.\]
+\end{proposition}
+\begin{proof}
+	The proof of \cite[Proposition 1.18]{Dugger_2014} shows this for $E=S$. The same argument works more generally.
+\end{proof}
+
+Sadly, as \cite{DDIO} describes, this product has some issues. For one, it does not agree with the graded commutativity condition described by Voevodsky for the product on the dual motivic Steenrod algebra $\cA_\aast:={M\bZ}_\aast(M\bZ)=\pi_\aast(M\bZ\wedge M\bZ)$ (\cite[Theorem 2.2]{VoevodskySteenrod}). Furthermore, under this grading convention, given a motivic commutative ring spectrum $E$ over $\scS=\Spec\bC$, the map
+\[\pi_{\ast,\star}(E)\to\pi_\ast(E(\bC))\]
+induced by Betti realization is not a ring homomorphism---there is an annoying sign that comes up (cf.\ \cite[Proposition 1.19]{Dugger_2014}). 
+
+Can this be fixed? According to Section 7 of \cite{Dugger_2014}, there are in fact more coherent families of isomorphisms $\{\phi_{a,b}\}_{a,b\in\bZ^2}$ than just the one described above, and in fact, they give rise to non-isomorphic graded rings $\pi_\aast(E)$, in general. In \cite{DDIO}, such a family is fixed which fixes both of the above issues:
+
+\begin{proposition}[{\cite[3]{DDIO}}]\label{good_product}
+	There exists a coherent family of isomorphisms
+	\[\phi_{a,b}:S^{a+b}\xrightarrow\cong S^a\wedge S^b\]
+	for $a,b\in\bZ^2$ such that given a motivic commutative ring spectrum $E$ with unit $e:S\to E$, the product structure induced on the bigraded abelian group $\pi_\aast(E)$ by this family is bigraded commutative in the sense that given $\alpha\in\pi_{a_1,a_2}(E)$ and $\beta\in\pi_{b_1,b_2}(E)$, the following equation holds:\footnote{We are fixing $u=-1$, in the notation of the Proposition in \cite[3]{DDIO}.}
+	\[\alpha\cdot \beta=\beta\cdot \alpha\cdot(-e)^{a_1b_1}\cdot e(-\epsilon)^{a_2b_2}.\]
+	Furthermore, this product is related to the product $-\star-$ given in \autoref{bad_product} by the formula:
+	\[\alpha\cdot\beta=\alpha\star\beta\star(- e)^{a_2(b_1-b_2)}.\]
+\end{proposition}
+
+In particular, when $ e\circ\epsilon=-e$ then $ e\circ(-\epsilon)=e$ and thus
+\[\alpha\cdot\beta=\beta\cdot\alpha\cdot(-e)^{a_1b_1}.\]
+This is exactly Voevodsky's convention for commutativity in the dual Steenrod algebra (\cite[Theorem 2.2]{VoevodskySteenrod}). Furthermore, this grading convention allows for the realization map
+\[\pi_{\ast,\star}(E)\to\pi_\ast(E(\bC))\]
+to be a ring homomorphism for all commutative ring spectra $E$ in $\SH\bC$.
+
+\begin{remark}
+	For the rest of this paper, we will be using the coherent family $\{\phi_{a,b}\}_{a,b\in\bZ^2}$ and the graded commutativity law specified by \autoref{good_product}. Usually we will not label the maps, instead only writing $S^{a+b}\xrightarrow\cong S^a\wedge S^b$ or $S^{a+b}\cong S^a\wedge S^b$.
+\end{remark}
 
 \end{document}

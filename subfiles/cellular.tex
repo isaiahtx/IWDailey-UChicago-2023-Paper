@@ -113,16 +113,16 @@ We devote the rest of the section to proving some important facts about cellular
 \end{proof}
 
 \begin{lemma}\label{cellular_idempotent_splits_cellularly}
-	Let $e:X\to X$ be an idempotent morphism in $\cSH$, i.e., $e\circ e=e$. Then since $\cSH$ is a triangulated category with arbitrary coproducts, this idempotent splits (see \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}), meaning $e$ factors as
+	Let $e:X\to X$ be an idempotent morphism in $\cSH$, i.e., $e\circ e=e$. Then this idempotent splits, meaning $e$ factors as
 	\[X\xr rY\xr\iota X\]
-	for some object $Y$ and morphisms $r$ and $\iota$ with $r\circ\iota=\id_Y$. Then $Y$ is cellular if $X$ is.
+	for some object $Y$ and morphisms $r$ and $\iota$ with $r\circ\iota=\id_Y$. Furthermore, if $X$ is cellular than so is $Y$.
 \end{lemma}
 \begin{proof}
-	It is a general categorical fact that the splitting of an idempotent, if it exists, is unique up to unique isomorphism,\footnote{In particular, given an idempotent $e:X\to X$ which splits as $X\xr rY\xr\iota X$, $r$ and $\iota$ are the coequalizer and equalizer, respectively, of $e$ and $\id_X$.} so by \autoref{cellular_closed_under_iso}, it suffices to show that $e$ has some cellular splitting. In \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}, it is shown that we may take $Y$ to be the homotopy colimit (\autoref{homotopy_colimit_defn}) of the sequence
-	\[X\xr eX\xr eX\xr eX\xr e\cdots,\]
-	so there is a distinguished triangle
-	\[\bigoplus_{i=0}^\infty X\to\bigoplus_{i=0}^\infty X\to Y\to\Sigma\(\bigoplus_{i=0}^\infty X\).\]
-	Since $X$ is cellular, by definition $\bigoplus_{i=0}^\infty X$ is as well. Thus by 2-of-3 for distinguished triangles for cellular objects, $Y$ is cellular as desired.
+	In \cite[Proposition 1.6.8]{Neeman_2001}, it is shown that idempotents split in triangulated categories with countable coproducts, and in particular, the object $Y$ through which the splitting factors may be taken as the homotopy colimit of the sequence
+	\[X\xr eX\xr eX\xr eX\xr e X\to\cdots.\]
+	Thus since $\cSH$ is triangulated and has arbitrary coproducts, given an idempotent $e:X\to X$ in $\cSH$, $e$ splits as desired. Furthermore, the splitting factors through the homotopy limit $Y$ of the above sequence, so we have a distinguished triangle in $\cSH$
+	\[\bigoplus_{i=0}^\infty X\to\bigoplus_{i=0}^\infty X\to Y\to\Sigma(\bigoplus_{i=0}^\infty X).\]
+	Then if $X$ is cellular, by definition $\bigoplus_{i=0}^\infty X$ is as well. Thus by 2-of-3 for distinguished triangles for cellular objects, we would have that $Y$ is cellular as desired.
 \end{proof}
 
 \end{document}

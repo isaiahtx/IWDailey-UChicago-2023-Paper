@@ -1,8 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-\subsection{Homological (co)algebra}
-
 The primary reference for this section will be the nLab page on derived functors in homological algebra (\cite{nlab:derived_functor_in_homological_algebra}).
 
 Recall that given abelian categories $\cA$ and $\cB$, given an additive functor $F:\cA\to\cB$, if $F$ is left exact and $\cA$ has enough injectives, we may form the \emph{right derived functors} $R^nF:\cA\to\cB$ of $F$, for $n\in\bN$. Given an object $A$ in $\cA$, we may compute $R^nF(A)$ to be the object (defined only up to isomorphism) which is obtained as follows: First, fix an injective resolution $i:A\to I^*$ of $A$, i.e., the data of a long exact sequence
@@ -13,7 +11,7 @@ It is a standard result that this definition of $R^nF(A)$ does not depend on the
 
 \begin{definition}\label{defn:Ext}
 	Given an abelian category $\cA$ with enough injectives and an object $A$ in $\cA$, we denote the right derived functors of the left exact functor $\Hom_\cA(A,-):\cA\to\Ab$ by
-	\[R^n\Hom_\cA(A,-):=\Ext^n_\cA(A,-).\]
+	\[\Ext^n_\cA(A,-):=R^n\Hom_\cA(A,-).\]
 \end{definition}
 
 \begin{remark}
@@ -32,7 +30,7 @@ Now, the first result we will state is that in order to compute the values of th
 	such that each $I_F^n$ is an $F$-acyclic object in $\cA$.
 \end{definition}
 
-The reasons that $F$-acyclic objects are useful is that they allow you to compute the right derived functors of $F$ without having to use strictly injective resolutions:
+The reason that $F$-acyclic objects are useful is that they allow you to compute the right derived functors of $F$ without having to use strictly injective resolutions:
 
 \begin{proposition}[{\cite[Theorem 3.15]{nlab:derived_functor_in_homological_algebra}}]\label{acyclic_resolution_computes_R^nF}
 	Let $F:\cA\to\cB$ be a left exact additive functor between abelian categories. Then for each object $A$ in $\cA$, given an $F$-acyclic resolution $i:A\to I_F^*$ of $A$, for each $n\in\bN$ there is a canonical isomorphism
