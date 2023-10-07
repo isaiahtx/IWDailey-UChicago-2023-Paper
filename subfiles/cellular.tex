@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-One very important class of objects in $\cSH$ are the \emph{cellular} objects. Intuitively, these are the objects that can be built out of the $S^a$'s via taking coproducts and (co)fibers.
+One very important class of objects in $\cSH$ are the \emph{cellular} objects. Intuitively, these are the objects that can be built out of spheres via taking coproducts and (co)fibers.
 
 \begin{definition}\label{cellular}
 	Define the class of \emph{cellular} objects in $\cSH$ to be the smallest class of objects such that:
@@ -14,6 +14,8 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 	\end{enumerate}
 	We write $\cSH\text-\Cell$ to denote the full subcategory of $\cSH$ on the cellular objects.
 \end{definition}
+
+We devote the rest of the section to proving some important facts about cellular objects. These should be familiar to anyone acquainted with the usual notion of cellular spaces (CW complexes).
 
 \begin{lemma}\label{cellular_closed_under_iso}
 	Let $X$ and $Y$ be two isomorphic objects in $\cSH$. Then $X$ is cellular iff $Y$ is cellular.
@@ -59,7 +61,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 	Let $W$ be a cellular object in $\cSH$ such that $\pi_*(W)=0$. Then $W\cong 0$.
 \end{lemma}
 \begin{proof}
-	Let $\cE$ be the collection of all $X$ in $\cSH$ such that and $[\Sigma^nX,W]=0$ for all $n\in\bZ$ (where for $n<0$ we define $\Sigma^n:=\Omega^{-n}=(S^{-\1}\otimes-)^n$). We claim $\cE$ contains every cellular object in $\cSH$. First of all, each $S^a$ belongs to $\cE$, as 
+	Let $\cE$ be the collection of all $X$ in $\cSH$ such that and $[\Sigma^nX,W]=0$ for all $n\in\bZ$ (where for $n>0$ we define $\Sigma^{-n}:=\Omega^{n}=(S^{-\1}\otimes-)^n$). We claim $\cE$ contains every cellular object in $\cSH$. First of all, each $S^a$ belongs to $\cE$, as 
 	\[[\Sigma^nS^a,W]\cong[S^\n\otimes S^a,W]\cong[S^{a+\n},W]\leq\pi_*(W)=0.\] 
 	Furthermore, suppose we are given a distinguished triangle
 	\[X\to Y\to Z\to\Sigma X\]
@@ -69,7 +71,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 	\[\left[\Sigma^n\bigoplus_iX_i,W\right]\cong\left[\bigoplus_i\Sigma^nX_i,W\right]\cong\prod_i[\Sigma^nX_i,W]=\prod_i0=0,\]
 	where the first isomorphism follows by the fact that $\Sigma^n$ is apart of an adjoint equivalence (\autoref{Sigma^a,Sigma^-a_adjoint_equiv}), so it preserves arbitrary colimits.
 
-	Thus, by definition of cellularity, $\cE$ contains every cellular object. In particular, $\cE$ contains $W$, so that $[W,W]=0$, meaning in particular that $\id_W=0$, so we have a commutative diagram
+	Thus, by definition of cellularity, $\cE$ contains every cellular object. In particular, $\cE$ contains $W$, so that $[W,W]=0$, meaning $\id_W=0$, so we have a commutative diagram
 	% https://q.uiver.app/#q=WzAsNCxbMCwxLCJXIl0sWzEsMCwiMCJdLFsyLDEsIlciXSxbMywwLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzEsMywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
 	\[\begin{tikzcd}
 		& 0 && 0 \\
@@ -111,7 +113,7 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 \end{proof}
 
 \begin{lemma}\label{cellular_idempotent_splits_cellularly}
-	Let $e:X\to X$ be an idempotent morphism in $\cSH$, so $e\circ e=e$. Then since $\cSH$ is a triangulated category with arbitrary coproducts, this idempotent splits (\autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}), meaning $e$ factors as
+	Let $e:X\to X$ be an idempotent morphism in $\cSH$, i.e., $e\circ e=e$. Then since $\cSH$ is a triangulated category with arbitrary coproducts, this idempotent splits (see \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}), meaning $e$ factors as
 	\[X\xr rY\xr\iota X\]
 	for some object $Y$ and morphisms $r$ and $\iota$ with $r\circ\iota=\id_Y$. Then $Y$ is cellular if $X$ is.
 \end{lemma}

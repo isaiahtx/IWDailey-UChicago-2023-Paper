@@ -1,15 +1,15 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-To start, we give a brief review of the assumed preliminaries. The most important tool we require of the reader is a strong familiarity with category theory, and particularly monoidal categories and symmetric monoidal closed versions thereof. We do not recall the definitions here (mostly so as not to make an already lengthy document any longer), for that we refer the reader to any standard treatment of category theory, for example, Emily Riehl's book \cite{Riehl}, or Mac Lane's book \cite{MacLane1978}. We refer the reader in particular to chapters 7 and 9 of the latter book for a reference on (symmetric closed) monoidal categories. 
+To start, we give a brief review of the assumed preliminaries. The most important tool we require of the reader is a familiarity with the basic notions of category theory, and in particular additive, abelian, and (symmetric, closed) monoidal categories. We do not recall any definitions here (mostly so as not to make an already lengthy document any longer), for that we refer the reader to any standard treatment of category theory, for example, Emily Riehl's book \cite{Riehl}, or Mac Lane's book \cite{MacLane1978}. In particular, see chapters 7 and 9 of the latter book for a reference on (symmetric closed) monoidal categories. 
 
-When working in monoidal categories, we will always be implicitly using Mac Lane's coherence theorem for monoidal categories, which was originally proven in Mac Lane's paper \cite{MLCoherence}, along with a stronger version of the theorem for symmetric monoidal categories. Versions of these theorems can also be found in Chapters 7 and 9 of \cite{MacLane1978}. These theorems are tedious to rigorously state, and we do not do so here, but their consequences are intuitive. Roughly, they say that there is a strong monoidal equivalence from any monoidal category to a strict monoidal category, where tensoring with the unit, the associators, and the unitors are all the identity. In the symmetric case, the theorem says in addition that in a symmetric monoidal category, any morphisms between two objects given by ``formal composites'' of products of unitors, associators, symmetries, and their inverses is equal if the domain and codomain of the composites have the same underlying permutation (after removing units). In practice, the most immediate consequence of these theorems is that when constructing maps and showing diagrams commute, we will nearly always suppress associators and unitors from the notation, instead taking them to be equalities. Similarly, we will assume that tensoring with the unit is the identity. This style of reasoning is essential to understanding nearly anything written here, and as such we will usually not point out when we are applying the coherence theorems. An example of this is \autoref{Sigma^a,Sigma^-a_adjoint_equiv} below.
+When working in monoidal categories, we will nearly always be implicitly using Mac Lane's coherence theorem for monoidal categories, which was originally proven in Mac Lane's paper \cite{MLCoherence}, along with a stronger version of the theorem for symmetric monoidal categories. Versions of these theorems can also be found in Chapters 7 and 9 of \cite{MacLane1978}. These theorems are tedious to rigorously state, and we do not do so here, but their consequences are intuitive. Roughly, they say that there is a strong monoidal equivalence from any monoidal category to a strict monoidal category, where tensoring with the unit, the associators, and the unitors are all the identity. In the symmetric case, the theorem says in addition that in a symmetric monoidal category, any morphisms between two objects given by ``formal composites'' of products of unitors, associators, symmetries, and their inverses are equal if the domain and codomain of the composites have the same underlying permutation (after removing units). In practice, the most immediate consequence of these theorems is that when constructing maps and showing diagrams commute, we will nearly always suppress associators and unitors from the notation, instead taking them to be equalities. Similarly, we will assume that tensoring with the unit is the identity. This style of reasoning is essential to understanding nearly anything written here, and as such we will usually not point out when we are applying the coherence theorems. An example of where we use coherence is in the very first proof we give, in \autoref{Sigma^a,Sigma^-a_adjoint_equiv} below.
 
-Finally, we also assume the reader is familiar with the theory of modules and bimodules over (non-commutative) rings, along with their properties, such as products, direct sums, and tensor products of them. In \autoref{appendix:graded_stuff}, assuming this knowledge, we will develop the theory of \emph{$A$-graded} versions of these notions, as well as some of their properties. For the reader familiar with the standard notion of $\bZ$ or $\bN$-graded rings and modules, this should all be familiar, and they should feel comfortable skipping this appendix entirely.
+We also assume the reader is familiar with the theory of modules and bimodules over (non-commutative) rings, along with products, direct sums, and tensor products of them. In \autoref{appendix:graded_stuff}, assuming this knowledge, we will develop the theory of \emph{$A$-graded} versions of these notions, as well as some of their properties. These notions should be very familiar to any reader familiar with the standard notion of $\bZ$ or $\bN$-graded rings and modules. This appendix can --- and perhaps should --- be skipped by anyone knowledgeable in these matters.
+
+Finally, ideally the reader should be familiar with triangulated categories, monoid objects in monoidal categories and their modules, and derived functors, although each of these topics are developed or at least reviewed in the appendices. With all of that out of the way, we may finally get to our the key definition which underlies our work.
 
 \subsection{Triangulated categories with sub-Picard grading}
-
-In order to construct an abstract version of the Adams spectral sequence, we need to work in some axiomatic version of a stable homotopy category $\cSH$ which acts like the familiar classical stable homotopy category $\hoSp$ (\Cref{section:CASS}) or the motivic stable homotopy category $\SH\scS$ over some base scheme $\scS$ (\Cref{section:MASS}). 
 
 \begin{definition}\label{sub_Picard_grading_defn}
 	Given a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}), a \emph{sub-Picard grading} on $\cC$ is the following data:
@@ -36,10 +36,10 @@ In order to construct an abstract version of the Adams spectral sequence, we nee
 For a review of (tensor) triangulated categories, we refer the reader to \Cref{appendix:triangulated}. We encourage the reader to at least take a look at our definition of a tensor triangulated category (\autoref{tentri}), as there are multiple different collections of axioms for a tensor triangulated category which may be found in the literature. For our purposes, we have chosen a minimal such list for what we need, in particular, we do not impose any sort of inherent graded commutativity condition on the isomorphisms $e_{X,Y}:\Sigma X\otimes Y\xr\cong\Sigma(X\otimes Y)$.
 
 \begin{remark}\label{unique_comp_Sas}
-	Note that by induction the coherence conditions for the $\phi_{a,b}$'s in the above definition say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of products of $\phi_{a,b}$, identities, associators, unitors, and their inverses (but not symmetries).
+	Note that by induction, the coherence conditions for the $\phi_{a,b}$'s in the above definition say that given any $a_1,\ldots,a_n\in A$ and $b_1,\ldots,b_m\in A$ such that $a_1+\cdots+a_n=b_1+\cdots+b_m$ and any fixed parenthesizations of $X=S^{a_1}\otimes\cdots\otimes S^{a_b}$ and $Y=S^{b_1}\otimes\cdots\otimes S^{b_m}$, there is a \emph{unique} isomorphism $X\to Y$ that can be obtained by forming formal compositions of products of $\phi_{a,b}$, identities, associators, unitors, and their inverses (but not symmetries).
 \end{remark}
 
-In light of this remark, when working in such a category, we will usually simply write $\phi$ or even just $\cong$ for any isomorphism that is built by taking compositions of products of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses. Now, we will fix the category in which we will work for the remainder of this document. First, recall the notion of \emph{compact objects} in a category, which in an additive category may be characterized by the following simplified definition:
+In light of this remark, when working in a tensor triangulated category with sub-Picard grading, we will usually simply write $\phi$ or even just $\cong$ for any isomorphism that is built by taking compositions of products of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses. Now, we will fix the category in which we will work for the remainder of this document. First, recall the notion of \emph{compact objects} in a category, which in an additive category may be characterized by the following simplified definition:
 
 \begin{definition}\label{defn_compact}
 	Let $\cC$ be an additive category with arbitrary (set-indexed) coproducts. Then an object $X$ in $\cC$ is \emph{compact} if, for any collection of objects $Y_i$ in $\cC$ indexed by some set $I$, the canonical map
@@ -53,7 +53,7 @@ Now that we have this technical definition, we can define the category:
 	Fix a monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ with arbitrary (set-indexed) (co)products and sub-Picard grading $(A,\1,h,\{S^a\},\{\phi_{a,b}\})$. Further assume that the object $S^a$ is a compact object (\autoref{defn_compact}) for each $a\in A$. Finally, we suppose an isomorphism $\nu:\Sigma S\xr\cong S^\1$ has been fixed once and for all.
 \end{convention}
 
-For our applications below, we will not actually need the full power of a closed monoidal structure on $\cSH$ --- all we will need is that the monoidal product $-\otimes-$ preserves arbitrary (co)limits in each argument. In practice though, and for all the examples we will discuss here, any such category will usually be monoidal closed, so we keep this assumption.
+For our purposes, we will not actually need the full power of a closed monoidal structure on $\cSH$ --- all we will need is that the monoidal product $-\otimes-$ preserves arbitrary (co)limits in each argument. In practice though, and for all the examples we will discuss here, any such category will usually be monoidal closed, so we keep this assumption.
 
 Now, we would like to establish notational conventions in $\cSH$, which will reinforce our notion of thinking of $\cSH$ as ``a stable homotopy category''. Given
 %\[X_1\otimes(X_2\otimes\cdots(X_{n-1}\otimes X_n)).\]
@@ -101,7 +101,7 @@ Given some $a\in A$, we define functors $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\
 	\[\eta^a_X:X\xr{\phi_{a,-a}\otimes X}S^{a}\otimes S^{-a}\otimes X=\Sigma^{a}\Omega^a X\]
 	and 
 	\[\vare^a_X:\Omega^a\Sigma^a X=S^{-a}\otimes S^a\otimes X\xrightarrow{\phi_{-a,a}^{-1}\otimes X}X\]
-	are natural in $X$, and furthermore, they are the unit and counit respectively of the adjoint autoequivalence $(\Omega^a,\Sigma^a,\eta^a,\vare^a)$ of $\cSH$. In particular, since $\Sigma\cong\Sigma^\1$, $\Omega:=\Omega^\1$ is a left adjoint for $\Sigma$, so that $(\cSH,\Omega,\Sigma,\eta,\vare,\cD)$ is an \emph{adjointly} triangulated category (\autoref{adjointly_triangulated_defn}), where $\eta$ and $\vare$ are the compositions 
+	are natural in $X$, and furthermore, they are the unit and counit respectively of the adjoint autoequivalence $(\Omega^a,\Sigma^a,\eta^a,\vare^a)$ of $\cSH$. In particular, since $\Sigma\cong\Sigma^\1$, $\Omega:=\Omega^\1$ is a left adjoint for $\Sigma$, we have that $(\cSH,\Omega,\Sigma,\eta,\vare,\cD)$ is an \emph{adjointly} triangulated category (\autoref{adjointly_triangulated_defn}), where $\eta$ and $\vare$ are the compositions 
 	\[\eta:\Id_\cSH\xRightarrow{\eta^\1}\Sigma^\1\Omega\xRightarrow{\nu^{-1}\Omega}\Sigma\Omega\qquad\text{and}\qquad\vare:\Omega\Sigma\xRightarrow{\Omega\nu}\Omega\Sigma^\1\xRightarrow{\vare^\1}\Id_\cSH.\]
 \end{proposition}
 \begin{proof}
@@ -129,7 +129,8 @@ Given some $a\in A$, we define functors $\Sigma^a:=S^a\otimes-$ and $\Omega^a:=\
 	Yet this is simply the diagram obtained by applying $-\otimes X$ to the associativity coherence diagram for the $\phi_{a,b}$'s (since $\phi_{a,0}$ and $\phi_{0,a}$ coincide with the unitors, and by coherence we are taking the unitors and associators to be equalities), so it does commute, as desired.
 \end{proof}
 
-Given two objects $X$ and $Y$ in $\cSH$, we will denote the hom-abelian group of morphisms from $X$ to $Y$ in $\cSH$ by $[X,Y]$, and the internal hom object by $F(X,Y)$. %In what follows, we write $\Ab^A$ for the category of $A$-graded abelian groups with its canonical self-enrichment.\footnote{Explicitly, given $A$-graded abelian groups $B$ and $C$, we define $\Hom_{\Ab^A}^*(X,Y)$ to be the $A$-graded abelian group by taking $\Hom_{\Ab^A}^a(X,Y)$ to be the abelian groups of degree-preserving abelian group homomorphisms $X_{*+a}\to Y_*$, where $X_{*+a}$ denotes the shifted $A$-graded abelian group.}
+Given two objects $X$ and $Y$ in $\cSH$, we will write $[X,Y]$ with brackets to denote the hom-abelian group of morphisms from $X$ to $Y$, and we will denote the internal hom object by $F(X,Y)$. Keeping with our intuition that $\cSH$ is a ``homotopy category'', we will often refer to elements of $[X,Y]$ as ``classes''.
+%In what follows, we write $\Ab^A$ for the category of $A$-graded abelian groups with its canonical self-enrichment.\footnote{Explicitly, given $A$-graded abelian groups $B$ and $C$, we define $\Hom_{\Ab^A}^*(X,Y)$ to be the $A$-graded abelian group by taking $\Hom_{\Ab^A}^a(X,Y)$ to be the abelian groups of degree-preserving abelian group homomorphisms $X_{*+a}\to Y_*$, where $X_{*+a}$ denotes the shifted $A$-graded abelian group.}
 We may extend the abelian group $[X,Y]$ to an $A$-graded abelian group ${[X,Y]}_*$ by defining ${[X,Y]}_a:=[\Sigma^aX,Y]$. It is further possible to extend composition in $\cSH$ to an $A$-graded map
 \[{[Y,Z]}_*\otimes_\bZ{[X,Y]}_*\to{[X,Z]}_*,\]
 but we do not explore this here.
@@ -153,7 +154,7 @@ Given some other object $E$, we can define the $A$-graded abelian groups $E_*(X)
 \[E_a(X):=\pi_a(E\otimes X)=[S^a,E\otimes X]\qquad\text{and}\qquad E^a(X):=[X,S^a\otimes E].\]
 We refer to the functor $E_*(-)$ as the \emph{homology theory represented by $E$}, or just $E$-homology, and we refer to $E^*(-)$ as the \emph{cohomology theory represented by $E$}, or just $E$-cohomology.
 
-A nice result is that in $\cSH$, (co)fiber sequences (distinguished triangles) give rise to homotopy long exact sequences. Of key importance for this exact sequence (any many applications beyond), we will need now to fix natural isomorphisms $s^a_{X,Y}:{[X,\Sigma^aY]}_*\xr\cong{[X,Y]}_{*-a}$, once and for all:
+A nice result is that in $\cSH$, (co)fiber sequences (distinguished triangles) give rise to homotopy long exact sequences. Of key importance for this exact sequence (any many applications beyond), will be some fixed family of isomorphisms $s^a_{X,Y}:{[X,\Sigma^aY]}_*\xr\cong{[X,Y]}_{*-a}$. We fix these now, once and for all:
 
 \begin{definition}\label{s^a_isos}
 	For all $X,Y$ in $\cSH$ and $a\in A$, there are $A$-graded isomorphisms
@@ -216,7 +217,7 @@ Now we may construct the long exact sequence:
 		\arrow["{s_{W,Y}^\1}", from=2-5, to=3-5]
 		\arrow["{{(\nu_Y)}_*}", from=1-5, to=2-5]
 	\end{tikzcd}\]
-	where here we define $\partial:{[W,Z]}_*\to{[W,X]}_{*-\1}$ to be the composition which makes the diagram commute. The diagram commutes by naturality of $\nu$ and $s^\1$, so that the bottom row is exact since the top row is exact and the vertical arrows are isomorphisms. Hence may roll the bottom row up to get the desired exact triangle:
+	where here we define $\partial:{[W,Z]}_*\to{[W,X]}_{*-\1}$ to be the composition which makes the third square commute. The diagram commutes by naturality of $\nu$ and $s^\1$, so that the bottom row is exact since the top row is exact and the vertical arrows are isomorphisms. Thus the bottom row is the long exact sequence, and we may roll it up to get the desired exact triangle:
 	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJ7W1csWF19XyoiXSxbMSwwLCJ7W1csWV19XyoiXSxbMSwxLCJ7W1csWl19XyoiXSxbMCwxLCJmXyoiXSxbMSwyLCJnXyoiXSxbMiwwLCJcXHBhcnRpYWwiXV0=
 	\[\begin{tikzcd}
 		{{[W,X]}_*} & {{[W,Y]}_*} \\
@@ -227,50 +228,49 @@ Now we may construct the long exact sequence:
 	\end{tikzcd}\qedhere\]
 \end{proof}
 
-Similarly, we have homology long exact sequences:
-
-\begin{proposition}\label{homology_LES}
-	Suppose we are given a distinguished triangle
-	\[X\xr fY\xr gZ\xr h\Sigma X\]
-	and an object $E$ in $\cSH$. Then there exists a ``connecting homomorphism'' of degree $-\1$
-	\[\partial:E_*(Z)\to E_{*-1}(X)\]
-	such that the following triangle is exact at each vertex:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXyooWCkiXSxbMSwwLCJFXyooWSkiXSxbMSwxLCJFXyooWikiXSxbMCwxLCJFXyooZikiXSxbMSwyLCJFXyooZykiXSxbMiwwLCJcXHBhcnRpYWwiXV0=
-	\[\begin{tikzcd}
-		{E_*(X)} & {E_*(Y)} \\
-		& {E_*(Z)}
-		\arrow["{E_*(f)}", from=1-1, to=1-2]
-		\arrow["{E_*(g)}", from=1-2, to=2-2]
-		\arrow["\partial", from=2-2, to=1-1]
-	\end{tikzcd}\]
-	Furthermore, if $(E,\mu,e)$ is a monoid object in $\cSH$, then $\partial$ is a homomorphism of left $\pi_*(E)$-modules.
-\end{proposition}
-\begin{proof}
-	By axiom TR4 for a triangulated category, axiom TT3 for a tensor triangulated category, and the fact that distinguished triangles are exact (\autoref{distinguished_tri_is_exact}), we have that the following sequence in $\cSH$ is exact:
-	\[E\otimes X\xr{E\otimes f}E\otimes Y\xr{E\otimes g}E\otimes Z\xr{E\otimes h}E\otimes\Sigma X\xr{E\otimes \Sigma f}E\otimes\Sigma Y.\]
-	Thus, we may apply the functor $\pi_*(-)=[S^*,-]$ to get a long exact sequence which fits into the top row in the following diagram:
-	% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiRV8qKFgpIl0sWzEsMCwiRV8qKFkpIl0sWzIsMCwiRV8qKFopIl0sWzMsMCwiRV8qKFxcU2lnbWEgWCkiXSxbNCwwLCJFXyooXFxTaWdtYSBZKSJdLFszLDEsIkVfKihcXFNpZ21hXlxcMVgpIl0sWzQsMSwiRV8qKFxcU2lnbWFeXFwxWSkiXSxbMywyLCJFX3sqLVxcMX0oWCkiXSxbNCwyLCJFX3sqLVxcMX0oWSkiXSxbMiwyLCJFXyooWikiXSxbMCwyLCJFXyooWCkiXSxbMSwyLCJFXyooWSkiXSxbMCwxLCJFXyooZikiXSxbMSwyLCJFXyooZykiXSxbMiwzLCJFXyooaCkiXSxbMyw0LCJFXyooXFxTaWdtYSBmKSJdLFszLDUsIkVfKihcXG51X1gpIiwyXSxbNSw2LCJFXyooXFxTaWdtYV5cXDFmKSJdLFs0LDYsIkVfKihcXG51X1kpIl0sWzUsNywidF5cXDFfWCIsMl0sWzYsOCwidF5cXDFfWSJdLFs3LDgsIkVfeyotXFwxfShmKSJdLFsyLDksIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMTAsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMTEsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEwLDExLCJFXyooZikiXSxbMTEsOSwiRV8qKGcpIl0sWzksNywiRV8qKGgpIl1d
-	\[\begin{tikzcd}
-		{E_*(X)} & {E_*(Y)} & {E_*(Z)} & {E_*(\Sigma X)} & {E_*(\Sigma Y)} \\
-		&&& {E_*(\Sigma^\1X)} & {E_*(\Sigma^\1Y)} \\
-		{E_*(X)} & {E_*(Y)} & {E_*(Z)} & {E_{*-\1}(X)} & {E_{*-\1}(Y)}
-		\arrow["{E_*(f)}", from=1-1, to=1-2]
-		\arrow["{E_*(g)}", from=1-2, to=1-3]
-		\arrow["{E_*(h)}", from=1-3, to=1-4]
-		\arrow["{E_*(\Sigma f)}", from=1-4, to=1-5]
-		\arrow["{E_*(\nu_X)}"', from=1-4, to=2-4]
-		\arrow["{E_*(\Sigma^\1f)}", from=2-4, to=2-5]
-		\arrow["{E_*(\nu_Y)}", from=1-5, to=2-5]
-		\arrow["{t^\1_X}"', from=2-4, to=3-4]
-		\arrow["{t^\1_Y}", from=2-5, to=3-5]
-		\arrow["{E_{*-\1}(f)}", from=3-4, to=3-5]
-		\arrow[Rightarrow, no head, from=1-3, to=3-3]
-		\arrow[Rightarrow, no head, from=1-1, to=3-1]
-		\arrow[Rightarrow, no head, from=1-2, to=3-2]
-		\arrow["{E_*(f)}", from=3-1, to=3-2]
-		\arrow["{E_*(g)}", from=3-2, to=3-3]
-		\arrow["{E_*(h)}", from=3-3, to=3-4]
-	\end{tikzcd}\qedhere\]
-\end{proof}
+%Similarly, we have homology long exact sequences:
+%
+%\begin{proposition}\label{homology_LES}
+%	Suppose we are given a distinguished triangle
+%	\[X\xr fY\xr gZ\xr h\Sigma X\]
+%	and an object $E$ in $\cSH$. Then there exists a ``connecting homomorphism'' of degree $-\1$
+%	\[\partial:E_*(Z)\to E_{*-1}(X)\]
+%	such that the following triangle is exact at each vertex:
+%	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFXyooWCkiXSxbMSwwLCJFXyooWSkiXSxbMSwxLCJFXyooWikiXSxbMCwxLCJFXyooZikiXSxbMSwyLCJFXyooZykiXSxbMiwwLCJcXHBhcnRpYWwiXV0=
+%	\[\begin{tikzcd}
+%		{E_*(X)} & {E_*(Y)} \\
+%		& {E_*(Z)}
+%		\arrow["{E_*(f)}", from=1-1, to=1-2]
+%		\arrow["{E_*(g)}", from=1-2, to=2-2]
+%		\arrow["\partial", from=2-2, to=1-1]
+%	\end{tikzcd}\]
+%\end{proposition}
+%\begin{proof}
+%	By axiom TR4 for a triangulated category, axiom TT3 for a tensor triangulated category, and the fact that distinguished triangles are exact (\autoref{distinguished_tri_is_exact}), we have that the following sequence in $\cSH$ is exact:
+%	\[E\otimes X\xr{E\otimes f}E\otimes Y\xr{E\otimes g}E\otimes Z\xr{E\otimes h}E\otimes\Sigma X\xr{E\otimes \Sigma f}E\otimes\Sigma Y.\]
+%	Thus, we may apply the functor $\pi_*(-)=[S^*,-]$ to get a long exact sequence which fits into the top row in the following diagram:
+%	% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiRV8qKFgpIl0sWzEsMCwiRV8qKFkpIl0sWzIsMCwiRV8qKFopIl0sWzMsMCwiRV8qKFxcU2lnbWEgWCkiXSxbNCwwLCJFXyooXFxTaWdtYSBZKSJdLFszLDEsIkVfKihcXFNpZ21hXlxcMVgpIl0sWzQsMSwiRV8qKFxcU2lnbWFeXFwxWSkiXSxbMywyLCJFX3sqLVxcMX0oWCkiXSxbNCwyLCJFX3sqLVxcMX0oWSkiXSxbMiwyLCJFXyooWikiXSxbMCwyLCJFXyooWCkiXSxbMSwyLCJFXyooWSkiXSxbMCwxLCJFXyooZikiXSxbMSwyLCJFXyooZykiXSxbMiwzLCJFXyooaCkiXSxbMyw0LCJFXyooXFxTaWdtYSBmKSJdLFszLDUsIkVfKihcXG51X1gpIiwyXSxbNSw2LCJFXyooXFxTaWdtYV5cXDFmKSJdLFs0LDYsIkVfKihcXG51X1kpIl0sWzUsNywidF5cXDFfWCIsMl0sWzYsOCwidF5cXDFfWSJdLFs3LDgsIkVfeyotXFwxfShmKSJdLFsyLDksIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMTAsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMTEsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEwLDExLCJFXyooZikiXSxbMTEsOSwiRV8qKGcpIl0sWzksNywiRV8qKGgpIl1d
+%	\[\begin{tikzcd}
+%		{E_*(X)} & {E_*(Y)} & {E_*(Z)} & {E_*(\Sigma X)} & {E_*(\Sigma Y)} \\
+%		&&& {E_*(\Sigma^\1X)} & {E_*(\Sigma^\1Y)} \\
+%		{E_*(X)} & {E_*(Y)} & {E_*(Z)} & {E_{*-\1}(X)} & {E_{*-\1}(Y)}
+%		\arrow["{E_*(f)}", from=1-1, to=1-2]
+%		\arrow["{E_*(g)}", from=1-2, to=1-3]
+%		\arrow["{E_*(h)}", from=1-3, to=1-4]
+%		\arrow["{E_*(\Sigma f)}", from=1-4, to=1-5]
+%		\arrow["{E_*(\nu_X)}"', from=1-4, to=2-4]
+%		\arrow["{E_*(\Sigma^\1f)}", from=2-4, to=2-5]
+%		\arrow["{E_*(\nu_Y)}", from=1-5, to=2-5]
+%		\arrow["{t^\1_X}"', from=2-4, to=3-4]
+%		\arrow["{t^\1_Y}", from=2-5, to=3-5]
+%		\arrow["{E_{*-\1}(f)}", from=3-4, to=3-5]
+%		\arrow[Rightarrow, no head, from=1-3, to=3-3]
+%		\arrow[Rightarrow, no head, from=1-1, to=3-1]
+%		\arrow[Rightarrow, no head, from=1-2, to=3-2]
+%		\arrow["{E_*(f)}", from=3-1, to=3-2]
+%		\arrow["{E_*(g)}", from=3-2, to=3-3]
+%		\arrow["{E_*(h)}", from=3-3, to=3-4]
+%	\end{tikzcd}\qedhere\]
+%\end{proof}
 
 \end{document}

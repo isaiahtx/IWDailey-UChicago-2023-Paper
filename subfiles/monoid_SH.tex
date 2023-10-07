@@ -1,9 +1,11 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-For a review of monoid objects in a symmetric monoidal category, see \Cref{appendix:monoid_objects}. The most important example of a monoid object in $\cSH$ is the unit $S$, which has multiplication map $\phi_{0,0}^{-1}=\lambda_S=\rho_S:S\otimes S\to S$ and unit map $\id_S:S\to S$.
+We have developed some properties of the category $\cSH$. Particularly, we have shown that each object $E$ in $\cSH$ yields an $E$-homology functor $E_*$ from $\cSH$ to the category $\Ab^A$ of $A$-graded abelian groups. In this section, we will examine some conditions on $E$ under which we may refine this functor by identifying more structure on its image. The key assumption will be that $E$ is a \emph{monoid object} in $\cSH$, i.e., that there is an associative and unital multiplication $\mu:E\otimes E\to E$. For a review of monoid objects in a symmetric monoidal category, see \Cref{appendix:monoid_objects}. The most important example of a monoid object in $\cSH$ is the unit $S$, which has multiplication map $\phi_{0,0}^{-1}=\lambda_S=\rho_S:S\otimes S\to S$ and unit map $\id_S:S\to S$.
 
 \subsection{Monoid objects in \texorpdfstring{$\cSH$}{SH} and their associated rings}\label{subsection:monoid_objects_in_SH}
+
+To start, we will show that if $E$ is a monoid object in $\cSH$, then $\pi_*(E)$ is canonically a ring.
 
 \begin{proposition}\label{pi_*E_is_ring_for_E_monoid}
 	The assignment $(E,\mu,e)\mapsto\pi_*(E)$ is a functor $\pi_*$ from the category $\Mon_\cSH$ of monoid objects in $\cSH$ (\autoref{Mon_C,CMon_C}) to the category of $A$-graded rings. In particular, given a monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is canonically a ring with unit $e\in\pi_0(e)=[S,E]$ and product $\pi_*(E)\times\pi_*(E)\to\pi_*(E)$ which sends classes $x:S^a\to E$ and $y:S^b\to E$ to the composition
@@ -87,14 +89,14 @@ For a review of monoid objects in a symmetric monoidal category, see \Cref{appen
 	The top composition is $\pi_*(f)(x)\cdot\pi_*(f)(y)$, while the bottom composition is $\pi_*(f)(x\cdot y)$. The diagram commutes since $f$ is a monoid object homomorphism. Thus $\pi_*(f)(x\cdot y)=\pi_*(f)(x)\cdot\pi_*(f)(y)$, as desired.
 \end{proof}
  
-We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that $\pi_*$ takes monoids to rings. Given a monoid object $(E,\mu,e)$ in $\cSH$, we further have that $E_*$ sends objects to $\pi_*(E)$-modules. First, we prove the following lemma:
+The most important example of such a ring will be the \emph{stable homotopy ring} $\pi_*(S)$, which controls essentially the entire structure of $\cSH$. We have shown that $\pi_*$ takes monoids to rings. Next, we will show that given a monoid object $(E,\mu,e)$ in $\cSH$, the functor $E_*$ is valued in $A$-graded left $\pi_*(E)$-modules. First, we prove the following lemma:
 
 \begin{lemma}\label{bilinear}
 	Let $X$ and $Y$ be objects in $\cSH$. Then the $A$-graded pairing
 	\[\pi_*(X)\times\pi_*(Y)\to\pi_*(X\otimes Y)\]
 	sending $x:S^a\to X$ and $ y:S^b\to Y$ to the composition
 	\[S^{a+b}\xr{\phi_{a,b}} S^a\otimes S^b\xr{x\otimes y}X\otimes Y\]
-	is additive in each argument.
+	is bilinear, i.e., it is additive in each argument.
 \end{lemma}
 \begin{proof}
 	Let $a,b\in A$, and let $x_1,x_2:S^a\to X$ and $ y:S^b\to Y$. Then consider the following diagram
@@ -115,15 +117,17 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that 
 	The isomorphisms are given by the fact that $-\otimes-$ is additive in each variable. Both triangles and the parallelogram commute since $-\otimes-$ is additive. By functoriality of $-\otimes-$, the top composition is $( x_1+ x_2)\cdot y$ and the bottom composition is $ x_1\cdot y+ x_2\cdot y$, so they are equal, as desired. An entirely analagous argument yields that $ x\cdot( y_1+ y_2)= x\cdot y_1+ x\cdot y_2$ for $ x\in\pi_*(X)$ and $ y_1, y_2\in\pi_*(Y)$.
 \end{proof}
 
+Now we can show that $E_*(X)$ is a graded module over $\pi_*(E)$.
+
 \begin{proposition}\label{module}
-	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is an additive functor from $\cSH$ to the category $\pi_*(E)\text-\Mod(A)$ of left $A$-graded modules over the ring $\pi_*(E)$ (\autoref{pi_*E_is_ring_for_E_monoid}) and degree-preserving homomorphisms between them, where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with its \emph{canonical} structure as a left $A$-graded $\pi_*(E)$-module via the map 
+	Let $(E,\mu,e)$ be a monoid object in $\cSH$. Then $E_*(-)$ is an additive functor from $\cSH$ to the category $\pi_*(E)\text-\Mod^A$ of left $A$-graded modules over the ring $\pi_*(E)$ (\autoref{pi_*E_is_ring_for_E_monoid}) and degree-preserving homomorphisms between them, where given some $X$ in $\cSH$, $E_*(X)$ may be endowed with its \emph{canonical} structure as a left $A$-graded $\pi_*(E)$-module via the map 
 	\[\pi_*(E)\times E_*(X)\to E_*(X)\]
 	which given $a,b\in A$, sends $x:S^a\to E$ and $y:S^b\to E\otimes X$ to the composition
-	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xr{x\otimes y}E\otimes (E\otimes X)\cong (E\otimes E)\otimes X\xr{\mu\otimes X}E\otimes X.\]
+	\[x\cdot y:S^{a+b}\xr{\phi_{a,b}}S^a\otimes S^b\xr{x\otimes y}E\otimes E\otimes X\xr{\mu\otimes X}E\otimes X.\]
 	Similarly, the assignment $X\mapsto X_*(E)$ is a functor from $\cSH$ to right $A$-graded $\pi_*(E)$-modules, where the structure map
 	\[X_*(E)\times\pi_*(E)\to X_*(E)\]
 	sends $x:S^a\to X\otimes E$ and $y:S^b\to E$ to the composition
-	\[x\cdot y:S^{a+b}\cong S^a\otimes S^b\xr{x\otimes y}(X\otimes E)\otimes E\cong X\otimes(E\otimes E)\xr{X\otimes\mu}X\otimes E.\]
+	\[x\cdot y:S^{a+b}\xr{\phi_{a,b}}S^a\otimes S^b\xr{x\otimes y}X\otimes E\otimes E\xr{X\otimes\mu}X\otimes E.\]
 	Finally, $E_*(E)$ is a $\pi_*(E)$-bimodule, in the sense that the left and right actions of $\pi_*(E)$ are compatible, so that given $y, z\in\pi_*(E)$ and $x\in E_*(E)$, $y\cdot(x\cdot z)=(y\cdot x)\cdot z$.
 \end{proposition}
 \begin{proof}
@@ -134,7 +138,7 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that 
 		\item $(zy)\cdot x=z\cdot(y\cdot x)$,
 		\item $e\cdot x=x$.
 	\end{enumerate}
-	Axioms $(1)$ and $(2)$ follow by the fact that $E_*(X)=\pi_*(E\otimes X)$ and \autoref{bilinear}. To see $(3)$, consider the diagram:
+	Items $(1)$ and $(2)$ follow by the fact that $E_*(X)=\pi_*(E\otimes X)$ and \autoref{bilinear}. To see $(3)$, consider the diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXnthK2IrY30iXSxbMSwxLCJTXmNcXG90aW1lcyBTXmJcXG90aW1lcyBTXmEiXSxbMiwxLCJFXFxvdGltZXMgRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMiwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMSwiRVxcb3RpbWVzIFgiXSxbMCwxLCJcXGNvbmciXSxbMSwyLCJ6XFxvdGltZXMgeVxcb3RpbWVzIHgiXSxbMiwzLCJcXG11XFxvdGltZXMgRVxcb3RpbWVzIFgiLDJdLFsyLDQsIkVcXG90aW1lc1xcbXVcXG90aW1lcyBYIl0sWzQsNSwiXFxtdVxcb3RpbWVzIFgiXSxbMyw1LCJcXG11XFxvdGltZXMgWCIsMl1d
 	\[\begin{tikzcd}
 		&&& {E\otimes E\otimes X} \\
@@ -147,9 +151,7 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that 
 		\arrow["{\mu\otimes X}", from=1-4, to=2-4]
 		\arrow["{\mu\otimes X}"', from=3-4, to=2-4]
 	\end{tikzcd}\]
-	It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the two outside compositions equal $z\cdot(y\cdot x)$ on the top and $(z\cdot y)\cdot x$ on the bottom. Hence, they are equal, as desired.
-
-	Next, to see $(4)$, consider the following diagram:
+	It commutes by associativity of $\mu$. By functoriality of $-\otimes-$, the two outside compositions equal $z\cdot(y\cdot x)$ on the top and $(z\cdot y)\cdot x$ on the bottom. Hence, they are equal, as desired. Next, to see $(4)$, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJTXmEiXSxbMSwxLCJFXFxvdGltZXMgWCJdLFsyLDAsIkVcXG90aW1lcyAgWCJdLFsxLDIsIkVcXG90aW1lcyBFXFxvdGltZXMgWCJdLFsxLDIsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMywiZVxcb3RpbWVzIEVcXG90aW1lcyBYIiwxXSxbMCwyLCJ4Il0sWzMsMiwiXFxtdVxcb3RpbWVzIFgiLDIseyJjdXJ2ZSI6M31dLFswLDEsIngiLDJdLFswLDMsImVcXG90aW1lcyB4IiwyLHsiY3VydmUiOjN9XV0=
 	\[\begin{tikzcd}
 		{S^a} && {E\otimes  X} \\
@@ -165,22 +167,9 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that 
 	The top triangle commutes by definition. The left triangle commutes by functoriality of $-\otimes-$. The right triangle commutes by unitality of $\mu$.
 	The top composition is $ x$ while the bottom is $e\cdot x$, thus they are necessarily equal since the diagram commutes.
 
-	Thus, we have shown that the indicated map does indeed endow $E_*(X)$ with the structure of a left $\pi_*(E)$-module. Next we would like to show that $E_*(-)$ sends maps in $\cSH$ to $A$-graded homomorphisms of left $A$-graded $\pi_*(E)$-modules. By definition, given $f:X\to Y$ in $\cSH$, $E_*(f)$ is the map which takes a class $x:S^a\to E\otimes X$ to the composition 
+	Thus, we have shown that the indicated map does indeed endow $E_*(X)$ with the structure of a left $\pi_*(E)$-module. Next we would like to show that $E_*(-)$ sends maps in $\cSH$ to $A$-graded homomorphisms of left $A$-graded $\pi_*(E)$-modules. By definition, given $f:X\to Y$ in $\cSH$, $E_*(f)=[S^*,E\otimes f]$ is the map which takes a class $x:S^a\to E\otimes X$ to the composition 
 	\[S^a\xrightarrow xE\otimes X\xrightarrow{E\otimes f}E\otimes Y.\]
-	To see this assignment is a homomorphism, suppose we are given some other $x':S^a\to E\otimes X$ and some scalar $y:S^b\to E$. Then we would like to show $E_*(f)(x+x')=E_*(f)(x)+E_*(f)(x')$ and $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$. To see the former, consider the following diagram:
-	% https://q.uiver.app/#q=WzAsNixbMCwxLCJTXmEiXSxbMSwxLCJTXmFcXG9wbHVzIFNeYSJdLFsyLDEsIihFXFxvdGltZXMgWClcXG9wbHVzKEVcXG90aW1lcyBYKSJdLFszLDAsIihFXFxvdGltZXMgWSlcXG9wbHVzKEVcXG90aW1lcyBZKSJdLFszLDEsIkVcXG90aW1lcyBZIl0sWzMsMiwiRVxcb3RpbWVzIFgiXSxbMCwxLCJcXERlbHRhIl0sWzEsMiwieFxcb3BsdXMgeCciXSxbMiwzLCIoRVxcb3RpbWVzIGYpXFxvcGx1cyAoRVxcb3RpbWVzIGYpIl0sWzMsNCwiXFxuYWJsYSJdLFsyLDUsIlxcbmFibGEiLDJdLFs1LDQsIkVcXG90aW1lcyBmIiwyXV0=
-	\[\begin{tikzcd}
-		&&& {(E\otimes Y)\oplus(E\otimes Y)} \\
-		{S^a} & {S^a\oplus S^a} & {(E\otimes X)\oplus(E\otimes X)} & {E\otimes Y} \\
-		&&& {E\otimes X}
-		\arrow["\Delta", from=2-1, to=2-2]
-		\arrow["{x\oplus x'}", from=2-2, to=2-3]
-		\arrow["{(E\otimes f)\oplus (E\otimes f)}", from=2-3, to=1-4]
-		\arrow["\nabla", from=1-4, to=2-4]
-		\arrow["\nabla"', from=2-3, to=3-4]
-		\arrow["{E\otimes f}"', from=3-4, to=2-4]
-	\end{tikzcd}\]
-	It commutes by naturality of $\nabla$ in an additive category. The top composition is $E_*(f)(x)+E_*(f)(x')$, while the bottom is $E_*(f)(x+x')$, so they are equal as desired. To see that $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$, consider the following diagram:
+	Since $\cSH$ is additive, composition is bilinear, so $[S^*,E\otimes f]$ is an $A$-graded group homomorphism by definition. To see that it is a further a homomorphism of $\pi_*(E)$-modules, it suffices to show that given classes $x:S^a\to E\otimes X$ and $y:S^b\to E$ that $E_*(f)(y\cdot x)=y\cdot E_*(f)(x)$. To that end, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnthK2J9Il0sWzEsMCwiU15iXFxvdGltZXMgU15hIl0sWzIsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBYIl0sWzMsMCwiRVxcb3RpbWVzIEVcXG90aW1lcyBZIl0sWzMsMSwiRVxcb3RpbWVzIFkiXSxbMiwxLCJFXFxvdGltZXMgWCJdLFswLDEsIlxccGhpX3tiLGF9Il0sWzEsMiwieVxcb3RpbWVzIHgiXSxbMiwzLCJFXFxvdGltZXMgRVxcb3RpbWVzIGYiXSxbMyw0LCJcXG11XFxvdGltZXMgWSJdLFsyLDUsIlxcbXVcXG90aW1lcyBYIiwyXSxbNSw0LCJFXFxvdGltZXMgZiJdXQ==
 	\[\begin{tikzcd}
 		{S^{a+b}} & {S^b\otimes S^a} & {E\otimes E\otimes X} & {E\otimes E\otimes Y} \\
@@ -194,7 +183,7 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that 
 	\end{tikzcd}\]
 	It commutes by functoriality of $-\otimes-$. The top composition is $E_*(f)(y\cdot x)$, while the bottom composition is $y\cdot E_*(f)(x)$, so they are equal, as desired.
 
-	Thus, we've shown $E_*(-)$ yields a functor $\cSH\to\pi_*(E)\text-\Mod(A)$; it remains to show this functor is additive, equivalently, $\Ab$-enriched. This is clear, as given $f,g:X\to Y$ in $\cSH$, we have 
+	Thus, we've shown $E_*(-)$ yields a functor $\cSH\to\pi_*(E)\text-\Mod^A$; it remains to show this functor is additive, equivalently, $\Ab$-enriched. This is clear, as given $f,g:X\to Y$ in $\cSH$, we have 
 	\[E_*(f+g)=[S^*,E\otimes(f+g)]=[S^*,(E\otimes f)+(E\otimes g)]=E_*(f)+E_*(g),\]
 	where the second equality follows since $-\otimes-$ is additive in each variable. 
 	
@@ -304,7 +293,7 @@ We call the ring $\pi_*(S)$ the \emph{stable homotopy ring}. We have shown that 
 		\arrow["{E\otimes Y\otimes \phi_{a,-a}^{-1}}"', from=2-4, to=2-5]
 		\arrow["{E\otimes f\otimes S^a\otimes S^{-a}}"{description}, from=1-4, to=2-4]
 	\end{tikzcd}\]
-	The left rectangle commutes by naturality of $\tau$, while the right rectangle commutes by functoriality of $-\otimes-$. The two outside compositions are the two ways to chase $x$ around diagram (\ref{naturality_of_t^a_diagram}), so the diagram commutes as desired.
+	The left rectangle commutes by naturality of $\tau$, while the right rectangle commutes by functoriality of $-\otimes-$. The two outside compositions are the two ways to chase $x$ around diagram \ref{naturality_of_t^a_diagram}, so the diagram commutes as desired.
 \end{proof}
 
 \subsection{Commutative monoid objects in \texorpdfstring{$\cSH$}{SH} and their associated rings}
@@ -323,12 +312,12 @@ A natural question that arises is: In what sense is $\pi_*(E)$ ``graded commutat
     Given two $A$-graded anticommutative rings $(R,\theta)$ and $(R',\theta')$, an $A$-graded ring homomorphism $f:R\to R'$ is a homomorphism of $A$-graded anticommutative rings if it satisfies $f\circ\theta=\theta'$. We write $\GrCRing^{A}$ for the resulting category.
 \end{definition}
 
-In fact, the above definition will be entirely motivated by the work we do here. (An interesting fact is that the initial object in the category $\GrCRing^{A}$ is the group algebra $\bZ[A\wedge A]$ viewed as an $A$-graded ring concentrated in degree $0$, where here by ``$A\wedge A$'' we mean the quotient of $A\otimes_\bZ A$ by the subgroup generated by the elements $a\otimes b+b\otimes a$ for $a,b\in A$. The element $\theta_{a,b}\in\bZ[A\wedge A]$ is $a\wedge b:=[a\otimes b]=-b\wedge a$.)
+In fact, the above definition was entirely motivated by the work we will do here. An interesting fact is that the initial object in the category $\GrCRing^{A}$ is the group algebra $\bZ[A\wedge A]$ viewed as an $A$-graded ring concentrated in degree $0$, where here by ``$A\wedge A$'' we mean the quotient of $A\otimes_\bZ A$ by the subgroup generated by the elements $a\otimes b+b\otimes a$ for $a,b\in A$. The element $\theta_{a,b}\in\bZ[A\wedge A]$ is $a\wedge b=-b\wedge a$, where here $-\wedge-$ denotes the quotient map $A\otimes_\bZ A\onto A\wedge A$.
 
 We will show that not only is $\pi_*(E)$ an $A$-graded anticommutative ring, but it is an $A$-graded anticommutative algebra over the stable homotopy ring $\pi_*(S)$, defined as follows:
 
 \begin{definition}\label{R-GrCAlg_defn}
-	Given an $A$-graded anticommutative ring $(R,\theta)$ (\autoref{A-graded_anticommutative_ring_defn}), we write $R\text-\GCA^{A}$ to denote the slice category $(R,\theta)/\GrCRing^{A}$. Explicitly:
+	Given an $A$-graded anticommutative ring $(R,\theta)$ (\autoref{A-graded_anticommutative_ring_defn}), we write $R\text-\GCA^{A}$ to denote the slice category $(R,\theta)/\GrCRing^{A}$ under $(R,\theta)$. Explicitly:
     \begin{itemize}
 		\item The objects are pairs $(S,\varphi)$ called \emph{$A$-graded anticommutative $R$-algebras}, where $S$ is an $A$-graded ring and $\varphi:R\to S$ is an $A$-graded ring homomorphism such that for all $x\in S_a$ and $y\in S_b$, we have
 		\[x\cdot y=y\cdot x\cdot\varphi(\theta_{a,b}),\]
@@ -342,9 +331,9 @@ Note that our notation for the category $R\text-\GCA^{A}$ is somewhat deficient,
 	Consider $R=\bZ$ as a ring graded over $A=\bZ$ concentrated in degree $0$, and let $\theta_{n,m}:=(-1)^{n\cdot m}$ for all $n,m\in\bZ$, then $R\text-\GCA^{A}$ is simply the standard category of graded anticommutative rings, i.e., $\bZ$-graded rings $R$ such that for all homogeneous $x,y\in R$, $x\cdot y=y\cdot x\cdot(-1)^{|x||y|}$. On the other hand, if we instead define $\theta_{n,m}=1$ for all $n,m\in\bZ$, then the resulting category $R\text-\GCA^{A}$ becomes the category of strictly commutative $\bZ$-graded rings.
 \end{example}
 
-Like the standard category of $\bZ$-graded anticommutative rings, it turns out that the category $R\text-\GCA^{A}$ has many nice properties, most of which are not relevant for our purposes. In particular, in \Cref{subsection:A-graded_anticommutative_rings_properties} we show that $R\text-\GCA^{A}$ has finite coproducts and pushouts, and as in the standard category of (graded anti)commutative rings, they are formed by taking the underlying tensor product of bimodules and endowing it with a (graded anti)commutative multiplication.
+Like the standard category of $\bZ$-graded anticommutative rings, it turns out that the category $R\text-\GCA^{A}$ has many nice properties. In particular, in \Cref{subsection:A-graded_anticommutative_rings_properties} we show that $R\text-\GCA^{A}$ has finite coproducts and pushouts, and as in the standard category of (graded anti)commutative rings, they are formed by taking the underlying tensor product of bimodules and endowing it with a (graded anti)commutative multiplication. The details of this contruction are straightforward but somewhat tedious, so even in the appendix we simply outline what needs to be shown, and leave it to the reader to verify the minute details if they desire.
 
-The rest of this subsection will be devoted to proving that for each commutative monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is an $A$-graded anticommutative algebra over the $A$-graded anticommutative ring $\pi_*(S)$.
+The rest of this subsection will be devoted to proving that for each commutative monoid object $(E,\mu,e)$ in $\cSH$, $\pi_*(E)$ is an $A$-graded anticommutative algebra over the $A$-graded anticommutative ring $\pi_*(S)$. To start with, we identify the elements $\theta_{a,b}\in\pi_0(S)$, and show they control anticommutativity in $\pi_*(E)$ for $E$ a commutative monoid object.
 
 \begin{proposition}\label{pi_*(E)_is_A-graded_commutative_if_E_is_commutative}
 	For all $a,b\in A$ there exists an element $\theta_{a,b}\in\pi_0(S)=[S,S]$ such that given any commutative monoid object $(E,\mu,e)$ in $\cSH$, the $A$-graded ring structure on $\pi_\ast(E)$ (\autoref{pi_*E_is_ring_for_E_monoid}) has a commutativity formula given by
@@ -405,8 +394,10 @@ The rest of this subsection will be devoted to proving that for each commutative
 	Here any map simply labelled $\cong$ is an appropriate composition of copies of $\phi_{a,b}$'s, associators, and their inverses, so that each of these maps are necessarily unique by \autoref{unique_comp_Sas}. The triangles in the top large rectangle commutes by coherence for the $\phi_{a,b}$'s. The parallelogram commutes by naturality of $\tau$ and coherence of the of $\phi_{a,b}$'s. The middle skewed triangle commutes by functoriality of $-\otimes-$. The triangle below that commutes by unitality of $\mu$. Finally, the bottom rectangle commmutes by associativity of $\mu$. Hence, by unravelling definitions and applying functoriality of $-\otimes-$, we get that the right composition is $(y\cdot x)\circ(\phi_{b,a}^{-1}\circ\tau\circ\phi_{a,b})$, while the left composition is $y\cdot x\cdot(e\circ\theta_{a,b})$, so they are equal as desired.
 \end{proof}
 
+Now, it remains to show that the assignment $\theta:A^2\to\pi_0(S)$ descends/restricts to a group homomorphism $A\wedge A\to\pi_0(S)^\times$, i.e., that it satisfies the first three conditions outlined in \autoref{A-graded_anticommutative_ring_defn}. First, we prove the following useful lemma:
+
 \begin{lemma}\label{multipy_by_degree_0_is_same_as_compose}
-	Suppose we have homogeneous elements $x,y\in\pi_*(S)$ with $x$ of degree $0$, then we have $x\cdot y=y\cdot x=x\circ y$ (where the $\cdot$ denotes the product given in \autoref{pi_*E_is_ring_for_E_monoid}).
+	Suppose we have homogeneous elements $x,y\in\pi_*(S)$ with $x$ of degree $0$ (so $x$ is a map $S\to S$ and $y$ is a map $S^a\to S$ for some $a\in A$), then we have $x\cdot y=y\cdot x=x\circ y$ (where the $\cdot$ denotes the product given in \autoref{pi_*E_is_ring_for_E_monoid}).
 \end{lemma}
 \begin{proof}
 	As morphisms, $y$ is an arrow $S^a\to S$ for some $a$ in $A$, and $x$ is a morphism $S\to S$. Then consider the following diagram:
@@ -432,6 +423,8 @@ The rest of this subsection will be devoted to proving that for each commutative
 	\end{tikzcd}\]
 	The trapezoids commute by naturality of the unitors, and the triangles commute by functoriality of $-\otimes-$. The outside compositions are $y\cdot x$ on the left and $x\cdot y$ on the right, and the middle composition is $x\circ y$, so indeed we have $y\cdot x=x\cdot y=x\circ y$, as desired.
 \end{proof}
+
+Now, we will check the rest of the conditions in \autoref{A-graded_anticommutative_ring_defn} $1$-by-$1$.
 
 \begin{lemma}\label{theta_a,0=theta_0,a=id_S}
 	Given $a\in A$, we have $\theta_{0,a}=\theta_{a,0}=\id_S$.
@@ -467,14 +460,14 @@ The rest of this subsection will be devoted to proving that for each commutative
 		\arrow[Rightarrow, no head, from=1-1, to=4-4]
 		\arrow[Rightarrow, no head, from=1-2, to=3-4]
 	\end{tikzcd}\]
-	Here we are suppressing associators, and any map labelled $\phi$ is the appropriate composition of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses (see \autoref{unique_comp_Sas}). Clearly each region commutes, the middle by the fact that $\tau^2=0$, and the other two regions by coherence for the $\phi$'s. Thus we have shown $\theta_{a,b}\cdot\theta_{b,a}=\theta_{a,b}\cdot\theta_{b,a}=\id_S$, as desired.
+	Here we are suppressing associators, and any map labelled $\phi$ is the appropriate composition of $\phi_{a,b}$'s, unitors, associators, identities, and their inverses (see \autoref{unique_comp_Sas}). Clearly each region commutes, the middle by the fact that $\tau^2=\id$, and the other two regions by coherence for the $\phi$'s. Thus we have shown $\theta_{a,b}\cdot\theta_{b,a}=\theta_{a,b}\cdot\theta_{b,a}=\id_S$, as desired.
 \end{proof}
 
 \begin{lemma}\label{theta_ab.theta_ac=theta_ab+c_and_theta_ba.theta_ca=theta_b+ca}
 	Let $a,b,c\in A$. Then $\theta_{a,b}\cdot\theta_{a,c}=\theta_{a,b+c}$ and $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$.
 \end{lemma}
 \begin{proof}
-	By \autoref{multipy_by_degree_0_is_same_as_compose}, it suffices to show that $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$ and $\theta_{b,a}\circ\theta_{c,a}=\theta_{b+c,a}$. First we show $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$. To see this, consider the following diagram:
+	First we show $\theta_{a,b}\cdot\theta_{a,c}=\theta_{a,b+c}$. By \autoref{multipy_by_degree_0_is_same_as_compose}, it suffices to show that $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$. To see this, consider the following diagram:
 	% https://q.uiver.app/#q=WzAsMjQsWzAsMCwiUyJdLFsyLDAsIlNeey1hLWN9U15hU15jIl0sWzQsMCwiU157LWEtY31TXmNTXmEiXSxbNiwwLCJTIl0sWzYsMiwiU157LWEtYn1TXmFTXmIiXSxbNiw0LCJTXnstYS1ifVNeYlNeYSJdLFs2LDgsIlMiXSxbMiwyLCJTXnstYS1jfVNeey1ifVNeYVNeYlNeYyJdLFswLDIsIlNeey1hLWItY31TXmFTXntiK2N9Il0sWzAsNCwiU157LWEtYi1jfVNee2IrY31TXmEiXSxbNCwyLCJTXnstYS1jfVNeY1Neey1ifVNeYVNeYiJdLFs0LDQsIlNeey1hLWN9U15jU157LWJ9U15iU15hIl0sWzIsNCwiU157LWEtY31TXnstYn1TXmJTXmNTXmEiXSxbMCw4LCJTIl0sWzIsNiwiU157LWEtY31TXmNTXmEiXSxbNCw2LCJTXnstYS1jfVNeY1NeYSJdLFsxLDEsIihcXHRleHQgQSkiXSxbMywxLCIoXFx0ZXh0IEIpIl0sWzUsMSwiKFxcdGV4dCBDKSJdLFsxLDMsIihcXHRleHQgRCkiXSxbMywzLCIoXFx0ZXh0IEUpIl0sWzUsMywiKFxcdGV4dCBGKSJdLFszLDUsIihcXHRleHQgRykiXSxbMyw3LCIoXFx0ZXh0IEgpIl0sWzAsMSwiXFxwaGkiXSxbMSwyLCJTXnstYS1jfVxcdGF1Il0sWzIsMywiXFxwaGkiXSxbMyw0LCJcXHBoaSJdLFs0LDUsIlNeey1hLWJ9XFx0YXUiXSxbNSw2LCJcXHBoaSJdLFsxLDcsIlxccGhpIiwyXSxbMCw4LCJcXHBoaSIsMl0sWzgsOSwiU157LWEtYi1jfVxcdGF1IiwyXSxbNywxMCwiU157LWEtY31cXHRhdV97U157LWJ9U15hU15iLFNeY30iXSxbMiwxMCwiXFxwaGkiXSxbMTAsMTEsIlNeey1hLWN9U15jU157LWJ9XFx0YXUiLDFdLFs0LDEwLCJcXHBoaSIsMl0sWzUsMTEsIlxccGhpIiwyXSxbOCw3LCJcXHBoaSJdLFs5LDEyLCJcXHBoaSJdLFs3LDEyLCJTXnstYS1jfVNeey1ifVxcdGF1X3tTXmEsU15iU15jfSIsMV0sWzEyLDExLCJTXnstYS1jfVxcdGF1X3tTXnstYn1TXmIsU15jfVNeYSJdLFs5LDEzLCJcXHBoaSIsMl0sWzEzLDYsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE0LDEyLCJcXHBoaSJdLFsxNCwxNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTUsMTEsIlxccGhpIiwyXV0=
 	\begin{equation}\label{theta_ab_o_theta_ac}
 		\begin{tikzcd}[sep=tiny]
@@ -512,7 +505,7 @@ The rest of this subsection will be devoted to proving that for each commutative
 			\arrow["\phi"', from=7-5, to=5-5]
 		\end{tikzcd}
 	\end{equation}
-	Here we are omitting $\otimes$ from the notation, and each occurrence of an arrow labelled $\phi$ indicates it is the unique arrow that can be obtained as a formal composition of tensor products of copies of $\phi_{a,b}$'s, unitors, associators, and their inverses (\autoref{unique_comp_Sas}). Clearly the composition going around the top and then the right is $\theta_{a,b}\circ\theta_{a,c}$ while the composition going left around the bottom is $\theta_{a,b+c}$. Thus, we wish to show the above diagram commutes.
+	Here we are omitting $\otimes$ from the notation (so that the diagram fits on the page), and each occurrence of an arrow labelled $\phi$ indicates it is the unique arrow that can be obtained as a formal composition of tensor products of copies of $\phi_{a,b}$'s, unitors, associators, and their inverses (\autoref{unique_comp_Sas}). Clearly the composition going around the top and then the right is $\theta_{a,b}\circ\theta_{a,c}$ while the composition going left around the bottom is $\theta_{a,b+c}$. Thus, we wish to show the above diagram commutes.
 	
 	Regions $(\text A)$, $(\text C)$, and $(\text H)$ commute by coherence for the $\phi$'s (see previous remark). Region $(\text E)$ commutes by coherence for the $\tau$'s. To see region $(\text B)$ commutes, consider the following diagram, which commutes by naturality of $\tau$:
 	% https://q.uiver.app/#q=WzAsNixbMCwwLCJTXnstYS1jfVNeYSBTXmMiXSxbMiwwLCJTXnstYS1jfVNeY1NeYSJdLFswLDIsIlNeey1hLWN9U157YS1ifVNeYlNeYyJdLFsyLDIsIlNeey1hLWN9U15jU157YS1ifVNeYiJdLFsyLDQsIlNeey1hLWN9U15jU157LWJ9U157YX1TXmIiXSxbMCw0LCJTXnstYS1jfVNeey1ifVNeYVNeYlNeYyJdLFswLDEsIlNeey1hLWN9XFx0YXUiXSxbMCwyLCJTXnstYS1jfVxccGhpX3thLWIsYn1TXmMiLDJdLFsxLDMsIlNeey1hLWN9U15jXFxwaGlfe2EtYixifSJdLFsyLDMsIlNeey1hLWN9XFx0YXVfe1Nee2EtYn1TXmIsU15jfSJdLFszLDQsIlNeey1hLWN9U15jXFxwaGlfey1iLGF9U15iIl0sWzIsNSwiU157LWEtY31cXHBoaV97LWIsYX1TXmJTXmMiLDJdLFs1LDQsIlNeey1hLWN9XFx0YXVfe1Neey1ifVNeYVNeYixTXmN9Il1d
@@ -569,7 +562,7 @@ The rest of this subsection will be devoted to proving that for each commutative
 		\arrow["{S^{-a-c}\phi_{c,0}S^a=S^{-a-c}S\rho_{S^c}^{-1}S^a}"', from=3-2, to=2-2]
 		\arrow[Rightarrow, no head, from=3-1, to=3-2]
 	\end{tikzcd}\]
-	The top region commutes by naturality of $\tau$, while the bottom region commutes by coherence for a symmetric monoidal category. Thus, we have shown that diagram (\ref{theta_ab_o_theta_ac}) commutes, so that $\theta_{a,b}\circ\theta_{a,c}=\theta_{a,b+c}$, as desired. Now, to see that $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$, note that
+	The top region commutes by naturality of $\tau$, while the bottom region commutes by coherence for a symmetric monoidal category. Thus, we have shown that diagram (\ref{theta_ab_o_theta_ac}) commutes, so that $\theta_{a,b}\cdot\theta_{a,c}=\theta_{a,b+c}$, as desired. Now, to see that $\theta_{b,a}\cdot\theta_{c,a}=\theta_{b+c,a}$, note that
 	\[\theta_{b,a}\cdot\theta_{c,a}\overset{(\ast)}=\theta_{a,b}^{-1}\cdot\theta_{a,c}^{-1}=(\theta_{a,c}\cdot\theta_{a,b})^{-1}=\theta_{a,b+c}^{-1}\overset{(\ast)}=\theta_{b+c,a},\]
 	where each occurrence of $(\ast)$ is \autoref{theta_ab.theta_ba=id}.
 \end{proof}
@@ -597,7 +590,7 @@ To recap, we have shown that the assignment $\theta:A^2\to\pi_0(S)^\times$ satis
 	\item for all homogeneous $x$ and $y$ in $\pi_*(S)$,
 	\[x\cdot y=y\cdot x\cdot\theta_{|x|,|y|}.\]
 \end{itemize}
-Thus, the stable homotopy ring $\pi_*(S)$ is an $A$-graded anticommutative ring, as desired.
+Thus, the stable homotopy ring $\pi_*(S)$ is an $A$-graded anticommutative ring, as desired. Now, we just have a few details left to check in order to conclude that $\pi_*(E)$ is an $A$-graded anticommutative $\pi_*(S)$-algebra for $E$ a commutative monoid object in $\cSH$:
 
 \begin{proposition}\label{pi_*:CMon_SH-->pi_*(S)-GrCAlg}
     The assignment $(E,\mu,e)\mapsto(\pi_*(E),\pi_*(e))$ yields a functor 

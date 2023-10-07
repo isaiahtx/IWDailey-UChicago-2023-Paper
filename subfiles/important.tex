@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 
-So far, we have already identified a good amount of structure on the objects $\pi_*(E)$, $E_*(E)=\pi_*(E\otimes E)$, and $E_*(X)$ for $E$ a (commutative) monoid object and $X$ an object in $\cSH$. Namely, we have shown that $\pi_*(E)$ and $E_*(E)$ are canonically $A$-graded anticommutative algebras over the stable homotopy ring (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}), and that $E_*(X)$ is canonically an $A$-graded left $\pi_*(E)$-module (\autoref{module}). We would like to identify even more structure on these objects, namely, in \Cref{section:dual_E-Steenrod_algebra}, we will show that the pair $(E_*(E),\pi_*(E))$ is an \emph{$A$-graded anticommutative Hopf algebroid}, over which $E_*(X)$ is an $A$-graded left comodule. To that end, we need two important theorems, namely, we need analogs of the K\"unneth isomorphism and the universal coefficient theorem from algebraic topology. This section is dedicated to formulating and proving these theorems. The proofs of these theorems are arguably the most technical and difficult in this paper, so we will be especially careful to give them in their full and explicit detail.
+So far, we have already identified a good amount of structure on the objects $\pi_*(E)$, $E_*(E)=\pi_*(E\otimes E)$, and $E_*(X)$ for $E$ a (commutative) monoid object and $X$ an object in $\cSH$. Namely, we have shown that $\pi_*(E)$ and $E_*(E)=\pi_*(E\otimes E)$ are canonically $A$-graded anticommutative algebras over the stable homotopy ring (\autoref{pi_*:CMon_SH-->pi_*(S)-GrCAlg}), and that $E_*(X)$ is canonically an $A$-graded left $\pi_*(E)$-module (\autoref{module}). We would like to identify even more structure on these objects, namely, in \Cref{section:dual_E-Steenrod_algebra}, we will show that the pair $(E_*(E),\pi_*(E))$ is an \emph{$A$-graded anticommutative Hopf algebroid}, over which $E_*(X)$ is an $A$-graded left comodule. To that end, we need two important theorems, namely, we need analogs of the K\"unneth isomorphism and the universal coefficient theorem from algebraic topology. This section is dedicated to formulating and proving these theorems. The proofs of these theorems are arguably the most technical and difficult in this paper, so we will be especially careful to give them in their full and explicit detail.
 
 \subsection{A K\"unneth isomorphism}
 
@@ -765,7 +765,135 @@ Finally, we have the ingredients required to state and prove the following unive
 
 In the case that $Y=S$, this theorem becomes the more familiar statement:
 \[E^*(X)\cong[X,E]_{-*}\cong[X,E\otimes S]_{-*}\cong\Hom^{-*}_{\pi_*(E)}(E_*(X),\pi_*(E)),\]
-i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of $X$ when $E_*(X)$ is a graded projective module. Hence why we call it the universal coefficient theorem.
+i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of $X$ when $E_*(X)$ is a graded projective module. Hence why we call it the universal coefficient theorem. The condition that $E_*(X)$ be graded projective is a rather technical one, although thankfully it is often satisfied in practice. For example, if $E\otimes X$ is cellular, then it is satisfied precisely when $E\otimes X$ is a retract of a direct sum of suspensions of copies of $E$ via $E$-module homomorphisms:
+
+\begin{proposition}\label{if_pi_*N_graded_proj_then_retract_of_wedge_of_susps}
+	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ an $E$-module object in $\cSH$. Further suppose that $E$ and $N$ are cellular. Then the canonical left $\pi_*(E)$-module structure on $\pi_*(N)$ (from \autoref{E-module_N_implies_pi*N_is_pi*E_module}) is that of a graded projective (\autoref{graded_projective_module}) left $\pi_*(E)$-module if and only if there exists some collection of $a_i\in A$ such that $N$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$.\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself an $E$-module object.}
+\end{proposition}
+\begin{proof}
+	First suppose that $\pi_*(N)$ is graded projective, and pick some homogeneous generating set $\{x_i\}\sseq\pi_*(N)$. Let $M:=\bigoplus_i(E\otimes S^{|x_i|})$. We have a map
+	\[r:M\to N\]
+	induced by the maps
+	\[r_i:E\otimes S^{|x_i|}\xrightarrow{E\otimes x_i}E\otimes N\xr{\kappa} N.\]
+	This is a homomorphism of $E$-module objects:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFXFxvdGltZXNcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee3x4X2l8fSkiXSxbMiwwLCJFXFxvdGltZXMgTiJdLFsyLDQsIk4iXSxbMCwyLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzAsNCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzEsMiwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBOKSJdLFsxLDMsIlxcYmlnb3BsdXNfaSBOIl0sWzEsMSwiRVxcb3RpbWVzXFxiaWdvcGx1c19pTiJdLFswLDEsIkVcXG90aW1lcyByIl0sWzEsMiwiXFxrYXBwYSJdLFswLDMsIlxcY29uZyIsMl0sWzMsNCwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBTXnt8eF9pfH0pIiwyXSxbNCwyLCJyIl0sWzMsNSwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyByX2kpIl0sWzUsNiwiXFxiaWdvcGx1c19pXFxrYXBwYSJdLFs2LDIsIlxcbmFibGEiXSxbNCw2LCJcXGJpZ29wbHVzX2lyX2kiXSxbMCw3LCJFXFxvdGltZXNcXGJpZ29wbHVzX2lyX2kiLDFdLFs3LDUsIlxcY29uZyIsMl0sWzcsMSwiRVxcb3RpbWVzXFxuYWJsYSIsMV0sWzUsMSwiXFxuYWJsYSIsMl1d
+	\[\begin{tikzcd}
+		{E\otimes\bigoplus_i(E\otimes S^{|x_i|})} && {E\otimes N} \\
+		& {E\otimes\bigoplus_iN} \\
+		{\bigoplus_i(E\otimes E\otimes S^{|x_i|})} & {\bigoplus_i(E\otimes N)} \\
+		& {\bigoplus_i N} \\
+		{\bigoplus_i(E\otimes S^{|x_i|})} && N
+		\arrow["{E\otimes r}", from=1-1, to=1-3]
+		\arrow["\kappa", from=1-3, to=5-3]
+		\arrow["\cong"', from=1-1, to=3-1]
+		\arrow["{\bigoplus_i(\mu\otimes S^{|x_i|})}"', from=3-1, to=5-1]
+		\arrow["r", from=5-1, to=5-3]
+		\arrow["{\bigoplus_i(E\otimes r_i)}", from=3-1, to=3-2]
+		\arrow["{\bigoplus_i\kappa}", from=3-2, to=4-2]
+		\arrow["\nabla", from=4-2, to=5-3]
+		\arrow["{\bigoplus_ir_i}", from=5-1, to=4-2]
+		\arrow["{E\otimes\bigoplus_ir_i}"{description}, from=1-1, to=2-2]
+		\arrow["\cong"', from=2-2, to=3-2]
+		\arrow["E\otimes\nabla"{description}, from=2-2, to=1-3]
+		\arrow["\nabla"', from=3-2, to=1-3]
+	\end{tikzcd}\]
+	The right trapezoid commutes by naturality of $\nabla$. The bottom triangle commutes by the fact that $\nabla\circ\bigoplus_ir_i$ and $r$ satisfy the same universal property for the coproduct. Every other region commutes by additivity of $E\otimes-$, except the left trapezoid: Note that by expanding out how $r_i$ is defined, it becomes
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzQsMCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBFXFxvdGltZXMgWCkiXSxbMiwwLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBOKSJdLFs0LDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgWCkiXSxbMCwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee3x4X2l8fSkiXSxbMiwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIE4pIl0sWzAsMiwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBFXFxvdGltZXMgeF9pKSJdLFsyLDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXNcXGthcHBhKSJdLFsxLDMsIlxcYmlnb3BsdXNfaVxca2FwcGEiXSxbMCw0LCJcXGJpZ29wbHVzX2koXFxtdVxcb3RpbWVzIFNee3x4X2l8fSkiLDJdLFs0LDUsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgeF9pKSIsMl0sWzUsMywiXFxiaWdvcGx1c19pXFxrYXBwYSIsMl0sWzIsNSwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBYKSJdXQ==
+	\[\begin{tikzcd}
+		{\bigoplus_i(E\otimes E\otimes S^{|x_i|})} && {\bigoplus_i(E\otimes E\otimes N)} && {\bigoplus_i(E\otimes E\otimes X)} \\
+		{\bigoplus_i(E\otimes S^{|x_i|})} && {\bigoplus_i(E\otimes N)} && {\bigoplus_i(E\otimes X)}
+		\arrow["{\bigoplus_i(E\otimes E\otimes x_i)}", from=1-1, to=1-3]
+		\arrow["{\bigoplus_i(E\otimes\kappa)}", from=1-3, to=1-5]
+		\arrow["{\bigoplus_i\kappa}", from=1-5, to=2-5]
+		\arrow["{\bigoplus_i(\mu\otimes S^{|x_i|})}"', from=1-1, to=2-1]
+		\arrow["{\bigoplus_i(E\otimes x_i)}"', from=2-1, to=2-3]
+		\arrow["{\bigoplus_i\kappa}"', from=2-3, to=2-5]
+		\arrow["{\bigoplus_i(\mu\otimes X)}", from=1-3, to=2-3]
+	\end{tikzcd}\]
+	The left square commutes by functoriality of $-\otimes-$, and the right square commutes by coherence for $\kappa$. Hence, we've shown that $r$ is a homomorphism of $E$-modules, as desired. Thus, $r$ induces a homomorphism of left $\pi_*(E)$-modules $\pi_*(r)\in\Hom_{\pi_*(E)}(\pi_*(M),\pi_*(N))$. Further note that for all $i\in I$, $x_i$ is in the image of $\pi_*(r)$, as by definition $\pi_*(r)$ sends the class 
+	\[S^{|x_i|}\xr{e\otimes S^{|x_i|}}E\otimes S^{|x_i|}\into M\]
+	in $\pi_{|x_i|}(M)$ to the composition
+	\[S^{|x_i|}\xr{e\otimes S^{|x_i|}}E\otimes S^{|x_i|}\xr{E\otimes x_i}E\otimes N\xr\kappa N,\]
+	and by unitality of $\kappa$ this composition is simply $x_i:S^{|x_i|}\to N$. Thus, we have constructed a surjective $A$-graded homomorphism $\pi_*(r):\pi_*(M)\to \pi_*(N)$ of left $\pi_*(E)$-modules, so that since $\pi_*(N)$ is projective graded module there exists an $A$-graded left $\pi_*(E)$-module homomorphism $\iota:\pi_*(N)\to\pi_*(M)$ which makes the following diagram commute:
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooTSkiXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDEsIlxccGlfKihyKSJdLFswLDIsIlxcaW90YSJdXQ==
+	\[\begin{tikzcd}
+		& {\pi_*(M)} \\
+		{\pi_*(N)} & {\pi_*(N)}
+		\arrow[Rightarrow, no head, from=2-1, to=2-2]
+		\arrow["{\pi_*(r)}", from=1-2, to=2-2]
+		\arrow["\iota", from=2-1, to=1-2]
+	\end{tikzcd}\]
+	Thus we have an idempotent of left $A$-graded $\pi_*(E)$-modules:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXyooTSkiXSxbMSwwLCJcXHBpXyooTikiXSxbMiwwLCJcXHBpXyooTSkiXSxbMCwxLCJcXHBpXyoocikiXSxbMSwyLCJcXGlvdGEiXV0=
+	\[\begin{tikzcd}
+		{\pi_*(M)} & {\pi_*(N)} & {\pi_*(M)}
+		\arrow["{\pi_*(r)}", from=1-1, to=1-2]
+		\arrow["\iota", from=1-2, to=1-3]
+	\end{tikzcd}\]
+	Now, by \autoref{pi_*_iso_when_N_retract_of_wedge_of_susps}, since $M=\bigoplus_i(E\otimes S^{|x_i|})$, we have that the map
+	\[\pi_*:\Hom_{E\text-\Mod}(M,M)\to\Hom_{\pi_*(E)\text-\Mod}(\pi_*(M),\pi_*(M))\]
+	is an isomorphism of abelian groups, so that the above idempotent is induced by some endomorphism $\ell:M\to M$ of $E$-module objects. Further note that by functoriality of $\pi_*$,
+	\[\pi_*(\ell\circ\ell)=\pi_*(\ell)\circ\pi_*(\ell)=\pi_*(\ell),\]
+	and again since $\pi_*$ is an isomorphism here, we have that $\ell\circ\ell=\ell$, so that $\ell$ is an idempotent in $\cSH$. By \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}, every idempotent in $\cSH$ splits, meaning $\ell$ factors in $\cSH$ as
+	\[\ell:M\xr{r'}X\xr{\iota'}M\]
+	with $r'\circ \iota'=\id_X$. Since $X$ is a retract of an $E$-module object, and the corresponding idempotent is an $E$-module homomorphism, it follows purely formally that $X$ may be canonically viewed as an $E$-module object, and that $r':M\to X$ and $\iota':X\to M$ are homomorphisms of $E$-module objects (see \autoref{retract_of_module_whose_idempotent_is_module_homomorphism_is_module} for details). Note that since $E$ and each $S^{|x_i|}$ are cellular, $E\otimes S^{|x_i|}$ is cellular for all $i\in I$ (by \autoref{cellular_closed_under_tensor}), so that $M=\bigoplus_i(E\otimes S^{|x_i|})$ is cellular, as by definition an arbitrary coproduct of cellular objects is cellular. Thus by \autoref{cellular_idempotent_splits_cellularly}, $X$ is cellular as well. Now consider the following commutative diagram
+	% https://q.uiver.app/#q=WzAsOSxbMywxLCJcXHBpXyooTSkiXSxbMiwyLCJcXHBpXyooWCkiXSxbNCwwLCJcXHBpXyooTikiXSxbNCwyLCJcXHBpXyooWCkiXSxbNSwxLCJcXHBpXyooTSkiXSxbNiwxLCJcXHBpXyooWCkiXSxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooXFxpb3RhJykiLDJdLFswLDIsIlxccGlfKihyKSJdLFswLDMsIlxccGlfKihyJykiLDJdLFszLDQsIlxccGlfKihcXGlvdGEnKSIsMl0sWzIsNCwiXFxpb3RhIl0sWzQsNSwiXFxwaV8qKHInKSJdLFszLDUsIiIsMSx7ImN1cnZlIjozLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDcsIlxcaW90YSIsMl0sWzcsMSwiXFxwaV8qKHInKSIsMl0sWzcsOCwiXFxwaV8qKHIpIl0sWzgsMCwiXFxpb3RhIl0sWzYsOCwiIiwwLHsiY3VydmUiOi0zLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNywwLCJcXHBpXyooXFxlbGwpIl0sWzAsNCwiXFxwaV8qKFxcZWxsKSJdXQ==
+	\[\begin{tikzcd}
+		&& {\pi_*(N)} && {\pi_*(N)} \\
+		{\pi_*(N)} & {\pi_*(M)} && {\pi_*(M)} && {\pi_*(M)} & {\pi_*(X)} \\
+		&& {\pi_*(X)} && {\pi_*(X)}
+		\arrow["{\pi_*(\iota')}"', from=3-3, to=2-4]
+		\arrow["{\pi_*(r)}", from=2-4, to=1-5]
+		\arrow["{\pi_*(r')}"', from=2-4, to=3-5]
+		\arrow["{\pi_*(\iota')}"', from=3-5, to=2-6]
+		\arrow["\iota", from=1-5, to=2-6]
+		\arrow["{\pi_*(r')}", from=2-6, to=2-7]
+		\arrow[curve={height=18pt}, Rightarrow, no head, from=3-5, to=2-7]
+		\arrow["\iota"', from=2-1, to=2-2]
+		\arrow["{\pi_*(r')}"', from=2-2, to=3-3]
+		\arrow["{\pi_*(r)}", from=2-2, to=1-3]
+		\arrow["\iota", from=1-3, to=2-4]
+		\arrow[curve={height=-18pt}, Rightarrow, no head, from=2-1, to=1-3]
+		\arrow[Rightarrow, no head, from=3-3, to=3-5]
+		\arrow[Rightarrow, no head, from=1-3, to=1-5]
+		\arrow["{\pi_*(\ell)}", from=2-2, to=2-4]
+		\arrow["{\pi_*(\ell)}", from=2-4, to=2-6]
+	\end{tikzcd}\]
+	From this diagram we read off that the middle diagonal composition
+	\[\pi_*(X)\xr{\pi_*(\iota')}\pi_*(M)\xr{\pi_*(r)}\pi_*(N)\]
+	is an isomorphism with inverse $\pi_*(r')\circ\iota$. Now, since $X$ and $N$ are cellular, and $\pi_*(r\circ\iota')$ is an isomorphism, by \autoref{cellular_closed_under_iso} we have that $r\circ\iota'$ is an isomorphism, say with inverse $p$. Thus we have a commuting diagram
+	% https://q.uiver.app/#q=WzAsNCxbMiwwLCJNIl0sWzQsMCwiTiJdLFswLDAsIk4iXSxbMSwxLCJYIl0sWzAsMSwiciIsMl0sWzIsMCwiXFxpb3RhJ1xcY2lyYyBwIiwyXSxbMiwzLCJwIiwyXSxbMywwLCJcXGlvdGEnIiwyXSxbMiwxLCIiLDAseyJjdXJ2ZSI6LTQsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		N && M && N \\
+		& X
+		\arrow["r"', from=1-3, to=1-5]
+		\arrow["{\iota'\circ p}"', from=1-1, to=1-3]
+		\arrow["p"', from=1-1, to=2-2]
+		\arrow["{\iota'}"', from=2-2, to=1-3]
+		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-5]
+	\end{tikzcd}\]
+	and the middle row exhibits $N$ as a retract of $M=\bigoplus_i(E\otimes S^{|x_i|})$, as desired. It remains to show this is a retract in $E\text-\Mod$, i.e., that $r$ and $\iota'\circ p$ are homomorphisms of $E$-module objects. Above we constructed $r$ to be a homomorphism of $E$-modules. We also know that $X$ is an $E$-module object and that $\iota'$ is an $E$-module homomorphism. Thus, it remains to show that $p:N\to X$ is an $E$-module homomorphism. But we know that $p$ is the inverse of $r\circ\iota'$ in $\cSH$, and we know $r$ and $\iota'$ are morphisms in $E\text-\Mod$, so that $p$ is the inverse of $r\circ\iota'$ in $E\text-\Mod$, meaning $p$ is indeed an $E$-module homomorphism as desired.
+
+	On the other hand, suppose that there exists some collection of $a_i\in A$ such that $N$ is a retract of $M:=\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJOIl0sWzEsMCwiTSJdLFsyLDAsIk4iXSxbMCwxLCJcXGlvdGEiLDJdLFsxLDIsInIiLDJdLFswLDIsIiIsMix7ImN1cnZlIjotMywibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		N & M & N
+		\arrow["\iota"', from=1-1, to=1-2]
+		\arrow["r"', from=1-2, to=1-3]
+		\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-1, to=1-3]
+	\end{tikzcd}\]
+	Let $M:=\bigoplus_i(E\otimes S^{a_i})$. Then applying $\pi_*(-)$ to the above diagram yields the following diagram of $A$-graded left $\pi_*(E)$-modules:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMCwxLCJcXHBpXyooXFxpb3RhKSIsMl0sWzEsMiwiXFxwaV8qKHIpIiwyXSxbMCwyLCIiLDIseyJjdXJ2ZSI6LTMsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		{\pi_*(N)} & {\pi_*(M)} & {\pi_*(N)}
+		\arrow["{\pi_*(\iota)}"', from=1-1, to=1-2]
+		\arrow["{\pi_*(r)}"', from=1-2, to=1-3]
+		\arrow[curve={height=-18pt}, Rightarrow, no head, from=1-1, to=1-3]
+	\end{tikzcd}\]
+	Note we have an isomorphism of $A$-graded left $\pi_*(E)$-modules $\pi_*(M)\xr\cong\bigoplus_i\pi_{*-a_i}(E)$ given by the composition
+	\[[S^*,\bigoplus_i(E\otimes S^{a_i})]\xr\cong\bigoplus_i{[S,E\otimes S^{a_i}]}_*\xr{\tau_*}\bigoplus_i{[S,\Sigma^{a_i}E]}_*\xr{\bigoplus_is^{a_i}_{S,E}}\bigoplus_i{[S,E]}_{*-a_i},\]
+	where the first isomorphism is because $\pi_*(-)$ is additive\todo{FINISH}
+\end{proof}
 
 \begin{proposition}\label{pi_*_iso_when_N_retract_of_wedge_of_susps}
 	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ an $E$-module object in $\cSH$. Then given a collection of $a_i\in A$ indexed by some set $I$, if $(N,\kappa)$ is a retract of $\bigoplus_i(E\otimes S^{a_i})$ in $E\text-\Mod$,\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself an $E$-module object.} then for all $E$-module objects $(N',\kappa')$, the functor $\pi_*:E\text-\Mod\to\pi_*(E)\text-\Mod(A)$ (\autoref{E-module_N_implies_pi*N_is_pi*E_module}) induces an isomorphism of abelian groups
@@ -878,114 +1006,6 @@ i.e., the $E$-cohomology of $X$ is isomorphic to the dual of the $E$-homology of
 	so that by the universal property of the coproduct of abelian groups, there is a unique $A$-graded isomorphism
 	\[[X,N]_*\to\Hom^*_{\pi_*(E)}(E_*(X),\pi_*(N))\]
 	extending these maps, as desired.
-\end{proof}
-
-\begin{proposition}\label{if_pi_*N_graded_proj_then_retract_of_wedge_of_susps}
-	Let $(E,\mu,e)$ be a monoid object and $(N,\kappa)$ an $E$-module object in $\cSH$. Further suppose that $E$ and $N$ are cellular and that $\pi_*(N)$ is a \emph{graded projective} (\autoref{graded_projective_module}) left $\pi_*(E)$-module (via \autoref{E-module_N_implies_pi*N_is_pi*E_module}). Then given some homogeneous generating set $\{x_i\}_{i\in I}\sseq \pi_*(N)$, $N$ is a retract of $\bigoplus_i(E\otimes S^{|x_i|})$ in $E\text-\Mod$.\footnote{Here $\bigoplus_i(E\otimes S^{a_i})$ is a coproduct (\autoref{coproduct_of_E_modules_is_coproduct_in_E_mod}) of a bunch of free $E$-module objects (\autoref{free_forgetful_E-Mod}), so it is itself an $E$-module object.}
-\end{proposition}
-\begin{proof}
-	Let $M:=\bigoplus_i(E\otimes S^{|x_i|})$. We have a map
-	\[r:M\to N\]
-	induced by the maps
-	\[r_i:E\otimes S^{|x_i|}\xrightarrow{E\otimes x_i}E\otimes N\xr{\kappa} N.\]
-	This is a homomorphism of $E$-module objects:
-	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJFXFxvdGltZXNcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee3x4X2l8fSkiXSxbMiwwLCJFXFxvdGltZXMgTiJdLFsyLDQsIk4iXSxbMCwyLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzAsNCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzEsMiwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBOKSJdLFsxLDMsIlxcYmlnb3BsdXNfaSBOIl0sWzEsMSwiRVxcb3RpbWVzXFxiaWdvcGx1c19pTiJdLFswLDEsIkVcXG90aW1lcyByIl0sWzEsMiwiXFxrYXBwYSJdLFswLDMsIlxcY29uZyIsMl0sWzMsNCwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBTXnt8eF9pfH0pIiwyXSxbNCwyLCJyIl0sWzMsNSwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyByX2kpIl0sWzUsNiwiXFxiaWdvcGx1c19pXFxrYXBwYSJdLFs2LDIsIlxcbmFibGEiXSxbNCw2LCJcXGJpZ29wbHVzX2lyX2kiXSxbMCw3LCJFXFxvdGltZXNcXGJpZ29wbHVzX2lyX2kiLDFdLFs3LDUsIlxcY29uZyIsMl0sWzcsMSwiRVxcb3RpbWVzXFxuYWJsYSIsMV0sWzUsMSwiXFxuYWJsYSIsMl1d
-	\[\begin{tikzcd}
-		{E\otimes\bigoplus_i(E\otimes S^{|x_i|})} && {E\otimes N} \\
-		& {E\otimes\bigoplus_iN} \\
-		{\bigoplus_i(E\otimes E\otimes S^{|x_i|})} & {\bigoplus_i(E\otimes N)} \\
-		& {\bigoplus_i N} \\
-		{\bigoplus_i(E\otimes S^{|x_i|})} && N
-		\arrow["{E\otimes r}", from=1-1, to=1-3]
-		\arrow["\kappa", from=1-3, to=5-3]
-		\arrow["\cong"', from=1-1, to=3-1]
-		\arrow["{\bigoplus_i(\mu\otimes S^{|x_i|})}"', from=3-1, to=5-1]
-		\arrow["r", from=5-1, to=5-3]
-		\arrow["{\bigoplus_i(E\otimes r_i)}", from=3-1, to=3-2]
-		\arrow["{\bigoplus_i\kappa}", from=3-2, to=4-2]
-		\arrow["\nabla", from=4-2, to=5-3]
-		\arrow["{\bigoplus_ir_i}", from=5-1, to=4-2]
-		\arrow["{E\otimes\bigoplus_ir_i}"{description}, from=1-1, to=2-2]
-		\arrow["\cong"', from=2-2, to=3-2]
-		\arrow["E\otimes\nabla"{description}, from=2-2, to=1-3]
-		\arrow["\nabla"', from=3-2, to=1-3]
-	\end{tikzcd}\]
-	The right trapezoid commutes by naturality of $\nabla$. The bottom triangle commutes by the fact that $\nabla\circ\bigoplus_ir_i$ and $r$ satisfy the same universal property for the coproduct. Every other region commutes by additivity of $E\otimes-$, except the left trapezoid: Note that by expanding out how $r_i$ is defined, it becomes
-	% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBTXnt8eF9pfH0pIl0sWzQsMCwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBFXFxvdGltZXMgWCkiXSxbMiwwLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIEVcXG90aW1lcyBOKSJdLFs0LDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgWCkiXSxbMCwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIFNee3x4X2l8fSkiXSxbMiwxLCJcXGJpZ29wbHVzX2koRVxcb3RpbWVzIE4pIl0sWzAsMiwiXFxiaWdvcGx1c19pKEVcXG90aW1lcyBFXFxvdGltZXMgeF9pKSJdLFsyLDEsIlxcYmlnb3BsdXNfaShFXFxvdGltZXNcXGthcHBhKSJdLFsxLDMsIlxcYmlnb3BsdXNfaVxca2FwcGEiXSxbMCw0LCJcXGJpZ29wbHVzX2koXFxtdVxcb3RpbWVzIFNee3x4X2l8fSkiLDJdLFs0LDUsIlxcYmlnb3BsdXNfaShFXFxvdGltZXMgeF9pKSIsMl0sWzUsMywiXFxiaWdvcGx1c19pXFxrYXBwYSIsMl0sWzIsNSwiXFxiaWdvcGx1c19pKFxcbXVcXG90aW1lcyBYKSJdXQ==
-	\[\begin{tikzcd}
-		{\bigoplus_i(E\otimes E\otimes S^{|x_i|})} && {\bigoplus_i(E\otimes E\otimes N)} && {\bigoplus_i(E\otimes E\otimes X)} \\
-		{\bigoplus_i(E\otimes S^{|x_i|})} && {\bigoplus_i(E\otimes N)} && {\bigoplus_i(E\otimes X)}
-		\arrow["{\bigoplus_i(E\otimes E\otimes x_i)}", from=1-1, to=1-3]
-		\arrow["{\bigoplus_i(E\otimes\kappa)}", from=1-3, to=1-5]
-		\arrow["{\bigoplus_i\kappa}", from=1-5, to=2-5]
-		\arrow["{\bigoplus_i(\mu\otimes S^{|x_i|})}"', from=1-1, to=2-1]
-		\arrow["{\bigoplus_i(E\otimes x_i)}"', from=2-1, to=2-3]
-		\arrow["{\bigoplus_i\kappa}"', from=2-3, to=2-5]
-		\arrow["{\bigoplus_i(\mu\otimes X)}", from=1-3, to=2-3]
-	\end{tikzcd}\]
-	The left square commutes by functoriality of $-\otimes-$, and the right square commutes by coherence for $\kappa$. Hence, we've shown that $r$ is a homomorphism of $E$-modules, as desired. Thus, $r$ induces a homomorphism of left $\pi_*(E)$-modules $\pi_*(r)\in\Hom_{\pi_*(E)}(\pi_*(M),\pi_*(N))$. Further note that for all $i\in I$, $x_i$ is in the image of $\pi_*(r)$, as by definition $\pi_*(r)$ sends the class 
-	\[S^{|x_i|}\xr{e\otimes S^{|x_i|}}E\otimes S^{|x_i|}\into M\]
-	in $\pi_{|x_i|}(M)$ to the composition
-	\[S^{|x_i|}\xr{e\otimes S^{|x_i|}}E\otimes S^{|x_i|}\xr{E\otimes x_i}E\otimes N\xr\kappa N,\]
-	and by unitality of $\kappa$ this composition is simply $x_i:S^{|x_i|}\to N$. Thus, we have constructed a surjective $A$-graded homomorphism $\pi_*(r):\pi_*(M)\to \pi_*(N)$ of left $\pi_*(E)$-modules, so that since $\pi_*(N)$ is projective graded module there exists an $A$-graded left $\pi_*(E)$-module homomorphism $\iota:\pi_*(N)\to\pi_*(M)$ which makes the following diagram commute:
-	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooTSkiXSxbMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDEsIlxccGlfKihyKSJdLFswLDIsIlxcaW90YSJdXQ==
-	\[\begin{tikzcd}
-		& {\pi_*(M)} \\
-		{\pi_*(N)} & {\pi_*(N)}
-		\arrow[Rightarrow, no head, from=2-1, to=2-2]
-		\arrow["{\pi_*(r)}", from=1-2, to=2-2]
-		\arrow["\iota", from=2-1, to=1-2]
-	\end{tikzcd}\]
-	Thus we have an idempotent of left $A$-graded $\pi_*(E)$-modules:
-	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHBpXyooTSkiXSxbMSwwLCJcXHBpXyooTikiXSxbMiwwLCJcXHBpXyooTSkiXSxbMCwxLCJcXHBpXyoocikiXSxbMSwyLCJcXGlvdGEiXV0=
-	\[\begin{tikzcd}
-		{\pi_*(M)} & {\pi_*(N)} & {\pi_*(M)}
-		\arrow["{\pi_*(r)}", from=1-1, to=1-2]
-		\arrow["\iota", from=1-2, to=1-3]
-	\end{tikzcd}\]
-	Now, by \autoref{pi_*_iso_when_N_retract_of_wedge_of_susps}, since $M=\bigoplus_i(E\otimes S^{|x_i|})$, we have that the map
-	\[\pi_*:\Hom_{E\text-\Mod}(M,M)\to\Hom_{\pi_*(E)\text-\Mod}(\pi_*(M),\pi_*(M))\]
-	is an isomorphism of abelian groups, so that the above idempotent is induced by some endomorphism $\ell:M\to M$ of $E$-module objects. Further note that by functoriality of $\pi_*$,
-	\[\pi_*(\ell\circ\ell)=\pi_*(\ell)\circ\pi_*(\ell)=\pi_*(\ell),\]
-	and again since $\pi_*$ is an isomorphism here, we have that $\ell\circ\ell=\ell$, so that $\ell$ is an idempotent in $\cSH$. By \autoref{idempotent_splits_in_tri_cat_with_countable_coproducts}, every idempotent in $\cSH$ splits, meaning $\ell$ factors in $\cSH$ as
-	\[\ell:M\xr{r'}X\xr{\iota'}M\]
-	with $r'\circ \iota'=\id_X$. Since $X$ is a retract of an $E$-module object, and the corresponding idempotent is an $E$-module homomorphism, it follows purely formally that $X$ may be canonically viewed as an $E$-module object, and that $r':M\to X$ and $\iota':X\to M$ are homomorphisms of $E$-module objects (see \autoref{retract_of_module_whose_idempotent_is_module_homomorphism_is_module} for details). Note that since $E$ and each $S^{|x_i|}$ are cellular, $E\otimes S^{|x_i|}$ is cellular for all $i\in I$ (by \autoref{cellular_closed_under_tensor}), so that $M=\bigoplus_i(E\otimes S^{|x_i|})$ is cellular, as by definition an arbitrary coproduct of cellular objects is cellular. Thus by \autoref{cellular_idempotent_splits_cellularly}, $X$ is cellular as well. Now consider the following commutative diagram
-	% https://q.uiver.app/#q=WzAsOSxbMywxLCJcXHBpXyooTSkiXSxbMiwyLCJcXHBpXyooWCkiXSxbNCwwLCJcXHBpXyooTikiXSxbNCwyLCJcXHBpXyooWCkiXSxbNSwxLCJcXHBpXyooTSkiXSxbNiwxLCJcXHBpXyooWCkiXSxbMCwxLCJcXHBpXyooTikiXSxbMSwxLCJcXHBpXyooTSkiXSxbMiwwLCJcXHBpXyooTikiXSxbMSwwLCJcXHBpXyooXFxpb3RhJykiLDJdLFswLDIsIlxccGlfKihyKSJdLFswLDMsIlxccGlfKihyJykiLDJdLFszLDQsIlxccGlfKihcXGlvdGEnKSIsMl0sWzIsNCwiXFxpb3RhIl0sWzQsNSwiXFxwaV8qKHInKSJdLFszLDUsIiIsMSx7ImN1cnZlIjozLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDcsIlxcaW90YSIsMl0sWzcsMSwiXFxwaV8qKHInKSIsMl0sWzcsOCwiXFxwaV8qKHIpIl0sWzgsMCwiXFxpb3RhIl0sWzYsOCwiIiwwLHsiY3VydmUiOi0zLCJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNywwLCJcXHBpXyooXFxlbGwpIl0sWzAsNCwiXFxwaV8qKFxcZWxsKSJdXQ==
-	\[\begin{tikzcd}
-		&& {\pi_*(N)} && {\pi_*(N)} \\
-		{\pi_*(N)} & {\pi_*(M)} && {\pi_*(M)} && {\pi_*(M)} & {\pi_*(X)} \\
-		&& {\pi_*(X)} && {\pi_*(X)}
-		\arrow["{\pi_*(\iota')}"', from=3-3, to=2-4]
-		\arrow["{\pi_*(r)}", from=2-4, to=1-5]
-		\arrow["{\pi_*(r')}"', from=2-4, to=3-5]
-		\arrow["{\pi_*(\iota')}"', from=3-5, to=2-6]
-		\arrow["\iota", from=1-5, to=2-6]
-		\arrow["{\pi_*(r')}", from=2-6, to=2-7]
-		\arrow[curve={height=18pt}, Rightarrow, no head, from=3-5, to=2-7]
-		\arrow["\iota"', from=2-1, to=2-2]
-		\arrow["{\pi_*(r')}"', from=2-2, to=3-3]
-		\arrow["{\pi_*(r)}", from=2-2, to=1-3]
-		\arrow["\iota", from=1-3, to=2-4]
-		\arrow[curve={height=-18pt}, Rightarrow, no head, from=2-1, to=1-3]
-		\arrow[Rightarrow, no head, from=3-3, to=3-5]
-		\arrow[Rightarrow, no head, from=1-3, to=1-5]
-		\arrow["{\pi_*(\ell)}", from=2-2, to=2-4]
-		\arrow["{\pi_*(\ell)}", from=2-4, to=2-6]
-	\end{tikzcd}\]
-	From this diagram we read off that the middle diagonal composition
-	\[\pi_*(X)\xr{\pi_*(\iota')}\pi_*(M)\xr{\pi_*(r)}\pi_*(N)\]
-	is an isomorphism with inverse $\pi_*(r')\circ\iota$. Now, since $X$ and $N$ are cellular, and $\pi_*(r\circ\iota')$ is an isomorphism, by \autoref{cellular_closed_under_iso} we have that $r\circ\iota'$ is an isomorphism, say with inverse $p$. Thus we have a commuting diagram
-	% https://q.uiver.app/#q=WzAsNCxbMiwwLCJNIl0sWzQsMCwiTiJdLFswLDAsIk4iXSxbMSwxLCJYIl0sWzAsMSwiciIsMl0sWzIsMCwiXFxpb3RhJ1xcY2lyYyBwIiwyXSxbMiwzLCJwIiwyXSxbMywwLCJcXGlvdGEnIiwyXSxbMiwxLCIiLDAseyJjdXJ2ZSI6LTQsImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
-	\[\begin{tikzcd}
-		N && M && N \\
-		& X
-		\arrow["r"', from=1-3, to=1-5]
-		\arrow["{\iota'\circ p}"', from=1-1, to=1-3]
-		\arrow["p"', from=1-1, to=2-2]
-		\arrow["{\iota'}"', from=2-2, to=1-3]
-		\arrow[curve={height=-24pt}, Rightarrow, no head, from=1-1, to=1-5]
-	\end{tikzcd}\]
-	and the middle row exhibits $N$ as a retract of $M=\bigoplus_i(E\otimes S^{|x_i|})$, as desired. It remains to show this is a retract in $E\text-\Mod$, i.e., that $r$ and $\iota'\circ p$ are homomorphisms of $E$-module objects. Above we constructed $r$ to be a homomorphism of $E$-modules. We also know that $X$ is an $E$-module object and that $\iota'$ is an $E$-module homomorphism. Thus, it remains to show that $p:N\to X$ is an $E$-module homomorphism. But we know that $p$ is the inverse of $r\circ\iota'$ in $\cSH$, and we know $r$ and $\iota'$ are morphisms in $E\text-\Mod$, so that $p$ is the inverse of $r\circ\iota'$ in $E\text-\Mod$, meaning $p$ is indeed an $E$-module homomorphism as desired.
 \end{proof}
 
 \end{document}
