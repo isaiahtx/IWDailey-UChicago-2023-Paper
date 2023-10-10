@@ -47,7 +47,7 @@ In light of this remark, when working in a tensor triangulated category with sub
 
 In \cite{Dugger_2014}, Dugger studied the more general notion of an additive symmetric monoidal category $(\cC,\otimes,S)$ equipped with an abelian group $A$ and a group homomorphism $h:A\to\Pic(\cC)$. In particular, Dugger explored whether or not given a chosen representative $S^a$ in each isomorphism class $h(a)$ we can find such a coherent family of isomorphisms $\phi_{a,b}:S^{a+b}\xr\cong S^a\otimes S^b$ for $a,b\in A$. The answer, given in Section 7 of Dugger's paper, is that we can always find such a coherent family, although it is certainly not unique, nor is there a canonical choice for such a family (see Dugger's Proposition 7.1). Furthermore, given such a coherent family of isomorphisms, if we define $\pi_*(S)$ to be the $A$-graded abelian group $\pi_*(S):=\bigoplus_{a\in A}[S^a,S]$, we may endow it with an associative and unital graded product sending $x:S^a\to S$ and $y:S^b\to S$ to the composition
 \[S^{a+b}\xr{\phi_{a,b}}S^a\otimes S^b\xr{x\otimes y}S\otimes S\xr{\cong}S.\]
-The bad news is that this product is very much dependent on which choice of coherent family of isomorphism we chose, and in fact, different coherent families may give rise to strictly non-isomorphic ring structures on $\pi_*(S)$. In particular, the graded commutativity properties of $\pi_*(S)$ are directly controlled by the choice of coherent family.
+The bad news is that this product is very much dependent on which choice of coherent family odf isomorphism we chose, and in fact, different coherent families may give rise to strictly non-isomorphic ring structures on $\pi_*(S)$. 
 
 The upshot of this discussion is that given a tensor triangulated category, in order to give it a sub-Picard grading, all one needs to do is give the information specified in the first two bullet points in \autoref{sub_Picard_grading_defn}, and then one gets a coherent family of isomorphisms for free, although they must make a choice between several different and non-canonical choices of such families. Furthermore, as we will see in \Cref{section:monoid_in_SH}, this ring structure on $\pi_*(S)$ directly controls essentially all of the additional algebraic structure we can place on hom-groups of objects in $\cSH$, so one must be very careful to choose the ``correct'' family. 
 
@@ -67,9 +67,23 @@ Now that we have this technical definition, we can define the category.
 	Fix a monoidal closed tensor triangulated category $(\cSH,\otimes,S,\Sigma,e,\cD)$ with arbitrary (set-indexed) (co)products and sub-Picard grading $(A,\1,h,\{S^a\},\{\phi_{a,b}\})$. Further assume that the object $S^a$ is a compact object (\autoref{defn_compact}) for each $a\in A$. Finally, we suppose an isomorphism $\nu:\Sigma S\xr\cong S^\1$ has been fixed once and for all.
 \end{convention}
 
+The motivating examples of such a category are the following:\begin{itemize}
+	\item The classical stable homotopy category $\hoSp$, which is equipped with an isomorphism
+	\[h:\bZ\xr\cong\Pic(\hoSp)\]
+	sending $n\in\bZ$ to the $n$-sphere spectrum $S^n$.
+	\item The motivic stable homotopy category $\SH\scS$ over a base scheme $\scS$, which is equipped with a homomorphism
+	\[h:\bZ^2\to\Pic(\SH\scS)\]
+	sending a pair $(p,q)$ to the motivic $(p,q)$-sphere spectrum $S^{p,q}$.
+	\item The equivariant stable homotopy category $\mbf{ho}G\mbf{Sp}$ associated to a group $G$, which is equipped with a homomorphism
+	\[h:RO(G)\to\Pic(\mbf{ho}G\mbf{Sp})\]
+	taking a representation $V$ to the representation sphere $S^V$.
+\end{itemize}
+
+For a treatment of the classical stable homotopy category and its properties, we refer the reader to the nLab page \cite{nlab:introduction_to_stable_homotopy_theory}, which gives the construction in explicit detail. For the motivic stable homotopy category, we refer the reader to the wonderful treatment given in Section 2 of the paper \cite{WilOst} by Wilson and {\O}stv{\ae}r. There the construction and properties are only reviewed, and no proofs are given, but at the beginning of the section a comprehensive list of resources is given.
+
 For our purposes, we will not actually need the full power of a closed monoidal structure on $\cSH$ --- all we will need is that the monoidal product $-\otimes-$ preserves arbitrary (co)limits in each argument. In practice though, and for all the examples we will discuss here, any such category will usually be monoidal closed, so we keep this assumption.
 
-Now, we would like to establish notational conventions in $\cSH$, which will reinforce our notion of thinking of $\cSH$ as ``a stable homotopy category''. Given
+In order to reinforce our idea of $\cSH$ as ``a stable homotopy category'', we would like to establish some relevant notational conventions in $\cSH$. Given
 %\[X_1\otimes(X_2\otimes\cdots(X_{n-1}\otimes X_n)).\]
 %In particular, given 
 an object $X$ and a natural number $n>0$, we write
