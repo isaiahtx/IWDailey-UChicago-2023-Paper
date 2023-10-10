@@ -1,66 +1,149 @@
-\documentclass{amsart}
-\usepackage[margin=1.3333333in]{geometry}
 
-\newcommand{\ol}{\overline}
-\newcommand{\bDelta}{\mathbf{\Delta}}
-\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
-\newcommand{\wh}{\widehat}
+\documentclass[openany, amssymb]{amsart}
+\usepackage{mathrsfs,comment}
+\usepackage[margin=1.3333333333in]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[normalem]{ulem}
+\usepackage{url}
+\usepackage[all,arc,2cell]{xy}
+\usepackage{enumerate}
 
-%% scale a tikz diagram with [sep=small]
+%%%% ADDED
 
-\setlength{\marginparwidth}{1in}
-
-\DeclareMathOperator*{\Rlim}{Rlim}
-
-%% indent subsections in table of contents
-\makeatletter 
-%%\def\l@subsection{\@tocline{2}{0pt}{1pc}{5pc}{}} 
-\def\l@subsection{\@tocline{2}{0pt}{2pc}{6pc}{}} \makeatother
-
-\usepackage{todonotes}
-
-%%hyperref for clickable links
-\usepackage{hyperref}
-
-\usepackage[nameinlink]{cleveref}
-
-%%%thmtools to correct autoref
 \usepackage{thmtools}
-
-%%% lipsum for dummy text
-\usepackage{lipsum}
-
-%% AMS packages for math and theorems
 \usepackage{amsmath, amsthm, amssymb}
-
-%%% tikz packages for drawing and commutative diagrams
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{todonotes}
 \usepackage{tikz-3dplot}
 \usepackage{quiver}
-
-%%%% euscript for better calligraphic characters in math mode
 \usepackage{eucal}[mathcal]
-\usepackage{mathrsfs}
-
-%%%% enumitem package for better list environments
 \usepackage{enumitem}
-
 \usepackage{subfiles}
-
-%%% Paragraph spacing
-
-% Paragraph spacing
-
-\usepackage{parskip}
-
-\setlength{\parskip}{0.5em}
-\setlength{\parindent}{1.5em}
-
-%% comment these lines if you do not want to use bibtex for bibliography management.
 \usepackage[backend=biber]{biblatex}
 \addbibresource{refs.bib}
+%\usepackage{parskip}
 
+%%%
+
+%%% hyperref stuff is taken from AGT style file
+\usepackage{hyperref}  
+\hypersetup{%
+	colorlinks,%
+	linkcolor={red!60!black},%
+	citecolor={red!60!black},%
+	urlcolor={red!60!black}%
+}
+  
+%\let\fullref\autoref
+%%
+%%  \autoref is very crude.  It uses counters to distinguish environments
+%%  so that if say {lemma} uses the {theorem} counter, then autrorefs
+%%  which should come out Lemma X.Y in fact come out Theorem X.Y.  To
+%%  correct this give each its own counter eg:
+%%                 \newtheorem{theorem}{Theorem}[section]
+%%                 \newtheorem{lemma}{Lemma}[section]
+%%  and then equate the counters by commands like:
+%%                 \makeatletter
+%%                   \let\c@lemma\c@theorem
+%%                  \makeatother
+%%
+%%  To work correctly the environment name must have a corrresponding 
+%%  \XXXautorefname defined.  The following command does the job:
+%%
+%\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+%%
+%%  Some standard autorefnames.  If the environment name for an autoref 
+%%  you need is not listed below, add a similar line to your TeX file:
+%%  
+%%\makeautorefname{equation}{Equation}%
+%\def\equationautorefname~#1\null{(#1)\null}
+%\makeautorefname{footnote}{footnote}%
+%\makeautorefname{item}{item}%
+%\makeautorefname{figure}{Figure}%
+%\makeautorefname{table}{Table}%
+%\makeautorefname{part}{Part}%
+%\makeautorefname{appendix}{Appendix}%
+%\makeautorefname{chapter}{Chapter}%
+%\makeautorefname{section}{Section}%
+%\makeautorefname{subsection}{Section}%
+%\makeautorefname{subsubsection}{Section}%
+%\makeautorefname{theorem}{Theorem}%
+%\makeautorefname{thm}{Theorem}%
+%\makeautorefname{cor}{Corollary}%
+%\makeautorefname{lem}{Lemma}%
+%\makeautorefname{prop}{Proposition}%
+%\makeautorefname{pro}{Property}
+%\makeautorefname{conj}{Conjecture}%
+%\makeautorefname{defn}{Definition}%
+%\makeautorefname{notn}{Notation}
+%\makeautorefname{notns}{Notations}
+%\makeautorefname{rem}{Remark}%
+%\makeautorefname{quest}{Question}%
+%\makeautorefname{exmp}{Example}%
+%\makeautorefname{ax}{Axiom}%
+%\makeautorefname{claim}{Claim}%
+%\makeautorefname{ass}{Assumption}%
+%\makeautorefname{asss}{Assumptions}%
+%\makeautorefname{con}{Construction}%
+%\makeautorefname{prob}{Problem}%
+%\makeautorefname{warn}{Warning}%
+%\makeautorefname{obs}{Observation}%
+%\makeautorefname{conv}{Convention}%
+%
+%
+%%
+%%                  *** End of hyperref stuff ***
+%
+%%theoremstyle{plain} --- default
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prop}{Proposition}[section]
+%\newtheorem{lem}{Lemma}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{conj}{Conjecture}[section]
+%%\newtheorem{ass}{Assumption}[section]
+%%\newtheorem{asses}{Assumptions}[section]
+%
+%\theoremstyle{definition}
+%\newtheorem{defn}{Definition}[section]
+%\newtheorem{ass}{Assumption}[section]
+%\newtheorem{asss}{Assumptions}[section]
+%\newtheorem{ax}{Axiom}[section]
+%\newtheorem{con}{Construction}[section]
+%\newtheorem{exmp}{Example}[section]
+%\newtheorem{notn}{Notation}[section]
+%\newtheorem{notns}{Notations}[section]
+%\newtheorem{pro}{Property}[section]
+%\newtheorem{quest}{Question}[section]
+%\newtheorem{rem}{Remark}[section]
+%\newtheorem{warn}{Warning}[section]
+%\newtheorem{sch}{Scholium}[section]
+%\newtheorem{obs}{Observation}[section]
+%\newtheorem{conv}{Convention}[section]
+%
+%%%%% hack to get fullref working correctly
+%\makeatletter
+%\let\c@obs=\c@thm
+%\let\c@cor=\c@thm
+%\let\c@prop=\c@thm
+%\let\c@lem=\c@thm
+%\let\c@prob=\c@thm
+%\let\c@con=\c@thm
+%\let\c@conj=\c@thm
+%\let\c@defn=\c@thm
+%\let\c@notn=\c@thm
+%\let\c@notns=\c@thm
+%\let\c@exmp=\c@thm
+%\let\c@ax=\c@thm
+%\let\c@pro=\c@thm
+%\let\c@ass=\c@thm
+%\let\c@warn=\c@thm
+%\let\c@rem=\c@thm
+%\let\c@sch=\c@thm
+%\let\c@equation\c@thm
+%\numberwithin{equation}{section}
+%\makeatother
 
 %% theorems in usual style --- italicised text, bold header
 \theoremstyle{plain}
@@ -85,9 +168,23 @@
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{example}[theorem]{Example}
 
+\usepackage[nameinlink]{cleveref}
+
 \tikzcdset{scale cd/.style={every label/.append style={scale=#1},
     cells={nodes={scale=#1}}}}
+\newcommand{\ol}{\overline}
+\newcommand{\bDelta}{\mathbf{\Delta}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\wh}{\widehat}
 
+%% scale a tikz diagram with [sep=small]
+
+\DeclareMathOperator*{\Rlim}{Rlim}
+
+%% indent subsections in table of contents
+\makeatletter 
+%%\def\l@subsection{\@tocline{2}{0pt}{1pc}{5pc}{}} 
+\def\l@subsection{\@tocline{2}{0pt}{2pc}{6pc}{}} \makeatother
 \DeclareMathOperator{\Ch}{Ch}
 \DeclareMathOperator{\Pic}{Pic}
 \DeclareMathOperator{\Spec}{Spec}
@@ -220,29 +317,6 @@
   \addtocounter{\@enumctr}{#1}%
 }
 \makeatother
-
-%%% hyperlinks/citations in document with prettier links
-\hypersetup{%
-	colorlinks,%
-	linkcolor={red!60!black},%
-	citecolor={red!60!black},%
-	urlcolor={red!60!black}%
-}
-
-%%% Shortened operators
-\def\on{\operatorname}
-\def\scr{\EuScript}
-\def\bb{\mathbb}
-\def\sf{\mathsf}
-\def\cal{\mathcal}
-
-%% blackboard bolds
-%\def\RR{\bb{R}}
-%\def\CC{\bb{C}}
-%\def\ZZ{\bb{Z}}
-%\def\NN{\bb{N}}
-%\def\QQ{\bb{Q}}
-
 \newcommand{\Cof}{\mathcal C\mathrm{of}}
 \newcommand{\Fib}{\mathcal F\mathrm{ib}}
 \newcommand{\W}{\mathcal W}
@@ -250,44 +324,32 @@
 \newcommand{\proj}{\text-\mathrm{proj}}
 \newcommand{\fib}{\text-\mathrm{fib}}
 \newcommand{\cell}{\text-\mathrm{cell}}
-\newcommand{\1}{\mbf{1}}
+\renewcommand{\1}{\mbf{1}}
 \newcommand{\cof}{\text-\mathrm{cof}}
 \DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator*{\hocolim}{hocolim}
 \DeclareMathOperator*{\holim}{holim}
 \DeclareMathOperator{\Mor}{Mor}
 
-%%% so walker can write comments in a different color.
-\usepackage{xcolor}
+%\bibliographystyle{plain}
 
-\newcommand{\shorten}[1]{{\color{purple} #1}}
-\newcommand{\remove}[1]{{\color{red} #1}}
-
-\newcommand{\ww}[1]{{\color{blue} Walker: #1}}
-\newcommand{\ii}[1]{{\color{teal} Isaiah Question: #1}}
-
-%%% parentheses will denote suggested text
-\newcommand{\sugs}[1]{{\color{blue} Suggested rewrite: 
-
-#1}}
-
-%%% to strike through text without deleting it
-\usepackage[normalem]{ulem}
-
-\title{An axiomatic approach to the Adams spectral sequence}
+%--------Meta Data: Fill in your info------
+\title{An axiomatic approach to the Adams spectral seqeunce}
 
 \author{Isaiah Dailey}
+
 \date{\today}
 
 \begin{document}
-\maketitle
 
 \begin{abstract}
-  We develop an axiomatizatic generalization of the classical, motivic, and equivariant stable homotopy categories. In this general setting we: explore graded anticommutativity properties of stable homotopy rings,  develop a notion of cellularity, prove an analogue of the K\"unneth theorem and the universal coefficient theorem, and construct a version of the dual $E$-Steenrod algebra and formulate the precise in which sense it is a graded anticommutative Hopf algebroid. All of our work will culminate in a construction of a (homological) $E$-Adams spectral sequence in this setting, and we are able to characterize its $E_2$ page in terms of comodules over the dual $E$-Steenrod algebra. 
+  We develop an axiomatizatic generalization of the classical, motivic, and equivariant stable homotopy categories. In this general setting we: explore graded anticommutativity properties of stable homotopy rings,  develop a notion of cellularity, prove an analogue of the K\"unneth theorem and the universal coefficient theorem, and construct a version of the dual $E$-Steenrod algebra and formulate the precise in which sense it is a graded anticommutative Hopf algebroid. All of our work will culminate in the construction of a (homological) $E$-Adams spectral sequence, and we characterize its $E_2$ page in terms of $\Ext$ of comodules over the dual $E$-Steenrod algebra.
 \end{abstract}
 
-%\setcounter{tocdepth}{0}
+\maketitle
+
 \tableofcontents
+
 
 \section{Introduction}\label{section:intro}
 
@@ -317,18 +379,6 @@
 
 \subfile{subfiles/adams.tex}
 
-%\section{Applications}
-%
-%\subfile{subfiles/applicatons.tex}\label{section:applications}
-
-%\section{The classical Adams spectral sequence}
-%
-%\subfile{subfiles/cass.tex}\label{section:CASS}
-%
-%\section{The motivic Adams spectral sequence}
-%
-%\subfile{subfiles/mass.tex}\label{section:MASS}
-
 \section{Future directions}\label{section:future}
 
 \subfile{subfiles/future.tex}
@@ -355,10 +405,7 @@
 
 \subfile{subfiles/hopf.tex}
 
-%\section{Spectral sequences}\label{appendix:spectral_sequences}
-%
-%\subfile{subfiles/spectralseqs.tex}
-
 \printbibliography
 
 \end{document}
+

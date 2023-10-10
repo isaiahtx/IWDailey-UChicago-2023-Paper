@@ -87,7 +87,7 @@ Now, by applying ${[X,-]}_*$ to the canonical $E$-Adams resolution of $Y$, we ge
 		\arrow["{k_1}"{pos=0.3}, dashed, from=2-4, to=1-3]
 		\arrow["{k_0}"{pos=0.3}, dashed, from=2-5, to=1-4]
 	\end{tikzcd}\]
-	We can extend this diagram to the right by setting $Y_s=Y$, $W_s=0$, and $i_s=\id_Y$ for $s<0$. Then we may apply the functor ${[X,-]}_\ast$, and by \autoref{X,Y*_LES_compact}, we obtain the following $A$-graded unrolled exact couple (\autoref{unrolled_exact_couple}):
+	We can extend this diagram to the right by setting $Y_s=Y$, $W_s=0$, and $i_s=\id_Y$ for $s<0$. Then we may apply the functor ${[X,-]}_\ast$, and by \autoref{X,Y*_LES_compact}, we obtain the following $A$-graded unrolled exact couple:
 	% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFsxLDAsIntbWCxZX3tzKzJ9XX1fKiJdLFsyLDAsIntbWCxZX3tzKzF9XX1fKiJdLFszLDAsIntbWCxZX3tzfV19XyoiXSxbNCwwLCJ7W1gsWV97cy0xfV19XyoiXSxbNSwwLCJcXGNkb3RzIl0sWzIsMSwie1tYLFdfe3MrMX1dfV8qIl0sWzEsMSwie1tYLFdfe3MrMn1dfV8qIl0sWzQsMSwie1tYLFdfe3MtMX1dfV8qIl0sWzMsMSwie1tYLFdfe3N9XX1fKiJdLFswLDFdLFsxLDIsImlfe3MrMX0iXSxbMiwzLCJpX3MiXSxbMyw0LCJpX3tzLTF9Il0sWzQsNV0sWzIsNiwial97cysxfSJdLFs2LDEsIlxccGFydGlhbF97cysxfSIsMV0sWzEsNywial97cysyfSJdLFs0LDgsImpfe3MtMX0iXSxbOCwzLCJcXHBhcnRpYWxfe3MtMX0iLDFdLFszLDksImpfe3N9Il0sWzksMiwiXFxwYXJ0aWFsX3MiLDFdXQ==
 	\[\begin{tikzcd}
 		\cdots & {{[X,Y_{s+2}]}_*} & {{[X,Y_{s+1}]}_*} & {{[X,Y_{s}]}_*} & {{[X,Y_{s-1}]}_*} & \cdots \\
@@ -455,7 +455,7 @@ Ideally, the $E$-Adams spectral sequence for ${[X,Y]}_*$ would give us informati
 		\arrow["p"{description}, from=2-5, to=1-4]
 		\arrow["r", dashed, from=1-3, to=2-3]
 	\end{tikzcd}\]
-	where here the dashed arrows are really (degree $-\1$) maps $Y/Y_s\to\Sigma W_s$. The fact that this is a tower under $Y$ follows from diagram (\ref{gross_octa_Y's}), which tells us that $Y\xr b Y/Y_s$ factors as $Y\xr bY/Y_{s+1}\xr qY/Y_s$. We define the \emph{$E$-nilpotent completion of $Y$} to be the object $Y^\wedge_E$ (defined up to non-canonical isomorphism) obtained as the homotopy limit of this tower (\autoref{homotopy_limit_defn}):
+	where here the dashed arrows are really (degree $-\1$) maps $Y/Y_s\to\Sigma W_s$. The fact that this is a tower under $Y$ follows from diagram (\ref{gross_octa_diagram_Y's}), which tells us that $Y\xr b Y/Y_s$ factors as $Y\xr bY/Y_{s+1}\xr qY/Y_s$. We define the \emph{$E$-nilpotent completion of $Y$} to be the object $Y^\wedge_E$ (defined up to non-canonical isomorphism) obtained as the homotopy limit of this tower (\autoref{homotopy_limit_defn}):
 	\[Y^\wedge_E:=\holim_sY_s/Y.\]
 	Since $Y^\wedge_E$ is the homotopy limit of a tower under $Y$, it comes equipped with a canonical map $Y\to Y^\wedge_E$.
 \end{definition}
