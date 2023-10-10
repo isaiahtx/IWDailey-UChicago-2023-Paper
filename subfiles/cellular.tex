@@ -15,6 +15,8 @@ One very important class of objects in $\cSH$ are the \emph{cellular} objects. I
 	We write $\cSH\text-\Cell$ to denote the full subcategory of $\cSH$ on the cellular objects.
 \end{definition}
 
+This definition is adapted from that given on pg.\ 21 in the paper \cite{DugIsak} by Dugger and Isaksen. By the same reasoning given therewithin, in the motivic stable homotopy category, our definition is equivalent to the original definition of cellularity given in \cite{DugIsakCellular}. More generally, given an object $E$ in $\cSH$, Dugger and Isaksen consider the class of \emph{$E$-cellular objects} in $\cSH$. This is defined to be the smallest class of objects in $\cSH$ satisfying the above three conditions, and in addition the requirement that if $X$ is $E$-cellular then so is $E\otimes X$. Note that by \autoref{cellular_closed_under_tensor}, the class of cellular objects in $\cSH$ is equivalently the class of $S$-cellular objects in $\cSH$. For our purposes, we will only be concerned with standard cellular objects, so we will not pursue any of the theory of $E$-cellular objects in $\cSH$ for a general $E$. For an extensive review of cellularity in the motivic stable homotopy category, as well as a treatment of its construction, we refer the reader to the delightful paper \cite{hlavinka_motivic} written by Joseph Hlavinka for the 2021 UChicago mathematics REU.
+
 We devote the rest of the section to proving some important facts about cellular objects. These should be familiar to anyone acquainted with the usual notion of cellular spaces (CW complexes).
 
 \begin{lemma}\label{cellular_closed_under_iso}
@@ -38,6 +40,13 @@ We devote the rest of the section to proving some important facts about cellular
 		\arrow[Rightarrow, no head, from=1-3, to=2-3]
 	\end{tikzcd}\]
 	The bottom row is distinguished by axiom TR1 for a triangulated category. Hence since $X$ is cellular, $0$ is also cellular, since the class of cellular objects satisfies two-of-three for distinguished triangles. Furthermore, since the vertical arrows are all isomorphisms, the top row is distinguished as well, by axiom TR0. Thus again by two-of-three, since $X$ and $0$ are cellular, so is $Y$, as desired.
+\end{proof}
+
+\begin{example}
+	Every object in the classical stable homotopy category is cellular. 
+\end{example}
+\begin{proof}
+	By \cite[Proposition 2.16]{nlab:introduction_to_stable_homotopy_theory_--_1-1}, every object in $\hoSp$ is isomorphic to a CW spectrum, which are spectra that can be constructed by gluing copies of spheres together, and are thus clearly cellular (since the cofiber of $f:X\to Y$ in $\hoSp$ is precisely the spectrum obtained by ``gluing'' a disk to $Y$ along $f(X)$).
 \end{proof}
 
 \begin{lemma}\label{cellular_closed_under_tensor}

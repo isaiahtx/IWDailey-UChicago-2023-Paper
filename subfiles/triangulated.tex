@@ -3,95 +3,7 @@
 
 \subsection{Triangulated categories and their basic properties}
 
-\begin{definition}\label{triangulated_defn}
-    A \emph{triangulated category} $(\cC,\Sigma,\cD)$ is the data of:\begin{enumerate}
-        \item An additive category $\cC$.
-        \item An additive auto-equivalence $\Sigma:\cC\to\cC$ called the \emph{shift functor}.
-        %\item An adjoint pair of additive functors $\Sigma,\Omega:\cC\to\cC$ such that the unit $\eta:\Id_\cC\Rightarrow\Omega\Sigma$ and counit $\vare:\Sigma\Omega\Rightarrow\Id_\cC$ are natural isomorphisms, i.e., the tuple $(\Sigma,\Omega,\eta,\vare)$ forms an adjoint autoequivalence of $\cC$. Usually $\Sigma$ is called the \emph{shift functor}.
-        \item A collection $\cD$ of \emph{distinguished} triangles in $\cC$, where a \emph{triangle} is a sequence of arrows of the form
-        \[X\to Y\to Z\to\Sigma X.\]
-        Distinguished triangles are also sometimes called \emph{cofiber sequences} or \emph{fiber sequences}.
-    \end{enumerate}
-    These data must satisfy the following axioms:
-    \begin{enumerate}[label={\textbf{TR\arabic*}}]
-        \setcounter{enumi}{-1}
-        \item Given a commutative diagram
-        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYJyJdLFsxLDEsIlknIl0sWzIsMSwiWiciXSxbMywxLCJcXFNpZ21hIFgnIl0sWzAsMV0sWzEsMl0sWzIsM10sWzAsNCwiXFxjb25nIiwyXSxbNCw1XSxbNSw2XSxbNiw3XSxbMSw1LCJcXGNvbmciLDJdLFsyLDYsIlxcY29uZyIsMl0sWzMsNywiXFxjb25nIiwyXV0=
-        \[\begin{tikzcd}
-            X & Y & Z & {\Sigma X} \\
-            {X'} & {Y'} & {Z'} & {\Sigma X'}
-            \arrow[from=1-1, to=1-2]
-            \arrow[from=1-2, to=1-3]
-            \arrow[from=1-3, to=1-4]
-            \arrow["\cong"', from=1-1, to=2-1]
-            \arrow[from=2-1, to=2-2]
-            \arrow[from=2-2, to=2-3]
-            \arrow[from=2-3, to=2-4]
-            \arrow["\cong"', from=1-2, to=2-2]
-            \arrow["\cong"', from=1-3, to=2-3]
-            \arrow["\cong"', from=1-4, to=2-4]
-        \end{tikzcd}\]
-        where the vertical arrows are isomorphisms, if the top row is distinguished then so is the bottom.
-        \item For any object $X$ in $\cC$, the diagram
-        \[X\xrightarrow{\id_X}X\to0\to\Sigma X\]
-        is a distinguished triangle.
-        \item For all $f:X\to Y$ there exists an object $C_f$ (also sometimes denoted $Y/X$) called the \emph{cofiber of $f$} and a distinguished triangle
-        \[X\xrightarrow fY\to C_f\to\Sigma X.\]
-        \item Given a solid diagram
-        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJcXFNpZ21hIFgiXSxbMCwxLCJYJyJdLFsxLDEsIlknIl0sWzIsMSwiWiciXSxbMywxLCJcXFNpZ21hIFgnIl0sWzAsMV0sWzEsMl0sWzIsM10sWzAsNCwiZiIsMl0sWzQsNV0sWzUsNl0sWzYsN10sWzEsNV0sWzIsNiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNywiXFxTaWdtYSBmIl1d
-        \[\begin{tikzcd}
-            X & Y & Z & {\Sigma X} \\
-            {X'} & {Y'} & {Z'} & {\Sigma X'}
-            \arrow[from=1-1, to=1-2]
-            \arrow[from=1-2, to=1-3]
-            \arrow[from=1-3, to=1-4]
-            \arrow["f"', from=1-1, to=2-1]
-            \arrow[from=2-1, to=2-2]
-            \arrow[from=2-2, to=2-3]
-            \arrow[from=2-3, to=2-4]
-            \arrow[from=1-2, to=2-2]
-            \arrow[dashed, from=1-3, to=2-3]
-            \arrow["{\Sigma f}", from=1-4, to=2-4]
-        \end{tikzcd}\]
-        such that the leftmost square commmutes and both rows are distinguished, there exists a dashed arrow $Z\to Z'$ which makes the remaining two squares commute.
-        \item A triangle
-        \[X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X\]
-        is distinguished if and only if
-        \[Y\xrightarrow gZ\xrightarrow h\Sigma X\xrightarrow{-\Sigma f}\Sigma Y\]
-        is distinguished.
-        \item (Octahedral axiom) Given three distinguished triangles
-        \begin{gather*}
-            X\xrightarrow fY\xrightarrow h Y/X\to\Sigma X \\
-            Y\xrightarrow gZ\xrightarrow k Z/Y\to\Sigma Y \\
-            X\xrightarrow{g\circ f}Z\xrightarrow lZ/X\to\Sigma X
-        \end{gather*}
-        there exists a distinguished triangle
-        \[Y/X\xrightarrow uZ/X\xrightarrow vZ/Y\xrightarrow w\Sigma(Y/X)\]
-        such that the following diagram commutes
-        % https://q.uiver.app/#q=WzAsOSxbMCwwLCJYIl0sWzIsMCwiWiJdLFs0LDAsIlovWSJdLFs2LDAsIlxcU2lnbWEoWS9YKSJdLFsxLDEsIlkiXSxbMywxLCJaL1giXSxbNSwxLCJcXFNpZ21hIFkiXSxbMiwyLCJZL1giXSxbNCwyLCJcXFNpZ21hIFgiXSxbMCwxLCJnXFxjaXJjIGYiXSxbMSwyLCJrIl0sWzIsMywidyJdLFswLDQsImYiLDJdLFs0LDcsImgiLDJdLFs3LDhdLFs4LDYsIlxcU2lnbWEgZiIsMl0sWzYsMywiXFxTaWdtYSBoIiwyXSxbMSw1LCJsIiwyXSxbNSwyLCJ2IiwyXSxbNyw1LCJ1IiwyXSxbNSw4XSxbNCwxLCJnIiwyXSxbMiw2XV0=
-        \[\begin{tikzcd}
-            X && Z && {Z/Y} && {\Sigma(Y/X)} \\
-            & Y && {Z/X} && {\Sigma Y} \\
-            && {Y/X} && {\Sigma X}
-            \arrow["{g\circ f}", from=1-1, to=1-3]
-            \arrow["k", from=1-3, to=1-5]
-            \arrow["w", from=1-5, to=1-7]
-            \arrow["f"', from=1-1, to=2-2]
-            \arrow["h"', from=2-2, to=3-3]
-            \arrow[from=3-3, to=3-5]
-            \arrow["{\Sigma f}"', from=3-5, to=2-6]
-            \arrow["{\Sigma h}"', from=2-6, to=1-7]
-            \arrow["l"', from=1-3, to=2-4]
-            \arrow["v"', from=2-4, to=1-5]
-            \arrow["u"', from=3-3, to=2-4]
-            \arrow[from=2-4, to=3-5]
-            \arrow["g"', from=2-2, to=1-3]
-            \arrow[from=1-5, to=2-6]
-        \end{tikzcd}\]
-    \end{enumerate}
-\end{definition}
-
-It turns out that the above definition is actually redundant; TR3 and TR4 follow from the remaining axioms (see Lemmas 2.2 and 2.4 in \cite{MayTri}). From now on, we fix a triangulated category $(\cC,\Sigma,\cD)$. We will denote the hom-group $\cC(X,Y)$ by $[X,Y]$. To start, recall the following definition:
+In this appendix, we fix a triangulated category $(\cC,\Sigma,\cD)$ (\autoref{triangulated_defn}). We will denote the hom-group $\cC(X,Y)$ by $[X,Y]$. To start, recall the following definition:
 
 \begin{definition}\label{defn_exact}
     A sequence
@@ -424,27 +336,9 @@ In this subsection, we will assume $\cC$ has countable products and coproducts.
 %    See~\cite[Proposition 1.6.8]{Neeman_2001}.
 %\end{proof}
 
-\subsection{Adjointly triangulated categories}
+\subsection{Adjointly triangulated categories}\label{subsection:adjointly_tri_cat}
 
-For our purposes, we will always be dealing with triangulated categories with a bit of extra structure, in the following sense:
-
-\begin{definition}\label{adjointly_triangulated_defn}
-    An \emph{adjointly triangulated category} $(\cC,\Omega,\Sigma,\eta,\vare,\cD)$ is the data of a triangulated category $(\cC,\Sigma,\cD)$ along with an inverse shift functor $\Omega:\cC\to\cC$ and natural isomorphisms $\eta:\Id_\cC\Rightarrow\Sigma\Omega$ and $\vare:\Omega\Sigma\Rightarrow\Id_\cC$ such that $(\Omega,\Sigma,\eta,\vare)$ forms an adjoint equivalence of $\cC$. In other words, $\eta$ and $\vare$ are natural isomorphisms which also are the unit and counit of an adjunction $\Omega\dashv\Sigma$, so they satisfy either of the following ``zig-zag identities'':
-    % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXE9tZWdhIl0sWzEsMCwiXFxPbWVnYVxcU2lnbWFcXE9tZWdhIl0sWzEsMSwiXFxPbWVnYSJdLFsyLDAsIlxcU2lnbWFcXE9tZWdhXFxTaWdtYSJdLFszLDAsIlxcU2lnbWEiXSxbMiwxLCJcXFNpZ21hIl0sWzAsMSwiXFxPbWVnYVxcZXRhIl0sWzEsMiwiXFx2YXJlcHNpbG9uXFxPbWVnYSJdLFs0LDMsIlxcZXRhXFxTaWdtYSIsMl0sWzMsNSwiXFxTaWdtYVxcdmFyZXBzaWxvbiIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-    \[\begin{tikzcd}
-        \Omega & \Omega\Sigma\Omega & \Sigma\Omega\Sigma & \Sigma \\
-        & \Omega & \Sigma
-        \arrow["\Omega\eta", from=1-1, to=1-2]
-        \arrow["\varepsilon\Omega", from=1-2, to=2-2]
-        \arrow["\eta\Sigma"', from=1-4, to=1-3]
-        \arrow["\Sigma\varepsilon"', from=1-3, to=2-3]
-        \arrow[Rightarrow, no head, from=1-4, to=2-3]
-        \arrow[Rightarrow, no head, from=1-1, to=2-2]
-    \end{tikzcd}\]
-    (Satisfying one implies the other is automatically satisfied, see \cite[Lemma 3.2]{nlab:adjoint_equivalence}).
-\end{definition}
-
-From now on, we will assume that $\cC$ is an \emph{adjointly} triangulated category with inverse shift $\Omega$, unit $\eta:\Id_\cC\Rightarrow\Sigma\Omega$, and counit $\vare:\Omega\Sigma\Rightarrow\Id_\cC$.
+From now on, we will assume that $\cC$ is an \emph{adjointly} triangulated category (\autoref{adjointly_triangulated_defn}) with inverse shift $\Omega$, unit $\eta:\Id_\cC\Rightarrow\Sigma\Omega$, and counit $\vare:\Omega\Sigma\Rightarrow\Id_\cC$.
 
 \begin{lemma}\label{shift_dt_left}
     Given a triangle
@@ -770,52 +664,8 @@ From now on, we will assume that $\cC$ is an \emph{adjointly} triangulated categ
 %\end{proof}
 
 \subsection{Tensor triangulated categories}
-Also important for our work is the concept of a \emph{tensor triangulated category}, that is, a triangulated symmetric monoidal category in which the triangulated structures are compatible, in the following sense:
 
-\begin{definition}\label{tentri}
-    A \textit{tensor triangulated category} is a triangulated symmetric monoidal category $(\cC,\otimes,S,\Sigma,\cD)$ such that:\begin{enumerate}[label=\textbf{TT\arabic*}]
-        \item For all objects $X$ and $Y$ in $\cC$, there are natural isomorphisms
-        \[e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong\Sigma(X\otimes Y).\]
-        \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ is an additive functor.
-        \item For each object $X$ in $\cC$, the functor $X\otimes(-)\cong(-)\otimes X$ preserves distinguished triangles, in that given a distinguished triangle/(co)fiber sequence
-        \[A\xrightarrow fB\xrightarrow gC\xrightarrow h\Sigma A,\]
-        then also
-        \[X\otimes A\xrightarrow{X\otimes f}X\otimes B\xrightarrow{X\otimes g}X\otimes C\xrightarrow{X\otimes' h}\Sigma(X\otimes A)\]
-        and
-        \[A\otimes X\xrightarrow{f\otimes X}B\otimes X\xrightarrow{g\otimes X}C\otimes X\xrightarrow{h\otimes' X}\Sigma(A\otimes X)\]
-        are distinguished triangles, where here we writing $X\otimes' h$ and $h\otimes' X$ to denote the compositions
-        \[X\otimes C\xrightarrow{X\otimes h}X\otimes \Sigma A\xrightarrow\tau\Sigma A\otimes X\xrightarrow{e_{A,X}}\Sigma(A\otimes X)\xrightarrow{\Sigma\tau}\Sigma(X\otimes A)\]
-        and
-        \[C\otimes X\xrightarrow{h\otimes X}\Sigma A\otimes X\xrightarrow{e_{A,X}}\Sigma(A\otimes X),\]
-        respectively.
-        \item Given objects $X$, $Y$, and $Z$ in $\cC$, the following diagram must commute:
-        % https://q.uiver.app/#q=WzAsNSxbMCwwLCIoXFxTaWdtYSBYXFxvdGltZXMgWSlcXG90aW1lcyBaIl0sWzEsMCwiXFxTaWdtYShYXFxvdGltZXMgWSlcXG90aW1lcyBaIl0sWzIsMCwiXFxTaWdtYSgoWFxcb3RpbWVzIFkpXFxvdGltZXMgWikiXSxbMiwxLCJcXFNpZ21hKFhcXG90aW1lcyhZXFxvdGltZXMgWikpIl0sWzAsMSwiXFxTaWdtYSBYXFxvdGltZXMoWVxcb3RpbWVzIFopIl0sWzAsMSwiZV97WCxZfVxcb3RpbWVzIFoiXSxbMSwyLCJlX3tYXFxvdGltZXMgWSxafSJdLFsyLDMsIlxcU2lnbWFcXGFscGhhIl0sWzAsNCwiXFxhbHBoYSIsMl0sWzQsMywiZV97WCxZXFxvdGltZXMgWn0iLDJdXQ==
-        \[\begin{tikzcd}
-            {(\Sigma X\otimes Y)\otimes Z} & {\Sigma(X\otimes Y)\otimes Z} & {\Sigma((X\otimes Y)\otimes Z)} \\
-            {\Sigma X\otimes(Y\otimes Z)} && {\Sigma(X\otimes(Y\otimes Z))}
-            \arrow["{e_{X,Y}\otimes Z}", from=1-1, to=1-2]
-            \arrow["{e_{X\otimes Y,Z}}", from=1-2, to=1-3]
-            \arrow["\Sigma\alpha", from=1-3, to=2-3]
-            \arrow["\alpha"', from=1-1, to=2-1]
-            \arrow["{e_{X,Y\otimes Z}}"', from=2-1, to=2-3]
-        \end{tikzcd}\]
-%        \item The following diagram must commute 
-%        % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXFNpZ21hIFNcXG90aW1lcyBcXFNpZ21hIFMiXSxbMCwxLCJcXFNpZ21hIFNcXG90aW1lc1xcU2lnbWEgUyJdLFsyLDEsIlxcU2lnbWFeMlMiXSxbMiwwLCJcXFNpZ21hXnsyfVMiXSxbMSwwLCJcXFNpZ21hKFNcXG90aW1lc1xcU2lnbWEgUykiXSxbMSwxLCJcXFNpZ21hKFNcXG90aW1lc1xcU2lnbWEgUykiXSxbMCwxLCJcXHRhdSIsMl0sWzMsMiwiLTEiXSxbMCw0LCJlX3tTLFN9Il0sWzQsMywiXFxTaWdtYVxcbGFtYmRhX3tcXFNpZ21hIFN9Il0sWzEsNSwiZV97UyxTfSJdLFs1LDIsIlxcU2lnbWFcXGxhbWJkYV97XFxTaWdtYSBTfSJdXQ==
-%        \[\begin{tikzcd}
-%            {\Sigma S\otimes \Sigma S} & {\Sigma(S\otimes\Sigma S)} & {\Sigma^{2}S} \\
-%            {\Sigma S\otimes\Sigma S} & {\Sigma(S\otimes\Sigma S)} & {\Sigma^2S}
-%            \arrow["\tau"', from=1-1, to=2-1]
-%            \arrow["{-1}", from=1-3, to=2-3]
-%            \arrow["{e_{S,S}}", from=1-1, to=1-2]
-%            \arrow["{\Sigma\lambda_{\Sigma S}}", from=1-2, to=1-3]
-%            \arrow["{e_{S,S}}", from=2-1, to=2-2]
-%            \arrow["{\Sigma\lambda_{\Sigma S}}", from=2-2, to=2-3]
-%        \end{tikzcd}\]
-%        In other words, $\tau_{\Sigma S,\Sigma S}=-1$.
-    \end{enumerate}
-\end{definition}
-
-Usually, most tensor triangulated categories that arise in nature will satisfy additional coherence axioms (see axioms TC1--TC5 in \cite{MayTri}), but the above definition will suffice for our purposes. In what follows, we fix a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$.
+In what follows, we fix a tensor triangulated category $(\cC,\otimes,S,\Sigma,e,\cD)$ (\autoref{tentri}).
 %Note that in the definition of the tensor triangulated category, we chose isomorphisms
 %\[e_{X,Y}:\Sigma X\otimes Y\xrightarrow\cong\Sigma(X\otimes Y),\]
 %but we just as well could have chosen isomorphisms
